@@ -1,0 +1,3 @@
+Binding: worcs_template
+Title: WORCS Project Template
+OpenFiles: README.md, manuscript.Rmd, preregistration.Rmd, prepare_data.R

@@ -1,0 +1,16 @@
+*.csv
+*.sav
+*.sas7bdat
+*.xlsx
+*.xls
+*.pdf
+!checksums.csv
+.gitignore
+*.csv
+*.sav
+*.sas7bdat
+*.xlsx
+*.xls
+*.pdf
+!checksums.csv
+.gitignore
