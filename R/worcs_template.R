@@ -5,6 +5,7 @@ worcs_template <- function(path, ...) {
   prereg_template <- dots[["prereg_template"]]
   use_renv <- dots[["use_renv"]]
   remote_repo <- dots[["remote_repo"]]
+
   # ensure path exists
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
 
@@ -18,7 +19,7 @@ worcs_template <- function(path, ...) {
 
   # Begin manuscript
   draft(
-    "manuscript.Rmd",
+    file.path(path, "manuscript.Rmd"),
     "apa6",
     package = "papaja",
     create_dir = FALSE,
@@ -29,7 +30,7 @@ worcs_template <- function(path, ...) {
 
   # Begin prereg
   draft(
-    "preregistration.Rmd",
+    file.path(path, "preregistration.Rmd"),
     paste0(tolower(prereg_template), "_prereg"),
     package = "prereg",
     create_dir = FALSE,
@@ -37,16 +38,6 @@ worcs_template <- function(path, ...) {
   )
 
   # End prereg
-
-
-  # Begin data
-data_txt <- c("# In this file, write the R-code necessary to load your original data file",
-"# (e.g., an SPSS, Excel, or SAS-file), and convert it to a data.frame. Then,",
-"# use the function open_data(your_data_frame) or closed_data(your_data_frame)",
-"# to store the data.")
-  # End data
-  writeLines(data_txt, con = file.path(path, "prepare_data.R"))
-
 
 # Use renv ----------------------------------------------------------------
   if(use_renv) renv::init(project = path)
@@ -62,7 +53,9 @@ data_txt <- c("# In this file, write the R-code necessary to load your original 
                  "*.xlsx",
                  "*.xls",
                  "*.pdf",
-                 "!checksums.csv"),  ".gitignore", append = TRUE)
+                 "!checksums.csv"),
+          file = file.path(path, ".gitignore"),
+          append = TRUE)
   } else {
     warning("Rstudio is not yet connected to Git. You will not be able to use the worcs package yet.")
   }
