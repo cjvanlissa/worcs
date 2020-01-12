@@ -1,4 +1,5 @@
 #' @importFrom rmarkdown draft
+#' @importFrom renv init
 worcs_template <- function(path, ...) {
   # collect inputs
   dots <- list(...)
@@ -40,7 +41,10 @@ worcs_template <- function(path, ...) {
   # End prereg
 
 # Use renv ----------------------------------------------------------------
-  if(use_renv) renv::init(project = path)
+  if(use_renv){
+    renv_path <- normalizePath(path)
+    do.call(init, list(project = renv_path, restart = FALSE))
+  }
 
   #use_git() initialises a Git repository and adds important files to .gitignore. If user consents, it also makes an initial commit.
   #usethis::use_github()
@@ -56,6 +60,11 @@ worcs_template <- function(path, ...) {
                  "!checksums.csv"),
           file = file.path(path, ".gitignore"),
           append = TRUE)
+    if(grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
+      connect_github(remote_repo)
+    } else {
+      warning("Remote repository address is not valid.")
+    }
   } else {
     warning("Rstudio is not yet connected to Git. You will not be able to use the worcs package yet.")
   }
