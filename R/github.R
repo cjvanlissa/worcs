@@ -9,9 +9,9 @@
 connect_github <- function(https){
   cmnd <- paste0("git remote add origin ", https)
   system(cmnd, ignore.stdout = TRUE)
-  system('git add .')
-  system('git commit -m "Initial commit of WORCS project"')
-  system("git push -u origin master", ignore.stdout = TRUE)
+  #system('git add .')
+  #system('git commit -m "Initial commit of WORCS project"')
+  #system("git push -u origin master", ignore.stdout = TRUE)
 }
 
 

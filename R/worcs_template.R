@@ -53,13 +53,14 @@ worcs_template <- function(path, ...) {
   if(has_git()){
     git_comd <- paste0('git init "', norm_path, '"')
     system(command = git_comd)
-    write(c("*.csv",
-                 "*.sav",
-                 "*.sas7bdat",
-                 "*.xlsx",
-                 "*.xls",
-                 "*.pdf",
-                 "!checksums.csv"),
+    write(c("renv/",
+            "*.csv",
+            "*.sav",
+            "*.sas7bdat",
+            "*.xlsx",
+            "*.xls",
+            "*.pdf",
+            "!checksums.csv"),
           file = file.path(norm_path, ".gitignore"), append = TRUE)
     if(grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
       connect_github(remote_repo)
