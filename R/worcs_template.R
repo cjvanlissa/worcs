@@ -1,5 +1,5 @@
 #' @importFrom rmarkdown draft
-#' @importFrom renv init
+# @importFrom renv init
 worcs_template <- function(path, ...) {
   # collect inputs
   dots <- list(...)
@@ -42,7 +42,7 @@ worcs_template <- function(path, ...) {
 # Use renv ----------------------------------------------------------------
   if(use_renv){
     renv_path <- normalizePath(path)
-    do.call(init, list(project = renv_path, restart = FALSE))
+    eval(parse(text = "renv::init(project = renv_path, restart = FALSE)"))
   }
 
   #use_git() initialises a Git repository and adds important files to .gitignore. If user consents, it also makes an initial commit.
