@@ -14,6 +14,9 @@ worcs_template <- function(path, ...) {
   resources = system.file('rstudio', 'templates', 'project', 'resources', package = 'worcs', mustWork = TRUE)
 
   files = list.files(resources, recursive = TRUE, include.dirs = FALSE)
+  source = file.path(resources, files)
+  target = file.path(path, files)
+  file.copy(source, target)
 
   # write files
 
@@ -40,15 +43,15 @@ worcs_template <- function(path, ...) {
   # End prereg
 
 # Use renv ----------------------------------------------------------------
+  norm_path <- normalizePath(path)
   if(use_renv){
-    renv_path <- normalizePath(path)
-    eval(parse(text = "renv::init(project = renv_path, restart = FALSE)"))
+    eval(parse(text = "renv::init(project = norm_path, restart = FALSE)"))
   }
 
   #use_git() initialises a Git repository and adds important files to .gitignore. If user consents, it also makes an initial commit.
   #usethis::use_github()
   if(has_git()){
-    git_comd <- paste0('git init "', path, '"')
+    git_comd <- paste0('git init "', norm_path, '"')
     system(command = git_comd)
     write(c("*.csv",
                  "*.sav",
@@ -57,8 +60,7 @@ worcs_template <- function(path, ...) {
                  "*.xls",
                  "*.pdf",
                  "!checksums.csv"),
-          file = file.path(path, ".gitignore"),
-          append = TRUE)
+          file = file.path(norm_path, ".gitignore"), append = TRUE)
     if(grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
       connect_github(remote_repo)
     } else {
