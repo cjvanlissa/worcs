@@ -11,7 +11,7 @@ worcs_template <- function(path, ...) {
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
 
   # copy 'resources' folder to path
-  resources = system.file('resources', package = 'worcs', mustWork = TRUE)
+  resources = system.file('rstudio', 'templates', 'project', 'resources', package = 'worcs', mustWork = TRUE)
 
   files = list.files(resources, recursive = TRUE, include.dirs = FALSE)
 
