@@ -45,7 +45,10 @@ worcs_template <- function(path, ...) {
 # Use renv ----------------------------------------------------------------
   norm_path <- normalizePath(path)
   if(use_renv){
-    eval(parse(text = "renv::init(project = norm_path, restart = FALSE)"))
+    init_fun <- get("init", asNamespace("renv"))
+    do.call(init_fun, list(project = norm_path, restart = FALSE))
+    #eval(parse(text = "do.call('renv::init', list(project = norm_path, restart = FALSE))"))
+    #init(project = norm_path, restart = FALSE)
   }
 
   #use_git() initialises a Git repository and adds important files to .gitignore. If user consents, it also makes an initial commit.
