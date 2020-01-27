@@ -47,8 +47,6 @@ worcs_template <- function(path, ...) {
   if(use_renv){
     init_fun <- get("init", asNamespace("renv"))
     do.call(init_fun, list(project = norm_path, restart = FALSE))
-    #eval(parse(text = "do.call('renv::init', list(project = norm_path, restart = FALSE))"))
-    #init(project = norm_path, restart = FALSE)
   }
 
   #use_git() initialises a Git repository and adds important files to .gitignore. If user consents, it also makes an initial commit.
@@ -56,8 +54,7 @@ worcs_template <- function(path, ...) {
   if(has_git()){
     git_comd <- paste0('git init "', norm_path, '"')
     system(command = git_comd)
-    write(c("renv/",
-            "*.csv",
+    write(c("*.csv",
             "*.sav",
             "*.sas7bdat",
             "*.xlsx",
