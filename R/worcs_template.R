@@ -21,13 +21,17 @@ worcs_template <- function(path, ...) {
   # write files
 
   # Begin manuscript
+  manuscript_file <- file.path(path, "manuscript.Rmd")
   draft(
-    file.path(path, "manuscript.Rmd"),
+    file = manuscript_file,
     "apa6",
     package = "papaja",
     create_dir = FALSE,
     edit = FALSE
   )
+  manuscript_text <- readLines(manuscript_file)
+  writeLines(append(manuscript_text, "knit              : worcs::cite_all", after = (grep("^---$", manuscript_text)[2]-1)),
+             manuscript_file)
   # End manuscript
 
 
