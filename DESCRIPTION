@@ -15,9 +15,12 @@ LazyData: true
 URL: https://github.com/cjvanlissa/os_template
 RoxygenNote: 7.0.2
 Imports:
-  rmarkdown,
-  papaja,
-  prereg,
-  synthpop
+    rmarkdown,
+    papaja,
+    prereg,
+    synthpop,
+    git2r
 Suggests:
-  renv
+    renv,
+    knitr
+VignetteBuilder: knitr
