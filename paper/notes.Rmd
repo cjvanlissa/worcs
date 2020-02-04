@@ -1,0 +1,225 @@
+<!-- End; below here are notes -->
+
+<!-- We will introduce these tools, before explaining how they adress the TOP-guidelines.  
+
+
+--> 
+
+### Dynamic Document Generation
+
+<!--are essential o Here, we combine four software tools, whose interplay can guarantee full computational reproducibility of data analyses and their reporting. There are various ideas on how to enhance reproducibility [@piccoloToolsTechniquesComputational2016], four of which we believe to be particularly important: literate programming: [@ruleTenSimpleRules2019], version control [@barbaHardRoadReproducibility2016], dependency management [@askrenUsingMakeReproducible2016], and containerization [@clyburne-sherinComputationalReproducibilityContainers2018]. We argue that only a workflow using all four concepts in unison can guarantee confidence in reproducing a scientific report. Various implementations of these concepts exist, but we consider the following four best suited for the R environment [@r2019]: for literate programming, R Markdown [@rmarkdown2019], for version control, Git [@chaconProGit2014], for dependency management, Make [@feldmanMakeProgramMaintaining1979], and for containerization, Docker [@merkelDockerLightweightLinux2014]. Each of these software solutions serves a valuable meta-scientific goal (reproducibility) and increases the researches' productivity. They all are highly flexible and powerful, so that mastering them fully, requires a considerable amount of practice. However, for our purposes, it is sufficient to master a valuable minimal subset of functions to ensure reproducibility of scientific analyses.
+-->
+
+# Citation
+
+Sometimes have to shorten list of citations for publication; keep online version of document with full citations for every publication, package, etc
+Include a document with a list of every citation, and which information from the original source substantiates the claim
+
+## Data
+
+The requirement of open data can be easily met by including the data in a Git repository. When doing so, it is best to use a text-based format (like `.csv`): Git is designed for tracking changes in text-based; `.csv` is displayed in tabular format on GitHub, and anyone can open text files on any computer without requiring licensed software. 
+
+From a reproducibility point-of-view, it is desirable to share data in the rawest form possible. Pre-processing, data cleaning, and handling of missing values should all be part of the reproducible workflow, documented in a file called `data_cleaning.R`.
+The only action that should always be performed prior to data sharing is anonymization.
+
+Anonymization is often a strict requirement for sharing primary data, so make sure that any non-anonymized data are never tracked in your git repository. To prevent accidental sharing of non-anonymized data, the `.gitignore` file in the WORCS template ignores all commonly used data-related filetypes. When saving data using `open_data()`, a file called `data.csv` is generated, and added as an exception to `.gitignore`. The `closed_data()` function also saves the data, but does not alter the `.gitignore` file. The recommended procedure is thus to first fully anonymize the raw data, then save the anonymized file using `open_data()` or `closed_data()` and start tracking it in Git, and finally, document all preprocessing steps in `data_cleaning.R`.
+
+### When data cannot be shared
+
+Sometimes primary data cannot be shared, due to privacy constraints, ethical concerns, legal limitations (e.g., using controlled-acces data), or the volume of data. It is important to note that when data is not shared, the reproducibility and transparancy of the research is impeded. Here, discuss best practices for open science with closed data. 
+
+#### Validating files
+
+When data are closed, and not version controlled in Git, there is a risk that the local file might be changed, thereby rendering the entire analysis non-reproducible. To ensure that all analyses are conducted on the original, unchanged file, one can generate a "checksum" when saving `data.csv` [REF Peikert]. A checksum is a highly compressed, 32-character representation of the file. If the contents of the file change, the checksum changes too. The functions `open_data()` and `closed_data()` in the `worcs` package generate such a checksum along with a `data.csv` file, and the function `load_data()` validates the checksum before loading the file.
+
+#### Synthetic data
+
+If the original data cannot be shared, it is good practice to include a simulated dataset with similar properties to the original data. Others can use the simulated dataset to review the original analysis code or try out alternative analyses. This will result in code that works with the original data as well, which can be submitted to the original authors through a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) on GitHub. Using a pull request has the benefit that anyone can see that additional analyses have been requested, thereby providing an incentive for the original authors to run these analyses on the original dataset, and share the outcomes. The function `closed_data` generates a synthetic dataset using the `synthpop` package, with rudimentary default settings. For a customized synthetic dataset, it is possible to follow [a tutorial](https://www.r-bloggers.com/generating-synthetic-data-sets-with-synthpop-in-r/). I recommend using `method = "ranger"`, as the ranger algorithm is much faster than the default (REF ranger).
+
+Sometimes external requirements make it impossible fot the data to be stored and shared together with the scripts. In most of the cases we have seen, these are either space constraints or privacy considerations. In these cases, of course, unrestricted reproducibility is not guaranteed. If dividing data and scripts is unavoidable, we recommend validating all data files using checksums (also called a "hash", e.g., using the functions provided in package `digest` [@digest2019]) before analyzing them. To do this, a checksum must be created and stored at the time of the original analysis. At the time of reproduction, the current checksum must then be compared with the stored checksum to ensure data integrity.
+
+Create checksum for raw datafile
+Publish anonymized data in repository
+Synthesize anonymized datafile and share that
+Check checksum in analyses
+
+## Code
+
+Publish all code and track changes to the analysis process
+
+## Materials
+
+Publish
+
+## Design
+
+Publish
+
+## Pre-registration of studies
+
+Push to private git repository and tag commit
+Later, when git repository is made public, people can verify the commit
+
+## Pre-registration of analysis plan
+
+Push to private git repository and tag commit
+Later, when git repository is made public, people can verify the commit
+
+## Replication
+
+focus on incentives to motivate researchers to adopt open science principles; this checklist focuses on *means* for adopting these principles. It aims to lower the threshold for compliance by providing simple solutions
+* TOP is geared towards Journals, funders, and societies. Acknowledges that Open Science needs grassroots support CODES empowers individual researchers to comply with open science principles even in the absence of top-down requirements.
+
+## Means vs ends
+
+
+
+Contribution vis-a-vis TOP-guidelines
+
+
+## Keynote lectures and special events focused on Open Science
+
+
+Efficiency productivity transparency response to interdisciplinary research needs
+Make research, data, and publications to all levels of iinquiring society
+
+
+## Transparency
+
+1. Preregistration
+2. Version control
+
+Van Aken: We have to invest in open data, and learn to use each other's data (presidential address ECDP 2019)
+
+## Data anonymization
+
+<!-- https://piwik.pro/blog/the-ultimate-guide-to-data-anonymization-in-analytics/ -->
+
+## Replication
+
+https://journals.sagepub.com/doi/abs/10.1177/0956797617747090
+
+"Recently, theory-of-mind research has been revolutionized by findings from novel implicit tasks suggesting that at least some aspects of false-belief reasoning develop earlier in ontogeny than previously assumed and operate automatically throughout adulthood. Although these findings are the empirical basis for far-reaching theories, systematic replications are still missing. This article reports a preregistered large-scale attempt to replicate four influential anticipatory-looking implicit theory-of-mind tasks using original stimuli and procedures. Results showed that only one of the four paradigms was reliably replicated. A second set of studies revealed, further, that this one paradigm was no longer replicated once confounds were removed, which calls its validity into question. There were also no correlations between paradigms, and thus, no evidence for their convergent validity. In conclusion, findings from anticipatory-looking false-belief paradigms seem less reliable and valid than previously assumed, thus limiting the conclusions that can be drawn from them."
+
+Text book mentions replication: Developmental Research Methods By Scott A. Miller
+
+
+Conceptual replication more feasible; says something about *generalizability* of findings (see also Coyne)
+
+## Review
+@rooyenEffectPeerReview2010:
+Conclusion Telling peer reviewers that their signed reviews might be available in the public domain on the BMJ’s website had no important effect on review quality. Although the possibility of posting reviews online was associated with a high refusal rate among potential peer reviewers and an increase in the amount of time taken to write a review, we believe that the ethical arguments in favour of open peer review more than outweigh these disadvantages.
+
+@walshOpenPeerReview2000:
+A total of 245 reviewers (76%) agreed to sign. Signed reviews were of higher quality, were more courteous and took longer to complete than unsigned reviews. Reviewers who signed were more likely to recommend publication.
+
+<!--@ross-hellauerWhatOpenPeer2017:
+OPR definition: Open peer review is an umbrella term for a number of overlapping ways that peer review models can be adapted in line with the aims of Open Science, including making reviewer and author identities open, publishing review reports and enabling greater participation in the peer review process. The full list of traits is:
+
+Open identities: Authors and reviewers are aware of each other’s identity
+
+Open reports: Review reports are published alongside the relevant article.
+
+Open participation: The wider community to able to contribute to the review process.
+
+Open interaction: Direct reciprocal discussion between author(s) and reviewers, and/or between reviewers, is allowed and encouraged.
+
+Open pre-review manuscripts: Manuscripts are made immediately available (e.g., via pre-print servers like arXiv) in advance of any formal peer review procedures.
+
+Open final-version commenting: Review or commenting on final “version of record” publications.
+
+Open platforms (“decoupled review”): Review is facilitated by a different organizational entity than the venue of publication.-->
+
+Signed review: Accountability
+Publons (credit for review)
+Give permission to include review as supplementary material or upload on osf
+
+Post-publication review: OSF has comments feature; github issues
+
+I sign my reviews consistently, and include the following text in the review and in the message to the Editor:
+
+In the spirit of open science, transparency, and accountability, I sign my reviews. In the   
+context of the replication crisis, I consider these principles to be more important than the
+anonimity of blind review. I have reviewed this paper in good faith, to the best of my ability,
+and with the sole intention of providing helpful suggestions that might improve the quality of
+the work. If my comments cause offense, please know that this was unintentional. This review is
+licensed under a Creative Commons Attribution-NoDerivatives 4.0 International
+License. The terms of this license are available at
+http://creativecommons.org/licenses/by-nd/4.0/ Practically speaking: You can use my review 
+as usual, but the publisher cannot assert copyright over it. You can share (parts of) my
+review with attribution, if you so choose. Best of luck!
+
+Sincerely,
+<name and affiliation>
+
+As of yet, I have not received any comments from Editors about the note or the fact that I sign my reviews.
+
+## TOP Guidelines
+
+Transparency and openness promotion
+
+### How top is implemented
+
+TOP Statements are standardized tools for disclosing research outputs such as datasets.
+Registered Reports protect research against biased analysis and publication.
+Open Science Badges signal transparent research. 
+
+### 8 modular standards:
+
+### Citation
+
+Under Open Science principles, citation standards are expanded to give credit to the authors of data and software used for analysis. 
+
+Many developmental psychological studies are secondary analyses of existing, large, longitudinal datasets. It is not uncommon for such papers to accrue several coauthors who were responsible for initial data collection, but whose contribution to the paper was limited or non-existent. This practice is in violation of some journals' publication guidelines, although it does not conflict with the APA guidelines, which define an author as "anyone involved with initial research design, data collection and analysis, manuscript drafting, and final approval" (American Psychological Association, 2019, 10/25/2019). 
+
+Many ethical guidelines hold that co-authors do not merely share credit for a publication, but are also all responsible for its content - although it can be debated whether this is reasonable and fair [@helgessonResponsibilityScientificMisconduct2018]. A practical solution, already implemented by many journals, is to provide a footnote specifying each author's contributions [@national2009being]. If a journal does not request this information by default, authors can still choose to include it in a footnote. Finally, using Git for version control has the added advantage that every author's contributions are fully traceable.
+
+Given that co-authors incur some responsibility over the work, it may be desireable for all parties involved to separate authorship from credit given for data collection. This can be accomplished by publishing "data papers" that describe the design and procedures of the study. Some new journals focus only on the publication of data papers, such as the *Journal of Open Psychology Data*. Needless to say, these journals are also a great way to learn about data that could be used for secondary analysis. 
+
+One common practice in our field 
+
+Open citation standards require   citation for data and materials
+
+(1); transparant disclosure or sharing of data (2), methods, including the code required to reproduce them (3), research materials (4), and design and analysis (5); pre-registration of studies before data collection (6), and pre-registration of the analysis plan prior to analysis (7); and replication of published results (8).
+
+Adequate citation of statistical software is important, because open source software is an important type of research output for statisticians. An easy way to cite all packages used is to write an APA-style paper in Rmarkdown using the `papaja` package. Cite all packages with the function `cite_r()`, and add the BibTeX entries for these packages to the reference file using `r_refs("filename.bib")`. However, it might not be feasible or desireable (e.g., due to journal limits on the number of references) to cite all packages. Therefore, a more practical solution might be to cite only the most important packages. The citation for each package can be obtained by running `citation("packagename")`. If this approach is combined with a fully reproducible R-environment (using the `renv` package) and code sharing (e.g., on Github or the OSF), then the full list of package dependencies is documented automatically in the `.lock` file.
+
+### Citation software
+
+It is worth mentioning the free, open-source reference manager Zotero, because it can be used as easily in conjunction with Rstudio as with Word; the plugin BetterBibTex can export continuously updated `.bib` files for citation in Rmarkdown. Finally, it is worth noting that, as of June 2019, Zotero automatically flags retracted papers in your database. This might stop discredited papers from unnecessarily muddling the literature.
+<!--Retracted papers
+
+Retracted papers are notoriously persistent in the literature, continuing to accumulate citations long after their findings have been debunked. (See “The Zombie Literature,” The Scientist, May 2016.) The UCLA group’s Oncogene paper, for example, was cited at least 15 times between being flagged on PubPeer in 2014 and being retracted two years later. Moreover, retraction notices themselves are often opaque, making it unclear what exactly led to a paper’s retraction, or how authors behaved during the process.
+-->
+
+## Open code
+
+Sharing code is essential for computational reproducibility. The easiest way to share fully reproducible code is to work with an Rstudio project that is version controlled using Git, combined with the `renv` package to ensure all package dependencies are tracked. Such a project can be uploaded ("pushed") wholesale to a code repository, such as GitHub. Projects on GitHub can be publically accessible, so that other researchers can browse the code or copy ("clone") the entire project. It is also possible to make the project private until the manuscript is accepted, which has the benefit that one can show the entire evolution of the analyses from conception to publication.  
+
+3. Design and analysis
+Sets standards for research design disclosures
+
+4. Pre-registration of analysis plans
+Specification of analytical details before data collection
+
+5. Data
+Disclose, require, or verify shared data
+
+6. Research materials
+Disclose, require, or verify shared materials
+
+7. Pre-registration of studies
+Specification of study details before data collection
+
+8. Replication
+Encourages publication of replication studies
+
+### Across 3 tiers:
+
+1. Disclosure: The  article  must  disclose whether  or  not  materials are available.
+2. Requirement: The  article  must  share materials when possible.
+3. Verification: Third party must verify that the standard is being met.
+
+
+Transparency, open sharing, and reproducibility are core values of science, but not always part of daily practice. Journals, funders, and societies can increase research reproducibility by adopting the TOP Guidelines. 
+
