@@ -1,0 +1,75 @@
+---
+title: "Setting up your computer for WORCS"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Setting up your computer for WORCS}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(worcs)
+```
+
+Before you can use the WORCS workflow and the full functionality of the `worcs` package, you have to install several software packages, and register on GitHub. You only have to perform these steps once, and the entire process should take approximately 1 hour if you start from scratch. Follow these steps in order: 
+
+1. Install R from [cloud.r-project.org](https://cloud.r-project.org/)
+2. Install Rstudio Desktop (Free) from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)
+<!-- ALWAYS RUN AS ADMIN -->
+<!-- install rtools -->
+3. Install developer tools to compile R packages from source (for more info, see [this article](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites))
+    + On Windows: Install the recommended version of [Rtools](https://cran.r-project.org/bin/windows/Rtools/), highlighted in green. It is important to select the checkbox *Add rtools to system PATH*
+    + On Mac: Install XCode from the Mac AppStore. Open XCode, go to Preferences, Downloads, and install the Command Line Tools
+4. Install Git from [git-scm.com](https://git-scm.com/downloads). Use the default, recommended settings. It is especially important to leave these settings selected:
+    + Git from the command line and also from third party software  
+    <!--*The `worcs` R-package calls Git from the command line*-->
+    + Use the OpenSSL library  
+    <!--*For secure data transfer with GitHub*-->
+    + Checkout Windows-style, commit Unix-style line endings  
+    <!--*This is the preferred setting when collaborating with others on different platforms. Be prepared that, on windows, you will receive harmless notifications about LF to CRLF line endings.  *-->
+    + Enable Git Credential Manager  
+    <!--*For logging in to GitHub*-->
+    + If you run into any trouble, a more comprehensive tutorial on installing Git is available at [happygitwithr.com](https://happygitwithr.com/install-git.html).
+5. Register on GitHub
+    + Go to [github.com](https://github.com/) and click "Sign up". Choose an "Individual", "Free" plan.
+    + Request a [free academic upgrade](https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount). This allows you to create *private repositories*, which are only visible to you and selected collaborators, and can be made public when your work is published.
+6. Connect Rstudio to Git and Github (for more support, see [this Rstudio article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/rstudio-and-github/))
+    a. Open Rstudio, open the Tools menu, click *Global Options*, and click *Git/SVN*
+    b. Verify that *Enable version control interface for RStudio projects* is selected
+    c. Verify that *Git executable:* shows the location of git.exe. If it is missing, manually fix the location of the file.
+    d. Click *Create RSA Key*. Do not enter a passphrase. Press *Create*. A window with some information will open, which you can close.
+    e. Click *View public key*, and copy the entire text to the clipboard.
+    f. Close Rstudio (it might offer to restart by itself; this is fine)
+    g. Go to [www.github.com](https://www.github.com)
+    h. Click your user icon, click *Settings*, and then select the *SSH and GPG keys* tab.
+    i. Click *New SSH key*. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled "*Key*".
+    j. Open Rstudio again (unless it restarted by itself)
+7. Install all packages required for WORCS by running the following code in the Rstudio console. Be prepared for three contingencies:  
+    + If you receive any error saying *There is no package called XYZ*, then run the code `install.packages("XYZ")`  
+    + If you are prompted to update packages, just press `3: None`. Updating packages this way in an interactive session sometimes leads to errors, if the packages are loaded.  
+    + If you see a pop-up dialog asking *Do you want to install from sources the package which needs compilation?*, click *Yes*.
+
+<!-- 
+k. In the Rstudio Console window, run the following code:```{r, eval = FALSE, echo = TRUE} system('git config --global user.email "your@email.com"') system('git config --global user.name "yourname"')
+
+RENV WORDT NU NIET GEINSTALLEERD; TOEVOEGEN AAN SUGGESTS? 
+BOVENDIEN GAAT RENV NU INITIALISEREN WANNEER JE VOOR HET EERST EEN PROJECT MAAKT. NIET HANDIG. OF MISSCHIEN WEL? 
+
+ADD library(worcs) TO MANUSCRIPT.RMD TO HAVE RENV TRACK IT
+-->
+
+```{r installpackages, eval = FALSE, echo = TRUE}
+install.packages("devtools")
+devtools::install_github("crsh/papaja", dependencies = TRUE)
+devtools::install_github("cjvanlissa/worcs", dependencies = TRUE)
+tinytex::install_tinytex()
+git2r::config(global = TRUE, user.name = "your.name", user.email = "your.email")
+```
+<!-- 
+renv::consent(provided = TRUE)
+Please quit and reopen your R session and IDE (if you are using one, such as RStudio or Emacs) and check if tinytex:::is_tinytex() is TRUE.-->
+That's it! Everything should be installed and connected now.
