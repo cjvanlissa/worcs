@@ -1,4 +1,5 @@
 #' @importFrom rmarkdown draft
+#' @importFrom git2r init remote_add add commit push
 # @importFrom renv init
 worcs_template <- function(path, ...) {
   # collect inputs
@@ -30,8 +31,9 @@ worcs_template <- function(path, ...) {
     edit = FALSE
   )
   manuscript_text <- readLines(manuscript_file)
-  writeLines(append(manuscript_text, "knit              : worcs::cite_all", after = (grep("^---$", manuscript_text)[2]-1)),
-             manuscript_file)
+  manuscript_text <- append(manuscript_text, "knit              : worcs::cite_all", after = (grep("^---$", manuscript_text)[2]-1))
+  manuscript_text <- append(manuscript_text, 'library("worcs")', after = grep('^library\\("papaja"\\)$', manuscript_text))
+  writeLines(manuscript_text, manuscript_file)
   # End manuscript
 
 
@@ -55,10 +57,12 @@ worcs_template <- function(path, ...) {
 
   #use_git() initialises a Git repository and adds important files to .gitignore. If user consents, it also makes an initial commit.
   #usethis::use_github()
+  git_success <- TRUE
   if(has_git()){
-    git_comd <- paste0('git init "', norm_path, '"')
-    system(command = git_comd)
-    write(c("*.csv",
+    init(path = norm_path)
+    write(c(".Rhistory",
+            ".Rprofile",
+            "*.csv",
             "*.sav",
             "*.sas7bdat",
             "*.xlsx",
@@ -67,11 +71,17 @@ worcs_template <- function(path, ...) {
             "!checksums.csv"),
           file = file.path(norm_path, ".gitignore"), append = TRUE)
     if(grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
-      connect_github(remote_repo)
+      remote_add(name = "origin", url = remote_repo)
+      add(path = "README.md")
+      commit(message = "worcs template initial commit", all = TRUE)
+      system("git push -u origin master")
+      #push(name = "origin", refspec = "refs/heads/master")
     } else {
-      warning("Remote repository address is not valid.")
+      git_success <- FALSE
     }
+
   } else {
-    warning("Rstudio is not yet connected to Git. You will not be able to use the worcs package yet.")
+    git_success <- FALSE
   }
+  if(!git_success) warning("Could not connect to a remote GitHub repository. You are working with a local git repository only.", call. = FALSE)
 }
