@@ -38,19 +38,17 @@ cite_essential <- function(inputFile, encoding){
 comprehensive_cite <- function(inputFile, encoding, citeall) {
   doc_text <- readLines(inputFile)
   bn <- basename(inputFile)
-  tmpfile <- gsub(bn, paste0("_compcite_", bn), inputFile)
   if(citeall){
-    writeLines(gsub("@@", "@", doc_text), tmpfile)
+    writeLines(gsub("@@", "@", doc_text), bn)
   } else {
-    writeLines(cleancitations(doc_text), tmpfile)
+    writeLines(cleancitations(doc_text), bn)
   }
   Args <- list(
-    input = tmpfile,
+    input = bn,
     encoding = encoding
   )
   do.call(render, Args)
-  flz <- list.files(pattern = "^_compcite_")
-  sapply(flz, file.remove)
+  writeLines(doc_text, bn)
 }
 
 cleancitations <- function(text){
