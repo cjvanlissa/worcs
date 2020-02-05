@@ -5,3 +5,7 @@
 !data.csv
 !synthetic_data.csv
 inst/doc
+*.fff
+*.log
+*.pdf
+*.tex

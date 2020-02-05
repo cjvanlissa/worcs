@@ -68,6 +68,9 @@ worcs_template <- function(path, ...) {
             "*.xlsx",
             "*.xls",
             "*.pdf",
+            "*.fff",
+            "*.log",
+            "*.tex",
             "!checksums.csv"),
           file = file.path(norm_path, ".gitignore"), append = TRUE)
     if(grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
