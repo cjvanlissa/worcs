@@ -64,10 +64,9 @@ ADD library(worcs) TO MANUSCRIPT.RMD TO HAVE RENV TRACK IT
 
 ```{r installpackages, eval = FALSE, echo = TRUE}
 install.packages("devtools")
-devtools::install_github("crsh/papaja", dependencies = TRUE)
 devtools::install_github("cjvanlissa/worcs", dependencies = TRUE)
 tinytex::install_tinytex()
-git2r::config(global = TRUE, user.name = "your.name", user.email = "your.email")
+worcs::git_credentials("your_name", "your_email")
 ```
 <!-- 
 renv::consent(provided = TRUE)

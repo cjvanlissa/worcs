@@ -1,5 +1,5 @@
 #' @importFrom rmarkdown draft
-#' @importFrom git2r init remote_add add commit push
+#' @importFrom gert git_init git_remote_add git_add git_commit git_push
 # @importFrom renv init
 worcs_template <- function(path, ...) {
   # collect inputs
@@ -57,34 +57,28 @@ worcs_template <- function(path, ...) {
 
   #use_git() initialises a Git repository and adds important files to .gitignore. If user consents, it also makes an initial commit.
   #usethis::use_github()
-  git_success <- TRUE
-  if(has_git()){
-    init(path = norm_path)
-    write(c(".Rhistory",
-            ".Rprofile",
-            "*.csv",
-            "*.sav",
-            "*.sas7bdat",
-            "*.xlsx",
-            "*.xls",
-            "*.pdf",
-            "*.fff",
-            "*.log",
-            "*.tex",
-            "!checksums.csv"),
-          file = file.path(norm_path, ".gitignore"), append = TRUE)
-    if(grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
-      remote_add(name = "origin", url = remote_repo)
-      add(path = "README.md")
-      commit(message = "worcs template initial commit", all = TRUE)
-      system("git push -u origin master")
-      #push(name = "origin", refspec = "refs/heads/master")
-    } else {
-      git_success <- FALSE
-    }
-
+  write(c(".Rhistory",
+          ".Rprofile",
+          "*.csv",
+          "*.sav",
+          "*.sas7bdat",
+          "*.xlsx",
+          "*.xls",
+          "*.pdf",
+          "*.fff",
+          "*.log",
+          "*.tex",
+          "!checksums.csv"),
+        file = file.path(norm_path, ".gitignore"), append = TRUE)
+  if(grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
+    tryCatch({
+      git_init(path = norm_path)
+      git_remote_add(name = "origin", url = remote_repo)
+      git_add(files = "README.md")
+      git_commit(message = "worcs template initial commit")
+      git_push(remote = "origin")
+    }, error = function(e){warning("Could not connect to a remote GitHub repository. You are working with a local git repository only.", call. = FALSE)})
   } else {
-    git_success <- FALSE
+    warning("No valid GitHub address provided. You are working with a local git repository only.", call. = FALSE)
   }
-  if(!git_success) warning("Could not connect to a remote GitHub repository. You are working with a local git repository only.", call. = FALSE)
 }

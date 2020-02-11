@@ -19,8 +19,9 @@ Imports:
     papaja,
     prereg,
     synthpop,
-    git2r
+    gert
 Suggests:
     renv,
     knitr
+Remotes: crsh/papaja
 VignetteBuilder: knitr
