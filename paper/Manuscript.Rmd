@@ -37,6 +37,8 @@ abstract: |
 authornote: |
   This is a preprint, not a peer-reviewed publication. Comments, contributions,
   and coauthors are welcome. Please contact the lead author.
+  Acknowledgements: Jeroen Ooms (feedback, suggesting gert, and using Remotes
+  field).
 keywords          : "open science; reproducibility; r; dynamic document generation; version control"
 wordcount         : "5921"
 
