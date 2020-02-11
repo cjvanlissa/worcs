@@ -19,7 +19,8 @@ Imports:
     papaja,
     prereg,
     synthpop,
-    gert
+    gert,
+    ranger
 Suggests:
     renv,
     knitr
