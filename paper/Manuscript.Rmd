@@ -60,7 +60,6 @@ knit              : worcs::cite_all
 
 ```{r load_packages, include = FALSE}
 library("papaja")
-library(motley)
 mask <- TRUE
 masked <- function(text){
   ifelse(mask, "[masked]", text)
