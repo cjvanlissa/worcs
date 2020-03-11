@@ -44,6 +44,7 @@ for the package and paper.
 
 ## Repository structure
 
+    ```
     .
     +-- README.md     <- Read this file to get started!  (do not edit)
     +-- LICENSE.md    <- Project license (do not edit)
@@ -58,6 +59,7 @@ for the package and paper.
     +-- paper/        <- WORCS paper source files (human editable)
     +-- R/            <- R-package source code (human editable)
     +-- vignettes/    <- R-package vignettes (human editable)
+    ```
 
 ## Installing the package
 
