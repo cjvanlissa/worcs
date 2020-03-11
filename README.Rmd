@@ -29,6 +29,52 @@ This repository contains the following:
 
 The repository serves two functions: To allow users to install the `worcs` package, and to allow collaborators access to the source code for the package and paper.
 
+## Repository structure
+
+```{r echo = FALSE, results='asis'}
+descripts <- c(
+  "_pkgdown.yml" = "YAML for package website (do not edit)",
+  "DESCRIPTION" = "R-package DESCRIPTION (do not edit)",
+  "LICENSE.md" = "Project license (do not edit)",
+  "NAMESPACE" = "R-package namespace (machine-written)",
+  "README.md" = "Read this file to get started!  (do not edit)",
+  "README.Rmd" = "R-markdown source for readme.md (human editable)",
+  "worcs.Rproj" = "Rstudio project file (do not edit)",
+  "docs/" = "Package website (machine-written)",
+  "inst/" = "Rstudio project template files  (human editable)",
+  "man/" = "R-package documentation (do not edit)",
+  "paper/" = "WORCS paper source files (human editable)",
+  "R/" = "R-package source code (human editable)",
+  "vignettes/" = "R-package vignettes (human editable)"
+)
+prioritize <- c(
+  "README.md",
+  "LICENSE.md",
+  grep("^(?:(?!/).)*$", names(descripts), value = TRUE, perl = TRUE)
+)
+prioritize <- unique(prioritize)
+f <- list.files(recursive = T)
+struc <- f[!grepl("/", f)]
+dirs <- f[grepl("/", f)]
+dirs <- unique(gsub("/.*$", "/", dirs))
+
+struc <- c(struc, dirs)
+
+struc <- data.frame(file = struc)
+struc$desc <- ""
+struc$desc[match(struc$file, names(descripts))] <- descripts[match(struc$file, names(descripts))]
+
+prioritize <- match(prioritize, struc$file)
+ord <- c(prioritize, c(1:nrow(struc))[-prioritize])
+struc <- struc[ord, ]
+
+pd <- paste0("%", -1*(max(nchar(levels(struc$file)))+2), "s")
+out <- c("```", ".", apply(struc, 1, function(thisrow){
+  paste0("├── ", sprintf(pd, thisrow[1]), "<- ", thisrow[2])
+}), "```")
+cat(out, sep = "\r\n")
+```
+
 ## Installing the package
 
 Before installing the package, please read [this vignette](https://cjvanlissa.github.io/worcs/articles/setup.html), which explains how to set up your computer for `worcs`.

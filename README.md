@@ -42,6 +42,23 @@ The repository serves two functions: To allow users to install the
 `worcs` package, and to allow collaborators access to the source code
 for the package and paper.
 
+## Repository structure
+
+    .
+    +-- README.md     <- Read this file to get started!  (do not edit)
+    +-- LICENSE.md    <- Project license (do not edit)
+    +-- _pkgdown.yml  <- YAML for package website (do not edit)
+    +-- DESCRIPTION   <- R-package DESCRIPTION (do not edit)
+    +-- NAMESPACE     <- R-package namespace (machine-written)
+    +-- README.Rmd    <- R-markdown source for readme.md (human editable)
+    +-- worcs.Rproj   <- Rstudio project file (do not edit)
+    +-- docs/         <- Package website (machine-written)
+    +-- inst/         <- Rstudio project template files  (human editable)
+    +-- man/          <- R-package documentation (do not edit)
+    +-- paper/        <- WORCS paper source files (human editable)
+    +-- R/            <- R-package source code (human editable)
+    +-- vignettes/    <- R-package vignettes (human editable)
+
 ## Installing the package
 
 Before installing the package, please read [this
