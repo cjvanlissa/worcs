@@ -1,14 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<!--[![CRAN status](https://www.r-pkg.org/badges/version/tidySEM)](https://cran.r-project.org/package=tidySEM)
-[![](https://cranlogs.r-pkg.org/badges/tidySEM)](https://cran.r-project.org/package=tidySEM)-->
+<!--[![CRAN status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/package=worcs)
+[![](https://cranlogs.r-pkg.org/badges/worcs)](https://cran.r-project.org/package=worcs)-->
 
 <!--[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Travis build
-status](https://travis-ci.org/cjvanlissa/tidySEM.svg?branch=master)](https://travis-ci.org/cjvanlissa/tidySEM)
+status](https://travis-ci.org/cjvanlissa/worcs.svg?branch=master)](https://travis-ci.org/cjvanlissa/worcs)
 [![Codecov test
-coverage](https://codecov.io/gh/cjvanlissa/tidySEM/branch/master/graph/badge.svg)](https://codecov.io/gh/cjvanlissa/tidySEM?branch=master)
+coverage](https://codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg)](https://codecov.io/gh/cjvanlissa/worcs?branch=master)
 <!--[![DOI](http://joss.theoj.org/papers/10.21105/joss.00978/status.svg)](https://doi.org/10.21105/joss.00978)-->
 
 # WORCS
@@ -72,7 +72,7 @@ with:
 
 ``` r
 install.packages("devtools")
-devtools::install_github("cjvanlissa/tidySEM")
+devtools::install_github("cjvanlissa/worcs")
 ```
 
 ## Citing WORCS
@@ -90,9 +90,9 @@ improve both the workflow and the package. Relevant contributions
 warrant coauthorship to the paper. Please contact the lead author at
 <c.j.vanlissa@uu.nl>, or:
 
-  - File a GitHub issue [here](https://github.com/cjvanlissa/tidySEM)
+  - File a GitHub issue [here](https://github.com/cjvanlissa/worcs)
   - Make a pull request
-    [here](https://github.com/cjvanlissa/tidySEM/pulls)
+    [here](https://github.com/cjvanlissa/worcs/pulls)
 
 By participating in this project, you agree to abide by the [Contributor
 Code of Conduct v2.0](https://www.contributor-covenant.org/).
