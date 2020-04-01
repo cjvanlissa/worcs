@@ -38,14 +38,17 @@ worcs_template <- function(path, ...) {
 
 
   # Begin prereg
-  draft(
-    file.path(path, "preregistration.Rmd"),
-    paste0(tolower(prereg_template), "_prereg"),
-    package = "prereg",
-    create_dir = FALSE,
-    edit = FALSE
-  )
+  if(!tolower(prereg_template) == "none"){
+  
+	draft(
+	  file.path(path, "preregistration.Rmd"),
+	  paste0(tolower(prereg_template), "_prereg"),
+	  package = "prereg",
+	  create_dir = FALSE,
+	  edit = FALSE
+	)
 
+  }
   # End prereg
 
 # Use renv ----------------------------------------------------------------
