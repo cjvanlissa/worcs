@@ -23,8 +23,9 @@ syn.ranger(y, x, xp, smoothing, proper = FALSE, ...)
 List with predictions and fit model.
 }
 \description{
+This function is for internal use only.
 Generates synthetic version(s) of a data set using the fast
-implementation of random forests in \code{\link[ranger]{ranger}}. Do not use
+implementation of random forests in \code{\link[ranger]{ranger}}.
 }
 \examples{
 \dontrun{

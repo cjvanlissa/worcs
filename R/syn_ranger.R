@@ -1,3 +1,7 @@
+#' @importFrom utils getFromNamespace
+syn.smooth <-
+  getFromNamespace("syn.smooth", "synthpop")
+
 #' @title Generating synthetic data sets using ranger
 #' @description This function is for internal use only.
 #' Generates synthetic version(s) of a data set using the fast
@@ -17,6 +21,7 @@
 #' }
 #' @rdname syn.ranger
 #' @importFrom ranger ranger
+#' @importFrom stats predict
 #' @keywords internal
 #' @export
 syn.ranger <- function(y, x, xp, smoothing, proper = FALSE, ...)
