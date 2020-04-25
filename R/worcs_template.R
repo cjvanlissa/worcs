@@ -5,7 +5,6 @@
 worcs_template <- function(path, ...) {
   # collect inputs
   dots <- list(...)
-  message(paste0(names(dots), collapse = "\n"))
   prereg_template <- dots[["prereg_template"]]
   add_license <- dots[["add_license"]]
   use_renv <- dots[["use_renv"]]
@@ -101,8 +100,9 @@ worcs_template <- function(path, ...) {
     f <- list.files(norm_path)
     tab <- matrix(c("File", "Description", "Usage",
                     "README.md", "Description of project", "Human editable"), nrow = 2, byrow = TRUE)
-    cont[grep("You can load this project in Rstudio by opening the file called ", cont)] <- paste0(grep("You can load this project in Rstudio by opening the file called ", cont, value = TRUE), "'", paste0(gsub("^.+\\b(.+)$", "\\1", path), ".Rproj"), "'.")
-    tab <- rbind(tab, c(paste0(gsub("^.+\\b(.+)$", "\\1", path), ".Rproj"), "Project file", "Loads project"))
+    rproj_name <- paste0(gsub("^.+\\b(.+)$", "\\1", norm_path), ".Rproj")
+    cont[grep("You can load this project in Rstudio by opening the file called ", cont)] <- paste0(grep("You can load this project in Rstudio by opening the file called ", cont, value = TRUE), "'", rproj_name, "'.")
+    tab <- rbind(tab, c(rproj_name, "Project file", "Loads project"))
     tab <- describe_file("LICENSE", "User permissions", "Read only", tab, norm_path)
     tab <- describe_file("manuscript.rmd", "Source code for paper", "Human editable", tab, norm_path)
     tab <- describe_file("preregistration.rmd", "Preregistered hypotheses", "Human editable", tab, norm_path)

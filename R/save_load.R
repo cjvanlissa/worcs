@@ -3,6 +3,9 @@
 #' checksum in 'data_checksum.txt', appends the .gitignore file to exclude
 #' 'data.csv', and writes a stem for 'data_cleaning.R'.
 #' @param data A data.frame to save.
+#' @param codebook A character string, indicating the filetype for the codebook.
+#' Set to \code{NULL} to avoid creating a codebook. Defaults to \code{"html"},
+#' other options documented in \code{\link[dataMaid]{makeDataReport}}.
 #' @examples
 #' \dontrun{
 #'   open_data(iris)
@@ -10,9 +13,10 @@
 #' @rdname open_data
 #' @seealso closed_data
 #' @export
-open_data <- function(data){
+open_data <- function(data, codebook = "html"){
   Args <- as.list(match.call()[-1])
   Args$open <- TRUE
+  Args$codebook <- codebook
   do.call(save_data, Args)
 }
 
@@ -21,6 +25,9 @@ open_data <- function(data){
 #' checksum in 'data_checksum.txt', appends the .gitignore file to ignore
 #' all '.csv' files, and writes a stem for 'data_cleaning.R'.
 #' @param data A data.frame to save.
+#' @param codebook A character string, indicating the filetype for the codebook.
+#' Set to \code{NULL} to avoid creating a codebook. Defaults to \code{"html"},
+#' other options documented in \code{\link[dataMaid]{makeDataReport}}.
 #' @examples
 #' \dontrun{
 #' closed_data(iris)
@@ -28,15 +35,17 @@ open_data <- function(data){
 #' @rdname closed_data
 #' @seealso open_data
 #' @export
-closed_data <- function(data){
+closed_data <- function(data, codebook = "html"){
   Args <- as.list(match.call()[-1])
   Args$open <- FALSE
+  Args$codebook <- codebook
   do.call(save_data, Args)
 }
 
 #' @importFrom tools md5sum
 #' @importFrom synthpop syn
-save_data <- function(data, open){
+#' @importFrom dataMaid makeCodebook
+save_data <- function(data, open, codebook = NULL){
   if(!inherits(data, c("data.frame", "matrix"))){
     stop("Argument 'data' must be a data.frame, matrix, or inherit from these classes.")
   }
@@ -44,6 +53,9 @@ save_data <- function(data, open){
     stop("Could not find .gitignore file. You might not be working from the main project directory.")
   }
   data <- as.data.frame(data)
+  if(!is.null(codebook)){
+    makeCodebook(data, file = "codebook.Rmd", quiet = "silent", output = codebook, openResult = FALSE, codebook = TRUE)
+  }
   data[sapply(data, inherits, what = "factor")] <- lapply(data[sapply(data, inherits, what = "factor")], as.character)
   message('Storing original data in "data.csv" and updating "checksums.csv".')
   write.csv(data, "data.csv", row.names = FALSE)

@@ -6,10 +6,10 @@ Authors@R: c(
     person(c("Caspar", "J"), "van Lissa", role = c("aut", "cre"), 
     email = "c.j.vanlissa@uu.nl") 
     )
-Description: Convenience functions for WORCS: Workflow for Open Reproducible
-    Code in Science (WORCS). With a minimal amount of code, this package 
-    helps users setup R-based research projects in a way that meets the 
-    TOP-guidelines for Open Science.
+Description: Rstudio project template and convenience functions for the Workflow
+    for Open Reproducible Code in Science (WORCS). With a minimal amount of
+    code, this package  helps users setup R-based research projects in a way
+    that meets the  Open Science principles of transparency and reproducibility.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
@@ -20,7 +20,8 @@ Imports:
     prereg,
     synthpop,
     gert,
-    ranger
+    ranger,
+    dataMaid
 Suggests:
     renv,
     knitr
