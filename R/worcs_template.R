@@ -110,7 +110,7 @@ worcs_template <- function(path, ...) {
     tab <- describe_file("preregistration.rmd", "Preregistered hypotheses", "Human editable", tab, norm_path)
     tab <- describe_file("prepare_data.R", "Script to process raw data", "Human editable", tab, norm_path)
     tab <- append(apply(tab, 1, paste, collapse = " | "), "--- | --- | ---", after = 1)
-    cont <- append(cont, tab, after = grep("<!--  You can add columns, separated by the "|" character.                   -->", cont))
+    cont <- append(cont, tab, after = (grep("^## Project structure", cont)+1))
     writeLines(cont, file.path(norm_path, "README.md"))
   }
 
@@ -125,6 +125,7 @@ worcs_template <- function(path, ...) {
   } else {
     warning("No valid GitHub address provided. You are working with a local git repository only.", call. = FALSE)
   }
+  if("GCtorture" %in% ls()) rm(GCtorture)
 }
 
 describe_file <- function(file, desc, usage, tab, norm_path){
