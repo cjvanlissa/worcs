@@ -7,7 +7,8 @@
 You can load this project in Rstudio by opening the file called 
 
 ## Project structure
-<!--  You can add columns, separated by the "|" character.                   -->
+
+<!--  You can add rows to this table, using "|" to separate columns.         -->
 
 <!--  You can consider adding the following to this file:                    -->
 <!--  * A citation reference for your project                                -->
