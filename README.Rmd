@@ -2,13 +2,12 @@
 output: github_document
 ---
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<!--[![CRAN status](https://www.r-pkg.org/badges/version/tidySEM)](https://cran.r-project.org/package=tidySEM)
-[![](https://cranlogs.r-pkg.org/badges/tidySEM)](https://cran.r-project.org/package=tidySEM)-->
-<!--[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Travis build
-status](https://travis-ci.org/cjvanlissa/tidySEM.svg?branch=master)](https://travis-ci.org/cjvanlissa/tidySEM)
-[![Codecov test
-coverage](https://codecov.io/gh/cjvanlissa/tidySEM/branch/master/graph/badge.svg)](https://codecov.io/gh/cjvanlissa/tidySEM?branch=master)
+<!--[![CRAN status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/package=worcs)
+[![](https://cranlogs.r-pkg.org/badges/worcs)](https://cran.r-project.org/package=worcs)-->
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Travis build status](https://travis-ci.org/cjvanlissa/worcs.svg?branch=master)](https://travis-ci.org/cjvanlissa/worcs)
+<!--[![Codecov test
+coverage](https://codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg)](https://codecov.io/gh/cjvanlissa/worcs?branch=master)-->
 <!--[![DOI](http://joss.theoj.org/papers/10.21105/joss.00978/status.svg)](https://doi.org/10.21105/joss.00978)-->
 # WORCS
 
@@ -32,50 +31,23 @@ The repository serves two functions: To allow users to install the `worcs` packa
 ## Repository structure
 
 ```{r echo = FALSE, results = "asis"}
-descripts <- c(
-  "_pkgdown.yml" = "YAML for package website (do not edit)",
-  "DESCRIPTION" = "R-package DESCRIPTION (do not edit)",
-  "LICENSE.md" = "Project license (do not edit)",
-  "NAMESPACE" = "R-package namespace (machine-written)",
-  "README.md" = "Read this file to get started!  (do not edit)",
-  "README.Rmd" = "R-markdown source for readme.md (human editable)",
-  "worcs.Rproj" = "Rstudio project file (do not edit)",
-  "docs/" = "Package website (machine-written)",
-  "inst/" = "Rstudio project template files  (human editable)",
-  "man/" = "R-package documentation (do not edit)",
-  "paper/" = "WORCS paper source files (human editable)",
-  "R/" = "R-package source code (human editable)",
-  "vignettes/" = "R-package vignettes (human editable)"
-)
-prioritize <- c(
-  "README.md",
-  "LICENSE.md",
-  grep("^(?:(?!/).)*$", names(descripts), value = TRUE, perl = TRUE)
-)
-prioritize <- unique(prioritize)
-f <- list.files(recursive = T)
-struc <- f[!grepl("/", f)]
-dirs <- f[grepl("/", f)]
-dirs <- unique(gsub("/.*$", "/", dirs))
-
-struc <- c(struc, dirs)
-
-struc <- data.frame(file = struc)
-struc$desc <- ""
-struc$desc[match(struc$file, names(descripts))] <- descripts[match(struc$file, names(descripts))]
-
-prioritize <- match(prioritize, struc$file)
-ord <- c(prioritize, c(1:nrow(struc))[-prioritize])
-struc <- struc[ord, ]
-
-pd <- paste0("%", -1*(max(nchar(levels(struc$file)))+2), "s")
-#out <- c("````", "```", ".", apply(struc, 1, function(thisrow){
-#  paste0("├── ", sprintf(pd, thisrow[1]), "<- ", thisrow[2])
-#}), "```", "````")
-out <- c("```", ".", apply(struc, 1, function(thisrow){
-  paste0("├── ", sprintf(pd, thisrow[1]), "<- ", thisrow[2])
-}), "```")
-cat(out, sep = "\r\n")
+descripts <- data.frame(matrix(c(
+  "_pkgdown.yml", "YAML for package website", "do not edit",
+  "DESCRIPTION", "R-package DESCRIPTION", "do not edit",
+  "LICENSE.md", "Project license", "do not edit",
+  "NAMESPACE", "R-package namespace", "machine-written",
+  "README.md", "Read this file to get started! ", "do not edit",
+  "README.Rmd", "R-markdown source for readme.md", "human editable",
+  "worcs.Rproj", "Rstudio project file", "do not edit",
+  "docs/", "Package website", "machine-written",
+  "inst/", "Rstudio project template files ", "human editable",
+  "man/", "R-package documentation", "do not edit",
+  "paper/", "WORCS paper source files", "human editable",
+  "R/", "R-package source code", "human editable",
+  "vignettes/", "R-package vignettes", "human editable"
+), ncol = 3, byrow = TRUE))
+names(descripts) <- c("File", "Description", "Usage")
+knitr::kable(descripts)
 ```
 
 ## Installing the package
@@ -86,7 +58,10 @@ After reading [the vignette](https://cjvanlissa.github.io/worcs/articles/setup.h
 
 ``` r
 install.packages("devtools")
-devtools::install_github("cjvanlissa/tidySEM")
+devtools::install_github("crsh/papaja", dependencies = TRUE)
+devtools::install_github("cjvanlissa/worcs", dependencies = TRUE)
+tinytex::install_tinytex()
+worcs::git_credentials("your_name", "your_email")
 ```
 
 ## Citing WORCS
@@ -99,9 +74,9 @@ You can cite WORCS using the following citation (please use the same citation fo
 
 WORCS is actively recruiting collaborators with valuable expertise, to improve both the workflow and the package. Relevant contributions warrant coauthorship to the paper. Please contact the lead author at [c.j.vanlissa@uu.nl](mailto:c.j.vanlissa@uu.nl), or:
 
-  - File a GitHub issue [here](https://github.com/cjvanlissa/tidySEM)
+  - File a GitHub issue [here](https://github.com/cjvanlissa/worcs)
   - Make a pull request
-    [here](https://github.com/cjvanlissa/tidySEM/pulls)
+    [here](https://github.com/cjvanlissa/worcs/pulls)
 
 By participating in this project, you agree to abide by the [Contributor
 Code of Conduct v2.0](https://www.contributor-covenant.org/).

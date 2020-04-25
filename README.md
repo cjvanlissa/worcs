@@ -4,14 +4,13 @@
 <!--[![CRAN status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/package=worcs)
 [![](https://cranlogs.r-pkg.org/badges/worcs)](https://cran.r-project.org/package=worcs)-->
 
-<!--[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Travis build
 status](https://travis-ci.org/cjvanlissa/worcs.svg?branch=master)](https://travis-ci.org/cjvanlissa/worcs)
-[![Codecov test
-coverage](https://codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg)](https://codecov.io/gh/cjvanlissa/worcs?branch=master)
+<!--[![Codecov test
+coverage](https://codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg)](https://codecov.io/gh/cjvanlissa/worcs?branch=master)-->
 <!--[![DOI](http://joss.theoj.org/papers/10.21105/joss.00978/status.svg)](https://doi.org/10.21105/joss.00978)-->
-
-# WORCS
+\# WORCS
 
 The Workflow for Open Reproducible Code in Science (WORCS) is an easy to
 adopt approach to ensuring a research project meets the requirements of
@@ -44,20 +43,21 @@ for the package and paper.
 
 ## Repository structure
 
-    .
-    +-- README.md     <- Read this file to get started!  (do not edit)
-    +-- LICENSE.md    <- Project license (do not edit)
-    +-- _pkgdown.yml  <- YAML for package website (do not edit)
-    +-- DESCRIPTION   <- R-package DESCRIPTION (do not edit)
-    +-- NAMESPACE     <- R-package namespace (machine-written)
-    +-- README.Rmd    <- R-markdown source for readme.md (human editable)
-    +-- worcs.Rproj   <- Rstudio project file (do not edit)
-    +-- docs/         <- Package website (machine-written)
-    +-- inst/         <- Rstudio project template files  (human editable)
-    +-- man/          <- R-package documentation (do not edit)
-    +-- paper/        <- WORCS paper source files (human editable)
-    +-- R/            <- R-package source code (human editable)
-    +-- vignettes/    <- R-package vignettes (human editable)
+| File          | Description                     | Usage           |
+| :------------ | :------------------------------ | :-------------- |
+| \_pkgdown.yml | YAML for package website        | do not edit     |
+| DESCRIPTION   | R-package DESCRIPTION           | do not edit     |
+| LICENSE.md    | Project license                 | do not edit     |
+| NAMESPACE     | R-package namespace             | machine-written |
+| README.md     | Read this file to get started\! | do not edit     |
+| README.Rmd    | R-markdown source for readme.md | human editable  |
+| worcs.Rproj   | Rstudio project file            | do not edit     |
+| docs/         | Package website                 | machine-written |
+| inst/         | Rstudio project template files  | human editable  |
+| man/          | R-package documentation         | do not edit     |
+| paper/        | WORCS paper source files        | human editable  |
+| R/            | R-package source code           | human editable  |
+| vignettes/    | R-package vignettes             | human editable  |
 
 ## Installing the package
 
@@ -72,7 +72,10 @@ with:
 
 ``` r
 install.packages("devtools")
-devtools::install_github("cjvanlissa/worcs")
+devtools::install_github("crsh/papaja", dependencies = TRUE)
+devtools::install_github("cjvanlissa/worcs", dependencies = TRUE)
+tinytex::install_tinytex()
+worcs::git_credentials("your_name", "your_email")
 ```
 
 ## Citing WORCS

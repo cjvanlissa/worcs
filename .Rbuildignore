@@ -9,3 +9,4 @@
 ^LICENSE\.md$
 ^cran-comments\.md
 ^news\.md
+^\.travis\.yml$
