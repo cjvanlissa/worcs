@@ -6,6 +6,7 @@ worcs_template <- function(path, ...) {
   # collect inputs
   dots <- list(...)
   prereg_template <- dots[["prereg_template"]]
+  add_license <- dots[["add_license"]]
   use_renv <- dots[["use_renv"]]
   remote_repo <- dots[["remote_repo"]]
 
@@ -44,7 +45,6 @@ worcs_template <- function(path, ...) {
 
   # Begin prereg
   if(!tolower(prereg_template) == "none"){
-
 	draft(
 	  file.path(path, "preregistration.Rmd"),
 	  paste0(tolower(prereg_template), "_prereg"),
@@ -55,6 +55,21 @@ worcs_template <- function(path, ...) {
 
   }
   # End prereg
+
+  # Begin license
+  if(!tolower(add_license) == "none"){
+    dir.create(path, recursive = TRUE, showWarnings = FALSE)
+
+    # copy 'resources' folder to path
+    license_dir = system.file('rstudio', 'templates', 'project', 'licenses', package = 'worcs', mustWork = TRUE)
+    license_file <- file.path(license_dir, paste0(add_license, ".txt"))
+    if(file.exists(license_file)){
+      file.copy(license_file, file.path(path, "LICENSE"))
+    } else {
+      warning("Could not find requested license.")
+    }
+  }
+  # End license
 
 # Use renv ----------------------------------------------------------------
   norm_path <- normalizePath(path)
@@ -78,6 +93,27 @@ worcs_template <- function(path, ...) {
           "*.tex",
           "!checksums.csv"),
         file = file.path(norm_path, ".gitignore"), append = TRUE)
+
+  # Update readme
+  if(file.exists(file.path(norm_path, "README.md"))){
+    cont <- readLines(file.path(norm_path, "README.md"))
+    f <- list.files(norm_path)
+    tab <- matrix(c("File", "Description", "Usage",
+                    "README.md", "Description of project", "Human editable"), nrow = 2, byrow = TRUE)
+
+    if(any(grepl("\\.rproj$", tolower(f)))){
+      cont[grep("You can load this project in Rstudio by opening the file called ", cont)] <- paste0(cont[grep("You can load this project in Rstudio by opening the file called ", cont)], "'", grep("\\.rproj$", tolower(f), value = TRUE)[1], "'.")
+      tab <- describe_file(grep("\\.rproj$", tolower(f), value = TRUE)[1], "Project file", "Loads project", tab, norm_path)
+    }
+    tab <- describe_file("LICENSE", "User permissions", "Read only", tab, norm_path)
+    tab <- describe_file("manuscript.rmd", "Source code for paper", "Human editable", tab, norm_path)
+    tab <- describe_file("preregistration.rmd", "Preregistered hypotheses", "Human editable", tab, norm_path)
+    tab <- describe_file("prepare_data.R", "Script to process raw data", "Human editable", tab, norm_path)
+    tab <- append(apply(tab, 1, paste, collapse = " | "), "--- | --- | ---", after = 1)
+    cont <- append(cont, tab, after = grep("<!--  You can add columns, separated by the "|" character.                   -->", cont))
+    writeLines(cont, file.path(norm_path, "README.md"))
+  }
+
   if(grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
     tryCatch({
       git_init(path = norm_path)
@@ -88,5 +124,13 @@ worcs_template <- function(path, ...) {
     }, error = function(e){warning("Could not connect to a remote GitHub repository. You are working with a local git repository only.", call. = FALSE)})
   } else {
     warning("No valid GitHub address provided. You are working with a local git repository only.", call. = FALSE)
+  }
+}
+
+describe_file <- function(file, desc, usage, tab, norm_path){
+  if(file.exists(file.path(norm_path, file))){
+    return(rbind(tab, c(file, desc, usage)))
+  } else {
+    return(tab)
   }
 }

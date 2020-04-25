@@ -17,3 +17,8 @@ Parameter: prereg_template
 Widget: SelectInput
 Label: Preregistration template
 Fields: COS, VantVeer, Brandt, AsPredicted, None
+
+Parameter: add_license
+Widget: SelectInput
+Label: Use license
+Fields: CC_by_4.0, CC_by-sa_4.0, CC_by-nc_4.0, CC_by-nc-sa_4.0, CC_by-nd_4.0, CC_by-nc-nd_4.0, None

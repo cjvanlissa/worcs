@@ -1,10 +1,30 @@
-# A WORCS Project
+# Readme
 
-This project is based on the Workflow for Open Reproducible Code in Science (WORCS). For more details, please read...
+<!-- Please add a brief introduction to explain what the project is about    -->
 
-# WORCS - steps to follow for each project
+## Where do I start?
 
-## Study design phase
+You can load this project in Rstudio by opening the file called 
+
+## Project structure
+<!--  You can add columns, separated by the "|" character.                   -->
+
+<!--  You can consider adding the following to this file:                    -->
+<!--  * A citation reference for your project                                -->
+<!--  * Contact information for questions/comments                           -->
+<!--  * How people can offer to contribute to the project                    -->
+<!--  * A contributor code of conduct, https://www.contributor-covenant.org/ -->
+
+# Reproducibility
+
+This project uses the Workflow for Open Reproducible Code in Science (WORCS) to
+ensure transparency and reproducibility. The workflow is designed to meet the
+principles of Open Science throughout a research project. For more details,
+please read the preprint at https://osf.io/zcvbs/
+
+## WORCS: Steps to follow for a project
+
+### Study design phase
 
 1. Create a new Private repository on github, copy the https:// link to clipboard  
   The link should look something like https://github.com/yourname/yourrepo.git
@@ -18,7 +38,7 @@ This project is based on the Workflow for Open Reproducible Code in Science (WOR
 6. Optional: Render the preregistration to PDF, and upload it to AsPredicted.org or OSF.io as an attachment
 7. Optional: Add study Materials (to which you own the rights) to the repository. It is possible to solicit feedback (by opening a GitHub Issue) and acknowledge outside contributions (by accepting Pull requests)
 
-## Data analysis phase
+### Data analysis phase
 
 8. Read the data into R, and document this procedure in `prepare_data.R`
 9. Use `open_data()` or `closed_data()` to store the data
@@ -26,12 +46,12 @@ This project is based on the Workflow for Open Reproducible Code in Science (WOR
 11. Regularly commit your progress to the Git repository; ideally, after completing each small and clearly defined task. Use informative commit messages. Push the commits to GitHub.
 12. Cite essential references with one at-symbol (`[@essentialref2020]`), and non-essential references with a double at-symbol (`[@@nonessential2020]`).
 
-## Submission phase
+### Submission phase
 
 13. To save the state of the project library (all packages used), call `renv::snapshot()`. This updates the lockfile, `renv.lock`.
 14. To render the paper with essential citations only for submission, change the line `knit: worcs::cite_all` to `knit: worcs::cite_essential`. Then, press the Knit button to generate a PDF
 
-## Publication phase
+### Publication phase
 
 13. Make the GitHub repository public
 14. [Create an OSF project](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project); although you may have already done this in Step 6.
@@ -39,4 +59,3 @@ This project is based on the Workflow for Open Reproducible Code in Science (WOR
 16. Add an Open Science statement to the manuscript, with a link to the OSF project
 17. Optional: [Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)
     + Check [Sherpa Romeo](http://sherpa.ac.uk/romeo/index.php) to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.
-
