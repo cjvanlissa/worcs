@@ -1,9 +1,10 @@
 Package: worcs
 Type: Package
 Title: Workflow for Open Reproducible Code in Science
-Version: 0.1.0.1
+Version: 0.1.0.2
 Authors@R: c(
-    person(c("Caspar", "J"), "van Lissa", role = c("aut", "cre"), email = "c.j.vanlissa@uu.nl") 
+    person(c("Caspar", "J"), "van Lissa", role = c("aut", "cre"), 
+    email = "c.j.vanlissa@uu.nl") 
     )
 Description: Convenience functions for WORCS: Workflow for Open Reproducible
     Code in Science (WORCS). With a minimal amount of code, this package 
@@ -12,11 +13,10 @@ Description: Convenience functions for WORCS: Workflow for Open Reproducible
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/cjvanlissa/os_template
+URL: https://github.com/cjvanlissa/worcs
 RoxygenNote: 7.0.2
 Imports:
     rmarkdown,
-    papaja,
     prereg,
     synthpop,
     gert,
@@ -24,6 +24,4 @@ Imports:
 Suggests:
     renv,
     knitr
-Remotes: 
-    crsh/papaja
 VignetteBuilder: knitr
