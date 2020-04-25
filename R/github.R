@@ -4,11 +4,7 @@ has_git <- function(){
   settings <- git_config_global()
   name <- subset(settings, name == "user.name")$value
   email <- subset(settings, name == "user.email")$value
-  hasit <- (any(unlist(config[c("ssh", "https")])) & (length(name) && length(email)))
-  if(!hasit){
-    warning("Rstudio is not yet connected to Git. You will not be able to use the worcs package yet.", call. = FALSE)
-  }
-  hasit
+  (any(unlist(config[c("ssh", "https")])) & (length(name) && length(email)))
 }
 
 #' @importFrom gert git_config_global_set
