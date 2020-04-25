@@ -7,3 +7,5 @@
 ^README\.Rmd$
 ^README\.md$
 ^LICENSE\.md$
+^cran-comments\.md
+^news\.md
