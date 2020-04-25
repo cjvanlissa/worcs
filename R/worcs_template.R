@@ -100,16 +100,15 @@ worcs_template <- function(path, ...) {
     f <- list.files(norm_path)
     tab <- matrix(c("File", "Description", "Usage",
                     "README.md", "Description of project", "Human editable"), nrow = 2, byrow = TRUE)
-    message(paste0(f, collapse = "\n"))
     if(any(grepl("\\.Rproj$", f))){
-      cont[grep("You can load this project in Rstudio by opening the file called ", cont)] <- paste0(cont[grep("You can load this project in Rstudio by opening the file called ", cont)], "'", grep("\\.Rproj$", f, value = TRUE)[1], "'.")
+      cont[grep("You can load this project in Rstudio by opening the file called ", cont)] <- paste0(grep("You can load this project in Rstudio by opening the file called ", cont, value = TRUE), "'", grep("\\.Rproj$", f, value = TRUE)[1], "'.")
       tab <- describe_file(grep("\\.Rproj$", f, value = TRUE)[1], "Project file", "Loads project", tab, norm_path)
     }
     tab <- describe_file("LICENSE", "User permissions", "Read only", tab, norm_path)
     tab <- describe_file("manuscript.rmd", "Source code for paper", "Human editable", tab, norm_path)
     tab <- describe_file("preregistration.rmd", "Preregistered hypotheses", "Human editable", tab, norm_path)
     tab <- describe_file("prepare_data.R", "Script to process raw data", "Human editable", tab, norm_path)
-    tab <- append(apply(tab, 1, paste, collapse = " | "), "--- | --- | ---", after = 1)
+    tab <- c("", append(apply(tab, 1, paste, collapse = " | "), "--- | --- | ---", after = 1))
     cont <- append(cont, tab, after = (grep("^## Project structure", cont)+1))
     writeLines(cont, file.path(norm_path, "README.md"))
   }

@@ -1,7 +1,7 @@
 Package: worcs
 Type: Package
 Title: Workflow for Open Reproducible Code in Science
-Version: 0.1.0.5
+Version: 0.1.0.6
 Authors@R: c(
     person(c("Caspar", "J"), "van Lissa", role = c("aut", "cre"), 
     email = "c.j.vanlissa@uu.nl") 
