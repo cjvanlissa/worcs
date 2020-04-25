@@ -1,5 +1,6 @@
 #' @importFrom rmarkdown draft
 #' @importFrom gert git_init git_remote_add git_add git_commit git_push
+#' @importFrom utils installed.packages
 # @importFrom renv init
 worcs_template <- function(path, ...) {
   # collect inputs
@@ -22,24 +23,28 @@ worcs_template <- function(path, ...) {
   # write files
 
   # Begin manuscript
-  manuscript_file <- file.path(path, "manuscript.Rmd")
-  draft(
-    file = manuscript_file,
-    "apa6",
-    package = "papaja",
-    create_dir = FALSE,
-    edit = FALSE
-  )
-  manuscript_text <- readLines(manuscript_file)
-  manuscript_text <- append(manuscript_text, "knit              : worcs::cite_all", after = (grep("^---$", manuscript_text)[2]-1))
-  manuscript_text <- append(manuscript_text, 'library("worcs")', after = grep('^library\\("papaja"\\)$', manuscript_text))
-  writeLines(manuscript_text, manuscript_file)
+  if("papaja" %in% rownames(installed.packages())){
+    manuscript_file <- file.path(path, "manuscript.Rmd")
+    draft(
+      file = manuscript_file,
+      "apa6",
+      package = "papaja",
+      create_dir = FALSE,
+      edit = FALSE
+    )
+    manuscript_text <- readLines(manuscript_file)
+    manuscript_text <- append(manuscript_text, "knit              : worcs::cite_all", after = (grep("^---$", manuscript_text)[2]-1))
+    manuscript_text <- append(manuscript_text, 'library("worcs")', after = grep('^library\\("papaja"\\)$', manuscript_text))
+    writeLines(manuscript_text, manuscript_file)
+  } else {
+    message('Could not generate a manuscript file, because the \'papaja\' package is not installed. Run this code to see instructions on how to install this package from GitHub:\n  vignette("setup", package = "worcs") ')
+  }
   # End manuscript
 
 
   # Begin prereg
   if(!tolower(prereg_template) == "none"){
-  
+
 	draft(
 	  file.path(path, "preregistration.Rmd"),
 	  paste0(tolower(prereg_template), "_prereg"),

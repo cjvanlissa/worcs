@@ -24,5 +24,6 @@ Imports:
 Suggests:
     renv,
     knitr
-Remotes: crsh/papaja
+Remotes: 
+    crsh/papaja
 VignetteBuilder: knitr
