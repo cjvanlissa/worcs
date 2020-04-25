@@ -100,10 +100,10 @@ worcs_template <- function(path, ...) {
     f <- list.files(norm_path)
     tab <- matrix(c("File", "Description", "Usage",
                     "README.md", "Description of project", "Human editable"), nrow = 2, byrow = TRUE)
-
-    if(any(grepl("\\.rproj$", tolower(f)))){
-      cont[grep("You can load this project in Rstudio by opening the file called ", cont)] <- paste0(cont[grep("You can load this project in Rstudio by opening the file called ", cont)], "'", grep("\\.rproj$", tolower(f), value = TRUE)[1], "'.")
-      tab <- describe_file(grep("\\.rproj$", tolower(f), value = TRUE)[1], "Project file", "Loads project", tab, norm_path)
+    message(paste0(f, collapse = "\n"))
+    if(any(grepl("\\.Rproj$", f))){
+      cont[grep("You can load this project in Rstudio by opening the file called ", cont)] <- paste0(cont[grep("You can load this project in Rstudio by opening the file called ", cont)], "'", grep("\\.Rproj$", f, value = TRUE)[1], "'.")
+      tab <- describe_file(grep("\\.Rproj$", f, value = TRUE)[1], "Project file", "Loads project", tab, norm_path)
     }
     tab <- describe_file("LICENSE", "User permissions", "Read only", tab, norm_path)
     tab <- describe_file("manuscript.rmd", "Source code for paper", "Human editable", tab, norm_path)
