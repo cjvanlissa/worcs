@@ -6,3 +6,5 @@ addons:
   apt:
     packages:
       - libgit2-dev
+r_github_packages:
+  - crsh/papaja
