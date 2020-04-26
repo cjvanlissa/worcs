@@ -1,4 +1,6 @@
 
+# WORCS <a href='https://osf.io/zcvbs/'><img src='paper/worcs_icon.png' align="right" height="139" /></a>
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <!--[![CRAN status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/package=worcs)
@@ -99,3 +101,8 @@ warrant coauthorship to the paper. Please contact the lead author at
 
 By participating in this project, you agree to abide by the [Contributor
 Code of Conduct v2.0](https://www.contributor-covenant.org/).
+
+## Acknowledgements
+
+The worcs logo makes use of the gear, services, gears, preferences,
+settings icon, made by MD Badsha Meah from www.freeicons.io.
