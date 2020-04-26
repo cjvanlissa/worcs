@@ -17,3 +17,30 @@ parses the citations in the document, converting citations
 marked with double at sign, e.g.: \code{@@reference2020}, into normal
 citations, e.g.: \code{@reference2020}. Then, it renders the file.
 }
+\examples{
+\dontshow{
+library(rmarkdown)
+old_wd <- getwd()
+dir.create(file.path(tempdir(), "citeall"))
+setwd(file.path(tempdir(), "citeall"))
+draft("test.Rmd", template = "github_document", package = "rmarkdown",
+      create_dir = FALSE, edit = FALSE)
+write(c("", "Optional reference: @reference2020"),
+      file = "test.Rmd", append = TRUE)
+cite_all("test.Rmd", "UTF-8")
+setwd(old_wd)
+unlink(file.path(tempdir(), "citeall"))
+}
+\donttest{
+# NOTE: Do not use this function interactively, as in the example below.
+# Only specify it as custom knit function in an Rmarkdown file, like so:
+# knit: worcs::cite_all
+
+library(rmarkdown)
+draft("test.Rmd", template = "github_document", package = "rmarkdown",
+      create_dir = FALSE, edit = FALSE)
+write(c("", "Optional reference: @reference2020"),
+      file = "test.Rmd", append = TRUE)
+cite_all("test.Rmd", "UTF-8")
+}
+}

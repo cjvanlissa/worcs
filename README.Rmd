@@ -85,4 +85,4 @@ Code of Conduct v2.0](https://www.contributor-covenant.org/).
 
 ## Acknowledgements
 
-The worcs logo makes use of the gear, services, gears, preferences, settings icon, made by MD Badsha Meah from www.freeicons.io.
+The worcs logo is inspired by the Open Science Badges by the Center for Open Science (CC-BY-4.0), and makes use of the gear, services, gears, preferences, settings icon, made by MD Badsha Meah from www.freeicons.io (CC-BY-3.0). 

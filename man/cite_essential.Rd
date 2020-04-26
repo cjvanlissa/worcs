@@ -14,6 +14,33 @@ cite_essential(inputFile, encoding)
 \description{
 This is a wrapper for \code{\link[rmarkdown]{render}}. First, this function
 parses the citations in the document, removing citations
-marked with double at sign, e.g.: \code{@@reference2020}.  Then, it renders
+marked with double at sign, e.g.: \code{@@reference2020}. Then, it renders
 the file.
+}
+\examples{
+\dontshow{
+library(rmarkdown)
+old_wd <- getwd()
+dir.create(file.path(tempdir(), "citeessential"))
+setwd(file.path(tempdir(), "citeessential"))
+draft("test.Rmd", template = "github_document", package = "rmarkdown",
+      create_dir = FALSE, edit = FALSE)
+write(c("", "Optional reference: @reference2020"),
+      file = "test.Rmd", append = TRUE)
+cite_essential("test.Rmd", "UTF-8")
+setwd(old_wd)
+unlink(file.path(tempdir(), "citeessential"))
+}
+\donttest{
+# NOTE: Do not use this function interactively, as in the example below.
+# Only specify it as custom knit function in an Rmarkdown file, like so:
+# knit: worcs::cite_essential
+
+library(rmarkdown)
+draft("test.Rmd", template = "github_document", package = "rmarkdown",
+      create_dir = FALSE, edit = FALSE)
+write(c("", "Optional reference: @reference2020"),
+      file = "test.Rmd", append = TRUE)
+cite_essential("test.Rmd", "UTF-8")
+}
 }

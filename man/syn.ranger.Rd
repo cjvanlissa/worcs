@@ -23,15 +23,14 @@ syn.ranger(y, x, xp, smoothing, proper = FALSE, ...)
 List with predictions and fit model.
 }
 \description{
-This function is for internal use only.
-Generates synthetic version(s) of a data set using the fast
-implementation of random forests in \code{\link[ranger]{ranger}}.
+This function is for internal use only. It extends the
+functionality of \code{\link[synthpop]{syn}} in the \code{synthpop} package,
+which generates synthetic version(s) of a data set. This function uses the
+fast implementation of random forests in \code{\link[ranger]{ranger}} to
+generate synthetic datasets.
 }
 \examples{
-\dontrun{
-if(interactive()){
- #EXAMPLE1
- }
-}
+df <- iris[1:10, ]
+res <- syn.ranger(df$Species, df[, 1:4], df[, 1:4], smoothing = FALSE)
 }
 \keyword{internal}

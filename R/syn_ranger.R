@@ -3,9 +3,11 @@ syn.smooth <-
   getFromNamespace("syn.smooth", "synthpop")
 
 #' @title Generating synthetic data sets using ranger
-#' @description This function is for internal use only.
-#' Generates synthetic version(s) of a data set using the fast
-#' implementation of random forests in \code{\link[ranger]{ranger}}.
+#' @description This function is for internal use only. It extends the
+#' functionality of \code{\link[synthpop]{syn}} in the \code{synthpop} package,
+#' which generates synthetic version(s) of a data set. This function uses the
+#' fast implementation of random forests in \code{\link[ranger]{ranger}} to
+#' generate synthetic datasets.
 #' @param y Vector of the outcome variable.
 #' @param x Matrix of x variables.
 #' @param xp Matrix of x variables for prediction.
@@ -14,11 +16,8 @@ syn.smooth <-
 #' @param ... Additional arguments passed to and from functions.
 #' @return List with predictions and fit model.
 #' @examples
-#' \dontrun{
-#' if(interactive()){
-#'  #EXAMPLE1
-#'  }
-#' }
+#' df <- iris[1:10, ]
+#' res <- syn.ranger(df$Species, df[, 1:4], df[, 1:4], smoothing = FALSE)
 #' @rdname syn.ranger
 #' @importFrom ranger ranger
 #' @importFrom stats predict

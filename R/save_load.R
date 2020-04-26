@@ -7,8 +7,17 @@
 #' Set to \code{NULL} to avoid creating a codebook. Defaults to \code{"html"},
 #' other options documented in \code{\link[dataMaid]{makeDataReport}}.
 #' @examples
-#' \dontrun{
-#'   open_data(iris)
+#' \dontshow{
+#' the_test <- "opendata"
+#' old_wd <- getwd()
+#' dir.create(file.path(tempdir(), the_test))
+#' setwd(file.path(tempdir(), the_test))
+#' open_data(iris[1:5, ], codebook = NULL)
+#' setwd(old_wd)
+#' unlink(file.path(tempdir(), the_test))
+#' }
+#' \donttest{
+#' open_data(iris)
 #' }
 #' @rdname open_data
 #' @seealso closed_data
@@ -29,7 +38,16 @@ open_data <- function(data, codebook = "html"){
 #' Set to \code{NULL} to avoid creating a codebook. Defaults to \code{"html"},
 #' other options documented in \code{\link[dataMaid]{makeDataReport}}.
 #' @examples
-#' \dontrun{
+#' \dontshow{
+#' the_test <- "closeddata"
+#' old_wd <- getwd()
+#' dir.create(file.path(tempdir(), the_test))
+#' setwd(file.path(tempdir(), the_test))
+#' closed_data(iris[1:5, ], codebook = NULL)
+#' setwd(old_wd)
+#' unlink(file.path(tempdir(), the_test))
+#' }
+#' \donttest{
 #' closed_data(iris)
 #' }
 #' @rdname closed_data
@@ -50,7 +68,8 @@ save_data <- function(data, open, codebook = NULL){
     stop("Argument 'data' must be a data.frame, matrix, or inherit from these classes.")
   }
   if(!file.exists(".gitignore")){
-    stop("Could not find .gitignore file. You might not be working from the main project directory.")
+    message("Could not find .gitignore file. You might not be working from the main project directory. Created .gitignore file in folder: ", getwd())
+    file.create(".gitignore")
   }
   data <- as.data.frame(data)
   if(!is.null(codebook)){
@@ -89,8 +108,18 @@ save_data <- function(data, open, codebook = NULL){
 #' the synthetic data.
 #' @return A data.frame.
 #' @examples
-#' \dontrun{
-#' open_data(iris)
+#' \dontshow{
+#' the_test <- "loaddata"
+#' old_wd <- getwd()
+#' dir.create(file.path(tempdir(), the_test))
+#' setwd(file.path(tempdir(), the_test))
+#' open_data(iris[1:5, ], codebook = NULL)
+#' load_data()
+#' setwd(old_wd)
+#' unlink(file.path(tempdir(), the_test))
+#' }
+#' \donttest{
+#' open_data(iris[1:5, ], codebook = NULL)
 #' load_data()
 #' }
 #' @rdname load_data
