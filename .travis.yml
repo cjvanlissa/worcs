@@ -10,3 +10,10 @@ addons:
 #  - crsh/papaja
 #r_packages:
 #  - broom
+
+matrix:
+  include:
+    - os: linux
+      r: release
+    - os: osx
+      r: release
