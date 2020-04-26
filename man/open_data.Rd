@@ -29,7 +29,7 @@ setwd(old_wd)
 unlink(file.path(tempdir(), the_test))
 }
 \donttest{
-open_data(iris)
+open_data(iris, codebook = NULL)
 }
 }
 \seealso{

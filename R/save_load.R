@@ -17,7 +17,7 @@
 #' unlink(file.path(tempdir(), the_test))
 #' }
 #' \donttest{
-#' open_data(iris)
+#' open_data(iris[1:5, ], codebook = NULL)
 #' }
 #' @rdname open_data
 #' @seealso closed_data
@@ -48,7 +48,7 @@ open_data <- function(data, codebook = "html"){
 #' unlink(file.path(tempdir(), the_test))
 #' }
 #' \donttest{
-#' closed_data(iris)
+#' closed_data(iris[1:5, ], codebook = NULL)
 #' }
 #' @rdname closed_data
 #' @seealso open_data

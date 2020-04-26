@@ -37,10 +37,12 @@ unlink(file.path(tempdir(), "citeessential"))
 # knit: worcs::cite_essential
 
 library(rmarkdown)
-draft("test.Rmd", template = "github_document", package = "rmarkdown",
-      create_dir = FALSE, edit = FALSE)
-write(c("", "Optional reference: @reference2020"),
-      file = "test.Rmd", append = TRUE)
+if(!file.exists("test.Rmd")){
+  draft("test.Rmd", template = "github_document", package = "rmarkdown",
+        create_dir = FALSE, edit = FALSE)
+  write(c("", "Optional reference: @reference2020"),
+        file = "test.Rmd", append = TRUE)
+}
 cite_essential("test.Rmd", "UTF-8")
 }
 }
