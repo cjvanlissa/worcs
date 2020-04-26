@@ -12,9 +12,8 @@ output: github_document
 <!--[![Codecov test
 coverage](https://codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg)](https://codecov.io/gh/cjvanlissa/worcs?branch=master)-->
 <!--[![DOI](http://joss.theoj.org/papers/10.21105/joss.00978/status.svg)](https://doi.org/10.21105/joss.00978)-->
-# WORCS
 
-The Workflow for Open Reproducible Code in Science (WORCS) is an easy to adopt approach to ensuring a research project meets the requirements of Open Science from the start. It is based on a "good enough" philosophy, opting for user-friendliness instead of thoroughness. It can be used either in absence of, or in parallel to, existing requirements for Open workflows. It can also be enhanced with more elaborate solutions for specific issues.
+The Workflow for Open Reproducible Code in Science (WORCS) is an easy to adopt approach to ensuring a research project meets the requirements of Open Science from the start. It is based on a "good enough" philosophy, prioritizing user-friendliness over exhaustiveness. It can be used either in absence of, or in parallel to, existing requirements for Open workflows. It can also be enhanced with more elaborate solutions for specific issues.
 
 ## Where do I start?
 
