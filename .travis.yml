@@ -8,3 +8,5 @@ addons:
       - libgit2-dev
 r_github_packages:
   - crsh/papaja
+r_packages:
+  - broom
