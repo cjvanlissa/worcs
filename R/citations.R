@@ -8,7 +8,10 @@
 #' @param encoding Ignored. The encoding is always assumed to be UTF-8.
 #' @export
 #' @examples
-#' \dontshow{
+#' # NOTE: Do not use this function interactively, as in the example below.
+#' # Only specify it as custom knit function in an Rmarkdown file, like so:
+#' # knit: worcs::cite_all
+#'
 #' library(rmarkdown)
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), "citeall"))
@@ -20,21 +23,6 @@
 #' cite_all("test.Rmd", "UTF-8")
 #' setwd(old_wd)
 #' unlink(file.path(tempdir(), "citeall"))
-#' }
-#' \donttest{
-#' # NOTE: Do not use this function interactively, as in the example below.
-#' # Only specify it as custom knit function in an Rmarkdown file, like so:
-#' # knit: worcs::cite_all
-#'
-#' library(rmarkdown)
-#' if(!file.exists("test.Rmd")){
-#'   draft("test.Rmd", template = "github_document", package = "rmarkdown",
-#'         create_dir = FALSE, edit = FALSE)
-#'   write(c("", "Optional reference: @@reference2020"),
-#'         file = "test.Rmd", append = TRUE)
-#' }
-#' cite_all("test.Rmd", "UTF-8")
-#' }
 cite_all <- function(inputFile, encoding){
   Args <- list(
     inputFile = inputFile,
@@ -54,7 +42,10 @@ cite_all <- function(inputFile, encoding){
 #' @param encoding Ignored. The encoding is always assumed to be UTF-8.
 #' @export
 #' @examples
-#' \dontshow{
+#' # NOTE: Do not use this function interactively, as in the example below.
+#' # Only specify it as custom knit function in an Rmarkdown file, like so:
+#' # knit: worcs::cite_all
+#'
 #' library(rmarkdown)
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), "citeessential"))
@@ -66,21 +57,6 @@ cite_all <- function(inputFile, encoding){
 #' cite_essential("test.Rmd", "UTF-8")
 #' setwd(old_wd)
 #' unlink(file.path(tempdir(), "citeessential"))
-#' }
-#' \donttest{
-#' # NOTE: Do not use this function interactively, as in the example below.
-#' # Only specify it as custom knit function in an Rmarkdown file, like so:
-#' # knit: worcs::cite_essential
-#'
-#' library(rmarkdown)
-#' if(!file.exists("test.Rmd")){
-#'   draft("test.Rmd", template = "github_document", package = "rmarkdown",
-#'         create_dir = FALSE, edit = FALSE)
-#'   write(c("", "Optional reference: @@reference2020"),
-#'         file = "test.Rmd", append = TRUE)
-#' }
-#' cite_essential("test.Rmd", "UTF-8")
-#' }
 cite_essential <- function(inputFile, encoding){
   Args <- list(
     inputFile = inputFile,

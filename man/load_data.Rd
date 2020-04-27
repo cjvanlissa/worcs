@@ -15,7 +15,6 @@ original data. If only a synthetic dataset is available, this function loads
 the synthetic data.
 }
 \examples{
-\dontshow{
 the_test <- "loaddata"
 old_wd <- getwd()
 dir.create(file.path(tempdir(), the_test))
@@ -24,9 +23,4 @@ open_data(iris[1:5, ], codebook = NULL)
 load_data()
 setwd(old_wd)
 unlink(file.path(tempdir(), the_test))
-}
-\donttest{
-open_data(iris[1:5, ], codebook = NULL)
-load_data()
-}
 }

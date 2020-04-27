@@ -7,7 +7,6 @@
 #' Set to \code{NULL} to avoid creating a codebook. Defaults to \code{"html"},
 #' other options documented in \code{\link[dataMaid]{makeDataReport}}.
 #' @examples
-#' \dontshow{
 #' the_test <- "opendata"
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), the_test))
@@ -15,10 +14,6 @@
 #' open_data(iris[1:5, ], codebook = NULL)
 #' setwd(old_wd)
 #' unlink(file.path(tempdir(), the_test))
-#' }
-#' \donttest{
-#' open_data(iris[1:5, ], codebook = NULL)
-#' }
 #' @rdname open_data
 #' @seealso closed_data
 #' @export
@@ -38,18 +33,13 @@ open_data <- function(data, codebook = "html"){
 #' Set to \code{NULL} to avoid creating a codebook. Defaults to \code{"html"},
 #' other options documented in \code{\link[dataMaid]{makeDataReport}}.
 #' @examples
-#' \dontshow{
 #' the_test <- "closeddata"
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), the_test))
 #' setwd(file.path(tempdir(), the_test))
-#' closed_data(iris[1:5, ], codebook = NULL)
+#' closed_data(iris[1:10, ], codebook = NULL)
 #' setwd(old_wd)
 #' unlink(file.path(tempdir(), the_test))
-#' }
-#' \donttest{
-#' closed_data(iris[1:5, ], codebook = NULL)
-#' }
 #' @rdname closed_data
 #' @seealso open_data
 #' @export
@@ -61,7 +51,6 @@ closed_data <- function(data, codebook = "html"){
 }
 
 #' @importFrom tools md5sum
-#' @importFrom synthpop syn
 #' @importFrom dataMaid makeCodebook
 save_data <- function(data, open, codebook = NULL){
   if(!inherits(data, c("data.frame", "matrix"))){
@@ -75,7 +64,6 @@ save_data <- function(data, open, codebook = NULL){
   if(!is.null(codebook)){
     makeCodebook(data, file = "codebook.Rmd", quiet = "silent", output = codebook, openResult = FALSE, codebook = TRUE)
   }
-  data[sapply(data, inherits, what = "factor")] <- lapply(data[sapply(data, inherits, what = "factor")], as.character)
   message('Storing original data in "data.csv" and updating "checksums.csv".')
   write.csv(data, "data.csv", row.names = FALSE)
   store_checksum("data.csv")
@@ -91,7 +79,7 @@ save_data <- function(data, open, codebook = NULL){
       write("!synthetic_data.csv", file = ".gitignore", append = TRUE)
     }
     message("Generating synthetic data for public use. Ensure that no identifying information is included.")
-    synth <- syn(data, method = "ranger")
+    synth <- synthetic(data, verbose = FALSE)
     message('Storing synthetic data in "synthetic_data.csv" and updating "checksums.csv".')
     write.csv(synth$syn, "synthetic_data.csv", row.names = FALSE)
     store_checksum("synthetic_data.csv")
@@ -108,7 +96,6 @@ save_data <- function(data, open, codebook = NULL){
 #' the synthetic data.
 #' @return A data.frame.
 #' @examples
-#' \dontshow{
 #' the_test <- "loaddata"
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), the_test))
@@ -117,11 +104,6 @@ save_data <- function(data, open, codebook = NULL){
 #' load_data()
 #' setwd(old_wd)
 #' unlink(file.path(tempdir(), the_test))
-#' }
-#' \donttest{
-#' open_data(iris[1:5, ], codebook = NULL)
-#' load_data()
-#' }
 #' @rdname load_data
 #' @export
 #' @importFrom tools md5sum
