@@ -26,5 +26,6 @@ Imports:
 Suggests:
     renv,
     knitr,
+    missRanger,
     testthat (>= 2.1.0)
 VignetteBuilder: knitr
