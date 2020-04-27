@@ -215,7 +215,7 @@ The procedure for citation in WORCS is as follows:<!-- LB: this procedure is sec
 4. When Knitting the document, adapt the `knit` command in the YAML header.  
   `knit: worcs::cite_all` renders all citations, and  
   `knit: worcs::cite_essential` removes all *non-essential* citations.
-5. Optional: To be extremely thorough, you could make a "branch" of the Github repository for the print version of the manuscript. Only in this branch, you use the function `knit: worcs::cite_essential`. The procedure is documented in [this tutorial](http://rstudio-pubs-static.s3.amazonaws.com/142364_3b344a38149b465c8ebc9a8cd2eee3aa.html).
+5. Optional: To be extremely thorough, you could make a "branch" of the GitHub repository for the print version of the manuscript. Only in this branch, you use the function `knit: worcs::cite_essential`. The procedure is documented in [this tutorial](http://rstudio-pubs-static.s3.amazonaws.com/142364_3b344a38149b465c8ebc9a8cd2eee3aa.html).
 
 ```{r scholarbib, echo = FALSE}
 knitr::include_graphics("scholar_bib.png")
@@ -284,7 +284,7 @@ The ideal preregistered analysis consists of a complete analysis script that can
 * R package prereg
 * mention other examples and cite van 't Veer, A. E., & Giner-Sorolla, R. (2016). Pre-registration in social psychology---A discussion and suggested template. Journal of Experimental Social Psychology, 67, 2--12. doi: 10.1016/j.jesp.2016.03.004
 3. Commit, push, and tag th as preregistration
-Preregistration: tag on github
+Preregistration: tag on GitHub
 https://stackoverflow.com/questions/18216991/create-a-tag-in-a-github-repository
 
 4. Optional: Add Materials to repository. It is possible to solicit feedback (through issue/pull request) and later acknowledge outside contributions
@@ -304,7 +304,7 @@ Before you can use the WORCS workflow, you have to install the required software
 
 ## Phase 1: Study design
 
-1. Create a new Private repository on github, and copy the repository link to the clipboard. The link will look like https://github.com/yourname/yourrepo.git
+1. Create a new Private repository on GitHub, and copy the repository link to the clipboard. The link will look like https://github.com/yourname/yourrepo.git
 2. In RStudio, click File > New Project > New directory > WORCS Project Template
     a. Paste the GitHub Repository address in the textbox
     b. Keep the checkbox for `renv` checked if you want to document all dependencies (recommended). The only reason not to do this is if you have dependencies outside of the R environment, or if you are using a more comprehensive solution for computational reproducibility, e.g., @peikertReproducibleDataAnalysis2019.

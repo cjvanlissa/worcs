@@ -37,7 +37,7 @@
 #' \item Using \code{model_expression}, a predictive model is built for column
 #' c, for c along 2:j, with c predicted from columns 1:(c-1) of the original
 #' data.
-#' \item Using \code{predict_expression}, columns 1:(c-1) of the syntethic data
+#' \item Using \code{predict_expression}, columns 1:(c-1) of the synthetic data
 #' are used to predict synthetic values for column c.
 #' }
 #' Variables are thus imputed in order of occurrence in the \code{data.frame}.

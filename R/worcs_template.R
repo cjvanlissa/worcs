@@ -79,7 +79,6 @@ worcs_template <- function(path, ...) {
   }
 
   #use_git() initialises a Git repository and adds important files to .gitignore. If user consents, it also makes an initial commit.
-  #usethis::use_github()
   write(c(".Rhistory",
           ".Rprofile",
           "*.csv",

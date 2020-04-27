@@ -134,7 +134,7 @@ Signed review: Accountability
 Publons (credit for review)
 Give permission to include review as supplementary material or upload on osf
 
-Post-publication review: OSF has comments feature; github issues
+Post-publication review: OSF has comments feature; GitHub issues
 
 I sign my reviews consistently, and include the following text in the review and in the message to the Editor:
 
@@ -182,7 +182,7 @@ Open citation standards require   citation for data and materials
 
 (1); transparant disclosure or sharing of data (2), methods, including the code required to reproduce them (3), research materials (4), and design and analysis (5); pre-registration of studies before data collection (6), and pre-registration of the analysis plan prior to analysis (7); and replication of published results (8).
 
-Adequate citation of statistical software is important, because open source software is an important type of research output for statisticians. An easy way to cite all packages used is to write an APA-style paper in Rmarkdown using the `papaja` package. Cite all packages with the function `cite_r()`, and add the BibTeX entries for these packages to the reference file using `r_refs("filename.bib")`. However, it might not be feasible or desireable (e.g., due to journal limits on the number of references) to cite all packages. Therefore, a more practical solution might be to cite only the most important packages. The citation for each package can be obtained by running `citation("packagename")`. If this approach is combined with a fully reproducible R-environment (using the `renv` package) and code sharing (e.g., on Github or the OSF), then the full list of package dependencies is documented automatically in the `.lock` file.
+Adequate citation of statistical software is important, because open source software is an important type of research output for statisticians. An easy way to cite all packages used is to write an APA-style paper in Rmarkdown using the `papaja` package. Cite all packages with the function `cite_r()`, and add the BibTeX entries for these packages to the reference file using `r_refs("filename.bib")`. However, it might not be feasible or desireable (e.g., due to journal limits on the number of references) to cite all packages. Therefore, a more practical solution might be to cite only the most important packages. The citation for each package can be obtained by running `citation("packagename")`. If this approach is combined with a fully reproducible R-environment (using the `renv` package) and code sharing (e.g., on GitHub or the OSF), then the full list of package dependencies is documented automatically in the `.lock` file.
 
 ### Citation software
 

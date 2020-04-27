@@ -21,7 +21,7 @@ Before you can use the WORCS workflow and the full functionality of the `worcs` 
 2. Install Rstudio Desktop (Free) from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)
 <!-- ALWAYS RUN AS ADMIN -->
 <!-- install rtools -->
-3. *Otional:* This step prepares your system to compile R-packages from source code. This is useful when you want to get the latest functionality straight from the developers. For more info, see [this article](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites)).
+3. *Optional:* This step prepares your system to compile R-packages from source code. This is useful when you want to get the latest functionality straight from the developers. For more info, see [this article](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites)).
     + On Windows: Install the recommended version of [Rtools](https://cran.r-project.org/bin/windows/Rtools/), highlighted in green. During installation, it is important to select the checkbox *Add rtools to system PATH*
     + On Mac Mac OS X 10.9 and newer:
         * Go to Terminal in /Applications/Utilities/
@@ -40,7 +40,7 @@ Before you can use the WORCS workflow and the full functionality of the `worcs` 
 5. Register on GitHub
     + Go to [github.com](https://github.com/) and click *Sign up*. Choose an "Individual", "Free" plan.
     + Request a [free academic upgrade](https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount). This allows you to create *private repositories*, which are only visible to you and selected collaborators, and can be made public when your work is published.
-6. Connect Rstudio to Git and Github (for more support, see [this Rstudio article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/rstudio-and-github/))
+6. Connect Rstudio to Git and GitHub (for more support, see [this Rstudio article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/rstudio-and-github/))
     a. Open Rstudio, open the Tools menu, click *Global Options*, and click *Git/SVN*
     b. Verify that *Enable version control interface for RStudio projects* is selected
     c. Verify that *Git executable:* shows the location of git.exe. If it is missing, manually fix the location of the file.
@@ -52,7 +52,7 @@ Before you can use the WORCS workflow and the full functionality of the `worcs` 
     i. Click *New SSH key*. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled *Key*.
     j. Open Rstudio again (unless it restarted by itself)
 7. Install all packages required for WORCS by running the following code in the Rstudio console. Be prepared for three contingencies:  
-    + If you receive any error saying *There is no package called XYZ*, then run the code `install.packages("XYZ")`  
+    + If you receive any error saying *There is no package called [package name]*, then run the code `install.packages("package name")`  
     + If you are prompted to update packages, just press [ENTER] to avoid updating packages. Updating packages this way in an interactive session sometimes leads to errors if the packages are loaded.  
     + If you see a pop-up dialog asking *Do you want to install from sources the package which needs compilation?*, click *No*.
 
