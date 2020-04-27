@@ -124,7 +124,7 @@ worcs_template <- function(path, ...) {
   } else {
     warning("No valid GitHub address provided. You are working with a local git repository only.", call. = FALSE)
   }
-  if("GCtorture" %in% ls()) rm(GCtorture)
+  if("GCtorture" %in% ls()) rm("GCtorture")
 }
 
 describe_file <- function(file, desc, usage, tab, norm_path){
