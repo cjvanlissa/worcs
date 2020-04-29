@@ -4,14 +4,14 @@
 \alias{closed_data}
 \title{Save closed data file}
 \usage{
-closed_data(data, codebook = "html")
+closed_data(data, codebook = TRUE)
 }
 \arguments{
 \item{data}{A data.frame to save.}
 
-\item{codebook}{A character string, indicating the filetype for the codebook.
-Set to \code{NULL} to avoid creating a codebook. Defaults to \code{"html"},
-other options documented in \code{\link[dataMaid]{makeDataReport}}.}
+\item{codebook}{Logical, indicating whether to render a codebook or not. If
+set to \code{TRUE}, the default, a file called 'codebook.Rmd' is created and
+rendered to 'codebook.md' for GitHub.}
 }
 \description{
 This function saves a data.frame as a .csv file, stores a

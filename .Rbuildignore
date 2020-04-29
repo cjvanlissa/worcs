@@ -10,3 +10,5 @@
 ^cran-comments\.md
 ^news\.md
 ^\.travis\.yml$
+^CRAN-RELEASE$
+^codebook.*$

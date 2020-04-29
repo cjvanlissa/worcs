@@ -3,9 +3,9 @@
 #' checksum in 'data_checksum.txt', appends the .gitignore file to exclude
 #' 'data.csv', and writes a stem for 'data_cleaning.R'.
 #' @param data A data.frame to save.
-#' @param codebook A character string, indicating the filetype for the codebook.
-#' Set to \code{NULL} to avoid creating a codebook. Defaults to \code{"html"},
-#' other options documented in \code{\link[dataMaid]{makeDataReport}}.
+#' @param codebook Logical, indicating whether to render a codebook or not. If
+#' set to \code{TRUE}, the default, a file called 'codebook.Rmd' is created and
+#' rendered to 'codebook.md' for GitHub.
 #' @examples
 #' the_test <- "opendata"
 #' old_wd <- getwd()
@@ -17,7 +17,7 @@
 #' @rdname open_data
 #' @seealso closed_data
 #' @export
-open_data <- function(data, codebook = "html"){
+open_data <- function(data, codebook = TRUE){
   Args <- as.list(match.call()[-1])
   Args$open <- TRUE
   Args$codebook <- codebook
@@ -29,9 +29,9 @@ open_data <- function(data, codebook = "html"){
 #' checksum in 'data_checksum.txt', appends the .gitignore file to ignore
 #' all '.csv' files, and writes a stem for 'data_cleaning.R'.
 #' @param data A data.frame to save.
-#' @param codebook A character string, indicating the filetype for the codebook.
-#' Set to \code{NULL} to avoid creating a codebook. Defaults to \code{"html"},
-#' other options documented in \code{\link[dataMaid]{makeDataReport}}.
+#' @param codebook Logical, indicating whether to render a codebook or not. If
+#' set to \code{TRUE}, the default, a file called 'codebook.Rmd' is created and
+#' rendered to 'codebook.md' for GitHub.
 #' @examples
 #' the_test <- "closeddata"
 #' old_wd <- getwd()
@@ -43,7 +43,7 @@ open_data <- function(data, codebook = "html"){
 #' @rdname closed_data
 #' @seealso open_data
 #' @export
-closed_data <- function(data, codebook = "html"){
+closed_data <- function(data, codebook = TRUE){
   Args <- as.list(match.call()[-1])
   Args$open <- FALSE
   Args$codebook <- codebook
@@ -51,8 +51,7 @@ closed_data <- function(data, codebook = "html"){
 }
 
 #' @importFrom tools md5sum
-#' @importFrom dataMaid makeCodebook
-save_data <- function(data, open, codebook = NULL){
+save_data <- function(data, open, codebook = TRUE){
   if(!inherits(data, c("data.frame", "matrix"))){
     stop("Argument 'data' must be a data.frame, matrix, or inherit from these classes.")
   }
@@ -61,8 +60,8 @@ save_data <- function(data, open, codebook = NULL){
     file.create(".gitignore")
   }
   data <- as.data.frame(data)
-  if(!is.null(codebook)){
-    makeCodebook(data, file = "codebook.Rmd", quiet = "silent", output = codebook, openResult = FALSE, codebook = TRUE)
+  if(codebook){
+    make_codebook(data)
   }
   message('Storing original data in "data.csv" and updating "checksums.csv".')
   write.csv(data, "data.csv", row.names = FALSE)
@@ -86,7 +85,7 @@ save_data <- function(data, open, codebook = NULL){
   }
   if(!file.exists("data_cleaning.R")){
     message('Generating "data_cleaning.R"')
-    write('# Load raw data from file -------------------------------------------------\n# This function loads the original data if available,\n# and a synthetic dataset if they are not available.\n\ndata <- read_data()', "data_cleaning.R")
+    write('# Load raw data from file -------------------------------------------------\n# This function loads the original data if available,\n# and a synthetic dataset if they are not available.\n\nlibrary(worcs)\ndata <- load_data()', "data_cleaning.R")
   }
 }
 
