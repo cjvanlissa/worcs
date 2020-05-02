@@ -1,4 +1,9 @@
-
+#' @title Export Project
+#' @param filename path to a target directory or path to a zip file that is to be created
+#' @param open.data boolean. Export including open data?
+#' @return boolean. Success of the operation
+#' @importFrom utils tail
+#' @export
 export_project <- function(filename, open.data=TRUE)
 {
   
@@ -8,6 +13,7 @@ export_project <- function(filename, open.data=TRUE)
   } 
   
   # TODO: is there a robust way to get Rstudio base path?
+#  base.dir <- rstudioapi::getActiveProject()
   base.dir <- getwd()
   project.folder <- tail(strsplit(base.dir,.Platform$file.sep)[[1]],1)
   zip.mode <- endsWith(filename,".zip")
