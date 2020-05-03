@@ -20,3 +20,6 @@ matrix:
       
 # macOS 10.12 version
 osx_image: xcode9.2
+
+before_install:
+    - tlmgr install inconsolata
