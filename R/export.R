@@ -4,24 +4,34 @@
 #' @return boolean. Success of the operation
 #' @importFrom utils tail
 #' @export
-export_project <- function(filename, open.data=TRUE)
+export_project <- function(filename=NULL, open.data=TRUE)
 {
   
-  if (!is.character(filename)) {
-    print("Filename must be of type character.")
-    return(FALSE)
-  } 
-  
+  # get properties about the project and paths
   # TODO: is there a robust way to get Rstudio base path?
-#  base.dir <- rstudioapi::getActiveProject()
+  #  base.dir <- rstudioapi::getActiveProject()
   base.dir <- getwd()
   project.folder <- tail(strsplit(base.dir,.Platform$file.sep)[[1]],1)
+  
+  # if no filename is given, export to a zip file with
+  # the name of the project folder
+  if (is.null(filename)) {
+    filename=paste0("..",.Platform$file.sep,project.folder,".zip")
+  }
+  
+  if (!is.character(filename)) {
+    message("Filename must be of type character:",as.character(filename))
+    return(FALSE)
+  }
+  
+  # determine mode of operation
   zip.mode <- endsWith(filename,".zip")
+  
   
   if (zip.mode) {
     
     if (file.exists(filename)) {
-      print("Error! File exists!")
+      message("Error! File exists!")
       return(FALSE)
     }
     

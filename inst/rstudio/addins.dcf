@@ -1,0 +1,4 @@
+Name: Export to zip
+Description: Exports the current project to a single zip file.
+Binding: export_project
+Interactive: false
