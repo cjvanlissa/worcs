@@ -6,6 +6,7 @@ addons:
   apt:
     packages:
       - libgit2-dev
+      - texlive-fonts-extra
 #r_github_packages:
 #  - crsh/papaja
 #r_packages:
@@ -21,5 +22,3 @@ matrix:
 # macOS 10.12 version
 osx_image: xcode9.2
 
-before_install:
-    - tlmgr install inconsolata
