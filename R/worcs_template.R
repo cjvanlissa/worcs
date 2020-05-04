@@ -73,7 +73,7 @@ worcs_template <- function(path, ...) {
   
   # create .worcs file ----------
   write(c(paste0("Specification: 1.0"),
-          paste0("Created By: worcs ",installed.packages()[installed.packages()[,"Package"]=="worcs","Version"])),
+          paste0("Created By: worcs ",packageVersion("worcs"))),
         file = file.path(path, ".worcs"), append = TRUE)
   
 
