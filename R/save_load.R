@@ -5,7 +5,9 @@
 #' @param data A data.frame to save.
 #' @param codebook Logical, indicating whether to render a codebook or not. If
 #' set to \code{TRUE}, the default, a file called 'codebook.Rmd' is created and
-#' rendered to 'codebook.md' for GitHub.
+#' rendered to 'codebook.md' for 'GitHub'.
+#' @return Returns \code{NULL} invisibly. This
+#' function is called for its side effects.
 #' @examples
 #' the_test <- "opendata"
 #' old_wd <- getwd()
@@ -31,7 +33,9 @@ open_data <- function(data, codebook = TRUE){
 #' @param data A data.frame to save.
 #' @param codebook Logical, indicating whether to render a codebook or not. If
 #' set to \code{TRUE}, the default, a file called 'codebook.Rmd' is created and
-#' rendered to 'codebook.md' for GitHub.
+#' rendered to 'codebook.md' for 'GitHub'.
+#' @return Returns \code{NULL} invisibly. This
+#' function is called for its side effects.
 #' @examples
 #' the_test <- "closeddata"
 #' old_wd <- getwd()
@@ -87,20 +91,25 @@ save_data <- function(data, open, codebook = TRUE){
     message('Generating "data_cleaning.R"')
     write('# Load raw data from file -------------------------------------------------\n# This function loads the original data if available,\n# and a synthetic dataset if they are not available.\n\nlibrary(worcs)\ndata <- load_data()', "data_cleaning.R")
   }
+  invisible(NULL)
 }
 
 #' @title Load data file
 #' @description If the original data are available, this function loads the
 #' original data. If only a synthetic dataset is available, this function loads
 #' the synthetic data.
-#' @return A data.frame.
+#' @return A \code{data.frame} of class \code{"worcs_data"}, containing the
+#' original data, if available, or a synthetic version of the data, if the
+#' original data are unavailable. The \code{data.frame} has an attribute, "type",
+#' indicating whether the data are synthetic or original.
 #' @examples
 #' the_test <- "loaddata"
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), the_test))
 #' setwd(file.path(tempdir(), the_test))
 #' open_data(iris[1:5, ], codebook = NULL)
-#' load_data()
+#' df <- load_data()
+#' df
 #' setwd(old_wd)
 #' unlink(file.path(tempdir(), the_test))
 #' @rdname load_data
@@ -111,15 +120,19 @@ load_data <- function(){
   cs_file <- read.csv("checksums.csv", stringsAsFactors = FALSE)
   if(file.exists("data.csv")){
     check_sum("data.csv")
-    return(read.csv("data.csv", stringsAsFactors = TRUE))
+    out <- read.csv("data.csv", stringsAsFactors = TRUE)
+    attr(out, "type") <- "original"
   } else {
     if(file.exists("synthetic_data.csv")){
       check_sum("synthetic_data.csv")
-      return(read.csv("synthetic_data.csv", stringsAsFactors = TRUE))
+      out <- read.csv("synthetic_data.csv", stringsAsFactors = TRUE)
+      attr(out, "type") <- "synthetic"
     } else {
       stop('No valid data file found.')
     }
   }
+  class(out) <- c("worcs_data", class(out))
+  out
 }
 
 #' @importFrom tools md5sum
@@ -161,4 +174,18 @@ check_sum <- function(filename){
   if(!cs == old_cs){
     stop("Checksum for file '", filename, "' did not match the checksum on record (in 'checksums.csv'). This means that the file has changed since the checksum was stored.")
   }
+}
+
+
+#' @importFrom utils head
+#' @export
+print.worcs_data <- function(x, ...){
+  if(attr(x, "type") == "synthetic"){
+    cat("This is a synthetic data set. The first 6 rows are:\n\n")
+  }
+  if(attr(x, "type") == "original"){
+    cat("This is the original data set. The first 6 rows are:\n\n")
+  }
+  class(x) <- class(x)[-1]
+  print(head(x))
 }

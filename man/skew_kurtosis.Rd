@@ -17,7 +17,7 @@ Default: FALSE}
 \item{...}{Additional arguments to pass to and from functions.}
 }
 \value{
-matrix
+A \code{matrix} of skew and kurtosis statistics for \code{x}.
 }
 \description{
 Calculate skew and kurtosis, standard errors for both, and the

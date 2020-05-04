@@ -119,9 +119,9 @@ worcs_template <- function(path, ...) {
       git_add(files = "README.md")
       git_commit(message = "worcs template initial commit")
       git_push(remote = "origin")
-    }, error = function(e){warning("Could not connect to a remote GitHub repository. You are working with a local git repository only.", call. = FALSE)})
+    }, error = function(e){warning("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", call. = FALSE)})
   } else {
-    warning("No valid GitHub address provided. You are working with a local git repository only.", call. = FALSE)
+    warning("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.", call. = FALSE)
   }
   if("GCtorture" %in% ls()) rm("GCtorture")
 }

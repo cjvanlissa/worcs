@@ -2,7 +2,7 @@
 % Please edit documentation in R/citations.R
 \name{cite_all}
 \alias{cite_all}
-\title{Comprehensive citation Knit function for RStudio}
+\title{Comprehensive citation Knit function for 'RStudio'}
 \usage{
 cite_all(inputFile, encoding)
 }
@@ -10,6 +10,11 @@ cite_all(inputFile, encoding)
 \item{inputFile}{The file passed to \code{\link[rmarkdown]{render}}.}
 
 \item{encoding}{Ignored. The encoding is always assumed to be UTF-8.}
+}
+\value{
+Returns \code{NULL} invisibly. This
+function is called for its side effect of rendering an
+\code{rmarkdown} file.
 }
 \description{
 This is a wrapper for \code{\link[rmarkdown]{render}}. First, this function
@@ -19,7 +24,7 @@ citations, e.g.: \code{@reference2020}. Then, it renders the file.
 }
 \examples{
 # NOTE: Do not use this function interactively, as in the example below.
-# Only specify it as custom knit function in an Rmarkdown file, like so:
+# Only specify it as custom knit function in an 'Rmarkdown' file, like so:
 # knit: worcs::cite_all
 
 library(rmarkdown)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/citations.R
 \name{cite_essential}
 \alias{cite_essential}
-\title{Essential citations Knit function for RStudio}
+\title{Essential citations Knit function for 'RStudio'}
 \usage{
 cite_essential(inputFile, encoding)
 }
@@ -10,6 +10,11 @@ cite_essential(inputFile, encoding)
 \item{inputFile}{The file passed to \code{\link[rmarkdown]{render}}.}
 
 \item{encoding}{Ignored. The encoding is always assumed to be UTF-8.}
+}
+\value{
+Returns \code{NULL} invisibly. This
+function is called for its side effect of rendering an
+\code{rmarkdown} file.
 }
 \description{
 This is a wrapper for \code{\link[rmarkdown]{render}}. First, this function

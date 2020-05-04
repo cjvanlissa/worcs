@@ -11,9 +11,14 @@ make_codebook(data, render_file = TRUE)
 
 \item{render_file}{Logical. Whether or not to render the document.}
 }
+\value{
+\code{Logical}, indicating whether or not the operation was
+succesful. This function is mostly called for its side effect of rendering an
+\code{rmarkdown} codebook.
+}
 \description{
-Creates a rudimentary Rmarkdown codebook for a dataset, and
-renders it to markdown for GitHub. Users can customize the Rmarkdown
+Creates a rudimentary 'Rmarkdown' codebook for a dataset, and
+renders it to markdown for 'GitHub'. Users can customize the 'Rmarkdown'
 document, for example, by adding a column with variable descriptions, or a
 paragraph with details on the data collection procedure.
 }

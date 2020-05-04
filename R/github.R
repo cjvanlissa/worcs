@@ -13,6 +13,6 @@ git_credentials <- function(name, email){
     tryCatch({
     git_config_global_set(name = "user.name", value = name)
     git_config_global_set(name = "user.email", value = email)
-  }, error = function(e){warning("Could not set git credentials.", call. = FALSE)})
+  }, error = function(e){warning("Could not set 'Git' credentials.", call. = FALSE)})
   )
 }

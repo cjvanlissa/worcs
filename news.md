@@ -1,3 +1,3 @@
-# worcs 0.1.0
+# worcs 0.1.1
 
 * First CRAN release.

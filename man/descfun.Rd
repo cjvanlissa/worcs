@@ -10,7 +10,7 @@ descfun(x)
 \item{x}{An object for which a method exists.}
 }
 \value{
-A data.frame
+A \code{data.frame} with descriptive statistics for \code{x}.
 }
 \description{
 Provide descriptive statistics for a dataset.

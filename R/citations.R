@@ -1,4 +1,4 @@
-#' Comprehensive citation Knit function for RStudio
+#' Comprehensive citation Knit function for 'RStudio'
 #'
 #' This is a wrapper for \code{\link[rmarkdown]{render}}. First, this function
 #' parses the citations in the document, converting citations
@@ -7,9 +7,12 @@
 #' @param inputFile The file passed to \code{\link[rmarkdown]{render}}.
 #' @param encoding Ignored. The encoding is always assumed to be UTF-8.
 #' @export
+#' @return Returns \code{NULL} invisibly. This
+#' function is called for its side effect of rendering an
+#' \code{rmarkdown} file.
 #' @examples
 #' # NOTE: Do not use this function interactively, as in the example below.
-#' # Only specify it as custom knit function in an Rmarkdown file, like so:
+#' # Only specify it as custom knit function in an 'Rmarkdown' file, like so:
 #' # knit: worcs::cite_all
 #'
 #' library(rmarkdown)
@@ -32,7 +35,7 @@ cite_all <- function(inputFile, encoding){
   do.call(comprehensive_cite, Args)
 }
 
-#' Essential citations Knit function for RStudio
+#' Essential citations Knit function for 'RStudio'
 #'
 #' This is a wrapper for \code{\link[rmarkdown]{render}}. First, this function
 #' parses the citations in the document, removing citations
@@ -41,6 +44,9 @@ cite_all <- function(inputFile, encoding){
 #' @param inputFile The file passed to \code{\link[rmarkdown]{render}}.
 #' @param encoding Ignored. The encoding is always assumed to be UTF-8.
 #' @export
+#' @return Returns \code{NULL} invisibly. This
+#' function is called for its side effect of rendering an
+#' \code{rmarkdown} file.
 #' @examples
 #' # NOTE: Do not use this function interactively, as in the example below.
 #' # Only specify it as custom knit function in an Rmarkdown file, like so:
@@ -81,6 +87,7 @@ comprehensive_cite <- function(inputFile, encoding, citeall) {
   )
   do.call(render, Args)
   writeLines(doc_text, bn)
+  invisible(NULL)
 }
 
 cleancitations <- function(text){

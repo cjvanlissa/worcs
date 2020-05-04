@@ -1,11 +1,13 @@
 #' @title Create codebook for a dataset
-#' @description Creates a rudimentary Rmarkdown codebook for a dataset, and
-#' renders it to markdown for GitHub. Users can customize the Rmarkdown
+#' @description Creates a rudimentary 'Rmarkdown' codebook for a dataset, and
+#' renders it to markdown for 'GitHub'. Users can customize the 'Rmarkdown'
 #' document, for example, by adding a column with variable descriptions, or a
 #' paragraph with details on the data collection procedure.
 #' @param data A data.frame for which to create a codebook.
 #' @param render_file Logical. Whether or not to render the document.
-#' @return NULL
+#' @return \code{Logical}, indicating whether or not the operation was
+#' succesful. This function is mostly called for its side effect of rendering an
+#' \code{rmarkdown} codebook.
 #' @examples
 #' library(rmarkdown)
 #' library(knitr)
@@ -21,6 +23,7 @@
 #' @importFrom stats median var
 #' @importFrom utils capture.output
 make_codebook <- function(data, render_file = TRUE){
+  function_success <- TRUE
   data_types <- sapply(data, function(x){paste0(class(x), collapse = ", ")})
   summaries <- descfun(data)
   summaries <- cbind(
@@ -43,46 +46,63 @@ make_codebook <- function(data, render_file = TRUE){
   file_contents <- file_contents[1:(grep("^##", file_contents)[1]-1)]
   dm <- dim(data)
   sum_tab <- capture.output(dput(summaries))
-  write(c(file_contents,
-          "## Dataset description",
-          paste0("The data contains ", dm[1], " cases and ", dm[2], " variables."),
-          "",
-          "## Codebook",
-          "",
-          "```{r}",
-          "summaries <- ",
-          sum_tab,
-          "options(knitr.kable.NA = '')",
-          "knitr::kable(summaries, row.names = FALSE, digits = 2)",
-          "```",
-          "",
-          "### Legend",
-          "",
-          "* __Name__: Variable name",
-          "* __type__: Data type of the variable",
-          "* __missing__: Proportion of missing values for this variable",
-          "* __unique__: Number of unique values",
-          "* __mean__: Mean value",
-          "* __median__: Median value",
-          "* __mode__: Most common value (for categorical variables, this shows the frequency of the most common category)",
-          "* **mode_value**: For categorical variables, the value of the most common category",
-          "* __sd__: Standard deviation (measure of dispersion for numerical variables",
-          "* __V__: Agresti's V (measure of dispersion for categorical variables",
-          "* __min__: Minimum value",
-          "* __max__: Maximum value",
-          "* __range__: Range between minimum and maximum value",
-          "* __skew__: Skewness of the variable",
-          "* __skew_2se__: Skewness of the variable divided by 2*SE of the skewness. If this is greater than abs(1), skewness is significant",
-          "* __kurt__: Kurtosis (peakedness) of the variable",
-          "* __kurt_2se__: Kurtosis of the variable divided by 2*SE of the kurtosis. If this is greater than abs(1), kurtosis is significant."
-          ), "codebook.Rmd")
-  if(render_file) render("codebook.Rmd")
+  function_success <- function_success | tryCatch({
+    write(
+      c(
+        file_contents,
+        "## Dataset description",
+        paste0("The data contains ", dm[1], " cases and ", dm[2], " variables."),
+        "",
+        "## Codebook",
+        "",
+        "```{r}",
+        "summaries <- ",
+        sum_tab,
+        "options(knitr.kable.NA = '')",
+        "knitr::kable(summaries, row.names = FALSE, digits = 2)",
+        "```",
+        "",
+        "### Legend",
+        "",
+        "* __Name__: Variable name",
+        "* __type__: Data type of the variable",
+        "* __missing__: Proportion of missing values for this variable",
+        "* __unique__: Number of unique values",
+        "* __mean__: Mean value",
+        "* __median__: Median value",
+        "* __mode__: Most common value (for categorical variables, this shows the frequency of the most common category)",
+        "* **mode_value**: For categorical variables, the value of the most common category",
+        "* __sd__: Standard deviation (measure of dispersion for numerical variables",
+        "* __V__: Agresti's V (measure of dispersion for categorical variables",
+        "* __min__: Minimum value",
+        "* __max__: Maximum value",
+        "* __range__: Range between minimum and maximum value",
+        "* __skew__: Skewness of the variable",
+        "* __skew_2se__: Skewness of the variable divided by 2*SE of the skewness. If this is greater than abs(1), skewness is significant",
+        "* __kurt__: Kurtosis (peakedness) of the variable",
+        "* __kurt_2se__: Kurtosis of the variable divided by 2*SE of the kurtosis. If this is greater than abs(1), kurtosis is significant."
+      ),
+      "codebook.Rmd"
+    )
+    TRUE
+  }, error = function(e) {
+    return(FALSE)
+  })
+  if(render_file){
+    function_success <- function_success | tryCatch({
+      render("codebook.Rmd")
+      TRUE
+    }, error = function(e) {
+      return(FALSE)
+    })
+  }
+  return(function_success)
 }
 
 #' @title Describe a dataset
 #' @description Provide descriptive statistics for a dataset.
 #' @param x An object for which a method exists.
-#' @return A data.frame
+#' @return A \code{data.frame} with descriptive statistics for \code{x}.
 #' @examples
 #' descfun(iris)
 #' @rdname descfun
@@ -143,6 +163,7 @@ descfun.default <- function(x){
 }
 
 # Agresti's V for categorical data variability
+# Agresti, Alan (1990). Categorical Data Analysis. John Wiley and Sons, Inc. 24-25
 V <- function(x){
   x <- x[!is.na(x)]
   if(!length(x)) return(NA)
@@ -161,7 +182,7 @@ V <- function(x){
 #' Default: FALSE
 #' @param se Whether or not to return the standard errors, Default: FALSE
 #' @param ... Additional arguments to pass to and from functions.
-#' @return matrix
+#' @return A \code{matrix} of skew and kurtosis statistics for \code{x}.
 #' @examples
 #' skew_kurtosis(datasets::anscombe)
 #' @rdname skew_kurtosis

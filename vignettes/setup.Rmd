@@ -18,7 +18,7 @@ library(worcs)
 Before you can use the WORCS workflow and the full functionality of the `worcs` package, you have to install several software packages, and register on GitHub. You only have to perform these steps once, and the entire process should take approximately 1 hour if you start from scratch. In case some software is already installed on your system, you can skip related steps. Follow these steps in order:
 
 1. Install R from https://CRAN.R-project.org
-2. Install Rstudio Desktop (Free) from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)
+2. Install 'RStudio' Desktop (Free) from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)
 <!-- ALWAYS RUN AS ADMIN -->
 <!-- install rtools -->
 3. *Optional:* This step prepares your system to compile R-packages from source code. This is useful when you want to get the latest functionality straight from the developers. For more info, see [this article](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites)).
@@ -40,24 +40,24 @@ Before you can use the WORCS workflow and the full functionality of the `worcs` 
 5. Register on GitHub
     + Go to [github.com](https://github.com/) and click *Sign up*. Choose an "Individual", "Free" plan.
     + Request a [free academic upgrade](https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount). This allows you to create *private repositories*, which are only visible to you and selected collaborators, and can be made public when your work is published.
-6. Connect Rstudio to Git and GitHub (for more support, see [this Rstudio article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/rstudio-and-github/))
-    a. Open Rstudio, open the Tools menu, click *Global Options*, and click *Git/SVN*
+6. Connect 'RStudio' to Git and GitHub (for more support, see [this 'RStudio' article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/rstudio-and-github/))
+    a. Open 'RStudio', open the Tools menu, click *Global Options*, and click *Git/SVN*
     b. Verify that *Enable version control interface for RStudio projects* is selected
     c. Verify that *Git executable:* shows the location of git.exe. If it is missing, manually fix the location of the file.
     d. Click *Create RSA Key*. Do not enter a passphrase. Press *Create*. A window with some information will open, which you can close.
     e. Click *View public key*, and copy the entire text to the clipboard.
-    f. Close Rstudio (it might offer to restart by itself; this is fine)
+    f. Close 'RStudio' (it might offer to restart by itself; this is fine)
     g. Go to [www.github.com](https://www.github.com)
     h. Click your user icon, click *Settings*, and then select the *SSH and GPG keys* tab.
     i. Click *New SSH key*. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled *Key*.
-    j. Open Rstudio again (unless it restarted by itself)
-7. Install all packages required for WORCS by running the following code in the Rstudio console. Be prepared for three contingencies:  
+    j. Open 'RStudio' again (unless it restarted by itself)
+7. Install all packages required for WORCS by running the following code in the 'RStudio' console. Be prepared for three contingencies:  
     + If you receive any error saying *There is no package called [package name]*, then run the code `install.packages("package name")`  
     + If you are prompted to update packages, just press [ENTER] to avoid updating packages. Updating packages this way in an interactive session sometimes leads to errors if the packages are loaded.  
     + If you see a pop-up dialog asking *Do you want to install from sources the package which needs compilation?*, click *No*.
 
 <!-- 
-k. In the Rstudio Console window, run the following code:```{r, eval = FALSE, echo = TRUE} system('git config --global user.email "your@email.com"') system('git config --global user.name "yourname"')
+k. In the 'RStudio' Console window, run the following code:```{r, eval = FALSE, echo = TRUE} system('git config --global user.email "your@email.com"') system('git config --global user.name "yourname"')
 
 RENV WORDT NU NIET GEINSTALLEERD; TOEVOEGEN AAN SUGGESTS? 
 BOVENDIEN GAAT RENV NU INITIALISEREN WANNEER JE VOOR HET EERST EEN PROJECT MAAKT. NIET HANDIG. OF MISSCHIEN WEL? 

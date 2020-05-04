@@ -7,10 +7,15 @@ Authors@R: c(
     person(c("Caspar", "J."), "van Lissa", role = c("aut", "cre"), 
     email = "c.j.vanlissa@uu.nl") 
     )
-Description: RStudio project template and convenience functions for the Workflow
-    for Open Reproducible Code in Science (WORCS). With a minimal amount of
-    code, this package  helps users setup R-based research projects in a way
-    that meets the  Open Science principles of transparency and reproducibility.
+Description: Create reproducible and transparent research projects in 'R', with
+    a minimal amount of code. This package is based on the Workflow for Open
+    Reproducible Code in Science (WORCS), a step-by-step procedure based on best
+    practices for
+    Open Science. It includes an 'RStudio' project template, several
+    convenience functions, and all dependencies required to make your project
+    reproducible and transparent. WORCS is explained in the tutorial paper
+    by Van Lissa, Brandmaier, Brinkman, & Vreede (2020)
+    <doi:10.17605/OSF.IO/ZCVBS>.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

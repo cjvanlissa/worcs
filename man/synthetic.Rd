@@ -44,7 +44,7 @@ excellent missForest single imputation technique.}
 running the algorithm and provide informative messages.}
 }
 \value{
-A \code{data.frame}
+A \code{data.frame} with synthetic data, based on \code{data}.
 }
 \description{
 Generates a synthetic version of a \code{data.frame}, with

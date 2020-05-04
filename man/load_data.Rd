@@ -7,7 +7,10 @@
 load_data()
 }
 \value{
-A data.frame.
+A \code{data.frame} of class \code{"worcs_data"}, containing the
+original data, if available, or a synthetic version of the data, if the
+original data are unavailable. The \code{data.frame} has an attribute, "type",
+indicating whether the data are synthetic or original.
 }
 \description{
 If the original data are available, this function loads the
@@ -20,7 +23,8 @@ old_wd <- getwd()
 dir.create(file.path(tempdir(), the_test))
 setwd(file.path(tempdir(), the_test))
 open_data(iris[1:5, ], codebook = NULL)
-load_data()
+df <- load_data()
+df
 setwd(old_wd)
 unlink(file.path(tempdir(), the_test))
 }

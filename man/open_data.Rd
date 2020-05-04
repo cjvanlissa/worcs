@@ -11,7 +11,11 @@ open_data(data, codebook = TRUE)
 
 \item{codebook}{Logical, indicating whether to render a codebook or not. If
 set to \code{TRUE}, the default, a file called 'codebook.Rmd' is created and
-rendered to 'codebook.md' for GitHub.}
+rendered to 'codebook.md' for 'GitHub'.}
+}
+\value{
+Returns \code{NULL} invisibly. This
+function is called for its side effects.
 }
 \description{
 This function saves a data.frame as a .csv file, stores a

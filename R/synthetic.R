@@ -26,7 +26,7 @@
 #' excellent missForest single imputation technique.
 #' @param verbose Logical, Default: TRUE. Whether to show a progress bar while
 #' running the algorithm and provide informative messages.
-#' @return A \code{data.frame}
+#' @return A \code{data.frame} with synthetic data, based on \code{data}.
 #' @details This function uses a simple algorithm to generate a synthetic
 #' dataset with similar characteristics to the original. The algorithm is as
 #' follows:
