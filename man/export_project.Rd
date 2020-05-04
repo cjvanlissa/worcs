@@ -4,7 +4,7 @@
 \alias{export_project}
 \title{Export Project}
 \usage{
-export_project(filename, open.data = TRUE)
+export_project(filename = NULL, open.data = TRUE)
 }
 \arguments{
 \item{filename}{path to a target directory or path to a zip file that is to be created}
