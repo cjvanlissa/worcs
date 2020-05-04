@@ -70,6 +70,12 @@ worcs_template <- function(path, ...) {
     }
   }
   # End license
+  
+  # create .worcs file ----------
+  write(c(paste0("Specification: 1.0"),
+          paste0("Created By: worcs ",installed.packages()[installed.packages()[,"Package"]=="worcs","Version"])),
+        file = file.path(path, ".worcs"), append = TRUE)
+  
 
 # Use renv ----------------------------------------------------------------
   norm_path <- normalizePath(path)
