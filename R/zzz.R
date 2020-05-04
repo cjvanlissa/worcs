@@ -1,10 +1,10 @@
 # @importFrom rstudioapi versionInfo
 .onAttach <- function(libname, pkgname) {
   #correct_version <- versionInfo()$version >= "1.1.28"
-  print_message <- paste0("Welcome to WORCS: Worflow for Open Reproducible Code in Science. Please read the tutorial before using this package, and consider citing it: Van Lissa, Brandmaier, Brinkman, & Vreede (2020) <doi:10.17605/OSF.IO/ZCVBS>",
-                          ifelse(has_git(), "",
-                                 "'Rstudio' is not yet connected to 'Git'. You will not be able to use the 'worcs' package yet.")
-                          #, ifelse(correct_version, "Haaai", "Rstudio version 1.1.28 or higher is required to use the worcs package.")
-  )
+  print_message <- "Welcome to WORCS: Workflow for Open Reproducible Code in Science. Please read the tutorial before using this package, and consider citing it: Van Lissa, Brandmaier, Brinkman, & Vreede (2020) <doi:10.17605/OSF.IO/ZCVBS>."
+  if(!has_git()){
+    print_message <- paste0(print_message, "\n'Rstudio' is not yet connected to 'Git', which is an essential part of the workflow. Please connect 'Git' by following the steps described in this vignette:\n  vignette('setup', package = 'worcs')")
+  }
+  #if(!correct_version){ "Rstudio version 1.1.28 or higher is required to use the worcs package."))
   packageStartupMessage(print_message)
 }
