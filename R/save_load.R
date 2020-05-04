@@ -55,6 +55,7 @@ closed_data <- function(data, codebook = TRUE){
 }
 
 #' @importFrom tools md5sum
+#' @importFrom utils write.csv
 save_data <- function(data, open, codebook = TRUE){
   if(!inherits(data, c("data.frame", "matrix"))){
     stop("Argument 'data' must be a data.frame, matrix, or inherit from these classes.")
@@ -67,7 +68,7 @@ save_data <- function(data, open, codebook = TRUE){
   if(codebook){
     make_codebook(data)
   }
-  message('Storing original data in "data.csv" and updating "checksums.csv".')
+  message("Storing original data in 'data.csv' and updating the checksum in '.worcs'.")
   write.csv(data, "data.csv", row.names = FALSE)
   store_checksum("data.csv")
   gitig <- readLines(".gitignore")
@@ -83,7 +84,7 @@ save_data <- function(data, open, codebook = TRUE){
     }
     message("Generating synthetic data for public use. Ensure that no identifying information is included.")
     synth <- synthetic(data, verbose = FALSE)
-    message('Storing synthetic data in "synthetic_data.csv" and updating "checksums.csv".')
+    message("Storing synthetic data in 'synthetic_data.csv' and updating the checksum in '.worcs'.")
     write.csv(synth$syn, "synthetic_data.csv", row.names = FALSE)
     store_checksum("synthetic_data.csv")
   }
@@ -115,9 +116,10 @@ save_data <- function(data, open, codebook = TRUE){
 #' @rdname load_data
 #' @export
 #' @importFrom tools md5sum
+#' @importFrom utils read.csv
 load_data <- function(){
-  if(!file.exists("checksums.csv")) stop('File "checksums.csv" not found.')
-  cs_file <- read.csv("checksums.csv", stringsAsFactors = FALSE)
+  checkworcs(iserror = TRUE)
+  #cs_file <- read.csv("checksums.csv", stringsAsFactors = FALSE)
   if(file.exists("data.csv")){
     check_sum("data.csv")
     out <- read.csv("data.csv", stringsAsFactors = TRUE)
@@ -136,34 +138,28 @@ load_data <- function(){
 }
 
 #' @importFrom tools md5sum
-#' @importFrom utils read.csv write.csv
-store_checksum <- function(filename){
+store_checksum <- function(filename) {
   # Compute checksum on loaded data to ensure conformity
   cs <- md5sum(files = filename)
-  if(file.exists("checksums.csv")){
-    cs_file <- read.csv("checksums.csv", stringsAsFactors = FALSE)
-    if(filename %in% cs_file$filename){
-      cs_file$checksum[cs_file$filename == filename] <- cs
-    } else {
-      cs_file <- rbind(cs_file, c(filename, cs))
-    }
-  } else {
-    cs_file <- data.frame(filename = filename, checksum = cs)
-  }
-  write.csv(cs_file, "checksums.csv", row.names = FALSE)
+  checkworcs()
+  cs_file <- read_worcsfile(".worcs")
+  cs_file[["checksums"]][[filename]] <- cs
+  cl <- c(list(filename = ".worcs"),
+          cs_file,
+          list(level = 1))
+  do.call(write_worcsfile, cl)
 }
 
-#' @importFrom utils read.csv write.csv
 load_checksum <- function(filename){
-  if(file.exists("checksums.csv")){
-    cs_file <- read.csv("checksums.csv", stringsAsFactors = FALSE)
-    if(filename %in% cs_file$filename){
-      cs_file$checksum[cs_file$filename == filename]
+  if(file.exists(".worcs")){
+    cs_file <- read_worcsfile(".worcs")
+    if(!is.null(cs_file[["checksums"]][[filename]])){
+      cs_file[["checksums"]][[filename]]
     } else {
       stop("No checksum found for file '", filename, "'.")
     }
   } else {
-    stop("File 'checksums.csv' not found.")
+    stop("No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory.")
   }
 }
 
@@ -172,7 +168,7 @@ check_sum <- function(filename){
   cs <- md5sum(files = filename)
   old_cs <- load_checksum(filename = filename)
   if(!cs == old_cs){
-    stop("Checksum for file '", filename, "' did not match the checksum on record (in 'checksums.csv'). This means that the file has changed since the checksum was stored.")
+    stop("Checksum for file '", filename, "' did not match the checksum on record (in '.worcs'). This means that the file has changed since the checksum was stored.")
   }
 }
 
@@ -188,4 +184,19 @@ print.worcs_data <- function(x, ...){
   }
   class(x) <- class(x)[-1]
   print(head(x))
+}
+
+checkworcs <- function(iserror = FALSE){
+  if (!file.exists(".worcs")) {
+    if(iserror){
+      stop(
+        "No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory."
+      , call. = FALSE)
+    } else {
+      message(
+        "No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory."
+      )
+      file.create(".worcs")
+    }
+  }
 }

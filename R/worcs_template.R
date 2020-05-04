@@ -13,6 +13,12 @@ worcs_template <- function(path, ...) {
   # ensure path exists
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
 
+  # Create .worcs file
+  write_worcsfile(filename = ".worcs",
+                  worcs_version = "0.1.1",
+                  creator = Sys.info()["effective_user"]
+  )
+
   # copy 'resources' folder to path
   resources = system.file('rstudio', 'templates', 'project', 'resources', package = 'worcs', mustWork = TRUE)
 
@@ -89,8 +95,7 @@ worcs_template <- function(path, ...) {
           "*.pdf",
           "*.fff",
           "*.log",
-          "*.tex",
-          "!checksums.csv"),
+          "*.tex"),
         file = file.path(norm_path, ".gitignore"), append = TRUE)
 
   # Update readme
