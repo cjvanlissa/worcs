@@ -142,22 +142,25 @@ store_checksum <- function(filename) {
   # Compute checksum on loaded data to ensure conformity
   cs <- md5sum(files = filename)
   checkworcs()
-  cs_file <- read_worcsfile(".worcs")
-  cs_file[["checksums"]][[filename]] <- cs
-  cl <- c(list(filename = ".worcs"),
-          cs_file,
-          list(level = 1))
-  do.call(write_worcsfile, cl)
+  checksums <- list(cs)
+  names(checksums) <- filename
+  do.call(write_worcsfile,
+          list(filename = ".worcs",
+               checksums = checksums,
+               level = 1,
+               modify = TRUE)
+          )
 }
 
 load_checksum <- function(filename){
   if(file.exists(".worcs")){
     cs_file <- read_worcsfile(".worcs")
-    if(!is.null(cs_file[["checksums"]][[filename]])){
-      cs_file[["checksums"]][[filename]]
-    } else {
-      stop("No checksum found for file '", filename, "'.")
+    if(!is.null(cs_file[["checksums"]])){
+      if(!is.null(cs_file[["checksums"]][[filename]])){
+        return(cs_file[["checksums"]][[filename]])
+      }
     }
+    stop("No checksum found for file '", filename, "'.")
   } else {
     stop("No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory.")
   }
