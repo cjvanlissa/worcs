@@ -12,17 +12,17 @@ Authors@R: c(
       comment = c(ORCID = "0000-0002-0808-5024")
     ),
     person(
+      "Andreas",
+      "Brandmaier",
+      role = "ctb",
+      comment = c(ORCID = "0000-0001-8765-6982")
+    ),
+    person(
       "Aaron",
       "Peikert",
       email = "aaron.peikert@posteo.de",
       role = c("ctb"),
       comment = c(ORCID = "0000-0001-7813-818X")
-    ),
-    person(
-      "Andreas",
-      "Brandmaier",
-      role = "ctb",
-      comment = c(ORCID = "0000-0001-8765-6982")
     )
     )
 Description: Create reproducible and transparent research projects in 'R', with
