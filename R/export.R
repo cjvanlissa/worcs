@@ -11,6 +11,24 @@
 #' \code{.zip} file.
 #' @return Logical, indicating the success of the operation. This function is
 #' called for its side effect of creating a \code{.zip} file.
+#' @examples
+#' the_test <- "export"
+#' old_wd <- getwd()
+#' dir.create(file.path(tempdir(), the_test))
+#' suppressWarnings(worcs:::worcs_template(
+#'                        file.path(tempdir(), the_test),
+#'                        prereg_template = "none",
+#'                        "add_license" = "none",
+#'                        use_renv = FALSE,
+#'                        remote_repo = "")
+#'                        )
+#' setwd(file.path(tempdir(), the_test))
+# gert::git_add(".")
+#  gert::git_commit("First commit")
+#' result <- export_project(open_data = FALSE)
+#' file.remove(normalizePath(file.path(tempdir(), paste0(the_test, ".zip"))))
+#' setwd(old_wd)
+#' unlink(file.path(tempdir(), the_test))
 #' @importFrom utils tail zip
 #' @importFrom gert git_ls
 #' @export
@@ -29,24 +47,25 @@ export_project <- function(filename = NULL, open_data = TRUE)
 
   if (!is.character(filename)) {
     message("Filename must be of type character: ",as.character(filename))
-    return(FALSE)
+    return(invisible(FALSE))
   }
 
 
     if (file.exists(filename)) {
       stop("Could not write to '", filename, "' because the file already exists.")
-      return(FALSE)
+      return(invisible(FALSE))
     }
     # Use this to decide which files to ZIP, but always add data.csv
     # if the user specifies open_data = TRUE
     zip_these <- git_ls()$path
     tmpfile <- NULL
     if (isFALSE(open_data)) {
-      hasdata <- zip_these == "data.csv"
+      hasdata <- endsWith(zip_these, "data.csv")
       if (any(hasdata)) {
         message("Excluding open data file and generating synthetic data for archive. Ensure that no identifying information is included.")
         zip_these <- zip_these[!hasdata]
         if(!any(zip_these == "synthetic_data.csv")){
+          data <- read.csv(zip_these[endsWith(zip_these, "data.csv")], stringsAsFactors = TRUE)
           synth <- synthetic(data, verbose = FALSE)
           tmpfile <- file.path(tempdir(), "synthetic_data.csv")
           write.csv(synth$syn, tmpfile, row.names = FALSE)
@@ -54,9 +73,13 @@ export_project <- function(filename = NULL, open_data = TRUE)
         }
       }
     }
-    zip(filename, files = zip_these, flags="-rq")
+    outcome <- zip(filename, files = zip_these, flags="-rq")
     if(!is.null(tmpfile)){
       invisible(file.remove(tmpfile))
     }
-    return(TRUE)
+    if(!outcome == 0){
+      return(invisible(FALSE))
+    } else {
+      return(invisible(TRUE))
+    }
 }

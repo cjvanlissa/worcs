@@ -2,18 +2,44 @@
 % Please edit documentation in R/export.R
 \name{export_project}
 \alias{export_project}
-\title{Export Project}
+\title{Export project to .zip file}
 \usage{
-export_project(filename = NULL, open.data = TRUE)
+export_project(filename = NULL, open_data = TRUE)
 }
 \arguments{
-\item{filename}{path to a target directory or path to a zip file that is to be created}
+\item{filename}{Character. Path to a \code{.zip} file that is to be created.
+The default argument \code{NULL} creates a \code{.zip} file in the directory
+one level above the 'worcs' project directory. By default, all files tracked
+by 'Git' are included in the \code{.zip} file, excluding 'data.csv' if
+\code{open_data = FALSE}.}
 
-\item{open.data}{boolean. Export including open data?}
+\item{open_data}{Logical. Whether or not to include the original data,
+'data.csv', if this file exists. If \code{open_data = FALSE} and an open
+data file does exist, then it is excluded from the \code{.zip} file. If it
+does not yet exist, a synthetic data set is generated and added to the
+\code{.zip} file.}
 }
 \value{
-boolean. Success of the operation
+Logical, indicating the success of the operation. This function is
+called for its side effect of creating a \code{.zip} file.
 }
 \description{
-Export Project
+Export project to .zip file
+}
+\examples{
+the_test <- "export"
+old_wd <- getwd()
+dir.create(file.path(tempdir(), the_test))
+suppressWarnings(worcs:::worcs_template(
+                       file.path(tempdir(), the_test),
+                       prereg_template = "none",
+                       "add_license" = "none",
+                       use_renv = FALSE,
+                       remote_repo = "")
+                       )
+setwd(file.path(tempdir(), the_test))
+result <- export_project(open_data = FALSE)
+file.remove(normalizePath(file.path(tempdir(), paste0(the_test, ".zip"))))
+setwd(old_wd)
+unlink(file.path(tempdir(), the_test))
 }

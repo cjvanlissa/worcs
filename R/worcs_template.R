@@ -12,7 +12,7 @@ worcs_template <- function(path, ...) {
 
   # ensure path exists
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
-
+  git_init(path = path)
   # Create .worcs file
   write_worcsfile(filename = ".worcs",
                   worcs_version = "0.1.1",
@@ -85,6 +85,7 @@ worcs_template <- function(path, ...) {
   }
 
   #use_git() initialises a Git repository and adds important files to .gitignore. If user consents, it also makes an initial commit.
+
   write(c(".Rhistory",
           ".Rprofile",
           "*.csv",
@@ -117,13 +118,15 @@ worcs_template <- function(path, ...) {
     writeLines(cont, file.path(norm_path, "README.md"))
   }
 
+  # Create first commit
+  git_add(files = "README.md", repo = path)
+  git_commit(message = "worcs template initial commit", repo = path)
+
+  # Connect to remote repo if possible
   if(grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
     tryCatch({
-      git_init(path = norm_path)
-      git_remote_add(name = "origin", url = remote_repo)
-      git_add(files = "README.md")
-      git_commit(message = "worcs template initial commit")
-      git_push(remote = "origin")
+      git_remote_add(name = "origin", url = remote_repo, repo = path)
+      git_push(remote = "origin", repo = path)
     }, error = function(e){warning("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", call. = FALSE)})
   } else {
     warning("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.", call. = FALSE)
