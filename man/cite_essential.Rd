@@ -28,8 +28,9 @@ the file.
 # knit: worcs::cite_all
 
 library(rmarkdown)
+the_test <- "citeessential"
 old_wd <- getwd()
-dir.create(file.path(tempdir(), "citeessential"))
+dir.create(file.path(tempdir(), the_test))
 setwd(file.path(tempdir(), "citeessential"))
 draft("test.Rmd", template = "github_document", package = "rmarkdown",
       create_dir = FALSE, edit = FALSE)
@@ -37,5 +38,5 @@ write(c("", "Optional reference: @reference2020"),
       file = "test.Rmd", append = TRUE)
 cite_essential("test.Rmd", "UTF-8")
 setwd(old_wd)
-unlink(file.path(tempdir(), "citeessential"))
+unlink(file.path(tempdir(), the_test))
 }

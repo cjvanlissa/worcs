@@ -28,8 +28,9 @@ citations, e.g.: \code{@reference2020}. Then, it renders the file.
 # knit: worcs::cite_all
 
 library(rmarkdown)
+the_test <- "citeall"
 old_wd <- getwd()
-dir.create(file.path(tempdir(), "citeall"))
+dir.create(file.path(tempdir(), the_test))
 setwd(file.path(tempdir(), "citeall"))
 draft("test.Rmd", template = "github_document", package = "rmarkdown",
       create_dir = FALSE, edit = FALSE)
@@ -37,5 +38,5 @@ write(c("", "Optional reference: @reference2020"),
       file = "test.Rmd", append = TRUE)
 cite_all("test.Rmd", "UTF-8")
 setwd(old_wd)
-unlink(file.path(tempdir(), "citeall"))
+unlink(file.path(tempdir(), the_test))
 }

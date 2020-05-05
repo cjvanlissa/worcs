@@ -16,8 +16,9 @@
 #' # knit: worcs::cite_all
 #'
 #' library(rmarkdown)
+#' the_test <- "citeall"
 #' old_wd <- getwd()
-#' dir.create(file.path(tempdir(), "citeall"))
+#' dir.create(file.path(tempdir(), the_test))
 #' setwd(file.path(tempdir(), "citeall"))
 #' draft("test.Rmd", template = "github_document", package = "rmarkdown",
 #'       create_dir = FALSE, edit = FALSE)
@@ -25,7 +26,7 @@
 #'       file = "test.Rmd", append = TRUE)
 #' cite_all("test.Rmd", "UTF-8")
 #' setwd(old_wd)
-#' unlink(file.path(tempdir(), "citeall"))
+#' unlink(file.path(tempdir(), the_test))
 cite_all <- function(inputFile, encoding){
   Args <- list(
     inputFile = inputFile,
@@ -53,8 +54,9 @@ cite_all <- function(inputFile, encoding){
 #' # knit: worcs::cite_all
 #'
 #' library(rmarkdown)
+#' the_test <- "citeessential"
 #' old_wd <- getwd()
-#' dir.create(file.path(tempdir(), "citeessential"))
+#' dir.create(file.path(tempdir(), the_test))
 #' setwd(file.path(tempdir(), "citeessential"))
 #' draft("test.Rmd", template = "github_document", package = "rmarkdown",
 #'       create_dir = FALSE, edit = FALSE)
@@ -62,7 +64,7 @@ cite_all <- function(inputFile, encoding){
 #'       file = "test.Rmd", append = TRUE)
 #' cite_essential("test.Rmd", "UTF-8")
 #' setwd(old_wd)
-#' unlink(file.path(tempdir(), "citeessential"))
+#' unlink(file.path(tempdir(), the_test))
 cite_essential <- function(inputFile, encoding){
   Args <- list(
     inputFile = inputFile,

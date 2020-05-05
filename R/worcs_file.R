@@ -3,19 +3,14 @@
 #                 creator = Sys.info()["effective_user"],
 #                 checksums = list(ckone = "1334", cktwo = "5y54")
 # )
-write_worcsfile <- function(filename, ..., level = 1, append = FALSE){
-  Args <- list(...)
-  if(!file.exists(filename)){
-    file.create(filename)
-  } else {
-    if(!append){
-      message("A '.worcs' file already exists and will be overwritten.")
-      file.remove(filename)
-      file.create(filename)
+write_worcsfile <- function(filename, ..., level = 1, modify = FALSE){
+  new_contents <- list(...)
+  if(modify & file.exists(filename)){
+      old_contents <- read_worcsfile(filename)
+      new_contents <- mod_nested_list(old_contents, new_contents)
     }
-  }
-  file_lines <- add_indentations(Args)
-  write(file_lines, filename, append = append)
+  file_lines <- add_indentations(new_contents)
+  write(file_lines, filename, append = FALSE)
 }
 
 
@@ -35,10 +30,10 @@ add_indentations <- function(x, level = 0){
 
 read_worcsfile <- function(filename){
   inp <- readLines(filename)
-  append_list(inp)
+  modify_list(inp)
 }
 
-append_list <- function(inp) {
+modify_list <- function(inp) {
   val_key <- strsplit(inp, split = "\\s{0,}:\\s{0,}")
   noindent <- !startsWith(inp, "  ")
   this_level <- val_key[noindent]
@@ -68,15 +63,31 @@ append_list <- function(inp) {
     new_list <- lapply(grps, function(this_grp) {
       substring(inp[this_grp[1]:this_grp[2]], first = 3)
     })
-    out[!value_key_pair] <- lapply(new_list, append_list)
+    out[!value_key_pair] <- lapply(new_list, modify_list)
   }
   return(out)
 }
 
 
+mod_nested_list <- function(old, new){
+  for(i in 1:length(new)){
+    if(depth(new[i]) == 1){
+      if(names(new)[i] %in% names(old)){
+        old[names(new)[i]] <- new[i]
+      } else {
+        old <- c(old, new[i])
+      }
+    } else {
+      old[[names(new)[i]]] <- mod_nested_list(old[[names(new)[i]]], new[[i]])
+    }
+  }
+  old
+}
 
-update_worcsfile <- function(filename, ..., level = 1, append = FALSE){
-  if(file.exists(filename)){
-    old_contents <- read_worcsfile(filename)
+depth <- function(this,thisdepth=0){
+  if(!is.list(this)){
+    return(thisdepth)
+  }else{
+    return(max(unlist(lapply(this,depth,thisdepth=thisdepth+1))))
   }
 }

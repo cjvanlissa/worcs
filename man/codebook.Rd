@@ -25,10 +25,11 @@ paragraph with details on the data collection procedure.
 \examples{
 library(rmarkdown)
 library(knitr)
+the_test <- "codebook"
 old_wd <- getwd()
-dir.create(file.path(tempdir(), "codebook"))
+dir.create(file.path(tempdir(), the_test))
 setwd(file.path(tempdir(), "citeall"))
 make_codebook(iris)
 setwd(old_wd)
-unlink(file.path(tempdir(), "citeall"))
+unlink(file.path(tempdir(), the_test))
 }
