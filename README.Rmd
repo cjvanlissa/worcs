@@ -60,8 +60,8 @@ After reading [the vignette](https://cjvanlissa.github.io/worcs/articles/setup.h
 
 ``` r
 if(!requireNamespace("remotes"))install.packages("remotes")
-remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
 remotes::install_github("cjvanlissa/worcs", dependencies = TRUE, update = "never")
+remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
 tinytex::install_tinytex()
 worcs::git_credentials("your_name", "your_email")
 ```

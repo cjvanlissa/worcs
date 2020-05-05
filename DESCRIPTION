@@ -45,6 +45,7 @@ Imports:
     gert,
     ranger
 Suggests:
+    remotes,
     renv,
     knitr,
     missRanger,

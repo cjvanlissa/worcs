@@ -72,9 +72,9 @@ can install the development version of the `worcs` package from GitHub
 with:
 
 ``` r
-install.packages("devtools")
-devtools::install_github("crsh/papaja", dependencies = TRUE)
-devtools::install_github("cjvanlissa/worcs", dependencies = TRUE)
+if(!requireNamespace("remotes"))install.packages("remotes")
+remotes::install_github("cjvanlissa/worcs", dependencies = TRUE, update = "never")
+remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
 tinytex::install_tinytex()
 worcs::git_credentials("your_name", "your_email")
 ```
