@@ -27,8 +27,6 @@
 #'                        remote_repo = "")
 #'                        )
 #' setwd(file.path(tempdir(), the_test))
-# gert::git_add(".")
-#  gert::git_commit("First commit")
 #' result <- export_project(open_data = FALSE)
 #' file.remove(normalizePath(file.path(tempdir(), paste0(the_test, ".zip"))))
 #' setwd(old_wd)

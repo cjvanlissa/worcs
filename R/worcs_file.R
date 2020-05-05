@@ -3,24 +3,34 @@
 #                 creator = Sys.info()["effective_user"],
 #                 checksums = list(ckone = "1334", cktwo = "5y54")
 # )
-write_worcsfile <- function(filename, ..., level = 1){
+write_worcsfile <- function(filename, ..., level = 1, append = FALSE){
   Args <- list(...)
-  #if(any(names(Args) == "")) stop("Must provide a name for each argument when calling 'write_worcsfile()'.", call. = FALSE)
   if(!file.exists(filename)){
     file.create(filename)
-  }
-  for(this_arg in names(Args)){
-    value <- Args[[this_arg]]
-    if(length(value) > 1 | is.list(value)){
-      write(paste0(rep("  ", (level-1)), paste0(this_arg, ": ")), filename, append = TRUE)
-      cl <- c(list(filename = filename),
-              as.list(value),
-              list(level = level+1))
-      do.call(write_worcsfile, cl)
-    } else {
-      write(paste0(rep("  ", (level-1)), paste(this_arg, value, sep = ": ")), filename, append = TRUE)
+  } else {
+    if(!append){
+      message("A '.worcs' file already exists and will be overwritten.")
+      file.remove(filename)
+      file.create(filename)
     }
   }
+  file_lines <- add_indentations(Args)
+  write(file_lines, filename, append = append)
+}
+
+
+add_indentations <- function(x, level = 0){
+  is_char <- sapply(x, is.character)
+  out <- vector(mode = "list", length = length(x))
+  out[is_char] <- paste0(rep("  ", level), names(x)[is_char], ": ", x[is_char])
+  out[!is_char] <- lapply(names(x[!is_char]), function(element_name){
+    the_element <- x[!is_char][[element_name]]
+    c(paste0(rep("  ", level), element_name, ": "),
+    do.call(add_indentations, list(
+      the_element,
+      level = level+1
+      )))})
+  unlist(out)
 }
 
 read_worcsfile <- function(filename){
@@ -28,24 +38,45 @@ read_worcsfile <- function(filename){
   append_list(inp)
 }
 
-append_list <- function(inp){
-  val_key <- strsplit(inp, split = ": ")
-  noindent <- !grepl("^  ", inp)
-  simplevalue <- sapply(val_key, length) == 2
-  if(all(noindent & simplevalue)){
-    out <- lapply(val_key, `[`, 2)
-    names(out) <- sapply(val_key, `[`, 1)
-  } else {
-    out <- vector(mode = "list", length = sum(noindent))
-    names(out) <- gsub(":\\s{0,}$", "", sapply(val_key[noindent], `[`, 1))
-    out[which(noindent & simplevalue)] <- lapply(val_key[noindent & simplevalue], `[`, 2)
-    # Where groups start
-    grp_start <- which(noindent & !simplevalue)
-    grp_end <- sapply(grp_start, function(x){which(c(noindent[(x+1):length(noindent)], TRUE))[1]+(x-1)})
-    new_list <- mapply(function(first, last){
-      gsub("^  ", "", inp[first:last])
-    }, first = grp_start+1, last = grp_end, SIMPLIFY = FALSE)
-    out[which(sapply(out, is.null))] <- lapply(new_list, append_list)
+append_list <- function(inp) {
+  val_key <- strsplit(inp, split = "\\s{0,}:\\s{0,}")
+  noindent <- !startsWith(inp, "  ")
+  this_level <- val_key[noindent]
+  out <- vector(mode = "list", length = length(this_level))
+  names(out) <- sapply(this_level, `[`, 1)
+  value_key_pair <- sapply(this_level, length) == 2
+  out[value_key_pair] <- sapply(this_level[value_key_pair], `[`, 2)
+
+  # Define groups of spaced lines
+  n <- which(startsWith(inp, "  "))
+  if(length(n) > 0){
+    grps <- list()
+
+    for (i in 1:length(n)) {
+      #i = 2
+      if (i == 1) {
+        grps[[1]] <- c(n[i])
+      } else {
+        if (n[i] - n[i - 1] > 1) {
+          grps[[length(grps)]] <- c(grps[[length(grps)]], n[i - 1])
+          grps[[length(grps) + 1]] <- c(n[i])
+        }
+      }
+    }
+    grps[[length(grps)]] <- c(grps[[length(grps)]], tail(n, 1))
+
+    new_list <- lapply(grps, function(this_grp) {
+      substring(inp[this_grp[1]:this_grp[2]], first = 3)
+    })
+    out[!value_key_pair] <- lapply(new_list, append_list)
   }
   return(out)
+}
+
+
+
+update_worcsfile <- function(filename, ..., level = 1, append = FALSE){
+  if(file.exists(filename)){
+    old_contents <- read_worcsfile(filename)
+  }
 }
