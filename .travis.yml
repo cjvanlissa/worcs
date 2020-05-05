@@ -11,11 +11,15 @@ addons:
 #  - crsh/papaja
 #r_packages:
 #  - broom
+#    - os: osx
+#      osx_image: xcode11.2
+#      r: release
 
 matrix:
   include:
     - os: linux
       r: release
-    - os: osx
-      osx_image: xcode11.2
-      r: release
+    - os: linux
+      r: oldrel
+    - os: linux
+      r: devel

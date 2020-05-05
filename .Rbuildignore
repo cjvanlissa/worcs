@@ -13,3 +13,4 @@
 ^CRAN-RELEASE$
 ^codebook.*$
 Makefile
+^\.worcs$
