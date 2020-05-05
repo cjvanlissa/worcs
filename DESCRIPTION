@@ -4,8 +4,26 @@ Date: 2020-04-25
 Title: Workflow for Open Reproducible Code in Science
 Version: 0.1.1.2
 Authors@R: c(
-    person(c("Caspar", "J."), "van Lissa", role = c("aut", "cre"), 
-    email = "c.j.vanlissa@uu.nl") 
+    person(
+      given = c("Caspar", "J."),
+      family = "van Lissa",
+      email = "c.j.vanlissa@uu.nl"
+      role = c("aut", "cre"),
+      comment = c(ORCID = "0000-0002-0808-5024")
+    ),
+    person(
+      "Andreas",
+      "Brandmaier",
+      role = "ctb",
+      comment = c(ORCID = "0000-0001-8765-6982")
+    ),
+    person(
+      "Aaron",
+      "Peikert",
+      email = "aaron.peikert@posteo.de",
+      role = c("ctb"),
+      comment = c(ORCID = "0000-0001-7813-818X")
+    )
     )
 Description: Create reproducible and transparent research projects in 'R', with
     a minimal amount of code. This package is based on the Workflow for Open
