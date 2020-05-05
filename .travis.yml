@@ -17,5 +17,5 @@ matrix:
     - os: linux
       r: release
     - os: osx
-      osx_image: xcode9.2
+      osx_image: xcode11.2
       r: release
