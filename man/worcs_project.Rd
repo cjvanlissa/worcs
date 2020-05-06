@@ -10,7 +10,8 @@ worcs_project(
   preregistration = "COS",
   add_license = "CC_BY_4.0",
   use_renv = TRUE,
-  remote_repo = "https"
+  remote_repo = "https",
+  ...
 )
 }
 \arguments{
@@ -48,15 +49,16 @@ project reproducible. Default: TRUE. See \code{\link[renv]{init}}.}
 this project. If a valid 'GitHub' repository link is provided, a commit will
 be made containing the 'README.md' file, and will be pushed to 'GitHub'.
 Default: 'https'. For more information, see <http://github.com/>.}
+
+\item{...}{Additional arguments passed to and from functions.}
 }
 \value{
 No return value. This function is called for its side effects.
 }
 \description{
-This function is a wrapper for the internal function
-\code{worcs_template}, which is invoked by the 'RStudio' project template
-manager. Use this function to create a new 'worcs' project through syntax or
-the console, instead of through the 'RStudio' interface.
+Creates a new 'worcs' project. This function is invoked by
+the 'RStudio' project template manager, but can also be called directly to
+create a WORCS project through syntax or the console.
 }
 \examples{
 the_test <- "worcs_template"

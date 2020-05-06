@@ -1,8 +1,7 @@
 #' @title Create new WORCS project
-#' @description This function is a wrapper for the internal function
-#' \code{worcs_template}, which is invoked by the 'RStudio' project template
-#' manager. Use this function to create a new 'worcs' project through syntax or
-#' the console, instead of through the 'RStudio' interface.
+#' @description Creates a new 'worcs' project. This function is invoked by
+#' the 'RStudio' project template manager, but can also be called directly to
+#' create a WORCS project through syntax or the console.
 #' @param path Character, indicating the directory in which to create the
 #' 'worcs' project. Default: 'worcs_project'.
 #' @param manuscript Character, indicating what template to use for the
@@ -32,6 +31,7 @@
 #' this project. If a valid 'GitHub' repository link is provided, a commit will
 #' be made containing the 'README.md' file, and will be pushed to 'GitHub'.
 #' Default: 'https'. For more information, see <http://github.com/>.
+#' @param ... Additional arguments passed to and from functions.
 #' @return No return value. This function is called for its side effects.
 #' @examples
 #' the_test <- "worcs_template"
@@ -47,44 +47,19 @@
 #' unlink(file.path(tempdir(), the_test))
 #' @rdname worcs_project
 #' @export
-worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "COS", add_license = "CC_BY_4.0", use_renv = TRUE, remote_repo = "https") {
-  cl <- as.list(match.call()[-1])
-  do.call(worcs_template, cl)
-}
 #' @importFrom rmarkdown draft
 #' @importFrom gert git_init git_remote_add git_add git_commit git_push
 #' @importFrom utils installed.packages packageVersion
 # @importFrom renv init
-worcs_template <- function(path, ...) {
+worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "COS", add_license = "CC_BY_4.0", use_renv = TRUE, remote_repo = "https", ...) {
   # collect inputs
+  manuscript <- tolower(manuscript)
+  preregistration <- tolower(preregistration)
+  add_license <- tolower(add_license)
   dots <- list(...)
-  if("manuscript" %in% names(dots)){
-    manuscript <- tolower(dots[["manuscript"]])
-  } else {
-    manuscript <- "none"
-  }
-  if("preregistration" %in% names(dots)){
-    preregistration <- tolower(dots[["preregistration"]])
-  } else {
-    preregistration <- "none"
-  }
-  if("add_license" %in% names(dots)){
-    add_license <- tolower(dots[["add_license"]])
-  } else {
-    add_license <- "none"
-  }
-  if("use_renv" %in% names(dots)){
-    use_renv <- dots[["use_renv"]]
-  } else {
-    use_renv <- FALSE
-  }
-  if("remote_repo" %in% names(dots)){
-    remote_repo <- dots[["remote_repo"]]
-  } else {
-    remote_repo <- "https"
-  }
   # ensure path exists
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
+  path <- normalizePath(path)
   git_init(path = path)
   # Create .worcs file
   write_worcsfile(filename = file.path(path, ".worcs"),
@@ -107,35 +82,35 @@ worcs_template <- function(path, ...) {
     manuscript_file <- file.path(man_dir, "manuscript.Rmd")
     dir.create(man_dir)
     switch(manuscript,
-           apa6 = create_man_papaja(manuscript_file),
-           acm_article = create_man_rticles(manuscript_file, "acm_article"),
-           acs_article = create_man_rticles(manuscript_file, "acs_article"),
-           aea_article = create_man_rticles(manuscript_file, "aea_article"),
-           agu_article = create_man_rticles(manuscript_file, "agu_article"),
-           amq_article = create_man_rticles(manuscript_file, "amq_article"),
-           ams_article = create_man_rticles(manuscript_file, "ams_article"),
-           asa_article = create_man_rticles(manuscript_file, "asa_article"),
-           biometrics_article = create_man_rticles(manuscript_file, "biometrics_article"),
-           copernicus_article = create_man_rticles(manuscript_file, "copernicus_article"),
-           ctex = create_man_rticles(manuscript_file, "ctex"),
-           elsevier_article = create_man_rticles(manuscript_file, "elsevier_article"),
-           frontiers_article = create_man_rticles(manuscript_file, "frontiers_article"),
-           ieee_article = create_man_rticles(manuscript_file, "ieee_article"),
-           joss_article = create_man_rticles(manuscript_file, "joss_article"),
-           jss_article = create_man_rticles(manuscript_file, "jss_article"),
-           mdpi_article = create_man_rticles(manuscript_file, "mdpi_article"),
-           mnras_article = create_man_rticles(manuscript_file, "mnras_article"),
-           oup_article = create_man_rticles(manuscript_file, "oup_article"),
-           peerj_article = create_man_rticles(manuscript_file, "peerj_article"),
-           plos_article = create_man_rticles(manuscript_file, "plos_article"),
-           pnas_article = create_man_rticles(manuscript_file, "pnas_article"),
-           rjournal_article = create_man_rticles(manuscript_file, "rjournal_article"),
-           rsos_article = create_man_rticles(manuscript_file, "rsos_article"),
-           sage_article = create_man_rticles(manuscript_file, "sage_article"),
-           sim_article = create_man_rticles(manuscript_file, "sim_article"),
-           springer_article = create_man_rticles(manuscript_file, "springer_article"),
-           tf_article = create_man_rticles(manuscript_file, "tf_article"),
-           create_man_github(manuscript_file)
+           apa6 = create_man_papaja(manuscript_file, remote_repo = remote_repo),
+           acm_article = create_man_rticles(manuscript_file, "acm_article", remote_repo = remote_repo),
+           acs_article = create_man_rticles(manuscript_file, "acs_article", remote_repo = remote_repo),
+           aea_article = create_man_rticles(manuscript_file, "aea_article", remote_repo = remote_repo),
+           agu_article = create_man_rticles(manuscript_file, "agu_article", remote_repo = remote_repo),
+           amq_article = create_man_rticles(manuscript_file, "amq_article", remote_repo = remote_repo),
+           ams_article = create_man_rticles(manuscript_file, "ams_article", remote_repo = remote_repo),
+           asa_article = create_man_rticles(manuscript_file, "asa_article", remote_repo = remote_repo),
+           biometrics_article = create_man_rticles(manuscript_file, "biometrics_article", remote_repo = remote_repo),
+           copernicus_article = create_man_rticles(manuscript_file, "copernicus_article", remote_repo = remote_repo),
+           ctex = create_man_rticles(manuscript_file, "ctex", remote_repo = remote_repo),
+           elsevier_article = create_man_rticles(manuscript_file, "elsevier_article", remote_repo = remote_repo),
+           frontiers_article = create_man_rticles(manuscript_file, "frontiers_article", remote_repo = remote_repo),
+           ieee_article = create_man_rticles(manuscript_file, "ieee_article", remote_repo = remote_repo),
+           joss_article = create_man_rticles(manuscript_file, "joss_article", remote_repo = remote_repo),
+           jss_article = create_man_rticles(manuscript_file, "jss_article", remote_repo = remote_repo),
+           mdpi_article = create_man_rticles(manuscript_file, "mdpi_article", remote_repo = remote_repo),
+           mnras_article = create_man_rticles(manuscript_file, "mnras_article", remote_repo = remote_repo),
+           oup_article = create_man_rticles(manuscript_file, "oup_article", remote_repo = remote_repo),
+           peerj_article = create_man_rticles(manuscript_file, "peerj_article", remote_repo = remote_repo),
+           plos_article = create_man_rticles(manuscript_file, "plos_article", remote_repo = remote_repo),
+           pnas_article = create_man_rticles(manuscript_file, "pnas_article", remote_repo = remote_repo),
+           rjournal_article = create_man_rticles(manuscript_file, "rjournal_article", remote_repo = remote_repo),
+           rsos_article = create_man_rticles(manuscript_file, "rsos_article", remote_repo = remote_repo),
+           sage_article = create_man_rticles(manuscript_file, "sage_article", remote_repo = remote_repo),
+           sim_article = create_man_rticles(manuscript_file, "sim_article", remote_repo = remote_repo),
+           springer_article = create_man_rticles(manuscript_file, "springer_article", remote_repo = remote_repo),
+           tf_article = create_man_rticles(manuscript_file, "tf_article", remote_repo = remote_repo),
+           create_man_github(manuscript_file, remote_repo = remote_repo)
            )
     # Add references.bib
     copy_resources(which_files = "references.bib", path = man_dir)
@@ -179,10 +154,9 @@ worcs_template <- function(path, ...) {
   # End license
 
 # Use renv ----------------------------------------------------------------
-  norm_path <- normalizePath(path)
   if(use_renv){
     init_fun <- get("init", asNamespace("renv"))
-    do.call(init_fun, list(project = norm_path, restart = FALSE))
+    do.call(init_fun, list(project = path, restart = FALSE))
   }
 
   #use_git() initialises a Git repository and adds important files to .gitignore. If user consents, it also makes an initial commit.
@@ -198,25 +172,25 @@ worcs_template <- function(path, ...) {
           "*.fff",
           "*.log",
           "*.tex"),
-        file = file.path(norm_path, ".gitignore"), append = TRUE)
+        file = file.path(path, ".gitignore"), append = TRUE)
 
   # Update readme
-  if(file.exists(file.path(norm_path, "README.md"))){
-    cont <- readLines(file.path(norm_path, "README.md"))
-    f <- list.files(norm_path)
+  if(file.exists(file.path(path, "README.md"))){
+    cont <- readLines(file.path(path, "README.md"))
+    f <- list.files(path)
     tab <- matrix(c("File", "Description", "Usage",
                     "README.md", "Description of project", "Human editable"), nrow = 2, byrow = TRUE)
-    rproj_name <- paste0(gsub("^.+\\b(.+)$", "\\1", norm_path), ".Rproj")
+    rproj_name <- paste0(gsub("^.+\\b(.+)$", "\\1", path), ".Rproj")
     cont[grep("You can load this project in Rstudio by opening the file called ", cont)] <- paste0(grep("You can load this project in Rstudio by opening the file called ", cont, value = TRUE), "'", rproj_name, "'.")
     tab <- rbind(tab, c(rproj_name, "Project file", "Loads project"))
-    tab <- describe_file("LICENSE", "User permissions", "Read only", tab, norm_path)
-    tab <- describe_file("manuscript.rmd", "Source code for paper", "Human editable", tab, norm_path)
-    tab <- describe_file("preregistration.rmd", "Preregistered hypotheses", "Human editable", tab, norm_path)
-    tab <- describe_file("prepare_data.R", "Script to process raw data", "Human editable", tab, norm_path)
-    tab <- describe_file("renv.lock", "Reproducible R environment", "Read only", tab, norm_path)
+    tab <- describe_file("LICENSE", "User permissions", "Read only", tab, path)
+    tab <- describe_file("manuscript.rmd", "Source code for paper", "Human editable", tab, path)
+    tab <- describe_file("preregistration.rmd", "Preregistered hypotheses", "Human editable", tab, path)
+    tab <- describe_file("prepare_data.R", "Script to process raw data", "Human editable", tab, path)
+    tab <- describe_file("renv.lock", "Reproducible R environment", "Read only", tab, path)
     tab <- append(apply(tab, 1, paste, collapse = " | "), "--- | --- | ---", after = 1)
     cont <- append(cont, tab, after = grep("You can add rows to this table", cont))
-    writeLines(cont, file.path(norm_path, "README.md"))
+    writeLines(cont, file.path(path, "README.md"))
   }
 
   # Create first commit
@@ -235,8 +209,8 @@ worcs_template <- function(path, ...) {
   if("GCtorture" %in% ls()) rm("GCtorture")
 }
 
-describe_file <- function(file, desc, usage, tab, norm_path){
-  if(file.exists(file.path(norm_path, file))){
+describe_file <- function(file, desc, usage, tab, path){
+  if(file.exists(file.path(path, file))){
     return(rbind(tab, c(file, desc, usage)))
   } else {
     return(tab)
@@ -244,7 +218,7 @@ describe_file <- function(file, desc, usage, tab, norm_path){
 }
 
 
-create_man_papaja <- function(manuscript_file){
+create_man_papaja <- function(manuscript_file, remote_repo){
   if("papaja" %in% rownames(installed.packages())){
     draft(
       file = manuscript_file,
@@ -264,13 +238,25 @@ create_man_papaja <- function(manuscript_file){
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
     # Add call to library("worcs")
     manuscript_text <- append(manuscript_text, 'library("worcs")', after = grep('^library\\("papaja"\\)$', manuscript_text))
+
+    # Add introductory sentence
+    add_lines <- c(
+      "",
+      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
+      "",
+      "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2020]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
+      ""
+    )
+    manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
+
+    # Write
     writeLines(manuscript_text, manuscript_file)
   } else {
     message('Could not generate an APA6 manuscript file, because the \'papaja\' package is not installed. Run this code to see instructions on how to install this package from GitHub:\n  vignette("setup", package = "worcs")')
   }
 }
 
-create_man_github <- function(manuscript_file){
+create_man_github <- function(manuscript_file, remote_repo){
     draft(
       file = manuscript_file,
       template = "github_document",
@@ -283,16 +269,26 @@ create_man_github <- function(manuscript_file){
     add_lines <- c(
       "date: '`r format(Sys.time(), \"%d %B, %Y\")`'",
       "bibliography: references.bib",
-      "knit: worcs::cite_essential"
+      "knit: worcs::cite_all"
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
     # Add call to library("worcs")
     manuscript_text <- append(manuscript_text, 'library("worcs")', after = grep('^```', manuscript_text)[1])
+    # Add introductory sentence
+    add_lines <- c(
+      "",
+      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
+      "",
+      "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2020]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
+      ""
+    )
+    manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
+    # Write
     writeLines(manuscript_text, manuscript_file)
 }
 
 
-create_man_rticles <- function(manuscript_file, template){
+create_man_rticles <- function(manuscript_file, template, remote_repo){
   if("rticles" %in% rownames(installed.packages())){
     draft(
       file = manuscript_file,
@@ -308,14 +304,19 @@ create_man_rticles <- function(manuscript_file, template){
 
     # Add citation function
     add_lines <- c(
-      "knit: worcs::cite_essential"
+      "knit: worcs::cite_all"
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
     # Add call to library("worcs")
     add_lines <- c(
       '```{r, echo = FALSE, eval = TRUE, message = FALSE}',
       'library("worcs")',
-      '```'
+      '```',
+      "",
+      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
+      "",
+      "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2020]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
+      ""
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]))
     writeLines(manuscript_text, manuscript_file)
