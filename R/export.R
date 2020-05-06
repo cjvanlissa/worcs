@@ -19,13 +19,14 @@
 #'   gert::git_config_global_set(name = "user.name", value = "yourname")
 #'   gert::git_config_global_set(name = "user.email", value = "yourname@email.com")
 #' })
-#' suppressWarnings(worcs:::worcs_template(
-#'                        file.path(tempdir(), the_test),
-#'                        prereg_template = "none",
-#'                        "add_license" = "none",
-#'                        use_renv = FALSE,
-#'                        remote_repo = "")
-#'                        )
+#' suppressWarnings(
+#'   worcs_project(file.path(tempdir(), the_test),
+#'                 manuscript = "None",
+#'                 preregistration = "None",
+#'                 add_license = "None",
+#'                 use_renv = FALSE,
+#'                 remote_repo = "https")
+#'                 )
 #' setwd(file.path(tempdir(), the_test))
 #' result <- export_project(open_data = FALSE)
 #' file.remove(normalizePath(file.path(tempdir(), paste0(the_test, ".zip"))))

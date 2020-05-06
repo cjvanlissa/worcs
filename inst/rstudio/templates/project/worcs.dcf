@@ -1,6 +1,6 @@
 Binding: worcs_template
 Title: WORCS project template
-OpenFiles: README.md, manuscript.Rmd, preregistration.Rmd, prepare_data.R
+OpenFiles: README.md, manuscript/manuscript.Rmd, preregistration.Rmd, prepare_data.R
 Icon: worcs.png
 
 Parameter: remote_repo
@@ -12,6 +12,11 @@ Parameter: use_renv
 Widget: CheckboxInput
 Label: Use renv
 Default: On
+
+Parameter: man_template
+Widget: SelectInput
+Label: Manuscript template
+Fields: APA6, github_document, None, ams_article, asa_article, biometrics_article, copernicus_article, ctex, elsevier_article, frontiers_article, ieee_article, joss_article, jss_article, mdpi_article, mnras_article, oup_article, peerj_article, plos_article, pnas_article, rjournal_article, rsos_article, sage_article, sim_article, springer_article, tf_article
 
 Parameter: prereg_template
 Widget: SelectInput
