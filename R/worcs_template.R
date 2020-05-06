@@ -106,7 +106,6 @@ worcs_template <- function(path, ...) {
     man_dir <- file.path(path, "manuscript")
     manuscript_file <- file.path(man_dir, "manuscript.Rmd")
     dir.create(man_dir)
-    copy_resources(which_files = "references.bib", path = man_dir)
     switch(manuscript,
            apa6 = create_man_papaja(manuscript_file),
            acm_article = create_man_rticles(manuscript_file, "acm_article"),
@@ -138,6 +137,15 @@ worcs_template <- function(path, ...) {
            tf_article = create_man_rticles(manuscript_file, "tf_article"),
            create_man_github(manuscript_file)
            )
+    # Add references.bib
+    copy_resources(which_files = "references.bib", path = man_dir)
+    bibfiles <- list.files(path = man_dir, pattern = ".bib$", full.names = TRUE)
+    if(length(bibfiles) > 1){
+      worcs_ref <- readLines(bibfiles[endsWith(bibfiles, "references.bib")])
+      bib_text <- do.call(c, lapply(bibfiles[!endsWith(bibfiles, "references.bib")], readLines))
+      invisible(file.remove(bibfiles))
+      writeLines(c(worcs_ref, bib_text), file.path(man_dir, "references.bib"))
+    }
   }
   # End manuscript
 
@@ -220,9 +228,9 @@ worcs_template <- function(path, ...) {
     tryCatch({
       git_remote_add(name = "origin", url = remote_repo, repo = path)
       git_push(remote = "origin", repo = path)
-    }, error = function(e){message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", call. = FALSE)})
+    }, error = function(e){message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.")})
   } else {
-    message("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.", call. = FALSE)
+    message("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.")
   }
   if("GCtorture" %in% ls()) rm("GCtorture")
 }

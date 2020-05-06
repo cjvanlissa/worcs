@@ -12,26 +12,7 @@
 #' @return Logical, indicating the success of the operation. This function is
 #' called for its side effect of creating a \code{.zip} file.
 #' @examples
-#' the_test <- "export"
-#' old_wd <- getwd()
-#' dir.create(file.path(tempdir(), the_test))
-#' get_sig <- tryCatch(git_signature_default(), error = function(e){
-#'   gert::git_config_global_set(name = "user.name", value = "yourname")
-#'   gert::git_config_global_set(name = "user.email", value = "yourname@email.com")
-#' })
-#' suppressWarnings(
-#'   worcs_project(file.path(tempdir(), the_test),
-#'                 manuscript = "None",
-#'                 preregistration = "None",
-#'                 add_license = "None",
-#'                 use_renv = FALSE,
-#'                 remote_repo = "https")
-#'                 )
-#' setwd(file.path(tempdir(), the_test))
-#' result <- export_project(open_data = FALSE)
-#' file.remove(normalizePath(file.path(tempdir(), paste0(the_test, ".zip"))))
-#' setwd(old_wd)
-#' unlink(file.path(tempdir(), the_test))
+#' export_project()
 #' @importFrom utils tail zip
 #' @importFrom gert git_ls
 #' @export
@@ -39,7 +20,10 @@ export_project <- function(filename = NULL, open_data = TRUE)
 {
   # get properties about the project and paths
   base_dir <- normalizePath(".")
-
+  if(!file.exists(".worcs")){
+    message("No '.worcs' file found; not a WORCS project, or the working directory has been changed.")
+    return(invisible(FALSE))
+  }
   project_folder <- gsub("^.+\\b(.+?)$", "\\1", base_dir)
 
   # if no filename is given, export to a zip file with
