@@ -12,7 +12,8 @@
 #' "mdpi_article", "mnras_article", "oup_article", "peerj_article",
 #' "plos_article", "pnas_article", "rjournal_article", "rsos_article",
 #' "sage_article", "sim_article", "springer_article", "tf_article"}.
-#' For more information about \code{APA6}, see \code{\link[papaja]{apa6_pdf}}.
+#' For more information about \code{APA6}, see the 'papaja' package, at
+#' <https://github.com/crsh/papaja>.
 #' For more information about \code{github_document}, see
 #' \code{\link[rmarkdown]{github_document}}. For the remaining formats, see,
 #' e.g., \code{\link[rticles]{acm_article}}.
@@ -37,6 +38,10 @@
 #' the_test <- "worcs_template"
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), the_test))
+#' get_sig <- tryCatch(git_signature_default(), error = function(e){
+#'   gert::git_config_global_set(name = "user.name", value = "yourname")
+#'   gert::git_config_global_set(name = "user.email", value = "yourname@email.com")
+#' })
 #' worcs_project(file.path(tempdir(), the_test, "worcs_project"),
 #'               manuscript = "github_document",
 #'               preregistration = "None",
@@ -60,7 +65,14 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   # ensure path exists
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
   path <- normalizePath(path)
-  git_init(path = path)
+  # Check if valid Git signature exists
+  use_git <- has_git()
+  if(!use_git){
+    message("Could not find a working installation of 'Git', which is required to safeguard the transparency and reproducibility of your project. Please connect 'Git' by following the steps described in this vignette:\n  vignette('setup', package = 'worcs')")
+  } else {
+    git_init(path = path)
+  }
+
   # Create .worcs file
   write_worcsfile(filename = file.path(path, ".worcs"),
                   worcs_version = as.character(packageVersion("worcs")),
@@ -194,11 +206,13 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   }
 
   # Create first commit
-  git_add(files = "README.md", repo = path)
-  git_commit(message = "worcs template initial commit", repo = path)
+  if(use_git){
+    git_add(files = "README.md", repo = path)
+    git_commit(message = "worcs template initial commit", repo = path)
+  }
 
   # Connect to remote repo if possible
-  if(grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
+  if(use_git & grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
     tryCatch({
       git_remote_add(name = "origin", url = remote_repo, repo = path)
       git_push(remote = "origin", repo = path)

@@ -42,7 +42,8 @@ Imports:
     rmarkdown,
     prereg,
     gert,
-    ranger
+    ranger,
+    yaml
 Suggests:
     remotes,
     renv,

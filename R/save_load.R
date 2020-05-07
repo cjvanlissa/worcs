@@ -117,6 +117,7 @@ save_data <- function(data, open, codebook = TRUE){
 #' @export
 #' @importFrom tools md5sum
 #' @importFrom utils read.csv
+#' @importFrom yaml read_yaml
 load_data <- function(){
   checkworcs(iserror = TRUE)
   #cs_file <- read.csv("checksums.csv", stringsAsFactors = FALSE)
@@ -154,7 +155,7 @@ store_checksum <- function(filename) {
 
 load_checksum <- function(filename){
   if(file.exists(".worcs")){
-    cs_file <- read_worcsfile(".worcs")
+    cs_file <- read_yaml(".worcs")
     if(!is.null(cs_file[["checksums"]])){
       if(!is.null(cs_file[["checksums"]][[filename]])){
         return(cs_file[["checksums"]][[filename]])

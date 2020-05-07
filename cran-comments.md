@@ -14,6 +14,7 @@ This version addresses the comments by CRAN team member Martina Schmirl:
   - We have done as requested.
 
 ## Test environments
+
 * local Windows 10 install, R 3.6.2
 * rhub check: Windows Server 2008 R2 SP1, R-devel, 32/64 bit
 * rhub check: Ubuntu Linux 16.04 LTS, R-release, GCC
