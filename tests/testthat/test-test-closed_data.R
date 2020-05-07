@@ -8,7 +8,7 @@ open_data(iris[1:5, ], codebook = FALSE)
 checksums <- read_yaml(".worcs")
 
 test_that(".worcs contains correct checksum", {
-  expect_equivalent(checksums$checksums$data.csv, "576b8c41e688f79720b256ed1420e4e8")
+  expect_equivalent(checksums$checksums$data.csv, md5sum("data.csv"))
 })
 
 test_that("loading open data works", {
@@ -40,6 +40,7 @@ test_that("synthetic data similar", {
 
 test_that(".worcs contains checksum for synthetic_data.csv", {
   expect_true(!is.null(checksums$checksums[["synthetic_data.csv"]]))
+  expect_equivalent(checksums$checksums$synthetic_data.csv, md5sum("synthetic_data.csv"))
 })
 
 test_that("loading open data works", {
