@@ -6,27 +6,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Essential citations Knit function for RStudio — cite_essential • worcs</title>
+<title>Essential citations Knit function for 'RStudio' — cite_essential • worcs</title>
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,12 +39,11 @@
 
 
 
-<meta property="og:title" content="Essential citations Knit function for RStudio — cite_essential" />
+<meta property="og:title" content="Essential citations Knit function for 'RStudio' — cite_essential" />
 <meta property="og:description" content="This is a wrapper for render. First, this function
 parses the citations in the document, removing citations
-marked with double at sign, e.g.: @@reference2020.  Then, it renders
+marked with double at sign, e.g.: @@reference2020. Then, it renders
 the file." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -58,7 +61,7 @@ the file." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,7 +75,7 @@ the file." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.3</span>
       </span>
     </div>
 
@@ -99,10 +102,13 @@ the file." />
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/cjvanlissa/os_template">
+  <a href="https://github.com/cjvanlissa/worcs/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -120,15 +126,15 @@ the file." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Essential citations Knit function for RStudio</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cjvanlissa/os_template/blob/master/R/citations.R'><code>R/citations.R</code></a></small>
+    <h1>Essential citations Knit function for 'RStudio'</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cjvanlissa/worcs/blob/master/R/citations.R'><code>R/citations.R</code></a></small>
     <div class="hidden name"><code>cite_essential.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>This is a wrapper for <code><a href='https://rdrr.io/pkg/rmarkdown/man/render.html'>render</a></code>. First, this function
 parses the citations in the document, removing citations
-marked with double at sign, e.g.: <code>@@reference2020</code>.  Then, it renders
+marked with double at sign, e.g.: <code>@@reference2020</code>. Then, it renders
 the file.</p>
     </div>
 
@@ -147,25 +153,72 @@ the file.</p>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>Returns <code>NULL</code> invisibly. This
+function is called for its side effect of rendering an
+<code>rmarkdown</code> file.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># NOTE: Do not use this function interactively, as in the example below.</span>
+<span class='co'># Only specify it as custom knit function in an Rmarkdown file, like so:</span>
+<span class='co'># knit: worcs::cite_all</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>rmarkdown</span>)
+<span class='no'>the_test</span> <span class='kw'>&lt;-</span> <span class='st'>"citeessential"</span>
+<span class='no'>old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
+<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"citeessential"</span>))
+<span class='fu'><a href='https://rdrr.io/pkg/rmarkdown/man/draft.html'>draft</a></span>(<span class='st'>"test.Rmd"</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='st'>"github_document"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"rmarkdown"</span>,
+      <span class='kw'>create_dir</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>edit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/write.html'>write</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>, <span class='st'>"Optional reference: @reference2020"</span>),
+      <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"test.Rmd"</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>cite_essential</span>(<span class='st'>"test.Rmd"</span>, <span class='st'>"UTF-8"</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>processing file: test.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |..........                                                            |  14%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt;   |                                                                              |....................                                                  |  29%
+#&gt; label: setup (with options) 
+#&gt; List of 1
+#&gt;  $ include: logi FALSE
+#&gt; 
+#&gt;   |                                                                              |..............................                                        |  43%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt;   |                                                                              |........................................                              |  57%
+#&gt; label: cars
+#&gt;   |                                                                              |..................................................                    |  71%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt;   |                                                                              |............................................................          |  86%
+#&gt; label: pressure (with options) 
+#&gt; List of 1
+#&gt;  $ echo: logi FALSE
+#&gt; </div><div class='output co'>#&gt;   |                                                                              |......................................................................| 100%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: test.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS test.utf8.md --to gfm --from markdown+autolink_bare_uris+tex_math_single_backslash --output test.md --standalone --template "C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" 
+#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS test.md --to html4 --from gfm --output test.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --email-obfuscation none --metadata pagetitle=PREVIEW </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Preview created: test.html</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Output created: test.md</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>old_wd</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
 
       <footer>
       <div class="copyright">
-  <p>Developed by Caspar J van Lissa.</p>
+  <p>Developed by Caspar J. van Lissa.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

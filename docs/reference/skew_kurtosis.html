@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Page not found (404) • worcs</title>
+<title>Calculate skew and kurtosis — skew_kurtosis • worcs</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script>
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,13 +33,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Page not found (404)" />
+<meta property="og:title" content="Calculate skew and kurtosis — skew_kurtosis" />
+<meta property="og:description" content="Calculate skew and kurtosis, standard errors for both, and the
+estimates divided by two times the standard error. If this latter quantity
+exceeds an absolute value of 1, the skew/kurtosis is significant. With very
+large sample sizes, significant skew/kurtosis is common." />
 
 
 
@@ -58,7 +62,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-title-body">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +74,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">worcs</a>
+        <a class="navbar-link" href="../index.html">worcs</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.3</span>
       </span>
     </div>
@@ -78,13 +82,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -94,12 +98,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/setup.html">Setting up your computer for WORCS</a>
+      <a href="../articles/setup.html">Setting up your computer for WORCS</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="news/index.html">Changelog</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -120,23 +124,65 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Page not found (404)</h1>
+    <h1>Calculate skew and kurtosis</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cjvanlissa/worcs/blob/master/R/codebook.R'><code>R/codebook.R</code></a></small>
+    <div class="hidden name"><code>skew_kurtosis.Rd</code></div>
     </div>
 
-Content not found. Please use links in the navbar.
+    <div class="ref-description">
+    <p>Calculate skew and kurtosis, standard errors for both, and the
+estimates divided by two times the standard error. If this latter quantity
+exceeds an absolute value of 1, the skew/kurtosis is significant. With very
+large sample sizes, significant skew/kurtosis is common.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>skew_kurtosis</span>(<span class='no'>x</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>se</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>An object for which a method exists.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Whether or not to print messages to the console,
+Default: FALSE</p></td>
+    </tr>
+    <tr>
+      <th>se</th>
+      <td><p>Whether or not to return the standard errors, Default: FALSE</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments to pass to and from functions.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A <code>matrix</code> of skew and kurtosis statistics for <code>x</code>.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>skew_kurtosis</span>(<span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/r/datasets/anscombe.html'>anscombe</a></span>)</div><div class='output co'>#&gt;           skew   skew_2se       kurt   kurt_2se
+#&gt; x1  0.00000000  0.0000000 -1.5289256 -0.5975093
+#&gt; x2  0.00000000  0.0000000 -1.5289256 -0.5975093
+#&gt; x3  0.00000000  0.0000000 -1.5289256 -0.5975093
+#&gt; x4  2.46691100  1.8669273  4.5206612  1.7666896
+#&gt; y1 -0.04837355 -0.0366085 -1.1991228 -0.4686212
+#&gt; y2 -0.97869294 -0.7406626 -0.5143191 -0.2009976
+#&gt; y3  1.38012040  1.0444578  1.2400439  0.4846133
+#&gt; y4  1.12077386  0.8481876  0.6287512  0.2457181</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
-
 
 
       <footer>
