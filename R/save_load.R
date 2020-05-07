@@ -41,7 +41,7 @@ open_data <- function(data, codebook = TRUE){
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), the_test))
 #' setwd(file.path(tempdir(), the_test))
-#' closed_data(iris[1:10, ], codebook = NULL)
+#' closed_data(iris[1:10, ], codebook = FALSE)
 #' setwd(old_wd)
 #' unlink(file.path(tempdir(), the_test))
 #' @rdname closed_data
@@ -61,35 +61,35 @@ save_data <- function(data, open, codebook = TRUE){
     stop("Argument 'data' must be a data.frame, matrix, or inherit from these classes.")
   }
   if(!file.exists(".gitignore")){
-    message("Could not find .gitignore file. You might not be working from the main project directory. Created .gitignore file in folder: ", getwd())
+    col_message(paste0("Could not find .gitignore file. You might not be working from the main project directory. Created .gitignore file in folder: ", getwd()))
     file.create(".gitignore")
   }
   data <- as.data.frame(data)
   if(codebook){
     make_codebook(data)
   }
-  message("Storing original data in 'data.csv' and updating the checksum in '.worcs'.")
+  col_message("Storing original data in 'data.csv' and updating the checksum in '.worcs'.")
   write.csv(data, "data.csv", row.names = FALSE)
   store_checksum("data.csv")
   gitig <- readLines(".gitignore")
   if(open){
     if(!any(grepl("!data.csv", gitig))){
-      message('Updating ".gitignore".')
+      col_message('Updating ".gitignore".')
       write("!data.csv", file = ".gitignore", append = TRUE)
     }
   } else {
     if(!any(grepl("!synthetic_data.csv", gitig))){
-      message('Updating ".gitignore".')
+      col_message('Updating ".gitignore".')
       write("!synthetic_data.csv", file = ".gitignore", append = TRUE)
     }
-    message("Generating synthetic data for public use. Ensure that no identifying information is included.")
+    col_message("Generating synthetic data for public use. Ensure that no identifying information is included.")
     synth <- synthetic(data, verbose = FALSE)
-    message("Storing synthetic data in 'synthetic_data.csv' and updating the checksum in '.worcs'.")
-    write.csv(synth$syn, "synthetic_data.csv", row.names = FALSE)
+    col_message("Storing synthetic data in 'synthetic_data.csv' and updating the checksum in '.worcs'.")
+    write.csv(synth, "synthetic_data.csv", row.names = FALSE)
     store_checksum("synthetic_data.csv")
   }
   if(!file.exists("data_cleaning.R")){
-    message('Generating "data_cleaning.R"')
+    col_message('Generating "data_cleaning.R"')
     write('# Load raw data from file -------------------------------------------------\n# This function loads the original data if available,\n# and a synthetic dataset if they are not available.\n\nlibrary(worcs)\ndata <- load_data()', "data_cleaning.R")
   }
   invisible(NULL)
@@ -108,7 +108,7 @@ save_data <- function(data, open, codebook = TRUE){
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), the_test))
 #' setwd(file.path(tempdir(), the_test))
-#' open_data(iris[1:5, ], codebook = NULL)
+#' open_data(iris[1:5, ], codebook = FALSE)
 #' df <- load_data()
 #' df
 #' setwd(old_wd)
@@ -123,11 +123,13 @@ load_data <- function(){
   #cs_file <- read.csv("checksums.csv", stringsAsFactors = FALSE)
   if(file.exists("data.csv")){
     check_sum("data.csv")
+    col_message("Loading original data.")
     out <- read.csv("data.csv", stringsAsFactors = TRUE)
     attr(out, "type") <- "original"
   } else {
     if(file.exists("synthetic_data.csv")){
       check_sum("synthetic_data.csv")
+      col_message("Loading synthetic data.")
       out <- read.csv("synthetic_data.csv", stringsAsFactors = TRUE)
       attr(out, "type") <- "synthetic"
     } else {
@@ -148,7 +150,6 @@ store_checksum <- function(filename) {
   do.call(write_worcsfile,
           list(filename = ".worcs",
                checksums = checksums,
-               level = 1,
                modify = TRUE)
           )
 }

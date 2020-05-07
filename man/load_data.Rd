@@ -22,7 +22,7 @@ the_test <- "loaddata"
 old_wd <- getwd()
 dir.create(file.path(tempdir(), the_test))
 setwd(file.path(tempdir(), the_test))
-open_data(iris[1:5, ], codebook = NULL)
+open_data(iris[1:5, ], codebook = FALSE)
 df <- load_data()
 df
 setwd(old_wd)

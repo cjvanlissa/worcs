@@ -1,3 +1,59 @@
-test_that("multiplication works", {
-  expect_equal(4+4, 8)
+library(yaml)
+# the_test <- "loaddata"
+# old_wd <- getwd()
+# dir.create(file.path(tempdir(), the_test))
+# setwd(file.path(tempdir(), the_test))
+worcs:::write_worcsfile(".worcs")
+open_data(iris[1:5, ], codebook = FALSE)
+checksums <- read_yaml(".worcs")
+
+test_that(".worcs contains correct checksum", {
+  expect_equivalent(checksums$checksums$data.csv, "576b8c41e688f79720b256ed1420e4e8")
 })
+
+test_that("loading open data works", {
+  expect_error({df <- load_data()}, NA)
+})
+
+df <- load_data()
+
+test_that("loaded data same as original", {
+  expect_equivalent(iris[1:5, ], df)
+})
+
+df <- rbind(df, df[40,])
+write.csv(df, "data.csv", row.names = FALSE)
+
+test_that("loading open data fails when data changed", {
+  expect_error({df <- load_data()})
+})
+
+set.seed(555)
+closed_data(iris, codebook = FALSE)
+checksums <- read_yaml(".worcs")
+tmp <- read.csv("synthetic_data.csv", stringsAsFactors = TRUE)
+
+test_that("synthetic data similar", {
+  expect_equivalent(dim(tmp), dim(iris))
+  expect_equivalent(sapply(iris, class), sapply(tmp, class))
+})
+
+test_that(".worcs contains checksum for synthetic_data.csv", {
+  expect_true(!is.null(checksums$checksums[["synthetic_data.csv"]]))
+})
+
+test_that("loading open data works", {
+  expect_error({df <- load_data()}, NA)
+})
+
+file.remove("data.csv")
+
+df <- load_data()
+
+test_that("loaded synthetic data same as original", {
+  expect_equivalent(tmp, df)
+})
+
+
+# setwd(old_wd)
+# unlink(file.path(tempdir(), the_test))

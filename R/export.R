@@ -49,7 +49,7 @@ export_project <- function(filename = NULL, open_data = TRUE)
     if (isFALSE(open_data)) {
       hasdata <- endsWith(zip_these, "data.csv")
       if (any(hasdata)) {
-        message("Excluding open data file and generating synthetic data for archive. Ensure that no identifying information is included.")
+        col_message("Excluding open data file and generating synthetic data for archive. Ensure that no identifying information is included.")
         zip_these <- zip_these[!hasdata]
         if(!any(zip_these == "synthetic_data.csv")){
           data <- read.csv(zip_these[endsWith(zip_these, "data.csv")], stringsAsFactors = TRUE)

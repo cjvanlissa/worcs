@@ -33,7 +33,7 @@ make_codebook <- function(data, render_file = TRUE){
     summaries
   )
   if(file.exists("codebook.Rmd")){
-    message("Removing previous version of 'codebook.Rmd'.")
+    col_message("Removing previous version of 'codebook.Rmd'.")
     invisible(file.remove("codebook.Rmd"))
   }
   draft("codebook.Rmd",
@@ -238,4 +238,9 @@ skew_kurtosis.default <- function(x, verbose = FALSE, se = FALSE, ...){
   } else {
     return(out[c(1,3,4,6)])
   }
+}
+
+
+col_message <- function(txt, col = 94){
+  cat(paste0("\033[0;", col, "m",txt,"\033[0m","\n"))
 }

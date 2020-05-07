@@ -27,7 +27,7 @@ the_test <- "closeddata"
 old_wd <- getwd()
 dir.create(file.path(tempdir(), the_test))
 setwd(file.path(tempdir(), the_test))
-closed_data(iris[1:10, ], codebook = NULL)
+closed_data(iris[1:10, ], codebook = FALSE)
 setwd(old_wd)
 unlink(file.path(tempdir(), the_test))
 }
