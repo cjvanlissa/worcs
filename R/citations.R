@@ -93,7 +93,8 @@ comprehensive_cite <- function(inputFile, encoding, citeall) {
 }
 
 cleancitations <- function(text){
-  out <- paste0(text, collapse = "\n")
+  browser()
+  out <- paste0(c(text, " onzin"), collapse = "\n")
   out <- as.list(strsplit(out, "\\[")[[1]])
   out <- lapply(out, function(x){
     if(grepl("@@", x)){
@@ -116,5 +117,6 @@ cleancitations <- function(text){
     }
   })
   out <- paste0(unlist(out), collapse = "[")
-  gsub("\\s{0,1}\\[XXXXXDELETEMEXXXXX\\]", "", out) # The \\s might cause trouble
+  out <- gsub("\\s{0,1}\\[XXXXXDELETEMEXXXXX\\]", "", out) # The \\s might cause trouble
+  substr(out, 1, nchar(out)-6)
 }
