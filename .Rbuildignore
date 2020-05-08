@@ -3,6 +3,7 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^collab$
 ^paper$
 ^README\.Rmd$
 ^README\.md$
