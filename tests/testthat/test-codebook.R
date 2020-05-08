@@ -6,8 +6,6 @@ test_that("codebook works for iris", {
   dir.create(test_dir)
   setwd(test_dir)
 
-  on.exit(unlink(test_dir, recursive = TRUE), add = TRUE)
-
   worcs::make_codebook(iris)
 
   expect_true(file.exists("codebook.Rmd"))
@@ -18,6 +16,7 @@ test_that("codebook works for iris", {
   expect_true(any(contents == "The data contains 150 cases and 5 variables."))
 
   setwd(old_wd)
+  unlink(test_dir, recursive = TRUE)
 })
 
 
