@@ -43,7 +43,8 @@ Imports:
     prereg,
     gert,
     ranger,
-    yaml
+    yaml,
+    digest
 Suggests:
     remotes,
     renv,

@@ -5,29 +5,37 @@ title: |
   
 shorttitle        : "WORKFLOW FOR OPEN SCIENCE"
 
-author: 
-  - name          : "Caspar J. van Lissa"
-    affiliation   : "1,2"
-    corresponding : yes    # Define only one corresponding author
-    address       : "Padualaan 14, 3584CH Utrecht, The Netherlands"
-    email         : "c.j.vanlissa@uu.nl"
-  - name          : "Andreas M. Brandmaier"
-    affiliation   : "3,4"
-  - name          : "Loek Brinkman"
-    affiliation   : "2,5"
+author: #"`r source('authors_yaml.R')`"
+  - name: "Caspar J. Van Lissa"
+    institution: "1,2"
+    corresponding: yes
+    address: "Padualaan 14, 3584CH Utrecht, The Netherlands"
+    email: "c.j.vanlissa@uu.nl"
+  - name: "Andreas M. Brandmaier"
+    institution: "3,4"
+  - name: "Loek Brinkman"
+    institution: "2,5"
+  - name: "Aaron Peikert"
+    institution: "6"
+  - name: "Barbara Vreede"
+    institution: "7"
 
-affiliation:
-  - id            : "1"
-    institution   : "Utrecht University faculty of Social and Behavioral Sciences, department of Methodology & Statistics"
-  - id            : "2"
-    institution   : "Open Science Community Utrecht"
-  - id            : "3"
-    institution   : "Center for Lifespan Psychology, Max Planck Institute for Human Development, Berlin, Germany"
-  - id            : "4"
-    institution   : "Max Planck UCL Centre for Computational Psychiatry and Ageing Research, Berlin, Germany and London, UK"
-  - id            : "5"
-    institution   : "UMC Utrecht"
-
+affiliation: #"`r source('affiliation_yaml.R')`"
+  - id: "1"
+    institution: "Utrecht University faculty of Social and Behavioral Sciences, department of Methodology & Statistics"
+  - id: "2"
+    institution: "Open Science Community Utrecht"
+  - id: "3"
+    institution: "Center for Lifespan Psychology, Max Planck Institute for Human Development, Berlin, Germany"
+  - id: "4"
+    institution: "Max Planck UCL Centre for Computational Psychiatry and Ageing Research, Berlin, Germany and London, UK"
+  - id: "5"
+    institution: "UMC Utrecht"
+  - id: "6"
+    institution: "Test"
+  - id: "7"
+    institution: "University Library Utrecht"
+    
 abstract: |
   The social sciences are amidst a paradigm shift towards open science. In part,
   this transition has been fueled by cases of scientific fraud and increasing
@@ -209,7 +217,7 @@ When using R, software (R packages) can be conveniently cited by calling `citati
 
 One important impediment to comprehensive citation is the fact that print journals operate with space constraints. Print journals often discourage comprehensive citation, either actively, or passively by including the reference list in the manuscript word count. Researchers can overcome this impediment by preparing two versions of the manuscript: One version with comprehensive citations for online dissemination, and another version for print, with only the essential citations. The print version should reference the online version, so interested readers can find the comprehensive reference list. Step 20 of the WORCS procedure suggests uploading the online version to a preprint server. This is important because most preprint servers - [at least the ones hosted by OSF.io](https://help.osf.io/hc/en-us/articles/360019930493-Preprint-FAQs#how_do_i_find_preprints) - are indexed by Google Scholar. This means that authors will receive credit for cited work; even if they are cited only in the online version. Moreover, preprint servers ensure that the online version will have a persistent DOI, and will remain reliably accessible, just like the print version. 
 
-It is easiest to mark the distinction between essential and non-essential references from the start, instead of going back to cut references prior to publication. Therefore, the `worcs` package distinguishes between the traditional at-symbol (`@`) used to cite a reference, and the "double at"-symbol (`@@`), used to cite a non-essential reference. Users can render a manuscript to PDF either with, or without, comprehensive citations.
+It is easiest to mark the distinction between essential and non-essential references from the start, instead of going back to cut references prior to publication. Therefore, the `worcs` package distinguishes between the traditional at-symbol (`@`) used to cite a reference, and the "double at"-symbol (`@`), used to cite a non-essential reference. Users can render a manuscript to PDF either with, or without, comprehensive citations.
 
 The procedure for citation in WORCS is as follows:<!-- LB: this procedure is secondary to the main workflow. Consider changing the order (see main issue)-->
 
@@ -217,7 +225,7 @@ The procedure for citation in WORCS is as follows:<!-- LB: this procedure is sec
     + You can make this file by hand; e.g., Figure \@ref(fig:scholarbib) shows how to obtain a BibTeX reference from Google Scholar; simply copy-paste each reference into the `.bib` file
     + You can export a `.bib` file from most reference manager programs; the free, open-source reference manager [Zotero](https://www.zotero.org/download/) is excellent and user-friendly, and highly interoperable with other commercial reference managers. [Here](https://christopherjunk.netlify.com/blog/2019/02/25/zotero-rmarkdown/) is a tutorial for using Zotero with Rmarkdown.
 2. To cite a reference, use the `citekey` - the first word in the BibTeX entry for that reference. Insert it in the Rmarkdown file like so: `@yourcitekey2020`. For a parenthesized reference, use `[@citekeyone2020; @citekeytwo2020]`. For more options, see the [Rmarkdown cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html).
-3. To indicate a *non-essential* citation, mark it with a double at-symbol: `@@nonessential2020`.
+3. To indicate a *non-essential* citation, mark it with a double at-symbol: `@nonessential2020`.
 4. When Knitting the document, adapt the `knit` command in the YAML header.  
   `knit: worcs::cite_all` renders all citations, and  
   `knit: worcs::cite_essential` removes all *non-essential* citations.
@@ -330,7 +338,7 @@ Before you can use the WORCS workflow, you have to install the required software
 9. Use `open_data()` or `closed_data()` to store the data
 10. Write the manuscript in `Manuscript.Rmd`, using code chunks to perform the analyses.
 11. Regularly commit your progress to the Git repository; ideally, after completing each small and clearly defined task. Use informative commit messages. Push the commits to GitHub.
-12. Cite essential references with one at-symbol (`[@essentialref2020]`), and non-essential references with a double at-symbol (`[@@nonessential2020]`).
+12. Cite essential references with one at-symbol (`[@essentialref2020]`), and non-essential references with a double at-symbol (`[@nonessential2020]`).
 
 ## Phase 3: Paper submission
 

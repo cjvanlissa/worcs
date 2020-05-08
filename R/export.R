@@ -44,7 +44,12 @@ export_project <- function(filename = NULL, open_data = TRUE)
     }
     # Use this to decide which files to ZIP, but always add data.csv
     # if the user specifies open_data = TRUE
-    zip_these <- git_ls()$path
+    zip_these <- tryCatch({
+      git_ls()$path
+    }, error = function(e){
+      col_message("Could not find 'Git' repository.", success = FALSE)
+      return(invisible(FALSE))
+      })
     tmpfile <- NULL
     if (isFALSE(open_data)) {
       hasdata <- endsWith(zip_these, "data.csv")

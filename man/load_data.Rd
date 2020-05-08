@@ -18,13 +18,13 @@ original data. If only a synthetic dataset is available, this function loads
 the synthetic data.
 }
 \examples{
-the_test <- "loaddata"
+test_dir <- file.path(tempdir(), "loaddata")
 old_wd <- getwd()
-dir.create(file.path(tempdir(), the_test))
-setwd(file.path(tempdir(), the_test))
+dir.create(test_dir)
+setwd(test_dir)
 open_data(iris[1:5, ], codebook = FALSE)
 df <- load_data()
 df
 setwd(old_wd)
-unlink(file.path(tempdir(), the_test))
+unlink(test_dir, recursive = TRUE)
 }
