@@ -30,8 +30,6 @@ test_that("codebook works for PlantGrowth with missings", {
   dir.create(test_dir)
   setwd(test_dir)
 
-  on.exit(unlink(test_dir, recursive = TRUE), add = TRUE)
-
   worcs::make_codebook(df)
 
   expect_true(file.exists("codebook.Rmd"))
@@ -42,4 +40,5 @@ test_that("codebook works for PlantGrowth with missings", {
   expect_true(any(contents == "The data contains 30 cases and 2 variables."))
 
   setwd(old_wd)
+  unlink(test_dir, recursive = TRUE)
 })
