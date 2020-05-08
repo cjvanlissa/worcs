@@ -14,8 +14,8 @@ worcs_template <- function(path, ...) {
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
   git_init(path = path)
   # Create .worcs file
-  write_worcsfile(filename = ".worcs",
-                  worcs_version = "0.1.1",
+  write_worcsfile(filename = file.path(path, ".worcs"),
+                  worcs_version = packageVersion("worcs"),
                   creator = Sys.info()["effective_user"]
   )
 
