@@ -53,6 +53,7 @@ library(knitr)
 file_name <- tempfile("codebook", fileext = ".Rmd")
 make_codebook(iris, file_name = file_name, csv_file = NULL)
 unlink(c(
+  ".worcs",
   file_name,
   gsub("\\\\.Rmd", "\\\\.md", file_name),
   gsub("\\\\.Rmd", "\\\\.html", file_name),

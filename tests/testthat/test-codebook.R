@@ -18,7 +18,7 @@ test_that("codebook works for iris", {
   unlink(test_dir, recursive = TRUE)
 })
 
-if(FALSE){
+if(TRUE){
 test_that("codebook works for PlantGrowth with missings", {
   df <- CO2
   df[c(7:8), 1] <- NA
