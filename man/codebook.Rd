@@ -4,12 +4,15 @@
 \alias{make_codebook}
 \title{Create codebook for a dataset}
 \usage{
-make_codebook(data, render_file = TRUE)
+make_codebook(data, render_file = TRUE, file_name = "codebook.Rmd")
 }
 \arguments{
 \item{data}{A data.frame for which to create a codebook.}
 
 \item{render_file}{Logical. Whether or not to render the document.}
+
+\item{file_name}{Character. File name to write the codebook \code{rmarkdown}
+file to.}
 }
 \value{
 \code{Logical}, indicating whether or not the operation was
@@ -25,11 +28,12 @@ paragraph with details on the data collection procedure.
 \examples{
 library(rmarkdown)
 library(knitr)
-the_test <- "codebook"
-old_wd <- getwd()
-dir.create(file.path(tempdir(), the_test))
-setwd(file.path(tempdir(), "citeall"))
-make_codebook(iris)
-setwd(old_wd)
-unlink(file.path(tempdir(), the_test))
+file_name <- tempfile("codebook", fileext = ".Rmd")
+make_codebook(iris, file_name = file_name)
+unlink(c(
+  file_name,
+  gsub("\\\\.Rmd", "\\\\.md", file_name),
+  gsub("\\\\.Rmd", "\\\\.html", file_name),
+  gsub("\\\\.Rmd", "_files", file_name)
+), recursive = TRUE)
 }

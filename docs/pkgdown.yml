@@ -2,6 +2,6 @@ pandoc: 2.7.2
 pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
-  setup: setup.html
-last_built: 2020-05-07T11:48Z
+  setup: ../../../git_repositories/worcs/vignettes/setup.html
+last_built: 2020-05-08T09:16Z
 

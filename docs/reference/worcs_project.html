@@ -126,7 +126,7 @@ create a WORCS project through syntax or the console." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create new WORCS project</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cjvanlissa/worcs/blob/master/R/worcs_template.R'><code>R/worcs_template.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cjvanlissa/worcs/blob/master/R/worcs_project.R'><code>R/worcs_project.R</code></a></small>
     <div class="hidden name"><code>worcs_project.Rd</code></div>
     </div>
 
@@ -143,6 +143,7 @@ create a WORCS project through syntax or the console.</p>
   <span class='kw'>add_license</span> <span class='kw'>=</span> <span class='st'>"CC_BY_4.0"</span>,
   <span class='kw'>use_renv</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>remote_repo</span> <span class='kw'>=</span> <span class='st'>"https"</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -198,6 +199,11 @@ be made containing the 'README.md' file, and will be pushed to 'GitHub'.
 Default: 'https'. For more information, see &lt;http://github.com/&gt;.</p></td>
     </tr>
     <tr>
+      <th>verbose</th>
+      <td><p>Logical. Whether or not to print messages to the console
+during project creation. Default: TRUE</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional arguments passed to and from functions.</p></td>
     </tr>
@@ -220,197 +226,13 @@ Default: 'https'. For more information, see &lt;http://github.com/&gt;.</p></td>
               <span class='kw'>preregistration</span> <span class='kw'>=</span> <span class='st'>"None"</span>,
               <span class='kw'>add_license</span> <span class='kw'>=</span> <span class='st'>"None"</span>,
               <span class='kw'>use_renv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-              <span class='kw'>remote_repo</span> <span class='kw'>=</span> <span class='st'>"https"</span>)</div><div class='output co'>#&gt; Called from: worcs_project(file.path(tempdir(), the_test, "worcs_project"), 
-#&gt;     manuscript = "github_document", preregistration = "None", 
-#&gt;     add_license = "None", use_renv = FALSE, remote_repo = "https")
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#56: manuscript &lt;- tolower(manuscript)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#57: preregistration &lt;- tolower(preregistration)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#58: add_license &lt;- tolower(add_license)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#59: dots &lt;- list(...)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#61: dir.create(path, recursive = TRUE, showWarnings = FALSE)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#62: path &lt;- normalizePath(path)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#63: git_init(path = path)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#65: write_worcsfile(filename = file.path(path, ".worcs"), worcs_version = as.character(packageVersion("worcs")), 
-#&gt;     creator = Sys.info()["effective_user"])
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#71: copy_resources(which_files = c("README.md", "prepare_data.R"), 
-#&gt;     path = path)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#79: if (!manuscript == "none") {
-#&gt;     man_dir &lt;- file.path(path, "manuscript")
-#&gt;     manuscript_file &lt;- file.path(man_dir, "manuscript.Rmd")
-#&gt;     dir.create(man_dir)
-#&gt;     switch(manuscript, apa6 = create_man_papaja(manuscript_file, 
-#&gt;         remote_repo = remote_repo), acm_article = create_man_rticles(manuscript_file, 
-#&gt;         "acm_article", remote_repo = remote_repo), acs_article = create_man_rticles(manuscript_file, 
-#&gt;         "acs_article", remote_repo = remote_repo), aea_article = create_man_rticles(manuscript_file, 
-#&gt;         "aea_article", remote_repo = remote_repo), agu_article = create_man_rticles(manuscript_file, 
-#&gt;         "agu_article", remote_repo = remote_repo), amq_article = create_man_rticles(manuscript_file, 
-#&gt;         "amq_article", remote_repo = remote_repo), ams_article = create_man_rticles(manuscript_file, 
-#&gt;         "ams_article", remote_repo = remote_repo), asa_article = create_man_rticles(manuscript_file, 
-#&gt;         "asa_article", remote_repo = remote_repo), biometrics_article = create_man_rticles(manuscript_file, 
-#&gt;         "biometrics_article", remote_repo = remote_repo), copernicus_article = create_man_rticles(manuscript_file, 
-#&gt;         "copernicus_article", remote_repo = remote_repo), ctex = create_man_rticles(manuscript_file, 
-#&gt;         "ctex", remote_repo = remote_repo), elsevier_article = create_man_rticles(manuscript_file, 
-#&gt;         "elsevier_article", remote_repo = remote_repo), frontiers_article = create_man_rticles(manuscript_file, 
-#&gt;         "frontiers_article", remote_repo = remote_repo), ieee_article = create_man_rticles(manuscript_file, 
-#&gt;         "ieee_article", remote_repo = remote_repo), joss_article = create_man_rticles(manuscript_file, 
-#&gt;         "joss_article", remote_repo = remote_repo), jss_article = create_man_rticles(manuscript_file, 
-#&gt;         "jss_article", remote_repo = remote_repo), mdpi_article = create_man_rticles(manuscript_file, 
-#&gt;         "mdpi_article", remote_repo = remote_repo), mnras_article = create_man_rticles(manuscript_file, 
-#&gt;         "mnras_article", remote_repo = remote_repo), oup_article = create_man_rticles(manuscript_file, 
-#&gt;         "oup_article", remote_repo = remote_repo), peerj_article = create_man_rticles(manuscript_file, 
-#&gt;         "peerj_article", remote_repo = remote_repo), plos_article = create_man_rticles(manuscript_file, 
-#&gt;         "plos_article", remote_repo = remote_repo), pnas_article = create_man_rticles(manuscript_file, 
-#&gt;         "pnas_article", remote_repo = remote_repo), rjournal_article = create_man_rticles(manuscript_file, 
-#&gt;         "rjournal_article", remote_repo = remote_repo), rsos_article = create_man_rticles(manuscript_file, 
-#&gt;         "rsos_article", remote_repo = remote_repo), sage_article = create_man_rticles(manuscript_file, 
-#&gt;         "sage_article", remote_repo = remote_repo), sim_article = create_man_rticles(manuscript_file, 
-#&gt;         "sim_article", remote_repo = remote_repo), springer_article = create_man_rticles(manuscript_file, 
-#&gt;         "springer_article", remote_repo = remote_repo), tf_article = create_man_rticles(manuscript_file, 
-#&gt;         "tf_article", remote_repo = remote_repo), create_man_github(manuscript_file, 
-#&gt;         remote_repo = remote_repo))
-#&gt;     copy_resources(which_files = "references.bib", path = man_dir)
-#&gt;     bibfiles &lt;- list.files(path = man_dir, pattern = ".bib$", 
-#&gt;         full.names = TRUE)
-#&gt;     if (length(bibfiles) &gt; 1) {
-#&gt;         worcs_ref &lt;- readLines(bibfiles[endsWith(bibfiles, "references.bib")])
-#&gt;         bib_text &lt;- do.call(c, lapply(bibfiles[!endsWith(bibfiles, 
-#&gt;             "references.bib")], readLines))
-#&gt;         invisible(file.remove(bibfiles))
-#&gt;         writeLines(c(worcs_ref, bib_text), file.path(man_dir, 
-#&gt;             "references.bib"))
-#&gt;     }
-#&gt; }
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#81: man_dir &lt;- file.path(path, "manuscript")
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#82: manuscript_file &lt;- file.path(man_dir, "manuscript.Rmd")
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#83: dir.create(man_dir)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#84: switch(manuscript, apa6 = create_man_papaja(manuscript_file, 
-#&gt;     remote_repo = remote_repo), acm_article = create_man_rticles(manuscript_file, 
-#&gt;     "acm_article", remote_repo = remote_repo), acs_article = create_man_rticles(manuscript_file, 
-#&gt;     "acs_article", remote_repo = remote_repo), aea_article = create_man_rticles(manuscript_file, 
-#&gt;     "aea_article", remote_repo = remote_repo), agu_article = create_man_rticles(manuscript_file, 
-#&gt;     "agu_article", remote_repo = remote_repo), amq_article = create_man_rticles(manuscript_file, 
-#&gt;     "amq_article", remote_repo = remote_repo), ams_article = create_man_rticles(manuscript_file, 
-#&gt;     "ams_article", remote_repo = remote_repo), asa_article = create_man_rticles(manuscript_file, 
-#&gt;     "asa_article", remote_repo = remote_repo), biometrics_article = create_man_rticles(manuscript_file, 
-#&gt;     "biometrics_article", remote_repo = remote_repo), copernicus_article = create_man_rticles(manuscript_file, 
-#&gt;     "copernicus_article", remote_repo = remote_repo), ctex = create_man_rticles(manuscript_file, 
-#&gt;     "ctex", remote_repo = remote_repo), elsevier_article = create_man_rticles(manuscript_file, 
-#&gt;     "elsevier_article", remote_repo = remote_repo), frontiers_article = create_man_rticles(manuscript_file, 
-#&gt;     "frontiers_article", remote_repo = remote_repo), ieee_article = create_man_rticles(manuscript_file, 
-#&gt;     "ieee_article", remote_repo = remote_repo), joss_article = create_man_rticles(manuscript_file, 
-#&gt;     "joss_article", remote_repo = remote_repo), jss_article = create_man_rticles(manuscript_file, 
-#&gt;     "jss_article", remote_repo = remote_repo), mdpi_article = create_man_rticles(manuscript_file, 
-#&gt;     "mdpi_article", remote_repo = remote_repo), mnras_article = create_man_rticles(manuscript_file, 
-#&gt;     "mnras_article", remote_repo = remote_repo), oup_article = create_man_rticles(manuscript_file, 
-#&gt;     "oup_article", remote_repo = remote_repo), peerj_article = create_man_rticles(manuscript_file, 
-#&gt;     "peerj_article", remote_repo = remote_repo), plos_article = create_man_rticles(manuscript_file, 
-#&gt;     "plos_article", remote_repo = remote_repo), pnas_article = create_man_rticles(manuscript_file, 
-#&gt;     "pnas_article", remote_repo = remote_repo), rjournal_article = create_man_rticles(manuscript_file, 
-#&gt;     "rjournal_article", remote_repo = remote_repo), rsos_article = create_man_rticles(manuscript_file, 
-#&gt;     "rsos_article", remote_repo = remote_repo), sage_article = create_man_rticles(manuscript_file, 
-#&gt;     "sage_article", remote_repo = remote_repo), sim_article = create_man_rticles(manuscript_file, 
-#&gt;     "sim_article", remote_repo = remote_repo), springer_article = create_man_rticles(manuscript_file, 
-#&gt;     "springer_article", remote_repo = remote_repo), tf_article = create_man_rticles(manuscript_file, 
-#&gt;     "tf_article", remote_repo = remote_repo), create_man_github(manuscript_file, 
-#&gt;     remote_repo = remote_repo))
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#116: copy_resources(which_files = "references.bib", path = man_dir)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#117: bibfiles &lt;- list.files(path = man_dir, pattern = ".bib$", full.names = TRUE)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#118: if (length(bibfiles) &gt; 1) {
-#&gt;     worcs_ref &lt;- readLines(bibfiles[endsWith(bibfiles, "references.bib")])
-#&gt;     bib_text &lt;- do.call(c, lapply(bibfiles[!endsWith(bibfiles, 
-#&gt;         "references.bib")], readLines))
-#&gt;     invisible(file.remove(bibfiles))
-#&gt;     writeLines(c(worcs_ref, bib_text), file.path(man_dir, "references.bib"))
-#&gt; }
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#129: if (!preregistration == "none") {
-#&gt;     draft(file.path(path, "preregistration.Rmd"), paste0(preregistration, 
-#&gt;         "_prereg"), package = "prereg", create_dir = FALSE, edit = FALSE)
-#&gt; }
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#142: if (!add_license == "none") {
-#&gt;     dir.create(path, recursive = TRUE, showWarnings = FALSE)
-#&gt;     license_dir = system.file("rstudio", "templates", "project", 
-#&gt;         "licenses", package = "worcs", mustWork = TRUE)
-#&gt;     license_file &lt;- file.path(license_dir, paste0(add_license, 
-#&gt;         ".txt"))
-#&gt;     if (file.exists(license_file)) {
-#&gt;         file.copy(license_file, file.path(path, "LICENSE"))
-#&gt;     }
-#&gt;     else {
-#&gt;         warning("Could not find requested license.")
-#&gt;     }
-#&gt; }
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#157: if (use_renv) {
-#&gt;     init_fun &lt;- get("init", asNamespace("renv"))
-#&gt;     do.call(init_fun, list(project = path, restart = FALSE))
-#&gt; }
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#164: write(c(".Rhistory", ".Rprofile", "*.csv", "*.sav", "*.sas7bdat", 
-#&gt;     "*.xlsx", "*.xls", "*.pdf", "*.fff", "*.log", "*.tex"), file = file.path(path, 
-#&gt;     ".gitignore"), append = TRUE)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#178: if (file.exists(file.path(path, "README.md"))) {
-#&gt;     cont &lt;- readLines(file.path(path, "README.md"))
-#&gt;     f &lt;- list.files(path)
-#&gt;     tab &lt;- matrix(c("File", "Description", "Usage", "README.md", 
-#&gt;         "Description of project", "Human editable"), nrow = 2, 
-#&gt;         byrow = TRUE)
-#&gt;     rproj_name &lt;- paste0(gsub("^.+\\b(.+)$", "\\1", path), ".Rproj")
-#&gt;     cont[grep("You can load this project in Rstudio by opening the file called ", 
-#&gt;         cont)] &lt;- paste0(grep("You can load this project in Rstudio by opening the file called ", 
-#&gt;         cont, value = TRUE), "'", rproj_name, "'.")
-#&gt;     tab &lt;- rbind(tab, c(rproj_name, "Project file", "Loads project"))
-#&gt;     tab &lt;- describe_file("LICENSE", "User permissions", "Read only", 
-#&gt;         tab, path)
-#&gt;     tab &lt;- describe_file("manuscript.rmd", "Source code for paper", 
-#&gt;         "Human editable", tab, path)
-#&gt;     tab &lt;- describe_file("preregistration.rmd", "Preregistered hypotheses", 
-#&gt;         "Human editable", tab, path)
-#&gt;     tab &lt;- describe_file("prepare_data.R", "Script to process raw data", 
-#&gt;         "Human editable", tab, path)
-#&gt;     tab &lt;- describe_file("renv.lock", "Reproducible R environment", 
-#&gt;         "Read only", tab, path)
-#&gt;     tab &lt;- append(apply(tab, 1, paste, collapse = " | "), "--- | --- | ---", 
-#&gt;         after = 1)
-#&gt;     cont &lt;- append(cont, tab, after = grep("You can add rows to this table", 
-#&gt;         cont))
-#&gt;     writeLines(cont, file.path(path, "README.md"))
-#&gt; }
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#179: cont &lt;- readLines(file.path(path, "README.md"))
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#180: f &lt;- list.files(path)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#181: tab &lt;- matrix(c("File", "Description", "Usage", "README.md", 
-#&gt;     "Description of project", "Human editable"), nrow = 2, byrow = TRUE)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#183: rproj_name &lt;- paste0(gsub("^.+\\b(.+)$", "\\1", path), ".Rproj")
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#184: cont[grep("You can load this project in Rstudio by opening the file called ", 
-#&gt;     cont)] &lt;- paste0(grep("You can load this project in Rstudio by opening the file called ", 
-#&gt;     cont, value = TRUE), "'", rproj_name, "'.")
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#185: tab &lt;- rbind(tab, c(rproj_name, "Project file", "Loads project"))
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#186: tab &lt;- describe_file("LICENSE", "User permissions", "Read only", 
-#&gt;     tab, path)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#187: tab &lt;- describe_file("manuscript.rmd", "Source code for paper", 
-#&gt;     "Human editable", tab, path)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#188: tab &lt;- describe_file("preregistration.rmd", "Preregistered hypotheses", 
-#&gt;     "Human editable", tab, path)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#189: tab &lt;- describe_file("prepare_data.R", "Script to process raw data", 
-#&gt;     "Human editable", tab, path)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#190: tab &lt;- describe_file("renv.lock", "Reproducible R environment", 
-#&gt;     "Read only", tab, path)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#191: tab &lt;- append(apply(tab, 1, paste, collapse = " | "), "--- | --- | ---", 
-#&gt;     after = 1)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#192: cont &lt;- append(cont, tab, after = grep("You can add rows to this table", 
-#&gt;     cont))
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#193: writeLines(cont, file.path(path, "README.md"))
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#197: git_add(files = "README.md", repo = path)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#198: git_commit(message = "worcs template initial commit", repo = path)
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#201: if (grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)) {
-#&gt;     tryCatch({
-#&gt;         git_remote_add(name = "origin", url = remote_repo, repo = path)
-#&gt;         git_push(remote = "origin", repo = path)
-#&gt;     }, error = function(e) {
-#&gt;         message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.")
-#&gt;     })
-#&gt; } else {
-#&gt;     message("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.")
-#&gt; }
-#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#207: message("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.")</div><div class='output co'>#&gt; <span class='message'>No valid 'GitHub' address provided. You are working with a local 'Git' repository only.</span></div><div class='output co'>#&gt; debug at C:/Git_Repositories/worcs/R/worcs_template.R#209: if ("GCtorture" %in% ls()) rm("GCtorture")</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>old_wd</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))</div></pre>
+              <span class='kw'>remote_repo</span> <span class='kw'>=</span> <span class='st'>"https"</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Initializing 'Git' repository.</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Writing '.worcs' file.</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Copying standard files.</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Creating manuscript files.</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Creating first commit (committing README.md).</span><span>
+#&gt; </span><span style='color: #BB0000;'>X  </span><span style='color: #000000;'>No valid 'GitHub' address provided. You are working with a local 'Git' repository only.</span><span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>old_wd</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

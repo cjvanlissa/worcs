@@ -32,6 +32,8 @@
 #' this project. If a valid 'GitHub' repository link is provided, a commit will
 #' be made containing the 'README.md' file, and will be pushed to 'GitHub'.
 #' Default: 'https'. For more information, see <http://github.com/>.
+#' @param verbose Logical. Whether or not to print messages to the console
+#' during project creation. Default: TRUE
 #' @param ... Additional arguments passed to and from functions.
 #' @return No return value. This function is called for its side effects.
 #' @examples
@@ -56,7 +58,7 @@
 #' @importFrom gert git_init git_remote_add git_add git_commit git_push
 #' @importFrom utils installed.packages packageVersion
 # @importFrom renv init
-worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "COS", add_license = "CC_BY_4.0", use_renv = TRUE, remote_repo = "https", ...) {
+worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "COS", add_license = "CC_BY_4.0", use_renv = TRUE, remote_repo = "https", verbose = TRUE, ...) {
   # collect inputs
   manuscript <- tolower(manuscript)
   preregistration <- tolower(preregistration)
@@ -70,105 +72,133 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   if(!use_git){
     message("Could not find a working installation of 'Git', which is required to safeguard the transparency and reproducibility of your project. Please connect 'Git' by following the steps described in this vignette:\n  vignette('setup', package = 'worcs')")
   } else {
+    col_message("Initializing 'Git' repository.")
     git_init(path = path)
   }
 
   # Create .worcs file
-  write_worcsfile(filename = file.path(path, ".worcs"),
-                  worcs_version = as.character(packageVersion("worcs")),
-                  creator = Sys.info()["effective_user"]
-  )
+  tryCatch({
+    write_worcsfile(filename = file.path(path, ".worcs"),
+                    worcs_version = as.character(packageVersion("worcs")),
+                    creator = Sys.info()["effective_user"]
+    )
+    col_message("Writing '.worcs' file.")
+  }, error = function(e){
+    col_message("Writing '.worcs' file.", success = FALSE)
+  })
+
 
   # copy 'resources' folder to path
-  copy_resources(which_files = c(
-    "README.md",
-    "prepare_data.R"
-  ), path = path)
+  tryCatch({
+    copy_resources(which_files = c(
+      "README.md",
+      "prepare_data.R"
+    ), path = path)
+    col_message("Copying standard files.")
+  }, error = function(e){
+    col_message("Copying standard files.", success = FALSE)
+  })
+
 
   # write files
 
   # Begin manuscript
   if(!manuscript == "none"){
-    # Construct path to filename and create directory
-    man_dir <- file.path(path, "manuscript")
-    manuscript_file <- file.path(man_dir, "manuscript.Rmd")
-    dir.create(man_dir)
-    switch(manuscript,
-           apa6 = create_man_papaja(manuscript_file, remote_repo = remote_repo),
-           acm_article = create_man_rticles(manuscript_file, "acm_article", remote_repo = remote_repo),
-           acs_article = create_man_rticles(manuscript_file, "acs_article", remote_repo = remote_repo),
-           aea_article = create_man_rticles(manuscript_file, "aea_article", remote_repo = remote_repo),
-           agu_article = create_man_rticles(manuscript_file, "agu_article", remote_repo = remote_repo),
-           amq_article = create_man_rticles(manuscript_file, "amq_article", remote_repo = remote_repo),
-           ams_article = create_man_rticles(manuscript_file, "ams_article", remote_repo = remote_repo),
-           asa_article = create_man_rticles(manuscript_file, "asa_article", remote_repo = remote_repo),
-           biometrics_article = create_man_rticles(manuscript_file, "biometrics_article", remote_repo = remote_repo),
-           copernicus_article = create_man_rticles(manuscript_file, "copernicus_article", remote_repo = remote_repo),
-           ctex = create_man_rticles(manuscript_file, "ctex", remote_repo = remote_repo),
-           elsevier_article = create_man_rticles(manuscript_file, "elsevier_article", remote_repo = remote_repo),
-           frontiers_article = create_man_rticles(manuscript_file, "frontiers_article", remote_repo = remote_repo),
-           ieee_article = create_man_rticles(manuscript_file, "ieee_article", remote_repo = remote_repo),
-           joss_article = create_man_rticles(manuscript_file, "joss_article", remote_repo = remote_repo),
-           jss_article = create_man_rticles(manuscript_file, "jss_article", remote_repo = remote_repo),
-           mdpi_article = create_man_rticles(manuscript_file, "mdpi_article", remote_repo = remote_repo),
-           mnras_article = create_man_rticles(manuscript_file, "mnras_article", remote_repo = remote_repo),
-           oup_article = create_man_rticles(manuscript_file, "oup_article", remote_repo = remote_repo),
-           peerj_article = create_man_rticles(manuscript_file, "peerj_article", remote_repo = remote_repo),
-           plos_article = create_man_rticles(manuscript_file, "plos_article", remote_repo = remote_repo),
-           pnas_article = create_man_rticles(manuscript_file, "pnas_article", remote_repo = remote_repo),
-           rjournal_article = create_man_rticles(manuscript_file, "rjournal_article", remote_repo = remote_repo),
-           rsos_article = create_man_rticles(manuscript_file, "rsos_article", remote_repo = remote_repo),
-           sage_article = create_man_rticles(manuscript_file, "sage_article", remote_repo = remote_repo),
-           sim_article = create_man_rticles(manuscript_file, "sim_article", remote_repo = remote_repo),
-           springer_article = create_man_rticles(manuscript_file, "springer_article", remote_repo = remote_repo),
-           tf_article = create_man_rticles(manuscript_file, "tf_article", remote_repo = remote_repo),
-           create_man_github(manuscript_file, remote_repo = remote_repo)
-           )
-    # Add references.bib
-    copy_resources(which_files = "references.bib", path = man_dir)
-    bibfiles <- list.files(path = man_dir, pattern = ".bib$", full.names = TRUE)
-    if(length(bibfiles) > 1){
-      worcs_ref <- readLines(bibfiles[endsWith(bibfiles, "references.bib")])
-      bib_text <- do.call(c, lapply(bibfiles[!endsWith(bibfiles, "references.bib")], readLines))
-      invisible(file.remove(bibfiles))
-      writeLines(c(worcs_ref, bib_text), file.path(man_dir, "references.bib"))
-    }
+    tryCatch({
+      # Construct path to filename and create directory
+      man_dir <- file.path(path, "manuscript")
+      manuscript_file <- file.path(man_dir, "manuscript.Rmd")
+      dir.create(man_dir)
+      switch(manuscript,
+             apa6 = create_man_papaja(manuscript_file, remote_repo = remote_repo),
+             acm_article = create_man_rticles(manuscript_file, "acm_article", remote_repo = remote_repo),
+             acs_article = create_man_rticles(manuscript_file, "acs_article", remote_repo = remote_repo),
+             aea_article = create_man_rticles(manuscript_file, "aea_article", remote_repo = remote_repo),
+             agu_article = create_man_rticles(manuscript_file, "agu_article", remote_repo = remote_repo),
+             amq_article = create_man_rticles(manuscript_file, "amq_article", remote_repo = remote_repo),
+             ams_article = create_man_rticles(manuscript_file, "ams_article", remote_repo = remote_repo),
+             asa_article = create_man_rticles(manuscript_file, "asa_article", remote_repo = remote_repo),
+             biometrics_article = create_man_rticles(manuscript_file, "biometrics_article", remote_repo = remote_repo),
+             copernicus_article = create_man_rticles(manuscript_file, "copernicus_article", remote_repo = remote_repo),
+             ctex = create_man_rticles(manuscript_file, "ctex", remote_repo = remote_repo),
+             elsevier_article = create_man_rticles(manuscript_file, "elsevier_article", remote_repo = remote_repo),
+             frontiers_article = create_man_rticles(manuscript_file, "frontiers_article", remote_repo = remote_repo),
+             ieee_article = create_man_rticles(manuscript_file, "ieee_article", remote_repo = remote_repo),
+             joss_article = create_man_rticles(manuscript_file, "joss_article", remote_repo = remote_repo),
+             jss_article = create_man_rticles(manuscript_file, "jss_article", remote_repo = remote_repo),
+             mdpi_article = create_man_rticles(manuscript_file, "mdpi_article", remote_repo = remote_repo),
+             mnras_article = create_man_rticles(manuscript_file, "mnras_article", remote_repo = remote_repo),
+             oup_article = create_man_rticles(manuscript_file, "oup_article", remote_repo = remote_repo),
+             peerj_article = create_man_rticles(manuscript_file, "peerj_article", remote_repo = remote_repo),
+             plos_article = create_man_rticles(manuscript_file, "plos_article", remote_repo = remote_repo),
+             pnas_article = create_man_rticles(manuscript_file, "pnas_article", remote_repo = remote_repo),
+             rjournal_article = create_man_rticles(manuscript_file, "rjournal_article", remote_repo = remote_repo),
+             rsos_article = create_man_rticles(manuscript_file, "rsos_article", remote_repo = remote_repo),
+             sage_article = create_man_rticles(manuscript_file, "sage_article", remote_repo = remote_repo),
+             sim_article = create_man_rticles(manuscript_file, "sim_article", remote_repo = remote_repo),
+             springer_article = create_man_rticles(manuscript_file, "springer_article", remote_repo = remote_repo),
+             tf_article = create_man_rticles(manuscript_file, "tf_article", remote_repo = remote_repo),
+             create_man_github(manuscript_file, remote_repo = remote_repo)
+      )
+      # Add references.bib
+      copy_resources(which_files = "references.bib", path = man_dir)
+      bibfiles <- list.files(path = man_dir, pattern = ".bib$", full.names = TRUE)
+      if(length(bibfiles) > 1){
+        worcs_ref <- readLines(bibfiles[endsWith(bibfiles, "references.bib")])
+        bib_text <- do.call(c, lapply(bibfiles[!endsWith(bibfiles, "references.bib")], readLines))
+        invisible(file.remove(bibfiles))
+        writeLines(c(worcs_ref, bib_text), file.path(man_dir, "references.bib"))
+      }
+      col_message("Creating manuscript files.")
+    }, error = function(e){
+      col_message("Creating manuscript files.", success = FALSE)
+    })
   }
   # End manuscript
 
 
   # Begin prereg
   if(!preregistration == "none"){
-	draft(
-	  file.path(path, "preregistration.Rmd"),
-	  paste0(preregistration, "_prereg"),
-	  package = "prereg",
-	  create_dir = FALSE,
-	  edit = FALSE
-	)
-
+    tryCatch({
+      draft(
+        file.path(path, "preregistration.Rmd"),
+        paste0(preregistration, "_prereg"),
+        package = "prereg",
+        create_dir = FALSE,
+        edit = FALSE
+      )
+      col_message("Creating preregistration files.")
+    }, error = function(e){
+      col_message("Creating preregistration files.", success = FALSE)
+    })
   }
   # End prereg
 
   # Begin license
   if(!add_license == "none"){
-    dir.create(path, recursive = TRUE, showWarnings = FALSE)
+    tryCatch({
+      dir.create(path, recursive = TRUE, showWarnings = FALSE)
 
-    # copy 'resources' folder to path
-    license_dir = system.file('rstudio', 'templates', 'project', 'licenses', package = 'worcs', mustWork = TRUE)
-    license_file <- file.path(license_dir, paste0(add_license, ".txt"))
-    if(file.exists(license_file)){
+      # copy 'resources' folder to path
+      license_dir = system.file('rstudio', 'templates', 'project', 'licenses', package = 'worcs', mustWork = TRUE)
+      license_file <- file.path(license_dir, paste0(add_license, ".txt"))
       file.copy(license_file, file.path(path, "LICENSE"))
-    } else {
-      warning("Could not find requested license.")
-    }
+      col_message("Writing license file.")
+    }, error = function(e){
+      col_message("Writing license file.", success = FALSE)
+    })
   }
   # End license
 
 # Use renv ----------------------------------------------------------------
   if(use_renv){
-    init_fun <- get("init", asNamespace("renv"))
-    do.call(init_fun, list(project = path, restart = FALSE))
+    tryCatch({
+      init_fun <- get("init", asNamespace("renv"))
+      do.call(init_fun, list(project = path, restart = FALSE))
+      col_message("Initializing 'renv' for a reproducible R environment.")
+    }, error = function(e){
+      col_message("Initializing 'renv' for a reproducible R environment.", success = FALSE)
+    })
   }
 
   #use_git() initialises a Git repository and adds important files to .gitignore. If user consents, it also makes an initial commit.
@@ -210,8 +240,13 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
 
   # Create first commit
   if(use_git){
+    tryCatch({
     git_add(files = "README.md", repo = path)
     git_commit(message = "worcs template initial commit", repo = path)
+    col_message("Creating first commit (committing README.md).")
+    }, error = function(e){
+      col_message("Creating first commit (committing README.md).", success = FALSE)
+    })
   }
 
   # Connect to remote repo if possible
@@ -219,9 +254,10 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     tryCatch({
       git_remote_add(name = "origin", url = remote_repo, repo = path)
       git_push(remote = "origin", repo = path)
-    }, error = function(e){message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.")})
+      col_message(paste0("Connected to remote repository at ", remote_repo))
+    }, error = function(e){col_message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", success = FALSE)})
   } else {
-    message("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.")
+    col_message("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.", success = FALSE)
   }
   if("GCtorture" %in% ls()) rm("GCtorture")
 }
@@ -269,7 +305,7 @@ create_man_papaja <- function(manuscript_file, remote_repo){
     # Write
     writeLines(manuscript_text, manuscript_file)
   } else {
-    message('Could not generate an APA6 manuscript file, because the \'papaja\' package is not installed. Run this code to see instructions on how to install this package from GitHub:\n  vignette("setup", package = "worcs")')
+    col_message('Could not generate an APA6 manuscript file, because the \'papaja\' package is not installed. Run this code to see instructions on how to install this package from GitHub:\n  vignette("setup", package = "worcs")', success = FALSE)
   }
 }
 
@@ -338,7 +374,7 @@ create_man_rticles <- function(manuscript_file, template, remote_repo){
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]))
     writeLines(manuscript_text, manuscript_file)
   } else {
-    message('Could not generate ', template, ' manuscript file, because the \'rticles\' package is not installed. Run this code to install the package from CRAN:\n  install.packages("rticles", dependencies = TRUE)')
+    col_message(paste0('Could not generate ', template, ' manuscript file, because the \'rticles\' package is not installed. Run this code to install the package from CRAN:\n  install.packages("rticles", dependencies = TRUE)'), success = FALSE)
   }
 }
 

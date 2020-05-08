@@ -94,7 +94,7 @@ synthetic.data.frame <- function(data,
 
   if(any(miss_props > 0)){
     if(is.null(missingness_expression)){
-      if(verbose) message("Argument 'data' has missing values, but no 'missingness_expression' is specified. Listwise deletion is used.")
+      if(verbose) col_message("Argument 'data' has missing values, but no 'missingness_expression' is specified. Listwise deletion is used.", success = FALSE)
     } else {
       data <- eval(missingness_expression)
     }

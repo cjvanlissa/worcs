@@ -27,16 +27,17 @@ citations, e.g.: \code{@reference2020}. Then, it renders the file.
 # Only specify it as custom knit function in an 'Rmarkdown' file, like so:
 # knit: worcs::cite_all
 
-library(rmarkdown)
-the_test <- "citeall"
-old_wd <- getwd()
-dir.create(file.path(tempdir(), the_test))
-setwd(file.path(tempdir(), "citeall"))
-draft("test.Rmd", template = "github_document", package = "rmarkdown",
-      create_dir = FALSE, edit = FALSE)
+dir_name <- tempdir()
+file_name <- file.path(dir_name, "citeall.Rmd")
+
+rmarkdown::draft(file_name,
+                 template = "github_document",
+                 package = "rmarkdown",
+                 create_dir = FALSE,
+                 edit = FALSE)
 write(c("", "Optional reference: @reference2020"),
-      file = "test.Rmd", append = TRUE)
-cite_all("test.Rmd", "UTF-8")
-setwd(old_wd)
-unlink(file.path(tempdir(), the_test))
+      file = file_name, append = TRUE)
+cite_all(file_name, "UTF-8")
+unlink(paste0(normalizePath(tempdir()), "/", dir(tempdir())),
+       recursive = TRUE)
 }

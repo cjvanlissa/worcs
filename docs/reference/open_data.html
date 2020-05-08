@@ -166,29 +166,12 @@ function is called for its side effects.</p>
 <span class='no'>old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))
-<span class='fu'>open_data</span>(<span class='no'>iris</span>[<span class='fl'>1</span>:<span class='fl'>5</span>, ], <span class='kw'>codebook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='output co'>#&gt; <span class='message'>Could not find .gitignore file. You might not be working from the main project directory. Created .gitignore file in folder: C:/Users/lissa102/AppData/Local/Temp/RtmpIxfj49/opendata</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>processing file: codebook.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |..............                                                        |  20%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                              |............................                                          |  40%
-#&gt; label: setup (with options) 
-#&gt; List of 1
-#&gt;  $ include: logi FALSE
-#&gt; 
-#&gt;   |                                                                              |..........................................                            |  60%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                              |........................................................              |  80%
-#&gt; label: unnamed-chunk-1
-#&gt;   |                                                                              |......................................................................| 100%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: codebook.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook.utf8.md --to gfm --from markdown+autolink_bare_uris+tex_math_single_backslash --output codebook.md --standalone --template "C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" 
-#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook.md --to html4 --from gfm --output codebook.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --email-obfuscation none --metadata pagetitle=PREVIEW </div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Preview created: codebook.html</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Output created: codebook.md</span></div><div class='output co'>#&gt; <span class='message'>Storing original data in 'data.csv' and updating the checksum in '.worcs'.</span></div><div class='output co'>#&gt; <span class='message'>No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory.</span></div><div class='output co'>#&gt; <span class='message'>Updating ".gitignore".</span></div><div class='output co'>#&gt; <span class='message'>Generating "data_cleaning.R"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>old_wd</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))</div></pre>
+<span class='fu'>open_data</span>(<span class='no'>iris</span>[<span class='fl'>1</span>:<span class='fl'>5</span>, ], <span class='kw'>codebook</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Could not find .gitignore file. You might not be working from the main project directory. Created .gitignore file in folder: C:/Users/lissa102/AppData/Local/Temp/Rtmpm8ePeD/opendata</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing original data in 'data.csv' and updating the checksum in '.worcs'.</span><span>
+#&gt; </span><span style='color: #BB0000;'>X  </span><span style='color: #000000;'>No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory.</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating ".gitignore".</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Generating "data_cleaning.R"</span><span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>old_wd</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

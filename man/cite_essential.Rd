@@ -27,16 +27,13 @@ the file.
 # Only specify it as custom knit function in an Rmarkdown file, like so:
 # knit: worcs::cite_all
 
-library(rmarkdown)
-the_test <- "citeessential"
-old_wd <- getwd()
-dir.create(file.path(tempdir(), the_test))
-setwd(file.path(tempdir(), "citeessential"))
-draft("test.Rmd", template = "github_document", package = "rmarkdown",
-      create_dir = FALSE, edit = FALSE)
+file_name <- tempfile("citeessential", fileext = ".Rmd")
+rmarkdown::draft(file_name,
+                 template = "github_document",
+                 package = "rmarkdown",
+                 create_dir = FALSE,
+                 edit = FALSE)
 write(c("", "Optional reference: @reference2020"),
-      file = "test.Rmd", append = TRUE)
-cite_essential("test.Rmd", "UTF-8")
-setwd(old_wd)
-unlink(file.path(tempdir(), the_test))
+      file = file_name, append = TRUE)
+cite_essential(file_name, "UTF-8")
 }

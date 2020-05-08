@@ -15,18 +15,28 @@
 #' # Only specify it as custom knit function in an 'Rmarkdown' file, like so:
 #' # knit: worcs::cite_all
 #'
-#' library(rmarkdown)
-#' the_test <- "citeall"
-#' old_wd <- getwd()
-#' dir.create(file.path(tempdir(), the_test))
-#' setwd(file.path(tempdir(), "citeall"))
-#' draft("test.Rmd", template = "github_document", package = "rmarkdown",
-#'       create_dir = FALSE, edit = FALSE)
+#' dir_name <- tempdir()
+#' file_name <- file.path(dir_name, "citeall.Rmd")
+# file_name <- tempfile("citeall", fileext = ".Rmd")
+#'
+#' rmarkdown::draft(file_name,
+#'                  template = "github_document",
+#'                  package = "rmarkdown",
+#'                  create_dir = FALSE,
+#'                  edit = FALSE)
 #' write(c("", "Optional reference: @@reference2020"),
-#'       file = "test.Rmd", append = TRUE)
-#' cite_all("test.Rmd", "UTF-8")
-#' setwd(old_wd)
-#' unlink(file.path(tempdir(), the_test))
+#'       file = file_name, append = TRUE)
+#' cite_all(file_name, "UTF-8")
+#' unlink(paste0(normalizePath(tempdir()), "/", dir(tempdir())),
+#'        recursive = TRUE)
+# unlink(list.files(path = dir_name, full.names = TRUE, recursive = TRUE),
+# recursive = TRUE)
+# unlink(c(
+#   file_name,
+#   gsub("\\.Rmd", "\\.md", file_name),
+#   gsub("\\.Rmd", "\\.html", file_name),
+#   gsub("\\.Rmd", "_files", file_name)
+# ), recursive = TRUE)
 cite_all <- function(inputFile, encoding){
   Args <- list(
     inputFile = inputFile,
@@ -53,18 +63,23 @@ cite_all <- function(inputFile, encoding){
 #' # Only specify it as custom knit function in an Rmarkdown file, like so:
 #' # knit: worcs::cite_all
 #'
-#' library(rmarkdown)
-#' the_test <- "citeessential"
-#' old_wd <- getwd()
-#' dir.create(file.path(tempdir(), the_test))
-#' setwd(file.path(tempdir(), "citeessential"))
-#' draft("test.Rmd", template = "github_document", package = "rmarkdown",
-#'       create_dir = FALSE, edit = FALSE)
+#' file_name <- tempfile("citeessential", fileext = ".Rmd")
+# write(file_name, "c:/tmp/check.txt", append = TRUE)
+#' rmarkdown::draft(file_name,
+#'                  template = "github_document",
+#'                  package = "rmarkdown",
+#'                  create_dir = FALSE,
+#'                  edit = FALSE)
 #' write(c("", "Optional reference: @@reference2020"),
-#'       file = "test.Rmd", append = TRUE)
-#' cite_essential("test.Rmd", "UTF-8")
-#' setwd(old_wd)
-#' unlink(file.path(tempdir(), the_test))
+#'       file = file_name, append = TRUE)
+#' cite_essential(file_name, "UTF-8")
+# closeAllConnections()
+# file.remove(c(
+#   file_name,
+#   gsub("\\.Rmd", "\\.md", file_name),
+#   gsub("\\.Rmd", "\\.html", file_name)
+# ))
+# unlink(gsub("\\.Rmd", "_files", file_name), recursive = TRUE)
 cite_essential <- function(inputFile, encoding){
   Args <- list(
     inputFile = inputFile,
@@ -93,7 +108,6 @@ comprehensive_cite <- function(inputFile, encoding, citeall) {
 }
 
 cleancitations <- function(text){
-  browser()
   out <- paste0(c(text, " onzin"), collapse = "\n")
   out <- as.list(strsplit(out, "\\[")[[1]])
   out <- lapply(out, function(x){

@@ -34,7 +34,7 @@ test_that("export returned true", {
 })
 
 test_that("exported worcs_project exists", {
-  expect_true("export_test.zip" %in% list.files("../"))
+  expect_true("export_test.zip" %in% list.files())
 })
 }
 # setwd(old_wd)

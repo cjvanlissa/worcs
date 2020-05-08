@@ -21,7 +21,7 @@ export_project <- function(filename = NULL, open_data = TRUE)
   # get properties about the project and paths
   base_dir <- normalizePath(".")
   if(!file.exists(".worcs")){
-    message("No '.worcs' file found; not a WORCS project, or the working directory has been changed.")
+    col_message("No '.worcs' file found; not a WORCS project, or the working directory has been changed.", success = FALSE)
     return(invisible(FALSE))
   }
   project_folder <- gsub("^.+\\b(.+?)$", "\\1", base_dir)
@@ -33,7 +33,7 @@ export_project <- function(filename = NULL, open_data = TRUE)
   }
 
   if (!is.character(filename)) {
-    message("Filename must be of type character: ",as.character(filename))
+    col_message(paste0("Filename must be of type character: ",as.character(filename)), success = FALSE)
     return(invisible(FALSE))
   }
 

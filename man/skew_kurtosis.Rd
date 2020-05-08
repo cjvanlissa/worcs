@@ -9,7 +9,7 @@ skew_kurtosis(x, verbose = FALSE, se = FALSE, ...)
 \arguments{
 \item{x}{An object for which a method exists.}
 
-\item{verbose}{Whether or not to print messages to the console,
+\item{verbose}{Logical. Whether or not to print messages to the console,
 Default: FALSE}
 
 \item{se}{Whether or not to return the standard errors, Default: FALSE}

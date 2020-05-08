@@ -198,9 +198,9 @@ checkworcs <- function(iserror = FALSE){
         "No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory."
       , call. = FALSE)
     } else {
-      message(
+      col_message(
         "No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory."
-      )
+      , success = FALSE)
       file.create(".worcs")
     }
   }

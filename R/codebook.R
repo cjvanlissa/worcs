@@ -5,25 +5,28 @@
 #' paragraph with details on the data collection procedure.
 #' @param data A data.frame for which to create a codebook.
 #' @param render_file Logical. Whether or not to render the document.
+#' @param file_name Character. File name to write the codebook \code{rmarkdown}
+#' file to.
 #' @return \code{Logical}, indicating whether or not the operation was
 #' succesful. This function is mostly called for its side effect of rendering an
 #' \code{rmarkdown} codebook.
 #' @examples
 #' library(rmarkdown)
 #' library(knitr)
-#' the_test <- "codebook"
-#' old_wd <- getwd()
-#' dir.create(file.path(tempdir(), the_test))
-#' setwd(file.path(tempdir(), "citeall"))
-#' make_codebook(iris)
-#' setwd(old_wd)
-#' unlink(file.path(tempdir(), the_test))
+#' file_name <- tempfile("codebook", fileext = ".Rmd")
+#' make_codebook(iris, file_name = file_name)
+#' unlink(c(
+#'   file_name,
+#'   gsub("\\.Rmd", "\\.md", file_name),
+#'   gsub("\\.Rmd", "\\.html", file_name),
+#'   gsub("\\.Rmd", "_files", file_name)
+#' ), recursive = TRUE)
 #' @rdname codebook
 #' @export
 #' @importFrom rmarkdown draft render
 #' @importFrom stats median var
 #' @importFrom utils capture.output
-make_codebook <- function(data, render_file = TRUE){
+make_codebook <- function(data, render_file = TRUE, file_name = "codebook.Rmd"){
   function_success <- TRUE
   data_types <- sapply(data, function(x){paste0(class(x), collapse = ", ")})
   summaries <- descfun(data)
@@ -32,16 +35,16 @@ make_codebook <- function(data, render_file = TRUE){
     type = data_types,
     summaries
   )
-  if(file.exists("codebook.Rmd")){
-    col_message("Removing previous version of 'codebook.Rmd'.")
-    invisible(file.remove("codebook.Rmd"))
+  if(file.exists(file_name)){
+    col_message(paste0("Removing previous version of '", file_name, "'."))
+    invisible(file.remove(file_name))
   }
-  draft("codebook.Rmd",
+  draft(file_name,
                    template = "github_document",
                    package = "rmarkdown",
                    create_dir = FALSE,
                    edit = FALSE)
-  file_contents <- readLines("codebook.Rmd")
+  file_contents <- readLines(file_name)
   file_contents[grep("^title:", file_contents)[1]] <- paste0('title: "Codebook created on ', Sys.Date(), ' at ', Sys.time(), '"')
   file_contents[grep("^knitr::opts", file_contents)[1]] <- "knitr::opts_chunk$set(echo = FALSE, results = 'asis')"
   file_contents <- file_contents[1:(grep("^##", file_contents)[1]-1)]
@@ -83,7 +86,7 @@ make_codebook <- function(data, render_file = TRUE){
         "* __kurt__: Kurtosis (peakedness) of the variable",
         "* __kurt_2se__: Kurtosis of the variable divided by 2*SE of the kurtosis. If this is greater than abs(1), kurtosis is significant."
       ),
-      "codebook.Rmd"
+      file_name
     )
     TRUE
   }, error = function(e) {
@@ -91,7 +94,7 @@ make_codebook <- function(data, render_file = TRUE){
   })
   if(render_file){
     function_success <- function_success | tryCatch({
-      render("codebook.Rmd")
+      render(file_name)
       TRUE
     }, error = function(e) {
       return(FALSE)
@@ -179,7 +182,7 @@ V <- function(x){
 #' exceeds an absolute value of 1, the skew/kurtosis is significant. With very
 #' large sample sizes, significant skew/kurtosis is common.
 #' @param x An object for which a method exists.
-#' @param verbose Whether or not to print messages to the console,
+#' @param verbose Logical. Whether or not to print messages to the console,
 #' Default: FALSE
 #' @param se Whether or not to return the standard errors, Default: FALSE
 #' @param ... Additional arguments to pass to and from functions.
@@ -241,6 +244,11 @@ skew_kurtosis.default <- function(x, verbose = FALSE, se = FALSE, ...){
 }
 
 
-col_message <- function(txt, col = 94){
-  cat(paste0("\033[0;", col, "m",txt,"\033[0m","\n"))
+col_message <- function(txt, col = 30, success = TRUE){ #94
+  #cat(paste0("\033[0;", col, "m",txt,"\033[0m","\n"))
+  cat(paste0(
+    ifelse(success,
+           "\033[0;32mv  \033[0m",
+           "\033[0;31mX  \033[0m"),
+           "\033[0;", col, "m",txt,"\033[0m","\n"))
 }
