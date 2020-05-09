@@ -102,7 +102,7 @@ comprehensive_cite <- function(inputFile, encoding, citeall) {
     input = bn,
     encoding = encoding
   )
-  #do.call(render, Args)
+  do.call(render, Args)
   writeLines(doc_text, bn)
   invisible(NULL)
 }
