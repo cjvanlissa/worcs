@@ -23,3 +23,5 @@ matrix:
       r: oldrel
     - os: linux
       r: devel
+    - os: windows
+      r: release

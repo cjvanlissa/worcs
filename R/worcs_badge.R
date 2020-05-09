@@ -88,7 +88,7 @@ worcs_badge <- function(path = ".",
 #' dir.create(example_dir)
 #' write("a", file.path(example_dir, ".worcs"))
 #' check_worcs(path = example_dir)
-#' @rdname worcs_badge
+#' @rdname check_worcs
 #' @export
 #' @importFrom gert git_remote_list
 #' @importFrom utils data

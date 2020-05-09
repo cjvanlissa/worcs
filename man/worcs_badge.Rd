@@ -2,7 +2,6 @@
 % Please edit documentation in R/worcs_badge.R
 \name{worcs_badge}
 \alias{worcs_badge}
-\alias{check_worcs}
 \title{Add WORCS badge to README.md}
 \usage{
 worcs_badge(
@@ -10,12 +9,12 @@ worcs_badge(
   update_readme = "README.md",
   update_csv = "checklist.csv"
 )
-
-check_worcs(path = ".", verbose = TRUE)
 }
 \arguments{
-\item{path}{Character. Path to a WORCS project folder (a project with a
-\code{.worcs} file). Default: '.' (path to current directory).}
+\item{path}{Character. This can either be the path to a WORCS project folder
+(a project with a \code{.worcs} file), or the path to a \code{checklist.csv}
+file. The latter is useful if you want to evaluate a manually updated
+checklist file. Default: '.' (path to current directory).}
 
 \item{update_readme}{Character. Path to the \code{README.md} file to add the
 badge to. Default: 'README.md'. Set to \code{NULL} to avoid updating the
@@ -24,24 +23,14 @@ badge to. Default: 'README.md'. Set to \code{NULL} to avoid updating the
 \item{update_csv}{Character. Path to the \code{README.md} file to add the
 badge to. Default: 'checklist.csv'. Set to \code{NULL} to avoid updating the
 \code{checklist.csv} file.}
-
-\item{verbose}{Logical. Whether or not to show status messages while
-evaluating the checklist. Default: \code{TRUE}.}
 }
 \value{
 No return value. This function is called for its side effects.
-
-A \code{data.frame} with a description of the criteria, and a column
-with evaluations (\code{$pass}). For criteria that must be evaluated
-manually, \code{$pass} will be \code{FALSE}.
 }
 \description{
 Evaluates whether a project meets the criteria of the WORCS
 checklist (see \code{\link{worcs_checklist}}), and adds a badge to the
 project's \code{README.md}.
-
-Evaluates whether a project meets the criteria of the WORCS
-checklist (see \code{\link{worcs_checklist}}).
 }
 \examples{
 example_dir <- file.path(tempdir(), "badge")
@@ -49,8 +38,4 @@ dir.create(example_dir)
 write("a", file.path(example_dir, ".worcs"))
 worcs_badge(path = example_dir,
 update_readme = NULL)
-example_dir <- file.path(tempdir(), "badge")
-dir.create(example_dir)
-write("a", file.path(example_dir, ".worcs"))
-check_worcs(path = example_dir)
 }

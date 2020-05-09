@@ -30,8 +30,8 @@ worcs_project(
 For more information about \code{APA6}, see the 'papaja' package, at
 <https://github.com/crsh/papaja>.
 For more information about \code{github_document}, see
-\code{\link[rmarkdown]{github_document}}. For the remaining formats, see,
-e.g., \code{\link[rticles]{acm_article}}.}
+\code{\link[rmarkdown]{github_document}}. The remaining formats are
+documented in the 'rticles' package.}
 
 \item{preregistration}{Character, indicating what template to use for the
 preregistration. Default: 'COS'. Available choices include:
