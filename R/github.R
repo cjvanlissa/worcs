@@ -70,15 +70,16 @@ git_credentials <- function(name, email){
 git_update <- function(message = paste0("update ", Sys.time()),
                        files = ".",
                        repo = ".",
-                       author = NULL,
-                       committer = NULL,
-                       remote = NULL,
-                       refspec = NULL,
-                       password = askpass,
-                       ssh_key = NULL,
-                       mirror = FALSE,
-                       force = FALSE,
-                       verbose = interactive()){
+                       author,
+                       committer,
+                       remote,
+                       refspec,
+                       password,
+                       ssh_key,
+                       mirror,
+                       force,
+                       verbose){
+  browser()
   tryCatch({
     git_ls(repo)
     col_message("Identified local 'Git' repository.")
@@ -90,15 +91,19 @@ git_update <- function(message = paste0("update ", Sys.time()),
     return()
     })
 
-  Args <- formals()
   cl <- as.list(match.call()[-1])
-  if(length(cl) > 0){
-    Args[sapply(names(cl), function(i) which(i == names(Args)))] <- cl
+  for(this_arg in c("message", "files", "repo")){
+    if(is.null(cl[[this_arg]])){
+      cl[[this_arg]] <- formals()[[this_arg]]
+    }
   }
+  #if(length(cl) > 0){
+  #  Args[sapply(names(cl), function(i) which(i == names(Args)))] <- cl
+  #}
 
-  Args_add <- Args[c("files", "repo")]
-  Args_commit <- Args[c("message", "author", "committer",  "repo")]
-  Args_push <- Args[c("remote", "refspec", "password", "ssh_key", "mirror", "force", "verbose", "repo")]
+  Args_add <- cl[names(cl) %in% c("files", "repo")]
+  Args_commit <- cl[names(cl) %in% c("message", "author", "committer", "repo")]
+  Args_push <- cl[names(cl) %in% c("remote", "refspec", "password", "ssh_key", "mirror", "force", "verbose", "repo")]
   invisible(
     tryCatch({
       do.call(git_add, Args_add)
