@@ -4,8 +4,7 @@
 #' parses the citations in the document, converting citations
 #' marked with double at sign, e.g.: \code{@@@@reference2020}, into normal
 #' citations, e.g.: \code{@@reference2020}. Then, it renders the file.
-#' @param inputFile The file passed to \code{\link[rmarkdown]{render}}.
-#' @param encoding Ignored. The encoding is always assumed to be UTF-8.
+#' @param ... All arguments are passed to \code{\link[rmarkdown]{render}}.
 #' @export
 #' @return Returns \code{NULL} invisibly. This
 #' function is called for its side effect of rendering an
@@ -27,23 +26,10 @@
 #'                         create_dir = FALSE,
 #'                         edit = FALSE)
 #' write(c("", "Optional reference: @@reference2020"),
-#'       file = loc, append = TRUE)
-#' cite_all(loc, "UTF-8")
-#' setwd(oldwd)
-#'
-#' unlink(c(
-#'   loc,
-#'   gsub("\\.Rmd", "\\.md", loc),
-#'   gsub("\\.Rmd", "\\.html", loc),
-#'   gsub("\\.Rmd", "_files", loc)
-#' ), recursive = TRUE)
-cite_all <- function(inputFile, encoding){
-  Args <- list(
-    inputFile = normalizePath(inputFile),
-    encoding = encoding,
-    citeall = TRUE
-  )
-  do.call(comprehensive_cite, Args)
+#'       file = file_name, append = TRUE)
+#' cite_all(file_name)
+cite_all <- function(...){
+  comprehensive_cite(..., citeall = TRUE)
 }
 
 #' Essential citations Knit function for 'RStudio'
@@ -52,8 +38,7 @@ cite_all <- function(inputFile, encoding){
 #' parses the citations in the document, removing citations
 #' marked with double at sign, e.g.: \code{@@@@reference2020}. Then, it renders
 #' the file.
-#' @param inputFile The file passed to \code{\link[rmarkdown]{render}}.
-#' @param encoding Ignored. The encoding is always assumed to be UTF-8.
+#' @param ... All arguments are passed to \code{\link[rmarkdown]{render}}.
 #' @export
 #' @return Returns \code{NULL} invisibly. This
 #' function is called for its side effect of rendering an
@@ -63,51 +48,34 @@ cite_all <- function(inputFile, encoding){
 #' # Only specify it as custom knit function in an Rmarkdown file, like so:
 #' # knit: worcs::cite_all
 #'
-#' oldwd <- getwd()
-#' dir_name <- tempdir()
-#' setwd(dir_name)
-#' file_name <- file.path(dir_name, "citeessential.Rmd")
-#'
-#' loc <- rmarkdown::draft(file_name,
-#'                         template = "github_document",
-#'                         package = "rmarkdown",
-#'                         create_dir = FALSE,
-#'                         edit = FALSE)
+#' file_name <- tempfile("citeessential", fileext = ".Rmd")
+#' rmarkdown::draft(file_name,
+#'                  template = "github_document",
+#'                  package = "rmarkdown",
+#'                  create_dir = FALSE,
+#'                  edit = FALSE)
 #' write(c("", "Optional reference: @@reference2020"),
-#'       file = loc, append = TRUE)
-#' cite_essential(loc, "UTF-8")
-#' setwd(oldwd)
-#'
-#' unlink(c(
-#'   loc,
-#'   gsub("\\.Rmd", "\\.md", loc),
-#'   gsub("\\.Rmd", "\\.html", loc),
-#'   gsub("\\.Rmd", "_files", loc)
-#' ), recursive = TRUE)
-cite_essential <- function(inputFile, encoding){
-  Args <- list(
-    inputFile = normalizePath(inputFile),
-    encoding = encoding,
-    citeall = FALSE
-  )
-  do.call(comprehensive_cite, Args)
+#'       file = file_name, append = TRUE)
+#' cite_essential(file_name)
+cite_essential <- function(...){
+  comprehensive_cite(..., citeall = FALSE)
 }
 
 #' @importFrom rmarkdown render
-comprehensive_cite <- function(inputFile, encoding, citeall) {
-  doc_text <- readLines(inputFile)
-  #bn <- basename(inputFile)
+comprehensive_cite <- function(input, ..., citeall = TRUE) {
+  dots <- list(...)
+
+  doc_text <- readLines(input)
+  temp <- paste0(tempdir(), "/", basename(input))
   if(citeall){
-    writeLines(gsub("@@", "@", doc_text), inputFile)
+    writeLines(gsub("@@", "@", doc_text), temp)
   } else {
-    writeLines(cleancitations(doc_text), inputFile)
+    writeLines(cleancitations(doc_text), temp)
   }
-  Args <- list(
-    input = inputFile,
-    encoding = encoding
-  )
-  do.call(render, Args)
-  writeLines(doc_text, inputFile)
+  dir <- dirname(input)
+  dots$input <- temp
+  dots$output_dir <- dir
+  do.call(render, dots)
   invisible(NULL)
 }
 

@@ -4,12 +4,10 @@
 \alias{cite_all}
 \title{Comprehensive citation Knit function for 'RStudio'}
 \usage{
-cite_all(inputFile, encoding)
+cite_all(...)
 }
 \arguments{
-\item{inputFile}{The file passed to \code{\link[rmarkdown]{render}}.}
-
-\item{encoding}{Ignored. The encoding is always assumed to be UTF-8.}
+\item{...}{All arguments are passed to \code{\link[rmarkdown]{render}}.}
 }
 \value{
 Returns \code{NULL} invisibly. This
@@ -39,14 +37,6 @@ loc <- rmarkdown::draft(file_name,
                         create_dir = FALSE,
                         edit = FALSE)
 write(c("", "Optional reference: @reference2020"),
-      file = loc, append = TRUE)
-cite_all(loc, "UTF-8")
-setwd(oldwd)
-
-unlink(c(
-  loc,
-  gsub("\\\\.Rmd", "\\\\.md", loc),
-  gsub("\\\\.Rmd", "\\\\.html", loc),
-  gsub("\\\\.Rmd", "_files", loc)
-), recursive = TRUE)
+      file = file_name, append = TRUE)
+cite_all(file_name)
 }
