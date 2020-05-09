@@ -39,7 +39,7 @@
 #' ), recursive = TRUE)
 cite_all <- function(inputFile, encoding){
   Args <- list(
-    inputFile = inputFile,
+    inputFile = normalizePath(inputFile),
     encoding = encoding,
     citeall = TRUE
   )
@@ -86,7 +86,7 @@ cite_all <- function(inputFile, encoding){
 #' ), recursive = TRUE)
 cite_essential <- function(inputFile, encoding){
   Args <- list(
-    inputFile = inputFile,
+    inputFile = normalizePath(inputFile),
     encoding = encoding,
     citeall = FALSE
   )
@@ -96,18 +96,18 @@ cite_essential <- function(inputFile, encoding){
 #' @importFrom rmarkdown render
 comprehensive_cite <- function(inputFile, encoding, citeall) {
   doc_text <- readLines(inputFile)
-  bn <- basename(inputFile)
+  #bn <- basename(inputFile)
   if(citeall){
-    writeLines(gsub("@@", "@", doc_text), bn)
+    writeLines(gsub("@@", "@", doc_text), inputFile)
   } else {
-    writeLines(cleancitations(doc_text), bn)
+    writeLines(cleancitations(doc_text), inputFile)
   }
   Args <- list(
-    input = bn,
+    input = inputFile,
     encoding = encoding
   )
   do.call(render, Args)
-  writeLines(doc_text, bn)
+  writeLines(doc_text, inputFile)
   invisible(NULL)
 }
 
