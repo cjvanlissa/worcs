@@ -79,7 +79,8 @@ git_update <- function(message = paste0("update ", Sys.time()),
                        mirror = FALSE,
                        force = FALSE,
                        verbose = interactive()){
-  tracked <- tryCatch({
+  browser()
+  tryCatch({
     git_ls(repo)
     col_message("Identified local 'Git' repository.")
   }, error = function(e){
