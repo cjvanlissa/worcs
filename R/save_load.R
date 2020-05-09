@@ -71,7 +71,7 @@ save_data <- function(data, open, codebook = TRUE){
   col_message("Storing original data in 'data.csv' and updating the checksum in '.worcs'.")
   write.csv(data, "data.csv", row.names = FALSE)
   store_checksum("data.csv")
-  gitig <- readLines(".gitignore")
+  gitig <- readLines(".gitignore", warn = FALSE)
   if(open){
     if(!any(grepl("!data.csv", gitig))){
       col_message('Updating ".gitignore".')

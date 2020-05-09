@@ -1,3 +1,5 @@
+if(getRversion() >= "2.15.1") utils::globalVariables(c("worcs_checklist"))
+
 #' @title Add WORCS badge to README.md
 #' @description Evaluates whether a project meets the criteria of the WORCS
 #' checklist (see \code{\link{worcs_checklist}}), and adds a badge to the
