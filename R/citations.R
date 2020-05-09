@@ -14,12 +14,7 @@
 #' # Only specify it as custom knit function in an 'Rmarkdown' file, like so:
 #' # knit: worcs::cite_all
 #'
-#' oldwd <- getwd()
-#' dir_name <- tempdir()
-#' setwd(dir_name)
-#' file_name <- file.path(dir_name, "citeall.Rmd")
-#'
-#'
+#' file_name <- file.path(tempdir(), "citeall.Rmd")
 #' loc <- rmarkdown::draft(file_name,
 #'                         template = "github_document",
 #'                         package = "rmarkdown",

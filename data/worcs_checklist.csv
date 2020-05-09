@@ -1,0 +1,16 @@
+"category";"name";"description";"importance";"check"
+"documentation";"readme";"Does the project have a README.md file?";"essential";TRUE
+"documentation";"license";"Does the project have a LICENSE file?";"essential";TRUE
+"citation";"citation";"Does the project cite any references in 'manuscript.Rmd' or 'preregistration.Rmd'?";"optional";TRUE
+"citation";"comprehensive";"Does the project cite all literature, data sources, materials, and methods (including R-packages) used?";"optional";FALSE
+"data";"data";"Does the project have a public* 'data.csv' or 'synthetic_data.csv' file? (*public: version controlled in 'Git')";"essential";TRUE
+"data";"data_checksums";"Are the data checksums up to date?";"essential";TRUE
+"code";"code";"Does the project contain any '.R' code files?";"essential";TRUE
+"code";"code_reproducible";"Can the entire project be reproduced by running a single file (e.g.,'manuscript.Rmd', 'run_me.R', or a Makefile)?";"optional";FALSE
+"materials";"materials";"Any new materials are shared openly; existing materials are referenced.";"optional";FALSE
+"design";"design";"Details of the study design are documented.";"essential";FALSE
+"analysis";"analysis";"Details of the analysis are documented.";"essential";FALSE
+"preregistration";"preregistration";"Does the project have a preregistration?";"optional";TRUE
+"preregistration";"prereg_analysis";"Does the preregistration contain detailed analysis plans or preliminary code?";"optional";FALSE
+"git";"git_repo";"Does the project have a 'Git' repository?";"essential";TRUE
+"git";"has_remote";"Is the 'Git' repository connected to a remote repository (e.g., 'GitHub')?";"essential";TRUE

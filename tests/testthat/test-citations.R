@@ -15,13 +15,13 @@ test_that("documents with spaces in names can be rendered", {
 
   write(c("", "Optional reference: @@reference2020"),
         file = file_name, append = TRUE)
-  cite_all(file_name, "UTF-8")
+  cite_all(file_name)
 
   contents <- readLines(gsub("Rmd$", "md", file_name))
 
   expect_true(any(contents == "Optional reference: @reference2020"))
 
-  cite_essential(file_name, "UTF-8")
+  cite_essential(file_name)
 
   contents <- readLines(gsub("Rmd$", "md", file_name))
 
