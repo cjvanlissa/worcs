@@ -8,15 +8,15 @@ git_update(
   message = paste0("update ", Sys.time()),
   files = ".",
   repo = ".",
-  author = NULL,
-  committer = NULL,
-  remote = NULL,
-  refspec = NULL,
-  password = askpass,
-  ssh_key = NULL,
-  mirror = FALSE,
-  force = FALSE,
-  verbose = interactive()
+  author,
+  committer,
+  remote,
+  refspec,
+  password,
+  ssh_key,
+  mirror,
+  force,
+  verbose
 )
 }
 \arguments{
