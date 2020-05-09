@@ -4,12 +4,10 @@
 \alias{cite_essential}
 \title{Essential citations Knit function for 'RStudio'}
 \usage{
-cite_essential(inputFile, encoding)
+cite_essential(...)
 }
 \arguments{
-\item{inputFile}{The file passed to \code{\link[rmarkdown]{render}}.}
-
-\item{encoding}{Ignored. The encoding is always assumed to be UTF-8.}
+\item{...}{All arguments are passed to \code{\link[rmarkdown]{render}}.}
 }
 \value{
 Returns \code{NULL} invisibly. This
@@ -35,5 +33,5 @@ rmarkdown::draft(file_name,
                  edit = FALSE)
 write(c("", "Optional reference: @reference2020"),
       file = file_name, append = TRUE)
-cite_essential(file_name, "UTF-8")
+cite_essential(file_name)
 }
