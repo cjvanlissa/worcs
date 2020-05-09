@@ -9,13 +9,13 @@
 #' @return Returns \code{NULL} invisibly. This
 #' function is called for its side effects.
 #' @examples
-#' the_test <- "opendata"
+#' test_dir <- file.path(tempdir(), "opendata")
 #' old_wd <- getwd()
-#' dir.create(file.path(tempdir(), the_test))
-#' setwd(file.path(tempdir(), the_test))
+#' dir.create(test_dir)
+#' setwd(test_dir)
 #' open_data(iris[1:5, ], codebook = FALSE)
 #' setwd(old_wd)
-#' unlink(file.path(tempdir(), the_test))
+#' unlink(test_dir, recursive = TRUE)
 #' @rdname open_data
 #' @seealso closed_data
 #' @export
@@ -37,13 +37,13 @@ open_data <- function(data, codebook = TRUE){
 #' @return Returns \code{NULL} invisibly. This
 #' function is called for its side effects.
 #' @examples
-#' the_test <- "closeddata"
+#' test_dir <- file.path(tempdir(), "closeddata")
 #' old_wd <- getwd()
-#' dir.create(file.path(tempdir(), the_test))
-#' setwd(file.path(tempdir(), the_test))
+#' dir.create(test_dir)
+#' setwd(test_dir)
 #' closed_data(iris[1:10, ], codebook = FALSE)
 #' setwd(old_wd)
-#' unlink(file.path(tempdir(), the_test))
+#' unlink(test_dir, recursive = TRUE)
 #' @rdname closed_data
 #' @seealso open_data
 #' @export
@@ -54,7 +54,7 @@ closed_data <- function(data, codebook = TRUE){
   do.call(save_data, Args)
 }
 
-#' @importFrom tools md5sum
+#' @importFrom digest digest
 #' @importFrom utils write.csv
 save_data <- function(data, open, codebook = TRUE){
   if(!inherits(data, c("data.frame", "matrix"))){
@@ -104,18 +104,18 @@ save_data <- function(data, open, codebook = TRUE){
 #' original data are unavailable. The \code{data.frame} has an attribute, "type",
 #' indicating whether the data are synthetic or original.
 #' @examples
-#' the_test <- "loaddata"
+#' test_dir <- file.path(tempdir(), "loaddata")
 #' old_wd <- getwd()
-#' dir.create(file.path(tempdir(), the_test))
-#' setwd(file.path(tempdir(), the_test))
+#' dir.create(test_dir)
+#' setwd(test_dir)
 #' open_data(iris[1:5, ], codebook = FALSE)
 #' df <- load_data()
 #' df
 #' setwd(old_wd)
-#' unlink(file.path(tempdir(), the_test))
+#' unlink(test_dir, recursive = TRUE)
 #' @rdname load_data
 #' @export
-#' @importFrom tools md5sum
+#' @importFrom digest digest
 #' @importFrom utils read.csv
 #' @importFrom yaml read_yaml
 load_data <- function(){
@@ -140,10 +140,10 @@ load_data <- function(){
   out
 }
 
-#' @importFrom tools md5sum
+#' @importFrom digest digest
 store_checksum <- function(filename) {
   # Compute checksum on loaded data to ensure conformity
-  cs <- md5sum(files = filename)
+  cs <- digest(object = filename, file = TRUE)
   checkworcs()
   checksums <- list(cs)
   names(checksums) <- filename
@@ -152,6 +152,12 @@ store_checksum <- function(filename) {
                checksums = checksums,
                modify = TRUE)
           )
+}
+
+checksum_data_as_csv <- function(object){
+  filename <- tempfile(fileext = ".csv")
+  write.csv(object, filename, row.names = FALSE)
+  return(digest(object = filename, file = TRUE))
 }
 
 load_checksum <- function(filename){
@@ -168,9 +174,9 @@ load_checksum <- function(filename){
   }
 }
 
-#' @importFrom tools md5sum
+#' @importFrom digest digest
 check_sum <- function(filename){
-  cs <- md5sum(files = filename)
+  cs <- digest(object = filename, file = TRUE)
   old_cs <- load_checksum(filename = filename)
   if(!cs == old_cs){
     stop("Checksum for file '", filename, "' did not match the checksum on record (in '.worcs'). This means that the file has changed since the checksum was stored.")
@@ -199,9 +205,11 @@ checkworcs <- function(iserror = FALSE){
       , call. = FALSE)
     } else {
       col_message(
-        "No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory."
+        "No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory. Writing .worcs file now."
       , success = FALSE)
       file.create(".worcs")
+      return(FALSE)
     }
   }
+  return(TRUE)
 }

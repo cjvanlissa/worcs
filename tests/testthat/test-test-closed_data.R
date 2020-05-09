@@ -1,4 +1,5 @@
 library(yaml)
+library(digest)
 # the_test <- "loaddata"
 # old_wd <- getwd()
 # dir.create(file.path(tempdir(), the_test))
@@ -8,7 +9,7 @@ open_data(iris[1:5, ], codebook = FALSE)
 checksums <- read_yaml(".worcs")
 
 test_that(".worcs contains correct checksum", {
-  expect_equivalent(checksums$checksums$data.csv, md5sum("data.csv"))
+  expect_equivalent(checksums$checksums$data.csv, digest("data.csv", file = TRUE))
 })
 
 test_that("loading open data works", {
@@ -40,7 +41,7 @@ test_that("synthetic data similar", {
 
 test_that(".worcs contains checksum for synthetic_data.csv", {
   expect_true(!is.null(checksums$checksums[["synthetic_data.csv"]]))
-  expect_equivalent(checksums$checksums$synthetic_data.csv, md5sum("synthetic_data.csv"))
+  expect_equivalent(checksums$checksums$synthetic_data.csv, digest("synthetic_data.csv", file = TRUE))
 })
 
 test_that("loading open data works", {

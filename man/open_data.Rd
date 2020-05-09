@@ -23,13 +23,13 @@ checksum in 'data_checksum.txt', appends the .gitignore file to exclude
 'data.csv', and writes a stem for 'data_cleaning.R'.
 }
 \examples{
-the_test <- "opendata"
+test_dir <- file.path(tempdir(), "opendata")
 old_wd <- getwd()
-dir.create(file.path(tempdir(), the_test))
-setwd(file.path(tempdir(), the_test))
+dir.create(test_dir)
+setwd(test_dir)
 open_data(iris[1:5, ], codebook = FALSE)
 setwd(old_wd)
-unlink(file.path(tempdir(), the_test))
+unlink(test_dir, recursive = TRUE)
 }
 \seealso{
 closed_data

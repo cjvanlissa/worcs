@@ -25,12 +25,16 @@ the file.
 # Only specify it as custom knit function in an Rmarkdown file, like so:
 # knit: worcs::cite_all
 
-file_name <- tempfile("citeessential", fileext = ".Rmd")
-rmarkdown::draft(file_name,
-                 template = "github_document",
-                 package = "rmarkdown",
-                 create_dir = FALSE,
-                 edit = FALSE)
+oldwd <- getwd()
+dir_name <- tempdir()
+setwd(dir_name)
+file_name <- file.path(dir_name, "citeessential.Rmd")
+
+loc <- rmarkdown::draft(file_name,
+                        template = "github_document",
+                        package = "rmarkdown",
+                        create_dir = FALSE,
+                        edit = FALSE)
 write(c("", "Optional reference: @reference2020"),
       file = file_name, append = TRUE)
 cite_essential(file_name)

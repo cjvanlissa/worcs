@@ -14,19 +14,20 @@
 #' # Only specify it as custom knit function in an 'Rmarkdown' file, like so:
 #' # knit: worcs::cite_all
 #'
+#' oldwd <- getwd()
 #' dir_name <- tempdir()
+#' setwd(dir_name)
 #' file_name <- file.path(dir_name, "citeall.Rmd")
-# file_name <- tempfile("citeall", fileext = ".Rmd")
 #'
-#' rmarkdown::draft(file_name,
-#'                  template = "github_document",
-#'                  package = "rmarkdown",
-#'                  create_dir = FALSE,
-#'                  edit = FALSE)
+#'
+#' loc <- rmarkdown::draft(file_name,
+#'                         template = "github_document",
+#'                         package = "rmarkdown",
+#'                         create_dir = FALSE,
+#'                         edit = FALSE)
 #' write(c("", "Optional reference: @@reference2020"),
 #'       file = file_name, append = TRUE)
 #' cite_all(file_name)
-
 cite_all <- function(...){
   comprehensive_cite(..., citeall = TRUE)
 }
@@ -56,7 +57,6 @@ cite_all <- function(...){
 #' write(c("", "Optional reference: @@reference2020"),
 #'       file = file_name, append = TRUE)
 #' cite_essential(file_name)
-
 cite_essential <- function(...){
   comprehensive_cite(..., citeall = FALSE)
 }
