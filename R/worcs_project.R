@@ -99,7 +99,8 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   tryCatch({
     copy_resources(which_files = c(
       "README.md",
-      "prepare_data.R"
+      "prepare_data.R",
+      "worcs_badge.png"
     ), path = path)
     col_message("Copying standard files.")
   }, error = function(e){
@@ -242,7 +243,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     tab <- describe_file("manuscript/references.bib", "BibTex references for manuscript", "Human editable", tab, path)
     tab <- describe_file("renv.lock", "Reproducible R environment", "Read only", tab, path)
 
-    tab <- append(apply(tab, 1, paste, collapse = " | "), "--- | --- | ---", after = 1)
+    tab <- nice_tab(tab)
     cont <- append(cont, tab, after = grep("You can add rows to this table", cont))
     writeLines(cont, file.path(path, "README.md"))
   }
@@ -394,4 +395,15 @@ copy_resources <- function(which_files, path){
   source <- file.path(resources, files)
   target <- file.path(path, files)
   file.copy(source, target)
+}
+
+nice_tab <- function(tab){
+  tab <- apply(tab, 2, function(i){
+    sprintf(paste0("%-", max(nchar(i)), "s"), i)
+  })
+  tab <- rbind(tab, sapply(tab[1,], function(i){
+    paste0(rep("-", nchar(i)), collapse = "")
+  }))
+  tab <- tab[c(1, nrow(tab), 2:(nrow(tab)-1)), ]
+  apply(tab, 1, paste, collapse = " | ")
 }

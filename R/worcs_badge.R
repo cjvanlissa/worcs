@@ -54,7 +54,7 @@ worcs_badge <- function(path = ".",
       } else {
         loc <- which(startsWith(text, "#"))[1]+1
       }
-      append(x = text,
+      text <- append(x = text,
              values = switch(level,
                              perfect = c("", "[![WORCS](https://img.shields.io/badge/WORCS-perfect-blue)](https://osf.io/zcvbs/)", ""),
                              limited = c("", "[![WORCS](https://img.shields.io/badge/WORCS-limited-orange)](https://osf.io/zcvbs/)", ""),
