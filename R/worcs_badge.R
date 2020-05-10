@@ -70,6 +70,7 @@ worcs_badge <- function(path = ".",
       update_csv <- file.path(np, update_csv)
     }
     write.csv(checks, update_csv, row.names = FALSE)
+    write_gitig(file.path(dirname(update_csv), ".gitignore"), paste0("!", basename(update_csv)))
   }
 }
 
