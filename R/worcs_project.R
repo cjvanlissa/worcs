@@ -1,3 +1,10 @@
+recommend_data <- c('library("worcs")',
+                    "# We recommend that you prepare your raw data for analysis in 'prepare_data.R',",
+                    "# and end that file with either open_data(yourdata), or closed_data(yourdata).",
+                    "# Then, uncomment the line below to load the original or synthetic data",
+                    "# (whichever is available), to allow anyone to reproduce your code:",
+                    "# load_data()")
+
 #' @title Create new WORCS project
 #' @description Creates a new 'worcs' project. This function is invoked by
 #' the 'RStudio' project template manager, but can also be called directly to
@@ -153,6 +160,8 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     }, error = function(e){
       col_message("Creating manuscript files.", success = FALSE)
     })
+  } else {
+    writeLines(recommend_data, "run_me.R")
   }
   # End manuscript
 
@@ -290,7 +299,7 @@ create_man_papaja <- function(manuscript_file, remote_repo){
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
     # Add call to library("worcs")
-    manuscript_text <- append(manuscript_text, 'library("worcs")', after = grep('^library\\("papaja"\\)$', manuscript_text))
+    manuscript_text <- append(manuscript_text, recommend_data, after = grep('^library\\("papaja"\\)$', manuscript_text))
 
     # Add introductory sentence
     add_lines <- c(
@@ -326,7 +335,7 @@ create_man_github <- function(manuscript_file, remote_repo){
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
     # Add call to library("worcs")
-    manuscript_text <- append(manuscript_text, 'library("worcs")', after = grep('^```', manuscript_text)[1])
+    manuscript_text <- append(manuscript_text, recommend_data, after = grep('^```', manuscript_text)[1])
     # Add introductory sentence
     add_lines <- c(
       "",
@@ -363,7 +372,7 @@ create_man_rticles <- function(manuscript_file, template, remote_repo){
     # Add call to library("worcs")
     add_lines <- c(
       '```{r, echo = FALSE, eval = TRUE, message = FALSE}',
-      'library("worcs")',
+      recommend_data,
       '```',
       "",
       paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),

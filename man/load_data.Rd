@@ -2,29 +2,56 @@
 % Please edit documentation in R/save_load.R
 \name{load_data}
 \alias{load_data}
-\title{Load data file}
+\title{Load WORCS project data}
 \usage{
-load_data()
+load_data(worcs_directory = ".", to_envir = TRUE, envir = parent.frame(1))
+}
+\arguments{
+\item{worcs_directory}{Character, indicating the WORCS project directory from
+which to load data. The default value \code{"."} points to the current
+directory.}
+
+\item{to_envir}{Logical, indicating whether to load objects directly into
+the environment, or return a \code{\link{list}} containing the objects. The
+environment is designated by argument \code{envir}. Loading
+objects directly into the global environment is user-friendly, but has the
+risk of overwriting an existing object with the same name, as explained in
+\code{\link{load}}. The function \code{load_data} gives a warning when this
+happens.}
+
+\item{envir}{The environment where the data should be loaded. The default
+value \code{parent.frame(1)} refers to the global environment in an
+interactive session.}
 }
 \value{
-A \code{data.frame} of class \code{"worcs_data"}, containing the
-original data, if available, or a synthetic version of the data, if the
-original data are unavailable. The \code{data.frame} has an attribute, "type",
-indicating whether the data are synthetic or original.
+Returns a list invisibly. If \code{to_envir = TRUE}, this list
+contains the loaded data files. If \code{to_envir = FALSE}, the list is
+empty, and the loaded data files are attached directly to the global
+environment.
 }
 \description{
-If the original data are available, this function loads the
-original data. If only a synthetic dataset is available, this function loads
-the synthetic data.
+Scans the WORCS project file for data that have been saved using
+\code{\link{open_data}} or \code{\link{closed_data}}, and loads these data
+into the global (working) environment. The function will load the original
+data if available on the current system. If only a synthetic dataset is
+available, this function loads the synthetic data.
+The name of the object containing the data is derived from the file name by
+removing the file extension, and, when applicable, the prefix
+\code{"synthetic_"}. Thus, both \code{"data.csv"} and
+\code{"synthetic_data.csv"} will be loaded into an object called \code{data}.
 }
 \examples{
 test_dir <- file.path(tempdir(), "loaddata")
 old_wd <- getwd()
 dir.create(test_dir)
 setwd(test_dir)
-open_data(iris[1:5, ], codebook = FALSE)
-df <- load_data()
-df
+suppressWarnings(closed_data(iris[1:5, ], codebook = NULL))
+load_data()
+data
+rm("data")
+file.remove("data.csv")
+load_data()
+data
 setwd(old_wd)
 unlink(test_dir, recursive = TRUE)
 }

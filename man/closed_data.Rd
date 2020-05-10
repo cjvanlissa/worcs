@@ -2,35 +2,40 @@
 % Please edit documentation in R/save_load.R
 \name{closed_data}
 \alias{closed_data}
-\title{Save closed data file}
+\title{Use closed data in WORCS project}
 \usage{
-closed_data(data, codebook = TRUE)
+closed_data(data, filename = "data.csv", codebook = "codebook.Rmd")
 }
 \arguments{
 \item{data}{A data.frame to save.}
 
-\item{codebook}{Logical, indicating whether to render a codebook or not. If
-set to \code{TRUE}, the default, a file called 'codebook.Rmd' is created and
-rendered to 'codebook.md' for 'GitHub'.}
+\item{filename}{Character, naming the file data should be written to.}
+
+\item{codebook}{Character, naming the file the codebook should be written to.
+An 'rmarkdown' codebook will be created and rendered to
+\code{\link[rmarkdown]{github_document}} ('markdown' for 'GitHub').
+Defaults to 'codebook.Rmd'. Set to \code{NULL} to avoid creating a codebook.}
 }
 \value{
 Returns \code{NULL} invisibly. This
 function is called for its side effects.
 }
 \description{
-This function saves a data.frame as a .csv file, stores a
-checksum in 'data_checksum.txt', appends the .gitignore file to ignore
-all '.csv' files, and writes a stem for 'data_cleaning.R'.
+This function saves a data.frame as a \code{.csv} file (using
+\code{\link[utils]{write.csv}}), stores a checksum in '.worcs',
+appends the .gitignore file to exclude \code{filename}, and saves a synthetic
+copy of \code{data} for public use. To generate these synthetic data, the
+function \code{\link{synthetic}} is used.
 }
 \examples{
-test_dir <- file.path(tempdir(), "closeddata")
+test_dir <- file.path(tempdir(), "data")
 old_wd <- getwd()
 dir.create(test_dir)
 setwd(test_dir)
-closed_data(iris[1:10, ], codebook = FALSE)
+closed_data(iris[1:10, ], codebook = NULL)
 setwd(old_wd)
 unlink(test_dir, recursive = TRUE)
 }
 \seealso{
-open_data
+open_data closed_data save_data
 }

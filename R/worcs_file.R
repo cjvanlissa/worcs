@@ -14,6 +14,9 @@ write_worcsfile <- function(filename, ..., modify = FALSE){
 }
 
 mod_nested_list <- function(old, new){
+  if(is.null(old)){
+    return(new)
+  }
   for(i in 1:length(new)){
     if(depth(new[i]) == 1){
       if(names(new)[i] %in% names(old)){
@@ -29,7 +32,7 @@ mod_nested_list <- function(old, new){
 }
 
 depth <- function(this,thisdepth=0){
-  if(!is.list(this)){
+  if((!is.list(this))|length(this) == 0){
     return(thisdepth)
   }else{
     return(max(unlist(lapply(this,depth,thisdepth=thisdepth+1))))

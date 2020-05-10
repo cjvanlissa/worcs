@@ -6,21 +6,21 @@
 \usage{
 make_codebook(
   data,
-  file_name = "codebook.Rmd",
+  filename = "codebook.Rmd",
   render_file = TRUE,
-  csv_file = gsub("Rmd$", "csv", file_name)
+  csv_file = gsub("Rmd$", "csv", filename)
 )
 }
 \arguments{
 \item{data}{A data.frame for which to create a codebook.}
 
-\item{file_name}{Character. File name to write the codebook \code{rmarkdown}
+\item{filename}{Character. File name to write the codebook \code{rmarkdown}
 file to.}
 
 \item{render_file}{Logical. Whether or not to render the document.}
 
 \item{csv_file}{Character. File name to write the codebook \code{rmarkdown}
-file to. By default, uses the filename stem of the \code{file_name} argument.
+file to. By default, uses the filename stem of the \code{filename} argument.
 Set to \code{NULL} to write the codebook only to the 'Rmarkdown' file, and
 not to \code{.csv}.}
 }
@@ -50,13 +50,13 @@ transfer these changes to the 'markdown' file for 'GitHub'.
 \examples{
 library(rmarkdown)
 library(knitr)
-file_name <- tempfile("codebook", fileext = ".Rmd")
-make_codebook(iris, file_name = file_name, csv_file = NULL)
+filename <- tempfile("codebook", fileext = ".Rmd")
+make_codebook(iris, filename = filename, csv_file = NULL)
 unlink(c(
   ".worcs",
-  file_name,
-  gsub("\\\\.Rmd", "\\\\.md", file_name),
-  gsub("\\\\.Rmd", "\\\\.html", file_name),
-  gsub("\\\\.Rmd", "_files", file_name)
+  filename,
+  gsub("\\\\.Rmd", "\\\\.md", filename),
+  gsub("\\\\.Rmd", "\\\\.html", filename),
+  gsub("\\\\.Rmd", "_files", filename)
 ), recursive = TRUE)
 }

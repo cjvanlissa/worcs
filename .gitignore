@@ -2,8 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-!data.csv
-!synthetic_data.csv
 inst/doc
 *.fff
 *.log

@@ -5,7 +5,7 @@ library(digest)
 # dir.create(file.path(tempdir(), the_test))
 # setwd(file.path(tempdir(), the_test))
 worcs:::write_worcsfile(".worcs")
-open_data(iris[1:5, ], codebook = FALSE)
+open_data(iris[1:5, ], codebook = NULL)
 checksums <- read_yaml(".worcs")
 
 test_that(".worcs contains correct checksum", {
@@ -13,10 +13,12 @@ test_that(".worcs contains correct checksum", {
 })
 
 test_that("loading open data works", {
-  expect_error({df <- load_data()}, NA)
+  expect_error({load_data()}, NA)
+  load_data()
+  expect_warning({load_data()})
 })
 
-df <- load_data()
+df <- load_data(to_envir = FALSE)$data
 
 test_that("loaded data same as original", {
   expect_equivalent(iris[1:5, ], df)
@@ -26,11 +28,11 @@ df <- rbind(df, df[40,])
 write.csv(df, "data.csv", row.names = FALSE)
 
 test_that("loading open data fails when data changed", {
-  expect_error({df <- load_data()})
+  expect_error({load_data()})
 })
 
 set.seed(555)
-closed_data(iris, codebook = FALSE)
+closed_data(iris, codebook = NULL)
 checksums <- read_yaml(".worcs")
 tmp <- read.csv("synthetic_data.csv", stringsAsFactors = TRUE)
 
@@ -45,12 +47,12 @@ test_that(".worcs contains checksum for synthetic_data.csv", {
 })
 
 test_that("loading open data works", {
-  expect_error({df <- load_data()}, NA)
+  expect_error({load_data()}, NA)
 })
 
 file.remove("data.csv")
 
-df <- load_data()
+df <- load_data(to_envir = FALSE)$data
 
 test_that("loaded synthetic data same as original", {
   expect_equivalent(tmp, df)

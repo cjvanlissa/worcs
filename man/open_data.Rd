@@ -2,35 +2,38 @@
 % Please edit documentation in R/save_load.R
 \name{open_data}
 \alias{open_data}
-\title{Save open data file}
+\title{Use open data in WORCS project}
 \usage{
-open_data(data, codebook = TRUE)
+open_data(data, filename = "data.csv", codebook = "codebook.Rmd")
 }
 \arguments{
 \item{data}{A data.frame to save.}
 
-\item{codebook}{Logical, indicating whether to render a codebook or not. If
-set to \code{TRUE}, the default, a file called 'codebook.Rmd' is created and
-rendered to 'codebook.md' for 'GitHub'.}
+\item{filename}{Character, naming the file data should be written to.}
+
+\item{codebook}{Character, naming the file the codebook should be written to.
+An 'rmarkdown' codebook will be created and rendered to
+\code{\link[rmarkdown]{github_document}} ('markdown' for 'GitHub').
+Defaults to 'codebook.Rmd'. Set to \code{NULL} to avoid creating a codebook.}
 }
 \value{
 Returns \code{NULL} invisibly. This
 function is called for its side effects.
 }
 \description{
-This function saves a data.frame as a .csv file, stores a
-checksum in 'data_checksum.txt', appends the .gitignore file to exclude
-'data.csv', and writes a stem for 'data_cleaning.R'.
+This function saves a data.frame as a \code{.csv} file (using
+\code{\link[utils]{write.csv}}), stores a checksum in '.worcs',
+and amends the .gitignore file to exclude \code{filename}.
 }
 \examples{
-test_dir <- file.path(tempdir(), "opendata")
+test_dir <- file.path(tempdir(), "data")
 old_wd <- getwd()
 dir.create(test_dir)
 setwd(test_dir)
-open_data(iris[1:5, ], codebook = FALSE)
+open_data(iris[1:5, ], codebook = "bla.Rmd")
 setwd(old_wd)
 unlink(test_dir, recursive = TRUE)
 }
 \seealso{
-closed_data
+open_data closed_data save_data
 }
