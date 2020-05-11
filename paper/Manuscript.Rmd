@@ -5,8 +5,8 @@ title: |
   
 shorttitle        : "WORKFLOW FOR OPEN SCIENCE"
 
-author: #"`r source('authors_yaml.R')`"
- - name: "Caspar J. Van Lissa"
+author:
+  - name: "Caspar J. Van Lissa"
     institution: "1,2"
     corresponding: yes
     address: "Padualaan 14, 3584CH Utrecht, The Netherlands"
@@ -20,7 +20,7 @@ author: #"`r source('authors_yaml.R')`"
   - name: "Barbara Vreede"
     institution: "7"
 
-affiliation: #"`r source('affiliation_yaml.R')`"
+affiliation:
   - id: "1"
     institution: "Utrecht University faculty of Social and Behavioral Sciences, department of Methodology & Statistics"
   - id: "2"
@@ -32,7 +32,7 @@ affiliation: #"`r source('affiliation_yaml.R')`"
   - id: "5"
     institution: "UMC Utrecht"
   - id: "6"
-    institution: "Humboldt-Universität zu Berlin"
+    institution: "Humboldt-Universitaet zu Berlin"
   - id: "7"
     institution: "University Library Utrecht"
     

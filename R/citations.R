@@ -60,18 +60,18 @@ cite_essential <- function(...){
 comprehensive_cite <- function(input, encoding = "UTF-8", ..., citeall = TRUE) {
   dots <- list(...)
   dots$encoding <- encoding
-
   doc_text <- readLines(input, encoding = encoding)
-  temp <- paste0(tempdir(), "/", basename(input))
+  np <- normalizePath(input)
   if(citeall){
-    writeLines(gsub("@@", "@", doc_text), temp)
+    writeLines(gsub("@@", "@", doc_text), np)
   } else {
-    writeLines(cleancitations(doc_text), temp)
+    writeLines(cleancitations(doc_text), np)
   }
-  dir <- dirname(input)
-  dots$input <- temp
-  dots$output_dir <- dir
+
+  dots$input <- input # Should this be the bare input or np?
+  dots$output_dir <- dirname(np)
   do.call(render, dots)
+  writeLines(doc_text, np)
   invisible(NULL)
 }
 
