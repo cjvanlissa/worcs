@@ -63,12 +63,12 @@ comprehensive_cite <- function(input, encoding = "UTF-8", ..., citeall = TRUE) {
   dots$input <- input
   doc_text <- readLines(input, encoding = encoding)
   if(citeall){
-    writeLines(gsub("@@", "@", doc_text), input)
+    write_utf8(gsub("@@", "@", doc_text), input)
   } else {
-    writeLines(cleancitations(doc_text), input)
+    write_utf8(cleancitations(doc_text), input)
   }
   do.call(render, dots)
-  writeLines(doc_text, input) # reset file to original state
+  write_utf8(doc_text, input) # reset file to original state
   invisible(NULL)
 }
 
