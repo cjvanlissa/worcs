@@ -57,9 +57,10 @@ cite_essential <- function(...){
 }
 
 #' @importFrom rmarkdown render
-comprehensive_cite <- function(input, ..., citeall = TRUE) {
+comprehensive_cite <- function(input, encoding = "UTF-8", ..., citeall = TRUE) {
   dots <- list(...)
-  doc_text <- readLines(input)
+  dots$encoding <- encoding
+  doc_text <- readLines(input, encoding = encoding)
   np <- normalizePath(input)
   if(citeall){
     writeLines(gsub("@@", "@", doc_text), np)
