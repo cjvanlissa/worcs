@@ -19,9 +19,13 @@ get_sig <- tryCatch(
     gert::git_config_global_set(name = "user.email", value = "yourname@email.com")
   }
 )
+
+testdir <- file.path(tempdir(), "export")
+testzip <- tempfile(fileext = ".zip")
+dir.create(testdir)
 suppressWarnings(
   worcs_project(
-    "export_test",
+    testdir,
     manuscript = "None",
     preregistration = "None",
     add_license = "None",
@@ -29,18 +33,16 @@ suppressWarnings(
     remote_repo = "https"
   )
 )
-old_wd <- getwd()
-setwd("export_test")
-result <- export_project(open_data = FALSE)
-setwd(old_wd)
+
+result <- export_project(zipfile = testzip, worcs_directory = testdir, open_data = FALSE)
 
 test_that("export returned true", {
   expect_true(result)
 })
 
 test_that("exported worcs_project exists", {
-  expect_true("export_test.zip" %in% list.files())
+  expect_true(file.exists(testzip))
 })
 
 # setwd(old_wd)
-# unlink(file.path(tempdir(), the_test))
+#unlink(c(file.path(testdir, "export.zip"), testdir), recursive = TRUE)

@@ -162,7 +162,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
       col_message("Creating manuscript files.", success = FALSE)
     })
   } else {
-    writeLines(recommend_data, "run_me.R")
+    writeLines(recommend_data, file.path(path, "run_me.R"))
   }
   # End manuscript
 

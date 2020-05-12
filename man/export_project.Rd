@@ -4,14 +4,18 @@
 \alias{export_project}
 \title{Export project to .zip file}
 \usage{
-export_project(filename = NULL, open_data = TRUE)
+export_project(zipfile = NULL, worcs_directory = ".", open_data = TRUE)
 }
 \arguments{
-\item{filename}{Character. Path to a \code{.zip} file that is to be created.
+\item{zipfile}{Character. Path to a \code{.zip} file that is to be created.
 The default argument \code{NULL} creates a \code{.zip} file in the directory
 one level above the 'worcs' project directory. By default, all files tracked
 by 'Git' are included in the \code{.zip} file, excluding 'data.csv' if
 \code{open_data = FALSE}.}
+
+\item{worcs_directory}{Character. Path to the WORCS project directory to
+export. Defaults to \code{"."}, which refers to the current working
+directory.}
 
 \item{open_data}{Logical. Whether or not to include the original data,
 'data.csv', if this file exists. If \code{open_data = FALSE} and an open
