@@ -45,7 +45,7 @@ worcs_badge <- function(path = ".",
       if(!is_abs(update_readme)){ # is relative
         update_readme <- file.path(np, update_readme)
       }
-      text <- readLines(update_readme)
+      text <- readLines(update_readme, encoding = "UTF-8")
       loc <- startsWith(text, "[![WORCS](https://img.shields.io/badge/WORC")
       if(any(loc)){
         loc <- which(loc)[1]
@@ -62,7 +62,7 @@ worcs_badge <- function(path = ".",
                              c("", "[![WORCS](https://img.shields.io/badge/WORCS-fail-red)](https://osf.io/zcvbs/)", "")),
              after = loc
       )
-      writeLines(text, update_readme)
+      write_as_utf(text, update_readme)
     }, error = function(e){warning("Could not update README.md")})
   }
   if(!is.null(update_csv)){
@@ -116,7 +116,7 @@ check_worcs <- function(path = ".", verbose = TRUE){
     checks$pass[checks$name == "citation"] <- {
       rmarkdown_files <- f[endsWith(f_lc, ".rmd")]
       any(sapply(rmarkdown_files, function(thisfile){
-        txt <- paste0(readLines(thisfile), collapse = "")
+        txt <- paste0(readLines(thisfile, encoding = "UTF-8"), collapse = "")
         grepl("@", txt, fixed = TRUE) & grepl("\\.bib", txt)
       }))
     }

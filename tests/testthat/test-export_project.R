@@ -12,13 +12,7 @@
 #   }
 # }
 
-get_sig <- tryCatch(
-  git_signature_default(),
-  error = function(e) {
-    gert::git_config_global_set(name = "user.name", value = "yourname")
-    gert::git_config_global_set(name = "user.email", value = "yourname@email.com")
-  }
-)
+do.call(git_signature, worcs:::get_signature)
 
 testdir <- file.path(tempdir(), "export")
 testzip <- tempfile(fileext = ".zip")

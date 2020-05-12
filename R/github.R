@@ -37,6 +37,20 @@ git_credentials <- function(name, email){
   )
 }
 
+#' @importFrom gert git_config_global
+get_credentials <- function(){
+  Args <- list(
+    name = "yourname",
+    email = "yourname@email.com"
+  )
+  tryCatch({
+    cf <- git_config_global()
+    if("user.name" %in% cf$name) Args$name <- cf$value[cf$name == "user.name"]
+    if("user.email" %in% cf$name) Args$email <- cf$value[cf$name == "user.email"]
+  }, error = function(e){ message("No 'Git' credentials found, returning name = 'yourname' and email = 'yourname@email.com'.") })
+  return(Args)
+}
+
 #' @title Add, commit, and push changes.
 #' @description This function is a wrapper for
 #' \code{\link[gert]{git_add}}, \code{\link[gert]{git_commit}}, and

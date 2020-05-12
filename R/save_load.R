@@ -267,7 +267,7 @@ checkworcs <- function(worcs_directory, iserror = FALSE){
 write_gitig <- function(filename, ..., modify = TRUE){
   new_contents <- unlist(list(...))
   if(modify & file.exists(filename)){
-    old_contents <- readLines(filename)
+    old_contents <- readLines(filename, encoding = "UTF-8")
     rep_these <- sapply(gsub("^!", "", new_contents), match, gsub("^!", "", old_contents))
     old_contents[na.omit(rep_these)] <- new_contents[!is.na(rep_these)]
     new_contents <- c(old_contents, new_contents[is.na(rep_these)])

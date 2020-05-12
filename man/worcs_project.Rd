@@ -69,10 +69,7 @@ create a WORCS project through syntax or the console.
 the_test <- "worcs_template"
 old_wd <- getwd()
 dir.create(file.path(tempdir(), the_test))
-get_sig <- tryCatch(git_signature_default(), error = function(e){
-  gert::git_config_global_set(name = "user.name", value = "yourname")
-  gert::git_config_global_set(name = "user.email", value = "yourname@email.com")
-})
+do.call(git_signature, worcs:::get_credentials())
 worcs_project(file.path(tempdir(), the_test, "worcs_project"),
               manuscript = "github_document",
               preregistration = "None",

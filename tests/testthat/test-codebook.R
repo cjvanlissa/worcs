@@ -10,7 +10,7 @@ test_that("codebook works for iris", {
   expect_true(file.exists("codebook.Rmd"))
   expect_true(file.exists("codebook.md"))
   expect_true(file.exists("codebook.csv"))
-  contents <- readLines("codebook.Rmd")
+  contents <- readLines("codebook.Rmd", encoding = "UTF-8")
   expect_true(any(contents == "The data contains 150 cases and 5 variables."))
 
   setwd(old_wd)
@@ -33,7 +33,7 @@ test_that("codebook works for PlantGrowth with missings", {
   expect_true(file.exists("codebook.Rmd"))
   expect_true(file.exists("codebook.md"))
 
-  contents <- readLines("codebook.Rmd")
+  contents <- readLines("codebook.Rmd", encoding = "UTF-8")
 
   expect_true(any(contents == "The data contains 84 cases and 5 variables.")) #"The data contains 30 cases and 2 variables."))
 

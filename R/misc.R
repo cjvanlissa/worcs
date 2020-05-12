@@ -33,16 +33,20 @@ authors_from_csv <- function(filename, format = "papaja", what = "aut"){
 
 }
 
-# stolen from Yihui
-# https://github.com/yihui/xfun/blob/5c66f0f8bcd7f80a0453b08a4bd283910e570ccd/R/io.R
-write_utf8 = function(text, con, ...) {
-  if (is.null(text)) text = character(0)
-  if (identical(con, '')) {
-    cat(text, sep = '\n', file = con)
-  } else {
-    # prevent re-encoding the text in the file() connection in writeLines()
-    # https://kevinushey.github.io/blog/2018/02/21/string-encoding-and-r/
-    opts = options(encoding = 'native.enc'); on.exit(options(opts), add = TRUE)
-    writeLines(enc2utf8(text), con, ..., useBytes = TRUE)
+write_as_utf <- function(x, con, append = FALSE, encoding = "UTF-8", ...) {
+  if(append){
+    if(file.exists(con)){
+      old_contents <- readLines(con, encoding = encoding)
+      x <- c(old_contents, x)
+    }
   }
+  opts <- options(encoding = 'native.enc')
+  on.exit(options(opts), add = TRUE)
+  writeLines(enc2utf8(x), con, ..., useBytes = TRUE)
+}
+
+read_as_utf <- function(..., encoding = "UTF-8"){
+  Args <- as.list(match.call()[-1])
+  if(is.null(Args[["encoding"]])) Args[["encoding"]] <- encoding
+  do.call(readLines, Args)
 }

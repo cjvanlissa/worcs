@@ -2,10 +2,9 @@ library(rmarkdown)
 
 test_that("documents with spaces in names can be rendered", {
 
-  skip_on_cran()
-
   the_test <- "citeall"
   dir_name <- file.path(tempdir(), the_test)
+  if(dir.exists(dir_name)) unlink(dir_name, recursive = TRUE)
   file_name <- file.path(dir_name, "test.Rmd")
   dir.create(dir_name)
   on.exit(unlink(dir_name, recursive = TRUE), add = TRUE)
@@ -15,26 +14,27 @@ test_that("documents with spaces in names can be rendered", {
 
   write(c("", "Optional reference: @@reference2020"),
         file = file_name, append = TRUE)
-  cite_all(file_name)
+  sink_out <- capture_output(cite_all(file_name))
 
-  contents <- readLines(gsub("Rmd$", "md", file_name))
+  contents <- readLines(gsub("Rmd$", "md", file_name), encoding = "UTF-8")
 
   expect_true(any(contents == "Optional reference: @reference2020"))
 
-  cite_essential(file_name)
+  sink_out <- capture_output(cite_essential(file_name))
 
-  contents <- readLines(gsub("Rmd$", "md", file_name))
+  contents <- readLines(gsub("Rmd$", "md", file_name), encoding = "UTF-8")
 
   expect_true(!any(contents == "Optional reference: @reference2020"))
   expect_true(any(contents == "Optional reference:"))
 })
 
 test_that("cite_* work with umlaute", {
-
-  skip_on_cran()
+  # stringi::stri_enc_detect(file_name) might be helpful?
+  #skip_on_cran()
 
   the_test <- "citeall"
   dir_name <- file.path(tempdir(), the_test)
+  if(dir.exists(dir_name)) unlink(dir_name, recursive = TRUE)
   file_name <- file.path(dir_name, "test.Rmd")
   dir.create(dir_name)
   on.exit(unlink(dir_name, recursive = TRUE), add = TRUE)
@@ -42,17 +42,19 @@ test_that("cite_* work with umlaute", {
   draft(file_name, template = "github_document", package = "rmarkdown",
         create_dir = FALSE, edit = FALSE)
 
-  write(c("", "Optional räference: @@reference2020"),
-        file = file_name, append = TRUE)
-  cite_all(file_name)
+  #write(c("", "Optional räference: @@reference2020"),
+  #      file = file_name, append = TRUE)
+  worcs:::write_as_utf(c("", "Optional räference: @@reference2020"),
+                       con = file_name, append = TRUE)
+  sink_out <- capture_output(cite_all(file_name))
 
-  contents <- readLines(gsub("Rmd$", "md", file_name))
+  contents <- worcs:::read_as_utf(gsub("Rmd$", "md", file_name))
 
   expect_true(any(contents == "Optional räference: @reference2020"))
 
-  cite_essential(file_name)
+  sink_out <- capture_output(cite_essential(file_name))
 
-  contents <- readLines(gsub("Rmd$", "md", file_name))
+  contents <- worcs:::read_as_utf(gsub("Rmd$", "md", file_name))
 
   expect_true(!any(contents == "Optional räference: @reference2020"))
   expect_true(any(contents == "Optional räference:"))
@@ -60,10 +62,11 @@ test_that("cite_* work with umlaute", {
 
 test_that("cite_* retain relative paths", {
 
-  skip_on_cran()
+  #skip_on_cran()
 
   the_test <- "relative"
   dir_name <- file.path(tempdir(), the_test)
+  if(dir.exists(dir_name)) unlink(dir_name, recursive = TRUE)
   file_name <- file.path(dir_name, "test.Rmd")
   dir.create(dir_name)
   on.exit(unlink(dir_name, recursive = TRUE), add = TRUE)
@@ -83,13 +86,13 @@ myiris <- read.csv('iris.csv')
 ```
 "),
         file = file_name, append = TRUE)
-  cite_all(file_name)
+  sink_out <- capture_output(cite_all(file_name))
 
   contents <- readLines(gsub("Rmd$", "md", file_name))
 
   expect_true(any(contents == "Optional reference: @reference2020"))
 
-  cite_essential(file_name)
+  sink_out <- capture_output(cite_essential(file_name))
 
   contents <- readLines(gsub("Rmd$", "md", file_name))
 
@@ -99,10 +102,11 @@ myiris <- read.csv('iris.csv')
 
 test_that("cite_* retain double @", {
 
-  skip_on_cran()
+  #skip_on_cran()
 
   the_test <- "citeall"
   dir_name <- file.path(tempdir(), the_test)
+  if(dir.exists(dir_name)) unlink(dir_name, recursive = TRUE)
   file_name <- file.path(dir_name, "test.Rmd")
   dir.create(dir_name)
   on.exit(unlink(dir_name, recursive = TRUE), add = TRUE)
@@ -113,15 +117,15 @@ test_that("cite_* retain double @", {
   write(c("", "Optional reference: @@reference2020"),
         file = file_name, append = TRUE)
 
-  cite_all(file_name)
+  sink_out <- capture_output(cite_all(file_name))
 
-  contents <- readLines(file_name)
+  contents <- readLines(file_name, encoding = "UTF-8")
 
   expect_true(any(contents == "Optional reference: @@reference2020"))
 
-  cite_essential(file_name)
+  sink_out <- capture_output(cite_essential(file_name))
 
-  contents <- readLines(file_name)
+  contents <- readLines(file_name, encoding = "UTF-8")
 
   expect_true(any(contents == "Optional reference: @@reference2020"))
 })

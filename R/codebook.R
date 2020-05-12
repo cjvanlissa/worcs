@@ -66,7 +66,7 @@ make_codebook <-
       create_dir = FALSE,
       edit = FALSE
     )
-    file_contents <- readLines(filename)
+    file_contents <- readLines(filename, encoding = "UTF-8")
     file_contents[grep("^title:", file_contents)[1]] <-
       paste0('title: "Codebook created on ',
              Sys.Date(),

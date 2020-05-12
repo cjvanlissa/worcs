@@ -47,10 +47,7 @@ recommend_data <- c('library("worcs")',
 #' the_test <- "worcs_template"
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), the_test))
-#' get_sig <- tryCatch(git_signature_default(), error = function(e){
-#'   gert::git_config_global_set(name = "user.name", value = "yourname")
-#'   gert::git_config_global_set(name = "user.email", value = "yourname@email.com")
-#' })
+#' do.call(git_signature, worcs:::get_credentials())
 #' worcs_project(file.path(tempdir(), the_test, "worcs_project"),
 #'               manuscript = "github_document",
 #'               preregistration = "None",
@@ -152,17 +149,17 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
       copy_resources(which_files = "references.bib", path = man_dir)
       bibfiles <- list.files(path = man_dir, pattern = ".bib$", full.names = TRUE)
       if(length(bibfiles) > 1){
-        worcs_ref <- readLines(bibfiles[endsWith(bibfiles, "references.bib")])
-        bib_text <- do.call(c, lapply(bibfiles[!endsWith(bibfiles, "references.bib")], readLines))
+        worcs_ref <- readLines(bibfiles[endsWith(bibfiles, "references.bib")], encoding = "UTF-8")
+        bib_text <- do.call(c, lapply(bibfiles[!endsWith(bibfiles, "references.bib")], readLines, encoding = "UTF-8"))
         invisible(file.remove(bibfiles))
-        writeLines(c(worcs_ref, bib_text), file.path(man_dir, "references.bib"))
+        write_as_utf(c(worcs_ref, bib_text), file.path(man_dir, "references.bib"))
       }
       col_message("Creating manuscript files.")
     }, error = function(e){
       col_message("Creating manuscript files.", success = FALSE)
     })
   } else {
-    writeLines(recommend_data, file.path(path, "run_me.R"))
+    write_as_utf(recommend_data, file.path(path, "run_me.R"))
   }
   # End manuscript
 
@@ -228,7 +225,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
 
   # Update readme
   if(file.exists(file.path(path, "README.md"))){
-    cont <- readLines(file.path(path, "README.md"))
+    cont <- readLines(file.path(path, "README.md"), encoding = "UTF-8")
     f <- list.files(path)
     tab <- matrix(c("File", "Description", "Usage",
                     "README.md", "Description of project", "Human editable"), nrow = 2, byrow = TRUE)
@@ -245,7 +242,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
 
     tab <- nice_tab(tab)
     cont <- append(cont, tab, after = grep("You can add rows to this table", cont))
-    writeLines(cont, file.path(path, "README.md"))
+    write_as_utf(cont, file.path(path, "README.md"))
   }
 
   # Create first commit
@@ -290,7 +287,7 @@ create_man_papaja <- function(manuscript_file, remote_repo){
       create_dir = FALSE,
       edit = FALSE
     )
-    manuscript_text <- readLines(manuscript_file)
+    manuscript_text <- readLines(manuscript_file, encoding = "UTF-8")
     # Add bibliography
     bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
     manuscript_text[bib_line] <- paste0(substr(manuscript_text[bib_line], start = 1, stop = nchar(manuscript_text[bib_line])-1), ', "references.bib"]')
@@ -313,7 +310,7 @@ create_man_papaja <- function(manuscript_file, remote_repo){
     manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
 
     # Write
-    writeLines(manuscript_text, manuscript_file)
+    write_as_utf(manuscript_text, manuscript_file)
   } else {
     col_message('Could not generate an APA6 manuscript file, because the \'papaja\' package is not installed. Run this code to see instructions on how to install this package from GitHub:\n  vignette("setup", package = "worcs")', success = FALSE)
   }
@@ -327,7 +324,7 @@ create_man_github <- function(manuscript_file, remote_repo){
       create_dir = FALSE,
       edit = FALSE
     )
-    manuscript_text <- readLines(manuscript_file)
+    manuscript_text <- readLines(manuscript_file, encoding = "UTF-8")
     # Add bibliography and citation function
     add_lines <- c(
       "date: '`r format(Sys.time(), \"%d %B, %Y\")`'",
@@ -347,7 +344,7 @@ create_man_github <- function(manuscript_file, remote_repo){
     )
     manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
     # Write
-    writeLines(manuscript_text, manuscript_file)
+    write_as_utf(manuscript_text, manuscript_file)
 }
 
 
@@ -360,7 +357,7 @@ create_man_rticles <- function(manuscript_file, template, remote_repo){
       create_dir = FALSE,
       edit = FALSE
     )
-    manuscript_text <- readLines(manuscript_file)
+    manuscript_text <- readLines(manuscript_file, encoding = "UTF-8")
     # Add bibliography
     bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
     manuscript_text[bib_line] <- "bibliography: references.bib"
@@ -382,7 +379,7 @@ create_man_rticles <- function(manuscript_file, template, remote_repo){
       ""
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]))
-    writeLines(manuscript_text, manuscript_file)
+    write_as_utf(manuscript_text, manuscript_file)
   } else {
     col_message(paste0('Could not generate ', template, ' manuscript file, because the \'rticles\' package is not installed. Run this code to install the package from CRAN:\n  install.packages("rticles", dependencies = TRUE)'), success = FALSE)
   }
