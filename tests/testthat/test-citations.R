@@ -49,7 +49,7 @@ test_that("cite_* work with umlaute", {
   sink_out <- capture_output(cite_all(file_name))
   md_file <- force(gsub("Rmd$", "md", file_name))
   contents <- worcs:::read_as_utf(md_file)
-  print(tail(contents))
+
   expect_true(any(contents == "Optional räference: @reference2020"))
 
   sink_out <- capture_output(cite_essential(file_name))

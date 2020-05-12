@@ -22,7 +22,7 @@ Before you can use the WORCS workflow and the full functionality of the `worcs` 
 3. Install Git from [git-scm.com](https://git-scm.com/downloads). Use the default, recommended settings. It is especially important to leave these settings selected:
     + Git from the command line and also from third party software  
     <!--*The `worcs` R-package calls Git from the command line*-->
-    + Use the OpenSSL library  
+    + Use the 'OpenSSL' library  
     <!--*For secure data transfer with GitHub*-->
     + Checkout Windows-style, commit Unix-style line endings  
     <!--*This is the preferred setting when collaborating with others on different platforms. Be prepared that, on windows, you will receive harmless notifications about LF to CRLF line endings.  *-->
@@ -61,7 +61,7 @@ ADD library(worcs) TO MANUSCRIPT.RMD TO HAVE RENV TRACK IT
 install.packages("worcs", dependencies = TRUE)
 remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
 tinytex::install_tinytex()
-worcs::git_credentials("your_name", "your_email")
+worcs::git_user("your_name", "your_email")
 ```
 <!-- 
 renv::consent(provided = TRUE)

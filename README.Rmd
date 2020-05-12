@@ -40,9 +40,9 @@ descripts <- data.frame(matrix(c(
   "NAMESPACE", "R-package namespace", "machine-written",
   "README.md", "Read this file to get started! ", "do not edit",
   "README.Rmd", "R-markdown source for readme.md", "human editable",
-  "worcs.Rproj", "Rstudio project file", "do not edit",
+  "worcs.Rproj", "RStudio project file", "do not edit",
   "docs/", "Package website", "machine-written",
-  "inst/", "Rstudio project template files ", "human editable",
+  "inst/", "RStudio project template files ", "human editable",
   "man/", "R-package documentation", "do not edit",
   "paper/", "WORCS paper source files", "human editable",
   "R/", "R-package source code", "human editable",
@@ -63,7 +63,7 @@ if(!requireNamespace("remotes"))install.packages("remotes")
 remotes::install_github("cjvanlissa/worcs", dependencies = TRUE, update = "never")
 remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
 tinytex::install_tinytex()
-worcs::git_credentials("your_name", "your_email")
+worcs::git_user("your_name", "your_email")
 ```
 
 ## Citing WORCS

@@ -17,11 +17,11 @@ has_git <- function(){
 #' @param email Character. The email address you want to use with 'Git'.
 #' @return No return value. This function is called for its side effects.
 #' @examples
-#' git_credentials("myname", "my@email.com")
-#' @rdname git_credentials
+#' git_user("myname", "my@email.com")
+#' @rdname git_user
 #' @export
 #' @importFrom gert git_config_global_set
-git_credentials <- function(name, email){
+git_user <- function(name, email){
   invisible(
     tryCatch({
       do.call(git_config_global_set, list(
@@ -38,7 +38,7 @@ git_credentials <- function(name, email){
 }
 
 #' @importFrom gert git_config_global
-get_credentials <- function(){
+get_user <- function(){
   Args <- list(
     name = "yourname",
     email = "yourname@email.com"

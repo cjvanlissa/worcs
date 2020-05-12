@@ -12,7 +12,7 @@ cite_essential(...)
 \value{
 Returns \code{NULL} invisibly. This
 function is called for its side effect of rendering an
-\code{rmarkdown} file.
+'R Markdown' file.
 }
 \description{
 This is a wrapper for \code{\link[rmarkdown]{render}}. First, this function
@@ -22,7 +22,7 @@ the file.
 }
 \examples{
 # NOTE: Do not use this function interactively, as in the example below.
-# Only specify it as custom knit function in an Rmarkdown file, like so:
+# Only specify it as custom knit function in an R Markdown file, like so:
 # knit: worcs::cite_all
 
 file_name <- tempfile("citeessential", fileext = ".Rmd")

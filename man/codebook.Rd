@@ -21,17 +21,17 @@ file to.}
 
 \item{csv_file}{Character. File name to write the codebook \code{rmarkdown}
 file to. By default, uses the filename stem of the \code{filename} argument.
-Set to \code{NULL} to write the codebook only to the 'Rmarkdown' file, and
+Set to \code{NULL} to write the codebook only to the 'R Markdown' file, and
 not to \code{.csv}.}
 }
 \value{
 \code{Logical}, indicating whether or not the operation was
-succesful. This function is mostly called for its side effect of rendering an
-\code{rmarkdown} codebook.
+successful. This function is mostly called for its side effect of rendering
+an 'R Markdown' codebook.
 }
 \description{
-Creates a codebook for a dataset in 'Rmarkdown' format, and
-renders it to 'markdown' for 'GitHub'. Users can customize the 'Rmarkdown'
+Creates a codebook for a dataset in 'R Markdown' format, and
+renders it to 'markdown' for 'GitHub'. Users can customize the 'R Markdown'
 document and re-knit it, for example, to add a paragraph with details on
 the data collection procedures. The variable descriptives are stored in
 a \code{.csv} file, which can be edited in 'R' or a spreadsheet program.
@@ -44,7 +44,7 @@ following two columns in this file:
 example, the full text of a questionnaire item: "People should be willing to
 do anything to help a member of their family".
 }
-Re-knitting the 'Rmarkdown' file (using \code{\link[rmarkdown]{render}}) will
+Re-knitting the 'R Markdown' file (using \code{\link[rmarkdown]{render}}) will
 transfer these changes to the 'markdown' file for 'GitHub'.
 }
 \examples{

@@ -5,6 +5,6 @@
   if(!has_git()){
     print_message <- paste0(print_message, "\n\033[0;31mCould not find a working installation of 'Git', which is required to safeguard the transparency and reproducibility of your project. Please connect 'Git' by following the steps described in this vignette:\n  vignette('setup', package = 'worcs')\033[0m")
   }
-  #if(!correct_version){ "Rstudio version 1.1.28 or higher is required to use the worcs package."))
+  #if(!correct_version){ "RStudio version 1.1.28 or higher is required to use the worcs package."))
   packageStartupMessage(print_message)
 }

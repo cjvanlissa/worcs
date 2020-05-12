@@ -1,11 +1,11 @@
 #' @title Use open data in WORCS project
 #' @description This function saves a data.frame as a \code{.csv} file (using
 #' \code{\link[utils]{write.csv}}), stores a checksum in '.worcs',
-#' and amends the .gitignore file to exclude \code{filename}.
+#' and amends the \code{.gitignore} file to exclude \code{filename}.
 #' @param data A data.frame to save.
 #' @param filename Character, naming the file data should be written to.
 #' @param codebook Character, naming the file the codebook should be written to.
-#' An 'rmarkdown' codebook will be created and rendered to
+#' An 'R Markdown' codebook will be created and rendered to
 #' \code{\link[rmarkdown]{github_document}} ('markdown' for 'GitHub').
 #' Defaults to 'codebook.Rmd'. Set to \code{NULL} to avoid creating a codebook.
 #' @return Returns \code{NULL} invisibly. This
@@ -30,9 +30,9 @@ open_data <- function(data, filename = "data.csv", codebook = "codebook.Rmd"){
 #' @title Use closed data in WORCS project
 #' @description This function saves a data.frame as a \code{.csv} file (using
 #' \code{\link[utils]{write.csv}}), stores a checksum in '.worcs',
-#' appends the .gitignore file to exclude \code{filename}, and saves a synthetic
-#' copy of \code{data} for public use. To generate these synthetic data, the
-#' function \code{\link{synthetic}} is used.
+#' appends the \code{.gitignore} file to exclude \code{filename}, and saves a
+#' synthetic copy of \code{data} for public use. To generate these synthetic
+#' data, the function \code{\link{synthetic}} is used.
 #' @inheritParams open_data
 #' @return Returns \code{NULL} invisibly. This
 #' function is called for its side effects.

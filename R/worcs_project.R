@@ -12,7 +12,7 @@ recommend_data <- c('library("worcs")',
 #' @param path Character, indicating the directory in which to create the
 #' 'worcs' project. Default: 'worcs_project'.
 #' @param manuscript Character, indicating what template to use for the
-#' 'rmarkdown' manuscript. Default: 'APA6'. Available choices include:
+#' 'R Markdown' manuscript. Default: 'APA6'. Available choices include:
 #' \code{"APA6", "github_document", "None", "ams_article", "asa_article",
 #' "biometrics_article", "copernicus_article", "ctex", "elsevier_article",
 #' "frontiers_article", "ieee_article", "joss_article", "jss_article",
@@ -47,7 +47,7 @@ recommend_data <- c('library("worcs")',
 #' the_test <- "worcs_template"
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), the_test))
-#' do.call(git_credentials, worcs:::get_credentials())
+#' do.call(git_user, worcs:::get_user())
 #' worcs_project(file.path(tempdir(), the_test, "worcs_project"),
 #'               manuscript = "github_document",
 #'               preregistration = "None",
@@ -230,7 +230,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     tab <- matrix(c("File", "Description", "Usage",
                     "README.md", "Description of project", "Human editable"), nrow = 2, byrow = TRUE)
     rproj_name <- paste0(gsub("^.+\\b(.+)$", "\\1", path), ".Rproj")
-    cont[grep("You can load this project in Rstudio by opening the file called ", cont)] <- paste0(grep("You can load this project in Rstudio by opening the file called ", cont, value = TRUE), "'", rproj_name, "'.")
+    cont[grep("You can load this project in RStudio by opening the file called ", cont)] <- paste0(grep("You can load this project in Rstudio by opening the file called ", cont, value = TRUE), "'", rproj_name, "'.")
     tab <- rbind(tab, c(rproj_name, "Project file", "Loads project"))
     tab <- describe_file("LICENSE", "User permissions", "Read only", tab, path)
     tab <- describe_file(".worcs", "WORCS metadata YAML", "Read only", tab, path)

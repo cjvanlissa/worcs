@@ -12,7 +12,7 @@ open_data(data, filename = "data.csv", codebook = "codebook.Rmd")
 \item{filename}{Character, naming the file data should be written to.}
 
 \item{codebook}{Character, naming the file the codebook should be written to.
-An 'rmarkdown' codebook will be created and rendered to
+An 'R Markdown' codebook will be created and rendered to
 \code{\link[rmarkdown]{github_document}} ('markdown' for 'GitHub').
 Defaults to 'codebook.Rmd'. Set to \code{NULL} to avoid creating a codebook.}
 }
@@ -23,7 +23,7 @@ function is called for its side effects.
 \description{
 This function saves a data.frame as a \code{.csv} file (using
 \code{\link[utils]{write.csv}}), stores a checksum in '.worcs',
-and amends the .gitignore file to exclude \code{filename}.
+and amends the \code{.gitignore} file to exclude \code{filename}.
 }
 \examples{
 test_dir <- file.path(tempdir(), "data")

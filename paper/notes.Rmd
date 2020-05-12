@@ -186,7 +186,7 @@ Adequate citation of statistical software is important, because open source soft
 
 ### Citation software
 
-It is worth mentioning the free, open-source reference manager Zotero, because it can be used as easily in conjunction with Rstudio as with Word; the plugin BetterBibTex can export continuously updated `.bib` files for citation in Rmarkdown. Finally, it is worth noting that, as of June 2019, Zotero automatically flags retracted papers in your database. This might stop discredited papers from unnecessarily muddling the literature.
+It is worth mentioning the free, open-source reference manager Zotero, because it can be used as easily in conjunction with RStudio as with Word; the plugin BetterBibTex can export continuously updated `.bib` files for citation in Rmarkdown. Finally, it is worth noting that, as of June 2019, Zotero automatically flags retracted papers in your database. This might stop discredited papers from unnecessarily muddling the literature.
 <!--Retracted papers
 
 Retracted papers are notoriously persistent in the literature, continuing to accumulate citations long after their findings have been debunked. (See “The Zombie Literature,” The Scientist, May 2016.) The UCLA group’s Oncogene paper, for example, was cited at least 15 times between being flagged on PubPeer in 2014 and being retracted two years later. Moreover, retraction notices themselves are often opaque, making it unclear what exactly led to a paper’s retraction, or how authors behaved during the process.
@@ -194,7 +194,7 @@ Retracted papers are notoriously persistent in the literature, continuing to acc
 
 ## Open code
 
-Sharing code is essential for computational reproducibility. The easiest way to share fully reproducible code is to work with an Rstudio project that is version controlled using Git, combined with the `renv` package to ensure all package dependencies are tracked. Such a project can be uploaded ("pushed") wholesale to a code repository, such as GitHub. Projects on GitHub can be publically accessible, so that other researchers can browse the code or copy ("clone") the entire project. It is also possible to make the project private until the manuscript is accepted, which has the benefit that one can show the entire evolution of the analyses from conception to publication.  
+Sharing code is essential for computational reproducibility. The easiest way to share fully reproducible code is to work with an RStudio project that is version controlled using Git, combined with the `renv` package to ensure all package dependencies are tracked. Such a project can be uploaded ("pushed") wholesale to a code repository, such as GitHub. Projects on GitHub can be publically accessible, so that other researchers can browse the code or copy ("clone") the entire project. It is also possible to make the project private until the manuscript is accepted, which has the benefit that one can show the entire evolution of the analyses from conception to publication.  
 
 3. Design and analysis
 Sets standards for research design disclosures
