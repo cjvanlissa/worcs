@@ -323,7 +323,7 @@ Before you can use the WORCS workflow, you have to install the required software
 1. Create a new Private repository on GitHub. Do not change any of the default options. Copy the repository link to the clipboard. This link will look like https://github.com/yourname/yourrepo.git
 2. In RStudio, click File > New Project > New directory > WORCS Project Template
     a. Paste the GitHub Repository address in the textbox
-    b. Keep the checkbox for `renv` checked if you want to document all dependencies (recommended). The only reason not to do this is if you have dependencies outside of the R environment, or if you are using a more comprehensive solution for computational reproducibility, e.g., @peikertReproducibleDataAnalysis2019.
+    b. Keep the checkbox for `renv` checked if you want to document all R-package dependencies, and have them automatically loaded on any system (recommended).
     c. Select a preregistration template
     d. Click Open in new session, and Create project
 3. Write the preregistration `preregistration.Rmd`

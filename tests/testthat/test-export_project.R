@@ -12,7 +12,7 @@
 #   }
 # }
 
-do.call(git_signature, worcs:::get_signature)
+do.call(git_credentials, worcs:::get_credentials())
 
 testdir <- file.path(tempdir(), "export")
 testzip <- tempfile(fileext = ".zip")
@@ -28,6 +28,10 @@ suppressWarnings(
   )
 )
 
+test_that("worcs_project created successfully", {
+  expect_true(file.exists(file.path(testdir, ".worcs")))
+})
+
 result <- export_project(zipfile = testzip, worcs_directory = testdir, open_data = FALSE)
 
 test_that("export returned true", {
@@ -39,4 +43,4 @@ test_that("exported worcs_project exists", {
 })
 
 # setwd(old_wd)
-#unlink(c(file.path(testdir, "export.zip"), testdir), recursive = TRUE)
+#unlink(c(testzip, testdir), recursive = TRUE)

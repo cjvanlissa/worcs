@@ -31,5 +31,5 @@ called for its side effect of creating a \code{.zip} file.
 Export project to .zip file
 }
 \examples{
-export_project()
+export_project(worcs_directory = tempdir())
 }

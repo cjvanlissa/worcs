@@ -47,9 +47,9 @@ test_that("cite_* work with umlaute", {
   worcs:::write_as_utf(c("", "Optional räference: @@reference2020"),
                        con = file_name, append = TRUE)
   sink_out <- capture_output(cite_all(file_name))
-
-  contents <- worcs:::read_as_utf(gsub("Rmd$", "md", file_name))
-
+  md_file <- force(gsub("Rmd$", "md", file_name))
+  contents <- worcs:::read_as_utf(md_file)
+  print(tail(contents))
   expect_true(any(contents == "Optional räference: @reference2020"))
 
   sink_out <- capture_output(cite_essential(file_name))
@@ -84,8 +84,9 @@ test_that("cite_* retain relative paths", {
 ```{r}
 myiris <- read.csv('iris.csv')
 ```
-"),
-        file = file_name, append = TRUE)
+"), file = file_name, append = TRUE)
+
+  # Render with all citations
   sink_out <- capture_output(cite_all(file_name))
 
   contents <- readLines(gsub("Rmd$", "md", file_name))
@@ -97,6 +98,7 @@ myiris <- read.csv('iris.csv')
   contents <- readLines(gsub("Rmd$", "md", file_name))
 
   expect_true(!any(contents == "Optional reference: @reference2020"))
+  expect_true(any(contents[25:length(contents)] == "``` r"))
   expect_true(any(contents == "Optional reference:"))
 })
 

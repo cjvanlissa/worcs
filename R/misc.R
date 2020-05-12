@@ -46,7 +46,7 @@ write_as_utf <- function(x, con, append = FALSE, encoding = "UTF-8", ...) {
 }
 
 read_as_utf <- function(..., encoding = "UTF-8"){
-  Args <- as.list(match.call()[-1])
+  Args <- list(...)
   if(is.null(Args[["encoding"]])) Args[["encoding"]] <- encoding
   do.call(readLines, Args)
 }

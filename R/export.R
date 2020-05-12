@@ -15,7 +15,7 @@
 #' @return Logical, indicating the success of the operation. This function is
 #' called for its side effect of creating a \code{.zip} file.
 #' @examples
-#' export_project()
+#' export_project(worcs_directory = tempdir())
 #' @importFrom utils tail zip
 #' @importFrom gert git_ls
 #' @export
@@ -25,28 +25,31 @@ export_project <- function(zipfile = NULL, worcs_directory = ".", open_data = TR
   #worcs_directory <- normalizePath(worcs_directory)
   worcsfile <- tryCatch(read_yaml(file.path(worcs_directory, ".worcs")), error = function(e){
     col_message("No '.worcs' file found; not a WORCS project, or the working directory has been changed.", success = FALSE)
-    return(invisible(FALSE))
+    FALSE
   })
+  if(isFALSE(worcsfile)) return(invisible(FALSE))
 
   zip_these <- tryCatch({
     git_ls(repo = worcs_directory)$path
   }, error = function(e){
     col_message("Could not find 'Git' repository.", success = FALSE)
-    return(invisible(FALSE))
+    FALSE
   })
+  if(isFALSE(zip_these)) return(invisible(FALSE))
   project_folder <- basename(normalizePath(worcs_directory))
 
   # if no zipfile is given, export to a zip file with
   # the name of the project folder
-  tryCatch({
+  if(isFALSE(tryCatch({
     if(is.null(zipfile)) {
       zipfile <- file.path(dirname(normalizePath(worcs_directory)), paste0(project_folder, ".zip"))
     }
     if(!is.character(zipfile)) stop()
   }, error = function(e){
     col_message("Could not create zipfile.", success = FALSE)
-    return(invisible(FALSE))
-  })
+    FALSE
+  }))) return(invisible(FALSE))
+
   if (file.exists(zipfile)) {
     stop("Could not write to '", zipfile, "' because the file already exists.")
     return(invisible(FALSE))
@@ -54,23 +57,22 @@ export_project <- function(zipfile = NULL, worcs_directory = ".", open_data = TR
 
   # Use this to decide which files to ZIP, but always add data.csv
   # if the user specifies open_data = TRUE
-  data_original <- data_synthetic <- NULL
   if(!is.null(worcsfile[["data"]])){
     data_original <- names(worcsfile[["data"]])
     data_synthetic <- unlist(lapply(data_original, function(i){worcsfile[["data"]][[i]][["synthetic"]]}))
-  }
-  tmpfile <- NULL
-  if(open_data){
-    zip_these <- unique(c(zip_these, data_original, data_synthetic))
-  } else {
-    for(this_file in data_original){
-      endsw <- endsWith(x = zip_these, suffix = this_file)
-      if(any(endsw)){
-        zip_these <- zip_these[-which(endsw)]
+    if(open_data){
+      zip_these <- unique(c(zip_these, data_original, data_synthetic))
+    } else {
+      for(this_file in data_original){
+        endsw <- endsWith(x = zip_these, suffix = this_file)
+        if(any(endsw)){
+          zip_these <- zip_these[-which(endsw)]
+        }
       }
+      zip_these <- unique(c(zip_these, data_synthetic))
     }
-    zip_these <- unique(c(zip_these, data_synthetic))
   }
+
   zip_these <- file.path(normalizePath(worcs_directory), zip_these)
   outcome <- zip(zipfile = zipfile, files = zip_these, flags="-jrq")
   if(!outcome == 0){

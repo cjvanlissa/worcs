@@ -69,7 +69,7 @@ create a WORCS project through syntax or the console.
 the_test <- "worcs_template"
 old_wd <- getwd()
 dir.create(file.path(tempdir(), the_test))
-do.call(git_signature, worcs:::get_credentials())
+do.call(git_credentials, worcs:::get_credentials())
 worcs_project(file.path(tempdir(), the_test, "worcs_project"),
               manuscript = "github_document",
               preregistration = "None",

@@ -74,21 +74,21 @@ comprehensive_cite <- function(input, encoding = "UTF-8", ..., citeall = TRUE) {
 
 cleancitations <- function(text){
   out <- paste0(c(text, " onzin"), collapse = "\n")
-  out <- as.list(strsplit(out, "\\[")[[1]])
+  out <- as.list(strsplit(out, "[", fixed = TRUE)[[1]])
   out <- lapply(out, function(x){
-    if(grepl("@@", x)){
-      ref_sec <- unlist(strsplit(x, split = "\\]"))
+    if(grepl("@@", x, fixed = TRUE)){
+      ref_sec <- unlist(strsplit(x, split = "]", fixed = TRUE))
       if(length(ref_sec) > 1){
-        if(grepl("@@", ref_sec[1])){
+        if(grepl("@@", ref_sec[1], fixed = TRUE)){
           each_ref_sec <- unlist(strsplit(ref_sec[1], split = ";"))
-          ref_sec[1] <- paste0(each_ref_sec[!grepl("@@", each_ref_sec)], collapse = ";")
+          ref_sec[1] <- paste0(each_ref_sec[!grepl("@@", each_ref_sec, fixed = TRUE)], collapse = ";")
           if(ref_sec[1] == "") ref_sec[1] <- "XXXXXDELETEMEXXXXX"
         }
-        if(grepl("@@", ref_sec[2])){
-          ref_sec[2] <- gsub(" -?@@.+? ", " ", ref_sec[2])
+        if(grepl("@@", ref_sec[2], fixed = TRUE)){
+          ref_sec[2] <- gsub("\\s{0,1}-?@@.+?\\b\\s{0,1}", " ", ref_sec[2])
         }
       } else {
-        ref_sec[1] <- gsub(" -?@@.+? ", " ", ref_sec[1])
+        ref_sec[1] <- gsub("\\s{0,1}-?@@.+?\\b\\s{0,1}", " ", ref_sec[1])
       }
       paste0(ref_sec, collapse = "]")
     } else {
