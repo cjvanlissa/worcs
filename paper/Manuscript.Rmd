@@ -379,6 +379,11 @@ If all collaborators are committed to using WORCS, they can [Fork the repository
 
 WORCS offers a workflow for open reproducible code in science. The step-by-step procedure outlined in this tutorial helps researchers make an entire research project Open and Reproducible. The accompanying R-package provides user-friendly support functions for several steps in the workflow, and an RStudio project template to get the project set up correctly.
 
+## Outlook
+
+<!-- not sure where this repro integration section belongs -->
+The `worcs`-package integrates several reproducibility tools into a convenient workflow by assuming reasonable standards that fulfil most researches needs. Currently, however, if a researcher prefers to use other tools that are conceptually similar, they have to leave WORCS behind. We currently integrate WORCS into a modular framework of reproducibility tools for R [@repro], which will serve as the backend for WORCS. This ongoing integration into a unifying framework does not compromise the ease of use for the researcher. However, it gives them more flexibility to satisfy the demands of their research projects while meeting the TOP-guidelines.
+
 \newpage
 
 # References
