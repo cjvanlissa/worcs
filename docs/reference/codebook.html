@@ -40,10 +40,20 @@
 
 
 <meta property="og:title" content="Create codebook for a dataset — make_codebook" />
-<meta property="og:description" content="Creates a rudimentary 'Rmarkdown' codebook for a dataset, and
-renders it to markdown for 'GitHub'. Users can customize the 'Rmarkdown'
-document, for example, by adding a column with variable descriptions, or a
-paragraph with details on the data collection procedure." />
+<meta property="og:description" content="Creates a codebook for a dataset in 'R Markdown' format, and
+renders it to 'markdown' for 'GitHub'. Users can customize the 'R Markdown'
+document and re-knit it, for example, to add a paragraph with details on
+the data collection procedures. The variable descriptives are stored in
+a .csv file, which can be edited in 'R' or a spreadsheet program.
+Columns can be appended, and we encourage users to complete at least the
+following two columns in this file:
+category Describe the type of variable in this column. For example:
+&quot;morality&quot;.
+description Provide a plain-text description of the variable. For
+example, the full text of a questionnaire item: &quot;People should be willing to
+do anything to help a member of their family&quot;.
+Re-knitting the 'R Markdown' file (using render) will
+transfer these changes to the 'markdown' file for 'GitHub'." />
 
 
 
@@ -75,7 +85,7 @@ paragraph with details on the data collection procedure." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -132,13 +142,28 @@ paragraph with details on the data collection procedure." />
     </div>
 
     <div class="ref-description">
-    <p>Creates a rudimentary 'Rmarkdown' codebook for a dataset, and
-renders it to markdown for 'GitHub'. Users can customize the 'Rmarkdown'
-document, for example, by adding a column with variable descriptions, or a
-paragraph with details on the data collection procedure.</p>
+    <p>Creates a codebook for a dataset in 'R Markdown' format, and
+renders it to 'markdown' for 'GitHub'. Users can customize the 'R Markdown'
+document and re-knit it, for example, to add a paragraph with details on
+the data collection procedures. The variable descriptives are stored in
+a <code>.csv</code> file, which can be edited in 'R' or a spreadsheet program.
+Columns can be appended, and we encourage users to complete at least the
+following two columns in this file:</p><ul>
+<li><p>category Describe the type of variable in this column. For example:
+"morality".</p></li>
+<li><p>description Provide a plain-text description of the variable. For
+example, the full text of a questionnaire item: "People should be willing to
+do anything to help a member of their family".</p></li>
+</ul><p>Re-knitting the 'R Markdown' file (using <code><a href='https://rdrr.io/pkg/rmarkdown/man/render.html'>render</a></code>) will
+transfer these changes to the 'markdown' file for 'GitHub'.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_codebook</span>(<span class='no'>data</span>, <span class='kw'>render_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>file_name</span> <span class='kw'>=</span> <span class='st'>"codebook.Rmd"</span>)</pre>
+    <pre class="usage"><span class='fu'>make_codebook</span>(
+  <span class='no'>data</span>,
+  <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"codebook.Rmd"</span>,
+  <span class='kw'>render_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>csv_file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"Rmd$"</span>, <span class='st'>"csv"</span>, <span class='no'>filename</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,29 +173,36 @@ paragraph with details on the data collection procedure.</p>
       <td><p>A data.frame for which to create a codebook.</p></td>
     </tr>
     <tr>
+      <th>filename</th>
+      <td><p>Character. File name to write the codebook <code>rmarkdown</code>
+file to.</p></td>
+    </tr>
+    <tr>
       <th>render_file</th>
       <td><p>Logical. Whether or not to render the document.</p></td>
     </tr>
     <tr>
-      <th>file_name</th>
+      <th>csv_file</th>
       <td><p>Character. File name to write the codebook <code>rmarkdown</code>
-file to.</p></td>
+file to. By default, uses the filename stem of the <code>filename</code> argument.
+Set to <code>NULL</code> to write the codebook only to the 'R Markdown' file, and
+not to <code>.csv</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>Logical</code>, indicating whether or not the operation was
-succesful. This function is mostly called for its side effect of rendering an
-<code>rmarkdown</code> codebook.</p>
+successful. This function is mostly called for its side effect of rendering
+an 'R Markdown' codebook.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>rmarkdown</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>knitr</span>)
-<span class='no'>file_name</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"codebook"</span>, <span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".Rmd"</span>)
-<span class='fu'>make_codebook</span>(<span class='no'>iris</span>, <span class='kw'>file_name</span> <span class='kw'>=</span> <span class='no'>file_name</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+<span class='no'>filename</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"codebook"</span>, <span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".Rmd"</span>)
+<span class='fu'>make_codebook</span>(<span class='no'>iris</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='no'>filename</span>, <span class='kw'>csv_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>processing file: codebook6dfc5d0d67f4.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |..............                                                        |  20%
+#&gt; <span class='message'>processing file: codebook4818c08706.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |..............                                                        |  20%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                              |............................                                          |  40%
@@ -186,14 +218,15 @@ succesful. This function is mostly called for its side effect of rendering an
 #&gt;   |                                                                              |......................................................................| 100%
 #&gt;   ordinary text without R code
 #&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: codebook6dfc5d0d67f4.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook6dfc5d0d67f4.utf8.md --to gfm --from markdown+autolink_bare_uris+tex_math_single_backslash --output codebook6dfc5d0d67f4.md --standalone --template "C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" 
-#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook6dfc5d0d67f4.md --to html4 --from gfm --output codebook6dfc5d0d67f4.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --email-obfuscation none --metadata pagetitle=PREVIEW </div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Preview created: codebook6dfc5d0d67f4.html</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Output created: codebook6dfc5d0d67f4.md</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
-  <span class='no'>file_name</span>,
-  <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"\\.Rmd"</span>, <span class='st'>"\\.md"</span>, <span class='no'>file_name</span>),
-  <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"\\.Rmd"</span>, <span class='st'>"\\.html"</span>, <span class='no'>file_name</span>),
-  <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"\\.Rmd"</span>, <span class='st'>"_files"</span>, <span class='no'>file_name</span>)
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: codebook4818c08706.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook4818c08706.utf8.md --to gfm --from markdown+autolink_bare_uris+tex_math_single_backslash --output codebook4818c08706.md --standalone --template "C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" 
+#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook4818c08706.md --to html4 --from gfm --output codebook4818c08706.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --email-obfuscation none --metadata pagetitle=PREVIEW </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Preview created: codebook4818c08706.html</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Output created: codebook4818c08706.md</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+  <span class='st'>".worcs"</span>,
+  <span class='no'>filename</span>,
+  <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"\\.Rmd"</span>, <span class='st'>"\\.md"</span>, <span class='no'>filename</span>),
+  <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"\\.Rmd"</span>, <span class='st'>"\\.html"</span>, <span class='no'>filename</span>),
+  <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"\\.Rmd"</span>, <span class='st'>"_files"</span>, <span class='no'>filename</span>)
 ), <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
