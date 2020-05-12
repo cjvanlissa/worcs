@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Export project to .zip file — export_project • worcs</title>
+<title>Add, commit, and push changes. — git_update • worcs</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,18 @@
 
 
 
-<meta property="og:title" content="Export project to .zip file — export_project" />
-<meta property="og:description" content="Export project to .zip file" />
+<meta property="og:title" content="Add, commit, and push changes. — git_update" />
+<meta property="og:description" content="This function is a wrapper for
+git_add, git_commit, and
+git_push. It adds all locally changed files to the
+staging area of the local 'Git' repository, then commits these changes
+(with an optional) message, and then pushes them to a remote
+repository. This is used for making a &quot;cloud backup&quot; of local changes.
+Do not use this function when working with privacy sensitive data,
+or any other file that should not be pushed to a remote repository.
+The git_add argument force is disabled by default,
+to avoid accidentally committing and pushing a file that is listed in
+.gitignore." />
 
 
 
@@ -123,60 +133,102 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Export project to .zip file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cjvanlissa/worcs/blob/master/R/export.R'><code>R/export.R</code></a></small>
-    <div class="hidden name"><code>export_project.Rd</code></div>
+    <h1>Add, commit, and push changes.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cjvanlissa/worcs/blob/master/R/github.R'><code>R/github.R</code></a></small>
+    <div class="hidden name"><code>git_update.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Export project to .zip file</p>
+    <p>This function is a wrapper for
+<code><a href='https://jeroen.cran.dev/gert/reference/commit.html'>git_add</a></code>, <code><a href='https://jeroen.cran.dev/gert/reference/commit.html'>git_commit</a></code>, and
+<code><a href='https://jeroen.cran.dev/gert/reference/fetch.html'>git_push</a></code>. It adds all locally changed files to the
+staging area of the local 'Git' repository, then commits these changes
+(with an optional) <code>message</code>, and then pushes them to a remote
+repository. This is used for making a "cloud backup" of local changes.
+Do not use this function when working with privacy sensitive data,
+or any other file that should not be pushed to a remote repository.
+The <code><a href='https://jeroen.cran.dev/gert/reference/commit.html'>git_add</a></code> argument <code>force</code> is disabled by default,
+to avoid accidentally committing and pushing a file that is listed in
+<code>.gitignore</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>export_project</span>(<span class='kw'>zipfile</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>worcs_directory</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>open_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>git_update</span>(
+  <span class='kw'>message</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"update "</span>, <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()),
+  <span class='kw'>files</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='kw'>repo</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='no'>author</span>,
+  <span class='no'>committer</span>,
+  <span class='no'>remote</span>,
+  <span class='no'>refspec</span>,
+  <span class='no'>password</span>,
+  <span class='no'>ssh_key</span>,
+  <span class='no'>mirror</span>,
+  <span class='no'>force</span>,
+  <span class='no'>verbose</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>zipfile</th>
-      <td><p>Character. Path to a <code>.zip</code> file that is to be created.
-The default argument <code>NULL</code> creates a <code>.zip</code> file in the directory
-one level above the 'worcs' project directory. By default, all files tracked
-by 'Git' are included in the <code>.zip</code> file, excluding 'data.csv' if
-<code>open_data = FALSE</code>.</p></td>
+      <th>message</th>
+      <td><p>a commit message</p></td>
     </tr>
     <tr>
-      <th>worcs_directory</th>
-      <td><p>Character. Path to the WORCS project directory to
-export. Defaults to <code>"."</code>, which refers to the current working
-directory.</p></td>
+      <th>files</th>
+      <td><p>vector of paths relative to the git root directory. Use "." to stage all changed files.</p></td>
     </tr>
     <tr>
-      <th>open_data</th>
-      <td><p>Logical. Whether or not to include the original data,
-'data.csv', if this file exists. If <code>open_data = FALSE</code> and an open
-data file does exist, then it is excluded from the <code>.zip</code> file. If it
-does not yet exist, a synthetic data set is generated and added to the
-<code>.zip</code> file.</p></td>
+      <th>repo</th>
+      <td><p>a path to an existing repository, or a git_repository object as returned by git_open, git_init or git_clone.</p></td>
+    </tr>
+    <tr>
+      <th>author</th>
+      <td><p>A git_signature value, default is git_signature_default.</p></td>
+    </tr>
+    <tr>
+      <th>committer</th>
+      <td><p>A git_signature value, default is same as author</p></td>
+    </tr>
+    <tr>
+      <th>remote</th>
+      <td><p>name of a remote listed in git_remote_list()</p></td>
+    </tr>
+    <tr>
+      <th>refspec</th>
+      <td><p>string with mapping between remote and local refs</p></td>
+    </tr>
+    <tr>
+      <th>password</th>
+      <td><p>a string or a callback function to get passwords for authentication or password protected ssh keys. Defaults to askpass which checks getOption('askpass').</p></td>
+    </tr>
+    <tr>
+      <th>ssh_key</th>
+      <td><p>path or object containing your ssh private key. By default we look for keys in ssh-agent and credentials::ssh_key_info.</p></td>
+    </tr>
+    <tr>
+      <th>mirror</th>
+      <td><p>use the --mirror flag</p></td>
+    </tr>
+    <tr>
+      <th>force</th>
+      <td><p>use the --force flag</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>display some progress info while downloading</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Logical, indicating the success of the operation. This function is
-called for its side effect of creating a <code>.zip</code> file.</p>
+    <p>No return value. This function is called for its side effects.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>export_project</span>(<span class='kw'>worcs_directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file 'C:\Users\lissa102\AppData\Local\Temp\RtmpwtIoDM/.worcs': No such file or directory</span></div><div class='output co'>#&gt; <span style='color: #BB0000;'>X  </span><span style='color: #000000;'>No '.worcs' file found; not a WORCS project, or the working directory has been changed.</span><span>
-#&gt; </span><span style='color: #BB0000;'>X  </span><span style='color: #000000;'>Could not find 'Git' repository.</span><span>
-#&gt; Called from: export_project(worcs_directory = tempdir())
-#&gt; debug at C:/Git_Repositories/worcs/R/export.R#58: data_original &lt;- data_synthetic &lt;- NULL
-#&gt; debug at C:/Git_Repositories/worcs/R/export.R#59: if (!is.null(worcsfile[["data"]])) {
-#&gt;     data_original &lt;- names(worcsfile[["data"]])
-#&gt;     data_synthetic &lt;- unlist(lapply(data_original, function(i) {
-#&gt;         worcsfile[["data"]][[i]][["synthetic"]]
-#&gt;     }))
-#&gt; }</div><div class='output co'>#&gt; <span class='error'>Error in worcsfile[["data"]]: subscript out of bounds</span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>git_update</span>()</div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Identified local 'Git' repository.</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Added files to staging area of 'Git' repository.</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Committed staged files to 'Git' repository.</span><span>
+#&gt; </span><span style='color: #BB0000;'>X  </span><span style='color: #000000;'>Could not push local commits to remote repository.</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

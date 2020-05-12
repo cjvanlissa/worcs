@@ -1,5 +1,5 @@
 
-# WORCS <a href='https://osf.io/zcvbs/'><img src='worcs_icon.png' align="right" height="139" /></a>
+# WORCS <a href='https://osf.io/zcvbs/'><img src='https://raw.githubusercontent.com/cjvanlissa/worcs/master/paper/worcs_icon.png' align="right" height="139" /></a>
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 

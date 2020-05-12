@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • worcs</title>
+<title>WORCS checklist — worcs_checklist • worcs</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="WORCS checklist — worcs_checklist" />
+<meta property="og:description" content="This checklist can be used to see whether a project adheres to the principles
+of open reproducible code in science, as set out in the WORCS paper." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -122,18 +124,49 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>WORCS checklist</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cjvanlissa/worcs/blob/master/R/worcs_checklist.R'><code>R/worcs_checklist.R</code></a></small>
+    <div class="hidden name"><code>worcs_checklist.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <dl>
-        <dt><a href="setup.html">Setting up your computer for WORCS</a></dt>
-        <dd></dt>
-      </dl>
+    <div class="ref-description">
+    <p>This checklist can be used to see whether a project adheres to the principles
+of open reproducible code in science, as set out in the WORCS paper.</p>
     </div>
+
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>worcs_checklist</span>)</pre>
+
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A data frame with 15 rows and 5 variables.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    
+<table class='table'>
+<tr><td><strong>category</strong></td><td><code>factor</code></td><td>Category of the checklist
+  element.</td></tr>
+<tr><td><strong>name</strong></td><td><code>factor</code></td><td>Name of the checklist
+  element.</td></tr>
+<tr><td><strong>description</strong></td><td><code>factor</code></td><td>What are the requirements
+  to claim that this checklist element is met?</td></tr>
+<tr><td><strong>importance</strong></td><td><code>factor</code></td><td>Whether the checklist
+  element is essential to obtain a green 'open science' badge, or optional.</td></tr>
+<tr><td><strong>check</strong></td><td><code>logical</code></td><td>Whether the criterion is checked
+  automatically by <code><a href='worcs_badge.html'>worcs_badge</a></code>.</td></tr>
+</table>
+
+
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>by Van Lissa, Brandmaier, Brinkman, &amp; Vreede (2020)
+&lt;doi:10.17605/OSF.IO/ZCVBS&gt;.</p>
+
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 

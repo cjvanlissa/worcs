@@ -74,7 +74,7 @@ create a WORCS project through syntax or the console." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -158,7 +158,7 @@ create a WORCS project through syntax or the console.</p>
     <tr>
       <th>manuscript</th>
       <td><p>Character, indicating what template to use for the
-'rmarkdown' manuscript. Default: 'APA6'. Available choices include:
+'R Markdown' manuscript. Default: 'APA6'. Available choices include:
 <code>"APA6", "github_document", "None", "ams_article", "asa_article",
 "biometrics_article", "copernicus_article", "ctex", "elsevier_article",
 "frontiers_article", "ieee_article", "joss_article", "jss_article",
@@ -168,8 +168,8 @@ create a WORCS project through syntax or the console.</p>
 For more information about <code>APA6</code>, see the 'papaja' package, at
 &lt;https://github.com/crsh/papaja&gt;.
 For more information about <code>github_document</code>, see
-<code><a href='https://rdrr.io/pkg/rmarkdown/man/github_document.html'>github_document</a></code>. For the remaining formats, see,
-e.g., <code><a href='https://rdrr.io/pkg/rticles/man/article.html'>acm_article</a></code>.</p></td>
+<code><a href='https://rdrr.io/pkg/rmarkdown/man/github_document.html'>github_document</a></code>. The remaining formats are
+documented in the 'rticles' package.</p></td>
     </tr>
     <tr>
       <th>preregistration</th>
@@ -217,11 +217,7 @@ during project creation. Default: TRUE</p></td>
     <pre class="examples"><div class='input'><span class='no'>the_test</span> <span class='kw'>&lt;-</span> <span class='st'>"worcs_template"</span>
 <span class='no'>old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))
-<span class='no'>get_sig</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/conditions.html'>tryCatch</a></span>(<span class='fu'>git_signature_default</span>(), <span class='kw'>error</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>e</span>){
-  <span class='kw pkg'>gert</span><span class='kw ns'>::</span><span class='fu'><a href='https://jeroen.cran.dev/gert/reference/git_config.html'>git_config_global_set</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"user.name"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"yourname"</span>)
-  <span class='kw pkg'>gert</span><span class='kw ns'>::</span><span class='fu'><a href='https://jeroen.cran.dev/gert/reference/git_config.html'>git_config_global_set</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"user.email"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"yourname@email.com"</span>)
-})
-<span class='fu'>worcs_project</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>, <span class='st'>"worcs_project"</span>),
+<span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span>(<span class='no'>git_user</span>, <span class='kw pkg'>worcs</span><span class='kw ns'>:::</span><span class='fu'>get_user</span>())</div><div class='output co'>#&gt; <span class='error'>Error in get(name, envir = asNamespace(pkg), inherits = FALSE): object 'get_user' not found</span></div><div class='input'><span class='fu'>worcs_project</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>, <span class='st'>"worcs_project"</span>),
               <span class='kw'>manuscript</span> <span class='kw'>=</span> <span class='st'>"github_document"</span>,
               <span class='kw'>preregistration</span> <span class='kw'>=</span> <span class='st'>"None"</span>,
               <span class='kw'>add_license</span> <span class='kw'>=</span> <span class='st'>"None"</span>,
