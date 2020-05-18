@@ -197,22 +197,7 @@ Finally, R is highly interoperable:
 Packages are available to load nearly every imaginable filetype, and output can be written to most file types, including DOCX and PDF (in APA style), and HTML format. 
 Moreover, wrappers are available for many tools developed in other programming languages, and code written in other programming languages can be evaluated from R [including C++, Fortran, and Python, @allaireMarkdownPythonEngine].
 
-Working with R is simplified immensely by using the RStudio integrated development engine (IDE) for R.
-<!-- Barbara: 
-https://support.rstudio.com/hc/en-us/articles/206212048-Citing-RStudio says:
-To cite RStudio in publications, you can get the latest citation information by running the command RStudio.Version() in a recent version of RStudio IDE.
-
-I did this, which gave:
-
-  @Manual{,
-    title = {RStudio: Integrated Development Environment for R},
-    author = {{RStudio Team}},
-    organization = {RStudio, Inc.},
-    address = {Boston, MA},
-    year = {2016},
-    url = {http://www.rstudio.com/},
-  }
--->
+Working with R is simplified immensely by using the RStudio integrated development engine (IDE) for R [@rstudioteamRStudioIntegratedDevelopment2015].
 Most of the tools used in WORCS are embedded directly into the user interface of RStudio.
 RStudio automates and streamlines tedious or complicated aspects of working with R, Rmarkdown, and Git/GitHub.
 This makes RStudio a comprehensive solution for open science research projects.
@@ -223,29 +208,84 @@ When a new project is initialized from this template, the bookkeeping required t
 
 ## Introducing the tools
 
-WORCS relies on several free, open source software solutions. The first of these is *dynamic document generation*. Dynamic document generation (DDG) means writing scientific reports in a format that interleaves written reports with blocks of computer code used to conduct the analyses. The text is automatically formatted as an APA-style manuscript [thanks to the R-package `papaja`, @austPapajaPrepareReproducible2020], and results of the code blocks are automatically generated and insterted in the text, or rendered as Figures and Tables. Dynamic document generation supercedes the classical approach of using separate programs to write prose and conduct analyses, and then manually copy-pasting analysis results into the text. Although there is a slight learning curve to transitioning to DDG, the investment really pays off: 
+WORCS relies on several free, open source software solutions.
+The first of these is *dynamic document generation*.
+Dynamic document generation (DDG) means writing scientific reports in a format
+that interleaves written reports with blocks of computer code used to conduct
+the analyses. The text is automatically formatted as an APA-style manuscript
+[thanks to the R-package `papaja`, @austPapajaPrepareReproducible2020], and
+results of the code blocks are automatically generated and insterted in the
+text, or rendered as Figures and Tables. Dynamic document generation supercedes
+the classical approach of using separate programs to write prose and conduct
+analyses, and then manually copy-pasting analysis results into the text.
+Although there is a slight learning curve to transitioning to DDG, the
+investment really pays off: 
 
-* The time saved from painstakingly copy-pasting output and manually formatting text soon outweighs the investment of switching to a new program
-* Human error in copy-pasting results is eliminated
-* When revisions require major changes to the analyses, all results, Figures and Tables are automatically updated
-* Flexibility in output formats means that a manuscript can be rendered to presentation format, or even to a website. 
-* Reproducibility is guaranteed, and can be verified by reviewers and/or readers, because the code is run each time the document is compiled.
+* Time saved from painstakingly copy-pasting output and manually formatting text
+soon outweighs the investment of switching to a new program
+* Human error in manually copying results is eliminated
+* When revisions require major changes to the analyses, all results, Figures and
+Tables are automatically updated
+* Flexibility in output formats means that a manuscript can be rendered to
+presentation format, or even to a website
+* Reproducibility is guaranteed, and can be verified by reviewers and/or
+readers, because the code is run each time the document is compiled.
 
-In sum, while writing academic papers in a programming environment might seem counter-intuitive at first, this approach is much more amenable to the needs of academics than most word processing software. It prevents mistakes, and saves time.
+In sum, while writing academic papers in a programming environment might seem
+counter-intuitive at first, this approach is much more amenable to the needs of
+academics than most word processing software. It prevents mistakes, and saves
+time. We recommend centering a research project around one dynamically generated
+(RMarkdown) document, which includes all analysis code. Longer scripts can be
+stored in `.R` files, and called from the main document using the `source()`
+function.
 
 The second solution is *version control*:
-Maintaining an indelible log of every change to all project files. Version control is a near-essential tool for scientific reproducibility, as anyone learns who has had the experience of accidentally deleting a crucial file, or of being unable to reproduce analyses because they ran some analyses interactively instead of using syntax [see also @blischakQuickIntroductionVersion2016].
-Many scientists use some form of *implicit* version control; for example, by renaming files after major changes (e.g., "manuscript_final_2.2-2019-10-12.doc"), tracking changes in word processing software, or using cloud hosting services that retain backups of previous versions.
-WORCS instead uses the *explicit* version control software "Git". Git tracks changes to files, and stores these changes when the user makes a "commit".
-<!--Barbara: I have looked for a way to cite Git but did not find one... Seems good practice especially in this paper as an example to cite all software, but for Git I just cannot find the way. Maybe cite the website: www.git-scm.com -->
-Git retains a complete log of all commits, and users can compare changes between different commits, or go back to a previous version of the code (for example, after making a mistake, or to replicate a previous version of the results).
+Maintaining an indelible log of every change to all project files. Version 
+control is a near-essential tool for scientific reproducibility, as anyone
+learns who has had the experience of accidentally deleting a crucial file, or of
+being unable to reproduce analyses because they ran some analyses interactively
+instead of using syntax [see also @blischakQuickIntroductionVersion2016].
+Many scientists use some form of *implicit* version control; for example, by
+renaming files after major changes (e.g., "manuscript_final_2.2-2019-10-12.doc"),
+tracking changes in word processing software, or using cloud hosting services
+that retain backups of previous versions.
+WORCS instead uses the *explicit* version control software 'Git'
+(www.git-scm.com). Git tracks
+changes to files, and stores these changes when the user makes a "commit" (a 
+snapshot of the version controlled files).
+<!--Barbara: I have looked for a way to cite Git but did not find one... 
+Seems good practice especially in this paper as an example to cite all software,
+but for Git I just cannot find the way. Maybe cite the website: www.git-scm.com
+CJ: Other papers discussing scientific merits of Git also just give a URL -->
+Git retains a complete log of all commits, and users can compare changes between
+different commits, or go back to a previous version of the code (for example,
+after making a mistake, or to replicate a previous version of the results).
 A project version controlled with Git is called a "Repository", or Repo.
-It is also possible to prevent some files from being version controlled - such as privacy sensitive data.
-The `.gitignore` file is a list of files that should not be version-controlled, and thus exist only on the user's private computer.
+Git only version controls files explicitly committed by the user. Moreover, it
+is possible to prevent files from being version controlled - which is useful for
+privacy sensitive data.
+The `.gitignore` file lists files that should not be version-controlled.
+These files thus exist only on the user's private computer.
 
-<!--In statistical consultations, I often hear that researchers are unable to reproduce specific results because they only worked with a "very specific" version of the syntax - usually a combination of -->
-
-The functionality of Git is amplified by services such as GitHub (other services are available). GitHub is best understood as a cloud storage service with social networking functionality. The "cloud storage" aspect of GitHub works as follows: You can "clone" a local Git repository to the GitHub website, as a backup or research archive. The "social network" aspect comes into play when the project is set to "public": This allows other researchers to peruse the repository on the GitHub website to see how the work was done, clone it to their own computer to replicate the original work or apply the methods to their own data, open "Issues" to ask questions or give feedback on the project, or even send a "Pull request" with suggested changes to the text or code for your consideration. Git and GitHub shine as tools for collaboration, because different people can simultaneously work on different parts of a project, and their changes can be compared and automatically merged on the website. Even on solo projects, working with Git/GitHub has many benefits: Staying organized, being able to start a new study with a clone of an old, similar repository, or splitting off an "experimental branch" to try something new, while retaining the ability to revert to a previous state of the project, or to merge the experimental branch.
+The functionality of 'Git' is amplified by services such as 'GitHub'
+(https://github.com; other similar services include 'GitLab', https://gitlab.com
+and 'Bitbucket', https://bitbucket.org). 'GitHub' is best understood as a cloud
+storage service with social networking functionality. The cloud storage aspect
+of 'GitHub' works as follows: You can "clone" (copy) a local 'Git' repository to
+the 'GitHub' website, as a backup or research archive. The social network aspect
+comes into play when a repository on 'GitHub' is set to "public": This allows 
+other researchers to peruse the repository and see how the work was done, clone
+it to their own computer to replicate the original work or apply the methods to
+their own data, open "Issues" to ask questions or give feedback on the project,
+or even send a "Pull request" with suggested changes to the text or code for
+your consideration. 'Git' and 'GitHub' shine as tools for collaboration, because
+different people can simultaneously work on different parts of a project, and
+their changes can be compared and automatically merged on the website. Even on
+solo projects, working with 'Git'/'GitHub' has many benefits: Staying organized,
+being able to start a new study with a clone of an old, similar repository, or
+splitting off an "experimental branch" to try something new, while retaining the
+ability to revert to a previous state of the project, or to merge the 
+experimental branch.
 
 The third solution is *dependency management*: Keeping track of exactly what software was used to conduct the analyses. <!-- Being able to replicate analyses requires not only access to the data and analysis code, but also to the software used to evaluate that code.--> At first glance, it might seem sufficient to state that analyses were conducted in *Program X*. However, every program is susceptible to changes and updates. R-packages in particular are updated frequently, because they are Open Source, and there is an active community of developers contributing functionality and bugfixes. Potentially, any update could change the results of the code. For example, R-version 3.6.0 fixed a bug in the random number generator. This means that any analyses that use random numbers, such as bootstrapping, cannot be strictly replicated from previous versions. Or, for example, R-version 4.0.0 changed a default parameter that affects how data are loaded from files.
 
