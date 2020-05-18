@@ -268,8 +268,7 @@ The `.gitignore` file lists files that should not be version-controlled.
 These files thus exist only on the user's private computer.
 
 The functionality of 'Git' is amplified by services such as 'GitHub'
-(https://github.com; other similar services include 'GitLab', https://gitlab.com
-and 'Bitbucket', https://bitbucket.org). 'GitHub' is best understood as a cloud
+(https://github.com. 'GitHub' is best understood as a cloud
 storage service with social networking functionality. The cloud storage aspect
 of 'GitHub' works as follows: You can "clone" (copy) a local 'Git' repository to
 the 'GitHub' website, as a backup or research archive. The social network aspect
@@ -284,10 +283,23 @@ their changes can be compared and automatically merged on the website. Even on
 solo projects, working with 'Git'/'GitHub' has many benefits: Staying organized,
 being able to start a new study with a clone of an old, similar repository, or
 splitting off an "experimental branch" to try something new, while retaining the
-ability to revert to a previous state of the project, or to merge the 
-experimental branch.
+ability to "revert" (return) to a previous state of the project, or to "merge"
+(incorporate) the experimental branch. Although this paper focuses on 'GitHub',
+`worcs` (as of version 0.1.2) supports alternative services such as 'GitLab'
+(https://gitlab.com) and 'Bitbucket' (https://bitbucket.org), and has a vignette
+detailing instructions for these platforms.
 
-The third solution is *dependency management*: Keeping track of exactly what software was used to conduct the analyses. <!-- Being able to replicate analyses requires not only access to the data and analysis code, but also to the software used to evaluate that code.--> At first glance, it might seem sufficient to state that analyses were conducted in *Program X*. However, every program is susceptible to changes and updates. R-packages in particular are updated frequently, because they are Open Source, and there is an active community of developers contributing functionality and bugfixes. Potentially, any update could change the results of the code. For example, R-version 3.6.0 fixed a bug in the random number generator. This means that any analyses that use random numbers, such as bootstrapping, cannot be strictly replicated from previous versions. Or, for example, R-version 4.0.0 changed a default parameter that affects how data are loaded from files.
+The third solution is *dependency management*: Keeping track of exactly what
+software was used to conduct the analyses. At first glance, it might seem
+sufficient to state that analyses were conducted in *Program X*. However, every
+program is susceptible to changes, updates, and bugfixes. R-packages in
+particular are updated frequently, because they are Open Source, and there is an
+active community of developers contributing functionality and bugfixes. 
+Potentially, any update could change the results of the code. For example, 
+R-version 3.6.0 fixed a bug in the random number generator. This means that any
+analyses that use random numbers, such as bootstrapping, cannot be strictly
+replicated from previous versions. Or, for example, R-version 4.0.0 changed a
+default parameter that affects how data are loaded from files.
 
 <!-- LB: and onwards: this section requires some background knowledge on R/packages/etc. This could be a place where readers stumble and stop reading. Perhaps introduce the concept of the R project template earlier, to see section on dependencies more into perspective. 
 [main issue] it should become clear earlier what the WORCS workflow entails: e.g. switching to working with a particular R Project Template. Discuss the ‘workflow' section earlier. Related: Can you make a schematic overview of the WORCS?overview--> 
