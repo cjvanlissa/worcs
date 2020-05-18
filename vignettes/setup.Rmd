@@ -39,7 +39,7 @@ Before you can use the WORCS workflow and the full functionality of the `worcs` 
     d. Click *Create RSA Key*. Do not enter a passphrase. Press *Create*. A window with some information will open, which you can close.
     e. Click *View public key*, and copy the entire text to the clipboard.
     f. Close 'RStudio' (it might offer to restart by itself; this is fine)
-    g. Go to [www.github.com](https://www.github.com)
+    g. Go to [github.com](https://github.com/)
     h. Click your user icon, click *Settings*, and then select the *SSH and GPG keys* tab.
     i. Click *New SSH key*. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled *Key*.
     j. Open 'RStudio' again (unless it restarted by itself)
