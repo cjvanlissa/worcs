@@ -169,7 +169,6 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
   data_files <- data_files[!(is.null(data_files)|is.na(data_files))]
   data_original <- data_original[!(is.null(data_files)|is.na(data_files))]
   if(length(data_files) == 0) stop("No valid data files found.")
-  invisible(sapply(data_files, check_sum))
   outlist <- vector(mode = "list")
   for(file_num in seq_along(data_files)){
     this_file <- data_files[file_num]

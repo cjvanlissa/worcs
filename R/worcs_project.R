@@ -257,7 +257,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   }
 
   # Connect to remote repo if possible
-  if(use_git & grepl("^https://github.com/.+?/.+?\\.git$", remote_repo)){
+  if(use_git & startsWith(remote_repo, "https://") & endsWith(remote_repo, ".git")){
     tryCatch({
       git_remote_add(name = "origin", url = remote_repo, repo = path)
       git_push(remote = "origin", repo = path)
