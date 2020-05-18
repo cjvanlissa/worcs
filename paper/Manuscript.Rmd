@@ -8,17 +8,22 @@ shorttitle        : "WORKFLOW FOR OPEN SCIENCE"
 author:
   - name: "Caspar J. Van Lissa"
     institution: "1,2"
+    orcid: "0000-0002-0808-5024"
     corresponding: yes
     address: "Padualaan 14, 3584CH Utrecht, The Netherlands"
     email: "c.j.vanlissa@uu.nl"
   - name: "Andreas M. Brandmaier"
     institution: "3,4"
+    orcid: "0000-0001-8765-6982"
   - name: "Loek Brinkman"
     institution: "2,5"
+    orcid: "0000-0003-3997-1173"
   - name: "Aaron Peikert"
     institution: "3,6"
-  - name: "Barbara Vreede"
+    orcid: "0000-0001-7813-818X"
+  - name: "Barbara M.I. Vreede"
     institution: "7"
+    orcid: "0000-0002-5023-4601"
 
 affiliation:
   - id: "1"
@@ -116,8 +121,17 @@ set.seed(42)
 -->
 
 # Introduction
-
-The social sciences are amidst a paradigm shift towards open science. Several immediate causes stirred up support for this transition; including several highly publicized cases of scientific fraud [as discussed by @leveltFailingScienceFraudulent2012], increasing awareness of questionable research practices [@johnMeasuringPrevalenceQuestionable2012], and the replication crisis [@shroutPsychologyScienceKnowledge2018]. However, open science is not merely a cure for this crisis - it is also an opportunity [@adolphOpenBehavioralScience2012]. Technological advances enable researchers to more easily conduct reliable, cumulative, collaborative science [@nosekScientificUtopiaOpening2012]. Capitalizing on these advances has the potential to accellerate scientific progress [see also @coyneReplicationInitiativesWill2016].
+<!--
+Barbara:
+A trick I learned in collaborative writing with git is to make sure each new sentence is on a new line.
+This way, you can effectively use a git diff to see changes in individual sentences instead of having to scour through an entire paragraph.
+I'll add this, but only in the paragraphs I've changed, so you do not get inundated with differences!
+-->
+The (social) sciences are amidst a paradigm shift towards open science. 
+Several immediate causes stirred up support for this transition; including several highly publicized cases of scientific fraud [as discussed by @leveltFailingScienceFraudulent2012], increasing awareness of questionable research practices [@johnMeasuringPrevalenceQuestionable2012], and the replication crisis [@shroutPsychologyScienceKnowledge2018].
+However, open science is not merely a cure for this crisis - it is also an opportunity [@adolphOpenBehavioralScience2012].
+Technological advances enable researchers to more easily conduct reliable, cumulative, collaborative science [@nosekScientificUtopiaOpening2012].
+Capitalizing on these advances has the potential to accellerate scientific progress [see also @coyneReplicationInitiativesWill2016].
 
 This paper introduces WORCS: A Workflow for Open Reproducible Code in Science. WORCS is a lightweight approach to open science and computational reproducibility. It provides a step-by-step procedure that researchers can follow to make an entire research project Open and Reproducible. WORCS is based on best practices, and can be used either in parallel to, or in absence of, top-down requirements by journals. The main goal of WORCS is to lower the threshold for adopting an open science workflow by providing the present tutorial, along with an R-package with user-friendly support functions, and an RStudio project template. 
 
@@ -144,8 +158,15 @@ One of the most impactful contributions to open science has been the development
 
 ## Goal of this paper
 
-The TOP-guidelines are primarily geared towards top-down systemic change (what's in a name) by journals, funders, and organizations. However, large organizations are slow to change. For example, a snapshot of editorial practices indicated that, in 2015, only 3% out of 1151 psychology journals explicitly stated that they accepted replication studies [@martinArePsychologyJournals2017; see also @klebelPeerReviewPreprint2020].
-<!-- A more recent preprint reported that many journals do not explicitly state their policies about  klebelPeerReviewPreprint2020 --> At the same time, there is substantial momentum for grassroots change [@nosekScientificUtopiaOpening2012]. Many individual researchers are willing to adopt best practices for open science, even in the absence of institutional support. The formation of "Open Science Communities" at universities around the globe illustrates this grassroots movement. This paper is designed as an instrument for grassroots change, that can help individual scientists to meet the principles of open science. This workflow can be used regardless of any top-down open science requirements already implemented by journals and institutions: If such requirements exist, this workflow will help fulfill them.
+The TOP-guidelines are primarily geared towards top-down systemic change by journals, funders, and organizations.
+However, large organizations are slow to change.
+For example, a snapshot of editorial practices indicated that, in 2015, only 3% out of 1151 psychology journals explicitly stated that they accepted replication studies [@martinArePsychologyJournals2017; see also @klebelPeerReviewPreprint2020].
+<!-- A more recent preprint reported that many journals do not explicitly state their policies about  klebelPeerReviewPreprint2020 -->
+At the same time, there is substantial momentum for grassroots change [@nosekScientificUtopiaOpening2012].
+Many individual researchers are willing to adopt best practices for open science, even in the absence of institutional support.
+The formation of "Open Science Communities" at universities around the globe illustrates this grassroots movement.
+This paper is designed as an instrument for grassroots change, that can help individual scientists to meet the principles of open science.
+This workflow can be used regardless of any top-down open science requirements already implemented by journals and institutions, and where such requirements do exist, this workflow will help fulfill them.
 
 ## Existing solutions
 
@@ -165,6 +186,45 @@ tab1 <- data.frame(
 apa_table(tab1)
 ```
 
+## Prerequisites
+<!--Barbara: I'm moving up this section and editing it a bit, to introduce more explicitly that worcs was developed for R.-->
+WORCS has focused on developing a workflow for R, instead of for SPSS or Python.
+<!-- Barbara: same as for Git, I could not find a citation. Maybe cite the website: www.r-project.org -->
+Several arguments support the choice to work in R.
+First, R and all of it extensions are free and Open Source, and Open Source software should be the tool of choice for open science.
+Second, many tools for an open science workflow are already implemented in R.
+A vibrant online community exists for R, developing new R methods and packages, and providing support and tutorials for existing ones.
+Wrappers in R are often available for tools developed in other programming languages.
+<!-- LB: Perhaps give some pointers to learn R (e.g. R4DataScience)-->
+Third, at the time of writing, R is the second-most cited statistical software package [@muenchenPopularityDataScience2012], following SPSS, which has no support for any of the open science tools discussed in this paper.
+Finally, R is highly interoperable:
+Packages are available to load nearly every imaginable filetype, code written in other programming languages [including Python, @allaireMarkdownPythonEngine] can be called from R, and output can be written to many file types, including DOCX and PDF (in APA style), and HTML format. 
+
+Working with R is simplified immensely by using the RStudio integrated development engine (IDE) for R.
+<!-- Barbara: 
+https://support.rstudio.com/hc/en-us/articles/206212048-Citing-RStudio says:
+To cite RStudio in publications, you can get the latest citation information by running the command RStudio.Version() in a recent version of RStudio IDE.
+
+I did this, which gave:
+
+  @Manual{,
+    title = {RStudio: Integrated Development Environment for R},
+    author = {{RStudio Team}},
+    organization = {RStudio, Inc.},
+    address = {Boston, MA},
+    year = {2016},
+    url = {http://www.rstudio.com/},
+  }
+-->
+Many of the tools used in WORCS are embedded directly into the user interface of RStudio.
+RStudio automates and streamlines many tedious or complicated aspects of working with R, Rmarkdown, and Git/GitHub.
+This makes RStudio a comprehensive solution for open science research projects.
+Another important feature of RStudio is project management.
+A project bundles writing, analyses, data, references, etcetera, into a self-contained folder, that can be uploaded entirely to GitHub and downloaded by future users.
+The `worcs` R-package installs a new RStudio project template.
+When a new project is initialized from this template, much of the bookkeeping required to set up an open science project is performed automatically.
+
+
 ## Introducing the tools
 
 WORCS relies on several free, open source software solutions. The first of these is *dynamic document generation*. Dynamic document generation (DDG) means writing scientific reports in a format that interleaves written reports with blocks of computer code used to conduct the analyses. The text is automatically formatted as an APA-style manuscript [thanks to the R-package `papaja`, @austPapajaPrepareReproducible2020], and results of the code blocks are automatically generated and insterted in the text, or rendered as Figures and Tables. Dynamic document generation supercedes the classical approach of using separate programs to write prose and conduct analyses, and then manually copy-pasting analysis results into the text. Although there is a slight learning curve to transitioning to DDG, the investment really pays off: 
@@ -177,7 +237,15 @@ WORCS relies on several free, open source software solutions. The first of these
 
 In sum, while writing academic papers in a programming environment might seem counter-intuitive at first, this approach is much more amenable to the needs of academics than most word processing software. It prevents mistakes, and saves time.
 
-The second solution is *version control*: Maintaining an indelible log of every change to all project files. Version control is a near-essential tool for scientific reproducibility, as anyone learns who has had the experience of accidentally deleting a crucial file, or of being unable to reproduce analyses because they ran some analyses interactively instead of using syntax [see also @blischakQuickIntroductionVersion2016]. Many scientists use some form of *implicit* version control; for example, by renaming files after major changes (e.g., "manuscript_final_2.2-2019-10-12.doc"), tracking changes in word processing software, or using cloud hosting services that retain backups of previous versions. WORCS instead uses the *explicit* version control software "Git". Git tracks changes to files, and stores these changes when the user makes a "commit". Git retains a complete log of all commits, and users can compare changes between different commits, or go back to a previous version of the code (for example, after making a mistake, or to replicate a previous version of the results). A project version controlled with Git is called a "Repository", or Repo. It is also possible to prevent some files from being version controlled - such as privacy sensitive data. The `.gitignore` file is a list of files that should not be version-controlled, and thus exist only on the user's private computer.
+The second solution is *version control*:
+Maintaining an indelible log of every change to all project files. Version control is a near-essential tool for scientific reproducibility, as anyone learns who has had the experience of accidentally deleting a crucial file, or of being unable to reproduce analyses because they ran some analyses interactively instead of using syntax [see also @blischakQuickIntroductionVersion2016].
+Many scientists use some form of *implicit* version control; for example, by renaming files after major changes (e.g., "manuscript_final_2.2-2019-10-12.doc"), tracking changes in word processing software, or using cloud hosting services that retain backups of previous versions.
+WORCS instead uses the *explicit* version control software "Git". Git tracks changes to files, and stores these changes when the user makes a "commit".
+<!--Barbara: I have looked for a way to cite Git but did not find one... Seems good practice especially in this paper as an example to cite all software, but for Git I just cannot find the way. Maybe cite the website: www.git-scm.com -->
+Git retains a complete log of all commits, and users can compare changes between different commits, or go back to a previous version of the code (for example, after making a mistake, or to replicate a previous version of the results).
+A project version controlled with Git is called a "Repository", or Repo.
+It is also possible to prevent some files from being version controlled - such as privacy sensitive data.
+The `.gitignore` file is a list of files that should not be version-controlled, and thus exist only on the user's private computer.
 
 <!--In statistical consultations, I often hear that researchers are unable to reproduce specific results because they only worked with a "very specific" version of the syntax - usually a combination of -->
 
@@ -191,17 +259,25 @@ Many solutions exist to ensure computational reproducibility. These solutions ty
 
 A recently developed package strikes a great balance between user-friendliness and effectiveness: `renv`, developed by the team behind RStudio. This package maintains a text-based log file of which packages are used, in what versions, and where they were installed from (e.g., CRAN, Bioconductor, GitHub). Being text-based, this log can be version controlled with Git. On a local computer, `renv` installs all packages used in a cache that is shared between all projects that use `renv`. Thus, if one of your projects uses a version of a package that is already in the cache, it does not need to be installed again. This overcomes the limitations of long installation times and large space requirements of `renv`. When someone else loads your project, `renv` will install all of the required packages onto a cache on their computer. Whereas `packrat` copies the source code of all packages, `renv` obtains the packages from their original repositories. Thus, as long as these repositories used maintain their archives, this solution is very lightweight and effective. It is not foolproof, but some have argued that all solutions for computational reproducibility have a limited shelf life [@brownHowLearnedStop2017]. Ultimately, the best solution might be to use a good-enough solution, like `renv`, and acknowledge that all code requires some maintenance if you want to reproduce it in the future.
 
-## Additional considerations
+## Considering filetypes
+A key consideration when developing a research project is what filetypes to use.
+A case can be made to use text-based files only (or as much as possible), instead of binary files.
+Text-based files can be read by machines and humans alike, without requiring special (licensed) software.
+Binary files, such as Word (`.docx`) or SPSS (`.sav`, `.spo`),  must be decoded by software first.
+Git is designed to keep track of changes to the content of text-based files.
+Each change reflects a word or line of code added or removed.
+Binary files, on the other hand, should not be version controlled with Git, as individual changes in the encrypted file are uninterpretable.
+Moreover, text-based files are often smaller than binary files, which means they take up less space on cloud hosting services, such as GitHub. Uploading large binary files is frowned upon.
+GitHub also allows visitors to peruse text-based files online, and conveniently renders certain filetypes.
+For example, GitHub highlights syntax in `.R` and `.Rmd` files, and displays `.csv` files as spreadsheets.
 
-A few additional considerations were considered in developing WORCS. The first consideration is to develop a workflow for R, instead of for SPSS or Python. Several arguments support the choice to work in R. First, R and all of it extensions are free and Open Source, and Open Source software should be the tool of choice for open science. Second, all of the aforementioned tools for an open science workflow are already implemented in R. Many statistical methods are first implemented in R, as there is a vibrant online community developing new R-packages and providing support and tutorials for existing ones. Wrappers in R are often available for tools developed in other programming languages. <!-- LB: Perhaps give some pointers to learn R (e.g. R4DataScience)-->Third, at the time of writing, R is the second-most cited statistical software package [@muenchenPopularityDataScience2012], following SPSS, which has no support for any of the open science tools discussed in this paper. Finally, R is highly interoperable: Packages are available to load nearly every imaginable filetype, code written in other programming languages [including Python, @allaireMarkdownPythonEngine] can be called from R, and output can be written to many file types, including DOCX and PDF (in APA style), and HTML format. 
-
-Working with R is simplified immensely by using the RStudio user interface for R. Many of the tools used in WORCS are embedded directly into the visual user interface of RStudio. RStudio automates and streamlines many tedious or complicated aspects of working with R, Rmarkdown, and Git/GitHub. This makes RStudio a comprehensive solution for open science research projects. Another important feature of RStudio is project management. A project bundles writing, analyses, data, references, etcetera, into a self-contained folder, that can be uploaded entirely to GitHub and downloaded by future users. The `worcs` R-package installs a new RStudio project template. When a new project is initialized from this template, much of the bookkeeping required to set up an open science project is performed automatically.
-
-Another key consideration is what filetypes to use. A case can be made to use text-based files only (or as much as possible), instead of binary files. Text-based files can be read by machines and humans alike, without requiring special (licensed) software. Binary files, such as Word (`.docx`) or SPSS (`.sav`, `.spo`),  must be decoded by software first. Git is designed to keep track of changes to the content of text-based files. Each change reflects a word or line of code added or removed. Binary files, on the other hand, should not be version controlled. The changes in the encrypted file are uninterpretable. Moreover, text-based files are often smaller than binary files, which means they take up less space on cloud hosting services, such as GitHub. Uploading large binary files is frowned upon. GitHub also allows visitors to peruse text-based files online, and conveniently renders certain filetypes. For example, GitHub highlights syntax in `.R` and `.Rmd` files, and displays `.csv` files as spreadsheets.
+<!--Barbara: Maybe write here something about writing manuscripts on a line-by-line basis, so that version control can keep track of changes more accurately than if a whole paragraph is identified as altered?-->
 
 ## Open science as opportunity
 
-<!-- LB:  this section comes at a weird place in the flow of the paper. -->Sometimes, open science principles are discussed as a kind of "antidote" to scientific misconduct. Yet these principles also present an opportunity to conduct more reliable research, with fewer mistakes, more convenient collaboration, more effective internal and external collaboration, and the potential for crowd-sourced error correction. 
+<!-- LB:  this section comes at a weird place in the flow of the paper. 
+Barbara: agreed! I would remove this altogether.-->
+Sometimes, open science principles are discussed as a kind of "antidote" to scientific misconduct. Yet these principles also present an opportunity to conduct more reliable research, with fewer mistakes, more convenient collaboration, more effective internal and external collaboration, and the potential for crowd-sourced error correction. 
 
 
 # How WORCS relates to the TOP-guidelines
@@ -215,9 +291,18 @@ To facilitate citing datasets, researchers sometimes publish *data papers*; docu
 
 When using R, software (R packages) can be conveniently cited by calling `citation("packagename")`. This returns an APA-style reference, and a BibTeX entry. However, users of the WORCS project template for RStudio do not need to manually cite R-packages. WORCS generates a template manuscript in APA6 style, based on the `papaja` package [@austPapajaPrepareReproducible2020], which automatically cites all packages used.
 
-One important impediment to comprehensive citation is the fact that print journals operate with space constraints. Print journals often discourage comprehensive citation, either actively, or passively by including the reference list in the manuscript word count. Researchers can overcome this impediment by preparing two versions of the manuscript: One version with comprehensive citations for online dissemination, and another version for print, with only the essential citations. The print version should reference the online version, so interested readers can find the comprehensive reference list. Step 20 of the WORCS procedure suggests uploading the online version to a preprint server. This is important because most preprint servers - [at least the ones hosted by OSF.io](https://help.osf.io/hc/en-us/articles/360019930493-Preprint-FAQs#how_do_i_find_preprints) - are indexed by Google Scholar. This means that authors will receive credit for cited work; even if they are cited only in the online version. Moreover, preprint servers ensure that the online version will have a persistent DOI, and will remain reliably accessible, just like the print version. 
+One important impediment to comprehensive citation is the fact that print journals operate with space constraints.
+Print journals often discourage comprehensive citation, either actively, or passively by including the reference list in the manuscript word count.
+Researchers can overcome this impediment by preparing two versions of the manuscript:
+One version with comprehensive citations for online dissemination, and another version for print, with only the essential citations.
+The print version should reference the online version, so interested readers can find the comprehensive reference list.
+Step 20 of the WORCS procedure suggests uploading the online version to a preprint server.
+This is important because most preprint servers - [at least the ones listed by OSF.io](https://help.osf.io/hc/en-us/articles/360019930493-Preprint-FAQs#how_do_i_find_preprints) - are indexed by Google Scholar.
+This means that authors will receive credit for cited work; even if they are cited only in the online version.
+Moreover, preprint servers ensure that the online version will have a persistent DOI, and will remain reliably accessible, just like the print version. 
 
 It is easiest to mark the distinction between essential and non-essential references from the start, instead of going back to cut references prior to publication. Therefore, the `worcs` package distinguishes between the traditional at-symbol (`@`) used to cite a reference, and the "double at"-symbol (`@`), used to cite a non-essential reference. Users can render a manuscript to PDF either with, or without, comprehensive citations.
+<!-- Barbara: I see no difference between these two symbols...-->
 
 The procedure for citation in WORCS is as follows:<!-- LB: this procedure is secondary to the main workflow. Consider changing the order (see main issue)-->
 
@@ -247,9 +332,15 @@ Data sharing is important for computational reproducibility and secondary analys
 
 <!-- LB: As I reader, I would prefer to hear about data sharing options before the synthetic data part (which is only relevant to those who cannot share their data). E.g. can I indicate a point in my workflow (e.g. after removing some privacy sensitive columns of my data) to share the as-raw-as-possible data ?-->When data can be shared, it is important to version control the (anonymized/pseudonymized) raw data upon collection, and avoid changing it. Any data processing steps should be documented in the code, instead of applied to the raw data. This way, the code will be a pipeline from the raw data to the published results.
 
-When data cannot be shared, researchers should aim to safeguard the potential for computational reproducibility and secondary analysis as much as possible. WORCS uses two solutions to accomplish this goal. The first solution is publishing a *checksum* of the raw data upon collection. A checksum represents the contents of a file in a 32-character summary. Any change to the underlying file results in a different checksum. Thus, one can use a checksum to verify that the contents of a file remain unchanged. If researchers publish the checksum of their raw data and the complete analysis code, then they can prove to an independent auditer that running the public analysis code on the private dataset with the correct checksum results in the published results of their work.
+When data cannot be shared, researchers should aim to safeguard the potential for computational reproducibility and secondary analysis as much as possible.
+WORCS uses two solutions to accomplish this goal.
+The first solution is publishing a *checksum* of the raw data upon collection.
+A checksum is the result of an algorithm applied to a file, and represents the contents of this file in 32-characters.
+Any change to the underlying file results in a different checksum. Thus, one can use a checksum to verify that the contents of a file remain unchanged.
+If researchers publish the checksum of their raw data, in addition to the complete analysis code, then they can prove to an independent auditer that running the public analysis code on the private dataset with the correct checksum results in the published results of their work.
 
 The second solution is to share a synthetic dataset with similar characteristics to the real data. Synthetic data mimic the level of measurement and (conditional) distributions of the real data. Sharing synthetic data allows any third party to 1) verify that the published code runs, 2) debug the code, and 3) write valid code for alternative analyses. However, it is important to know that complex multivariate relationships present in the real data are often lost in synthetic data. Thus, findings from the real data might not be replicated in the synthetic data, and findings in the synthetic data *should not be substantively interpreted*. Still, sharing synthetic data facilitates data requests from third parties. A third party can write analysis code based on the synthetic data, and send it to the authors who evaluate it on the real data and send back the results. The ["Pull request"](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) functionality on GitHub is a particularly user-friendly way to do this.
+<!--Barbara: I'm not sure this is the case. Pull requests are useful if someone wants to change or add to a project, but this would not involve a change to an existing project, but rather a new project/analysis with "old" data. I would remove this suggestion altogether.-->
 
 The procedure for data sharing in WORCS is as follows. First, researchers load the data into R. This process should be documented in the file `prepare_data.R`, which is automatically created by the WORCS-template. This file is intended to document any steps that must be taken to get your data *into* R, and that are not intended to be repeated when re-running the analyses. Use this file to report any preprocessing required to obtain a neat `data.frame`. For example, if the data was originally in SPSS format, this file might just contain the code required to read the SPSS file. 
 
@@ -257,6 +348,8 @@ Then, researchers must decide whether to use open or closed data, and call one o
 
 * `open_data(data)`: This function stores the data object (a `data.frame` or `matrix`) in a spreadsheet file called `data.csv`, stores a checksum for the file, and creates a codebook. All of these files should now be (manually) added to the 'Git' repository, committed, and pushed to GitHub. Once the GitHub repository is made public, these data will be open to the public.
 * `closed_data(data)`: This function stores the data in a local file called `data.csv`, which is added to the `.gitignore` file so it cannot be accidentally added to the 'Git' repository. The function also creates a synthetic dataset called `synthetic_data.csv`. The user should commit all changed files and push them to GitHub. Once the GitHub repository is made public, people will have access to a checksum for the raw data that exist on your local machine, a codebook describing those data, and a synthetic copy of the data.
+
+<!--Barbara: Is it indeed the case that data by default is loaded as a .csv? How about (raw) text data; can worcs accommodate a .txt file, for instance (in case of text analysis)? Or should this all be done in prepare_data.R?-->
 
 Some users may intend to share their data through a platform with restricted access (like an institutional repository), but not publically through GitHub. In this case, it is recommended to use `closed_data()`, and to manually upload the original data `data.csv` to the restricted access platform. If users wish to share their data through the Open Science Framework, it is sufficient to connect the OSF page to the GitHub repository.
 
@@ -271,6 +364,7 @@ Aside from analysis code, the TOP-guidelines also encourage sharing new research
 ## Preregistration
 
 Lindsay and colleagues [-@lindsayResearchPreregistration1012016] define preregistration as "creating a permanent record of your study plans before you look at the data. The plan is stored in a date-stamped, uneditable file in a secure online archive." Two such archives are well-known in the social sciences: AsPredicted.org, and OSF.io. However, GitHub also conforms to these standards. Thus, it is possible to preregister a study simply by pushing a text document with the study plans to GitHub. If the GitHub repository is Public, the preregistration is immediately visible to the world, and Reviewers can submit comments through pull requests. If the repository is Private, Reviewers can be invited as "Collaborators", although this removes their anonymity. Private repositories can be made public at a later date, along with their entire time-stamped history. 
+<!-- Barbara: Pull requests are not anonymous either, aren't they?-->
 
 The advantages, disadvantages, and pitfalls for preregistering different types of studies have been extensively debated, and summarizing that debate falls outside of the scope of this paper, and has been addressed adequately elsewhere [e.g., @lindsayResearchPreregistration1012016]. We take the pragmatic position that, in confirmatory (hypothesis-testing) research, it is beneficial to plan research projects before executing them, to preregister these plans, and adhere to them. All deviations from this procedure should be disclosed; e.g., prior exposure to the data, whether direct (e.g., by computing summary statistics) or indirect (e.g., by reading papers using the same data); deviations from the analysis plan to handle unforseen contingencies, such as violations of model assumptions; or additional exploratory analyses.
 
@@ -291,7 +385,22 @@ Because the practice of preregistration is strongly tied to the collection of pr
 
 ### Preregistering analyses
 
-The ideal preregistered analysis consists of a complete analysis script that can be evaluated once the data are obtained. This ideal is often unattainable, because the data present researchers with unanticipated challenges; e.g., assumptions are violated, or analyses work differently than expected. Some of these challenges can be avoided by simulating the data one expects to obtain, and writing the analysis syntax based on the simulated data. This topic is beyond the scope of the present paper, but many user-friendly methods for simulating data are available in `R`, including the package [`simstudy`](https://cran.r-project.org/web/packages/simstudy/vignettes/simstudy.html). When using the WORCS-workflow, it is recommended to preregister, if possible, a `.R` script with the planned analyses, along with a verbal, conceptual description. If any changes must be made to the R-script after obtaining the data, one can refer to the conceptual description to explain why these changes are necessary.
+The ideal preregistered analysis consists of a complete analysis script that can be evaluated once the data are obtained.
+This ideal is often unattainable, because the data present researchers with unanticipated challenges; e.g., assumptions are violated, or analyses work differently than expected.
+Some of these challenges can be avoided by simulating the data one expects to obtain, and writing the analysis syntax based on the simulated data.
+This topic is beyond the scope of the present paper, but many user-friendly methods for simulating data are available in `R`, including the package [`simstudy`](https://cran.r-project.org/web/packages/simstudy/vignettes/simstudy.html).
+<!-- citation:
+
+  @Manual{,
+    title = {simstudy: Simulation of Study Data},
+    author = {Keith Goldfeld},
+    year = {2020},
+    note = {R package version 0.1.16},
+    url = {https://CRAN.R-project.org/package=simstudy},
+  }
+  -->
+When using the WORCS-workflow, it is recommended to preregister, if possible, a `.R` script with the planned analyses, along with a verbal, conceptual description.
+If any changes must be made to the R-script after obtaining the data, one can refer to the conceptual description to explain why these changes are necessary.
 
 
 <!--
@@ -316,11 +425,14 @@ https://stackoverflow.com/questions/18216991/create-a-tag-in-a-github-repository
 
 ## Preparing your system
 
-Before you can use the WORCS workflow, you have to install the required software, and register for a GitHub account. The setup process is documented in a vignette included with the `worcs` R-package, and also [available online](https://cjvanlissa.github.io/worcs/articles/setup.html). After preparing your system, you can follow the step-by-step procedure outlined below.
+Before you can use the WORCS workflow, you have to install the required software, and register for a GitHub account.The setup process is documented in a vignette included with the `worcs` R-package, and also [available online](https://cjvanlissa.github.io/worcs/articles/setup.html). After preparing your system, you can follow the step-by-step procedure outlined below.
+<!--Barbara: Does this work on gitlab/bitbucket as well?-->
 
 ## Phase 1: Study design
 
-1. Create a new Private repository on GitHub. Do not change any of the default options. Copy the repository link to the clipboard. This link will look like https://github.com/yourname/yourrepo.git
+1. Create a new Private repository on GitHub.
+<!-- Why private!?! I would actually argue for a public repo, but if you do not feel comfortable doing so: another option would be to give an overview of advantages/disadvantages of private/public here, and make an argument for either case.-->
+Do not change any of the default options. Copy the repository link to the clipboard. This link will look like https://github.com/yourname/yourrepo.git
 2. In RStudio, click File > New Project > New directory > WORCS Project Template
     a. Paste the GitHub Repository address in the textbox
     b. Keep the checkbox for `renv` checked if you want to document all R-package dependencies, and have them automatically loaded on any system (recommended).
@@ -330,7 +442,9 @@ Before you can use the WORCS workflow, you have to install the required software
 4. In the top-right corner of RStudio, select the Git tab, select the checkboxes next to all files, and click the Commit button. Write an informative message for the commit, e.g., "Preregistration", again click Commit, and then click the green Push arrow to send your commit to GitHub
 5. Go to the GitHub repository for this project, and tag the Commit as a preregistration
 6. Optional: Render the preregistration to PDF, and upload it to AsPredicted.org or OSF.io as an attachment
-7. Optional: Add study Materials (to which you own the rights) to the repository. It is possible to solicit feedback (by opening a GitHub Issue) and acknowledge outside contributions (by accepting Pull requests)
+7. Optional: Add study Materials (only those to which you own the rights!) to the repository.
+It is possible to solicit feedback (by opening a GitHub Issue) and receive outside contributions (by accepting Pull requests)
+<!-- Barbara: NB this can only be done in a public repo; another argument for making a repo public! -->
 
 ## Phase 2: Data analysis
 
@@ -339,6 +453,7 @@ Before you can use the WORCS workflow, you have to install the required software
 10. Write the manuscript in `Manuscript.Rmd`, using code chunks to perform the analyses.
 11. Regularly commit your progress to the Git repository; ideally, after completing each small and clearly defined task. Use informative commit messages. Push the commits to GitHub.
 12. Cite essential references with one at-symbol (`[@essentialref2020]`), and non-essential references with a double at-symbol (`[@nonessential2020]`).
+<!-- Barbara: Again I cannot see the difference... -->
 
 ## Phase 3: Paper submission
 
