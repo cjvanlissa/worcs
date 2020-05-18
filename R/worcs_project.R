@@ -1,3 +1,10 @@
+recommend_data <- c('library("worcs")',
+                    "# We recommend that you prepare your raw data for analysis in 'prepare_data.R',",
+                    "# and end that file with either open_data(yourdata), or closed_data(yourdata).",
+                    "# Then, uncomment the line below to load the original or synthetic data",
+                    "# (whichever is available), to allow anyone to reproduce your code:",
+                    "# load_data()")
+
 #' @title Create new WORCS project
 #' @description Creates a new 'worcs' project. This function is invoked by
 #' the 'RStudio' project template manager, but can also be called directly to
@@ -5,7 +12,7 @@
 #' @param path Character, indicating the directory in which to create the
 #' 'worcs' project. Default: 'worcs_project'.
 #' @param manuscript Character, indicating what template to use for the
-#' 'rmarkdown' manuscript. Default: 'APA6'. Available choices include:
+#' 'R Markdown' manuscript. Default: 'APA6'. Available choices include:
 #' \code{"APA6", "github_document", "None", "ams_article", "asa_article",
 #' "biometrics_article", "copernicus_article", "ctex", "elsevier_article",
 #' "frontiers_article", "ieee_article", "joss_article", "jss_article",
@@ -15,8 +22,8 @@
 #' For more information about \code{APA6}, see the 'papaja' package, at
 #' <https://github.com/crsh/papaja>.
 #' For more information about \code{github_document}, see
-#' \code{\link[rmarkdown]{github_document}}. For the remaining formats, see,
-#' e.g., \code{\link[rticles]{acm_article}}.
+#' \code{\link[rmarkdown]{github_document}}. The remaining formats are
+#' documented in the 'rticles' package.
 #' @param preregistration Character, indicating what template to use for the
 #' preregistration. Default: 'COS'. Available choices include:
 #' \code{"COS", "VantVeer", "Brandt", "AsPredicted", "None"}. For more
@@ -40,10 +47,7 @@
 #' the_test <- "worcs_template"
 #' old_wd <- getwd()
 #' dir.create(file.path(tempdir(), the_test))
-#' get_sig <- tryCatch(git_signature_default(), error = function(e){
-#'   gert::git_config_global_set(name = "user.name", value = "yourname")
-#'   gert::git_config_global_set(name = "user.email", value = "yourname@email.com")
-#' })
+#' do.call(git_user, worcs:::get_user())
 #' worcs_project(file.path(tempdir(), the_test, "worcs_project"),
 #'               manuscript = "github_document",
 #'               preregistration = "None",
@@ -92,7 +96,8 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   tryCatch({
     copy_resources(which_files = c(
       "README.md",
-      "prepare_data.R"
+      "prepare_data.R",
+      "worcs_badge.png"
     ), path = path)
     col_message("Copying standard files.")
   }, error = function(e){
@@ -144,15 +149,17 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
       copy_resources(which_files = "references.bib", path = man_dir)
       bibfiles <- list.files(path = man_dir, pattern = ".bib$", full.names = TRUE)
       if(length(bibfiles) > 1){
-        worcs_ref <- readLines(bibfiles[endsWith(bibfiles, "references.bib")])
-        bib_text <- do.call(c, lapply(bibfiles[!endsWith(bibfiles, "references.bib")], readLines))
+        worcs_ref <- readLines(bibfiles[endsWith(bibfiles, "references.bib")], encoding = "UTF-8")
+        bib_text <- do.call(c, lapply(bibfiles[!endsWith(bibfiles, "references.bib")], readLines, encoding = "UTF-8"))
         invisible(file.remove(bibfiles))
-        writeLines(c(worcs_ref, bib_text), file.path(man_dir, "references.bib"))
+        write_as_utf(c(worcs_ref, bib_text), file.path(man_dir, "references.bib"))
       }
       col_message("Creating manuscript files.")
     }, error = function(e){
       col_message("Creating manuscript files.", success = FALSE)
     })
+  } else {
+    write_as_utf(recommend_data, file.path(path, "run_me.R"))
   }
   # End manuscript
 
@@ -218,12 +225,12 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
 
   # Update readme
   if(file.exists(file.path(path, "README.md"))){
-    cont <- readLines(file.path(path, "README.md"))
+    cont <- readLines(file.path(path, "README.md"), encoding = "UTF-8")
     f <- list.files(path)
     tab <- matrix(c("File", "Description", "Usage",
                     "README.md", "Description of project", "Human editable"), nrow = 2, byrow = TRUE)
     rproj_name <- paste0(gsub("^.+\\b(.+)$", "\\1", path), ".Rproj")
-    cont[grep("You can load this project in Rstudio by opening the file called ", cont)] <- paste0(grep("You can load this project in Rstudio by opening the file called ", cont, value = TRUE), "'", rproj_name, "'.")
+    cont[grep("You can load this project in RStudio by opening the file called ", cont)] <- paste0(grep("You can load this project in Rstudio by opening the file called ", cont, value = TRUE), "'", rproj_name, "'.")
     tab <- rbind(tab, c(rproj_name, "Project file", "Loads project"))
     tab <- describe_file("LICENSE", "User permissions", "Read only", tab, path)
     tab <- describe_file(".worcs", "WORCS metadata YAML", "Read only", tab, path)
@@ -233,9 +240,9 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     tab <- describe_file("manuscript/references.bib", "BibTex references for manuscript", "Human editable", tab, path)
     tab <- describe_file("renv.lock", "Reproducible R environment", "Read only", tab, path)
 
-    tab <- append(apply(tab, 1, paste, collapse = " | "), "--- | --- | ---", after = 1)
+    tab <- nice_tab(tab)
     cont <- append(cont, tab, after = grep("You can add rows to this table", cont))
-    writeLines(cont, file.path(path, "README.md"))
+    write_as_utf(cont, file.path(path, "README.md"))
   }
 
   # Create first commit
@@ -280,7 +287,7 @@ create_man_papaja <- function(manuscript_file, remote_repo){
       create_dir = FALSE,
       edit = FALSE
     )
-    manuscript_text <- readLines(manuscript_file)
+    manuscript_text <- readLines(manuscript_file, encoding = "UTF-8")
     # Add bibliography
     bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
     manuscript_text[bib_line] <- paste0(substr(manuscript_text[bib_line], start = 1, stop = nchar(manuscript_text[bib_line])-1), ', "references.bib"]')
@@ -290,7 +297,7 @@ create_man_papaja <- function(manuscript_file, remote_repo){
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
     # Add call to library("worcs")
-    manuscript_text <- append(manuscript_text, 'library("worcs")', after = grep('^library\\("papaja"\\)$', manuscript_text))
+    manuscript_text <- append(manuscript_text, recommend_data, after = grep('^library\\("papaja"\\)$', manuscript_text))
 
     # Add introductory sentence
     add_lines <- c(
@@ -303,7 +310,7 @@ create_man_papaja <- function(manuscript_file, remote_repo){
     manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
 
     # Write
-    writeLines(manuscript_text, manuscript_file)
+    write_as_utf(manuscript_text, manuscript_file)
   } else {
     col_message('Could not generate an APA6 manuscript file, because the \'papaja\' package is not installed. Run this code to see instructions on how to install this package from GitHub:\n  vignette("setup", package = "worcs")', success = FALSE)
   }
@@ -317,7 +324,7 @@ create_man_github <- function(manuscript_file, remote_repo){
       create_dir = FALSE,
       edit = FALSE
     )
-    manuscript_text <- readLines(manuscript_file)
+    manuscript_text <- readLines(manuscript_file, encoding = "UTF-8")
     # Add bibliography and citation function
     add_lines <- c(
       "date: '`r format(Sys.time(), \"%d %B, %Y\")`'",
@@ -326,7 +333,7 @@ create_man_github <- function(manuscript_file, remote_repo){
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
     # Add call to library("worcs")
-    manuscript_text <- append(manuscript_text, 'library("worcs")', after = grep('^```', manuscript_text)[1])
+    manuscript_text <- append(manuscript_text, recommend_data, after = grep('^```', manuscript_text)[1])
     # Add introductory sentence
     add_lines <- c(
       "",
@@ -337,7 +344,7 @@ create_man_github <- function(manuscript_file, remote_repo){
     )
     manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
     # Write
-    writeLines(manuscript_text, manuscript_file)
+    write_as_utf(manuscript_text, manuscript_file)
 }
 
 
@@ -350,7 +357,7 @@ create_man_rticles <- function(manuscript_file, template, remote_repo){
       create_dir = FALSE,
       edit = FALSE
     )
-    manuscript_text <- readLines(manuscript_file)
+    manuscript_text <- readLines(manuscript_file, encoding = "UTF-8")
     # Add bibliography
     bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
     manuscript_text[bib_line] <- "bibliography: references.bib"
@@ -363,7 +370,7 @@ create_man_rticles <- function(manuscript_file, template, remote_repo){
     # Add call to library("worcs")
     add_lines <- c(
       '```{r, echo = FALSE, eval = TRUE, message = FALSE}',
-      'library("worcs")',
+      recommend_data,
       '```',
       "",
       paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
@@ -372,7 +379,7 @@ create_man_rticles <- function(manuscript_file, template, remote_repo){
       ""
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]))
-    writeLines(manuscript_text, manuscript_file)
+    write_as_utf(manuscript_text, manuscript_file)
   } else {
     col_message(paste0('Could not generate ', template, ' manuscript file, because the \'rticles\' package is not installed. Run this code to install the package from CRAN:\n  install.packages("rticles", dependencies = TRUE)'), success = FALSE)
   }
@@ -385,4 +392,15 @@ copy_resources <- function(which_files, path){
   source <- file.path(resources, files)
   target <- file.path(path, files)
   file.copy(source, target)
+}
+
+nice_tab <- function(tab){
+  tab <- apply(tab, 2, function(i){
+    sprintf(paste0("%-", max(nchar(i)), "s"), i)
+  })
+  tab <- rbind(tab, sapply(tab[1,], function(i){
+    paste0(rep("-", nchar(i)), collapse = "")
+  }))
+  tab <- tab[c(1, nrow(tab), 2:(nrow(tab)-1)), ]
+  apply(tab, 1, paste, collapse = " | ")
 }

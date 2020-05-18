@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@
 <ul>
 <li>Git from the command line and also from third party software<br><!--*The `worcs` R-package calls Git from the command line*-->
 </li>
-<li>Use the OpenSSL library<br><!--*For secure data transfer with GitHub*-->
+<li>Use the ‘OpenSSL’ library<br><!--*For secure data transfer with GitHub*-->
 </li>
 <li>Checkout Windows-style, commit Unix-style line endings<br><!--*This is the preferred setting when collaborating with others on different platforms. Be prepared that, on windows, you will receive harmless notifications about LF to CRLF line endings.  *-->
 </li>
@@ -153,7 +153,7 @@ ADD library(worcs) TO MANUSCRIPT.RMD TO HAVE RENV TRACK IT
 --><div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"worcs"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"crsh/papaja"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">update</span> <span class="kw">=</span> <span class="st">"never"</span>)
 <span class="kw pkg">tinytex</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span>()
-<span class="kw pkg">worcs</span><span class="kw ns">::</span><span class="fu">git_credentials</span>(<span class="st">"your_name"</span>, <span class="st">"your_email"</span>)</pre></body></html></div>
+<span class="kw pkg">worcs</span><span class="kw ns">::</span><span class="fu"><a href="../reference/git_user.html">git_user</a></span>(<span class="st">"your_name"</span>, <span class="st">"your_email"</span>)</pre></body></html></div>
 <!-- 
 renv::consent(provided = TRUE)
 Please quit and reopen your R session and IDE (if you are using one, such as RStudio or Emacs) and check if tinytex:::is_tinytex() is TRUE.-->

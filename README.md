@@ -1,12 +1,12 @@
 
-# WORCS <a href='https://osf.io/zcvbs/'><img src='paper/worcs_icon.png' align="right" height="139" /></a>
+# WORCS <a href='https://osf.io/zcvbs/'><img src='https://github.com/cjvanlissa/worcs/raw/master/docs/worcs_icon.png' align="right" height="139" /></a>
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <!--[![CRAN status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/package=worcs)
 [![](https://cranlogs.r-pkg.org/badges/worcs)](https://cran.r-project.org/package=worcs)-->
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis build
 status](https://travis-ci.org/cjvanlissa/worcs.svg?branch=master)](https://travis-ci.org/cjvanlissa/worcs)
 <!--[![Codecov test
@@ -52,9 +52,9 @@ for the package and paper.
 | NAMESPACE     | R-package namespace             | machine-written |
 | README.md     | Read this file to get started\! | do not edit     |
 | README.Rmd    | R-markdown source for readme.md | human editable  |
-| worcs.Rproj   | Rstudio project file            | do not edit     |
+| worcs.Rproj   | RStudio project file            | do not edit     |
 | docs/         | Package website                 | machine-written |
-| inst/         | Rstudio project template files  | human editable  |
+| inst/         | RStudio project template files  | human editable  |
 | man/          | R-package documentation         | do not edit     |
 | paper/        | WORCS paper source files        | human editable  |
 | R/            | R-package source code           | human editable  |
@@ -76,7 +76,7 @@ if(!requireNamespace("remotes"))install.packages("remotes")
 remotes::install_github("cjvanlissa/worcs", dependencies = TRUE, update = "never")
 remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
 tinytex::install_tinytex()
-worcs::git_credentials("your_name", "your_email")
+worcs::git_user("your_name", "your_email")
 ```
 
 ## Citing WORCS

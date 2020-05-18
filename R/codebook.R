@@ -1,6 +1,6 @@
 #' @title Create codebook for a dataset
-#' @description Creates a codebook for a dataset in 'Rmarkdown' format, and
-#' renders it to 'markdown' for 'GitHub'. Users can customize the 'Rmarkdown'
+#' @description Creates a codebook for a dataset in 'R Markdown' format, and
+#' renders it to 'markdown' for 'GitHub'. Users can customize the 'R Markdown'
 #' document and re-knit it, for example, to add a paragraph with details on
 #' the data collection procedures. The variable descriptives are stored in
 #' a \code{.csv} file, which can be edited in 'R' or a spreadsheet program.
@@ -13,30 +13,30 @@
 #' example, the full text of a questionnaire item: "People should be willing to
 #' do anything to help a member of their family".
 #' }
-#' Re-knitting the 'Rmarkdown' file (using \code{\link[rmarkdown]{render}}) will
+#' Re-knitting the 'R Markdown' file (using \code{\link[rmarkdown]{render}}) will
 #' transfer these changes to the 'markdown' file for 'GitHub'.
 #' @param data A data.frame for which to create a codebook.
 #' @param render_file Logical. Whether or not to render the document.
-#' @param file_name Character. File name to write the codebook \code{rmarkdown}
+#' @param filename Character. File name to write the codebook \code{rmarkdown}
 #' file to.
 #' @param csv_file Character. File name to write the codebook \code{rmarkdown}
-#' file to. By default, uses the filename stem of the \code{file_name} argument.
-#' Set to \code{NULL} to write the codebook only to the 'Rmarkdown' file, and
+#' file to. By default, uses the filename stem of the \code{filename} argument.
+#' Set to \code{NULL} to write the codebook only to the 'R Markdown' file, and
 #' not to \code{.csv}.
 #' @return \code{Logical}, indicating whether or not the operation was
-#' succesful. This function is mostly called for its side effect of rendering an
-#' \code{rmarkdown} codebook.
+#' successful. This function is mostly called for its side effect of rendering
+#' an 'R Markdown' codebook.
 #' @examples
 #' library(rmarkdown)
 #' library(knitr)
-#' file_name <- tempfile("codebook", fileext = ".Rmd")
-#' make_codebook(iris, file_name = file_name, csv_file = NULL)
+#' filename <- tempfile("codebook", fileext = ".Rmd")
+#' make_codebook(iris, filename = filename, csv_file = NULL)
 #' unlink(c(
 #'   ".worcs",
-#'   file_name,
-#'   gsub("\\.Rmd", "\\.md", file_name),
-#'   gsub("\\.Rmd", "\\.html", file_name),
-#'   gsub("\\.Rmd", "_files", file_name)
+#'   filename,
+#'   gsub("\\.Rmd", "\\.md", filename),
+#'   gsub("\\.Rmd", "\\.html", filename),
+#'   gsub("\\.Rmd", "_files", filename)
 #' ), recursive = TRUE)
 #' @rdname codebook
 #' @export
@@ -45,28 +45,28 @@
 #' @importFrom utils capture.output
 make_codebook <-
   function(data,
-           file_name = "codebook.Rmd",
+           filename = "codebook.Rmd",
            render_file = TRUE,
-           csv_file = gsub("Rmd$", "csv", file_name)) {
-    file_name <- force(file_name)
+           csv_file = gsub("Rmd$", "csv", filename)) {
+    filename <- force(filename)
     function_success <- TRUE
 
     summaries <- do.call(descriptives, list(x = data))
     summaries <- cbind(summaries,
             category = NA,
             description = NA)
-    if (file.exists(file_name)) {
-      col_message(paste0("Removing previous version of '", file_name, "'."))
-      invisible(file.remove(file_name))
+    if (file.exists(filename)) {
+      col_message(paste0("Removing previous version of '", filename, "'."))
+      invisible(file.remove(filename))
     }
     draft(
-      file_name,
+      filename,
       template = "github_document",
       package = "rmarkdown",
       create_dir = FALSE,
       edit = FALSE
     )
-    file_contents <- readLines(file_name)
+    file_contents <- readLines(filename, encoding = "UTF-8")
     file_contents[grep("^title:", file_contents)[1]] <-
       paste0('title: "Codebook created on ',
              Sys.Date(),
@@ -82,8 +82,8 @@ make_codebook <-
     if (is.null(csv_file)) {
       sum_tab <-
         paste0(c("summaries <- ", capture.output(dput(summaries))))
-      write_worcsfile(".worcs",
-                      codebook = list(rmd_file = file_name, checksum = checksum))
+      #write_worcsfile(".worcs",
+      #                codebook = list(rmd_file = filename, checksum = checksum))
     } else {
       if (file.exists(csv_file)) {
         col_message(paste0("Removing previous version of '", csv_file, "'."))
@@ -93,12 +93,12 @@ make_codebook <-
       sum_tab <- c(paste0('summaries <- read.csv("', csv_file, '", stringsAsFactors = FALSE)'),
           "summaries <- summaries[, !colSums(is.na(summaries)) == nrow(summaries)]"
         )
-      write_worcsfile(".worcs",
-                      codebook = list(
-                        rmd_file = file_name,
-                        csv_file = csv_file,
-                        checksum = checksum
-                      ))
+      #write_worcsfile(".worcs",
+      #                codebook = list(
+      #                  rmd_file = filename,
+      #                  csv_file = csv_file,
+      #                  checksum = checksum
+      #                ))
     }
     function_success <- function_success | tryCatch({
       write(
@@ -137,7 +137,7 @@ make_codebook <-
           "",
           "This codebook was generated using the [Workflow for Open Reproducible Code in Science (WORCS)](https://osf.io/zcvbs/)"
         ),
-        file_name
+        filename
       )
       TRUE
     }, error = function(e) {
@@ -145,7 +145,7 @@ make_codebook <-
     })
     if (render_file) {
       function_success <- function_success | tryCatch({
-        render(file_name)
+        render(filename)
         TRUE
       }, error = function(e) {
         return(FALSE)

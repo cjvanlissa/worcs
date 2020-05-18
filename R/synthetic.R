@@ -23,7 +23,7 @@
 #' \code{data.frame} with the same dimensions and column names as the original
 #' data. For example, use \code{missingness_expression =
 #' missRanger::missRanger(data = data)} for a fast implementation of the
-#' excellent missForest single imputation technique.
+#' excellent 'missForest' single imputation technique.
 #' @param verbose Logical, Default: TRUE. Whether to show a progress bar while
 #' running the algorithm and provide informative messages.
 #' @return A \code{data.frame} with synthetic data, based on \code{data}.
