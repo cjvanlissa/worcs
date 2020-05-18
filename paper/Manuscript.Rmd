@@ -379,9 +379,15 @@ Future: Explain why each reference is cited? How best to include this?
 Data sharing is important for computational reproducibility and secondary analysis. Computational reproducibility means that a third party can exactly recreate the results from the original data, using the published analysis code. Secondary analysis means that a third party can conduct sensitivity analyses, explore alternative explanations, or even use existing data to answer a different research question. From an open science perspective, data sharing is always desirable. From a practical point of view, it is not always possible. Data sharing may be impeded by legal constraints, ethical restrictions, absence of informed consent for data sharing, and privacy concerns. For example, one concern that applies when working with human participant data, is pseudonimization. It is crucial to pseudonimize data as soon as they are collected, by removing or deleting any sensitive personal information and contact details. Pseudononimized data can often be shared if participants have provided informed consent to that effect. Nevertheles, it is important to note that the European GDPR prohibits storing 'personal data' (information which can identify a natural person whether directly or indirectly) on a server outside the EU, unless it offers an "adequate level of protection". Although different rules may apply to pseudonimized data, there are many repositories that are GDPR compliant, such as the European servers of the Open Science Framework. Different Universities, countries, and funding bodies also have their own repositories that are complient with local legistation. Before sharing any human participant data, it is recommended to obtain approval from an internal (ethical) review board, guidance from Research Data Management Support, and informed consent from participants.
 
 <!-- LB: As I reader, I would prefer to hear about data sharing options before the synthetic data part (which is only relevant to those who cannot share their data). E.g. can I indicate a point in my workflow (e.g. after removing some privacy sensitive columns of my data) to share the as-raw-as-possible data ?-->
-If data cannot be shared, researchers should aim to safeguard the potential for computational reproducibility and secondary analysis as much as possible. The `worcs` package uses two solutions to accomplish this goal.
+If data can be shared openly, it can simply be committed it to the 'Git'
+repository, along with the analysis code. This way, others can download the
+entire repository and reproduce the analyses from start to finish. 
+If data cannot be shared, researchers should aim to safeguard the potential for
+computational reproducibility and secondary analysis as much as possible. The
+`worcs` package uses two solutions to accomplish this goal.
 The first solution is to publish a *checksum* of the original data file.
-Think of a checksum as a 32-character summary of the contents of a file, or alternatively, a "one word" description of the file.
+Think of a checksum as a 32-character summary, or as a "one word" description,
+of the contents of a file.
 Any change to the file will result in a different checksum. 
 Thus, one can use a checksum to verify the identity of a file, and ensure that its contents are unchanged.
 When data cannot be shared, the risk of fraud or abuse can be mitigated by publishing a checksum for the original data, in addition to the complete analysis code.
