@@ -150,14 +150,15 @@ Collective benefits: Cumulative science, -->
 
 Although Open Science is advocated by many, there is no clear definition of Open Science (LOEK? ref multiple definitions).
 The TOP-guidelines have been influential as a concrete operationalisation of Open Science principles [@nosekPromotingOpenResearch2015a].
-These guidelines describe eight standards for open science: 1) Comprehensive citation of literature, data, materials, and methods; 2) sharing data, 3) sharing the code required to reproduce analyses, 4) sharing new research materials, and 5) sharing details of the design and analysis; 6) pre-registration of studies before data collection, and 7) pre-registration of the analysis plan prior to analysis; and 8) replication of published results. WORCS defines the goals of open science in terms of these guidelines, and is designed to facilitate meeting each of these guidelines, with one exception: We do not address replication of published results, because replication relates to the subject of a research project, not to its execution. We group the remaining seven guidelines into three categories: Citation (1), sharing (2-5), and preregistration (6-7).
+These guidelines describe eight standards for open science: 1) Comprehensive citation of literature, data, materials, and methods; 2) sharing data, 3) sharing the code required to reproduce analyses, 4) sharing new research materials, and 5) sharing details of the design and analysis; 6) pre-registration of studies before data collection, and 7) pre-registration of the analysis plan prior to analysis; and 8) replication of published results.
+WORCS defines the goals of open science in terms of these guidelines, and is designed to facilitate meeting each of these guidelines, with one exception: We do not address replication of published results, because replication relates to the subject of a research project, not to its execution.
+We group the remaining seven guidelines into three categories: Citation (1), sharing (2-5), and preregistration (6-7).
 
 ## Goal of this paper
 
 The TOP-guidelines are primarily geared towards top-down systemic change by journals, funders, and organizations.
 However, large organizations are slow to change.
 For example, a snapshot of editorial practices indicated that, in 2015, only 3% out of 1151 psychology journals explicitly stated that they accepted replication studies [@martinArePsychologyJournals2017; see also @klebelPeerReviewPreprint2020].
-<!-- A more recent preprint reported that many journals do not explicitly state their policies about  klebelPeerReviewPreprint2020 -->
 At the same time, there is substantial momentum for grassroots change [@nosekScientificUtopiaOpening2012].
 Many individual researchers are willing to adopt best practices for open science, even in the absence of institutional support.
 The formation of "Open Science Communities" at universities around the globe illustrates this grassroots movement.
@@ -183,18 +184,18 @@ apa_table(tab1)
 ```
 
 ## Prerequisites
-<!--Barbara: I'm moving up this section and editing it a bit, to introduce more explicitly that worcs was developed for R.-->
-WORCS has focused on developing a workflow for R, instead of for SPSS or Python.
-<!-- Barbara: same as for Git, I could not find a citation. Maybe cite the website: www.r-project.org -->
+
+Although the principles underlying this workflow are universal, WORCS has been optimized for R [@rcoreteamLanguageEnvironmentStatistical2020].
 Several arguments support the choice to work in R.
 First, R and all of it extensions are free and Open Source, and Open Source software should be the tool of choice for open science.
-Second, many tools for an open science workflow are already implemented in R.
-A vibrant online community exists for R, developing new R methods and packages, and providing support and tutorials for existing ones.
-Wrappers in R are often available for tools developed in other programming languages.
+Second, as of this writing, R is the most advanced programming language in terms of the implementation of tools required for an open science workflow.
+Third, R is well-supported; a vibrant online community exists for R, developing new R methods and packages, and providing support and tutorials for existing ones.
+
 <!-- LB: Perhaps give some pointers to learn R (e.g. R4DataScience)-->
 Third, at the time of writing, R is the second-most cited statistical software package [@muenchenPopularityDataScience2012], following SPSS, which has no support for any of the open science tools discussed in this paper.
 Finally, R is highly interoperable:
-Packages are available to load nearly every imaginable filetype, code written in other programming languages [including Python, @allaireMarkdownPythonEngine] can be called from R, and output can be written to many file types, including DOCX and PDF (in APA style), and HTML format. 
+Packages are available to load nearly every imaginable filetype, and output can be written to most file types, including DOCX and PDF (in APA style), and HTML format. 
+Moreover, wrappers are available for many tools developed in other programming languages, and code written in other programming languages can be evaluated from R [including C++, Fortran, and Python, @allaireMarkdownPythonEngine].
 
 Working with R is simplified immensely by using the RStudio integrated development engine (IDE) for R.
 <!-- Barbara: 
@@ -212,14 +213,13 @@ I did this, which gave:
     url = {http://www.rstudio.com/},
   }
 -->
-Many of the tools used in WORCS are embedded directly into the user interface of RStudio.
-RStudio automates and streamlines many tedious or complicated aspects of working with R, Rmarkdown, and Git/GitHub.
+Most of the tools used in WORCS are embedded directly into the user interface of RStudio.
+RStudio automates and streamlines tedious or complicated aspects of working with R, Rmarkdown, and Git/GitHub.
 This makes RStudio a comprehensive solution for open science research projects.
 Another important feature of RStudio is project management.
 A project bundles writing, analyses, data, references, etcetera, into a self-contained folder, that can be uploaded entirely to GitHub and downloaded by future users.
 The `worcs` R-package installs a new RStudio project template.
-When a new project is initialized from this template, much of the bookkeeping required to set up an open science project is performed automatically.
-
+When a new project is initialized from this template, the bookkeeping required to set up an open science project is performed automatically.
 
 ## Introducing the tools
 
