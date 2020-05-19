@@ -281,8 +281,8 @@ The `.gitignore` file lists files that should not be version-controlled.
 These files thus exist only on the user's private computer.
 
 The functionality of 'Git' is amplified by services such as 'GitHub'
-(https://github.com. 'GitHub' is best understood as a cloud
-storage service with social networking functionality. The cloud storage aspect
+(https://github.com). 'GitHub' is best understood as a cloud storage service
+with social networking functionality. The cloud storage aspect
 of 'GitHub' works as follows: You can "clone" (copy) a local 'Git' repository to
 the 'GitHub' website, as a backup or research archive. The social network aspect
 comes into play when a repository on 'GitHub' is set to "public": This allows 
@@ -298,9 +298,10 @@ being able to start a new study with a clone of an old, similar repository, or
 splitting off an "experimental branch" to try something new, while retaining the
 ability to "revert" (return) to a previous state of the project, or to "merge"
 (incorporate) the experimental branch. Although this paper focuses on 'GitHub',
-`worcs` (as of version 0.1.2) supports alternative services such as 'GitLab'
-(https://gitlab.com) and 'Bitbucket' (https://bitbucket.org), and has a vignette
-detailing instructions for these platforms.
+the two main alternative 'Git' cloud storage services, 'GitLab'
+(https://gitlab.com) and 'Bitbucket' (https://bitbucket.org), can interchangeably
+be used in `worcs` projects (as of version 0.1.2). The package has a 
+[vignette]() with additional instructions for using these platforms.
 
 The third solution is *dependency management*: Keeping track of exactly what
 software was used to conduct the analyses. At first glance, it might seem
