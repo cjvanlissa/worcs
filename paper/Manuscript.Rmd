@@ -297,11 +297,11 @@ solo projects, working with 'Git'/'GitHub' has many benefits: Staying organized,
 being able to start a new study with a clone of an old, similar repository, or
 splitting off an "experimental branch" to try something new, while retaining the
 ability to "revert" (return) to a previous state of the project, or to "merge"
-(incorporate) the experimental branch. Although this paper focuses on 'GitHub',
-the two main alternative 'Git' cloud storage services, 'GitLab'
-(https://gitlab.com) and 'Bitbucket' (https://bitbucket.org), can interchangeably
-be used in `worcs` projects (as of version 0.1.2). The package has a 
-[vignette]() with additional instructions for using these platforms.
+(incorporate) the experimental branch. This paper focuses on 'GitHub', which is
+the most widely used 'Git' cloud storage services. However, as of version 0.1.2,
+`worcs` projects can interchangeably use the two main alternative services,
+'GitLab' (https://gitlab.com) and 'Bitbucket' (https://bitbucket.org). The
+package has a [vignette]() with additional instructions for using these platforms.
 
 The third solution is *dependency management*: Keeping track of exactly what
 software was used to conduct the analyses. At first glance, it might seem
@@ -604,11 +604,25 @@ The WORCS procedure and accompanying R-package provide a user-friendly and light
 
 WORCS offers a workflow for open reproducible code in science. The step-by-step procedure outlined in this tutorial helps researchers make an entire research project Open and Reproducible. The accompanying R-package provides user-friendly support functions for several steps in the workflow, and an RStudio project template to get the project set up correctly.
 
-WORCS encourages and simplifies the adoption of Open Science principles in daily scientific work. It helps to make all research objects that are created through the scientific process (data and code, but also manuscripts) open and publicly assessible. This enables other researchers to reproduce results, but also provides a proper basis for research evaluation according to the San Francisco Declaration on Research Assessment (DORA) [https://sfdora.org/], which is increasingly adopted by research institutions around the globe. For example, reviewers of grant proposals have immediate access to previous work of a researcher or a group of researchers, and can assess research quality based on content rather than relying on spurious surrogate indicators like personal h-indexes, journal impact factors and conference rankings. The detailed version control and commit tracking of github and similar platforms furthermore make it possible to assess the contributions made by different researchers, which can for example play a role in hiring or promotion procedures. 
+WORCS encourages and simplifies the adoption of Open Science principles in daily scientific work. It helps researchers make all research output created throughout the scientific process - not just manuscripts, but data, code, and methods - open and publicly assessible. This enables other researchers to reproduce results, facilitates cumulative science by allowing others to make direct use of these research objects.
 
-The FAIR Guiding Principles for scientific data management and stewardship [https://doi.org/10.1038/sdata.2016.18] advocate that all digital research objects should be Findable, Accessible, Interoperable and Reusable. They are increasingly adopted by research organizations and funders as a requirement towards more open, transparent and reproducible science. The WORCS workflow includes a step to publish the original raw data (if possible) or alternatively a synthetic data set in the (public) project repository, thus making the research data or a workable substitute accessible. WORCS uses CSV as an open and widely used, tabular format for data representation, thus enabling interoperability with other data sets and software. The R scripts for analyzing the data are naturally part of the same repository, facilitating reproducibility of obtained results by other researchers.
+Sharing all research output also provides a proper basis for research evaluation according to the San Francisco Declaration on Research Assessment (DORA; https://sfdora.org/), which increasingly plays a role in grant funding and hiring or promotion procedures. Direct access to research objects allows funding bodies and hiring committies to evaluate research quality based on content rather than relying on spurious surrogate indicators like journal impact factors, conference rankings, and h-indexes. The detailed version control and commit tracking of github and similar platforms furthermore make it possible to assess the relative contributions made by different researchers. 
 
-Next to data, also research software should be FAIR [https://doi.org/10.3233/DS-190026]. WORCS itself sets a good example and follows the recommendations for FAIR research software [https://fair-software.eu/]: It is hosted on a public repository with version control (github), it has a licence (GPL v3.0), it is registered in a community registry (CRAN), it enables the citation of the software (<!-- this paper. anything else? consider adding a cff file -->), and a software quality checklist was used for its development (<!-- which one? -->). By connecting the created R projects to github by default, it also guides its users through the first steps towards making their software FAIR, and lowers the threshold for taking the remaining steps. 
+The FAIR Guiding Principles for scientific data management and stewardship [@wilkinsonFAIRGuidingPrinciples2016a] advocate that research data should be 
+Findable, Accessible, Interoperable and Reusable. Moreover, these principles are
+increasingly applied to other types of research output 
+[@lamprechtFAIRPrinciplesResearch2019]. Research
+organizations and funders use the FAIR principles as standard for open, 
+transparent and reproducible science.
+The WORCS workflow helps users meet the FAIR principles by making all research objects -
+including (origina) data and code - accessible in a (public) repository. 
+The `worcs` package additionally
+facilitates meeting the FAIR principles in several ways. First, each `worcs` project has a YAML file
+(https://yaml.org/) that lists the research objects in the project, which will allow web crawlers 
+to index `worcs` projects. Second, a codebook is automatically generated for each data file stored
+using `open_data()` or `closed_data()`. We encourage users to elaborate on the default codebook by adding
+variable description and categories, which might - in the future - enable indexing data by topic area. 
+Relatedly, `worcs` is itself an example of FAIR research software [see @lamprechtFAIRPrinciplesResearch2019 and https://fair-software.eu/]. It is hosted on a public version controlled repository ('GitHub'), it has an open source licence (GPL v3.0), is registered in a community registry (CRAN), it enables the citation of the software (using the `citation("worcs")` command, or by citing this paper), and followed the CII Best Practices software quality checklist during development.
 
 
 
