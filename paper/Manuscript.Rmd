@@ -234,23 +234,48 @@ h-indexes. The detailed version control and commit tracking of 'GitHub' and
 similar platforms furthermore make it possible to assess the relative
 contributions made by different researchers. 
 
-## Goal of this paper
+<!--## Goal of this paper
 
 The TOP-guidelines are primarily geared towards top-down systemic change (what's in a name) by journals, funders, and organizations.
 However, large organizations are slow to change.
 For example, a snapshot of editorial practices indicated that, in 2015, only 3% out of 1151 psychology journals explicitly stated that
 they accepted replication studies [@martinArePsychologyJournals2017; see also @klebelPeerReviewPreprint2020].
 At the same time, <!-- edit -->
-The formation of "Open Science Communities" at universities around the globe
+<!--The formation of "Open Science Communities" at universities around the globe
 illustrates the momentum of this grassroots movement
-[@brinkmanWidescaleAdoptionOpen2020]. 
+[@brinkmanWidescaleAdoptionOpen2020]. -->
 
 ## Existing solutions
 
-There have been several previous efforts to promote grass-roots adoption of open science principles. Each of these efforts has a different scope, strengths, and limitations that set it apart from WORCS. For example, there are "signalling solutions"; guidelines to structure and incentivize disclosure about open science practices. Specifically, @aalbersbergMakingScienceTransparent2018 suggested publishing a "TOP-statement" as supplemental material, which discloses the authors' adherence to open science principles. Relatedly, @aczelConsensusbasedTransparencyChecklist2019 developed a consensus-based Transparency Checklist that authors can complete online to generate a report. Such signalling solutions are very easy to adopt, and they address TOP-guidelines 1-7.
-Many journals now also offer authors the opportunity to earn "badges" for adhering to open science guidelines [@kidwellBadgesAcknowledgeOpen2016]. These signalling solutions help structure authors' disclosures about, and incentivize adherence to, open science practices.
+There have been several previous efforts to promote grass-roots adoption of open
+science principles. Each of these efforts has a different scope, strengths, and
+limitations that set it apart from WORCS. For example, there are "signalling
+solutions"; guidelines to structure and incentivize disclosure about open
+science practices. Specifically, @aalbersbergMakingScienceTransparent2018
+suggested publishing a "TOP-statement" as supplemental material, which discloses
+the authors' adherence to open science principles. Relatedly, @aczelConsensusbasedTransparencyChecklist2019 developed a consensus-based
+Transparency Checklist that authors can complete online to generate a report.
+Such signalling solutions are very easy to adopt, and they address
+TOP-guidelines 1-7. Many journals now also offer authors the opportunity to earn
+"badges" for adhering to open science guidelines
+[@kidwellBadgesAcknowledgeOpen2016]. These signalling solutions help structure
+authors' disclosures about, and incentivize adherence to, open science practices.
 
-A different class of solutions instead focuses on the practical issue of *how* researchers can meet the requirements of open science. <!--limitation of signalling approaches, that WORCS addresses, is that they do not clarify One could use WORCS to meet the TOP-guidelines, and document this in a TOP-statement.--> One notable example is the workflow for reproducible analyses developed by @peikertReproducibleDataAnalysis2019. Because that workflow focuses on computational reproducibility, it only addresses TOP-guidelines 2, 3, and 5. Moreover, in striving to ensure strict computational reproducibility for even the most sophisticated analyses, Peikert and Brandmaier's workflow ends up being relatively complex to implement. WORCS is designed to be a simple and sufficient solution for projects that can be conducted entirely within R. It eschews much overhead of Peikert and Brandmaier's workflow, resulting in a much more lightweight approach to safeguard computational reproducibility under *most circumstances*. Importantly, WORCS builds upon the same general principles as Peikert and Brandmaier, which means the two workflows are compatible. Finally, WORCS addresses a unique issue not covered by other existing solutions, namely to provide a workflow most conducive to satisfying the TOP-guidelines, while being compatible with existing approaches.
+A different class of solutions instead focuses on the practical issue of *how*
+researchers can meet the requirements of open science. <!--limitation of signalling approaches, that WORCS addresses, is that they do not clarify One could use WORCS to meet the TOP-guidelines, and document this in a TOP-statement.--> One notable example is the workflow for
+reproducible analyses developed by @peikertReproducibleDataAnalysis2019. This 
+excellent workflow strives to ensure strict computational reproducibility for
+even the most sophisticated analyses. It has some limitations, however: In
+focusing on reproducibility, however, it only addresses TOP-guidelines 2, 3, and
+5. Moreover, in aiming for strict computational reproducibility it ends up being
+relatively complex to implement. WORCS builds upon the same general principles
+as Peikert and Brandmaier, which means the two workflows are compatible. What 
+sets WORCS apart is that is an easy and sufficient solution for projects that
+can be conducted entirely within R, resulting in a much more lightweight
+approach to safeguard computational reproducibility under *most circumstances*.
+WORCS also addresses a unique issue not covered by other existing solutions,
+namely to provide a workflow most conducive to satisfying the TOP-guidelines and
+FAIR principles, while being compatible with existing requirements.
 
 ```{r, echo = FALSE, eval = FALSE}
 tab1 <- data.frame(
