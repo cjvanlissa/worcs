@@ -12,9 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
-
-```{r setup}
 library(worcs)
 ```
 
