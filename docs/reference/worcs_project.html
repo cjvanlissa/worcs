@@ -74,7 +74,7 @@ create a WORCS project through syntax or the console." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.1</span>
       </span>
     </div>
 
@@ -96,6 +96,9 @@ create a WORCS project through syntax or the console." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/git_cloud.html">Connecting to 'Git' cloud hosting services</a>
+    </li>
     <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
     </li>
@@ -217,12 +220,12 @@ during project creation. Default: TRUE</p></td>
     <pre class="examples"><div class='input'><span class='no'>the_test</span> <span class='kw'>&lt;-</span> <span class='st'>"worcs_template"</span>
 <span class='no'>old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span>(<span class='no'>git_user</span>, <span class='kw pkg'>worcs</span><span class='kw ns'>:::</span><span class='fu'>get_user</span>())</div><div class='output co'>#&gt; <span class='error'>Error in get(name, envir = asNamespace(pkg), inherits = FALSE): object 'get_user' not found</span></div><div class='input'><span class='fu'>worcs_project</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>, <span class='st'>"worcs_project"</span>),
+<span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span>(<span class='no'>git_user</span>, <span class='kw pkg'>worcs</span><span class='kw ns'>:::</span><span class='fu'>get_user</span>())</div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>'Git' username set to 'myname' and email set to 'my@email.com'.</span><span></div><div class='input'><span class='fu'>worcs_project</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>, <span class='st'>"worcs_project"</span>),
               <span class='kw'>manuscript</span> <span class='kw'>=</span> <span class='st'>"github_document"</span>,
               <span class='kw'>preregistration</span> <span class='kw'>=</span> <span class='st'>"None"</span>,
               <span class='kw'>add_license</span> <span class='kw'>=</span> <span class='st'>"None"</span>,
               <span class='kw'>use_renv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-              <span class='kw'>remote_repo</span> <span class='kw'>=</span> <span class='st'>"https"</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Initializing 'Git' repository.</span><span>
+              <span class='kw'>remote_repo</span> <span class='kw'>=</span> <span class='st'>"https"</span>)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Initializing 'Git' repository.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Writing '.worcs' file.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Copying standard files.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Creating manuscript files.</span><span>
@@ -240,7 +243,7 @@ during project creation. Default: TRUE</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Caspar J. van Lissa.</p>
+  <p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
