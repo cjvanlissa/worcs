@@ -114,7 +114,7 @@
 <li>If you run into any trouble, a more comprehensive tutorial on installing Git is available at <a href="https://happygitwithr.com/install-git.html">happygitwithr.com</a>.</li>
 </ul>
 </li>
-<li>Register on ‘GitHub’ (alternatively: see <a href="">this vignette</a> on how to use ‘GitLab’ or ‘Bitbucket’)
+<li>Register on ‘GitHub’ (alternatively: see <a href="library(worcs)">this vignette</a> on how to use ‘GitLab’ or ‘Bitbucket’)
 <ul>
 <li>Go to <a href="https://github.com/">github.com</a> and click <em>Sign up</em>. Choose an “Individual”, “Free” plan.</li>
 <li>Request a <a href="https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount">free academic upgrade</a>. This allows you to create <em>private repositories</em>, which are only visible to you and selected collaborators, and can be made public when your work is published.</li>
@@ -154,8 +154,9 @@ BOVENDIEN GAAT RENV NU INITIALISEREN WANNEER JE VOOR HET EERST EEN PROJECT MAAKT
 
 ADD library(worcs) TO MANUSCRIPT.RMD TO HAVE RENV TRACK IT
 --><div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"worcs"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"crsh/papaja"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">update</span> <span class="kw">=</span> <span class="st">"never"</span>)
+<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"crsh/papaja"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">update</span> <span class="kw">=</span> <span class="st">"never"</span>)
 <span class="kw pkg">tinytex</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span>()
+<span class="kw pkg">renv</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/renv/man/consent.html">consent</a></span>(<span class="kw">provided</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="kw pkg">worcs</span><span class="kw ns">::</span><span class="fu"><a href="../reference/git_user.html">git_user</a></span>(<span class="st">"your_name"</span>, <span class="st">"your_email"</span>)</pre></body></html></div>
 <!-- 
 renv::consent(provided = TRUE)
