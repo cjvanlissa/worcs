@@ -291,10 +291,13 @@ apa_table(tab1)
 <!-- AL: Similar to my comment on the title, in this section it needs to make clear which scope of related work it covers. For example, in the life sciences there has also been a lot of work on practices for increasing reproducibility, with automated workflows, containerization, Research Objects, provenance protocols, and a lot more. I don't think it's necessary for this paper to discuss this, but that is under the provision that it defines its scope better. --> 
 ## Prerequisites
 
-Although the principles underlying this workflow are universal, WORCS has been optimized for R [@rcoreteamLanguageEnvironmentStatistical2020].
+Although the principles underlying this workflow are universal, WORCS has been
+designed for R [@rcoreteamLanguageEnvironmentStatistical2020].
 Several arguments support the choice to work in R.
-First, R and all of it extensions are free and Open Source, and Open Source software should be the tool of choice for open science.
-Second, as of this writing, R is the most advanced programming language in terms of the implementation of tools required for an open science workflow.
+First, R and all of it extensions are free and open source software, which
+should be the tool of choice for open science.
+Second, as of this writing, R is the most advanced programming language in terms
+of the implementation of tools required for an open science workflow.
 Third, R is the second-most cited statistical software package [@muenchenPopularityDataScience2012], following SPSS, which has no support for any of the open science tools discussed in this paper.
 Fourth, R is well-supported; a vibrant online community exists for R, developing new R methods and packages, and providing support and tutorials for existing ones.
 Finally, R is highly interoperable:
@@ -306,20 +309,25 @@ Most of the tools used in WORCS are embedded directly into the user interface of
 RStudio automates and streamlines tedious or complicated aspects of working with R, Rmarkdown, and Git/GitHub.
 This makes RStudio a comprehensive solution for open science research projects.
 Another important feature of RStudio is project management.
-A project bundles writing, analyses, data, references, etcetera, into a self-contained folder, that can be uploaded entirely to GitHub and downloaded by future users.
-The `worcs` R-package installs a new RStudio project template.
-When a new project is initialized from this template, the bookkeeping required to set up an open science project is performed automatically.
+A project bundles writing, analyses, data, references, etcetera, into a
+self-contained folder, that can be uploaded entirely to 'GitHub' and downloaded
+by future users. The `worcs` R-package installs a new RStudio project template.
+When a new project is initialized from this template, the bookkeeping required
+to set up an open science project is performed automatically. The `worcs` 
+package has a [vignette](https://cjvanlissa.github.io/worcs/articles/setup.html)
+on how to set up your system with all of the required tools.
 
 ## Introducing the tools
 
 WORCS relies on several free, open source software solutions.
-The first of these is *dynamic document generation*.
-Dynamic document generation (DDG) means writing scientific reports in a format
-that interleaves written reports with blocks of computer code used to conduct
-the analyses. The text is automatically formatted as an APA-style manuscript
-[thanks to the R-package `papaja`, @austPapajaPrepareReproducible2020], and
-results of the code blocks are automatically generated and insterted in the
-text, or rendered as Figures and Tables. Dynamic document generation supercedes
+The first is *dynamic document generation* (DDG): Writing scientific reports in
+a format that interleaves written reports with blocks of code used to conduct
+the analyses. The text is automatically formatted; the `worcs` package can 
+output manuscripts as an APA-style paper [thanks to the R-package `papaja`, @austPapajaPrepareReproducible2020], or as a host of other scientific formats 
+[see @allaireRticlesArticleFormats2020], or as a plain 'Markdown' format for
+'GitHub'. When the text is formatted, the results of the code blocks are
+automatically generated and insterted in the text, or rendered as Figures and
+Tables. Dynamic document generation supercedes
 the classical approach of using separate programs to write prose and conduct
 analyses, and then manually copy-pasting analysis results into the text.
 Although there is a slight learning curve to transitioning to DDG, the
@@ -357,10 +365,6 @@ WORCS instead uses the *explicit* version control software 'Git'
 (www.git-scm.com). Git tracks
 changes to files, and stores these changes when the user makes a "commit" (a 
 snapshot of the version controlled files).
-<!--Barbara: I have looked for a way to cite Git but did not find one... 
-Seems good practice especially in this paper as an example to cite all software,
-but for Git I just cannot find the way. Maybe cite the website: www.git-scm.com
-CJ: Other papers discussing scientific merits of Git also just give a URL -->
 Git retains a complete log of all commits, and users can compare changes between
 different commits, or go back to a previous version of the code (for example,
 after making a mistake, or to replicate a previous version of the results).
@@ -400,11 +404,11 @@ sufficient to state that analyses were conducted in *Program X*. However, every
 program is susceptible to changes, updates, and bugfixes. R-packages in
 particular are updated frequently, because they are Open Source, and there is an
 active community of developers contributing functionality and bugfixes. 
-Potentially, any update could change the results of the code. For example, 
+Potentially, any update could change the results of the code. <!--For example, 
 R-version 3.6.0 fixed a bug in the random number generator. This means that any
 analyses that use random numbers, such as bootstrapping, cannot be strictly
 replicated from previous versions. Or, for example, R-version 4.0.0 changed a
-default parameter that affects how data are loaded from files.
+default parameter that affects how data are loaded from files.-->
 
 <!-- LB: and onwards: this section requires some background knowledge on R/packages/etc. This could be a place where readers stumble and stop reading. Perhaps introduce the concept of the R project template earlier, to see section on dependencies more into perspective. 
 [main issue] it should become clear earlier what the WORCS workflow entails: e.g. switching to working with a particular R Project Template. Discuss the ‘workflow' section earlier. Related: Can you make a schematic overview of the WORCS?overview--> 
@@ -418,38 +422,63 @@ stored like a sort of time capsule, and identically reinstated on a user compute
 This is effective, and also preserves software outside the R environment (e.g., preprocessing tools
 for neuroimaging data). However, it can be difficult to set up for novice users - although a package
 is in development to facilitate this transition [@repo]. The cloud-based research collaboration platform
-'Code Ocean' is also based on Docker, for example. It is user-friendly, but it is not clear whether the
+'Code Ocean' is also based on Docker. It is very user-friendly, but it is not clear whether the
 ["Data Processing Agreement"](https://www.digitalocean.com/legal/data-processing-agreement/) is fully
 GDPR compliant - it seems to focus more on limiting liability than on compliance. This is a risk with
-any cloud-based solution. The advantage of using a local system is that data sharing is optional, and
-WORCS capitalizes on this flexibility. 
+any cloud-computing solution.
 
-A slightly less sophisticated solution is offered by the R-package `packrat`, which installs all software
-used in a project to a dedicated library that can be stored and copied with the project. This solution
-is reasonably user-friendly and effective, but has the disadvantage that for each project, all packages
+For analyses conducted entirely in R, a slightly less sophisticated solution is offered by the R-package `packrat`, which installs all packages
+used in a project to a dedicated library that can be stored and copied with the project. This has the disadvantage that for each project, all packages
 must be installed anew, which can take a long time (sometimes hours) and a lot of hard drive space.
-Moreover, Git/GitHub is not designed to store your entire project library, so `packrat` does not address
+Moreover, 'GitHub' is not designed to store your entire project library, so `packrat` does not address
 the issue of how other users are supposed to get access to your library. In conclusion, `packrat` is
 somewhat unwieldy. The package `checkpoint` offers an extremely lightweight solution: Instead of storing
-all software used, it simply records the calendar date, and then installs the version of all required
+all R-packages used, it simply records the calendar date, and when another user loads your project, it installs the version of all required
 packages that was available on the central R repository `CRAN` on that date from an archival website.
-Thus, all that is needed to restore a project is the date on which it was conducted. This is very
-user-friendly, and reasonably effective - the only problem is that this solution is limited to `CRAN`
+Thus, all that is needed to restore a project is the date on which it was conducted. The main limitation is that this solution is limited to `CRAN`
 packages, and cannot mix package versions from different dates.
 
-A recently developed package strikes a great balance between user-friendliness and effectiveness: `renv`, developed by the team behind RStudio. This package maintains a text-based log file of which packages are used, in what versions, and where they were installed from (e.g., CRAN, Bioconductor, GitHub). Being text-based, this log can be version controlled with Git. On a local computer, `renv` installs all packages used in a cache that is shared between all projects that use `renv`. Thus, if one of your projects uses a version of a package that is already in the cache, it does not need to be installed again. This overcomes the limitations of long installation times and large space requirements of `renv`. When someone else loads your project, `renv` will install all of the required packages onto a cache on their computer. Whereas `packrat` copies the source code of all packages, `renv` obtains the packages from their original repositories. Thus, as long as these repositories used maintain their archives, this solution is very lightweight and effective. It is not foolproof, but some have argued that all solutions for computational reproducibility have a limited shelf life [@brownHowLearnedStop2017]. Ultimately, the best solution might be to use a good-enough solution, like `renv`, and acknowledge that all code requires some maintenance if you want to reproduce it in the future.
+A recently developed package strikes a great balance between user-friendliness 
+and effectiveness: `renv`, developed by the team behind 'RStudio'. This package
+maintains a text-based, human-readable log of the packages used, their version
+numbers, and where they were installed from (e.g., 'CRAN', 'Bioconductor', 'GitHub').
+This text-based log can be version controlled with 'Git'. `renv` installs all
+packages in a cache that is shared between all projects that use `renv`. Thus,
+if one of your projects uses a package that is already in the cache, it does not
+need to be installed again. This overcomes the limitations of long installation
+times and large space requirements of `packrat`. When someone else loads your 
+project, `renv` will install all of the required packages onto a cache on their
+computer. Whereas `packrat` copies the source code of all packages, `renv`
+obtains the packages from their original repositories. Thus, as long as these
+repositories are maintained, this solution is very lightweight and effective.
+It is not foolproof, but all solutions for computational
+reproducibility have a limited shelf life [@brownHowLearnedStop2017].
+Ultimately, the best solution might be to use a good-enough solution, like
+`renv`, and acknowledge that all code requires some maintenance if you want to
+reproduce it in the future.
 
-## Considering filetypes
+## Text-based files are better
+
 A key consideration when developing a research project is what filetypes to use.
-A case can be made to use text-based files only (or as much as possible), instead of binary files.
-Text-based files can be read by machines and humans alike, without requiring special (licensed) software.
-Binary files, such as Word (`.docx`) or SPSS (`.sav`, `.spo`),  must be decoded by software first.
-Git is designed to keep track of changes to the content of text-based files.
-Each change reflects a word or line of code added or removed.
-Binary files, on the other hand, should not be version controlled with Git, as individual changes in the encrypted file are uninterpretable.
-Moreover, text-based files are often smaller than binary files, which means they take up less space on cloud hosting services, such as GitHub. Uploading large binary files is frowned upon.
-GitHub also allows visitors to peruse text-based files online, and conveniently renders certain filetypes.
-For example, GitHub highlights syntax in `.R` and `.Rmd` files, and displays `.csv` files as spreadsheets.
+A case can be made to use text-based files only (or as much as possible),
+instead of binary files.
+Text-based files can be read by machines and humans alike.
+Binary files, such as 'Word' (`.docx`) or 'SPSS' (`.sav`, `.spo`) files,
+must be decoded by (commercial) software first.
+'Git' is designed to track any changes to the content of text-based files.
+Each change reflects a line of text added or removed. This means that, when
+writing a version-controlled paper in plain-text, it is recommended to insert a
+line break after every sentence (instead of after every paragraph). That way,
+the change log will indicate which specific sentence was edited.
+Binary files should not be version controlled with 'Git',
+as changes in the encrypted file are uninterpretable. Binary files are often 
+also larger than text-based files, which means they take up more space on cloud
+hosting services, such as 'GitHub'. For those reasons, uploading large binary
+files to these platforms is frowned upon.
+'GitHub' does allow visitors to peruse text-based files online, and
+conveniently renders certain filetypes: For example, 'GitHub' displays `.md`
+(Markdown) files as web pages, and `.csv` files as spreadsheets. This is why
+`worcs` uses Markdown and `.csv` extensively.
 
 <!--Barbara: Maybe write here something about writing manuscripts on a line-by-line basis, so that version control can keep track of changes more accurately than if a whole paragraph is identified as altered?-->
 
