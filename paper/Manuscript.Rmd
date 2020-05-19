@@ -126,13 +126,39 @@ set.seed(42)
 
 # Introduction
 
-The (social) sciences are amidst a paradigm shift towards open science. 
-Several immediate causes stirred up support for this transition; including several highly publicized cases of scientific fraud [as discussed by @leveltFailingScienceFraudulent2012], increasing awareness of questionable research practices [@johnMeasuringPrevalenceQuestionable2012], and the replication crisis [@shroutPsychologyScienceKnowledge2018].
-However, open science is not merely a cure for this crisis - it is also an opportunity [@adolphOpenBehavioralScience2012].
-Technological advances enable researchers to more easily conduct reliable, cumulative, collaborative science [@nosekScientificUtopiaOpening2012].
-Capitalizing on these advances has the potential to accellerate scientific progress [see also @coyneReplicationInitiativesWill2016].
+The (social) sciences are arguably past the tipping point of the paradigm shift
+towards open science.
+Several immediate causes stirred up support for this transition; including
+highly publicized cases of scientific fraud [as discussed by
+@leveltFailingScienceFraudulent2012], increasing awareness of questionable
+research practices and their consequences for the credibility of findings [@johnMeasuringPrevalenceQuestionable2012], and the replication crisis
+[@shroutPsychologyScienceKnowledge2018].
+However, open science is not merely a cure for this crisis - it is also an
+opportunity [@adolphOpenBehavioralScience2012].
+Open science helps researchers to more easily conduct reliable, cumulative, and 
+collaborative science [@nosekScientificUtopiaOpening2012].
+Capitalizing on these advances has the potential to accellerate scientific
+progress [see also @coyneReplicationInitiativesWill2016].
 
-This paper introduces WORCS: A Workflow for Open Reproducible Code in Science. WORCS is a lightweight approach to open science and computational reproducibility. It provides a step-by-step procedure that researchers can follow to make an entire research project Open and Reproducible. WORCS is based on best practices, and can be used either in parallel to, or in absence of, top-down requirements by journals. The main goal of WORCS is to lower the threshold for adopting an open science workflow by providing the present tutorial, along with an R-package with user-friendly support functions, and an RStudio project template. 
+Many individual researchers are motivated to adopt best practices for open
+science and enjoy these benefits. And yet, the question of "how" to 
+adopt open science practices can be daunting. Making the transition effectively
+requires researchers to become knowledgeable about different open science 
+challenges and solutions, and to become proficient with new and unfamiliar tools.
+This paper is designed to ease that transition by providing a simple workflow 
+that meets most requirements open science, based on best practices, and 
+supported by user-friendly software in R: The Worfkflow for Open Reproducible 
+Code in Science (WORCS). WORCS is a lightweight approach to open science and
+computational reproducibility. The workflow (Figure \@ref(fig:workflow)) 
+constitutes a step-by-step procedure that researchers can follow to make a 
+research project Open and Reproducible. WORCS is compatible with open science
+requirements already implemented by journals and institutions, and will help 
+fulfill them. It can also be used to produce work in accordance with best 
+practices in the absence of top-down support. The WORCS workflow is supported by
+an R-package with user-friendly support functions, and an RStudio project
+template that is, effectively, a "one click solution". This paper introduces
+the WORCS workflow, discusses how it meets best practices for open science, and
+illustrates the use of the `worcs` package.
 
 <!-- AL: I second LB's comment somewhere below that the overall WORCS workflow should be introduced much earlier, maybe already here. A diagrammatic overview/flowchart of the principal steps would be great. It should catch the reader's eye and give an immediate idea of what WORCS is about. Now it is indeed quite buried in the details that follow. --> 
 
@@ -155,16 +181,58 @@ Benefits to individual scientists: Automation (after a learning curve), thus mor
 Collective benefits: Cumulative science, -->
 <!-- AL: These "value propositions" would also be good to discuss already in the introduction. Directly after the introduction of the WORCS overview would make sense, I think. -->
 
-The remainder of the paper is structured as follows. ... <!-- AL: Or some variation of this obligatory end-of-intro paragraph. As the paper touches on a lot of aspects, from principal to very practical, it would be very useful to provide some guidance here. -->
+<!-- AL: The remainder of the paper is structured as follows. ... Or some variation of this obligatory end-of-intro paragraph. As the paper touches on a lot of aspects, from principal to very practical, it would be very useful to provide some guidance here. 
+CJ: I was always taught that you should not explain your structure in the paper - you should just structure the paper. If the structure is unclear, make it better. -->
+<!--openness, transparency, and reproducible science -->
 
+# Meeting the requirements of Open Science
 
-# Defining open science
+Although Open Science is advocated by many, it does not have a unitary definition.
+Instead, several guidelines exist for practices that are considered "open".
+The TOP-guidelines are one of the most influential concrete operationalisations
+of Open Science principles [@nosekPromotingOpenResearch2015a].
+These guidelines describe eight standards for open science: 1) Comprehensive
+citation of literature, data, materials, and methods; 2) sharing data, 3)
+sharing the code required to reproduce analyses, 4) sharing new research
+materials, and 5) sharing details of the design and analysis; 6)
+pre-registration of studies before data collection, and 7) pre-registration of
+the analysis plan prior to analysis; and 8) replication of published results.
+WORCS defines the goals of open science in terms of these guidelines, and is
+designed to facilitate meeting each of these guidelines, with one exception: We
+do not address replication of published results, because replication relates to
+the subject of a research project, not to its execution.
+We group the remaining seven guidelines into three categories: Citation (1),
+sharing (2-5), and preregistration (6-7).
 
-Although Open Science is advocated by many, there is no clear definition of Open Science (LOEK? ref multiple definitions).
-The TOP-guidelines have been influential as a concrete operationalisation of Open Science principles [@nosekPromotingOpenResearch2015a].
-These guidelines describe eight standards for open science: 1) Comprehensive citation of literature, data, materials, and methods; 2) sharing data, 3) sharing the code required to reproduce analyses, 4) sharing new research materials, and 5) sharing details of the design and analysis; 6) pre-registration of studies before data collection, and 7) pre-registration of the analysis plan prior to analysis; and 8) replication of published results.
-WORCS defines the goals of open science in terms of these guidelines, and is designed to facilitate meeting each of these guidelines, with one exception: We do not address replication of published results, because replication relates to the subject of a research project, not to its execution.
-We group the remaining seven guidelines into three categories: Citation (1), sharing (2-5), and preregistration (6-7).
+WORCS meets the TOP-guidelines in a way that is amenable to the 
+FAIR Guiding Principles for scientific data management and stewardship [@wilkinsonFAIRGuidingPrinciples2016a]. These principles advocate that research
+data should be Findable, Accessible, Interoperable and Reusable. However, they are
+increasingly applied as a standard for 
+to other types of research output as well
+[@lamprechtFAIRPrinciplesResearch2019].
+WORCS helps users meet the FAIR principles by making all research objects -
+including (origina) data and code - accessible in a (public) repository. 
+The `worcs` package additionally
+facilitates meeting the FAIR principles in several ways. First, each `worcs`
+project has a YAML file (https://yaml.org/) that lists the research objects in
+the project, which will allow web crawlers 
+to index `worcs` projects. Second, a codebook is automatically generated for
+each data file stored
+using `open_data()` or `closed_data()`. We encourage users to elaborate on the
+default codebook by adding
+variable description and categories, which might - in the future - enable
+indexing data by topic area. 
+Incidentally, `worcs` is itself an example of FAIR research software [see @lamprechtFAIRPrinciplesResearch2019 and https://fair-software.eu/]. It is hosted on a public version controlled repository ('GitHub'), it has an open source licence (GPL v3.0), is registered in a community registry (CRAN), it enables the citation of the software (using the `citation("worcs")` command, or by citing this paper), and followed the CII Best Practices software quality checklist during development.
+
+Sharing all research output also provides a proper basis for research evaluation
+according to the San Francisco Declaration on Research Assessment (DORA;
+https://sfdora.org/), which plays an increasing role in grant funding, hiring, 
+and promotion procedures. Direct access to research objects allows stakeholders
+to evaluate research quality based on content rather than relying on spurious
+surrogate indicators like journal impact factors, conference rankings, and
+h-indexes. The detailed version control and commit tracking of 'GitHub' and
+similar platforms furthermore make it possible to assess the relative
+contributions made by different researchers. 
 
 ## Goal of this paper
 
@@ -172,12 +240,10 @@ The TOP-guidelines are primarily geared towards top-down systemic change (what's
 However, large organizations are slow to change.
 For example, a snapshot of editorial practices indicated that, in 2015, only 3% out of 1151 psychology journals explicitly stated that
 they accepted replication studies [@martinArePsychologyJournals2017; see also @klebelPeerReviewPreprint2020].
-At the same time, there is substantial momentum for grassroots change [@nosekScientificUtopiaOpening2012].
-Many individual researchers are willing to adopt best practices for open science, even in the absence of institutional support.
-The formation of "Open Science Communities" at universities around the globe illustrates this grassroots movement [REF Loek paper].
-This paper is designed as an instrument for grassroots change, that can help individual scientists to meet the principles of open science.
-The WORCS workflow can be used regardless of any top-down open science requirements already implemented by journals and institutions:
-If such requirements exist, this workflow will help fulfill them.
+At the same time, <!-- edit -->
+The formation of "Open Science Communities" at universities around the globe
+illustrates the momentum of this grassroots movement
+[@brinkmanWidescaleAdoptionOpen2020]. 
 
 ## Existing solutions
 
@@ -605,24 +671,6 @@ The WORCS procedure and accompanying R-package provide a user-friendly and light
 WORCS offers a workflow for open reproducible code in science. The step-by-step procedure outlined in this tutorial helps researchers make an entire research project Open and Reproducible. The accompanying R-package provides user-friendly support functions for several steps in the workflow, and an RStudio project template to get the project set up correctly.
 
 WORCS encourages and simplifies the adoption of Open Science principles in daily scientific work. It helps researchers make all research output created throughout the scientific process - not just manuscripts, but data, code, and methods - open and publicly assessible. This enables other researchers to reproduce results, facilitates cumulative science by allowing others to make direct use of these research objects.
-
-Sharing all research output also provides a proper basis for research evaluation according to the San Francisco Declaration on Research Assessment (DORA; https://sfdora.org/), which increasingly plays a role in grant funding and hiring or promotion procedures. Direct access to research objects allows funding bodies and hiring committies to evaluate research quality based on content rather than relying on spurious surrogate indicators like journal impact factors, conference rankings, and h-indexes. The detailed version control and commit tracking of github and similar platforms furthermore make it possible to assess the relative contributions made by different researchers. 
-
-The FAIR Guiding Principles for scientific data management and stewardship [@wilkinsonFAIRGuidingPrinciples2016a] advocate that research data should be 
-Findable, Accessible, Interoperable and Reusable. Moreover, these principles are
-increasingly applied to other types of research output 
-[@lamprechtFAIRPrinciplesResearch2019]. Research
-organizations and funders use the FAIR principles as standard for open, 
-transparent and reproducible science.
-The WORCS workflow helps users meet the FAIR principles by making all research objects -
-including (origina) data and code - accessible in a (public) repository. 
-The `worcs` package additionally
-facilitates meeting the FAIR principles in several ways. First, each `worcs` project has a YAML file
-(https://yaml.org/) that lists the research objects in the project, which will allow web crawlers 
-to index `worcs` projects. Second, a codebook is automatically generated for each data file stored
-using `open_data()` or `closed_data()`. We encourage users to elaborate on the default codebook by adding
-variable description and categories, which might - in the future - enable indexing data by topic area. 
-Relatedly, `worcs` is itself an example of FAIR research software [see @lamprechtFAIRPrinciplesResearch2019 and https://fair-software.eu/]. It is hosted on a public version controlled repository ('GitHub'), it has an open source licence (GPL v3.0), is registered in a community registry (CRAN), it enables the citation of the software (using the `citation("worcs")` command, or by citing this paper), and followed the CII Best Practices software quality checklist during development.
 
 
 
