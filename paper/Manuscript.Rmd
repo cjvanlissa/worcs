@@ -204,13 +204,11 @@ Although the principles underlying this workflow are universal, WORCS has been o
 Several arguments support the choice to work in R.
 First, R and all of it extensions are free and Open Source, and Open Source software should be the tool of choice for open science.
 Second, as of this writing, R is the most advanced programming language in terms of the implementation of tools required for an open science workflow.
-Third, R is well-supported; a vibrant online community exists for R, developing new R methods and packages, and providing support and tutorials for existing ones.
-
-<!-- LB: Perhaps give some pointers to learn R (e.g. R4DataScience)-->
-Third, at the time of writing, R is the second-most cited statistical software package [@muenchenPopularityDataScience2012], following SPSS, which has no support for any of the open science tools discussed in this paper.
+Third, R is the second-most cited statistical software package [@muenchenPopularityDataScience2012], following SPSS, which has no support for any of the open science tools discussed in this paper.
+Fourth, R is well-supported; a vibrant online community exists for R, developing new R methods and packages, and providing support and tutorials for existing ones.
 Finally, R is highly interoperable:
 Packages are available to load nearly every imaginable filetype, and output can be written to most file types, including DOCX and PDF (in APA style), and HTML format. 
-Moreover, wrappers are available for many tools developed in other programming languages, and code written in other programming languages can be evaluated from R [including C++, Fortran, and Python, @allaireMarkdownPythonEngine].
+Moreover, wrappers are available for many tools developed in other programming languages, and code written in other programming languages can be evaluated from R [including C++, Fortran, and Python, @allaireMarkdownPythonEngine]. There are excellent free resources for learning R, such as the book R for Data Science [@grolemundDataScience2017].
 
 Working with R is simplified immensely by using the RStudio integrated development engine (IDE) for R [@rstudioteamRStudioIntegratedDevelopment2015].
 Most of the tools used in WORCS are embedded directly into the user interface of RStudio.
