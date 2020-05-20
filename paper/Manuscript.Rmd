@@ -527,7 +527,7 @@ Moreover, preprint servers ensure that the online version will have a persistent
 
 It is easiest to mark the distinction between essential and non-essential references from the start, instead of going
 back to cut references prior to publication. Therefore, the `worcs` package distinguishes between the
-traditional at-symbol (`@`) used to cite a reference, and the "double at"-symbol (`@@`), used to cite a non-essential reference.
+traditional at-symbol (`@`) used to cite a reference, and the "double at"-symbol (`@`), used to cite a non-essential reference.
 Users can render a manuscript to PDF either with, or without, comprehensive citations.
 
 The procedure for citation in WORCS is as follows:<!-- LB: this procedure is secondary to the main workflow. Consider changing the order (see main issue)-->
@@ -603,19 +603,19 @@ Aside from analysis code, the TOP-guidelines also encourage sharing new research
 
 ## Preregistration
 
-Lindsay and colleagues [-@lindsayResearchPreregistration1012016] define preregistration as "creating a permanent record of your study plans before you look at the data. The plan is stored in a date-stamped, uneditable file in a secure online archive." Two such archives are well-known in the social sciences: AsPredicted.org, and OSF.io. However, GitHub also conforms to these standards. Thus, it is possible to preregister a study simply by pushing a text document with the study plans to GitHub. If the GitHub repository is Public, the preregistration is immediately visible to the world, and Reviewers can submit comments through pull requests. If the repository is Private, Reviewers can be invited as "Collaborators", although this removes their anonymity. Private repositories can be made public at a later date, along with their entire time-stamped history. 
-<!-- Barbara: Pull requests are not anonymous either, aren't they?-->
+Lindsay and colleagues [-@lindsayResearchPreregistration1012016] define preregistration as "creating a permanent record of your study plans before you look at the data. The plan is stored in a date-stamped, uneditable file in a secure online archive." Two such archives are well-known in the social sciences: AsPredicted.org, and OSF.io. However, GitHub also conforms to these standards. Thus, it is possible to preregister a study simply by pushing a text document with the study plans to GitHub. By tagging the commit as a preregistration (see [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html)), it is distinct from all other commits, and easily findable by people and programs.
 
-The advantages, disadvantages, and pitfalls for preregistering different types of studies have been extensively debated, and summarizing that debate falls outside of the scope of this paper, and has been addressed adequately elsewhere [e.g., @lindsayResearchPreregistration1012016]. We take the pragmatic position that, in confirmatory (hypothesis-testing) research, it is beneficial to plan research projects before executing them, to preregister these plans, and adhere to them. All deviations from this procedure should be disclosed; e.g., prior exposure to the data, whether direct (e.g., by computing summary statistics) or indirect (e.g., by reading papers using the same data); deviations from the analysis plan to handle unforseen contingencies, such as violations of model assumptions; or additional exploratory analyses.
+The advantages, disadvantages, and pitfalls for preregistering different types of studies have been extensively debated, and that has been summarized elsewhere [e.g., @lindsayResearchPreregistration1012016]. We take the pragmatic position that, in confirmatory (hypothesis-testing) research, it is beneficial to plan projects before executing them, to preregister these plans, and adhere to them. All deviations from this procedure should be disclosed; e.g., prior exposure to the data, whether direct (e.g., by computing summary statistics) or indirect (e.g., by reading papers using the same data); deviations from the analysis plan to handle unforseen contingencies, such as violations of model assumptions; or additional exploratory analyses.
 
 WORCS uses the following approach to preregistration:
 
-1. Document study plans in a `preregistration.Rmd` file, and planned analyses in a `.R` file.
+1. Document study plans in a `preregistration.Rmd` file, and optionally, planned analyses in a `.R` file.
 2. Commit these documents to the local Git repository, and push them to GitHub
 3. On GitHub, [tag the release](https://help.github.com/en/github/administering-a-repository/creating-releases) as "Preregistration". A tagged release helps others retrieve this commit.
 4. Optional: Upload the files as attachments to another pre-registration repository, e.g., AsPredicted.org or OSF.io.
   + The `.Rmd` file can be Knitted to a PDF form before uploading to a repository
 
+If the GitHub repository is Public, the preregistration is immediately visible to the world, and reviewers (both formal reviewers designated by a journal, and informal reviewers recruited by other means) can submit comments through pull requests. If the repository is Private, Reviewers can be invited as "Collaborators". Private repositories can be made public at a later date, along with their entire time-stamped history. It is important to note that contributing to the repository in any way will void reviewers' anonymity, as their contributions will be linked to a user name.
 
 ### Preregistering study plans
 
@@ -666,58 +666,26 @@ https://stackoverflow.com/questions/18216991/create-a-tag-in-a-github-repository
 
 ## Preparing your system
 
-Before you can use the WORCS workflow, you have to install the required software, and register for a GitHub account.The setup process is documented in a vignette included with the `worcs` R-package, and also [available online](https://cjvanlissa.github.io/worcs/articles/setup.html). After preparing your system, you can follow the step-by-step procedure outlined below.
-<!--Barbara: Does this work on gitlab/bitbucket as well?-->
+Before you can use the WORCS workflow, you have to install the required software. You have to execute this setup procedure only once for each computer you intend to use `worcs` on. The procedure should take about 30 minutes, and it is documented in [the setup vignette](https://cjvanlissa.github.io/worcs/articles/setup.html). After preparing your system, you can use the WORCS workflow for all of your projects. This step-by-step procedure is detailed in [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html). In this paper, we provide only a brief outline of the WORCS procedure (as of Version `r cran_version()`) below. We highly recommend users to refer to [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html) for the most up-to-date procedure (subject to improvements).
 
-## Phase 1: Study design
-
-1. Create a new Private repository on GitHub.
-<!-- Why private!?! I would actually argue for a public repo, but if you do not feel comfortable doing so: another option would be to give an overview of advantages/disadvantages of private/public here, and make an argument for either case.-->
-Do not change any of the default options. Copy the repository link to the clipboard. This link will look like https://github.com/yourname/yourrepo.git
-2. In RStudio, click File > New Project > New directory > WORCS Project Template
-    a. Paste the GitHub Repository address in the textbox
-    b. Keep the checkbox for `renv` checked if you want to document all R-package dependencies, and have them automatically loaded on any system (recommended).
-    c. Select a preregistration template
-    d. Click Open in new session, and Create project
-3. Write the preregistration `preregistration.Rmd`
-4. In the top-right corner of RStudio, select the Git tab, select the checkboxes next to all files, and click the Commit button. Write an informative message for the commit, e.g., "Preregistration", again click Commit, and then click the green Push arrow to send your commit to GitHub
-5. Go to the GitHub repository for this project, and tag the Commit as a preregistration
-6. Optional: Render the preregistration to PDF, and upload it to AsPredicted.org or OSF.io as an attachment
-7. Optional: Add study Materials (only those to which you own the rights!) to the repository.
-It is possible to solicit feedback (by opening a GitHub Issue) and receive outside contributions (by accepting Pull requests)
-<!-- Barbara: NB this can only be done in a public repo; another argument for making a repo public! -->
-
-## Phase 2: Data analysis
-
-8. Read the data into R, and document this procedure in `prepare_data.R`
-9. Use `open_data()` or `closed_data()` to store the data
-10. Write the manuscript in `Manuscript.Rmd`, using code chunks to perform the analyses.
-11. Regularly commit your progress to the Git repository; ideally, after completing each small and clearly defined task. Use informative commit messages. Push the commits to GitHub.
-12. Cite essential references with one at-symbol (`[@essentialref2020]`), and non-essential references with a double at-symbol (`[@nonessential2020]`).
-<!-- Barbara: Again I cannot see the difference... -->
-
-## Phase 3: Paper submission
-
-13. Save the state of the project library (all packages used), call `renv::snapshot()`. This updates the lockfile, `renv.lock`.
-14. Add an open science statement to the manuscript, which references the online repository for the project. This reference can be masked for blind review. The open science statement should indicate whether additional references are available in the online repository; whether data, code, materials, and study design details are shared, and whether a pre-registration is available. For further guidance, see @aalbersbergMakingScienceTransparent2018. Example:  
-    > In the spirit of open science, an online repository is available at XXX, which contains more comprehensive citations, [the data/a synthetic data file], analysis code, the research materials used, details about the study design, and a tagged commit with a preregistration.
-
-15. To render the paper with essential citations only for submission, change the line `knit: worcs::cite_all` to `knit: worcs::cite_essential`. Then, press the Knit button to generate a PDF
-
-## Phase 4: Publication
-
-Note that some researchers take the following steps at an earlier stage. However, for newcomers to open science, who are unsure about potential implications for the publication of their work, it might be prudent to perform these actions after acceptance, and before publication:
-
-16. Make the GitHub repository public
-17. [Create an OSF project](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project); although you may have already done this in Step 6.
-18. [Connect your GitHub repository to the OSF project](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)
-19. Add an open science statement to the manuscript, with a link to the OSF project
-20. Optional: [Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)
-    + Check [Sherpa Romeo](http://sherpa.ac.uk/romeo/index.php) to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.
-
-<!-- 
-4. Optional: Add Materials to repository. It is possible to solicit feedback (through issue/pull request) and later acknowledge outside contributions
--->
+```{r results="asis", echo = FALSE, eval = TRUE}
+get_workflow <- function(filename = "../vignettes/workflow.Rmd"){
+  txt <- readLines(filename)
+  txt <- txt[grepl("<!--S:", txt, fixed = T)|grepl("^###", txt)]
+  txt <- gsub("(<!--S: |-->.*$)", "", txt)
+  txt <- gsub("^#", "", txt)
+  out <- vector("character")
+  for(i in seq_along(txt)){
+    if(startsWith(txt[i], "#")){
+      out <- append(out, c("", txt[i], ""))
+    } else {
+      out <- append(out, txt[i])
+    }
+  }
+  cat(out, sep = "\n")
+}
+get_workflow()
+```
 
 # Discussion
 
@@ -725,9 +693,57 @@ In this tutorial paper, we have presented a workflow for open reproducible code 
 
 One potential challenge is the learning curve associated with the tools outlined in this paper. Learning to work with R, Rmarkdown, and Git/GitHub requires an initial time investment. The amount of time required is reduced by the availability of tutorials, such as this one, and other tutorials cited throughout this document. Moreover, the time investment tends to pay off. Working with R opens the door to many cutting edge analysis techniques. Working with Rmarkdown saves time and prevents mistakes by avoiding tedious copying of results into a text document. Working with Git/GitHub keeps projects organized, prevents accidental loss of work, enables integrating changes by collaborators in a non-destructive manner, and ensures that entire research projects are archived and can be accessed or copied by third parties. Thus, the time investment is eminently worthwhile.
 
-Another important challenge is managing collaborations when only the lead author uses Rmarkdown, and the coauthors use Word. In this case, it is possible to Knit the manuscript to Word (.docx), by changing the line `output: papaja::apa6_pdf` in the manuscript's YAML header to `output: papaja::apa6_docx`. There are some limitations to the conversion, discussed [here](https://crsh.github.io/papaja_man/limitations.html#microsoft-word-documents). When soliting feedback from co-authors, ask them to use Tracked Changes and comment bubbles in Word. <!-- LB: The work-around with track-changes in Word files is doable, but not very satisfying. I think you can also use Overleaf instead of Word (user friendly and web based) for bidirectional communication, but haven’t tried this myself. I didn’t know about ‘redoc’, will check it out.-->Then, manually<!--this should really be avoided if possible! no fun... --> incorporate their changes into the `manuscript.Rmd` file. In most cases, this is the most user-friendly approach, as most lead authors would review changes by co-authors anyway. A second approach is to ask collaborators to work in plain text. In this case, send collaborators the `manuscript.Rmd` file, and ask them to open (and save) it in Word or Notepad as a plain text file. When they send it back, make sure any changes to your local file are committed, and then simply overwrite your local version with their file. In RStudio, select the file in the Git tab, and click the Diff button to examine what changes the collaborator has made relative to your last committed version. Finally, @peikertReproducibleDataAnalysis2019 mention that the [`redoc` package](https://noamross.github.io/redoc/articles/mixed-workflows-with-redoc.html) [@rossRedocReversibleReproducible2020] might be useful for collaborating with Word users. This package enables bidirectional conversion between Word and Rmarkdown, with support for tracked changes. However, a simpler solution (i.e., asking collaborators to work in plain text) might be sufficient.
+Another important challenge is managing collaborations when only the lead author
+uses Rmarkdown, and the coauthors use Word. In this case, it is possible to Knit
+the manuscript to Word (.docx), by changing the line `output: papaja::apa6_pdf`
+in the manuscript's YAML header to `output: papaja::apa6_docx`. There are some
+limitations to the conversion, discussed [here](https://crsh.github.io/papaja_man/limitations.html#microsoft-word-documents).
+When soliting feedback from co-authors, ask them to use Tracked Changes and
+comment bubbles in Word. <!-- LB: Overleaf?-->Then, manually incorporate their
+changes into the `manuscript.Rmd` file. In most cases, this is the most
+user-friendly approach, as most lead authors would review changes by co-authors
+anyway. A second approach is to ask collaborators to work in plain text. In this
+case, send collaborators the `manuscript.Rmd` file, and ask them to open (and
+save) it in Word or Notepad as a plain text file. When they send it back, make
+sure any changes to your local file are committed, and then simply overwrite
+your local version with their file. In RStudio, select the file in the Git tab,
+and click the Diff button to examine what changes the collaborator has made
+relative to your last committed version. Finally,
+@peikertReproducibleDataAnalysis2019 mention the [`redoc` package](https://noamross.github.io/redoc/articles/mixed-workflows-with-redoc.html) [@rossRedocReversibleReproducible2020] as a
+potentially useful way to collaborate with Word users. This package enables
+bidirectional conversion between Word and
+Rmarkdown, with support for tracked changes. However, `redoc` is currently in
+suspended development, and for many users, a simple solution (i.e.,
+asking collaborators to work in plain text) might be sufficient.
 
-If all collaborators are committed to using WORCS, they can [Fork the repository](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) from the lead author on GitHub, [clone it to their local device](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository), make their own changes, and [send a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to incorporate their changes. Working this way is extremely conducive to scientific collaboration [@ramGitCanFacilitate2013]. Moreover, being familiar with GitHub opens doors to new forms of collaboration: In the open source software community, continuous peer review and voluntary collaborative acts by strangers who are interested in a project are commonplace [see @adolphOpenBehavioralScience2012].  This kind of collaboration is budding in scientific software development as well; for example, I <!-- AL: which of the meanwhile several authors? :) -->  became a co-author on several R-packages after submitting pull requests with bug fixes or additional functionality [@rosenbergTidyLPAPackageEasily2018; @hallquistMplusAutomationPackageFacilitating2018]. It is also possible to invite such collaboration by [opening Issues](https://help.github.com/en/github/managing-your-work-on-github/about-issues) for tasks that still need to be accomplished, and tag known Collaborators to address them, or invite external collaborators to contribute their expertise. 
+If all collaborators are committed to using WORCS, they can 
+[Fork the repository](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
+from the lead author on GitHub,
+[clone it to their local device](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository),
+make their own changes, and
+[send a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)
+to incorporate their changes. Working this way is extremely conducive to
+scientific collaboration [@ramGitCanFacilitate2013]. Recall that, when using 
+'Git' for collaborative writing, it is recommended to insert a
+line break after every sentence so that the change log will indicate which
+specific sentence was edited, and to prevent
+["merge conflicts"](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-on-github)
+when two authors edit the same line. The resulting document will be rendered to
+PDF without spurious line breaks.
+
+Moreover, being familiar
+with GitHub opens doors to new forms of collaboration: In the open source
+software community, continuous peer review and voluntary collaborative acts by
+strangers who are interested in a project are commonplace
+[see @adolphOpenBehavioralScience2012].  This kind of collaboration is budding
+in scientific software development as well; for example, the lead author of this
+paper became a co-author on several R-packages after submitting pull requests
+with bug fixes or additional functionality [@rosenbergTidyLPAPackageEasily2018; @hallquistMplusAutomationPackageFacilitating2018], and two co-authors of this
+paper became involved by contributing pull requests to `worcs`. It is also
+possible to invite such collaboration by 
+[opening Issues](https://help.github.com/en/github/managing-your-work-on-github/about-issues)
+for tasks that still need to be accomplished, and tag known Collaborators to
+address them, or invite external collaborators to contribute their expertise. 
 
 ## Future developments
 
