@@ -1,7 +1,7 @@
 ---
 title: |
     | WORCS: A Workflow for Open Reproducible Code in the Social Sciences and Beyond <!-- AL: I strongly recommend to make the title more specific. "Science" is very general, and in the Anglo-American understanding actually refers to the beta sciences. Also, the abstract and the paper start with talking about the situation in the social sciences and derive the motivaion from there, so it would be good if the title would reflect this. The acronym can stay as it is. ;) -->
-    | Version 0.1.0 (Feb 8, 2020)
+    | `r paste0("Version: ", worcs:::cran_version(), ", date: ", format(Sys.Date(), "%d %b,\ %Y"))`
   
 shorttitle        : "WORKFLOW FOR OPEN SCIENCE"
 
@@ -506,7 +506,10 @@ Commons [BY-SA](https://creativecommons.org/licenses/by-sa/4.0/) or
 [BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/). When in doubt,
 one can always contact the data creators and ask what the preferred citation is. 
 
-<!-- AL: Some general things about software citation that could be good to mention here: Tool or software papers are also common, often as short papers, sometimes called "Application Notes". The Journal of Open Source Software (JOSS) is a way of turning software directly into a publication, without the need of writing an actual paper about it (the review is about the code). https://citation-file-format.github.io/ is a file format to include software citation information into source code repositories.--> 
+<!-- AL: Some general things about software citation that could be good to mention here: Tool or software papers are also common, often as short papers, sometimes called "Application Notes". The Journal of Open Source Software (JOSS) is a way of turning software directly into a publication, without the need of writing an actual paper about it (the review is about the code). https://citation-file-format.github.io/ is a file format to include software citation information into source code repositories.
+CJ: I don't think this is so relevant, because WORCS is geared towards doing research,
+not writing software! If people use JOSS for R-packages, like I do for tidyLPA,
+then that citation will show up when users run citation("tidyLPA") --> 
 When using R, software (R packages) can be conveniently cited by calling
 `citation("packagename")`. This returns an APA-style reference, and a BibTeX
 entry. In addition to the manual citation of important packages, the `worcs`
