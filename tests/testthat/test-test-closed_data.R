@@ -5,7 +5,7 @@ library(digest)
 # dir.create(file.path(tempdir(), the_test))
 # setwd(file.path(tempdir(), the_test))
 worcs:::write_worcsfile(".worcs")
-open_data(iris[1:5, ], codebook = NULL)
+open_data(iris[1:5, ])
 checksums <- read_yaml(".worcs")
 
 test_that(".worcs contains correct checksum", {
@@ -56,6 +56,15 @@ df <- load_data(to_envir = FALSE)$data
 
 test_that("loaded synthetic data same as original", {
   expect_equivalent(tmp, df)
+})
+
+rm("data")
+test_that("loading open data succeeds when loading from a subdirectory", {
+  old_wd <- getwd()
+  dir.create(file.path(old_wd, "manuscript"))
+  setwd(file.path(old_wd, "manuscript"))
+  expect_error({load_data()}, NA)
+  setwd(old_wd)
 })
 
 

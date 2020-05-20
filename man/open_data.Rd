@@ -4,7 +4,13 @@
 \alias{open_data}
 \title{Use open data in WORCS project}
 \usage{
-open_data(data, filename = "data.csv", codebook = "codebook.Rmd")
+open_data(
+  data,
+  filename = "data.csv",
+  codebook = "codebook.Rmd",
+  worcs_directory = ".",
+  ...
+)
 }
 \arguments{
 \item{data}{A data.frame to save.}
@@ -15,6 +21,12 @@ open_data(data, filename = "data.csv", codebook = "codebook.Rmd")
 An 'R Markdown' codebook will be created and rendered to
 \code{\link[rmarkdown]{github_document}} ('markdown' for 'GitHub').
 Defaults to 'codebook.Rmd'. Set to \code{NULL} to avoid creating a codebook.}
+
+\item{worcs_directory}{Character, indicating the WORCS project directory to
+which to save data. The default value \code{"."} points to the current
+directory.}
+
+\item{...}{Additional arguments passed to and from functions.}
 }
 \value{
 Returns \code{NULL} invisibly. This
@@ -30,6 +42,7 @@ test_dir <- file.path(tempdir(), "data")
 old_wd <- getwd()
 dir.create(test_dir)
 setwd(test_dir)
+worcs:::write_worcsfile(".worcs")
 open_data(iris[1:5, ], codebook = "bla.Rmd")
 setwd(old_wd)
 unlink(test_dir, recursive = TRUE)
