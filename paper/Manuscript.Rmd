@@ -530,7 +530,7 @@ The procedure for citation in WORCS is as follows:<!-- LB: this procedure is sec
   `knit: worcs::cite_essential` removes all *non-essential* citations.
 5. Optional: To be extremely thorough, you could make a "branch" of the GitHub repository for the print version of the manuscript. Only in this branch, you use the function `knit: worcs::cite_essential`. The procedure is documented in [this tutorial](http://rstudio-pubs-static.s3.amazonaws.com/142364_3b344a38149b465c8ebc9a8cd2eee3aa.html).
 
-```{r, scholarbib, echo = FALSE}
+```{r, scholarbib, echo = FALSE, fig.cap="Exporting a BibTex reference from Google Scholar"}
 knitr::include_graphics("scholar_bib.png")
 ```
 
