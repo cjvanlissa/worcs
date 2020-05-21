@@ -515,7 +515,7 @@ Moreover, preprint servers ensure that the online version will have a persistent
 
 It is easiest to mark the distinction between essential and non-essential references from the start, instead of going
 back to cut references prior to publication. Therefore, the `worcs` package distinguishes between the
-traditional at-symbol (`@`) used to cite a reference, and the "double at"-symbol (`@@`), used to cite a non-essential reference.
+traditional at-symbol (`@`) used to cite a reference, and the "double at"-symbol (`\@\@`), used to cite a non-essential reference.
 Users can render a manuscript to PDF either with, or without, comprehensive citations.
 
 The procedure for citation in WORCS is as follows:<!-- LB: this procedure is secondary to the main workflow. Consider changing the order (see main issue)-->
@@ -524,7 +524,7 @@ The procedure for citation in WORCS is as follows:<!-- LB: this procedure is sec
     + You can make this file by hand; e.g., Figure \@ref(fig:scholarbib) shows how to obtain a BibTeX reference from Google Scholar; simply copy-paste each reference into the `.bib` file
     + You can export a `.bib` file from most reference manager programs; the free, open-source reference manager [Zotero](https://www.zotero.org/download/) is excellent and user-friendly, and highly interoperable with other commercial reference managers. [Here](https://christopherjunk.netlify.com/blog/2019/02/25/zotero-rmarkdown/) is a tutorial for using Zotero with Rmarkdown.
 2. To cite a reference, use the `citekey` - the first word in the BibTeX entry for that reference. Insert it in the Rmarkdown file like so: `@yourcitekey2020`. For a parenthesized reference, use `[@citekeyone2020; @citekeytwo2020]`. For more options, see the [Rmarkdown cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html).
-3. To indicate a *non-essential* citation, mark it with a double at-symbol: `@@nonessential2020`.
+3. To indicate a *non-essential* citation, mark it with a double at-symbol: `\@\@nonessential2020`.
 4. When Knitting the document, adapt the `knit` command in the YAML header.  
   `knit: worcs::cite_all` renders all citations, and  
   `knit: worcs::cite_essential` removes all *non-essential* citations.
