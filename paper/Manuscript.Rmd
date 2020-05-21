@@ -1,7 +1,7 @@
 ---
 title: |
     | WORCS: A Workflow for Open Reproducible Code in the Social Sciences and Beyond <!-- AL: I strongly recommend to make the title more specific. "Science" is very general, and in the Anglo-American understanding actually refers to the beta sciences. Also, the abstract and the paper start with talking about the situation in the social sciences and derive the motivaion from there, so it would be good if the title would reflect this. The acronym can stay as it is. ;) -->
-    | `r paste0("Version: ", worcs:::cran_version(), ", date: ", format(Sys.Date(), "%d %b,\ %Y"))`
+    | `r paste0("Version: ", tryCatch({worcs:::cran_version()}, error=function(err) 'NA'), ", date: ", format(Sys.Date(), "%d %b,\ %Y"))`
   
 shorttitle        : "WORKFLOW FOR OPEN SCIENCE"
 
@@ -660,7 +660,8 @@ https://stackoverflow.com/questions/18216991/create-a-tag-in-a-github-repository
 
 ## Preparing your system
 
-Before you can use the WORCS workflow, you have to install the required software. You have to execute this setup procedure only once for each computer you intend to use `worcs` on. The procedure should take about 30 minutes, and it is documented in [the setup vignette](https://cjvanlissa.github.io/worcs/articles/setup.html). After preparing your system, you can use the WORCS workflow for all of your projects. This step-by-step procedure is detailed in [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html). In this paper, we provide only a brief outline of the WORCS procedure (as of Version `r cran_version()`) below. We highly recommend users to refer to [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html) for the most up-to-date procedure (subject to improvements).
+Before you can use the WORCS workflow, you have to install the required software. You have to execute this setup procedure only once for each computer you intend to use `worcs` on. The procedure should take about 30 minutes, and it is documented in [the setup vignette](https://cjvanlissa.github.io/worcs/articles/setup.html). After preparing your system, you can use the WORCS workflow for all of your projects. This step-by-step procedure is detailed in [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html). In this paper, we provide only a brief outline of the WORCS procedure (as of Version `r
+tryCatch({worcs:::cran_version()}, error = function(err) 'NA' )`) below. We highly recommend users to refer to [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html) for the most up-to-date procedure (subject to improvements).
 
 ```{r results="asis", echo = FALSE, eval = TRUE}
 get_workflow <- function(filename = "../vignettes/workflow.Rmd"){
