@@ -5,7 +5,7 @@ vignette: >
   %\VignetteIndexEntry{workflow}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-bibliography: "../paper/worcs.bib"
+bibliography: "vignettes.bib"
 ---
 
 ```{r, include = FALSE}
