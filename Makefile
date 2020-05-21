@@ -25,3 +25,8 @@ install:
 check: build
 	cd ..;\
 	R CMD check --as-cran $(PKGNAME)_$(PKGVERS).tar.gz
+
+paper/Manuscript.pdf: paper/Manuscript.Rmd 
+	cd paper;\
+	Rscript -e 'rmarkdown::render("Manuscript.Rmd")'
+	cd ..;\

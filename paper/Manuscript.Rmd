@@ -1,7 +1,7 @@
 ---
 title: |
     | WORCS: A Workflow for Open Reproducible Code in the Social Sciences and Beyond <!-- AL: I strongly recommend to make the title more specific. "Science" is very general, and in the Anglo-American understanding actually refers to the beta sciences. Also, the abstract and the paper start with talking about the situation in the social sciences and derive the motivaion from there, so it would be good if the title would reflect this. The acronym can stay as it is. ;) -->
-    | `r paste0("Version: ", worcs:::cran_version(), ", date: ", format(Sys.Date(), "%d %b,\ %Y"))`
+    | `r paste0("Version: ", tryCatch({worcs:::cran_version()}, error=function(err) 'NA'), ", date: ", format(Sys.Date(), "%d %b,\ %Y"))`
   
 shorttitle        : "WORKFLOW FOR OPEN SCIENCE"
 
@@ -186,7 +186,7 @@ Collective benefits: Cumulative science, -->
 CJ: I was always taught that you should not explain your structure in the paper - you should just structure the paper. If the structure is unclear, make it better. -->
 <!--openness, transparency, and reproducible science -->
 
-# Meeting the requirements of Open Science
+# What are Open Science practices?
 
 Although Open Science is advocated by many, it does not have a unitary definition.
 Instead, several guidelines exist for practices that are considered "open".
@@ -251,10 +251,10 @@ At the same time, <!-- edit -->
 illustrates the momentum of this grassroots movement
 [@brinkmanWidescaleAdoptionOpen2020]. -->
 
-## Prerequisites
+## Implementation in R
 
-Although the principles underlying this workflow are universal, WORCS has been
-designed for R [@rcoreteamLanguageEnvironmentStatistical2020].
+Although the principles underlying this workflow are universal, WORCS has 
+currently been implemented for R only [@rcoreteamLanguageEnvironmentStatistical2020].
 Several arguments support the choice to work in R.
 First, R and all of it extensions are free and open source software, which
 should be the tool of choice for open science.
@@ -443,7 +443,6 @@ conveniently renders certain filetypes: For example, 'GitHub' displays `.md`
 `worcs` uses Markdown and `.csv` extensively.
 
 # Introducing the workflow 
-<!-- AL: Agreeing with LB's ealier comment, it would be good to discuss this overall workflow before going into the details. --> 
 
 ## Preparing your system
 
