@@ -56,7 +56,7 @@ abstract: |
   potential to accelerate scientific progress. This tutorial paper introduces a
   workflow for open reproducible code in science (WORCS). WORCS is a 
   step-by-step procedure that researchers can follow to make an entire project
-  Open and Reproducible. It is based on best practices, and can be used either
+  open and reproducible. It is based on best practices, and can be used either
   in parallel to, or in absence of, top-down requirements by journals. WORCS
   lowers the threshold for adopting an open science workflow by providing this
   tutorial, along with an R-package with user-friendly support functions, and an
@@ -151,14 +151,15 @@ supported by user-friendly software in R: The Worfkflow for Open Reproducible
 Code in Science (WORCS). WORCS is a lightweight approach to open science and
 computational reproducibility. The workflow (Figure <!--\@ref(fig:workflow)-->) 
 constitutes a step-by-step procedure that researchers can follow to make a 
-research project Open and Reproducible. WORCS is compatible with open science
+research project open and reproducible. WORCS is compatible with open science
 requirements already implemented by journals and institutions, and will help 
 fulfill them. It can also be used to produce work in accordance with best 
-practices in the absence of top-down support. The WORCS workflow is supported by
-an R-package with user-friendly support functions, and an RStudio project
-template that is, effectively, a "one click solution". This paper introduces
-the WORCS workflow, discusses how it meets best practices for open science, and
-illustrates the use of the `worcs` package.
+practices in the absence of top-down support. Although the principles underlying
+the WORCS procedure are universal, they have been implemented for R users in the
+R-package `worcs`, which offers an RStudio project template that is, effectively,
+a "one click solution". This paper introduces the WORCS workflow, discusses how
+it meets best practices for open science, and illustrates the use of the `worcs`
+package.
 
 <!-- AL: I second LB's comment somewhere below that the overall WORCS workflow should be introduced much earlier, maybe already here. A diagrammatic overview/flowchart of the principal steps would be great. It should catch the reader's eye and give an immediate idea of what WORCS is about. Now it is indeed quite buried in the details that follow. --> 
 
@@ -206,12 +207,11 @@ sharing (2-5), and preregistration (6-7).
 
 WORCS meets the TOP-guidelines in a way that is amenable to the 
 FAIR Guiding Principles for scientific data management and stewardship [@wilkinsonFAIRGuidingPrinciples2016a]. These principles advocate that research
-data should be Findable, Accessible, Interoperable and Reusable. However, they are
-increasingly applied as a standard for 
-to other types of research output as well
+data should be Findable, Accessible, Interoperable and Reusable. They are
+increasingly applied as a standard for other types of research output as well
 [@lamprechtFAIRPrinciplesResearch2019].
 WORCS helps users meet the FAIR principles by making all research objects -
-including (origina) data and code - accessible in a (public) repository. 
+including data and code - accessible in a repository that can be made public. 
 The `worcs` package additionally
 facilitates meeting the FAIR principles in several ways. First, each `worcs`
 project has a YAML file (https://yaml.org/) that lists the research objects in
@@ -222,9 +222,15 @@ using `open_data()` or `closed_data()`. We encourage users to elaborate on the
 default codebook by adding
 variable description and categories, which might - in the future - enable
 indexing data by topic area. 
-Incidentally, `worcs` is itself an example of FAIR research software [see @lamprechtFAIRPrinciplesResearch2019 and https://fair-software.eu/]. It is hosted on a public version controlled repository ('GitHub'), it has an open source licence (GPL v3.0), is registered in a community registry (CRAN), it enables the citation of the software (using the `citation("worcs")` command, or by citing this paper), and followed the CII Best Practices software quality checklist during development.
+Incidentally, `worcs` is itself an example of FAIR research software [see @lamprechtFAIRPrinciplesResearch2019 and https://fair-software.eu/]. It is 
+hosted on the public version controlled repository 'GitHub', it has an open
+source licence (GPL v3.0), is registered in a community registry (CRAN), it
+enables the citation of the software (using the `citation("worcs")` command, or
+by citing this paper), and followed the CII Best Practices software quality
+checklist during development.
 
-Sharing all research output also provides a proper basis for research evaluation
+Sharing all research objects, as advocated in WORCS, also provides a proper
+basis for research evaluation
 according to the San Francisco Declaration on Research Assessment (DORA;
 https://sfdora.org/), which plays an increasing role in grant funding, hiring, 
 and promotion procedures. Direct access to research objects allows stakeholders
@@ -245,50 +251,6 @@ At the same time, <!-- edit -->
 illustrates the momentum of this grassroots movement
 [@brinkmanWidescaleAdoptionOpen2020]. -->
 
-## Existing solutions
-
-There have been several previous efforts to promote grass-roots adoption of open
-science principles. Each of these efforts has a different scope, strengths, and
-limitations that set it apart from WORCS. For example, there are "signalling
-solutions"; guidelines to structure and incentivize disclosure about open
-science practices. Specifically, @aalbersbergMakingScienceTransparent2018
-suggested publishing a "TOP-statement" as supplemental material, which discloses
-the authors' adherence to open science principles. Relatedly, @aczelConsensusbasedTransparencyChecklist2019 developed a consensus-based
-Transparency Checklist that authors can complete online to generate a report.
-Such signalling solutions are very easy to adopt, and they address
-TOP-guidelines 1-7. Many journals now also offer authors the opportunity to earn
-"badges" for adhering to open science guidelines
-[@kidwellBadgesAcknowledgeOpen2016]. These signalling solutions help structure
-authors' disclosures about, and incentivize adherence to, open science practices.
-
-A different class of solutions instead focuses on the practical issue of *how*
-researchers can meet the requirements of open science. <!--limitation of signalling approaches, that WORCS addresses, is that they do not clarify One could use WORCS to meet the TOP-guidelines, and document this in a TOP-statement.--> One notable example is the workflow for
-reproducible analyses developed by @peikertReproducibleDataAnalysis2019. This 
-excellent workflow strives to ensure strict computational reproducibility for
-even the most sophisticated analyses. It has some limitations, however: In
-focusing on reproducibility, however, it only addresses TOP-guidelines 2, 3, and
-5. Moreover, in aiming for strict computational reproducibility it ends up being
-relatively complex to implement. WORCS builds upon the same general principles
-as Peikert and Brandmaier, which means the two workflows are compatible. What 
-sets WORCS apart is that is an easy and sufficient solution for projects that
-can be conducted entirely within R, resulting in a much more lightweight
-approach to safeguard computational reproducibility under *most circumstances*.
-WORCS also addresses a unique issue not covered by other existing solutions,
-namely to provide a workflow most conducive to satisfying the TOP-guidelines and
-FAIR principles, while being compatible with existing requirements.
-
-```{r, echo = FALSE, eval = FALSE}
-tab1 <- data.frame(
-  Reference = c("Aalbers et al., 2018", "Peikert & Brandmaier, 2019"),
-  Scope = c("Disclose adherence to open science principles", "Completely reproducible analysis"),
-  Difficulty = c("Easy", "Hard"),
-  Effectiveness = c("Low", "High"),
-  "TOP-guidelines" = c("1-7", "2,3,5")
-)
-apa_table(tab1)
-```
-
-<!-- AL: Similar to my comment on the title, in this section it needs to make clear which scope of related work it covers. For example, in the life sciences there has also been a lot of work on practices for increasing reproducibility, with automated workflows, containerization, Research Objects, provenance protocols, and a lot more. I don't think it's necessary for this paper to discuss this, but that is under the provision that it defines its scope better. --> 
 ## Prerequisites
 
 Although the principles underlying this workflow are universal, WORCS has been
@@ -480,6 +442,33 @@ conveniently renders certain filetypes: For example, 'GitHub' displays `.md`
 (Markdown) files as web pages, and `.csv` files as spreadsheets. This is why
 `worcs` uses Markdown and `.csv` extensively.
 
+# Introducing the workflow 
+<!-- AL: Agreeing with LB's ealier comment, it would be good to discuss this overall workflow before going into the details. --> 
+
+## Preparing your system
+
+Before you can use the WORCS workflow, you have to install the required software. You have to execute this setup procedure only once for each computer you intend to use `worcs` on. The procedure should take about 30 minutes, and it is documented in [the setup vignette](https://cjvanlissa.github.io/worcs/articles/setup.html). After preparing your system, you can use the WORCS workflow for all of your projects. This step-by-step procedure is detailed in [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html). In this paper, we provide only a brief outline of the WORCS procedure (as of Version `r cran_version()`) below. We highly recommend users to refer to [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html) for the most up-to-date procedure (subject to improvements).
+
+```{r results="asis", echo = FALSE, eval = TRUE}
+get_workflow <- function(filename = "../vignettes/workflow.Rmd"){
+  txt <- readLines(filename)
+  txt <- txt[grepl("<!--S:", txt, fixed = T)|grepl("^###", txt)]
+  txt <- gsub("(<!--S: |-->.*$)", "", txt)
+  txt <- gsub("^#", "", txt)
+  out <- vector("character")
+  for(i in seq_along(txt)){
+    if(startsWith(txt[i], "#")){
+      out <- append(out, c("", txt[i], ""))
+    } else {
+      out <- append(out, txt[i])
+    }
+  }
+  cat(out, sep = "\n")
+}
+get_workflow()
+```
+
+
 # How WORCS relates to the TOP-guidelines
 
 ## Comprehensive citation
@@ -654,38 +643,71 @@ https://stackoverflow.com/questions/18216991/create-a-tag-in-a-github-repository
 7. Submit
 8. Make repository public -->
 
-
-# The workflow 
-<!-- AL: Agreeing with LB's ealier comment, it would be good to discuss this overall workflow before going into the details. --> 
-
-## Preparing your system
-
-Before you can use the WORCS workflow, you have to install the required software. You have to execute this setup procedure only once for each computer you intend to use `worcs` on. The procedure should take about 30 minutes, and it is documented in [the setup vignette](https://cjvanlissa.github.io/worcs/articles/setup.html). After preparing your system, you can use the WORCS workflow for all of your projects. This step-by-step procedure is detailed in [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html). In this paper, we provide only a brief outline of the WORCS procedure (as of Version `r cran_version()`) below. We highly recommend users to refer to [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html) for the most up-to-date procedure (subject to improvements).
-
-```{r results="asis", echo = FALSE, eval = TRUE}
-get_workflow <- function(filename = "../vignettes/workflow.Rmd"){
-  txt <- readLines(filename)
-  txt <- txt[grepl("<!--S:", txt, fixed = T)|grepl("^###", txt)]
-  txt <- gsub("(<!--S: |-->.*$)", "", txt)
-  txt <- gsub("^#", "", txt)
-  out <- vector("character")
-  for(i in seq_along(txt)){
-    if(startsWith(txt[i], "#")){
-      out <- append(out, c("", txt[i], ""))
-    } else {
-      out <- append(out, txt[i])
-    }
-  }
-  cat(out, sep = "\n")
-}
-get_workflow()
-```
-
 # Discussion
 
-In this tutorial paper, we have presented a workflow for open reproducible code in science. The workflow aims to lower the threshold for grass-roots adoption of open science principles. It is accompanied by an R-package with convenience functions, and a WORCS project template for RStudio. This relatively light-weight workflow meets most of the requirements for open science, as detailed in the TOP-guidelines. However, several limitations and issues for future development remain.
+In this tutorial paper, we have presented a workflow for open reproducible code in science. The workflow aims to lower the threshold for grass-roots adoption of open science principles. It is accompanied by an R-package with convenience functions, and a WORCS project template for RStudio. This relatively light-weight workflow meets most of the requirements for open science, as detailed in the TOP-guidelines. 
 
-One potential challenge is the learning curve associated with the tools outlined in this paper. Learning to work with R, Rmarkdown, and Git/GitHub requires an initial time investment. The amount of time required is reduced by the availability of tutorials, such as this one, and other tutorials cited throughout this document. Moreover, the time investment tends to pay off. Working with R opens the door to many cutting edge analysis techniques. Working with Rmarkdown saves time and prevents mistakes by avoiding tedious copying of results into a text document. Working with Git/GitHub keeps projects organized, prevents accidental loss of work, enables integrating changes by collaborators in a non-destructive manner, and ensures that entire research projects are archived and can be accessed or copied by third parties. Thus, the time investment is eminently worthwhile.
+## Differences from existing solutions
+
+There have been several previous efforts to promote grass-roots adoption of open
+science principles. Each of these efforts has a different scope, strengths, and
+limitations that set it apart from WORCS. For example, there are "signalling
+solutions"; guidelines to structure and incentivize disclosure about open
+science practices. Specifically, @aalbersbergMakingScienceTransparent2018
+suggested publishing a "TOP-statement" as supplemental material, which discloses
+the authors' adherence to open science principles. Relatedly, @aczelConsensusbasedTransparencyChecklist2019 developed a consensus-based
+Transparency Checklist that authors can complete online to generate a report.
+Such signalling solutions are very easy to adopt, and they address
+TOP-guidelines 1-7. Many journals now also offer authors the opportunity to earn
+"badges" for adhering to open science guidelines
+[@kidwellBadgesAcknowledgeOpen2016]. These signalling solutions help structure
+authors' disclosures about, and incentivize adherence to, open science practices.
+
+A different class of solutions instead focuses on the practical issue of *how*
+researchers can meet the requirements of open science. <!--limitation of signalling approaches, that WORCS addresses, is that they do not clarify One could use WORCS to meet the TOP-guidelines, and document this in a TOP-statement.--> One notable example is the workflow for
+reproducible analyses developed by @peikertReproducibleDataAnalysis2019. This 
+excellent workflow strives to ensure strict computational reproducibility for
+even the most sophisticated analyses. It has some limitations, however: In
+focusing on reproducibility, however, it only addresses TOP-guidelines 2, 3, and
+5. Moreover, in aiming for strict computational reproducibility it ends up being
+relatively complex to implement. WORCS builds upon the same general principles
+as Peikert and Brandmaier, which means the two workflows are compatible. What 
+sets WORCS apart is that is an easy and sufficient solution for projects that
+can be conducted entirely within R, resulting in a much more lightweight
+approach to safeguard computational reproducibility under *most circumstances*.
+WORCS also addresses a unique issue not covered by other existing solutions,
+namely to provide a workflow most conducive to satisfying the TOP-guidelines and
+FAIR principles, while being compatible with existing requirements.
+
+```{r, echo = FALSE, eval = FALSE}
+tab1 <- data.frame(
+  Reference = c("Aalbers et al., 2018", "Peikert & Brandmaier, 2019"),
+  Scope = c("Disclose adherence to open science principles", "Completely reproducible analysis"),
+  Difficulty = c("Easy", "Hard"),
+  Effectiveness = c("Low", "High"),
+  "TOP-guidelines" = c("1-7", "2,3,5")
+)
+apa_table(tab1)
+```
+
+<!-- AL: Similar to my comment on the title, in this section it needs to make clear which scope of related work it covers. For example, in the life sciences there has also been a lot of work on practices for increasing reproducibility, with automated workflows, containerization, Research Objects, provenance protocols, and a lot more. I don't think it's necessary for this paper to discuss this, but that is under the provision that it defines its scope better. --> 
+
+## Limitations
+
+WORCS is intended to substantially reduce the threshold for adopting best 
+practices in open and reproducible research. However, several limitations and
+issues for future development remain. One potential challenge is the learning
+curve associated with the tools outlined in this paper. Learning to work with R,
+Rmarkdown, and Git/GitHub requires an initial time investment. The amount of
+time required is reduced by the availability of tutorials, such as this one, and
+other tutorials cited throughout this document. Moreover, the time investment
+tends to pay off. Working with R opens the door to many cutting edge analysis
+techniques. Working with Rmarkdown saves time and prevents mistakes by avoiding
+tedious copying of results into a text document. Working with Git/GitHub keeps
+projects organized, prevents accidental loss of work, enables integrating
+changes by collaborators in a non-destructive manner, and ensures that entire
+research projects are archived and can be accessed or copied by third parties.
+Thus, the time investment is eminently worthwhile.
 
 Another important challenge is managing collaborations when only the lead author
 uses Rmarkdown, and the coauthors use Word. In this case, it is possible to Knit
