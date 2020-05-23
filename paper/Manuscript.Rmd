@@ -553,7 +553,26 @@ Thus, one can use a checksum to verify the identity of a file, and ensure that i
 When data cannot be shared, the risk of fraud or abuse can be mitigated by publishing a checksum for the original data, in addition to the complete analysis code.
 Using the checksum to verify the identity of a private dataset, researchers can prove to an independent auditer that running the public analysis code on the private data results in the published results of their work.
 
-The second solution implemented in `worcs` is to share a synthetic dataset with similar characteristics to the real data. Synthetic data mimic the level of measurement and (conditional) distributions of the real data [see @nowokSynthpopBespokeCreation2016]. Sharing synthetic data allows any third party to 1) verify that the published code works, 2) debug the code, and 3) write valid code for alternative analyses. It is important to note that complex multivariate relationships present in the real data are often lost in synthetic data. Thus, findings from the real data might not be replicated in the synthetic data, and findings in the synthetic data *should not be substantively interpreted*. Still, sharing synthetic data facilitates data requests from third parties. A third party can write analysis code based on the synthetic data, and send it to the authors who evaluate it on the real data and send back the results. 
+The second solution is to share a synthetic dataset with similar characteristics
+to the real data. Synthetic data mimic the level of measurement and
+(conditional) distributions of the real data
+[see @nowokSynthpopBespokeCreation2016]. Sharing synthetic data allows any third
+party to 1) verify that the published code works, 2) debug the code, and 3)
+write valid code for alternative analyses. It is important to note that complex
+multivariate relationships present in the real data are often lost in synthetic
+data. Thus, findings from the real data might not be replicated in the synthetic
+data, and findings in the synthetic data *should not be substantively interpreted*.
+Still, sharing synthetic data facilitates data requests from third parties. A
+third party can write analysis code based on the synthetic data, and send it to
+the authors who evaluate it on the real data and send back the results. The
+`worcs` package offers a simple but flexible function for synthetic data,
+`synthetic()`, which by default uses random forests to generate a model for
+synthesis (see @wrightRangerFastImplementation2015). For data synthesis to work
+properly, it is essential that the `class` (data type) of variables is defined
+correctly. As of Version `r cran_version()`, numeric, integer, and factor types
+are supported out of the box. Other types of variables should be converted to
+one of these types, or users can use a custom `model_expression` when calling
+`synthetic`.
 
 ### Processing data in WORCS
 
@@ -569,6 +588,7 @@ Assume that, once you do this, the data cannot be un-shared.
 The function also adds a checksum for the original data in the `.worcs` project file, and creates a synthetic dataset (called `synthetic_data.csv` by default).
 The user should commit all changed files and push them to GitHub.
 Once the GitHub repository is made public, people will have access to a checksum for the original data that exist on your local machine, a codebook describing those data, and a synthetic copy of the data.
+
 <!-- Maybe remark that in the "closed" case, a the data should be backupped somewhere else, as GitHub will not do the job in this setting. -->
 
 The final line of the `prepare_data.R` file should thus be either `open_data()` or `closed_data()`. The analysis code, on the other hand, should begin with `load_data()`. This function loads the real data if it is available on the user's computer, and otherwise, loads the synthetic data. This will have the effect that third party users who copy the GitHub repository will automatically load the synthetic dataset, whereas the study authors, who have the real data stored locally, will automatically load the real data. This function makes it possible for reviewers, coauthors, and auditors, to write analysis scripts without requiring access to the original data. They can simply start the script with `load_data()`, and write their code based on the synthetic data. Then, they can submit their code to you - by email or as a ["Pull request"](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) on GitHub. When you run their code on your system, `load_data()` will detect the original data, and use that to run their script. You can then return the results to the third party.

@@ -42,6 +42,12 @@
 #' }
 #' Variables are thus imputed in order of occurrence in the \code{data.frame}.
 #' To impute in a different order, reorder the data.
+#'
+#' Note that, for data synthesis to work properly, it is essential that the
+#' \code{class} of variables is defined correctly. The default algorithm
+#' \code{\link[ranger]{ranger}} supports numeric, integer, and factor types.
+#' Other types of variables should be converted to one of these types, or users
+#' can use a custom \code{model_expression} when calling \code{synthetic}.
 #' @examples
 #' iris_syn <- synthetic(iris)
 #' iris_missings <- iris
@@ -134,9 +140,24 @@ synthetic.data.frame <- function(data,
   if(verbose) close(pb)
 
   # Check if variable classes are maintained
-  matching_types <- mapply(function(x, y){all(x == y)}, x = coltypes, y = lapply(xsynth, class))
-  if(any(!matching_types)){
-    warning("Column type of the synthetic data did not match column type of the original data for column: ", paste0(names(xsynth)[!matching_types], collapse = ", "))
+  for(thisvar in 1:ncol(data)){
+    #thisvar=6
+    if(!all(class(xsynth[[thisvar]]) == coltypes[[thisvar]])){
+      msg <- paste0("Synthetic variable '", names(data)[thisvar], "' did not have identical classes to its original counterpart.")
+      # Try to convert to correct class
+      convert_func <- paste0("as.", coltypes[[thisvar]])
+      convert_func <- convert_func[sapply(convert_func, exists)]
+      if(length(convert_func) > 0) convert_func <- convert_func[1]
+      newvar <- tryCatch({
+        do.call(convert_func, list(xsynth[[thisvar]]))
+      }, error = function(e){NULL})
+      if(!is.null(newvar)){
+        col_message(msg, " Attempted to convert to its original type. Check the input types of your variables, and check whether the data are synthesized correctly.", success = TRUE)
+        xsynth[[thisvar]] <- newvar
+      } else {
+        col_message(msg, " Failed to convert to its original type. Check the input types of your variables, and check whether the data are synthesized correctly.", success = FALSE)
+      }
+    }
   }
 
   # Restore missing values
