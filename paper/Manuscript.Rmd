@@ -927,7 +927,29 @@ address them, or invite external collaborators to contribute their expertise.
 
 ## Future developments
 
-The WORCS procedure and accompanying R-package provide a user-friendly and lightweight workflow for open, reproducible research in R, that meets all TOP-guidelines. It is beyond the scope of WORCS to support the incorporation of tools outside of the R-environment, or to containerize a project so that it can be identically reinstated on a different system or virtual machine. One important area of future development is to enable these extensions of the workflow. To this end, we are integrating WORCS into a modular framework of reproducibility tools for R [@repro]. This will make it possible for researchers to enhance a WORCS project with strict reproducibility tools like 'Docker' and 'Make', or vice versa, to initiate a WORCS project in a strictly reproducible environment. This combines the strengths of WORCS with those of @peikertReproducibleDataAnalysis2019.
+The WORCS procedure provides a user-friendly and
+lightweight workflow for open, reproducible research, that meets all
+TOP-guidelines. Nevertheless, there are clear directions for future developments.
+Firstly, although the workflow is currently implemented only in R, it is 
+conceptually relevant for users of other statistical programming languages, most
+notably Python [@10.5555/1593511].
+We welcome efforts to implement WORCS in other platforms.
+Secondly, even when a project is in R, it may have dependencies outside of the
+R environment that cannot be managed using `renv`.
+It is beyond the scope of the `worcs` package to support the incorporation of
+tools outside of R, or to containerize a project so that it can
+be identically reinstated on a different system or virtual machine.
+Therefore, another
+important area of future development is to enable such extensions of the
+workflow. To this end, we are collaborating with @repro on the development of
+`repro`, an R-package that will facilitate setting up reproducibility tools such
+as 'Make' and 'Docker'.
+This will make it possible for researchers
+to enhance a WORCS project with these strict reproducibility tools,
+or vice versa, to initiate a WORCS project within a strictly reproducible
+environment generated using `repro`. 
+This will combine the strengths of the WORCS with those of the workflow proposed
+by @peikertReproducibleDataAnalysis2019.
 
 <!-- Open peer review? -->
 
