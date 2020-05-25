@@ -20,14 +20,15 @@ library(worcs)
 
 ### Phase 1: Study design
 
-1. <!--S: Create a new (Public or Private) repository on 'GitHub'-->Create a new repository on 'GitHub'
+1. <!--S: Create a new (Public or Private) repository on a 'Git' hosting service-->Create a new repository on 'GitHub'
     + For inexperienced users, we recommend making this repository "Private", which means only you and selected co-authors can access it. You can set it to "Public" later - for example, when the paper goes to print - and the entire history of the Repository will be public record. We recommend making the repository "Public" from the start __only if__ you are an experienced user and know what you are doing.
     + Copy the repository's `https://` link to clipboard; this link should look something like `https://[...].git`
-2. <!--S: Create a new RStudio project using the WORCS template-->In Rstudio, click File > New Project > New directory > WORCS Project Template
-    a. Paste the GitHub Repository address in the textbox
-    b. Keep the checkbox for `renv` checked if you want to document all dependencies (recommended)
+2. <!--S: When using R, initialize a new RStudio project using the WORCS template. Otherwise, clone the remote repository to your local project folder.-->In Rstudio, click File > New Project > New directory > WORCS Project Template
+    a. Paste the remote Repository address in the textbox. This address should look like `https://[...].git`
+    b. Keep the checkbox for `renv` checked if you want to use dependency management (recommended)
     c. Select a preregistration template
-3. <!--S: Optional: Preregister your analysis-->Preregister your analysis
+3. <!--S: Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability. The `worcs` project template does this automatically.-->Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability.
+3. <!--S: Optional: Preregister your analysis by committing a plain-text preregistration and tagging the commit as "preregistration".-->Preregister your analysis:
     + Document study plans in a `preregistration.Rmd` file, and optionally, planned analyses in a `.R` file.
     + In the top-right panel of 'RStudio', select the 'Git' tab
     + Select the checkbox next to the preregistration file(s)
@@ -41,24 +42,24 @@ library(worcs)
     + Click the button labeled "Create new release"
     + In the textbox labeled "Tag version" and the textbox "Release title", write: "Preresitration"
     + Click the green button labeled "Publish release"
-4. <!--S: Optional: Upload preregistration to another repository-->Optional: Render the preregistration to PDF, and upload it to AsPredicted.org or OSF.io as an attachment
+4. <!--S: Optional: Upload the preregistration to a dedicated preregistration server-->Optional: Render the preregistration to PDF, and upload it as an attachment to a dedicated preregistration server like AsPredicted.org or OSF.io
     + In 'RStudio', with the file 'preregistration.Rmd' open, click the "Knit" button above the top left panel
     + When the PDF is generated, go to one of the recognized preregistration services' websites, create a new preregistration, and upload it as an attachment.
 5. <!--S: Optional: Add study Materials to the repository-->Optional: Add study Materials to the repository.
-    + Only do this for study materials to which you own the rights
+    + Only do this for study materials to which you own the rights, or when the materials' license allows it
     + You can solicit feedback (by opening a 'GitHub' Issue) and acknowledge outside contributions (by accepting Pull requests)
 
 ### Phase 2: Data analysis
 
-6. <!--S: Load the raw data-->Load the raw data into R
-    + Preprocess it until you have an analysis-ready, ["tidy" data](https://vita.had.co.nz/papers/tidy-data.pdf) file
+6. <!--S: Create a script documenting the steps required to load the raw data and prepare them for analysis-->Create a script documenting the steps required to load the raw data into R and prepare them for analysis
     + Document this preprocessing ("data wrangling") procedure in the `prepare_data.R` file. This file is intended to document steps that you would run only once, the first time you load data into R, and that end users will not be able to replicate, unless they have access to the raw data file.
-7. <!--S: Save the data using `open_data()` or `closed_data()`. Never commit data to 'Git' that you do not intend to share-->Save the data using `open_data()` or `closed_data()`
+    + Start with the raw data upon collection, and reprocess them until your data are ["tidy"](https://vita.had.co.nz/papers/tidy-data.pdf) and ready for analysis
+7. <!--S: Save the data into a plain-text tabular format like `.csv`. When using open data, commit this file to 'Git'. When using closed data, commit a checksum of the file, and a synthetic copy of the data.-->Save the data using `open_data()` or `closed_data()`
     + <font colour = "red">__WARNING:__ Once you commit a data file to the 'Git' repository, its record will be retained forever (unless the entire repository is deleted). Assume that pushing data to 'GitHub' cannot be undone. Follow the mantra: "Never commit something you do not intend to share".</font>
-8. <!--S: Write the manuscript in `manuscript.Rmd`, using code chunks to perform the analyses.-->Write the manuscript in `Manuscript.Rmd`
+8. <!--S: Write the manuscript using a dynamic document generation format, with code chunks to perform the analyses.-->Write the manuscript in `Manuscript.Rmd`
     + Use code chunks to perform the analyses. The first code chunk should call `load_data()`
     + Finish each sentence with one carriage return (enter); separate paragraphs with a double carriage return.
-9. <!--S: Commit every small change-->Regularly Commit your progress to the Git repository; ideally, after completing each small and clearly defined task.
+9. <!--S: Commit every small change to the 'Git' repository-->Regularly Commit your progress to the Git repository; ideally, after completing each small and clearly defined task.
     + In the top-right panel of 'RStudio', select the 'Git' tab
     + Select the checkboxes next to all files whose changes you wish to Commit
     + Click the Commit button.
@@ -69,18 +70,18 @@ library(worcs)
 
 ### Phase 3: Submission/publication
 
-11. <!--S: Store the R environment by calling `renv::snapshot()`-->To save the state of the project library (all packages used), call `renv::snapshot()`. This updates the lockfile, `renv.lock`.
-12. <!--S: Optional: Add a WORCS-badge to your README file and complete the optional elements of the WORCS checklist to qualify for a "Perfect" rating-->Run the `check_worcs()` function to see whether your project adheres to the WORCS checklist (see `worcs::checklist`)
+11. <!--S: Use dependency management to make the computational environment fully reproducible-->Use dependency management to make the computational environment fully reproducible. When using `renv`, you can save the state of the project library (all packages used) by calling `renv::snapshot()`. This updates the lockfile, `renv.lock`.
+12. <!--S: Optional: Add a WORCS-badge to your project's README file-->Optional: Add a WORCS-badge to your project's README file and complete the optional elements of the WORCS checklist to qualify for a "Perfect" rating. Run the `check_worcs()` function to see whether your project adheres to the WORCS checklist (see `worcs::checklist`)
     + This adds a WORCS-badge to your 'README.md' file, with a rank of "Fail", "Limited", or "Open".
     + Reference the WORCS checklist and your paper's score in the paper.
     + *Optional:* Complete the additional optional items in the WORCS checklist by hand, and get a "Perfect" rating.
-13. <!--S: Make the Private 'GitHub' repository Public-->Make the 'GitHub' repository "Public", if it was set to "Private"
-    + Go to your project's 'GitHub' repository
+13. <!--S: Make a Private 'Git' remote repository Public-->Make the 'Git' remote repository "Public" if it was set to "Private"
+    + On 'GitHub', go to your project's repository
     + Click the "Settings" button
     + Scroll to the bottom of the page; click "Make public", and follow the on-screen instructions
 14. <!--S: [Create a project page on the Open Science Framework](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project)-->[Create a project on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project); you may have already done this in Step 5.
-15. <!--S: Connect your 'OSF' project page to the 'GitHub' repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->[Connect your 'GitHub' repository to the 'OSF' project](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)
-16. <!--S: Add an open science statement to the Abstract or Author notes, which links to the 'GitHub' repository or 'OSF' page-->Add an open science statement to the manuscript, which links to the 'GitHub' repository or 'OSF' page. 
+15. <!--S: [Connect your 'OSF' project page to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->[Connect your 'OSF' project page to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)
+16. <!--S: Add an open science statement to the Abstract or Author notes, which links to the 'Git' remote repository or 'OSF' page-->Add an open science statement to the Abstract or Author notes, which links to the 'Git' remote repository or 'OSF' page. 
     + Placing this statement in the Abstract or Author note means that readers can find your project even if the paper is published behind a paywall.
     + The link can be masked for blind review.
     + The open science statement should indicate which resources are available in the online repository; data, code, materials, study design details, a pre-registration, and/or comprehensive citations. For further guidance, see @aalbersbergMakingScienceTransparent2018. Example:  
@@ -88,11 +89,11 @@ library(worcs)
     which contains [the data/a synthetic data file], analysis code, the research
     materials used, details about the study design, more comprehensive citations,
     and a tagged release with the preregistration._
-17. <!--S: Knit the paper to PDF-->Knit the paper to PDF for submission
+17. <!--S: Render the dynamic document to PDF-->Knit the paper to PDF for submission
     + In 'RStudio', with the file 'manuscript.Rmd' open, click the "Knit" button above the top left panel
     + To retain essential citations only, change the front matter of the 'manuscript.Rmd' file:  
     Change `knit: worcs::cite_all` to `knit: worcs::cite_essential`
-18. <!--S: Optional: Publish a preprint-->Optional: [Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)
+18. <!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)-->Optional: [Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)
     + Check [Sherpa Romeo](http://sherpa.ac.uk/romeo/index.php) to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.
 19. <!--S: Submit the paper, and tag the release of the submitted paper, as in Step 3.-->Submit the paper, and tag the release of the submitted paper as in Step 3.
 
