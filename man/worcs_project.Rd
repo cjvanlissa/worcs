@@ -47,10 +47,12 @@ Default: 'CC_BY_4.0'. Available options include:
 \item{use_renv}{Logical, indicating whether or not to use 'renv' to make the
 project reproducible. Default: TRUE. See \code{\link[renv]{init}}.}
 
-\item{remote_repo}{Character, 'https' link to the 'GitHub' repository for
-this project. If a valid 'GitHub' repository link is provided, a commit will
-be made containing the 'README.md' file, and will be pushed to 'GitHub'.
-Default: 'https'. For more information, see <http://github.com/>.}
+\item{remote_repo}{Character, 'https' link to the remote repository for
+this project. This link should have the form \code{https://[...].git}.
+If a valid remote repository link is provided, a commit will
+be made containing the 'README.md' file, and will be pushed to the remote
+repository. Default: 'https'. When no 'https' address is provided, an 'SSH'
+address of the form \code{git@[...].git} is also accepted.}
 
 \item{verbose}{Logical. Whether or not to print messages to the console
 during project creation. Default: TRUE}

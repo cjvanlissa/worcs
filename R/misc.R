@@ -1,8 +1,7 @@
 authors_from_csv <- function(filename, format = "papaja", what = "aut"){
-
   df <- read.csv(filename, stringsAsFactors = FALSE)
-
-  aff <- df[, 6:ncol(df)]
+  if(!is.null(df[["order"]])) df <- df[order(df$order), -which(names(df) == "order")]
+  aff <- df[, grep("^X(\\.\\d{1,})?$", names(df))]
 
   unique_aff <- as.vector(t(as.matrix(aff)))
   unique_aff <- unique_aff[!unique_aff == ""]

@@ -35,10 +35,12 @@ recommend_data <- c('library("worcs")',
 #' <https://creativecommons.org/licenses/>.
 #' @param use_renv Logical, indicating whether or not to use 'renv' to make the
 #' project reproducible. Default: TRUE. See \code{\link[renv]{init}}.
-#' @param remote_repo Character, 'https' link to the 'GitHub' repository for
-#' this project. If a valid 'GitHub' repository link is provided, a commit will
-#' be made containing the 'README.md' file, and will be pushed to 'GitHub'.
-#' Default: 'https'. For more information, see <http://github.com/>.
+#' @param remote_repo Character, 'https' link to the remote repository for
+#' this project. This link should have the form \code{https://[...].git}.
+#' If a valid remote repository link is provided, a commit will
+#' be made containing the 'README.md' file, and will be pushed to the remote
+#' repository. Default: 'https'. When no 'https' address is provided, an 'SSH'
+#' address of the form \code{git@[...].git} is also accepted.
 #' @param verbose Logical. Whether or not to print messages to the console
 #' during project creation. Default: TRUE
 #' @param ... Additional arguments passed to and from functions.
@@ -257,7 +259,8 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   }
 
   # Connect to remote repo if possible
-  if(use_git & startsWith(remote_repo, "https://") & endsWith(remote_repo, ".git")){
+  if(use_git & endsWith(remote_repo, ".git") &
+     (startsWith(remote_repo, "https://") | startsWith(remote_repo, "git@"))){
     tryCatch({
       git_remote_add(name = "origin", url = remote_repo, repo = path)
       git_push(remote = "origin", repo = path)
