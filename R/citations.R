@@ -73,7 +73,7 @@ comprehensive_cite <- function(input, encoding = "UTF-8", ..., citeall = TRUE) {
 }
 
 .nonessential_to_normal <- function(text){
-  text <- gsub("@@", "@", text, fixed = TRUE)
+  text <- gsub("(?<!`)@@", "@", text, perl = TRUE)
   text <- gsub("\\@\\@", "@@", text, fixed = TRUE)
   text
 }

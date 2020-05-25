@@ -52,6 +52,9 @@ read_as_utf <- function(..., encoding = "UTF-8"){
 }
 
 cran_version <- function(x = packageVersion("worcs")){
-  gsub("(\\d+\\.\\d+\\.\\d+).*", "\\1", as.character(x), perl = TRUE)
+  tryCatch(
+    gsub("(\\d+\\.\\d+\\.\\d+).*", "\\1", as.character(x), perl = TRUE),
+    error = function(e){NA}
+  )
 }
 

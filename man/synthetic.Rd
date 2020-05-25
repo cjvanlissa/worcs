@@ -66,6 +66,12 @@ are used to predict synthetic values for column c.
 }
 Variables are thus imputed in order of occurrence in the \code{data.frame}.
 To impute in a different order, reorder the data.
+
+Note that, for data synthesis to work properly, it is essential that the
+\code{class} of variables is defined correctly. The default algorithm
+\code{\link[ranger]{ranger}} supports numeric, integer, and factor types.
+Other types of variables should be converted to one of these types, or users
+can use a custom \code{model_expression} when calling \code{synthetic}.
 }
 \examples{
 iris_syn <- synthetic(iris)

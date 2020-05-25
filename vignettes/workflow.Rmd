@@ -22,15 +22,15 @@ library(worcs)
 
 1. <!--S: Create a new (Public or Private) repository on 'GitHub'-->Create a new repository on 'GitHub'
     + For inexperienced users, we recommend making this repository "Private", which means only you and selected co-authors can access it. You can set it to "Public" later - for example, when the paper goes to print - and the entire history of the Repository will be public record. We recommend making the repository "Public" from the start __only if__ you are an experienced user and know what you are doing.
-    + Copy the repository's https:// link to clipboard; this link should look something like https://[...].git
+    + Copy the repository's `https://` link to clipboard; this link should look something like `https://[...].git`
 2. <!--S: Create a new RStudio project using the WORCS template-->In Rstudio, click File > New Project > New directory > WORCS Project Template
     a. Paste the GitHub Repository address in the textbox
     b. Keep the checkbox for `renv` checked if you want to document all dependencies (recommended)
     c. Select a preregistration template
 3. <!--S: Optional: Preregister your analysis-->Preregister your analysis
-    + Write the 'preregistration.Rmd' file, and save it
+    + Document study plans in a `preregistration.Rmd` file, and optionally, planned analyses in a `.R` file.
     + In the top-right panel of 'RStudio', select the 'Git' tab
-    + Select the checkbox next to the 'preregistration.Rmd' file
+    + Select the checkbox next to the preregistration file(s)
     + Click the Commit button.
     + In the pop-up window, write an informative "Commit message", e.g., "Preregistration"
     + Click the Commit button below the message dialog
@@ -70,7 +70,7 @@ library(worcs)
 ### Phase 3: Submission/publication
 
 11. <!--S: Store the R environment by calling `renv::snapshot()`-->To save the state of the project library (all packages used), call `renv::snapshot()`. This updates the lockfile, `renv.lock`.
-12. <!--S: Optional: Add a WORCS-badge to your README file and complete the optional elements of the WORCS checklist-->Run the `check_worcs()` function to see whether your project adheres to the WORCS checklist (see `worcs::checklist`)
+12. <!--S: Optional: Add a WORCS-badge to your README file and complete the optional elements of the WORCS checklist to qualify for a "Perfect" rating-->Run the `check_worcs()` function to see whether your project adheres to the WORCS checklist (see `worcs::checklist`)
     + This adds a WORCS-badge to your 'README.md' file, with a rank of "Fail", "Limited", or "Open".
     + Reference the WORCS checklist and your paper's score in the paper.
     + *Optional:* Complete the additional optional items in the WORCS checklist by hand, and get a "Perfect" rating.
@@ -94,7 +94,7 @@ library(worcs)
     Change `knit: worcs::cite_all` to `knit: worcs::cite_essential`
 18. <!--S: Optional: Publish a preprint-->Optional: [Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)
     + Check [Sherpa Romeo](http://sherpa.ac.uk/romeo/index.php) to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.
-19. <!--S: Submit the paper, and tag the release of the submitted paper as in Step 3.-->Submit the paper, and tag the release of the submitted paper as in Step 3.
+19. <!--S: Submit the paper, and tag the release of the submitted paper, as in Step 3.-->Submit the paper, and tag the release of the submitted paper as in Step 3.
 
 ### Notes for cautious researchers
 
