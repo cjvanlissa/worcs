@@ -57,13 +57,13 @@
       <a href="../articles/citation.html">Citing references in worcs</a>
     </li>
     <li>
-      <a href="../articles/git_cloud.html">Connecting to 'Git' cloud hosting services</a>
+      <a href="../articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
     </li>
     <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
     </li>
     <li>
-      <a href="../articles/workflow.html">`r paste0('The WORCS workflow, Version ', worcs:::cran_version())`</a>
+      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.2</a>
     </li>
   </ul>
 </li>
@@ -160,7 +160,7 @@ BOVENDIEN GAAT RENV NU INITIALISEREN WANNEER JE VOOR HET EERST EEN PROJECT MAAKT
 
 ADD library(worcs) TO MANUSCRIPT.RMD TO HAVE RENV TRACK IT
 --><div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"worcs"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"crsh/papaja"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">update</span> <span class="kw">=</span> <span class="st">"never"</span>)
+<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"crsh/papaja"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">update</span> <span class="kw">=</span> <span class="st">"never"</span>)
 <span class="kw pkg">tinytex</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span>()
 <span class="kw pkg">renv</span><span class="kw ns">::</span><span class="fu"><a href="https://rstudio.github.io/renv//reference/consent.html">consent</a></span>(<span class="kw">provided</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="kw pkg">worcs</span><span class="kw ns">::</span><span class="fu"><a href="../reference/git_user.html">git_user</a></span>(<span class="st">"your_name"</span>, <span class="st">"your_email"</span>)</pre></body></html></div>
