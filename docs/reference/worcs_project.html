@@ -97,10 +97,16 @@ create a WORCS project through syntax or the console." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/citation.html">Citing references in worcs</a>
+    </li>
+    <li>
       <a href="../articles/git_cloud.html">Connecting to 'Git' cloud hosting services</a>
     </li>
     <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
+    </li>
+    <li>
+      <a href="../articles/workflow.html">`r paste0('The WORCS workflow, Version ', worcs:::cran_version())`</a>
     </li>
   </ul>
 </li>
@@ -192,14 +198,16 @@ Default: 'CC_BY_4.0'. Available options include:
     <tr>
       <th>use_renv</th>
       <td><p>Logical, indicating whether or not to use 'renv' to make the
-project reproducible. Default: TRUE. See <code><a href='https://rdrr.io/pkg/renv/man/init.html'>init</a></code>.</p></td>
+project reproducible. Default: TRUE. See <code><a href='https://rstudio.github.io/renv//reference/init.html'>init</a></code>.</p></td>
     </tr>
     <tr>
       <th>remote_repo</th>
-      <td><p>Character, 'https' link to the 'GitHub' repository for
-this project. If a valid 'GitHub' repository link is provided, a commit will
-be made containing the 'README.md' file, and will be pushed to 'GitHub'.
-Default: 'https'. For more information, see &lt;http://github.com/&gt;.</p></td>
+      <td><p>Character, 'https' link to the remote repository for
+this project. This link should have the form <code>https://[...].git</code>.
+If a valid remote repository link is provided, a commit will
+be made containing the 'README.md' file, and will be pushed to the remote
+repository. Default: 'https'. When no 'https' address is provided, an 'SSH'
+address of the form <code>git@[...].git</code> is also accepted.</p></td>
     </tr>
     <tr>
       <th>verbose</th>

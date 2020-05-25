@@ -96,10 +96,16 @@ similar characteristics to the original. See Details for the algorithm used." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/citation.html">Citing references in worcs</a>
+    </li>
+    <li>
       <a href="../articles/git_cloud.html">Connecting to 'Git' cloud hosting services</a>
     </li>
     <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
+    </li>
+    <li>
+      <a href="../articles/workflow.html">`r paste0('The WORCS workflow, Version ', worcs:::cran_version())`</a>
     </li>
   </ul>
 </li>
@@ -208,6 +214,11 @@ data.</p></li>
 are used to predict synthetic values for column c.</p></li>
 </ol><p>Variables are thus imputed in order of occurrence in the <code>data.frame</code>.
 To impute in a different order, reorder the data.</p>
+<p>Note that, for data synthesis to work properly, it is essential that the
+<code>class</code> of variables is defined correctly. The default algorithm
+<code><a href='https://rdrr.io/pkg/ranger/man/ranger.html'>ranger</a></code> supports numeric, integer, and factor types.
+Other types of variables should be converted to one of these types, or users
+can use a custom <code>model_expression</code> when calling <code>synthetic</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>iris_syn</span> <span class='kw'>&lt;-</span> <span class='fu'>synthetic</span>(<span class='no'>iris</span>)</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</div><div class='input'><span class='no'>iris_missings</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>

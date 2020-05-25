@@ -97,10 +97,16 @@ and amends the .gitignore file to exclude filename." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/citation.html">Citing references in worcs</a>
+    </li>
+    <li>
       <a href="../articles/git_cloud.html">Connecting to 'Git' cloud hosting services</a>
     </li>
     <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
+    </li>
+    <li>
+      <a href="../articles/workflow.html">`r paste0('The WORCS workflow, Version ', worcs:::cran_version())`</a>
     </li>
   </ul>
 </li>
@@ -139,7 +145,13 @@ and amends the .gitignore file to exclude filename." />
 and amends the <code>.gitignore</code> file to exclude <code>filename</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>open_data</span>(<span class='no'>data</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"data.csv"</span>, <span class='kw'>codebook</span> <span class='kw'>=</span> <span class='st'>"codebook.Rmd"</span>)</pre>
+    <pre class="usage"><span class='fu'>open_data</span>(
+  <span class='no'>data</span>,
+  <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"data.csv"</span>,
+  <span class='kw'>codebook</span> <span class='kw'>=</span> <span class='st'>"codebook.Rmd"</span>,
+  <span class='kw'>worcs_directory</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,6 +171,16 @@ An 'R Markdown' codebook will be created and rendered to
 <code><a href='https://rdrr.io/pkg/rmarkdown/man/github_document.html'>github_document</a></code> ('markdown' for 'GitHub').
 Defaults to 'codebook.Rmd'. Set to <code>NULL</code> to avoid creating a codebook.</p></td>
     </tr>
+    <tr>
+      <th>worcs_directory</th>
+      <td><p>Character, indicating the WORCS project directory to
+which to save data. The default value <code>"."</code> points to the current
+directory.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments passed to and from functions.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -174,28 +196,11 @@ function is called for its side effects.</p>
 <span class='no'>old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='no'>test_dir</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>test_dir</span>)
+<span class='kw pkg'>worcs</span><span class='kw ns'>:::</span><span class='fu'>write_worcsfile</span>(<span class='st'>".worcs"</span>)
 <span class='fu'>open_data</span>(<span class='no'>iris</span>[<span class='fl'>1</span>:<span class='fl'>5</span>, ], <span class='kw'>codebook</span> <span class='kw'>=</span> <span class='st'>"bla.Rmd"</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing original data in 'data.csv' and updating the checksum in '.worcs'.</span><span>
-#&gt; </span><span style='color: #BB0000;'>X  </span><span style='color: #000000;'>No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory. Writing .worcs file now.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating '.gitignore'.</span><span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>processing file: bla.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |..............                                                        |  20%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                              |............................                                          |  40%
-#&gt; label: setup (with options) 
-#&gt; List of 1
-#&gt;  $ include: logi FALSE
-#&gt; 
-#&gt;   |                                                                              |..........................................                            |  60%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                              |........................................................              |  80%
-#&gt; label: unnamed-chunk-1
-#&gt;   |                                                                              |......................................................................| 100%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: bla.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS bla.utf8.md --to gfm --from markdown+autolink_bare_uris+tex_math_single_backslash --output bla.md --standalone --template "C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" 
-#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS bla.md --to html4 --from gfm --output bla.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-40~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --email-obfuscation none --metadata pagetitle=PREVIEW </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>processing file: bla.Rmd</span></div><div class='output co'>#&gt; <span class='message'>output file: bla.knit.md</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Preview created: bla.html</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Output created: bla.md</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>old_wd</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>test_dir</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></span></pre>

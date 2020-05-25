@@ -1,5 +1,5 @@
 ---
-title: "`r paste0('The WORCS workflow, Version ', worcs:::cran_version())`"
+title: "The WORCS workflow, version 0.1.2"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{workflow}

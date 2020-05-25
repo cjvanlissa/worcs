@@ -65,10 +65,9 @@ abstract: |
 authornote: |
   This is a preprint, not a peer-reviewed publication. Comments, contributions,
   and coauthors are welcome. Please contact the lead author.
-  Acknowledgements: Jeroen Ooms (feedback, suggesting gert, and using Remotes
-  field).
+  We acknowledge Jeroen Ooms for offering feedback and suggesting gert.
 keywords          : "open science; reproducibility; r; dynamic document generation; version control"
-wordcount         : "5921"
+wordcount         : "8257"
 
 bibliography      : ["worcs.bib"]  
 
@@ -397,7 +396,7 @@ Fourth, R is well-supported; a vibrant online community exists for R, developing
 Finally, R is highly interoperable:
 Packages are available to load nearly every imaginable filetype, and output can be written to most file types, including DOCX and PDF (in APA style), and HTML format. 
 Moreover, wrappers are available for many tools developed in other programming languages, and code written in other programming languages can be evaluated from R, including C++, 
-Fortran, and Python [@allaireMarkdownPythonEngine]. There are excellent free
+Fortran, and Python [@allaireMarkdownPythonEngine2020]. There are excellent free
 resources for learning R, such as the book R for Data Science [@grolemundDataScience2017].
 
 Working with R is simplified immensely by using the RStudio integrated
