@@ -7,25 +7,23 @@ shorttitle        : "WORKFLOW FOR OPEN SCIENCE"
 
 author:
   - name: "Caspar J. Van Lissa"
-    institution: "1,2"
-    orcid: "0000-0002-0808-5024"
+    affiliation: "1,2"
     corresponding: yes
     address: "Padualaan 14, 3584CH Utrecht, The Netherlands"
     email: "c.j.vanlissa@uu.nl"
   - name: "Andreas M. Brandmaier"
-    institution: "3,4"
-    orcid: "0000-0001-8765-6982"
-  - name: "Loek Brinkman"
-    institution: "2,5"
-    orcid: "0000-0003-3997-1173"
+    affiliation: "3,4"
   - name: "Aaron Peikert"
-    institution: "3,6"
-    orcid: "0000-0001-7813-818X"
-  - name: "Barbara M.I. Vreede"
-    institution: "7"
+    affiliation: "3,5"
+  - name: "Barbara Vreede"
+    affiliation: "6"
   - name: "Anna-Lena Lamprecht"
-    institution: "2,8"
-    orcid: "0000-0002-5023-4601"
+    affiliation: "2,7"
+    email: "a.l.lamprecht@uu.nl"
+  - name: "Loek Brinkman"
+    affiliation: "2,8"
+  - name: "Marijn E. Struiksma"
+    affiliation: "2,9"
 
 affiliation:
   - id: "1"
@@ -37,17 +35,19 @@ affiliation:
   - id: "4"
     institution: "Max Planck UCL Centre for Computational Psychiatry and Ageing Research, Berlin, Germany and London, UK"
   - id: "5"
-    institution: "UMC Utrecht"
-  - id: "6"
     institution: "Humboldt-Universitaet zu Berlin"
-  - id: "7"
+  - id: "6"
     institution: "University Library Utrecht"
-  - id: "8"
+  - id: "7"
     institution: "Utrecht University, Department of Information and Computing Sciences"
+  - id: "8"
+    institution: "UMC Utrecht"
+  - id: "9"
+    institution: "Utrecht Institute of Linguistics OTS"
     
 abstract: |
   Adopting open science
-  principles can be challenging and costly, because doing so requires
+  principles can be challenging and time-intensive, because doing so requires
   substantial conceptual education and training in the use of new tools. The 
   goal of this paper is to remove these obstacles. We introduce the Workflow for
   Open Reproducible Code in Science (WORCS). WORCS constitutes a step-by-step
@@ -621,8 +621,9 @@ The user should push all changed files to the remote repository.
 Once the remote repository is made public, people will have access to a
 checksum for the original data that exist on your local machine, a codebook
 describing those data, and a synthetic copy of the data.
-
-<!-- Maybe remark that in the "closed" case, a the data should be backupped somewhere else, as GitHub will not do the job in this setting. -->
+Keep in mind that, when using closed data, the original data file exists only on
+the user's computer. Adequate provisions to back up the data, while respecting
+principles of responsible data stewardship, should be made.
 
 As the purpose of the `prepare_data.R` file is to prepare data for sharing in a
 format as close to "raw data" as possible, the final line of this file
@@ -910,7 +911,7 @@ when two authors edit the same line. The resulting document will be rendered to
 PDF without spurious line breaks.
 
 Being familiar
-with 'Git' remote repositories like GitHub opens doors to new forms of collaboration:
+with 'Git' remote repositories opens doors to new forms of collaboration:
 In the open source
 software community, continuous peer review and voluntary collaborative acts by
 strangers who are interested in a project are commonplace

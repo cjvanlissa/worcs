@@ -20,7 +20,7 @@ library(worcs)
 
 ### Phase 1: Study design
 
-1. <!--S: Create a new (Public or Private) repository on a 'Git' hosting service-->Create a new repository on 'GitHub'
+1. <!--S: Create a (Public or Private) remote repository on a 'Git' hosting service-->Create a new remote repository on a 'Git' hosting service, such as ["GitHub"](https://github.com)
     + For inexperienced users, we recommend making this repository "Private", which means only you and selected co-authors can access it. You can set it to "Public" later - for example, when the paper goes to print - and the entire history of the Repository will be public record. We recommend making the repository "Public" from the start __only if__ you are an experienced user and know what you are doing.
     + Copy the repository's `https://` link to clipboard; this link should look something like `https://[...].git`
 2. <!--S: When using R, initialize a new RStudio project using the WORCS template. Otherwise, clone the remote repository to your local project folder.-->In Rstudio, click File > New Project > New directory > WORCS Project Template
@@ -35,19 +35,20 @@ library(worcs)
     + Click the Commit button.
     + In the pop-up window, write an informative "Commit message", e.g., "Preregistration"
     + Click the Commit button below the message dialog
-    + Click the green arrow labeled "Push" to send your commit to 'GitHub'
-    + [Tag the release of the preregistration](https://help.github.com/en/github/administering-a-repository/creating-releases) as "Preregistration". A tagged release helps others retrieve this commit.
-    + Go to the 'GitHub' page for your project
-    + Click the label that says "0 releases"
-    + Click the button labeled "Create new release"
-    + In the textbox labeled "Tag version" and the textbox "Release title", write: "Preresitration"
-    + Click the green button labeled "Publish release"
+    + Click the green arrow labeled "Push" to send your commit to the 'Git' remote repository
+    + Tag this commit as a preregistration on the remote repository. A tagged release helps others retrieve this commit.
+    + Instructions for 'GitHub' [are explained here ](https://help.github.com/en/github/administering-a-repository/creating-releases)
+        - Go to the 'GitHub' page for your project
+        - Click the label that says "0 releases"
+        - Click the button labeled "Create new release"
+        - In the textbox labeled "Tag version" and the textbox "Release title", write: "Preresitration"
+        - Click the green button labeled "Publish release"
 4. <!--S: Optional: Upload the preregistration to a dedicated preregistration server-->Optional: Render the preregistration to PDF, and upload it as an attachment to a dedicated preregistration server like AsPredicted.org or OSF.io
     + In 'RStudio', with the file 'preregistration.Rmd' open, click the "Knit" button above the top left panel
     + When the PDF is generated, go to one of the recognized preregistration services' websites, create a new preregistration, and upload it as an attachment.
 5. <!--S: Optional: Add study Materials to the repository-->Optional: Add study Materials to the repository.
     + Only do this for study materials to which you own the rights, or when the materials' license allows it
-    + You can solicit feedback (by opening a 'GitHub' Issue) and acknowledge outside contributions (by accepting Pull requests)
+    + You can solicit feedback and outside contributions on a 'Git' remote repository by opening an "Issue" or by accepting "Pull requests"
 
 ### Phase 2: Data analysis
 
@@ -55,7 +56,7 @@ library(worcs)
     + Document this preprocessing ("data wrangling") procedure in the `prepare_data.R` file. This file is intended to document steps that you would run only once, the first time you load data into R, and that end users will not be able to replicate, unless they have access to the raw data file.
     + Start with the raw data upon collection, and reprocess them until your data are ["tidy"](https://vita.had.co.nz/papers/tidy-data.pdf) and ready for analysis
 7. <!--S: Save the data into a plain-text tabular format like `.csv`. When using open data, commit this file to 'Git'. When using closed data, commit a checksum of the file, and a synthetic copy of the data.-->Save the data using `open_data()` or `closed_data()`
-    + <font colour = "red">__WARNING:__ Once you commit a data file to the 'Git' repository, its record will be retained forever (unless the entire repository is deleted). Assume that pushing data to 'GitHub' cannot be undone. Follow the mantra: "Never commit something you do not intend to share".</font>
+    + <font colour = "red">__WARNING:__ Once you commit a data file to the 'Git' repository, its record will be retained forever (unless the entire repository is deleted). Assume that pushing data to a 'Git' remote repository cannot be undone. Follow the mantra: "Never commit something you do not intend to share".</font>
 8. <!--S: Write the manuscript using a dynamic document generation format, with code chunks to perform the analyses.-->Write the manuscript in `Manuscript.Rmd`
     + Use code chunks to perform the analyses. The first code chunk should call `load_data()`
     + Finish each sentence with one carriage return (enter); separate paragraphs with a double carriage return.
@@ -65,7 +66,7 @@ library(worcs)
     + Click the Commit button.
     + In the pop-up window, write an informative "Commit message".
     + Click the Commit button below the message dialog
-    + Click the green arrow labeled "Push" to send your commit to 'GitHub'
+    + Click the green arrow labeled "Push" to send your commit to the remote repository
 10. <!--S: Cite essential references with `@`, and non-essential references with `@@`-->While writing, cite essential references with one at-symbol, `[@essentialref2020]`, and non-essential references with a double at-symbol, `[@@nonessential2020]`.
 
 ### Phase 3: Submission/publication
@@ -76,9 +77,10 @@ library(worcs)
     + Reference the WORCS checklist and your paper's score in the paper.
     + *Optional:* Complete the additional optional items in the WORCS checklist by hand, and get a "Perfect" rating.
 13. <!--S: Make a Private 'Git' remote repository Public-->Make the 'Git' remote repository "Public" if it was set to "Private"
-    + On 'GitHub', go to your project's repository
-    + Click the "Settings" button
-    + Scroll to the bottom of the page; click "Make public", and follow the on-screen instructions
+    + Instructions for 'GitHub': 
+        - Go to your project's repository
+        - Click the "Settings" button
+        - Scroll to the bottom of the page; click "Make public", and follow the on-screen instructions
 14. <!--S: [Create a project page on the Open Science Framework](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project)-->[Create a project on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project); you may have already done this in Step 5.
 15. <!--S: [Connect your 'OSF' project page to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->[Connect your 'OSF' project page to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)
 16. <!--S: Add an open science statement to the Abstract or Author notes, which links to the 'Git' remote repository or 'OSF' page-->Add an open science statement to the Abstract or Author notes, which links to the 'Git' remote repository or 'OSF' page. 
