@@ -71,6 +71,7 @@ export_project <- function(zipfile = NULL, worcs_directory = ".", open_data = TR
   }
   oldwd <- getwd()
   setwd(worcs_directory)
+  on.exit(setwd(oldwd))
   outcome <- zip(zipfile = zipfile, files = zip_these, flags="-rq")
   setwd(oldwd)
   if(!outcome == 0){
