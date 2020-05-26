@@ -63,8 +63,10 @@ abstract: |
   `worcs` in R.
 
 authornote: |
-  This is a preprint, not a peer-reviewed publication. Comments, contributions,
-  and coauthors are welcome. Please contact the lead author.
+  This is a preprint, not a peer-reviewed publication. Comments and
+  contributions are welcome. Please contact the lead author.
+  The lead author is supported by a NWO Veni grant (NWO grant number
+  VI.Veni.191G.090).
   We acknowledge Jeroen Ooms for offering feedback and suggesting gert.
 keywords          : "open science; reproducibility; r; dynamic document generation; version control"
 wordcount         : "8257"
