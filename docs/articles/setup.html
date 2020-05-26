@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.1</span>
       </span>
     </div>
 
@@ -54,7 +54,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/citation.html">Citing references in worcs</a>
+    </li>
+    <li>
+      <a href="../articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
+    </li>
+    <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
+    </li>
+    <li>
+      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.2</a>
     </li>
   </ul>
 </li>
@@ -111,7 +120,7 @@
 <li>If you run into any trouble, a more comprehensive tutorial on installing Git is available at <a href="https://happygitwithr.com/install-git.html">happygitwithr.com</a>.</li>
 </ul>
 </li>
-<li>Register on GitHub
+<li>Register on ‘GitHub’ (alternatively: see <a href="library(worcs)">this vignette</a> on how to use ‘GitLab’ or ‘Bitbucket’)
 <ul>
 <li>Go to <a href="https://github.com/">github.com</a> and click <em>Sign up</em>. Choose an “Individual”, “Free” plan.</li>
 <li>Request a <a href="https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount">free academic upgrade</a>. This allows you to create <em>private repositories</em>, which are only visible to you and selected collaborators, and can be made public when your work is published.</li>
@@ -126,7 +135,7 @@
 <li>Click <em>Create RSA Key</em>. Do not enter a passphrase. Press <em>Create</em>. A window with some information will open, which you can close.</li>
 <li>Click <em>View public key</em>, and copy the entire text to the clipboard.</li>
 <li>Close ‘RStudio’ (it might offer to restart by itself; this is fine)</li>
-<li>Go to <a href="https://www.github.com">www.github.com</a>
+<li>Go to <a href="https://github.com/">github.com</a>
 </li>
 <li>Click your user icon, click <em>Settings</em>, and then select the <em>SSH and GPG keys</em> tab.</li>
 <li>Click <em>New SSH key</em>. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled <em>Key</em>.</li>
@@ -153,6 +162,7 @@ ADD library(worcs) TO MANUSCRIPT.RMD TO HAVE RENV TRACK IT
 --><div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"worcs"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"crsh/papaja"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">update</span> <span class="kw">=</span> <span class="st">"never"</span>)
 <span class="kw pkg">tinytex</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span>()
+<span class="kw pkg">renv</span><span class="kw ns">::</span><span class="fu"><a href="https://rstudio.github.io/renv//reference/consent.html">consent</a></span>(<span class="kw">provided</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="kw pkg">worcs</span><span class="kw ns">::</span><span class="fu"><a href="../reference/git_user.html">git_user</a></span>(<span class="st">"your_name"</span>, <span class="st">"your_email"</span>)</pre></body></html></div>
 <!-- 
 renv::consent(provided = TRUE)
@@ -169,7 +179,7 @@ Please quit and reopen your R session and IDE (if you are using one, such as RSt
 
 
       <footer><div class="copyright">
-  <p>Developed by Caspar J. van Lissa.</p>
+  <p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">

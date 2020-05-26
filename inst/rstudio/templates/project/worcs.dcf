@@ -1,5 +1,5 @@
 Binding: worcs_project
-Title: WORCS project template
+Title: A WORCS project template
 OpenFiles: README.md, manuscript/manuscript.Rmd, preregistration.Rmd, prepare_data.R
 Icon: worcs.png
 

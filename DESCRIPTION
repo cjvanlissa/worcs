@@ -14,13 +14,13 @@ Authors@R: c(
     person(
       "Aaron",
       "Peikert",
-      role = c("ctb"),
+      role = c("aut"),
       comment = c(ORCID = "0000-0001-7813-818X")
     ),
     person(
       c("Andreas", "M."),
       "Brandmaier",
-      role = "ctb",
+      role = "aut",
       comment = c(ORCID = "0000-0001-8765-6982")
     )
     )
@@ -47,6 +47,7 @@ Imports:
     digest
 Suggests:
     remotes,
+    tinytex,
     renv,
     knitr,
     missRanger,

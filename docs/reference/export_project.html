@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.1</span>
       </span>
     </div>
 
@@ -95,7 +95,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/citation.html">Citing references in worcs</a>
+    </li>
+    <li>
+      <a href="../articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
+    </li>
+    <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
+    </li>
+    <li>
+      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.2</a>
     </li>
   </ul>
 </li>
@@ -167,16 +176,7 @@ does not yet exist, a synthetic data set is generated and added to the
 called for its side effect of creating a <code>.zip</code> file.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>export_project</span>(<span class='kw'>worcs_directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file 'C:\Users\lissa102\AppData\Local\Temp\Rtmpo1JAUC/.worcs': No such file or directory</span></div><div class='output co'>#&gt; <span style='color: #BB0000;'>X  </span><span style='color: #000000;'>No '.worcs' file found; not a WORCS project, or the working directory has been changed.</span><span>
-#&gt; </span><span style='color: #BB0000;'>X  </span><span style='color: #000000;'>Could not find 'Git' repository.</span><span>
-#&gt; Called from: export_project(worcs_directory = tempdir())
-#&gt; debug at C:/Git_Repositories/worcs/R/export.R#58: data_original &lt;- data_synthetic &lt;- NULL
-#&gt; debug at C:/Git_Repositories/worcs/R/export.R#59: if (!is.null(worcsfile[["data"]])) {
-#&gt;     data_original &lt;- names(worcsfile[["data"]])
-#&gt;     data_synthetic &lt;- unlist(lapply(data_original, function(i) {
-#&gt;         worcsfile[["data"]][[i]][["synthetic"]]
-#&gt;     }))
-#&gt; }</div><div class='output co'>#&gt; <span class='error'>Error in worcsfile[["data"]]: subscript out of bounds</span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>export_project</span>(<span class='kw'>worcs_directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file 'C:\Users\lissa102\AppData\Local\Temp\RtmpgpmPBY/.worcs': No such file or directory</span></div><div class='output co'>#&gt; <span style='color: #BB0000;'>X  </span><span style='color: #000000;'>No '.worcs' file found; not a WORCS project, or the working directory has been changed.</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -188,7 +188,7 @@ called for its side effect of creating a <code>.zip</code> file.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Caspar J. van Lissa.</p>
+  <p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">

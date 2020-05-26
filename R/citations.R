@@ -63,16 +63,22 @@ comprehensive_cite <- function(input, encoding = "UTF-8", ..., citeall = TRUE) {
   dots$input <- input
   doc_text <- readLines(input, encoding = encoding)
   if(citeall){
-    write_as_utf(gsub("@@", "@", doc_text), input)
+    write_as_utf(.nonessential_to_normal(doc_text), input)
   } else {
-    write_as_utf(cleancitations(doc_text), input)
+    write_as_utf(.remove_nonessential(doc_text), input)
   }
   do.call(render, dots)
   write_as_utf(doc_text, input) # reset file to original state
   invisible(NULL)
 }
 
-cleancitations <- function(text){
+.nonessential_to_normal <- function(text){
+  text <- gsub("(?<!`)@@", "@", text, perl = TRUE)
+  text <- gsub("\\@\\@", "@@", text, fixed = TRUE)
+  text
+}
+
+.remove_nonessential <- function(text){
   out <- paste0(c(text, " onzin"), collapse = "\n")
   out <- as.list(strsplit(out, "[", fixed = TRUE)[[1]])
   out <- lapply(out, function(x){

@@ -1,8 +1,7 @@
 authors_from_csv <- function(filename, format = "papaja", what = "aut"){
-
   df <- read.csv(filename, stringsAsFactors = FALSE)
-
-  aff <- df[, 6:ncol(df)]
+  if(!is.null(df[["order"]])) df <- df[order(df$order), -which(names(df) == "order")]
+  aff <- df[, grep("^X(\\.\\d{1,})?$", names(df))]
 
   unique_aff <- as.vector(t(as.matrix(aff)))
   unique_aff <- unique_aff[!unique_aff == ""]
@@ -50,3 +49,11 @@ read_as_utf <- function(..., encoding = "UTF-8"){
   if(is.null(Args[["encoding"]])) Args[["encoding"]] <- encoding
   do.call(readLines, Args)
 }
+
+cran_version <- function(x = packageVersion("worcs")){
+  tryCatch(
+    gsub("(\\d+\\.\\d+\\.\\d+).*", "\\1", as.character(x), perl = TRUE),
+    error = function(e){NA}
+  )
+}
+

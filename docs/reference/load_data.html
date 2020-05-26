@@ -80,7 +80,7 @@ removing the file extension, and, when applicable, the prefix
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.1</span>
       </span>
     </div>
 
@@ -103,7 +103,16 @@ removing the file extension, and, when applicable, the prefix
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/citation.html">Citing references in worcs</a>
+    </li>
+    <li>
+      <a href="../articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
+    </li>
+    <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
+    </li>
+    <li>
+      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.2</a>
     </li>
   </ul>
 </li>
@@ -189,8 +198,8 @@ environment.</p>
 <span class='no'>old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='no'>test_dir</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>test_dir</span>)
+<span class='kw pkg'>worcs</span><span class='kw ns'>:::</span><span class='fu'>write_worcsfile</span>(<span class='st'>".worcs"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(<span class='fu'><a href='closed_data.html'>closed_data</a></span>(<span class='no'>iris</span>[<span class='fl'>1</span>:<span class='fl'>5</span>, ], <span class='kw'>codebook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>))</div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing original data in 'data.csv' and updating the checksum in '.worcs'.</span><span>
-#&gt; </span><span style='color: #BB0000;'>X  </span><span style='color: #000000;'>No '.worcs' file found; either this is not a worcs project, or the working directory is not set to the project directory. Writing .worcs file now.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Generating synthetic data for public use. Ensure that no identifying information is included.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing synthetic data in 'synthetic_data.csv' and updating the checksum in '.worcs'.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating '.gitignore'.</span><span></div><div class='input'><span class='fu'>load_data</span>()</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Loading original data from 'data.csv'.</span><span></div><div class='input'><span class='no'>data</span></div><div class='output co'>#&gt; This is the original data set. The first 6 rows are:
@@ -221,7 +230,7 @@ environment.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Caspar J. van Lissa.</p>
+  <p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">

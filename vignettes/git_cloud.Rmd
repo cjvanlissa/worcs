@@ -1,5 +1,5 @@
 ---
-title: "Connecting to 'Git' cloud hosting services"
+title: "Connecting to 'Git' remote repositories"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{git_cloud}
@@ -12,9 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
-
-```{r setup}
 library(worcs)
 ```
 

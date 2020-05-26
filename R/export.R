@@ -40,15 +40,13 @@ export_project <- function(zipfile = NULL, worcs_directory = ".", open_data = TR
 
   # if no zipfile is given, export to a zip file with
   # the name of the project folder
-  if(isFALSE(tryCatch({
-    if(is.null(zipfile)) {
-      zipfile <- file.path(dirname(normalizePath(worcs_directory)), paste0(project_folder, ".zip"))
-    }
-    if(!is.character(zipfile)) stop()
-  }, error = function(e){
+  if(is.null(zipfile)) {
+    zipfile <- tryCatch(file.path(dirname(normalizePath(worcs_directory)), paste0(project_folder, ".zip")), error = function(e) NULL)
+  }
+  if(!is.character(zipfile)){
     col_message("Could not create zipfile.", success = FALSE)
-    FALSE
-  }))) return(invisible(FALSE))
+    return(invisible(FALSE))
+  }
 
   if (file.exists(zipfile)) {
     stop("Could not write to '", zipfile, "' because the file already exists.")
@@ -60,21 +58,22 @@ export_project <- function(zipfile = NULL, worcs_directory = ".", open_data = TR
   if(!is.null(worcsfile[["data"]])){
     data_original <- names(worcsfile[["data"]])
     data_synthetic <- unlist(lapply(data_original, function(i){worcsfile[["data"]][[i]][["synthetic"]]}))
-    if(open_data){
-      zip_these <- unique(c(zip_these, data_original, data_synthetic))
-    } else {
+    if(!open_data){
+      data_original <- vector("character")
       for(this_file in data_original){
         endsw <- endsWith(x = zip_these, suffix = this_file)
         if(any(endsw)){
           zip_these <- zip_these[-which(endsw)]
         }
       }
-      zip_these <- unique(c(zip_these, data_synthetic))
     }
+    zip_these <- unique(c(zip_these, data_original, data_synthetic))
   }
-
-  zip_these <- file.path(normalizePath(worcs_directory), zip_these)
-  outcome <- zip(zipfile = zipfile, files = zip_these, flags="-jrq")
+  oldwd <- getwd()
+  setwd(worcs_directory)
+  on.exit(setwd(oldwd))
+  outcome <- zip(zipfile = zipfile, files = zip_these, flags="-rq")
+  setwd(oldwd)
   if(!outcome == 0){
     return(invisible(FALSE))
   } else {
