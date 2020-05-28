@@ -52,11 +52,14 @@ library(worcs)
 
 ### Phase 2: Data analysis
 
-6. <!--S: Create a script documenting the steps required to load the raw data and prepare them for analysis-->Create a script documenting the steps required to load the raw data into R and prepare them for analysis
-    + Document this preprocessing ("data wrangling") procedure in the `prepare_data.R` file. This file is intended to document steps that you would run only once, the first time you load data into R, and that end users will not be able to replicate, unless they have access to the raw data file.
-    + Start with the raw data upon collection, and reprocess them until your data are ["tidy"](https://vita.had.co.nz/papers/tidy-data.pdf) and ready for analysis
+6. <!--S: Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable-->Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable
+    + Document this preprocessing ("data wrangling") procedure in the `prepare_data.R` file.
+    + This file is intended to document steps that can not or should not be replicated by end users, unless they have access to the raw data file.
+    + These are steps you would run only once, the first time you load data into R.
+    + Make this file as short as possible; only include steps that are absolutely necessary
 7. <!--S: Save the data into a plain-text tabular format like `.csv`. When using open data, commit this file to 'Git'. When using closed data, commit a checksum of the file, and a synthetic copy of the data.-->Save the data using `open_data()` or `closed_data()`
     + <font colour = "red">__WARNING:__ Once you commit a data file to the 'Git' repository, its record will be retained forever (unless the entire repository is deleted). Assume that pushing data to a 'Git' remote repository cannot be undone. Follow the mantra: "Never commit something you do not intend to share".</font>
+    + When using external data sources (e.g., obtained using an API), it is recommended to store a local copy, to make the project portable and to ensure that end users have access to the same version of the data you used.
 8. <!--S: Write the manuscript using a dynamic document generation format, with code chunks to perform the analyses.-->Write the manuscript in `Manuscript.Rmd`
     + Use code chunks to perform the analyses. The first code chunk should call `load_data()`
     + Finish each sentence with one carriage return (enter); separate paragraphs with a double carriage return.
@@ -81,7 +84,7 @@ library(worcs)
         - Go to your project's repository
         - Click the "Settings" button
         - Scroll to the bottom of the page; click "Make public", and follow the on-screen instructions
-14. <!--S: [Create a project page on the Open Science Framework](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project)-->[Create a project on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project); you may have already done this in Step 5.
+14. <!--S: Optional: [Create a project page on the Open Science Framework](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project)-->Optional: [Create a project on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project); you may have already done this in Step 4.
 15. <!--S: [Connect your 'OSF' project page to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->[Connect your 'OSF' project page to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)
 16. <!--S: Add an open science statement to the Abstract or Author notes, which links to the 'Git' remote repository or 'OSF' page-->Add an open science statement to the Abstract or Author notes, which links to the 'Git' remote repository or 'OSF' page. 
     + Placing this statement in the Abstract or Author note means that readers can find your project even if the paper is published behind a paywall.
