@@ -73,7 +73,8 @@ authornote: |
   contributions are welcome. Please contact the lead author.
   The lead author is supported by a NWO Veni grant (NWO grant number
   VI.Veni.191G.090).
-  We acknowledge Jeroen Ooms for offering feedback and suggesting gert.
+  We acknowledge Jeroen Ooms for offering feedback and suggesting the use of the
+  R package gert.
 keywords          : "open science; reproducibility; r; dynamic document generation; version control, FAIR"
 wordcount         : "8257"
 
@@ -258,9 +259,9 @@ with social networking functionality. The cloud storage aspect
 of 'GitHub' works as follows: You can "clone" (copy) a local 'Git' repository to
 the 'GitHub' website, as a backup or research archive. The social network aspect
 comes into play when a repository on 'GitHub' is set to "public": This allows 
-other researchers to peruse the repository and see how the work was done, clone
+other researchers to peruse the repository and see how the work was done; clone
 it to their own computer to replicate the original work or apply the methods to
-their own data, open "Issues" to ask questions or give feedback on the project,
+their own data; open "Issues" to ask questions or give feedback on the project,
 or even send a "Pull request" with suggested changes to the text or code for
 your consideration. 'Git' and 'GitHub' shine as tools for collaboration, because
 different people can simultaneously work on different parts of a project, and
@@ -356,22 +357,33 @@ instead of binary files.
 Text-based files can be read by machines and humans alike.
 Binary files, such as 'Word' (`.docx`) or 'SPSS' (`.sav`, `.spo`) files,
 must be decoded first, and many require commercial software to do so.
-Text-based files are also required when using 'Git' for version control.
-In 'Git', each change reflects a line of text added or removed. This means that, when
-writing a version-controlled paper in plain-text, it is recommended to insert a
-line break after every sentence (instead of after every paragraph). That way,
-the change log will indicate which specific sentence was edited.
-Binary files should not be version controlled with 'Git',
-as changes in the encrypted file are uninterpretable. Binary files are also often 
+The version control software 'Git' is also designed for use with text-based files.
+The 'Git' change log reflects changes to text-based files on a line-by-line basis.
+Binary files can be version controlled with 'Git', but 
+the change log for a binary file are uninterpretable.
+Binary files are also often 
 larger than text-based files, which means they take up more space on cloud
 hosting services. For these reasons, uploading large binary
 files to remote repositories is frowned upon. 
 WORCS encourages the use of
 text-based files for all purposes.
-It is worth noting that 'GitHub' also rewards the use of text-based files by
-rendering certain text-based filetypes: 
+
+Two additional points are worth noting:
+First, 'Git' tracks line-by-line changes to text-based files,
+based on line breaks in the text.
+When writing a version-controlled paper in plain-text,
+it is therefore recommended to start each sentence on a new line.
+That way, the change log will indicate which specific sentence was edited, 
+instead of replacing an entire paragraph.
+As RMarkdown does not parse a single line break as the end of a paragraph,
+this practice does not disrupt the flow of a paragraph in the rendered version.
+Second, the remote repository service 'GitHub' rewards the use of text-based files by
+rendering certain text-based filetypes for online viewing: 
 For example, `.md`
-(Markdown) files are displayed as web pages, and `.csv` files as spreadsheets. 
+(Markdown) files are displayed as web pages, and `.csv` files as spreadsheets.
+The `worcs` implementation for R makes use of this fact by, for example,
+rendering a codebook for the data as `.md` so visitors of a 'Git' remote repository
+can view it as a web page.
 
 # Introducing the workflow 
 
@@ -402,11 +414,11 @@ get_workflow()
 
 ## The R-implementation of WORCS
 
-The R-package `worcs` automate most steps of the workflow
+The R-package `worcs` automates most steps of the workflow
 for R users.
 Several arguments support the choice to implement this workflow in R.
 First, R and all of it extensions are free open source software, which
-should be the tool of choice for open science.
+make it a tool of choice for open science.
 Second, all tools required for an open science workflow are implemented in R,
 most of these tools are directly accessible through the user interface of RStudio,
 and some of them are actively developed by the team behind RStudio.
@@ -416,7 +428,7 @@ Finally, R is highly interoperable:
 Packages are available to load nearly every imaginable filetype, and output can be written to most file types, including DOCX and PDF (in APA style), and HTML format. 
 Moreover, wrappers are available for many tools developed in other programming languages, and code written in other programming languages can be evaluated from R, including C++, 
 Fortran, and Python [@allaireMarkdownPythonEngine2020]. There are excellent free
-resources for learning R, such as the book R for Data Science [@grolemundDataScience2017].
+resources for learning R, such as the book 'R for Data Science' [@grolemundDataScience2017].
 
 Working with R is simplified immensely by using the RStudio integrated
 development engine (IDE) for R [@rstudioteamRStudioIntegratedDevelopment2015].
@@ -454,8 +466,9 @@ citing every reference used. Unfortunately, citation of data and software is
 less commonplace than citation of literature and materials. Crediting these
 resources is important, because it incentivizes data sharing and the development
 of open-source software, supports the open science efforts of others, and helps
-researchers receive credit for *all* of their research output, in line with
-[DORA](https://sfdora.org/). <!-- Maybe due to restructuring, but so far DORA has not been mentioned in the paper. Easiest way to solve this would be to remove the subordinate clause at the end, and leave the discussion of DORA to the respective section later. --> 
+researchers receive credit for *all* of their research output, in line with the San Francisco
+Declaration on Research Assessment, 
+[DORA](https://sfdora.org/).
 
 To facilitate citing datasets, researchers sometimes publish *data papers*;
 documents that detail the procedure, sample, and codebook. Specialized journals,
@@ -567,7 +580,7 @@ of the contents of a file.
 Any change to the file will result in a different checksum. 
 Thus, one can use a checksum to verify the identity of a file, and ensure that its contents are unchanged.
 When data cannot be shared, the risk of fraud or abuse can be mitigated by publishing a checksum for the original data, in addition to the complete analysis code.
-Using the checksum to verify the identity of a private dataset, researchers can prove to an independent auditer that running the public analysis code on the private data results in the published results of their work.
+Using the checksum to verify the identity of a private dataset, researchers can prove to an independent auditor that running the public analysis code on the private data results in the published results of their work.
 
 The second solution is to share a synthetic dataset with similar characteristics
 to the real data. Synthetic data mimic the level of measurement and
@@ -592,6 +605,26 @@ one of these types, or users can use a custom `model_expression` when calling
 
 ### Processing data in WORCS
 
+When initializing a new `worcs` project, an empty R-script called `prepare_data.R` is generated.
+As soon as raw data are collected, researchers should use this file to document
+all steps necessary to load the 
+data into R, pseudonimize it, and prepare it for analysis.
+As data should be shared in a format as close to raw as possible, 
+this script should
+be as short as possible and only document the minimum necessary steps.
+For example, if the data was originally in SPSS format with IP addresses and GPS
+location, this file might just contain the code required to read the SPSS file,
+and to remove those columns of sensitive personal information. As soon as the
+data are pseudonimized and processed into tabular (spreadsheet-like) format,
+the researcher should
+version control some indelible record of the raw data.
+The concept of 'tidy' data
+is a helpful standard; i.e., clean, tabular data that is formatted in a way that facilitates further analysis [see @wickhamTidyData2014].
+
+One issue of concern is the practice of "fixing" mistakes in the data.
+It is not uncommon for researchers to perform such corrections manually in the raw
+data, 
+even if all other analysis steps are documented.
 Regardless of whether the data will be open or closed, it is important that the
 raw data be left unchanged as much as possible. This eliminates human error.
 Any alterations to the data - including processing steps and even error 
@@ -603,17 +636,6 @@ a researcher discovers that in one of the variables, missing values were coded a
 a line of code to recode the missing values - thereby documenting the mistake - 
 instead of "fixing" it by editing the raw spreadsheet.
 
-When initializing a new `worcs` project, an empty R-script called `prepare_data.R` is generated.
-As soon as raw data are collected, researchers should use this file to document
-all steps necessary to load the 
-data into R, pseudonimize it, and prepare it for analysis. 
-For example, if the data was originally in SPSS format with IP addresses and GPS
-location, this file might just contain the code required to read the SPSS file,
-and to remove those columns of sensitive personal information. As soon as the
-data are pseudonimized and processed into a 'tidy' format [i.e., data that can
-be stored as a spreadsheet, see @wickhamTidyData2014], the researcher should
-version control some indelible record of the raw data.
-
 The `worcs` package offers two functions for version controlling a record of the
 data: One for open, and one for closed data. Researchers should assume that the
 decision to make data open is irreversible. Thus, the decision should be made well
@@ -621,13 +643,19 @@ before arriving at this stage in the workflow. If there is any doubt, it is prud
 to proceed with closed data and make the data open once all doubt is assuaged.
 
 In `worcs`, researchers can call the function `open_data(data)` to make the data
-publicly available. This function stores the `data` object (a `data.frame` or
-`matrix`) in a spreadsheet file (called `data.csv` by default), and generates an
-accompanying codebook that can be viewed online.
-All changed files should now be (manually) added to the 'Git' repository, committed, and
-pushed to the remote repository. Once the remote repository is made public, these data will be
+publicly available. This function stores the `data` object (such as a `data.frame` or
+`matrix`) in a tabular data file (called `data.csv` by default).
+It also generates an
+accompanying codebook - 
+a human-readable document that serves as a legend for the tabular data file -
+that can be viewed online.
+All changed files should now be added to the 'Git' repository, committed, and
+pushed to the remote repository.
+This can be done through the 'Git' panel in RStudio, or by running the `worcs`
+function `git_update("commit message")`.
+Once the remote repository is made public, these data will be
 open to the public.
-Assume that, once you do this, the data cannot be un-shared.
+Assume that, once this is done, the data cannot be un-shared.
 
 Alternatively, if the project requires data to remain closed, researchers can
 call `closed_data(data)`. This function also stores the data in a local `.csv` file
@@ -647,34 +675,39 @@ Keep in mind that, when using closed data, the original data file exists only on
 the user's computer. Adequate provisions to back up the data, while respecting
 principles of responsible data stewardship, should be made.
 
-As the purpose of the `prepare_data.R` file is to prepare data for sharing in a
-format as close to "raw data" as possible, the final line of this file
+As the purpose of the `prepare_data.R` file is to prepare data for sharing,
+the final line of this file
 should typically be either
 `open_data()` or `closed_data()`. 
-The analysis code, on the other hand, should begin with `load_data()`.
-This function loads the real data if it is available on the user's computer, and
-otherwise, loads the synthetic data. This will have the effect that third party
+
+After generating tidy, shareable data, this data is then loaded in the analysis code with the function `load_data()`.
+This function only loads the real data if it is available on the user's computer, 
+and otherwise, loads the synthetic data.
+This will have the effect that third party
 users who copy a remote repository with closed data will automatically load the synthetic
 dataset, whereas the study authors, who have the real data stored locally, will
-automatically load the real data. This function makes it possible for reviewers,
+automatically load the real data.
+This makes it possible for reviewers,
 coauthors, and auditors, to write analysis scripts without requiring access to
-the original data. They can simply start the script with `load_data()`, and
-write their code based on the synthetic data. Then, they can submit their code
+the original data.
+They can simply start the script with `load_data()`, and
+write their code based on the synthetic data.
+Then, they can submit their code
 to you - by email or as a
 ["Pull request"](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
-When you run their code on your system, `load_data()` will detect the
+When you run their code on your system, `load_data()` will load the
 original data, and use that to run their script. You can then return the results
 to the third party.
 
 Note that these functions can be used to store multiple data files, if necessary.
 As of version 0.1.2, the `worcs` package only stores data as `.csv` files.
 As explained above, this is recommended, because `.csv` files are human- and
-machine readable, and because data typically need to be in a spreadsheet format
-for analysis. Many types of data can be represented as a spreadsheet - text
+machine readable, and because data typically need to be in tabular format
+for analysis. Many types of data can be represented as a table - text
 corpora can have one row per document, and EEG- or EKG waveforms can have one
 row per measurement occasion. The `prepare_data.R` file should document any
 steps required to convert these data into tabular format. 
-If this is not an appropriate format, readers are encouraged to follow the
+If this is not an appropriate format for the data, readers are encouraged to follow the
 development of the `repro` package [@repro], which will offer greater support for
 reproducibly storing and retrieving diverse data formats.
 
@@ -696,7 +729,7 @@ Aside from analysis code, the TOP-guidelines also encourage sharing new research
 materials, and details of the study design and analysis. These goals can be
 accomplished by placing any such documents in the 'Git' repository folder,
 committing them, and pushing to a cloud hosting service. As with any document
-version controlled in this way, it is advisable to use plain text only.
+version controlled in this way, it is advisable (but not required) to use plain text only.
 
 ## Preregistration
 
@@ -726,29 +759,32 @@ tied to experimental research,
 it has been a matter of some debate whether secondary data
 analyses can be preregistered 
 [but see @westonRecommendationsIncreasingTransparency2019 for an excellent
-discussion of the topic]. Preregistration is the only way to ensure that a
-researcher is not "HARKing": Hypothesizing after the results are known
-[@kerrHARKingHypothesizingResults1998].
+discussion of the topic]. 
+
 When analyzing existing data, it is difficult to *prove* that a researcher did
 not have direct (or indirect, through collaborators or by reading studies using
 the same data) exposure to the data, before composing the preregistration.
 However, the question of proof is only relevant from a perspective of preventing
 scientific misconduct.
+Preregistration is a good way to ensure that a
+researcher is not "HARKing": Hypothesizing after the results are known
+[@kerrHARKingHypothesizingResults1998].
+
 Good faith preregistration efforts always improve the quality of deductive
 (theory-testing) research, because they avoid HARKing, ensure reliable
 significance tests, avoid overfitting noise in the data, and limit the number of
 forking paths researchers wander during data analysis
 [@gelmanStatisticalCrisisScience2014].
-In all cases, researchers should minimize exposure to the data, and disclose any
-exposure.
 
 WORCS takes the pragmatic position that, in deductive (hypothesis-testing) research,
 it is beneficial to plan projects before executing them, to preregister these
 plans, and adhere to them.
-All deviations from this procedure should be disclosed; e.g., prior exposure to
-the data, whether direct (e.g., by computing summary statistics) or indirect
-(e.g., by reading papers using the same data); deviations from the analysis plan
-to handle unforseen contingencies, such as violations of model assumptions;
+All deviations from this procedure should be disclosed.
+Researchers should minimize exposure to the data, and disclose any
+prior exposure, whether direct (e.g., by computing summary statistics) or indirect
+(e.g., by reading papers using the same data).
+Similarly, one can disclose any deviations from the analysis plan
+to handle unforeseen contingencies, such as violations of model assumptions;
 or additional exploratory analyses.
 
 WORCS recommends documenting a verbal, conceptual description of the study plans
@@ -780,21 +816,28 @@ later date, along with their entire time-stamped history and tagged releases.
 
 ### Implementation of preregistration in `worcs`
 
-Several excellent preregistration templates are available in the R-package
+The `worcs` workflow facilitates preregistration,
+primarily by explicitly inviting a user to write the preregistration document.
+To this end, `worcs` imports several preregistration templates from the R-package
 `prereg` [@austPreregMarkdownTemplates2019], including templates from
 organizations like [AsPredicted.org](AsPredicted.org) and [OSF.io](OSF.io), and
 from researchers [e.g., @vantveerPreregistrationSocialPsychology2016].
 When initializing an RStudio project with the `worcs` project template, one of
 these preregistration templates can be selected, which will generate a file
 called `preregistration.Rmd`. This file should be used to document study plans,
-ideally prior to data collection.
+ideally prior to data collection. 
+Within the workflow, the 'Git' cloud hosting services can be used to preregister a study simply by pushing a text document with the study plans to a 'Git' remote repository.
+By [tagging the commit](https://help.github.com/en/github/administering-a-repository/creating-releases) as a preregistration
+(see [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html)),
+it is distinct from all other commits, and easily findable by people and machines.
 
 ## Compatibility with other standards for open science
 
 WORCS was designed to meet the TOP-guidelines, and it does so in a way that
 is compatible with other open science principles. Most notably, WORCS is 
 amenable to the
-FAIR Guiding Principles for scientific data management and stewardship [@wilkinsonFAIRGuidingPrinciples2016a]. These principles advocate that digital research objects should be Findable, Accessible, Interoperable and Reusable. Initially mainly promoted as principles for data, they are increasingly applied as a standard for other types of research output as well, most notably software [@lamprechtFAIRPrinciplesResearch2019].
+FAIR Guiding Principles for scientific data management and stewardship [@wilkinsonFAIRGuidingPrinciples2016a]. These principles advocate that digital research objects should be Findable, Accessible, Interoperable and Reusable. Initially mainly promoted as principles for data, they are increasingly applied as a standard for other types of research output as well,
+most notably software [@lamprechtFAIRPrinciplesResearch2019].
 
 WORCS helps users meet the FAIR principles by making all created research objects -
 including data and code - accessible in a repository that can be made public. 
@@ -855,7 +898,11 @@ TOP-guidelines 1-7. Many journals now also offer authors the opportunity to earn
 "badges" for adhering to open science guidelines
 [@kidwellBadgesAcknowledgeOpen2016]. These signalling solutions help structure
 authors' disclosures about, and incentivize adherence to, open science practices.
-WORCS has its own checklist, <!-- incomplete sentence! -->
+WORCS, too, has its own checklist that calls attention to a number of concrete
+items contributing to an open and reproducible research project. Users of the
+`worcs` package can receive a badge, displayed on the `README.md` file,
+based on a semi-automated scoring of the checklist items, by calling the function
+`check_worcs()` within a `worcs` project directory.
 
 A different class of solutions instead focuses on the practical issue of *how*
 researchers can meet the requirements of open science.
@@ -904,7 +951,7 @@ uses Rmarkdown, and the coauthors use Word. In this case, it is possible to Knit
 the manuscript to Word (.docx), by changing the line `output: papaja::apa6_pdf`
 in the manuscript's YAML header to `output: papaja::apa6_docx`. There are some
 limitations to the conversion, discussed [here](https://crsh.github.io/papaja_man/limitations.html#microsoft-word-documents).
-When soliting feedback from co-authors, ask them to use Tracked Changes and
+When soliciting feedback from co-authors, ask them to use Track Changes and
 comment bubbles in Word. <!-- LB: Overleaf?-->Then, manually incorporate their
 changes into the `manuscript.Rmd` file. In most cases, this is the most
 user-friendly approach, as most lead authors would review changes by co-authors
