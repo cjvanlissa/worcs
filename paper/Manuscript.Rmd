@@ -24,6 +24,7 @@ author:
     affiliation: "2,8"
   - name: "Marijn E. Struiksma"
     affiliation: "2,9"
+    email: "m.struiksma@uu.nl"
 
 affiliation:
   - id: "1"
@@ -43,7 +44,7 @@ affiliation:
   - id: "8"
     institution: "UMC Utrecht"
   - id: "9"
-    institution: "Utrecht Institute of Linguistics OTS"
+    institution: "Utrecht University, Department of Language, Literature & Communication, Utrecht Institute of Linguistics OTS"
     
 abstract: |
   Adopting open science
