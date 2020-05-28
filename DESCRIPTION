@@ -31,7 +31,7 @@ Description: Create reproducible and transparent research projects in 'R', with
     Open Science. It includes an 'RStudio' project template, several
     convenience functions, and all dependencies required to make your project
     reproducible and transparent. WORCS is explained in the tutorial paper
-    by Van Lissa, Brandmaier, Brinkman, & Vreede (2020)
+    by Van Lissa, Brandmaier, Brinkman, Lamprecht, Struiksma, & Vreede (2020).
     <doi:10.17605/OSF.IO/ZCVBS>.
 License: GPL (>= 3)
 Encoding: UTF-8

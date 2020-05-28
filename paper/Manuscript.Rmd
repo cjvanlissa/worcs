@@ -71,6 +71,9 @@ abstract: |
 authornote: |
   This is a preprint, not a peer-reviewed publication. Comments and
   contributions are welcome. Please contact the lead author.
+  All authors of this paper, except the first, are listed in alphabetical order.
+  Author contributions are detailed in the document 'authors.csv' on the project
+  repository, at [https://github.com/cjvanlissa/worcs](https://github.com/cjvanlissa/worcs).
   The lead author is supported by a NWO Veni grant (NWO grant number
   VI.Veni.191G.090).
   We acknowledge Jeroen Ooms for offering feedback and suggesting the use of the
