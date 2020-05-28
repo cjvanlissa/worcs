@@ -24,6 +24,7 @@ author:
     affiliation: "2,8"
   - name: "Marijn E. Struiksma"
     affiliation: "2,9"
+    email: "m.struiksma@uu.nl"
 
 <!-- I would suggest to put OSCU as last item in the list of affiliations, as it is complementary to the primary institutional affiliations --> 
 affiliation:
@@ -44,8 +45,8 @@ affiliation:
   - id: "8"
     institution: "UMC Utrecht"
   - id: "9"
-    institution: "Utrecht Institute of Linguistics OTS"
-
+    institution: "Utrecht University, Department of Language, Literature & Communication, Utrecht Institute of Linguistics OTS"
+    
 abstract: |
   Adopting open science
   principles can be challenging and time-intensive, because doing so requires
