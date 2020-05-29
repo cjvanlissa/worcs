@@ -63,6 +63,7 @@ recommend_data <- c('library("worcs")',
 #' @importFrom rmarkdown draft
 #' @importFrom gert git_init git_remote_add git_add git_commit git_push
 #' @importFrom utils installed.packages packageVersion
+#' @importFrom prereg vantveer_prereg
 # @importFrom renv init
 worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "COS", add_license = "CC_BY_4.0", use_renv = TRUE, remote_repo = "https", verbose = TRUE, ...) {
   # collect inputs

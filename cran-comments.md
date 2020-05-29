@@ -16,6 +16,20 @@
 * .worcs file is used to determine the existence of a worcs-project recursively.
 * .worcs file now tracks entry point for analyses.
 
+## CRAN Package Check Results for Package worcs
+
+* On r-devel-linux-x86_64-fedora-clang, r-devel-linux-x86_64-fedora-gcc, r-release-osx-x86_64, r-oldrel-osx-x86_64: NOTE: Namespace in Imports field not imported from: ‘prereg’. All declared Imports should be used.
+	+ Status: Solved
+	+ This package is listed as a dependency because users can select the 'Rmarkdown' document templates exported from this package in the RStudio new project dialog window.
+	+ We have included a formal import from the 'prereg' package
+* On r-oldrel-osx-x86_64: Error: pandoc version 1.12.3 or higher is required and was not found (see the help page ?rmarkdown::pandoc_available).
+	+ Status: Cannot address
+	+ The absence of an up-to-date version of pandoc causes both an example from the documentation, and 9 testthat tests to fail
+	+ This is not an error that can be solved on our end
+* On r-patched-solaris-x86: ERROR: Package required but not available: ‘gert’
+	+ Status: Cannot address
+	+ This is a package on CRAN. Not clear why it is unavailable.
+
 ## Test environments
 
 * local Windows 10 install, R 4.0.0
