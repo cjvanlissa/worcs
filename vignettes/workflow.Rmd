@@ -50,7 +50,7 @@ library(worcs)
     + Only do this for study materials to which you own the rights, or when the materials' license allows it
     + You can solicit feedback and outside contributions on a 'Git' remote repository by opening an "Issue" or by accepting "Pull requests"
 
-### Phase 2: Data analysis
+### Phase 2: Writing and analysis
 
 6. <!--S: Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable-->Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable
     + Document this preprocessing ("data wrangling") procedure in the `prepare_data.R` file.
@@ -72,7 +72,7 @@ library(worcs)
     + Click the green arrow labeled "Push" to send your commit to the remote repository
 10. <!--S: Cite essential references with `@`, and non-essential references with `@@`-->While writing, cite essential references with one at-symbol, `[@essentialref2020]`, and non-essential references with a double at-symbol, `[@@nonessential2020]`.
 
-### Phase 3: Submission/publication
+### Phase 3: Submission and publication
 
 11. <!--S: Use dependency management to make the computational environment fully reproducible-->Use dependency management to make the computational environment fully reproducible. When using `renv`, you can save the state of the project library (all packages used) by calling `renv::snapshot()`. This updates the lockfile, `renv.lock`.
 12. <!--S: Optional: Add a WORCS-badge to your project's README file-->Optional: Add a WORCS-badge to your project's README file and complete the optional elements of the WORCS checklist to qualify for a "Perfect" rating. Run the `check_worcs()` function to see whether your project adheres to the WORCS checklist (see `worcs::checklist`)
@@ -104,4 +104,4 @@ library(worcs)
 
 ### Notes for cautious researchers
 
-<!--S: Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance.-->Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance.
+<!--S: Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance.-->Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance by the journal.
