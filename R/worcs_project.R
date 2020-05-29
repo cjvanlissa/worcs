@@ -99,7 +99,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     copy_resources(which_files = c(
       "README.md",
       "prepare_data.R",
-      "worcs_badge.png"
+      "worcs_icon.png"
     ), path = path)
     col_message("Copying standard files.")
   }, error = function(e){
@@ -113,55 +113,63 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   if(!manuscript == "none"){
     tryCatch({
       # Construct path to filename and create directory
-      man_dir <- file.path(path, "manuscript")
-      manuscript_file <- file.path(man_dir, "manuscript.Rmd")
-      dir.create(man_dir)
+      man_dir_rel <- "manuscript"
+      man_dir_abs <- file.path(path, man_dir_rel)
+      man_fn_rel <- file.path(man_dir_rel, "manuscript.Rmd")
+      man_fn_abs <- file.path(man_dir_abs, "manuscript.Rmd")
+      dir.create(man_dir_abs)
       switch(manuscript,
-             apa6 = create_man_papaja(manuscript_file, remote_repo = remote_repo),
-             acm_article = create_man_rticles(manuscript_file, "acm_article", remote_repo = remote_repo),
-             acs_article = create_man_rticles(manuscript_file, "acs_article", remote_repo = remote_repo),
-             aea_article = create_man_rticles(manuscript_file, "aea_article", remote_repo = remote_repo),
-             agu_article = create_man_rticles(manuscript_file, "agu_article", remote_repo = remote_repo),
-             amq_article = create_man_rticles(manuscript_file, "amq_article", remote_repo = remote_repo),
-             ams_article = create_man_rticles(manuscript_file, "ams_article", remote_repo = remote_repo),
-             asa_article = create_man_rticles(manuscript_file, "asa_article", remote_repo = remote_repo),
-             biometrics_article = create_man_rticles(manuscript_file, "biometrics_article", remote_repo = remote_repo),
-             copernicus_article = create_man_rticles(manuscript_file, "copernicus_article", remote_repo = remote_repo),
-             ctex = create_man_rticles(manuscript_file, "ctex", remote_repo = remote_repo),
-             elsevier_article = create_man_rticles(manuscript_file, "elsevier_article", remote_repo = remote_repo),
-             frontiers_article = create_man_rticles(manuscript_file, "frontiers_article", remote_repo = remote_repo),
-             ieee_article = create_man_rticles(manuscript_file, "ieee_article", remote_repo = remote_repo),
-             joss_article = create_man_rticles(manuscript_file, "joss_article", remote_repo = remote_repo),
-             jss_article = create_man_rticles(manuscript_file, "jss_article", remote_repo = remote_repo),
-             mdpi_article = create_man_rticles(manuscript_file, "mdpi_article", remote_repo = remote_repo),
-             mnras_article = create_man_rticles(manuscript_file, "mnras_article", remote_repo = remote_repo),
-             oup_article = create_man_rticles(manuscript_file, "oup_article", remote_repo = remote_repo),
-             peerj_article = create_man_rticles(manuscript_file, "peerj_article", remote_repo = remote_repo),
-             plos_article = create_man_rticles(manuscript_file, "plos_article", remote_repo = remote_repo),
-             pnas_article = create_man_rticles(manuscript_file, "pnas_article", remote_repo = remote_repo),
-             rjournal_article = create_man_rticles(manuscript_file, "rjournal_article", remote_repo = remote_repo),
-             rsos_article = create_man_rticles(manuscript_file, "rsos_article", remote_repo = remote_repo),
-             sage_article = create_man_rticles(manuscript_file, "sage_article", remote_repo = remote_repo),
-             sim_article = create_man_rticles(manuscript_file, "sim_article", remote_repo = remote_repo),
-             springer_article = create_man_rticles(manuscript_file, "springer_article", remote_repo = remote_repo),
-             tf_article = create_man_rticles(manuscript_file, "tf_article", remote_repo = remote_repo),
-             create_man_github(manuscript_file, remote_repo = remote_repo)
+             apa6 = create_man_papaja(man_fn_abs, remote_repo = remote_repo),
+             acm_article = create_man_rticles(man_fn_abs, "acm_article", remote_repo = remote_repo),
+             acs_article = create_man_rticles(man_fn_abs, "acs_article", remote_repo = remote_repo),
+             aea_article = create_man_rticles(man_fn_abs, "aea_article", remote_repo = remote_repo),
+             agu_article = create_man_rticles(man_fn_abs, "agu_article", remote_repo = remote_repo),
+             amq_article = create_man_rticles(man_fn_abs, "amq_article", remote_repo = remote_repo),
+             ams_article = create_man_rticles(man_fn_abs, "ams_article", remote_repo = remote_repo),
+             asa_article = create_man_rticles(man_fn_abs, "asa_article", remote_repo = remote_repo),
+             biometrics_article = create_man_rticles(man_fn_abs, "biometrics_article", remote_repo = remote_repo),
+             copernicus_article = create_man_rticles(man_fn_abs, "copernicus_article", remote_repo = remote_repo),
+             ctex = create_man_rticles(man_fn_abs, "ctex", remote_repo = remote_repo),
+             elsevier_article = create_man_rticles(man_fn_abs, "elsevier_article", remote_repo = remote_repo),
+             frontiers_article = create_man_rticles(man_fn_abs, "frontiers_article", remote_repo = remote_repo),
+             ieee_article = create_man_rticles(man_fn_abs, "ieee_article", remote_repo = remote_repo),
+             joss_article = create_man_rticles(man_fn_abs, "joss_article", remote_repo = remote_repo),
+             jss_article = create_man_rticles(man_fn_abs, "jss_article", remote_repo = remote_repo),
+             mdpi_article = create_man_rticles(man_fn_abs, "mdpi_article", remote_repo = remote_repo),
+             mnras_article = create_man_rticles(man_fn_abs, "mnras_article", remote_repo = remote_repo),
+             oup_article = create_man_rticles(man_fn_abs, "oup_article", remote_repo = remote_repo),
+             peerj_article = create_man_rticles(man_fn_abs, "peerj_article", remote_repo = remote_repo),
+             plos_article = create_man_rticles(man_fn_abs, "plos_article", remote_repo = remote_repo),
+             pnas_article = create_man_rticles(man_fn_abs, "pnas_article", remote_repo = remote_repo),
+             rjournal_article = create_man_rticles(man_fn_abs, "rjournal_article", remote_repo = remote_repo),
+             rsos_article = create_man_rticles(man_fn_abs, "rsos_article", remote_repo = remote_repo),
+             sage_article = create_man_rticles(man_fn_abs, "sage_article", remote_repo = remote_repo),
+             sim_article = create_man_rticles(man_fn_abs, "sim_article", remote_repo = remote_repo),
+             springer_article = create_man_rticles(man_fn_abs, "springer_article", remote_repo = remote_repo),
+             tf_article = create_man_rticles(man_fn_abs, "tf_article", remote_repo = remote_repo),
+             create_man_github(man_fn_abs, remote_repo = remote_repo)
       )
       # Add references.bib
-      copy_resources(which_files = "references.bib", path = man_dir)
-      bibfiles <- list.files(path = man_dir, pattern = ".bib$", full.names = TRUE)
+      copy_resources(which_files = "references.bib", path = man_dir_abs)
+      bibfiles <- list.files(path = man_dir_abs, pattern = ".bib$", full.names = TRUE)
       if(length(bibfiles) > 1){
         worcs_ref <- readLines(bibfiles[endsWith(bibfiles, "references.bib")], encoding = "UTF-8")
         bib_text <- do.call(c, lapply(bibfiles[!endsWith(bibfiles, "references.bib")], readLines, encoding = "UTF-8"))
         invisible(file.remove(bibfiles))
-        write_as_utf(c(worcs_ref, bib_text), file.path(man_dir, "references.bib"))
+        write_as_utf(c(worcs_ref, bib_text), file.path(man_dir_abs, "references.bib"))
       }
+      write_worcsfile(filename = file.path(path, ".worcs"),
+                      entry_point = man_fn_rel,
+                      modify = TRUE)
       col_message("Creating manuscript files.")
     }, error = function(e){
       col_message("Creating manuscript files.", success = FALSE)
     })
   } else {
     write_as_utf(recommend_data, file.path(path, "run_me.R"))
+    write_worcsfile(filename = file.path(path, ".worcs"),
+                    entry_point = "run_me.R",
+                    modify = TRUE)
   }
   # End manuscript
 
@@ -281,16 +289,16 @@ describe_file <- function(file, desc, usage, tab, path){
 }
 
 
-create_man_papaja <- function(manuscript_file, remote_repo){
+create_man_papaja <- function(man_fn_abs, remote_repo){
   if("papaja" %in% rownames(installed.packages())){
     draft(
-      file = manuscript_file,
+      file = man_fn_abs,
       "apa6",
       package = "papaja",
       create_dir = FALSE,
       edit = FALSE
     )
-    manuscript_text <- readLines(manuscript_file, encoding = "UTF-8")
+    manuscript_text <- readLines(man_fn_abs, encoding = "UTF-8")
     # Add bibliography
     bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
     manuscript_text[bib_line] <- paste0(substr(manuscript_text[bib_line], start = 1, stop = nchar(manuscript_text[bib_line])-1), ', "references.bib"]')
@@ -313,21 +321,21 @@ create_man_papaja <- function(manuscript_file, remote_repo){
     manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
 
     # Write
-    write_as_utf(manuscript_text, manuscript_file)
+    write_as_utf(manuscript_text, man_fn_abs)
   } else {
     col_message('Could not generate an APA6 manuscript file, because the \'papaja\' package is not installed. Run this code to see instructions on how to install this package from GitHub:\n  vignette("setup", package = "worcs")', success = FALSE)
   }
 }
 
-create_man_github <- function(manuscript_file, remote_repo){
+create_man_github <- function(man_fn_abs, remote_repo){
     draft(
-      file = manuscript_file,
+      file = man_fn_abs,
       template = "github_document",
       package = "rmarkdown",
       create_dir = FALSE,
       edit = FALSE
     )
-    manuscript_text <- readLines(manuscript_file, encoding = "UTF-8")
+    manuscript_text <- readLines(man_fn_abs, encoding = "UTF-8")
     # Add bibliography and citation function
     add_lines <- c(
       "date: '`r format(Sys.time(), \"%d %B, %Y\")`'",
@@ -347,20 +355,20 @@ create_man_github <- function(manuscript_file, remote_repo){
     )
     manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
     # Write
-    write_as_utf(manuscript_text, manuscript_file)
+    write_as_utf(manuscript_text, man_fn_abs)
 }
 
 
-create_man_rticles <- function(manuscript_file, template, remote_repo){
+create_man_rticles <- function(man_fn_abs, template, remote_repo){
   if("rticles" %in% rownames(installed.packages())){
     draft(
-      file = manuscript_file,
+      file = man_fn_abs,
       template = template,
       package = "rticles",
       create_dir = FALSE,
       edit = FALSE
     )
-    manuscript_text <- readLines(manuscript_file, encoding = "UTF-8")
+    manuscript_text <- readLines(man_fn_abs, encoding = "UTF-8")
     # Add bibliography
     bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
     manuscript_text[bib_line] <- "bibliography: references.bib"
@@ -382,7 +390,7 @@ create_man_rticles <- function(manuscript_file, template, remote_repo){
       ""
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]))
-    write_as_utf(manuscript_text, manuscript_file)
+    write_as_utf(manuscript_text, man_fn_abs)
   } else {
     col_message(paste0('Could not generate ', template, ' manuscript file, because the \'rticles\' package is not installed. Run this code to install the package from CRAN:\n  install.packages("rticles", dependencies = TRUE)'), success = FALSE)
   }

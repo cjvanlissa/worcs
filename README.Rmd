@@ -5,8 +5,8 @@ output: github_document
 # WORCS <a href='https://osf.io/zcvbs/'><img src='https://github.com/cjvanlissa/worcs/raw/master/docs/worcs_icon.png' align="right" height="139" /></a>
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<!--[![CRAN status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/package=worcs)
-[![](https://cranlogs.r-pkg.org/badges/worcs)](https://cran.r-project.org/package=worcs)-->
+[![CRAN status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/package=worcs)
+[![](https://cranlogs.r-pkg.org/badges/worcs)](https://cran.r-project.org/package=worcs)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis build status](https://travis-ci.org/cjvanlissa/worcs.svg?branch=master)](https://travis-ci.org/cjvanlissa/worcs)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3969/badge)](https://bestpractices.coreinfrastructure.org/projects/3969)
@@ -73,7 +73,7 @@ worcs::git_user("your_name", "your_email")
 
 You can cite WORCS using the following citation (please use the same citation for either the package, or the paper):
 
-> Van Lissa, C. J. (2020, February 11). WORCS: A Workflow for Open Reproducible Code in Science. https://doi.org/10.17605/OSF.IO/ZCVBS
+> Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A., Peikert, A., , Struiksma, M. E., & Vreede, B. (2020, May 29). WORCS: A Workflow for Open Reproducible Code in Science. https://doi.org/10.17605/OSF.IO/ZCVBS
 
 ## Contributing and Contact Information
 

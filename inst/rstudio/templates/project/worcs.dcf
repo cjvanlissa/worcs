@@ -1,12 +1,12 @@
 Binding: worcs_project
-Title: A WORCS project template
+Title: WORCS project template
 OpenFiles: README.md, manuscript/manuscript.Rmd, preregistration.Rmd, prepare_data.R
 Icon: worcs.png
 
 Parameter: remote_repo
 Widget: TextInput
-Label: GitHub repository address
-Default: https
+Label: Git remote repository address
+Default: https[...].git or git@[...].git
 
 Parameter: use_renv
 Widget: CheckboxInput

@@ -1,4 +1,4 @@
-# Readme <a href='https://osf.io/zcvbs/'><img src='worcs_badge.png' align="right" height="139" /></a>
+# Readme <a href='https://osf.io/zcvbs/'><img src='worcs_icon.png' align="right" height="139" /></a>
 
 <!-- Please add a brief introduction to explain what the project is about    -->
 
@@ -31,31 +31,32 @@ principles of Open Science throughout a research project.
 
 ## Phase 1: Study design
 
-1. Create a new (Public or Private) repository on 'GitHub'
-2. Create a new RStudio project using the WORCS template
-3. Optional: Preregister your analysis
-4. Optional: Upload preregistration to another repository
+1. Create a (Public or Private) remote repository on a 'Git' hosting service
+2. When using R, initialize a new RStudio project using the WORCS template. Otherwise, clone the remote repository to your local project folder.
+3. Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability. The `worcs` project template does this automatically.
+3. Optional: Preregister your analysis by committing a plain-text preregistration and tagging the commit as "preregistration".
+4. Optional: Upload the preregistration to a dedicated preregistration server
 5. Optional: Add study Materials to the repository
 
-## Phase 2: Data analysis
+## Phase 2: Writing and analysis
 
-6. Load the raw data
-7. Save the data using `open_data()` or `closed_data()`. Never commit data to 'Git' that you do not intend to share
-8. Write the manuscript in `manuscript.Rmd`, using code chunks to perform the analyses.
-9. Commit every small change
+6. Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable
+7. Save the data into a plain-text tabular format like `.csv`. When using open data, commit this file to 'Git'. When using closed data, commit a checksum of the file, and a synthetic copy of the data.
+8. Write the manuscript using a dynamic document generation format, with code chunks to perform the analyses.
+9. Commit every small change to the 'Git' repository
 10. Cite essential references with `@`, and non-essential references with `@@`
 
-## Phase 3: Submission/publication
+## Phase 3: Submission and publication
 
-11. Store the R environment by calling `renv::snapshot()`
-12. Optional: Add a WORCS-badge to your README file and complete the optional elements of the WORCS checklist
-13. Make the Private 'GitHub' repository Public
-14. [Create a project page on the Open Science Framework](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project)
-15. Connect your 'OSF' project page to the 'GitHub' repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)
-16. Add an open science statement to the Abstract or Author notes, which links to the 'GitHub' repository or 'OSF' page
-17. Knit the paper to PDF
-18. Optional: Publish a preprint
-19. Submit the paper, and tag the release of the submitted paper as in Step 3.
+11. Use dependency management to make the computational environment fully reproducible
+12. Optional: Add a WORCS-badge to your project's README file
+13. Make a Private 'Git' remote repository Public
+14. Optional: [Create a project page on the Open Science Framework](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project)
+15. [Connect your 'OSF' project page to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)
+16. Add an open science statement to the Abstract or Author notes, which links to the 'Git' remote repository or 'OSF' page
+17. Render the dynamic document to PDF
+18. Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)
+19. Submit the paper, and tag the release of the submitted paper, as in Step 3.
 
 ## Notes for cautious researchers
 

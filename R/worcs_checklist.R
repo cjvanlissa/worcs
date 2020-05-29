@@ -19,7 +19,8 @@
 #' @keywords datasets
 #' @name worcs_checklist
 #' @usage data(worcs_checklist)
-#' @references by Van Lissa, Brandmaier, Brinkman, & Vreede (2020)
+#' @references Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
+#' Peikert, A., , Struiksma, M. E., & Vreede, B. (2020)
 #' <doi:10.17605/OSF.IO/ZCVBS>.
 #' @format A data frame with 15 rows and 5 variables.
 NULL
