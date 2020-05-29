@@ -12,7 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(worcs)
 ```
 
 Before you can use the WORCS workflow and the full functionality of the `worcs` package, you have to install several software packages, and register on GitHub. You only have to perform these steps once, and the entire process should take approximately 1 hour if you start from scratch. In case some software is already installed on your system, you can skip related steps. Follow these steps in order:
@@ -29,7 +28,7 @@ Before you can use the WORCS workflow and the full functionality of the `worcs` 
     + Enable Git Credential Manager  
     <!--*For logging in to GitHub*-->
     + If you run into any trouble, a more comprehensive tutorial on installing Git is available at [happygitwithr.com](https://happygitwithr.com/install-git.html).
-4. Register on 'GitHub' (alternatively: see [this vignette](library(worcs)) on how to use 'GitLab' or 'Bitbucket')
+4. Register on 'GitHub' (alternatively: see [this vignette](https://cjvanlissa.github.io/worcs/articles/git_cloud.html) on how to use 'GitLab' or 'Bitbucket')
     + Go to [github.com](https://github.com/) and click *Sign up*. Choose an "Individual", "Free" plan.
     + Request a [free academic upgrade](https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount). This allows you to create *private repositories*, which are only visible to you and selected collaborators, and can be made public when your work is published.
 5. Connect 'RStudio' to Git and GitHub (for more support, see [this 'RStudio' article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/rstudio-and-github/))
@@ -48,23 +47,21 @@ Before you can use the WORCS workflow and the full functionality of the `worcs` 
     + If you are prompted to update packages, just press [ENTER] to avoid updating packages. Updating packages this way in an interactive session sometimes leads to errors if the packages are loaded.  
     + If you see a pop-up dialog asking *Do you want to install from sources the package which needs compilation?*, click *No*.
 
-<!-- 
-k. In the 'RStudio' Console window, run the following code:```{r, eval = FALSE, echo = TRUE} system('git config --global user.email "your@email.com"') system('git config --global user.name "yourname"')
 
-RENV WORDT NU NIET GEINSTALLEERD; TOEVOEGEN AAN SUGGESTS? 
-BOVENDIEN GAAT RENV NU INITIALISEREN WANNEER JE VOOR HET EERST EEN PROJECT MAAKT. NIET HANDIG. OF MISSCHIEN WEL? 
-
-ADD library(worcs) TO MANUSCRIPT.RMD TO HAVE RENV TRACK IT
--->
-
-```{r installpackages, eval = FALSE, echo = TRUE}
+```
 install.packages("worcs", dependencies = TRUE)
-remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
 tinytex::install_tinytex()
 renv::consent(provided = TRUE)
 worcs::git_user("your_name", "your_email")
 ```
-<!-- 
-renv::consent(provided = TRUE)
-Please quit and reopen your R session and IDE (if you are using one, such as RStudio or Emacs) and check if tinytex:::is_tinytex() is TRUE.-->
+
+If you intend to write documents in APA style, you should additionally install the `papaja` package.
+Unfortunately, this package is not yet available on the central R repository CRAN, but you can install it from 'GitHub' using the following code:
+
+```
+remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
+```
+
+Because `papaja` has many dependencies, it is recommended to skip this step if you intend to write documents in a different style than APA.
+
 That's it! Everything should be installed and connected now.

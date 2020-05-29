@@ -16,3 +16,5 @@
 Makefile
 ^\.worcs$
 ^.*\.ai$
+^doc$
+^Meta$
