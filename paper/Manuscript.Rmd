@@ -527,7 +527,7 @@ fundamentals for novice users, and offer recommendations specific to `worcs`. We
 recommend using the free, open-source reference manager
 [Zotero](https://www.zotero.org/download/); it is feature-rich, 
 user-friendly, and highly interoperable with other reference managers. A 
-tutorial for using Zotero with RMarkdown exists  [here](https://christopherjunk.netlify.com/blog/2019/02/25/zotero-rmarkdown/).
+tutorial for using Zotero with RMarkdown exists  [here](https://christopherjunk.netlify.com/blog/2019/02/25/zotero-RMarkdown/).
 
 The `worcs` package also offers original solutions for comprehensive citation.
 Firstly,
@@ -947,11 +947,11 @@ WORCS is intended to substantially reduce the threshold for adopting best
 practices in open and reproducible research. However, several limitations and
 issues for future development remain. One potential challenge is the learning
 curve associated with the tools outlined in this paper. Learning to work with R,
-Rmarkdown, and Git requires an initial time investment. The amount of
+RMarkdown, and Git requires an initial time investment. The amount of
 time required is reduced by the availability of tutorials, such as this one, and
 other tutorials cited throughout this document. Moreover, the time investment
 tends to pay off. Working with R opens the door to many cutting edge analysis
-techniques. Working with Rmarkdown saves time and prevents mistakes by avoiding
+techniques. Working with RMarkdown saves time and prevents mistakes by avoiding
 tedious copying of results into a text document. Working with Git keeps
 projects organized, prevents accidental loss of work, enables integrating
 changes by collaborators in a non-destructive manner, and ensures that entire
@@ -959,7 +959,7 @@ research projects are archived and can be accessed or copied by third parties.
 Thus, the time investment is eminently worthwhile.
 
 Another important challenge is managing collaborations when only the lead author
-uses Rmarkdown, and the coauthors use Word. In this case, it is possible to Knit
+uses RMarkdown, and the coauthors use Word. In this case, it is possible to Knit
 the manuscript to Word (.docx), by changing the line `output: papaja::apa6_pdf`
 in the manuscript's YAML header to `output: papaja::apa6_docx`. There are some
 limitations to the conversion, discussed [here](https://crsh.github.io/papaja_man/limitations.html#microsoft-word-documents).
@@ -977,7 +977,7 @@ relative to your last committed version. Finally,
 @peikertReproducibleDataAnalysis2019 mention the [`redoc` package](https://noamross.github.io/redoc/articles/mixed-workflows-with-redoc.html) [@rossRedocReversibleReproducible2020] as a
 potentially useful way to collaborate with Word users. This package enables
 bidirectional conversion between Word and
-Rmarkdown, with support for tracked changes. However, `redoc` is currently in
+RMarkdown, with support for tracked changes. However, `redoc` is currently in
 suspended development, and for many users, a simple solution (i.e.,
 asking collaborators to work in plain text) might be sufficient.
 

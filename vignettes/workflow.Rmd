@@ -43,7 +43,7 @@ This vignette describes the Workflow for Open Reproducible Code in Science, as i
         - Go to the 'GitHub' page for your project
         - Click the label that says "0 releases"
         - Click the button labeled "Create new release"
-        - In the textbox labeled "Tag version" and the textbox "Release title", write: "Preresitration"
+        - In the textbox labeled "Tag version" and the textbox "Release title", write: "Preregistration"
         - Click the green button labeled "Publish release"
 4. <!--S: Optional: Upload the preregistration to a dedicated preregistration server-->Optional: Render the preregistration to PDF, and upload it as an attachment to a dedicated preregistration server like AsPredicted.org or OSF.io
     + In 'RStudio', with the file 'preregistration.Rmd' open, click the "Knit" button above the top left panel
