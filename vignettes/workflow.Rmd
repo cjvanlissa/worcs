@@ -18,6 +18,8 @@ library(worcs)
 
 ## WORCS: Steps to follow for a project
 
+This vignette describes the Workflow for Open Reproducible Code in Science, as introduced in @vanlissaWORCSWorkflowOpen2020. The paper describes the rationale and principled approach on which the workflow is based; this vignette describes the practical steps for R-users in greater detail.
+
 ### Phase 1: Study design
 
 1. <!--S: Create a (Public or Private) remote repository on a 'Git' hosting service-->Create a new remote repository on a 'Git' hosting service, such as ["GitHub"](https://github.com)
@@ -105,3 +107,5 @@ library(worcs)
 ### Notes for cautious researchers
 
 <!--S: Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance.-->Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance by the journal.
+
+**References**
