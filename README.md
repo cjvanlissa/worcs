@@ -5,16 +5,13 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/package=worcs)
-[![](https://cranlogs.r-pkg.org/badges/worcs)](https://cran.r-project.org/package=worcs)
+[![metacran
+downloads](https://cranlogs.r-pkg.org/badges/worcs)](https://cran.r-project.org/package=worcs)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis build
 status](https://travis-ci.org/cjvanlissa/worcs.svg?branch=master)](https://travis-ci.org/cjvanlissa/worcs)
 [![CII Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/3969/badge)](https://bestpractices.coreinfrastructure.org/projects/3969)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/worcs)](https://CRAN.R-project.org/package=worcs)
-[![metacran
-downloads](https://cranlogs.r-pkg.org/badges/worcs)](https://cran.r-project.org/package=worcs)
 <!--[![Codecov test
 coverage](https://codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg)](https://codecov.io/gh/cjvanlissa/worcs?branch=master)-->
 <!--[![DOI](http://joss.theoj.org/papers/10.21105/joss.00978/status.svg)](https://doi.org/10.21105/joss.00978)-->
