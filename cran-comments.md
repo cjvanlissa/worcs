@@ -1,28 +1,29 @@
-# Version 0.1.1
+# Version 0.1.2
 
-This version addresses the comments by CRAN team member Martina Schmirl:
-* Write package, software, and API names in single quotes in title and 
-  description.
-  - We have done as requested, respecting the correct capitalization of names.  
-    Changed names include 'R', 'RStudio', 'Git', 'GitHub', and 'R Markdown'.
-* Add references in the description field of your DESCRIPTION file in the form
-  authors (year) <doi:...>
-  - We have added this reference to DESCRIPTION:
-    Van Lissa and colleagues (2020) <doi:10.17605/OSF.IO/ZCVBS>
-* Please add \value to .Rd files regarding exported methods and explain the
-  functions results in the documentation.
-  - We have done as requested.
+* All documentation updated to ensure compatibility with the submitted version
+  of the WORCS-paper.
+* Authors and references to WORCS-paper updated to include all co-authors.
+* Bug fix to load_data() to ensure compatibility with the 'RMarkdown' behavior
+  of running code chunks from the .Rmd file directory, instead of from the
+  actual working directory.
+* Bug fix to cite_all() and cite_essential() to allow escaping literal double @.
+* Bug fix to export_project(), which now respects the folder structure within a
+  project, and also supports relative paths to ensure portability, even when
+  called from a different working than the working directory. Fixing this bug
+  required changing the working directory before calling zip(). This change in
+  working directory is immediately followed by a call to on.exit(setwd(oldwd)),
+  in line with CRAN policy.
+* .worcs file is used to determine the existence of a worcs-project recursively.
+* .worcs file now tracks entry point for analyses.
 
 ## Test environments
 
-* local Windows 10 install, R 3.6.2
+* local Windows 10 install, R 4.0.0
 * local linux-gnu Solus 4.1 Fortitude, R version 3.6.3 (2020-02-29)
 * win-builder: release, R 4.0.0 2020-04-24 07:05:34 Arbor Day 
-* win-builder: oldrelease: R 3.6.3 2020-02-29 08:05:16 Holding the Windsock
-* win-builder: devel: R 3.6.3 2020-02-29 08:05:16 Holding the Windsock
+* win-builder: oldrelease: R version 3.6.3 (2020-02-29)
+* win-builder: devel: R Under development (unstable) (2020-05-26 r78577)
 * rhub check: Windows Server 2008 R2 SP1, R-devel, 32/64 bit
-* rhub check: Ubuntu Linux 16.04 LTS, R-release, GCC
-  + PREPERROR: Dependency 'openssl' is not available. Bug reported on R-hub GitHub page https://github.com/r-hub/sysreqsdb/issues/77
 * rhub check: Fedora Linux, R-devel, clang, gfortran
 * Travis linux, release
 * Travis linux, oldrel
@@ -30,6 +31,10 @@ This version addresses the comments by CRAN team member Martina Schmirl:
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 notes
+0 errors | 0 warnings | 1 note
 
-NOTE: New submission
+NOTE: Possibly mis-spelled words in DESCRIPTION:
+  Lamprecht (34:41)
+  Struiksma (34:52)
+
+Response: These are co-author names.
