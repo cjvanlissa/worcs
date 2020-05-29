@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -135,6 +135,20 @@
       <small>Source: <a href='https://github.com/cjvanlissa/worcs/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="worcs-012" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.2">
+<a href="#worcs-012" class="anchor"></a>worcs 0.1.2<small> Unreleased </small>
+</h1>
+<ul>
+<li>All documentation updated to ensure compatibility with the submitted version of the WORCS-paper.</li>
+<li>Authors and references to WORCS-paper updated to include all co-authors.</li>
+<li>Bug fix to load_data() to ensure compatibility with the ‘RMarkdown’ behavior of running code chunks from the .Rmd file directory, instead of from the actual working directory.</li>
+<li>Bug fix to cite_all() and cite_essential() to allow escaping literal double @.</li>
+<li>Bug fix to export_project(), which now respects the folder structure within a project, and also supports relative paths to ensure portability, even when called from a different working than the working directory. Fixing this bug required changing the working directory before calling zip(). This change in working directory is immediately followed by a call to on.exit(setwd(oldwd)), in line with CRAN policy.</li>
+<li>.worcs file is used to determine the existence of a worcs-project recursively.</li>
+<li>.worcs file now tracks entry point for analyses.</li>
+</ul>
+</div>
     <div id="worcs-011" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.1">
 <a href="#worcs-011" class="anchor"></a>worcs 0.1.1<small> 2020-05-18 </small>
