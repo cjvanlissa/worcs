@@ -171,16 +171,18 @@ Optional: Add study Materials to the repository.
 </li>
 </ol>
 </div>
-<div id="phase-2-data-analysis" class="section level3">
+<div id="phase-2-writing-and-analysis" class="section level3">
 <h3 class="hasAnchor">
-<a href="#phase-2-data-analysis" class="anchor"></a>Phase 2: Data analysis</h3>
+<a href="#phase-2-writing-and-analysis" class="anchor"></a>Phase 2: Writing and analysis</h3>
 <ol start="6" style="list-style-type: decimal">
 <li>
-<!--S: Create a script documenting the steps required to load the raw data and prepare them for analysis-->
-Create a script documenting the steps required to load the raw data into R and prepare them for analysis
+<!--S: Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable-->
+Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable
 <ul>
-<li>Document this preprocessing (“data wrangling”) procedure in the <code>prepare_data.R</code> file. This file is intended to document steps that you would run only once, the first time you load data into R, and that end users will not be able to replicate, unless they have access to the raw data file.</li>
-<li>Start with the raw data upon collection, and reprocess them until your data are <a href="https://vita.had.co.nz/papers/tidy-data.pdf">“tidy”</a> and ready for analysis</li>
+<li>Document this preprocessing (“data wrangling”) procedure in the <code>prepare_data.R</code> file.</li>
+<li>This file is intended to document steps that can not or should not be replicated by end users, unless they have access to the raw data file.</li>
+<li>These are steps you would run only once, the first time you load data into R.</li>
+<li>Make this file as short as possible; only include steps that are absolutely necessary</li>
 </ul>
 </li>
 <li>
@@ -188,6 +190,7 @@ Create a script documenting the steps required to load the raw data into R and p
 Save the data using <code><a href="../reference/open_data.html">open_data()</a></code> or <code><a href="../reference/closed_data.html">closed_data()</a></code>
 <ul>
 <li><font colour="red"><strong>WARNING:</strong> Once you commit a data file to the ‘Git’ repository, its record will be retained forever (unless the entire repository is deleted). Assume that pushing data to a ‘Git’ remote repository cannot be undone. Follow the mantra: “Never commit something you do not intend to share”.</font></li>
+<li>When using external data sources (e.g., obtained using an API), it is recommended to store a local copy, to make the project portable and to ensure that end users have access to the same version of the data you used.</li>
 </ul>
 </li>
 <li>
@@ -216,9 +219,9 @@ Regularly Commit your progress to the Git repository; ideally, after completing 
 While writing, cite essential references with one at-symbol, <code>[@essentialref2020]</code>, and non-essential references with a double at-symbol, <code>[@@nonessential2020]</code>.</li>
 </ol>
 </div>
-<div id="phase-3-submissionpublication" class="section level3">
+<div id="phase-3-submission-and-publication" class="section level3">
 <h3 class="hasAnchor">
-<a href="#phase-3-submissionpublication" class="anchor"></a>Phase 3: Submission/publication</h3>
+<a href="#phase-3-submission-and-publication" class="anchor"></a>Phase 3: Submission and publication</h3>
 <ol start="11" style="list-style-type: decimal">
 <li>
 <!--S: Use dependency management to make the computational environment fully reproducible-->
@@ -247,8 +250,8 @@ Make the ‘Git’ remote repository “Public” if it was set to “Private”
 </ul>
 </li>
 <li>
-<!--S: [Create a project page on the Open Science Framework](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project)-->
-<a href="https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project">Create a project on the Open Science Framework (OSF)</a>; you may have already done this in Step 5.</li>
+<!--S: Optional: [Create a project page on the Open Science Framework](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project)-->
+Optional: <a href="https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project">Create a project on the Open Science Framework (OSF)</a>; you may have already done this in Step 4.</li>
 <li>
 <!--S: [Connect your 'OSF' project page to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->
 <a href="https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project">Connect your ‘OSF’ project page to the ‘Git’ remote repository</a>
@@ -289,7 +292,7 @@ Submit the paper, and tag the release of the submitted paper as in Step 3.</li>
 <h3 class="hasAnchor">
 <a href="#notes-for-cautious-researchers" class="anchor"></a>Notes for cautious researchers</h3>
 <!--S: Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance.-->
-<p>Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a “Private” repository in Step 1, and completing Steps 13-18 upon acceptance.</p>
+<p>Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a “Private” repository in Step 1, and completing Steps 13-18 upon acceptance by the journal.</p>
 <div id="refs" class="references">
 <div id="ref-aalbersbergMakingScienceTransparent2018">
 <p>Aalbersberg, IJsbrand Jan, Tom Appleyard, Sarah Brookhart, Todd Carpenter, Michael Clarke, Stephen Curry, Josh Dahl, et al. 2018. “Making Science Transparent by Default; Introducing the TOP Statement,” February. <a href="https://doi.org/10.31219/osf.io/sm78t">https://doi.org/10.31219/osf.io/sm78t</a>.</p>
