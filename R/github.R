@@ -1,10 +1,11 @@
 #' @importFrom gert libgit2_config git_config_global
 has_git <- function(){
-  config <- libgit2_config()
-  settings <- git_config_global()
-  name <- subset(settings, name == "user.name")$value
-  email <- subset(settings, name == "user.email")$value
-  (any(unlist(config[c("ssh", "https")])) & (length(name) && length(email)))
+  tryCatch({
+    config <- libgit2_config()
+    return(has_git_user() & (any(unlist(config[c("ssh", "https")]))))
+  }, error = function(e){
+    return(FALSE)
+  })
 }
 
 #' @title Set global 'Git' credentials
