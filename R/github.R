@@ -17,6 +17,8 @@ has_git <- function(){
 #' @param email Character. The email address you want to use with 'Git'.
 #' @return No return value. This function is called for its side effects.
 #' @rdname git_user
+#' @examples
+#' do.call(git_user, worcs:::get_user())
 #' @export
 #' @importFrom gert git_config_global_set
 git_user <- function(name, email){
