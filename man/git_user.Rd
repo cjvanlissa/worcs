@@ -21,6 +21,3 @@ once: \code{name = "user.name"} is set to the value of the \code{name}
 argument, and \code{name = "user.email"} is set to the value of the
 \code{email} argument.
 }
-\examples{
-git_user("myname", "my@email.com")
-}

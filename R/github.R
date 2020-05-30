@@ -16,8 +16,6 @@ has_git <- function(){
 #' @param name Character. The user name you want to use with 'Git'.
 #' @param email Character. The email address you want to use with 'Git'.
 #' @return No return value. This function is called for its side effects.
-#' @examples
-#' git_user("myname", "my@email.com")
 #' @rdname git_user
 #' @export
 #' @importFrom gert git_config_global_set
