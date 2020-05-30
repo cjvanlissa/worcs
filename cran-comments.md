@@ -1,33 +1,12 @@
 # Version 0.1.2
 
-* All documentation updated to ensure compatibility with the submitted version
-  of the WORCS-paper.
-* Authors and references to WORCS-paper updated to include all co-authors.
-* Bug fix to load_data() to ensure compatibility with the 'RMarkdown' behavior
-  of running code chunks from the .Rmd file directory, instead of from the
-  actual working directory.
-* Bug fix to cite_all() and cite_essential() to allow escaping literal double @.
-* Bug fix to export_project(), which now respects the folder structure within a
-  project, and also supports relative paths to ensure portability, even when
-  called from a different working than the working directory. Fixing this bug
-  required changing the working directory before calling zip(). This change in
-  working directory is immediately followed by a call to on.exit(setwd(oldwd)),
-  in line with CRAN policy.
-* .worcs file is used to determine the existence of a worcs-project recursively.
-* .worcs file now tracks entry point for analyses.
+Addresses comment by Uwe Ligges:
 
-## CRAN Package Check Results for Package worcs
-
-* On r-devel-linux-x86_64-fedora-clang, r-devel-linux-x86_64-fedora-gcc, r-release-osx-x86_64, r-oldrel-osx-x86_64: NOTE: Namespace in Imports field not imported from: ‘prereg’. All declared Imports should be used.
-	+ Status: Solved
-	+ This package is listed as a dependency because users can select the 'Rmarkdown' document templates exported from this package in the RStudio new project dialog window.
-	+ We have included a formal import from the 'prereg' package
-* On r-oldrel-osx-x86_64: Error: pandoc version 1.12.3 or higher is required and was not found.
-	+ Status: Cannot address
-	+ Reason: The testing system does not have an up-to-date version of pandoc. This is not an error that can be solved on our end
-* On r-patched-solaris-x86: ERROR: Package required but not available: ‘gert’
-	+ Status: Cannot address
-	+ Reason: 'gert' is available on CRAN. Not clear why it is unavailable on the testing system.
+* Found the following (possibly) invalid URLs:
+  URL: https://bookdown.org/yihui/RMarkdown-cookbook/bibliography.html
+    + Status: Solved
+    + Reason: Capitalization of RMarkdown caused this URL to fail. This works:
+    https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html
 
 ## Test environments
 

@@ -140,6 +140,7 @@
 <ul>
 <li>All documentation updated to ensure compatibility with the submitted version of the WORCS-paper.</li>
 <li>Authors and references to WORCS-paper updated to include all co-authors.</li>
+<li>Prevent git_user() from engaging in antisocial behavior, resetting users’ ‘Git’ credentials, by adding a default argument ‘overwrite = !has_git_user()’. By default, the function will do nothing when ‘Git’ user credentials already exist.</li>
 <li>Bug fix to load_data() to ensure compatibility with the ‘RMarkdown’ behavior of running code chunks from the .Rmd file directory, instead of from the actual working directory.</li>
 <li>Bug fix to cite_all() and cite_essential() to allow escaping literal double @.</li>
 <li>Bug fix to export_project(), which now respects the folder structure within a project, and also supports relative paths to ensure portability, even when called from a different working than the working directory. Fixing this bug required changing the working directory before calling zip(). This change in working directory is immediately followed by a call to on.exit(setwd(oldwd)), in line with CRAN policy.</li>

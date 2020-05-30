@@ -3,6 +3,10 @@
 * All documentation updated to ensure compatibility with the submitted version
   of the WORCS-paper.
 * Authors and references to WORCS-paper updated to include all co-authors.
+* Prevent git_user() from engaging in antisocial behavior, resetting users'
+  'Git' credentials, by adding a default argument 'overwrite = !has_git_user()'.
+  By default, the function will do nothing when 'Git' user credentials already
+  exist.
 * Bug fix to load_data() to ensure compatibility with the 'RMarkdown' behavior
   of running code chunks from the .Rmd file directory, instead of from the
   actual working directory.
