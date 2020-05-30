@@ -149,7 +149,7 @@ argument, and <code>name = "user.email"</code> is set to the value of the
 <code>email</code> argument.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>git_user</span>(<span class='no'>name</span>, <span class='no'>email</span>)</pre>
+    <pre class="usage"><span class='fu'>git_user</span>(<span class='no'>name</span>, <span class='no'>email</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> !<span class='fu'>has_git_user</span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,6 +161,14 @@ argument, and <code>name = "user.email"</code> is set to the value of the
     <tr>
       <th>email</th>
       <td><p>Character. The email address you want to use with 'Git'.</p></td>
+    </tr>
+    <tr>
+      <th>overwrite</th>
+      <td><p>Logical. Whether or not to overwrite existing 'Git'
+credentials. Use this to prevent code from accidentally overwriting existing
+'Git' credentials. The default value uses <code>has_git_user</code>
+to set overwrite to <code>FALSE</code> if user credentials already exist, and to
+<code>TRUE</code> if no user credentials exist.</p></td>
     </tr>
     </table>
 

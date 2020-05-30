@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • worcs</title>
+<title>Check whether global 'Git' credentials exist — has_git_user • worcs</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,10 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Check whether global 'Git' credentials exist — has_git_user" />
+<meta property="og:description" content="Check whether the values user.name and user.email
+exist exist in the 'Git' global configuration settings.
+Uses git_config_global." />
 
 
 
@@ -58,7 +61,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -131,41 +134,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/cjvanlissa/worcs/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Check whether global 'Git' credentials exist</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cjvanlissa/worcs/blob/master/R/github.R'><code>R/github.R</code></a></small>
+    <div class="hidden name"><code>has_git_user.Rd</code></div>
     </div>
 
-    <div id="worcs-012" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.2">
-<a href="#worcs-012" class="anchor"></a>worcs 0.1.2<small> Unreleased </small>
-</h1>
-<ul>
-<li>All documentation updated to ensure compatibility with the submitted version of the WORCS-paper.</li>
-<li>Authors and references to WORCS-paper updated to include all co-authors.</li>
-<li>Prevent git_user() from engaging in antisocial behavior, resetting users’ ‘Git’ credentials, by adding a default argument ‘overwrite = !has_git_user()’. By default, the function will do nothing when ‘Git’ user credentials already exist.</li>
-<li>Bug fix to load_data() to ensure compatibility with the ‘RMarkdown’ behavior of running code chunks from the .Rmd file directory, instead of from the actual working directory.</li>
-<li>Bug fix to cite_all() and cite_essential() to allow escaping literal double @.</li>
-<li>Bug fix to export_project(), which now respects the folder structure within a project, and also supports relative paths to ensure portability, even when called from a different working than the working directory. Fixing this bug required changing the working directory before calling zip(). This change in working directory is immediately followed by a call to on.exit(setwd(oldwd)), in line with CRAN policy.</li>
-<li>.worcs file is used to determine the existence of a worcs-project recursively.</li>
-<li>.worcs file now tracks entry point for analyses.</li>
-</ul>
-</div>
-    <div id="worcs-011" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.1">
-<a href="#worcs-011" class="anchor"></a>worcs 0.1.1<small> 2020-05-18 </small>
-</h1>
-<ul>
-<li>First CRAN release.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>Check whether the values <code>user.name</code> and <code>user.email</code>
+exist exist in the 'Git' global configuration settings.
+Uses <code><a href='https://jeroen.cran.dev/gert/reference/git_config.html'>git_config_global</a></code>.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>has_git_user</span>()</pre>
+
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Logical, indicating whether 'Git' global configuration settings could
+be retrieved, and contained the values
+<code>user.name</code> and <code>user.email</code>.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>has_git_user</span>()</div><div class='output co'>#&gt; <span class='error'>Error in has_git_user(): could not find function "has_git_user"</span></div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 
