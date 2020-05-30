@@ -15,26 +15,35 @@ has_git <- function(){
 #' \code{email} argument.
 #' @param name Character. The user name you want to use with 'Git'.
 #' @param email Character. The email address you want to use with 'Git'.
+#' @param overwrite Logical. Whether or not to overwrite existing 'Git'
+#' credentials. Use this to prevent code from accidentally overwriting existing
+#' 'Git' credentials. The default value uses \code{\link{has_git_user}}
+#' to set overwrite to \code{FALSE} if user credentials already exist, and to
+#' \code{TRUE} if no user credentials exist.
 #' @return No return value. This function is called for its side effects.
 #' @rdname git_user
 #' @examples
 #' do.call(git_user, worcs:::get_user())
 #' @export
 #' @importFrom gert git_config_global_set
-git_user <- function(name, email){
-  invisible(
-    tryCatch({
-      do.call(git_config_global_set, list(
-        name = "user.name",
-        value = name
-      ))
-      do.call(git_config_global_set, list(
-        name = "user.email",
-        value = email
-      ))
-      col_message("'Git' username set to '", name, "' and email set to '", email, "'.")
-  }, error = function(e){warning("Could not set 'Git' credentials.", call. = FALSE)})
-  )
+git_user <- function(name, email, overwrite = !has_git_user()){
+  if(overwrite){
+    invisible(
+      tryCatch({
+        do.call(git_config_global_set, list(
+          name = "user.name",
+          value = name
+        ))
+        do.call(git_config_global_set, list(
+          name = "user.email",
+          value = email
+        ))
+        col_message("'Git' username set to '", name, "' and email set to '", email, "'.")
+      }, error = function(e){warning("Could not set 'Git' credentials.", call. = FALSE)})
+    )
+  } else {
+    message("To set the 'Git' username and email, call 'git_user()' with the argument 'overwrite = TRUE'.")
+  }
 }
 
 #' @importFrom gert git_config_global
@@ -43,12 +52,38 @@ get_user <- function(){
     name = "yourname",
     email = "yourname@email.com"
   )
+  if(has_git_user()){
+    cf <- git_config_global()
+    Args$name <- cf$value[cf$name == "user.name"]
+    Args$email <- cf$value[cf$name == "user.email"]
+  }
+  return(Args)
+}
+
+#' @title Check whether global 'Git' credentials exist
+#' @description Check whether the values \code{user.name} and \code{user.email}
+#' exist exist in the 'Git' global configuration settings.
+#' Uses \code{\link[gert]{git_config_global}}.
+#' @return Logical, indicating whether 'Git' global configuration settings could
+#' be retrieved, and contained the values
+#' \code{user.name} and \code{user.email}.
+#' @rdname has_git_user
+#' @examples
+#' has_git_user()
+#' @export
+#' @importFrom gert git_config_global
+has_git_user <- function(){
   tryCatch({
     cf <- git_config_global()
-    if("user.name" %in% cf$name) Args$name <- cf$value[cf$name == "user.name"]
-    if("user.email" %in% cf$name) Args$email <- cf$value[cf$name == "user.email"]
-  }, error = function(e){ message("No 'Git' credentials found, returning name = 'yourname' and email = 'yourname@email.com'.") })
-  return(Args)
+    if(!("user.name" %in% cf$name) & ("user.email" %in% cf$name)){
+      stop()
+    } else {
+      return(TRUE)
+    }
+  }, error = function(e){
+    message("No 'Git' credentials found, returning name = 'yourname' and email = 'yourname@email.com'.")
+    return(FALSE)
+  })
 }
 
 #' @title Add, commit, and push changes.

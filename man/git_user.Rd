@@ -4,12 +4,18 @@
 \alias{git_user}
 \title{Set global 'Git' credentials}
 \usage{
-git_user(name, email)
+git_user(name, email, overwrite = !has_git_user())
 }
 \arguments{
 \item{name}{Character. The user name you want to use with 'Git'.}
 
 \item{email}{Character. The email address you want to use with 'Git'.}
+
+\item{overwrite}{Logical. Whether or not to overwrite existing 'Git'
+credentials. Use this to prevent code from accidentally overwriting existing
+'Git' credentials. The default value uses \code{\link{has_git_user}}
+to set overwrite to \code{FALSE} if user credentials already exist, and to
+\code{TRUE} if no user credentials exist.}
 }
 \value{
 No return value. This function is called for its side effects.
