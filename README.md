@@ -26,11 +26,45 @@ specific issues.
 
 ## Where do I start?
 
-For most users, the recommended starting point is to read [the preprint
-paper, available on the Open Science Framework](https://osf.io/zcvbs/).
+For most users, the recommended starting point is to [read the preprint
+paper](https://osf.io/zcvbs/), which introduces the WORCS workflow,
+explains the underlying tools, and illustrates how the `worcs` package
+can be used to create a new project that follows the workflow.
 
-The paper describes the WORCS workflow, and how the `worcs` package fits
-into that workflow.
+The workflow is illustrated below; the [workflow
+vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html)
+describes each step in detail.
+
+<img src="paper/workflow_graph/workflow.png" width="1190" />
+
+## Installing the package
+
+Before installing the package, please read [this
+vignette](https://cjvanlissa.github.io/worcs/articles/setup.html), which
+explains how to set up your computer for `worcs`.
+
+After reading [the
+vignette](https://cjvanlissa.github.io/worcs/articles/setup.html), you
+can install the development version of the `worcs` package from GitHub
+with:
+
+``` r
+if(!requireNamespace("remotes"))install.packages("remotes")
+remotes::install_github("cjvanlissa/worcs", dependencies = TRUE, update = "never")
+remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
+tinytex::install_tinytex()
+worcs::git_user("your_name", "your_email")
+```
+
+## Citing WORCS
+
+You can cite WORCS using the following citation (please use the same
+citation for either the package, or the paper):
+
+> Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
+> Peikert, A., , Struiksma, M. E., & Vreede, B. (2020, May 29). WORCS: A
+> Workflow for Open Reproducible Code in Science.
+> <https://doi.org/10.17605/OSF.IO/ZCVBS>
 
 ## About this repository
 
@@ -62,35 +96,6 @@ for the package and paper.
 | paper/        | WORCS paper source files        | human editable  |
 | R/            | R-package source code           | human editable  |
 | vignettes/    | R-package vignettes             | human editable  |
-
-## Installing the package
-
-Before installing the package, please read [this
-vignette](https://cjvanlissa.github.io/worcs/articles/setup.html), which
-explains how to set up your computer for `worcs`.
-
-After reading [the
-vignette](https://cjvanlissa.github.io/worcs/articles/setup.html), you
-can install the development version of the `worcs` package from GitHub
-with:
-
-``` r
-if(!requireNamespace("remotes"))install.packages("remotes")
-remotes::install_github("cjvanlissa/worcs", dependencies = TRUE, update = "never")
-remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
-tinytex::install_tinytex()
-worcs::git_user("your_name", "your_email")
-```
-
-## Citing WORCS
-
-You can cite WORCS using the following citation (please use the same
-citation for either the package, or the paper):
-
-> Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
-> Peikert, A., , Struiksma, M. E., & Vreede, B. (2020, May 29). WORCS: A
-> Workflow for Open Reproducible Code in Science.
-> <https://doi.org/10.17605/OSF.IO/ZCVBS>
 
 ## Contributing and Contact Information
 
