@@ -35,7 +35,7 @@ The workflow is illustrated below; the [workflow
 vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html)
 describes each step in detail.
 
-<img src="paper/workflow_graph/workflow.png" width="1190" />
+![](https://github.com/cjvanlissa/worcs/raw/master/paper/workflow_graph/workflow.png)<!-- -->
 
 ## Installing the package
 
@@ -51,9 +51,15 @@ with:
 ``` r
 if(!requireNamespace("remotes"))install.packages("remotes")
 remotes::install_github("cjvanlissa/worcs", dependencies = TRUE, update = "never")
-remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
 tinytex::install_tinytex()
 worcs::git_user("your_name", "your_email")
+```
+
+If you intend to write APA style manuscripts, you can additionally
+install the `papaja` package:
+
+``` r
+remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
 ```
 
 ## Citing WORCS

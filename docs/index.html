@@ -110,7 +110,7 @@
 <a href="#where-do-i-start" class="anchor"></a>Where do I start?</h2>
 <p>For most users, the recommended starting point is to <a href="https://osf.io/zcvbs/">read the preprint paper</a>, which introduces the WORCS workflow, explains the underlying tools, and illustrates how the <code>worcs</code> package can be used to create a new project that follows the workflow.</p>
 <p>The workflow is illustrated below; the <a href="https://cjvanlissa.github.io/worcs/articles/workflow.html">workflow vignette</a> describes each step in detail.</p>
-<p><img src="paper/workflow_graph/workflow.png" width="1190"></p>
+<p><img src="https://github.com/cjvanlissa/worcs/raw/master/paper/workflow_graph/workflow.png"><!-- --></p>
 </div>
 <div id="installing-the-package" class="section level2">
 <h2 class="hasAnchor">
@@ -119,9 +119,10 @@
 <p>After reading <a href="https://cjvanlissa.github.io/worcs/articles/setup.html">the vignette</a>, you can install the development version of the <code>worcs</code> package from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"remotes"</span>))<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
 <span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"cjvanlissa/worcs"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">update</span> <span class="kw">=</span> <span class="st">"never"</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"crsh/papaja"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">update</span> <span class="kw">=</span> <span class="st">"never"</span>)
 <span class="kw pkg">tinytex</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span>()
 <span class="kw pkg">worcs</span><span class="kw ns">::</span><span class="fu"><a href="reference/git_user.html">git_user</a></span>(<span class="st">"your_name"</span>, <span class="st">"your_email"</span>)</pre></div>
+<p>If you intend to write APA style manuscripts, you can additionally install the <code>papaja</code> package:</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"crsh/papaja"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">update</span> <span class="kw">=</span> <span class="st">"never"</span>)</pre></div>
 </div>
 <div id="citing-worcs" class="section level2">
 <h2 class="hasAnchor">
