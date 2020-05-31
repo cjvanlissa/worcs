@@ -105,10 +105,10 @@ for the package and paper.
 
 ## Contributing and Contact Information
 
-The WORCS paper and `worcs` package are open to contributions from
-collaborators with valuable expertise, to improve both the workflow and
-the package. Relevant contributions warrant coauthorship to the paper or
-package. Please contact the lead author at <c.j.vanlissa@uu.nl>, or:
+The `worcs` package is open to contributions from collaborators with
+valuable expertise, to improve both the workflow and the software.
+Relevant contributions warrant coauthorship to the package. Please
+contact the lead author at <c.j.vanlissa@uu.nl>, or:
 
   - File a GitHub issue [here](https://github.com/cjvanlissa/worcs)
   - Make a pull request
