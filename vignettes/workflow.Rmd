@@ -18,7 +18,11 @@ library(worcs)
 
 ## WORCS: Steps to follow for a project
 
-This vignette describes the Workflow for Open Reproducible Code in Science, as introduced in @vanlissaWORCSWorkflowOpen2020. The paper describes the rationale and principled approach on which the workflow is based; this vignette describes the practical steps for R-users in greater detail.
+This vignette describes the Workflow for Open Reproducible Code in Science, as introduced in @vanlissaWORCSWorkflowOpen2020. The paper describes the rationale and principled approach on which the workflow is based; this vignette describes the practical steps for R-users in greater detail. The workflow is illustrated in the graph below, with optional steps displayed in blue nodes:
+
+```{r, echo = FALSE, out.width="100%"}
+knitr::include_graphics("workflow.png")
+```
 
 ### Phase 1: Study design
 
@@ -107,5 +111,9 @@ This vignette describes the Workflow for Open Reproducible Code in Science, as i
 ### Notes for cautious researchers
 
 <!--S: Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance.-->Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance by the journal.
+
+**Image attribution**
+
+The [Git Logo](https://git-scm.com/) by Jason Long is licensed under the Creative Commons Attribution 3.0 Unported License. The [OSF logo](https://osf.io/) is licensed under CC0 1.0 Universal. Icons in the workflow graph are obtained from [Flaticon](https://www.flaticon.com); see [detailed attribution](https://github.com/cjvanlissa/worcs/blob/master/paper/workflow_graph/Attribution_for_images.txt).
 
 **References**

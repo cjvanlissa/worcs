@@ -1,0 +1,24 @@
+Dear sir,
+
+Thank you for your revisions. This version is improved from the previous one. I would still like to ask you for several essential improvements:
+
+Text:
+- "Open_data ()" should be "open_data()"
+- remate should be remote
+- There is a literal " behind '@essential"'
+- The word "Cite" should be in normal font (not monospaced). In addition, I would suggest replacing the second "Cite" with "or", to make space for a different icon.
+ 
+Icons:
+- Publish preprint icon is well-chosen; however, it has a different stroke / line size than the other icons, causing it to look gray in the rasterized version
+- Use the icon from "preregistration" (top right) for "manuscript" as well; the text placement of "RMD" is better in the "preregistration" icon
+- Please use "worcs_banner.ai" for the bottom row (Phase 3). The file was in the ZIP I sent you. This is a new request, but I think it would look better.
+- The "Submit to journal" icon looks like a diary, not an academic journal. Also, the pen suggests that it is not yet finished. Instead, I would simply suggest a book icon like this: https://www.flaticon.com/free-icon/book_2421033?term=book&page=1&position=53
+- The "@" icon for citation has not changed based on my previous comment, so I will give some more concrete direction. I would suggest the following:
+	* Take the first bubble (with the @ symbol) from this icon: https://www.flaticon.com/free-icon/chat_2950630?term=speech%20bubble&page=1&position=26
+	* Add " marks in the top right corner, so it looks a bit similar to this (copyrighted) icon: https://stock.adobe.com/images/id/99043967?as_campaign=Flaticon&as_content=api&as_audience=srp&tduid=e60be9377eb6e9fc04635b5073a3a08d&as_channel=affiliate&as_campclass=redirect&as_source=arvato
+
+Flowchart:
+- Arrows from "Create git remote repository" and "dependency management" are in a different style from the other arrows
+- Arrow from "Add badge" to "Snapshot dependencies" should not be there; both should point to the "Finished project"
+- Some of the connectors are not centered on the boxes; extreme example: Top right "add preregistration", the connector is almost at the top of the box. Maybe the same problem occurs for other boxes?
+

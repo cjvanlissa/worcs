@@ -1,0 +1,20 @@
+Text:
+- Make sure text is properly aligned; there is a lot of variability in alignment across all the boxes
+- Fix spelling; there are some errors that (I believe) were not present in the original
+- Capitalization should be consistent across boxes
+- The words open_data(), closed_data(), @essential, and @@non-essential should be formatted in a monospaced font (these are code)
+- Phase 3 text should not have a newline beginning with "/". It is OK to remove this, or fix in another way
+
+Icons:
+- Icons should be scaled to have visually similar sizes
+- Icon for Git remote repository should reflect the fact that this "comes from the cloud", similar to the cloud upload icon, this could be a cloud download icon
+- Icon for preregistration and manuscript should be the same, and ideally, this icon should represent the fact that these are .Rmd files
+- Use some kind of icon for citation; this might be a useful starting point: https://berserkon.com/img/startdownload?foreign=citation-clipart.jpg
+- The icon for "Analysis script" does not make sense. It shows a checklist, but this script will be a computer code document. 
+- The icon for "Submit to journal" does not make sense. It shows a checklist, but a book icon would make more sense. 
+- I like the dependency management icon you chose; could you replace the lens of the camera icon with a smaller version of this icon so it's clear that these dependencies are being "snapshot"?
+
+Overall:
+- The arrow from "Dependency management" should point the other way
+- Several of the boxes are optional. This should be indicated by a visually distinct element (e.g., my original draft used dashed lines to indicate these, but you can use something different if that looks better)
+- Show continuity from the big blue WORCS icon, down through the Git icon, to the finished project. It is important that the graph illustrates how this project progresses over time
