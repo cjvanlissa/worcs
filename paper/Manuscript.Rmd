@@ -82,7 +82,7 @@ wordcount         : "8257"
 
 bibliography      : ["worcs.bib"]  
 
-figsintext        : no
+figsintext        : yes
 figurelist        : no
 tablelist         : no
 footnotelist      : no
@@ -158,7 +158,7 @@ a "one click solution". This paper introduces the WORCS workflow, discusses how
 it meets best practices for open science, and illustrates the use of the `worcs`
 package.
 
-```{r workflow, fig.cap="Schematic illustration of the WORCS procedure"}
+```{r workflow, fig.cap="Schematic illustration of the WORCS procedure", out.width="100%"}
 knitr::include_graphics("workflow_graph/workflow.png")
 ```
 
