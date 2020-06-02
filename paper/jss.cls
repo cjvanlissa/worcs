@@ -142,7 +142,7 @@
 \Year{YYYY}
 \Month{MMMMMM}
 \Issue{II}
-\Submitdate{yyyy-mm-dd}
+\Submitdate{2020-06-02}
 \Acceptdate{yyyy-mm-dd}
 \Address{
   Firstname Lastname\\

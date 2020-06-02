@@ -50,7 +50,9 @@ abstract: >
   This paper addresses the design of the workflow,
   discusses how it meets different 
   standards for open science, and provides examples of the implementation of
-  \pkg{worcs} in \proglang{R}.
+  \pkg{worcs} in \proglang{R}. All source code for the \proglang{R} package,
+  and replication materials for the manuscript, are available at 
+  https://github.com/cjvanlissa/worcs.
 authornote: "blabla"
 keywords:
   # at least one keyword must be supplied
@@ -825,7 +827,7 @@ default codebook by adding
 variable description and categories, which would - in the future - enable
 indexing data by topic area. 
 
-Incidentally, \pkg{worcs} itself follows the recommendations for FAIR research software [see https://fair-software.eu/]. It is 
+Incidentally, \pkg{worcs} itself follows the recommendations for [FAIR research software](https://fair-software.eu/). It is 
 hosted on a version controlled public remote repository GitHub, has an open
 source licence (GPL v3.0), is registered in a community registry (CRAN),
 enables the citation of the software (using the \code{citation("worcs")} command, or
