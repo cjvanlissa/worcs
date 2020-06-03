@@ -288,11 +288,11 @@ Peikert and Brandmaier can be difficult to set up for novice users.
 The accompanying \proglang{R} package \pkg{repro}
 is currently in development to facilitate this transition [@repro]. Another 
 user-friendly Docker-based workflow is offered by the cloud-based collaboration
-platform Digital Ocean. Although Digital Ocean enjoys some popularity among 
-scientists, it is not clear whether this platform's
-["Data Processing Agreement"](https://www.digitalocean.com/legal/data-processing-agreement/)
-is GDPR compliant - it seems to focus more on limiting liability than on
-compliance. The necessity to upload data for analysis is a risk with any
+platform 'Code Ocean'. Although Code Ocean enjoys some popularity among 
+scientists, it is not clear whether this platform
+is GDPR compliant - as of this writing, its [terms of use](https://codeocean.com/terms-of-use) do not address the GDPR, nor is it clear where
+data are stored.
+The necessity to upload data for analysis is a risk with any
 cloud-computing solution when human participants are involved.
 
 For analyses conducted entirely in \proglang{R}, the recently released package \pkg{renv}
