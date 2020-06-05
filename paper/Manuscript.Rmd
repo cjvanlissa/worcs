@@ -22,7 +22,7 @@ author:
     affiliation: "3,7"
   - name: "Marijn E. Struiksma"
     affiliation: "2,8"
-  - name: "Barbara Vreede"
+  - name: "Barbara M.I. Vreede"
     affiliation: "9"
 
 affiliation:
