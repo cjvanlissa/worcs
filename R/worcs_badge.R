@@ -26,9 +26,14 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c("worcs_checklist"))
 worcs_badge <- function(path = ".",
                         update_readme = "README.md",
                         update_csv = "checklist.csv"){
-  np <- normalizePath(path)
+  ndir <- np <- normalizePath(path)
   if(endsWith("checklist.csv", path)){
+    ndir <- dirname(np)
     checks <- read.csv(path, stringsAsFactors = FALSE)
+    checks$check <- as.logical(checks$check)
+    checks$pass <- as.logical(checks$pass)
+    if(anyNA(checks$pass)) stop("All values in the 'pass' column must be either TRUE or FALSE. Check your .csv file for spelling errors.", call. = FALSE)
+    if(anyNA(checks$check)) stop("All values in the 'check' column must be either TRUE or FALSE. Check your .csv file for spelling errors.", call. = FALSE)
   } else {
     checks <- do.call(check_worcs, list(path = np))
   }
@@ -43,7 +48,7 @@ worcs_badge <- function(path = ".",
   if(!is.null(update_readme)){
     tryCatch({
       if(!is_abs(update_readme)){ # is relative
-        update_readme <- file.path(np, update_readme)
+        update_readme <- file.path(ndir, update_readme)
       }
       text <- readLines(update_readme, encoding = "UTF-8")
       loc <- startsWith(text, "[![WORCS](https://img.shields.io/badge/WORC")
