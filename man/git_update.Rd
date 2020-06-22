@@ -49,7 +49,8 @@ No return value. This function is called for its side effects.
 }
 \description{
 This function is a wrapper for
-\code{\link[gert:commit]{git_add}}, \code{\link[gert]{git_commit}}, and
+\code{\link[gert:commit]{git_add}}, \code{\link[gert:commit]{git_commit}},
+and
 \code{\link[gert:fetch]{git_push}}. It adds all locally changed files to the
 staging area of the local 'Git' repository, then commits these changes
 (with an optional) \code{message}, and then pushes them to a remote

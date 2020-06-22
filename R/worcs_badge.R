@@ -27,7 +27,7 @@ worcs_badge <- function(path = ".",
                         update_readme = "README.md",
                         update_csv = "checklist.csv"){
   ndir <- np <- normalizePath(path)
-  if(endsWith("checklist.csv", path)){
+  if(endsWith(path, "checklist.csv")){
     ndir <- dirname(np)
     checks <- read.csv(path, stringsAsFactors = FALSE)
     checks$check <- as.logical(checks$check)
@@ -72,7 +72,7 @@ worcs_badge <- function(path = ".",
   }
   if(!is.null(update_csv)){
     if(!is_abs(update_csv)){ # is relative
-      update_csv <- file.path(np, update_csv)
+      update_csv <- file.path(ndir, update_csv)
     }
     write.csv(checks, update_csv, row.names = FALSE)
     write_gitig(file.path(dirname(update_csv), ".gitignore"), paste0("!", basename(update_csv)))
