@@ -34,7 +34,7 @@ function is called for its side effects.
 }
 \description{
 This function saves a data.frame as a \code{.csv} file (using
-\code{\link[utils]{write.csv}}), stores a checksum in '.worcs',
+\code{\link[utils:write.table]{write.csv}}), stores a checksum in '.worcs',
 and amends the \code{.gitignore} file to exclude \code{filename}.
 }
 \examples{
