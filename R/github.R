@@ -10,7 +10,8 @@ has_git <- function(){
 
 #' @title Set global 'Git' credentials
 #' @description This function is a wrapper for
-#' \code{\link[gert]{git_config_global_set}}. It sets two name/value pairs at
+#' \code{\link[gert:git_config]{git_config_global_set}}.
+#' It sets two name/value pairs at
 #' once: \code{name = "user.name"} is set to the value of the \code{name}
 #' argument, and \code{name = "user.email"} is set to the value of the
 #' \code{email} argument.
@@ -64,7 +65,7 @@ get_user <- function(){
 #' @title Check whether global 'Git' credentials exist
 #' @description Check whether the values \code{user.name} and \code{user.email}
 #' exist exist in the 'Git' global configuration settings.
-#' Uses \code{\link[gert]{git_config_global}}.
+#' Uses \code{\link[gert:git_config]{git_config_global}}.
 #' @return Logical, indicating whether 'Git' global configuration settings could
 #' be retrieved, and contained the values
 #' \code{user.name} and \code{user.email}.
@@ -89,14 +90,15 @@ has_git_user <- function(){
 
 #' @title Add, commit, and push changes.
 #' @description This function is a wrapper for
-#' \code{\link[gert]{git_add}}, \code{\link[gert]{git_commit}}, and
-#' \code{\link[gert]{git_push}}. It adds all locally changed files to the
+#' \code{\link[gert:commit]{git_add}}, \code{\link[gert]{git_commit}}, and
+#' \code{\link[gert:fetch]{git_push}}. It adds all locally changed files to the
 #' staging area of the local 'Git' repository, then commits these changes
 #' (with an optional) \code{message}, and then pushes them to a remote
 #' repository. This is used for making a "cloud backup" of local changes.
 #' Do not use this function when working with privacy sensitive data,
 #' or any other file that should not be pushed to a remote repository.
-#' The \code{\link[gert]{git_add}} argument \code{force} is disabled by default,
+#' The \code{\link[gert:commit]{git_add}} argument
+#' \code{force} is disabled by default,
 #' to avoid accidentally committing and pushing a file that is listed in
 #' \code{.gitignore}.
 #' @param remote name of a remote listed in git_remote_list()
