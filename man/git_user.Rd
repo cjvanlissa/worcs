@@ -22,7 +22,8 @@ No return value. This function is called for its side effects.
 }
 \description{
 This function is a wrapper for
-\code{\link[gert]{git_config_global_set}}. It sets two name/value pairs at
+\code{\link[gert:git_config]{git_config_global_set}}.
+It sets two name/value pairs at
 once: \code{name = "user.name"} is set to the value of the \code{name}
 argument, and \code{name = "user.email"} is set to the value of the
 \code{email} argument.

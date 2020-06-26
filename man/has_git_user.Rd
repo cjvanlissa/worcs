@@ -14,7 +14,7 @@ be retrieved, and contained the values
 \description{
 Check whether the values \code{user.name} and \code{user.email}
 exist exist in the 'Git' global configuration settings.
-Uses \code{\link[gert]{git_config_global}}.
+Uses \code{\link[gert:git_config]{git_config_global}}.
 }
 \examples{
 has_git_user()

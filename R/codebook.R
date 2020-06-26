@@ -221,7 +221,7 @@ descriptives.numeric <- function(x) {
       mean = mean(x, na.rm = TRUE),
       median = median(x, na.rm = TRUE),
       mode = median(x, na.rm = TRUE),
-      sd = mean(x, na.rm = TRUE),
+      sd = sd(x, na.rm = TRUE),
       min = rng[1],
       max = rng[2],
       range = diff(rng)
