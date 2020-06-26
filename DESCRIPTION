@@ -44,7 +44,8 @@ Imports:
     gert,
     ranger,
     yaml,
-    digest
+    digest,
+    rticles
 Suggests:
     remotes,
     tinytex,
