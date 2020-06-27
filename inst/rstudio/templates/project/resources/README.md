@@ -4,7 +4,7 @@
 
 ## Where do I start?
 
-You can load this project in Rstudio by opening the file called 
+You can load this project in RStudio by opening the file called 
 
 ## Project structure
 

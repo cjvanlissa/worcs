@@ -1,3 +1,11 @@
+# worcs 0.1.3
+
+* Minor bugfixes
+* descriptives() now returns mean() instead of sd()
+* descriptives() now returns both n and missing
+* README.md did now correctly shows .Rproj file
+* rticles now declared as import
+
 # worcs 0.1.2
 
 * All documentation updated to ensure compatibility with the submitted version

@@ -240,8 +240,8 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     f <- list.files(path)
     tab <- matrix(c("File", "Description", "Usage",
                     "README.md", "Description of project", "Human editable"), nrow = 2, byrow = TRUE)
-    rproj_name <- paste0(gsub("^.+\\b(.+)$", "\\1", path), ".Rproj")
-    cont[grep("You can load this project in RStudio by opening the file called ", cont)] <- paste0(grep("You can load this project in Rstudio by opening the file called ", cont, value = TRUE), "'", rproj_name, "'.")
+    rproj_name <- paste0(basename(path), ".Rproj")
+    cont[which(startsWith(cont, "You can load this project in RStudio by opening the file"))] <- paste0("You can load this project in RStudio by opening the file called '", rproj_name, "'.")
     tab <- rbind(tab, c(rproj_name, "Project file", "Loads project"))
     tab <- describe_file("LICENSE", "User permissions", "Read only", tab, path)
     tab <- describe_file(".worcs", "WORCS metadata YAML", "Read only", tab, path)
@@ -359,7 +359,7 @@ create_man_github <- function(man_fn_abs, remote_repo){
     write_as_utf(manuscript_text, man_fn_abs)
 }
 
-
+#' @importFrom rticles acm_article
 create_man_rticles <- function(man_fn_abs, template, remote_repo){
   if("rticles" %in% rownames(installed.packages())){
     draft(
