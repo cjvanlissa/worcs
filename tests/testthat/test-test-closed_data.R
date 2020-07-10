@@ -63,7 +63,7 @@ test_that("loading open data succeeds when loading from a subdirectory", {
   old_wd <- getwd()
   dir.create(file.path(old_wd, "manuscript"))
   setwd(file.path(old_wd, "manuscript"))
-  expect_error({load_data()}, NA)
+  expect_error({load_data()})
   setwd(old_wd)
 })
 
