@@ -1,3 +1,8 @@
+# worcs 0.1.4
+
+* open_data() and closed_data() now construct the filenames of the .csv and
+  codebook.Rmd from the name of the object supplied to the 'data' argument
+
 # worcs 0.1.3
 
 * Minor bugfixes
