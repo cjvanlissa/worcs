@@ -93,13 +93,16 @@ descriptives.integer <- descriptives.numeric
 #' @method descriptives default
 #' @export
 descriptives.default <- function(x, ...) {
+  if(is.factor(x)) x <- droplevels(x)
   if(!is.vector(x)) x <- tryCatch(as.vector(x), error = function(e){NA})
-  tb <- tryCatch(table(x), error = function(e){NA})
+  tb <- tryCatch(table(x, useNA = "always"), error = function(e){NA})
   data.frame(
     n = tryCatch({sum(!is.na(x))}, error = function(e){NA}),
     missing = sum(is.na(x))/length(x),
     unique = tryCatch(length(tb), error = function(e){NA}),
-    mode = tryCatch(tb[which.max(tb)], error = function(e){NA}),
+    mode = tryCatch({
+      unname(tb[which.max(tb)])
+    }, error = function(e){NA}),
     mode_value = tryCatch(names(tb)[which.max(tb)], error = function(e){NA}),
     v = tryCatch(var_cat(x), error = function(e){NA})
   )
