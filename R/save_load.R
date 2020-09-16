@@ -3,11 +3,15 @@
 #' \code{\link[utils:write.table]{write.csv}}), stores a checksum in '.worcs',
 #' and amends the \code{.gitignore} file to exclude \code{filename}.
 #' @param data A data.frame to save.
-#' @param filename Character, naming the file data should be written to.
+#' @param filename Character, naming the file data should be written to. By
+#' default, constructs a filename from the name of the object passed to
+#' \code{data}.
 #' @param codebook Character, naming the file the codebook should be written to.
 #' An 'R Markdown' codebook will be created and rendered to
 #' \code{\link[rmarkdown]{github_document}} ('markdown' for 'GitHub').
-#' Defaults to 'codebook.Rmd'. Set to \code{NULL} to avoid creating a codebook.
+#' By default, constructs a filename from the name of the object passed to
+#' \code{data}, adding the word 'codebook'.
+#' Set this argument to \code{NULL} to avoid creating a codebook.
 #' @param worcs_directory Character, indicating the WORCS project directory to
 #' which to save data. The default value \code{"."} points to the current
 #' directory.
@@ -26,8 +30,13 @@
 #' @seealso open_data closed_data save_data
 #' @export
 #' @rdname open_data
-open_data <- function(data, filename = "data.csv", codebook = "codebook.Rmd", worcs_directory = ".", ...){
-  Args <- as.list(match.call()[-1])
+open_data <- function(data,
+                      filename = paste0(deparse(substitute(data)), ".csv"),
+                      codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
+                      worcs_directory = ".",
+                      ...){
+  browser()
+  Args <- all_args()
   Args$open <- TRUE
   do.call(save_data, Args)
 }
@@ -54,9 +63,11 @@ open_data <- function(data, filename = "data.csv", codebook = "codebook.Rmd", wo
 #' @export
 #' @rdname closed_data
 closed_data <- function(data,
-                        filename = "data.csv",
-                        codebook = "codebook.Rmd", worcs_directory = ".", ...){
-  Args <- as.list(match.call()[-1])
+                        filename = paste0(deparse(substitute(data)), ".csv"),
+                        codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
+                        worcs_directory = ".",
+                        ...){
+  Args <- all_args()
   Args$open <- FALSE
   do.call(save_data, Args)
 }
