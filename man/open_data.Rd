@@ -6,8 +6,8 @@
 \usage{
 open_data(
   data,
-  filename = "data.csv",
-  codebook = "codebook.Rmd",
+  filename = paste0(deparse(substitute(data)), ".csv"),
+  codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
   worcs_directory = ".",
   ...
 )
