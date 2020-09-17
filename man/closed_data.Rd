@@ -6,8 +6,8 @@
 \usage{
 closed_data(
   data,
-  filename = "data.csv",
-  codebook = "codebook.Rmd",
+  filename = paste0(deparse(substitute(data)), ".csv"),
+  codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
   worcs_directory = ".",
   ...
 )
@@ -15,12 +15,16 @@ closed_data(
 \arguments{
 \item{data}{A data.frame to save.}
 
-\item{filename}{Character, naming the file data should be written to.}
+\item{filename}{Character, naming the file data should be written to. By
+default, constructs a filename from the name of the object passed to
+\code{data}.}
 
 \item{codebook}{Character, naming the file the codebook should be written to.
 An 'R Markdown' codebook will be created and rendered to
 \code{\link[rmarkdown]{github_document}} ('markdown' for 'GitHub').
-Defaults to 'codebook.Rmd'. Set to \code{NULL} to avoid creating a codebook.}
+By default, constructs a filename from the name of the object passed to
+\code{data}, adding the word 'codebook'.
+Set this argument to \code{NULL} to avoid creating a codebook.}
 
 \item{worcs_directory}{Character, indicating the WORCS project directory to
 which to save data. The default value \code{"."} points to the current
@@ -45,7 +49,8 @@ old_wd <- getwd()
 dir.create(test_dir)
 setwd(test_dir)
 worcs:::write_worcsfile(".worcs")
-closed_data(iris[1:10, ], codebook = NULL)
+df <- iris[1:10, ]
+closed_data(df, codebook = NULL)
 setwd(old_wd)
 unlink(test_dir, recursive = TRUE)
 }

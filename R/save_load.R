@@ -24,7 +24,8 @@
 #' dir.create(test_dir)
 #' setwd(test_dir)
 #' worcs:::write_worcsfile(".worcs")
-#' open_data(iris[1:5, ], codebook = "bla.Rmd")
+#' df <- iris[1:5, ]
+#' open_data(df, codebook = "bla.Rmd")
 #' setwd(old_wd)
 #' unlink(test_dir, recursive = TRUE)
 #' @seealso open_data closed_data save_data
@@ -55,7 +56,8 @@ open_data <- function(data,
 #' dir.create(test_dir)
 #' setwd(test_dir)
 #' worcs:::write_worcsfile(".worcs")
-#' closed_data(iris[1:10, ], codebook = NULL)
+#' df <- iris[1:10, ]
+#' closed_data(df, codebook = NULL)
 #' setwd(old_wd)
 #' unlink(test_dir, recursive = TRUE)
 #' @seealso open_data closed_data save_data
@@ -74,11 +76,20 @@ closed_data <- function(data,
 #' @importFrom digest digest
 #' @importFrom utils write.csv
 save_data <- function(data,
-                      filename = "data.csv",
+                      filename = paste0(deparse(substitute(data)), ".csv"),
                       open,
-                      codebook = "codebook.Rmd", worcs_directory = "."){
+                      codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
+                      worcs_directory = "."){
+  if(grepl("[", filename, fixed = TRUE) | grepl("$", filename, fixed = TRUE)){
+    stop("This filename is not allowed: ", filename, ". Please specify a legal filename.", call. = FALSE)
+  }
   cl <- as.list(match.call()[-1])
   create_codebook <- !is.null(codebook)
+  if(create_codebook){
+    if(grepl("[", codebook, fixed = TRUE) | grepl("$", codebook, fixed = TRUE)){
+    stop("This codebook filename is not allowed: ", codebook, ". Please specify a legal filename.", call. = FALSE)
+    }
+  }
   # Filenames housekeeping
   dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
   fn_worcs <- file.path(dn_worcs, ".worcs")
@@ -190,7 +201,8 @@ save_data <- function(data,
 #' dir.create(test_dir)
 #' setwd(test_dir)
 #' worcs:::write_worcsfile(".worcs")
-#' suppressWarnings(closed_data(iris[1:5, ], codebook = NULL))
+#' df <- iris[1:5, ]
+#' suppressWarnings(closed_data(df, codebook = NULL))
 #' load_data()
 #' data
 #' rm("data")

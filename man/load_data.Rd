@@ -46,7 +46,8 @@ old_wd <- getwd()
 dir.create(test_dir)
 setwd(test_dir)
 worcs:::write_worcsfile(".worcs")
-suppressWarnings(closed_data(iris[1:5, ], codebook = NULL))
+df <- iris[1:5, ]
+suppressWarnings(closed_data(df, codebook = NULL))
 load_data()
 data
 rm("data")
