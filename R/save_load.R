@@ -35,7 +35,6 @@ open_data <- function(data,
                       codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
                       worcs_directory = ".",
                       ...){
-  browser()
   Args <- all_args()
   Args$open <- TRUE
   do.call(save_data, Args)
@@ -338,8 +337,11 @@ check_recursive <- function(path){
              filename <- basename(path)
              cur_dir <- dirname(path)
              parent_dir <- dirname(dirname(path))
+             doesnt_exist <- any(grepl("No such file or directory", e$message))
              if(cur_dir == parent_dir){
-               stop("No '.worcs' file found in this directory or any of its parent directories; either this is not a worcs project, or the working directory is not set to the project directory.")
+               stop("No '.worcs' file found in this directory or any of its parent directories; either this is not a worcs project, or the working directory is not set to the project directory.", call. = FALSE)
+             } else if(doesnt_exist) {
+               stop("No '.worcs' file found, because the directory '", dirname(path), "' doesn't exists.", call. = FALSE)
              }
              check_recursive(file.path(parent_dir, filename))
            })
@@ -356,4 +358,3 @@ write_gitig <- function(filename, ..., modify = TRUE){
   }
   write(new_contents, filename, append = FALSE)
 }
-
