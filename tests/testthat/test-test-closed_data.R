@@ -14,7 +14,7 @@ test_that(".worcs contains correct checksum", {
 
 test_that("loading open data works", {
   expect_error({load_data()}, NA)
-  load_data()
+  suppressWarnings(load_data())
   expect_warning({load_data()})
 })
 
@@ -57,8 +57,8 @@ df <- load_data(to_envir = FALSE)$iris
 test_that("loaded synthetic data same as original", {
   expect_equivalent(tmp, df)
 })
-
-rm("iris")
+#cat(ls())
+#rm("iris")
 test_that("loading open data succeeds when loading from a subdirectory", {
   skip_on_travis()
   old_wd <- getwd()

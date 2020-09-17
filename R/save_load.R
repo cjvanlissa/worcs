@@ -89,6 +89,9 @@ save_data <- function(data,
     if(grepl("[", codebook, fixed = TRUE) | grepl("$", codebook, fixed = TRUE)){
     stop("This codebook filename is not allowed: ", codebook, ". Please specify a legal filename.", call. = FALSE)
     }
+    fn_code <- basename(codebook)
+    dn_code <- dirname(codebook)
+    fn_write_codebook <- file.path(dn_code, fn_code)
   }
   # Filenames housekeeping
   dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
@@ -97,12 +100,14 @@ save_data <- function(data,
   fn_original <- basename(filename)
   dn_original <- dirname(filename)
   fn_synthetic <- paste0("synthetic_", fn_original)
+
   if(!dn_original == "."){
     fn_synthetic <- file.path(dn_original, fn_synthetic)
   }
-  fn_write_original <- file.path(dn_worcs, filename)
-  fn_write_synth <- file.path(dn_worcs, fn_synthetic)
-  fn_write_codebook <- file.path(dn_worcs, codebook)
+
+  fn_write_original <- file.path(dn_original, fn_original)
+  fn_write_synth <- file.path(dn_original, fn_synthetic)
+
   # End filenames
 
   # Remove this when worcs can handle different types:
