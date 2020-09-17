@@ -68,6 +68,20 @@ synthetic <- function(data,
 
 if(getRversion() >= "2.15.1") utils::globalVariables(c("x", "y", "model", "xsynth"))
 
+#' @method synthetic matrix
+#' @export
+synthetic.matrix <- function(data,
+                             model_expression = ranger(x = x, y = y),
+                             predict_expression = predict(model, data = xsynth)$predictions,
+                             missingness_expression = NULL,
+                             verbose = TRUE){
+  cl <- match.call(expand.dots = FALSE)
+  cl[["data"]] <- data.frame(data)
+  cl[[1L]] <- quote(synthetic)
+  eval(cl, parent.frame())
+}
+
+
 #' @importFrom stats na.omit complete.cases predict
 #' @importFrom utils txtProgressBar setTxtProgressBar
 #' @importFrom ranger ranger
@@ -78,6 +92,7 @@ synthetic.data.frame <- function(data,
                                  predict_expression = predict(model, data = xsynth)$predictions,
                                  missingness_expression = NULL,
                                  verbose = TRUE){
+  #browser()
   # Capture expressions
   model_expression <- substitute(model_expression) # model_expression <- quote(ranger(x = x, y = y))
   predict_expression <- substitute(predict_expression) # predict_expression <- quote(predict(model, data = xsynth)$predictions)
@@ -119,25 +134,27 @@ synthetic.data.frame <- function(data,
   # For all other columns, evaluate model_expression on columns up until
   # that one, then predict it based on existing synthetic data and add
   # column to synthetic data
-  if(verbose){
-    pb <- txtProgressBar(min = 0, max = ncol(data), style = 3)
-    setTxtProgressBar(pb, 1)
+  if(ncol(data) > 1){
+    if(verbose){
+      pb <- txtProgressBar(min = 0, max = ncol(data), style = 3)
+      setTxtProgressBar(pb, 1)
+    }
+    for(this_col in 2:ncol(data)){
+      # Listwise deletion
+      complete_cases <- complete.cases(data[1:this_col])
+      # Prepare x and y
+      x <- data[1:(this_col-1)][complete_cases, , drop = FALSE]
+      y <- data[[this_col]][complete_cases]
+      # Evaluate model
+      model <- eval(model_expression)
+      # Obtain predictions
+      pred <- eval(predict_expression)
+      # Add column to xsynth
+      xsynth[[names(data)[this_col]]] <- pred
+      if(verbose) setTxtProgressBar(pb, this_col)
+    }
+    if(verbose) close(pb)
   }
-  for(this_col in 2:ncol(data)){
-    # Listwise deletion
-    complete_cases <- complete.cases(data[1:this_col])
-    # Prepare x and y
-    x <- data[1:(this_col-1)][complete_cases, , drop = FALSE]
-    y <- data[[this_col]][complete_cases]
-    # Evaluate model
-    model <- eval(model_expression)
-    # Obtain predictions
-    pred <- eval(predict_expression)
-    # Add column to xsynth
-    xsynth[[names(data)[this_col]]] <- pred
-    if(verbose) setTxtProgressBar(pb, this_col)
-  }
-  if(verbose) close(pb)
 
   # Check if variable classes are maintained
   for(thisvar in 1:ncol(data)){
