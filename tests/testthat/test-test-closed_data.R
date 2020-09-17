@@ -60,6 +60,7 @@ test_that("loaded synthetic data same as original", {
 
 rm("iris")
 test_that("loading open data succeeds when loading from a subdirectory", {
+  skip_on_travis()
   old_wd <- getwd()
   dir.create(file.path(old_wd, "manuscript"))
   setwd(file.path(old_wd, "manuscript"))
