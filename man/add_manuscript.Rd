@@ -4,7 +4,13 @@
 \alias{add_manuscript}
 \title{Add Rmarkdown manuscript}
 \usage{
-add_manuscript(worcs_directory = ".", manuscript = "APA6", verbose = TRUE, ...)
+add_manuscript(
+  worcs_directory = ".",
+  manuscript = "APA6",
+  remote_repo = "https",
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{worcs_directory}{Character, indicating the directory
@@ -25,6 +31,13 @@ For more information about \code{github_document}, see
 \code{\link[rmarkdown]{github_document}}. The remaining formats are
 documented in the 'rticles' package.}
 
+\item{remote_repo}{Character, 'https' link to the remote repository for
+this project. This link should have the form \code{https://[...].git}.
+If a valid remote repository link is provided, a commit will
+be made containing the 'README.md' file, and will be pushed to the remote
+repository. Default: 'https'. When no 'https' address is provided, an 'SSH'
+address of the form \code{git@[...].git} is also accepted.}
+
 \item{verbose}{Logical. Whether or not to print messages to the console
 during project creation. Default: TRUE}
 
@@ -40,6 +53,7 @@ Adds an Rmarkdown manuscript to a 'worcs' project.
 the_test <- "worcs_manuscript"
 old_wd <- getwd()
 dir.create(file.path(tempdir(), the_test))
+file.create(file.path(tempdir(), the_test, ".worcs"))
 add_manuscript(file.path(tempdir(), the_test),
               manuscript = "github_document")
 setwd(old_wd)
