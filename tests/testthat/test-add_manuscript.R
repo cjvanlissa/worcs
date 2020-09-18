@@ -1,5 +1,5 @@
 test_that("manuscript can be generated", {
-
+  library(rticles)
   the_test <- "manuscript"
   old_wd <- getwd()
   test_dir <- file.path(tempdir(), the_test)
