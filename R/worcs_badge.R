@@ -102,11 +102,12 @@ check_worcs <- function(path = ".", verbose = TRUE){
   if(!file.exists(file.path(path, ".worcs"))){
     stop("No WORCS project found in directory '", path, "'")
   } else {
+    worcsfile <- read_yaml(file.path(path, ".worcs"))
     checks <- worcs_checklist
     checks[sapply(checks, inherits, what = "factor")] <- lapply(checks[sapply(checks, inherits, what = "factor")], as.character)
     checks$pass <- FALSE
 
-    # Get files in folder
+    # Get files in folder. This is potentially inefficient, as the entire renv directory is also indexed.
     f <- list.files(path, recursive = TRUE, full.names = TRUE)
     f_lc <- tolower(f)
 
@@ -114,6 +115,10 @@ check_worcs <- function(path = ".", verbose = TRUE){
     tracked <- tryCatch({
       git_ls(path)
     }, error = function(e){NULL})
+    # If git tracks any files
+    checks$pass[checks$name == "git_repo"] <- length(tracked) > 0
+    # If git has a remote
+    checks$pass[checks$name == "has_remote"] <- tryCatch({dim(git_remote_list(path))[1] > 0}, error = function(e){FALSE})
 
     # Do checks
     checks$pass[checks$name == "readme"] <- any(endsWith(f_lc, "readme.md"))
@@ -126,43 +131,33 @@ check_worcs <- function(path = ".", verbose = TRUE){
       }))
     }
     checks$pass[checks$name == "data"] <- tryCatch({
-      if(length(tracked) > 0){
-        any(endsWith(tolower(tracked$path), "data.csv"))
-      } else {
-        FALSE
+      if(!is.null(worcsfile[["data"]]) & length(tracked) > 0){
+        worcs_data <- names(worcsfile$data)
+        worcs_data <- c(worcs_data, unlist(sapply(worcsfile$data[sapply(worcsfile$data, function(x){!is.null(x[["synthetic"]])})], `[[`, "synthetic")))
+        any(tolower(worcs_data) %in% tolower(tracked$path))
       }
     }, error = function(e){FALSE})
-    tracked_data <- if(length(tracked) > 0){
-      tryCatch({
-        tracked$path[grepl("\\bdata.csv$", tolower(tracked$path), fixed = TRUE)|grepl("\\bsynthetic_data.csv$", tolower(tracked$path), fixed = TRUE)]
-      }, error = function(e){NULL})
+
+    # If checksums are up to date
+    if(checks$pass[checks$name == "data"]){
+      checks$pass[checks$name == "data_checksums"] <-
+        tryCatch({
+          cs_now <- sapply(worcs_data, digest, file = TRUE)
+          names(cs_now) <- worcs_data
+          cs_stored <- unlist(worcsfile$checksums)
+          if(all(names(cs_now) %in% names(cs_stored))){
+            all(sapply(names(cs_now), function(x){cs_now[x] == cs_stored[x]}))
+          } else {
+            FALSE
+          }
+        }, error = function(e){FALSE})
     } else {
-      NULL
+      checks$pass[checks$name == "data_checksums"] <- FALSE
     }
-    # If git tracks any files
-    if(length(tracked) > 0){
-      checks$pass[checks$name == "git_repo"] <- TRUE
-      checks$pass[checks$name == "has_remote"] <- dim(git_remote_list(path))[1] > 0
-      # If some of those files are data
-      if(length(tracked_data) > 0){
-        checks$pass[checks$name == "data"] <- TRUE
-        checks$pass[checks$name == "data_checksums"] <-
-          tryCatch({
-            cs_now <- sapply(tracked_data, digest, file = TRUE)
-            cs_stored <- unlist(read_yaml(".worcs")$checksums)
-            if(all(names(cs_now) %in% names(cs_stored))){
-              all(sapply(names(cs_now), function(x){cs_now[x] == cs_stored[x]}))
-            } else {
-              FALSE
-            }
-          }, error = function(e){FALSE})
-      } else {
-        checks$pass[checks$name %in% c("data", "data_checksums")] <- FALSE
-      }
-    } else {
-      checks$pass[checks$name %in% c("git_repo", "has_remote", "data", "data_checksums")] <- FALSE
-    }
+
+    # If project has R-code
     checks$pass[checks$name == "code"] <- any(endsWith(f_lc, ".r"))
+    # If project has preregistration
     checks$pass[checks$name == "preregistration"] <- any(endsWith(f_lc, "preregistration.rmd"))
   }
   if(verbose){
