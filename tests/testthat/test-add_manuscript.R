@@ -10,12 +10,12 @@ test_that("manuscript can be generated", {
 
   add_manuscript(
     worcs_directory = ".",
-    manuscript = "acs_article",
+    manuscript = "github_document",
     remote_repo = "bla"
   )
   expect_true(dir.exists("manuscript"))
   expect_true(file.exists(".worcs"))
-  expect_true(file.exists("manuscript/american-chemical-society.csl"))
+  #expect_true(file.exists("manuscript/american-chemical-society.csl"))
   expect_true(file.exists("manuscript/manuscript.Rmd"))
   expect_true(file.exists("manuscript/references.bib"))
   setwd(old_wd)
