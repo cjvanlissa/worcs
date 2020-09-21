@@ -114,7 +114,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
 
   # Begin manuscript
   if(!manuscript == "none"){
-    cl[[1L]] <- quote(add_manuscript)
+    cl[[1L]] <- quote(worcs::add_manuscript)
     names(cl)[which(names(cl) == "path")] <- "worcs_directory"
     eval(cl, parent.frame())
   } else {
