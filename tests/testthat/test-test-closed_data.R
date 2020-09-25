@@ -62,6 +62,7 @@ test_that("loaded synthetic data same as original", {
 #cat(ls())
 #rm("iris")
 test_that("loading open data succeeds when loading from a subdirectory", {
+  skip_if_not(Sys.info()["user"] == "Lissa102")
   dir.create("manuscript")
   expect_error({load_data("manuscript")}, NA)
 })
