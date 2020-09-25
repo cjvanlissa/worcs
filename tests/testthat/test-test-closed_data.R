@@ -62,7 +62,7 @@ test_that("loaded synthetic data same as original", {
 #cat(ls())
 #rm("iris")
 test_that("loading open data succeeds when loading from a subdirectory", {
-  dir.create(file.path(tempdir(), the_test, "manuscript"))
+  dir.create("manuscript")
   expect_error({load_data("manuscript")}, NA)
 })
 
