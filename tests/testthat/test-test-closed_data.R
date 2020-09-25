@@ -1,5 +1,7 @@
 library(yaml)
 library(digest)
+# library(testthat)
+# library(worcs)
 # the_test <- "loaddata1"
 # old_wd <- getwd()
 # dir.create(file.path(tempdir(), the_test))
@@ -60,12 +62,8 @@ test_that("loaded synthetic data same as original", {
 #cat(ls())
 #rm("iris")
 test_that("loading open data succeeds when loading from a subdirectory", {
-
-  old_wd <- getwd()
-  dir.create(file.path(old_wd, "manuscript"))
-  setwd(file.path(old_wd, "manuscript"))
-  expect_error({load_data()}, NA)
-  setwd(old_wd)
+  dir.create(file.path(tempdir(), the_test, "manuscript"))
+  expect_error({load_data("manuscript")}, NA)
 })
 
 
