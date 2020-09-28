@@ -14,7 +14,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-Before you can use the WORCS workflow and the full functionality of the `worcs` package, you have to install several software packages, and register on GitHub. You only have to perform these steps once, and the entire process should take approximately 1 hour if you start from scratch. In case some software is already installed on your system, you can skip related steps. Follow these steps in order:
+Before you can use the WORCS workflow and the full functionality of the `worcs` package, you have to install several software packages, and register on GitHub. This vignette does not assume a prior installation of `R`, so it is suitable for novice users.
+You only have to perform these steps once for every computer you intend to use `R` and `worcs` on, and the entire process should take approximately 30 minutes if you start from scratch.
+In case some software is already installed on your system, you can skip related steps. 
+
+Follow these steps in order:
 
 1. Install R from https://CRAN.R-project.org
 2. Install 'RStudio' Desktop (Free) from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)
