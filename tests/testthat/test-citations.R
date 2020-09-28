@@ -98,7 +98,7 @@ myiris <- read.csv('iris.csv')
   contents <- readLines(gsub("Rmd$", "md", file_name))
 
   expect_true(!any(contents == "Optional reference: @reference2020"))
-  expect_true(any(contents[25:length(contents)] == "``` r"))
+  expect_true(any(startsWith(contents[25:length(contents)], "myiris")))
   expect_true(any(contents == "Optional reference:"))
 })
 
