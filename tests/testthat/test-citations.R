@@ -89,16 +89,16 @@ myiris <- read.csv('iris.csv')
   # Render with all citations
   sink_out <- capture_output(cite_all(file_name))
 
-  contents <- readLines(gsub("Rmd$", "md", file_name))
+  contents <- readLines(normalizePath(gsub("\\.Rmd", "\\.md", file_name)))
 
   expect_true(any(contents == "Optional reference: @reference2020"))
 
   sink_out <- capture_output(cite_essential(file_name))
 
-  contents <- readLines(gsub("Rmd$", "md", file_name))
+  contents <- readLines(normalizePath(gsub("\\.Rmd", "\\.md", file_name)))
 
   expect_true(!any(contents == "Optional reference: @reference2020"))
-  expect_true(any(startsWith(contents[25:length(contents)], "myiris")))
+  expect_true(any(grepl("myiris", contents, fixed = TRUE)))
   expect_true(any(contents == "Optional reference:"))
 })
 

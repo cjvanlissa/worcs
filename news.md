@@ -1,7 +1,13 @@
 # worcs 0.1.4
 
-* open_data() and closed_data() now construct the filenames of the .csv and
+* Fixed bugs in handling of filenames by open_data() and closed_data()
   codebook.Rmd from the name of the object supplied to the 'data' argument
+* By default, open_data() and closed_data() now construct the filenames of the
+  .csv and codebook.Rmd from the name of the object supplied to the 'data'
+  argument. This also means that the object will be loaded with the same name
+  by load_data().
+* Add function add_manuscript() to add a manuscript at a later stage
+* Major bugfixes in worcs_badge(); this function did not work as intended. Fixed now
 
 # worcs 0.1.3
 

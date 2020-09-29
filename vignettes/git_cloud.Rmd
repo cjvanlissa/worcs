@@ -24,16 +24,16 @@ The WORCS paper describes a workflow centered around 'GitHub', but there are sev
 The 'GitLab' website looks and feels almost identical to 'GitHub'. Steps 4 and 5 of the `setup` vignette can be applied nearly without alterations. To connect `worcs` to 'GitLab', I proceeded as follows:
 
 4. Register on GitLab
-    + Go to [gitlab.com](https://gitlab.com/) and click *Register now*. Choose an "Individual", "Free" plan.
+    + Go to [gitlab.com](https://about.gitlab.com/) and click *Register now*. Choose an "Individual", "Free" plan.
     + Request a [free academic upgrade](https://about.gitlab.com/solutions/education/). 
-5. Connect 'RStudio' to Git and GitLab (for more support, see [this 'RStudio' article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/rstudio-and-github/))
+5. Connect 'RStudio' to Git and GitLab (for more support, see [this 'RStudio' article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/2015/07/rstudio-and-github/))
     a. Open 'RStudio', open the Tools menu, click *Global Options*, and click *Git/SVN*
     b. Verify that *Enable version control interface for RStudio projects* is selected
     c. Verify that *Git executable:* shows the location of git.exe. If it is missing, manually fix the location of the file.
     d. Click *Create RSA Key*. Do not enter a passphrase. Press *Create*. A window with some information will open, which you can close.
     e. Click *View public key*, and copy the entire text to the clipboard.
     f. Close 'RStudio' (it might offer to restart by itself; this is fine)
-    g. Go to [gitlab.com](https://gitlab.com/) 
+    g. Go to [gitlab.com](https://about.gitlab.com/) 
     h. Click your user icon in the top right of the screen, click *Settings*
     i. On the settings page, click *SSH Keys* in the left sidebar
     j. Copy-paste the public key from your clipboard into the box labeled *Key*.
@@ -59,7 +59,7 @@ The 'Bitbucket' website has cosmetic differences from 'GitHub', but works simila
 4. Register on Bitbucket
     + Go to [Bitbucket.com](https://bitbucket.com/) and click *Get started for free*. Follow the steps to create your account. Sign in.
     + Bitbucket has largely automated the process of awarding free academic upgrades. If your email address is not recognized as belonging to an academic institution, fill out the form [here](https://www.atlassian.com/software/views/bitbucket-academic-license). 
-5. Connect 'RStudio' to Git and Bitbucket (for more support, see [this 'RStudio' article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/rstudio-and-github/))
+5. Connect 'RStudio' to Git and Bitbucket (for more support, see [this 'RStudio' article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/2015/07/rstudio-and-github/))
     a. Open 'RStudio', open the Tools menu, click *Global Options*, and click *Git/SVN*
     b. Verify that *Enable version control interface for RStudio projects* is selected
     c. Verify that *Git executable:* shows the location of git.exe. If it is missing, manually fix the location of the file.
