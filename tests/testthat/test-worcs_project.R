@@ -25,7 +25,7 @@ test_that("worcs project can be generated", {
   expect_true(any(readme_contents == paste0("You can load this project in RStudio by opening the file called '", "worcs_project.Rproj", "'.")))
   expect_true(file.exists("worcs_project/preregistration.Rmd"))
   expect_true(file.exists("worcs_project/manuscript/manuscript.Rmd"))
-  expect_error(git_status("worcs_project"), NA)
+  expect_error(git_status(repo = "worcs_project"), NA)
 
   setwd(old_wd)
 })
