@@ -222,7 +222,12 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   if(use_git & endsWith(remote_repo, ".git") &
      (startsWith(remote_repo, "https://") | startsWith(remote_repo, "git@"))){
     tryCatch({
-      git_remote_add(name = "origin", url = remote_repo, repo = path)
+      # For compatibility with old and new gert, check which formals it has
+      if("remote" %in% formalArgs(git_remote_add)){
+        git_remote_add(remote = "origin", url = remote_repo, repo = path)
+      } else {
+        git_remote_add(name = "origin", url = remote_repo, repo = path)
+      }
       git_push(remote = "origin", repo = path)
       col_message(paste0("Connected to remote repository at ", remote_repo))
     }, error = function(e){col_message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", success = FALSE)})
