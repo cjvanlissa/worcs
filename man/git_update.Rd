@@ -49,15 +49,15 @@ No return value. This function is called for its side effects.
 }
 \description{
 This function is a wrapper for
-\code{\link[gert:commit]{git_add}}, \code{\link[gert:commit]{git_commit}},
+\code{\link[gert:git_add]{git_add}}, \code{\link[gert:git_commit]{git_commit}},
 and
-\code{\link[gert:fetch]{git_push}}. It adds all locally changed files to the
+\code{\link[gert:git_push]{git_push}}. It adds all locally changed files to the
 staging area of the local 'Git' repository, then commits these changes
 (with an optional) \code{message}, and then pushes them to a remote
 repository. This is used for making a "cloud backup" of local changes.
 Do not use this function when working with privacy sensitive data,
 or any other file that should not be pushed to a remote repository.
-The \code{\link[gert:commit]{git_add}} argument
+The \code{\link[gert:git_add]{git_add}} argument
 \code{force} is disabled by default,
 to avoid accidentally committing and pushing a file that is listed in
 \code{.gitignore}.
