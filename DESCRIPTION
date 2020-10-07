@@ -39,6 +39,7 @@ LazyData: true
 URL: https://github.com/cjvanlissa/worcs
 RoxygenNote: 7.1.1
 Imports:
+    methods,
     rmarkdown,
     prereg,
     gert,

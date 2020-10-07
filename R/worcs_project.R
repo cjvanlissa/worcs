@@ -64,6 +64,7 @@ recommend_data <- c('library("worcs")',
 #' @importFrom gert git_init git_remote_add git_add git_commit git_push
 #' @importFrom utils installed.packages packageVersion
 #' @importFrom prereg vantveer_prereg
+#' @importFrom methods formalArgs
 # @importFrom renv init
 worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "COS", add_license = "CC_BY_4.0", use_renv = TRUE, remote_repo = "https", verbose = TRUE, ...) {
   cl <- match.call(expand.dots = FALSE)
@@ -223,11 +224,17 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
      (startsWith(remote_repo, "https://") | startsWith(remote_repo, "git@"))){
     tryCatch({
       # For compatibility with old and new gert, check which formals it has
+      Args_gert <- list(
+        "origin",
+        url = remote_repo,
+        repo = path
+      )
       if("remote" %in% formalArgs(git_remote_add)){
-        git_remote_add(remote = "origin", url = remote_repo, repo = path)
+        names(Args_gert)[1] <- "remote"
       } else {
-        git_remote_add(name = "origin", url = remote_repo, repo = path)
+        names(Args_gert)[1] <- "name"
       }
+      do.call(git_remote_add, Args_gert)
       git_push(remote = "origin", repo = path)
       col_message(paste0("Connected to remote repository at ", remote_repo))
     }, error = function(e){col_message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", success = FALSE)})
