@@ -1,13 +1,12 @@
-# worcs 0.1.4
+# worcs 0.1.5
 
-* Fixed bugs in handling of filenames by open_data() and closed_data()
-  codebook.Rmd from the name of the object supplied to the 'data' argument
-* By default, open_data() and closed_data() now construct the filenames of the
-  .csv and codebook.Rmd from the name of the object supplied to the 'data'
-  argument. This also means that the object will be loaded with the same name
-  by load_data().
-* Add function add_manuscript() to add a manuscript at a later stage
-* Major bugfixes in worcs_badge(); this function did not work as intended. Fixed now
+Apologies for the release of yet another version, but I was notified that our
+dependency `gert` has implemented some breaking changes. To ensure compatibility
+with `gert`, I hereby offer an update.
+
+* Necessary update due to breaking changes in dependency from the `gert` package
+* Add function add_preregistration() to add a preregistration at a later stage
+* Add preregistration templates "PSS" and "Secondary"
 
 ## Test environments
 

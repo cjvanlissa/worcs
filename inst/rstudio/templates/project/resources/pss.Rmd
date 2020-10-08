@@ -1,0 +1,107 @@
+---
+title           : "Title here"
+shorttitle      : "Short title here"
+date            : "`r Sys.setlocale('LC_TIME', 'C'); format(Sys.time(), '%d\\\\. %B %Y')`"
+authors         : "Author names here"
+---
+
+<!-- PSS (Preregistration and Sharing Software) is a template that can be used
+for pre-registrating confirmatory or exploratory studies.
+For more details about the description please check the reference:
+
+Krypotos, A. M., Klugkist, I., Mertens, G., & Engelhard, I. M. (2019).
+A step-by-step guide on preregistration and effective data sharing for
+psychopathology research. Journal of Abnormal Psychology, 128(6), 517-537.
+https://psycnet.apa.org/doi/10.1037/abn0000424 -->
+
+# Title
+
+<!-- Here you can provide the project title. -->
+
+## Authors
+
+<!-- Here you can provide the authors' list. -->
+
+## Affiliations
+
+<!--  Authors' affiliations -->
+
+# Background of the study
+
+## Primary study/Secondary analyses
+
+<!-- Is it a primary study (where data are collected) or a study 
+where secondary analyses are performed on an existing data set? -->
+
+## Does the study refer to a meta-analysis?
+
+<!-- Mention whether the study refers to a meta-analysis.
+In this case, you can ignore the irrelevant parts below
+(e.g., number of participants). -->
+
+## Research questions
+
+<!-- Define the research question -->
+
+## Study hypotheses
+
+<!-- Define the study hypotheses -->
+
+# Method
+
+## Stimuli
+
+<!-- Define the study stimuli -->
+
+
+## Questionnaires
+
+<!-- Define the study questionnaires, if used -->
+
+## Equipment
+
+<!-- Define the study equipment. This includes computer characteristics etc. -->
+
+## Procedure
+
+<!-- Define the study's procedure. -->
+
+## Protocol
+
+<!-- Define the study's protocol. -->
+
+# Statistical analyses
+
+## Participants
+
+<!-- How many participants will be recruited? 
+Has a power analysis been performed? -->
+
+## Stopping rule
+
+<!--  When will data accumulation end? -->
+
+## Confirming hypotheses threshold
+
+<!-- What is the threshold for confirming each of the research hypotheses? -->
+
+## Disconfirming hypotheses threshold
+
+<!-- What is the threeshold for rejecting each of the research hypotheses? -->
+
+# Other
+
+## Other (Optional)
+
+<!-- Further comments -->
+
+# References
+
+<!-- Included references -->
+
+## 
+\vspace{-2pc}
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{-1in}
+\setlength{\parskip}{8pt}
+\noindent

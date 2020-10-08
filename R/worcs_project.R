@@ -129,18 +129,9 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
 
   # Begin prereg
   if(!preregistration == "none"){
-    tryCatch({
-      draft(
-        file.path(path, "preregistration.Rmd"),
-        paste0(preregistration, "_prereg"),
-        package = "prereg",
-        create_dir = FALSE,
-        edit = FALSE
-      )
-      col_message("Creating preregistration files.")
-    }, error = function(e){
-      col_message("Creating preregistration files.", success = FALSE)
-    })
+    cl[[1L]] <- quote(worcs::add_preregistration)
+    names(cl)[which(names(cl) == "path")] <- "worcs_directory"
+    eval(cl, parent.frame())
   }
   # End prereg
 
@@ -489,4 +480,77 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
       col_message("Creating manuscript files.", success = FALSE)
     })
   # End manuscript
+}
+
+
+#' @title Add Rmarkdown preregistration
+#' @description Adds an Rmarkdown preregistration template to a 'worcs' project.
+#' @param worcs_directory Character, indicating the directory
+#' in which to create the manuscript files. Default: '.', which points to the
+#' current working directory.
+#' @param preregistration Character, indicating what template to use for the
+#' preregistration. Default: \code{"COS"}; use \code{"None"} to omit a
+#' preregistration. See Details for other available choices.
+#' @param verbose Logical. Whether or not to print messages to the console
+#' during project creation. Default: TRUE
+#' @param ... Additional arguments passed to and from functions.
+#' @return No return value. This function is called for its side effects.
+#' @details Available choices include the templates
+#' \code{"COS", "VantVeer", "Brandt", "AsPredicted"}, which are imported from the
+#' \code{\link[prereg]{cos_prereg}} package, and documented there. Furthermore,
+#' several unique templates are included with \code{worcs}:
+#' \itemize{
+#'   \item{\code{"PSS"}}{Preregistration and Sharing Software (Krypotos,
+#'   Klugkist, Mertens, & Engelhard, 2019)}
+#'   \item{\code{"Secondary"}}{Preregistrating for secondary analyses (Mertens &
+#'   Krypotos, 2019)}
+#' }
+#' @examples
+#' the_test <- "worcs_prereg"
+#' old_wd <- getwd()
+#' dir.create(file.path(tempdir(), the_test))
+#' file.create(file.path(tempdir(), the_test, ".worcs"))
+#' add_preregistration(file.path(tempdir(), the_test),
+#'                     preregistration = "COS")
+#' setwd(old_wd)
+#' unlink(file.path(tempdir(), the_test))
+#' @rdname add_preregistration
+#' @export
+#' @importFrom rmarkdown draft
+#' @importFrom prereg vantveer_prereg
+add_preregistration <- function(worcs_directory = ".",
+                                preregistration = "COS",
+                                verbose = TRUE,
+                                ...) {
+  # collect inputs
+  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
+  #fn_worcs <- file.path(dn_worcs, ".worcs")
+  worcs_directory <- normalizePath(dn_worcs)
+  preregistration <- tolower(preregistration)
+  #dots <- list(...)
+
+  # Begin preregistration
+  tryCatch({
+    # Different handling for prereg preregistrations and those included in worcs
+    if(!preregistration %in% c("pss", "secondary")){
+      draft(
+        file.path(worcs_directory, "preregistration.Rmd"),
+        paste0(preregistration, "_prereg"),
+        package = "prereg",
+        create_dir = FALSE,
+        edit = FALSE
+      )
+    } else {
+      if(file.exists(paste0(preregistration, ".Rmd"))|file.exists("preregistration.Rmd")){
+        stop("Preregistration already exists.")
+      } else {
+        copy_resources(paste0(preregistration, ".Rmd"), worcs_directory)
+        file.rename(paste0(preregistration, ".Rmd"), "preregistration.Rmd")
+      }
+    }
+    col_message("Creating preregistration files.")
+  }, error = function(e){
+    col_message("Creating preregistration files.", success = FALSE)
+  })
+  # End preregistration
 }

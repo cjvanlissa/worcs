@@ -1,0 +1,97 @@
+---
+title           : "Title here"
+shorttitle      : "Short title here"
+date            : "date here"
+authors           : "authors here"
+---
+
+<!-- This template aims provides a relative short format to preregister
+secondary analyses on preexisting data
+(much like the AsPredicted.org format for new data collection).
+For more details about the description please check the reference:
+
+Mertens, G., & Krypotos, A. M. (2019). Preregistration of analyses of
+preexisting data. Psychologica Belgica, 59(1), 338-352. doi: 10.5334/pb.493 -->
+
+# Title
+
+<!-- Here you can provide the project title.  -->
+
+## Authors
+
+<!-- Here you can provide the authors' list, together with the affiliations. -->
+
+## Affiliations
+
+<!--  Authors' affiliations-->
+
+# Study hypotheses
+
+<!-- Provide a brief description of the relevant theory 
+and formulate the hypotheses as precisely as possible. -->
+
+# Operationalization
+
+<!-- State exactly how the variables specified in each hypothesis 
+will be operationalized.  -->
+
+# Data source
+
+<!-- Specify the source of the obtained data. Also provide 
+information about the context of the data source and clarify 
+whether the data has been previously published. -->
+
+# Data request/access
+
+<!-- Specify how the data will be requested or accessed. 
+Clarify whether the data were already available and whether 
+the dataset has been previously explored or analyzed. -->
+
+# Exclusion criteria
+
+<!-- Specify whether there were any criteria for the 
+exclusions of certain datasets, observations or time points.-->
+
+# Statistical analyses
+
+<!-- Specify the statistical model that will be used to analyze the data. 
+Be as specific as possible and avoid ambiguity. -->
+
+# Hypotheses (dis-)confirmation
+
+<!-- Specify exactly how the hypothesis will be evaluated. 
+Give specific criteria relevant to the used analytical 
+model and framework (e.g., alpha-values, Bayes Factor, RMSEA).-->
+
+# Analysis validation
+
+<!-- Indicate whether the proposed analyses have previously been 
+validated on a subset of the data, or a simulated dataset. 
+If so, provide the data files and analysis code.-->
+
+# Timeline
+
+<!-- Provide the (foreseen) dates for the different steps 
+in this preregistration form.-->
+
+# What is known about the data that could be relevant for the tested hypotheses?
+
+<!-- What is known about the data that could be relevant for the tested
+hypotheses? I.e., disclose any prior exposure to the data set, direct or
+indirect, and specific information (e.g., knowing the mean of a variable) that
+is relevant for your research question. -->
+
+## Other (Optional)
+
+<!-- Further comments -->
+
+# References
+
+<!-- Included references -->
+
+## 
+\vspace{-2pc}
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{-1in}
+\setlength{\parskip}{8pt}
+\noindent

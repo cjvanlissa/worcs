@@ -1,3 +1,9 @@
+# worcs 0.1.5
+
+* Necessary update due to breaking changes in dependency from the `gert` package
+* Add function add_preregistration() to add a preregistration at a later stage
+* Add preregistration templates "PSS" and "Secondary"
+
 # worcs 0.1.4
 
 * Fixed bugs in handling of filenames by open_data() and closed_data()
