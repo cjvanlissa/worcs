@@ -39,7 +39,7 @@ several unique templates are included with \code{worcs}:
 \itemize{
   \item{\code{"PSS"}}{Preregistration and Sharing Software (Krypotos,
   Klugkist, Mertens, & Engelhard, 2019)}
-  \item{\code{"Secondary"}}{Preregistrating for secondary analyses (Mertens &
+  \item{\code{"Secondary"}}{Preregistration for secondary analyses (Mertens &
   Krypotos, 2019)}
 }
 }
