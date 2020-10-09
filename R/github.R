@@ -133,7 +133,7 @@ git_update <- function(message = paste0("update ", Sys.time()),
                        ssh_key,
                        mirror,
                        force,
-                       verbose){
+                       verbose = TRUE){
   tryCatch({
     git_ls(repo)
     col_message("Identified local 'Git' repository.", verbose = verbose)
