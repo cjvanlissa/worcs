@@ -19,15 +19,11 @@ recommend_data <- c('library("worcs")',
 #' "mdpi_article", "mnras_article", "oup_article", "peerj_article",
 #' "plos_article", "pnas_article", "rjournal_article", "rsos_article",
 #' "sage_article", "sim_article", "springer_article", "tf_article"}.
-#' For more information about \code{APA6}, see the 'papaja' package, at
-#' <https://github.com/crsh/papaja>.
-#' For more information about \code{github_document}, see
-#' \code{\link[rmarkdown]{github_document}}. The remaining formats are
-#' documented in the 'rticles' package.
+#' For more information, see \code{\link{add_manuscript}}.
 #' @param preregistration Character, indicating what template to use for the
 #' preregistration. Default: 'COS'. Available choices include:
-#' \code{"COS", "VantVeer", "Brandt", "AsPredicted", "None"}. For more
-#' information, see, e.g., \code{\link[prereg]{cos_prereg}}.
+#' \code{"COS", "VantVeer", "Brandt", "AsPredicted", "PSS", "Secondary",
+#' "None"}. For more information, see \code{\link{add_preregistration}}.
 #' @param add_license Character, indicating what license to include.
 #' Default: 'CC_BY_4.0'. Available options include:
 #' \code{"CC_BY_4.0", "CC_BY-SA_4.0", "CC_BY-NC_4.0", "CC_BY-NC-SA_4.0",
@@ -80,9 +76,9 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   # Check if valid Git signature exists
   use_git <- has_git()
   if(!use_git){
-    message("Could not find a working installation of 'Git', which is required to safeguard the transparency and reproducibility of your project. Please connect 'Git' by following the steps described in this vignette:\n  vignette('setup', package = 'worcs')")
+    col_message("Could not find a working installation of 'Git', which is required to safeguard the transparency and reproducibility of your project. Please connect 'Git' by following the steps described in this vignette:\n  vignette('setup', package = 'worcs')", success = FALSE)
   } else {
-    col_message("Initializing 'Git' repository.")
+    col_message("Initializing 'Git' repository.", verbose = verbose)
     git_init(path = path)
   }
 
@@ -92,7 +88,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
                     worcs_version = as.character(packageVersion("worcs")),
                     creator = Sys.info()["effective_user"]
     )
-    col_message("Writing '.worcs' file.")
+    col_message("Writing '.worcs' file.", verbose = verbose)
   }, error = function(e){
     col_message("Writing '.worcs' file.", success = FALSE)
   })
@@ -105,7 +101,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
       "prepare_data.R",
       "worcs_icon.png"
     ), path = path)
-    col_message("Copying standard files.")
+    col_message("Copying standard files.", verbose = verbose)
   }, error = function(e){
     col_message("Copying standard files.", success = FALSE)
   })
@@ -144,7 +140,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
       license_dir = system.file('rstudio', 'templates', 'project', 'licenses', package = 'worcs', mustWork = TRUE)
       license_file <- file.path(license_dir, paste0(add_license, ".txt"))
       file.copy(license_file, file.path(path, "LICENSE"))
-      col_message("Writing license file.")
+      col_message("Writing license file.", verbose = verbose)
     }, error = function(e){
       col_message("Writing license file.", success = FALSE)
     })
@@ -156,7 +152,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     tryCatch({
       init_fun <- get("init", asNamespace("renv"))
       do.call(init_fun, list(project = path, restart = FALSE))
-      col_message("Initializing 'renv' for a reproducible R environment.")
+      col_message("Initializing 'renv' for a reproducible R environment.", verbose = verbose)
     }, error = function(e){
       col_message("Initializing 'renv' for a reproducible R environment.", success = FALSE)
     })
@@ -204,7 +200,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     tryCatch({
     git_add(files = "README.md", repo = path)
     git_commit(message = "worcs template initial commit", repo = path)
-    col_message("Creating first commit (committing README.md).")
+    col_message("Creating first commit (committing README.md).", verbose = verbose)
     }, error = function(e){
       col_message("Creating first commit (committing README.md).", success = FALSE)
     })
@@ -227,8 +223,8 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
       }
       do.call(git_remote_add, Args_gert)
       git_push(remote = "origin", repo = path)
-      col_message(paste0("Connected to remote repository at ", remote_repo))
-    }, error = function(e){col_message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", success = FALSE)})
+      col_message(paste0("Connected to remote repository at ", remote_repo), verbose = verbose)
+    }, error = function(e){col_message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", success = FALSE, verbose = verbose)})
   } else {
     col_message("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.", success = FALSE)
   }
@@ -391,10 +387,7 @@ nice_tab <- function(tab){
 #' documented in the 'rticles' package.
 #' @param remote_repo Character, 'https' link to the remote repository for
 #' this project. This link should have the form \code{https://[...].git}.
-#' If a valid remote repository link is provided, a commit will
-#' be made containing the 'README.md' file, and will be pushed to the remote
-#' repository. Default: 'https'. When no 'https' address is provided, an 'SSH'
-#' address of the form \code{git@[...].git} is also accepted.
+#' This link will be inserted in the draft manuscript.
 #' @param verbose Logical. Whether or not to print messages to the console
 #' during project creation. Default: TRUE
 #' @param ... Additional arguments passed to and from functions.
@@ -475,7 +468,7 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
       write_worcsfile(filename = fn_worcs,
                       entry_point = man_fn_rel,
                       modify = TRUE)
-      col_message("Creating manuscript files.")
+      col_message("Creating manuscript files.", verbose = verbose)
     }, error = function(e){
       col_message("Creating manuscript files.", success = FALSE)
     })
@@ -548,7 +541,7 @@ add_preregistration <- function(worcs_directory = ".",
         file.rename(paste0(preregistration, ".Rmd"), "preregistration.Rmd")
       }
     }
-    col_message("Creating preregistration files.")
+    col_message("Creating preregistration files.", verbose = verbose)
   }, error = function(e){
     col_message("Creating preregistration files.", success = FALSE)
   })

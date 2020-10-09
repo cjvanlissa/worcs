@@ -4,7 +4,12 @@
 \alias{load_data}
 \title{Load WORCS project data}
 \usage{
-load_data(worcs_directory = ".", to_envir = TRUE, envir = parent.frame(1))
+load_data(
+  worcs_directory = ".",
+  to_envir = TRUE,
+  envir = parent.frame(1),
+  verbose = TRUE
+)
 }
 \arguments{
 \item{worcs_directory}{Character, indicating the WORCS project directory from
@@ -22,6 +27,9 @@ happens.}
 \item{envir}{The environment where the data should be loaded. The default
 value \code{parent.frame(1)} refers to the global environment in an
 interactive session.}
+
+\item{verbose}{Logical. Whether or not to print status messages to
+the console. Default: TRUE}
 }
 \value{
 Returns a list invisibly. If \code{to_envir = TRUE}, this list

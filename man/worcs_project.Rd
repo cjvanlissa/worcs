@@ -27,16 +27,12 @@ worcs_project(
 "mdpi_article", "mnras_article", "oup_article", "peerj_article",
 "plos_article", "pnas_article", "rjournal_article", "rsos_article",
 "sage_article", "sim_article", "springer_article", "tf_article"}.
-For more information about \code{APA6}, see the 'papaja' package, at
-<https://github.com/crsh/papaja>.
-For more information about \code{github_document}, see
-\code{\link[rmarkdown]{github_document}}. The remaining formats are
-documented in the 'rticles' package.}
+For more information, see \code{\link{add_manuscript}}.}
 
 \item{preregistration}{Character, indicating what template to use for the
 preregistration. Default: 'COS'. Available choices include:
-\code{"COS", "VantVeer", "Brandt", "AsPredicted", "None"}. For more
-information, see, e.g., \code{\link[prereg]{cos_prereg}}.}
+\code{"COS", "VantVeer", "Brandt", "AsPredicted", "PSS", "Secondary",
+"None"}. For more information, see \code{\link{add_preregistration}}.}
 
 \item{add_license}{Character, indicating what license to include.
 Default: 'CC_BY_4.0'. Available options include:

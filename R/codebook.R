@@ -23,6 +23,8 @@
 #' file to. By default, uses the filename stem of the \code{filename} argument.
 #' Set to \code{NULL} to write the codebook only to the 'R Markdown' file, and
 #' not to \code{.csv}.
+#' @param verbose Logical. Whether or not to print status messages to
+#' the console. Default: TRUE
 #' @return \code{Logical}, indicating whether or not the operation was
 #' successful. This function is mostly called for its side effect of rendering
 #' an 'R Markdown' codebook.
@@ -47,7 +49,8 @@ make_codebook <-
   function(data,
            filename = "codebook.Rmd",
            render_file = TRUE,
-           csv_file = gsub("Rmd$", "csv", filename)) {
+           csv_file = gsub("Rmd$", "csv", filename),
+           verbose = TRUE) {
     filename <- force(filename)
     function_success <- TRUE
 
@@ -56,7 +59,7 @@ make_codebook <-
             category = NA,
             description = NA)
     if (file.exists(filename)) {
-      col_message(paste0("Removing previous version of '", filename, "'."))
+      col_message(paste0("Removing previous version of '", filename, "'."), verbose = verbose)
       invisible(file.remove(filename))
     }
     draft(
@@ -86,7 +89,7 @@ make_codebook <-
       #                codebook = list(rmd_file = filename, checksum = checksum))
     } else {
       if (file.exists(csv_file)) {
-        col_message(paste0("Removing previous version of '", csv_file, "'."))
+        col_message(paste0("Removing previous version of '", csv_file, "'."), verbose = verbose)
         invisible(file.remove(csv_file))
       }
       write.csv(x = summaries, file = csv_file, row.names = FALSE)

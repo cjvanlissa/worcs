@@ -79,7 +79,8 @@ save_data <- function(data,
                       filename = paste0(deparse(substitute(data)), ".csv"),
                       open,
                       codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
-                      worcs_directory = "."){
+                      worcs_directory = ".",
+                      verbose = TRUE){
   if(grepl("[", filename, fixed = TRUE) | grepl("$", filename, fixed = TRUE)){
     stop("This filename is not allowed: ", filename, ". Please specify a legal filename.", call. = FALSE)
   }
@@ -123,7 +124,7 @@ save_data <- function(data,
 
 # Store data --------------------------------------------------------------
 
-  col_message("Storing original data in '", filename, "' and updating the checksum in '.worcs'.")
+  col_message("Storing original data in '", filename, "' and updating the checksum in '.worcs'.", verbose = verbose)
   write.csv(data, fn_write_original, row.names = FALSE)
 
   # Prepare for writing to worcs file
@@ -138,7 +139,7 @@ save_data <- function(data,
     write_gitig(fn_gitig, paste0("!", basename(fn_original)))
   } else {
     # Synthetic data
-    col_message("Generating synthetic data for public use. Ensure that no identifying information is included.")
+    col_message("Generating synthetic data for public use. Ensure that no identifying information is included.", verbose = verbose)
     synth_success <- tryCatch({
       synth <- synthetic(data, verbose = FALSE)
       TRUE
@@ -146,7 +147,7 @@ save_data <- function(data,
         FALSE
       })
     if(synth_success){
-      col_message("Storing synthetic data in '", fn_synthetic, "' and updating the checksum in '.worcs'.")
+      col_message("Storing synthetic data in '", fn_synthetic, "' and updating the checksum in '.worcs'.", verbose = verbose)
       write.csv(synth, fn_write_synth, row.names = FALSE)
       to_worcs$data[[filename]]$synthetic <- fn_synthetic
       store_checksum(fn_write_synth, entry_name = fn_synthetic)
@@ -154,10 +155,10 @@ save_data <- function(data,
       write_gitig(fn_gitig, basename(fn_original))
       write_gitig(fn_gitig, paste0("!", basename(fn_synthetic)))
     } else {
-      col_message("Could not generate synthetic data.")
+      col_message("Could not generate synthetic data.", verbose = verbose)
     }
   }
-  col_message("Updating '.gitignore'.")
+  col_message("Updating '.gitignore'.", verbose = verbose)
 
 # codebook ----------------------------------------------------------------
   if(create_codebook){
@@ -196,6 +197,8 @@ save_data <- function(data,
 #' @param envir The environment where the data should be loaded. The default
 #' value \code{parent.frame(1)} refers to the global environment in an
 #' interactive session.
+#' @param verbose Logical. Whether or not to print status messages to
+#' the console. Default: TRUE
 #' @return Returns a list invisibly. If \code{to_envir = TRUE}, this list
 #' contains the loaded data files. If \code{to_envir = FALSE}, the list is
 #' empty, and the loaded data files are attached directly to the global
@@ -221,7 +224,8 @@ save_data <- function(data,
 #' @importFrom digest digest
 #' @importFrom utils read.csv
 #' @importFrom yaml read_yaml
-load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.frame(1)){
+load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.frame(1),
+                      verbose = TRUE){
   # When users work from Rmd in a subdirectory, the working directory will be
   # set to that subdirectory. Check for .worcs file recursively, and change
   # directory if necessary.
@@ -256,7 +260,7 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
     fn_this_file <- fn_data_files[file_num]
     data_name_this_file <- data_files[file_num]
     check_sum(fn_this_file, worcsfile$checksums[[data_name_this_file]])
-    col_message("Loading ", c("synthetic", "original")[data_original[file_num]+1], " data from '", data_name_this_file, "'.")
+    col_message("Loading ", c("synthetic", "original")[data_original[file_num]+1], " data from '", data_name_this_file, "'.", verbose = verbose)
     object_name <- sub('^(synthetic_)?(.+)\\..*$', '\\2', basename(data_name_this_file))
     # Replace this with flexible load function from .worcs file
     out <- read.csv(fn_this_file, stringsAsFactors = TRUE)

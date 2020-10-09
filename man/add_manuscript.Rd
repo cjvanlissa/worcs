@@ -33,10 +33,7 @@ documented in the 'rticles' package.}
 
 \item{remote_repo}{Character, 'https' link to the remote repository for
 this project. This link should have the form \code{https://[...].git}.
-If a valid remote repository link is provided, a commit will
-be made containing the 'README.md' file, and will be pushed to the remote
-repository. Default: 'https'. When no 'https' address is provided, an 'SSH'
-address of the form \code{git@[...].git} is also accepted.}
+This link will be inserted in the draft manuscript.}
 
 \item{verbose}{Logical. Whether or not to print messages to the console
 during project creation. Default: TRUE}

@@ -169,7 +169,7 @@ synthetic.data.frame <- function(data,
         do.call(convert_func, list(xsynth[[thisvar]]))
       }, error = function(e){NULL})
       if(!is.null(newvar)){
-        col_message(msg, " Attempted to convert to its original type. Check the input types of your variables, and check whether the data are synthesized correctly.", success = TRUE)
+        col_message(msg, " Attempted to convert to its original type. Check the input types of your variables, and check whether the data are synthesized correctly.", success = TRUE, verbose = verbose)
         xsynth[[thisvar]] <- newvar
       } else {
         col_message(msg, " Failed to convert to its original type. Check the input types of your variables, and check whether the data are synthesized correctly.", success = FALSE)

@@ -219,19 +219,21 @@ skew_kurtosis.default <-
   }
 
 
-col_message <- function(..., col = 30, success = TRUE) {
+col_message <- function(..., col = 30, success = TRUE, verbose = TRUE) {
   #94
   #cat(paste0("\033[0;", col, "m",txt,"\033[0m","\n"))
-  txt <- do.call(paste0, list(...))
-  cat(paste0(
-    ifelse(success,
-           "\033[0;32mv  \033[0m",
-           "\033[0;31mX  \033[0m"),
-    "\033[0;",
-    col,
-    "m",
-    txt,
-    "\033[0m",
-    "\n"
-  ))
+  if(verbose){
+    txt <- do.call(paste0, list(...))
+    cat(paste0(
+      ifelse(success,
+             "\033[0;32mv  \033[0m",
+             "\033[0;31mX  \033[0m"),
+      "\033[0;",
+      col,
+      "m",
+      txt,
+      "\033[0m",
+      "\n"
+    ))
+  }
 }

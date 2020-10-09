@@ -8,7 +8,8 @@ make_codebook(
   data,
   filename = "codebook.Rmd",
   render_file = TRUE,
-  csv_file = gsub("Rmd$", "csv", filename)
+  csv_file = gsub("Rmd$", "csv", filename),
+  verbose = TRUE
 )
 }
 \arguments{
@@ -23,6 +24,9 @@ file to.}
 file to. By default, uses the filename stem of the \code{filename} argument.
 Set to \code{NULL} to write the codebook only to the 'R Markdown' file, and
 not to \code{.csv}.}
+
+\item{verbose}{Logical. Whether or not to print status messages to
+the console. Default: TRUE}
 }
 \value{
 \code{Logical}, indicating whether or not the operation was
