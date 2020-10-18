@@ -325,13 +325,15 @@ check_sum <- function(filename, old_cs = NULL){
 #' @importFrom utils head
 #' @export
 print.worcs_data <- function(x, ...){
-  if(attr(x, "type") == "synthetic"){
-    cat("This is a synthetic data set. The first 6 rows are:\n\n")
+  if(!is.null(attr(x, "type"))){
+    if(attr(x, "type") == "synthetic"){
+      cat("This is a synthetic data set. The first 6 rows are:\n\n")
+    }
+    if(attr(x, "type") == "original"){
+      cat("This is the original data set. The first 6 rows are:\n\n")
+    }
+    class(x) <- class(x)[-1]
   }
-  if(attr(x, "type") == "original"){
-    cat("This is the original data set. The first 6 rows are:\n\n")
-  }
-  class(x) <- class(x)[-1]
   print(head(x))
 }
 
