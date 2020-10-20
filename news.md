@@ -1,3 +1,10 @@
+# worcs 0.1.6
+
+* synthetic() now allows 'y' to be referenced in 'predict_expression' when
+  'model_expression' is set to NULL, thereby enabling bootstrapping.
+* closed_data() now passes formal arguments of synthetic() contained in '...'
+  on to synthetic.
+
 # worcs 0.1.5
 
 * Necessary update due to breaking changes in dependency from the `gert` package

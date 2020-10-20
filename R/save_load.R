@@ -46,17 +46,18 @@ open_data <- function(data,
 #' \code{\link[utils:write.table]{write.csv}}), stores a checksum in '.worcs',
 #' appends the \code{.gitignore} file to exclude \code{filename}, and saves a
 #' synthetic copy of \code{data} for public use. To generate these synthetic
-#' data, the function \code{\link{synthetic}} is used.
+#' data, the function \code{\link{synthetic}} is used. Additional arguments for
+#' the call to \code{\link{synthetic}} can be passed through \code{...}.
 #' @inheritParams open_data
 #' @return Returns \code{NULL} invisibly. This
 #' function is called for its side effects.
 #' @examples
-#' test_dir <- file.path(tempdir(), "data")
 #' old_wd <- getwd()
+#' test_dir <- file.path(tempdir(), "data")
 #' dir.create(test_dir)
 #' setwd(test_dir)
 #' worcs:::write_worcsfile(".worcs")
-#' df <- iris[1:10, ]
+#' df <- iris[1:3, ]
 #' closed_data(df, codebook = NULL)
 #' setwd(old_wd)
 #' unlink(test_dir, recursive = TRUE)
@@ -68,9 +69,10 @@ closed_data <- function(data,
                         codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
                         worcs_directory = ".",
                         ...){
-  Args <- all_args()
+  Args <- match.call()
   Args$open <- FALSE
-  do.call(save_data, Args)
+  Args[[1L]] <- str2lang("worcs:::save_data")
+  eval(Args, parent.frame())
 }
 
 #' @importFrom digest digest
@@ -80,7 +82,8 @@ save_data <- function(data,
                       open,
                       codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
                       worcs_directory = ".",
-                      verbose = TRUE){
+                      verbose = TRUE,
+                      ...){
   if(grepl("[", filename, fixed = TRUE) | grepl("$", filename, fixed = TRUE)){
     stop("This filename is not allowed: ", filename, ". Please specify a legal filename.", call. = FALSE)
   }
@@ -141,7 +144,11 @@ save_data <- function(data,
     # Synthetic data
     col_message("Generating synthetic data for public use. Ensure that no identifying information is included.", verbose = verbose)
     synth_success <- tryCatch({
-      synth <- synthetic(data, verbose = FALSE)
+      Args <- match.call()
+      Args <- Args[c(1, which(names(Args) %in% names(formals(synthetic))))]
+      Args$verbose <- verbose
+      Args[[1L]] <- quote(worcs::synthetic)
+      synth <- eval.parent(Args)
       TRUE
       }, error = function(e){
         FALSE

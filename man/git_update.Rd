@@ -16,7 +16,7 @@ git_update(
   ssh_key,
   mirror,
   force,
-  verbose
+  verbose = TRUE
 )
 }
 \arguments{
