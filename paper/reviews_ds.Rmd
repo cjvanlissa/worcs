@@ -23,7 +23,7 @@ Review #1 submitted on 19/Oct/2020 by Daniel Garijo ORCID logo https://orcid.org
 * Suggested Decision: Reject
 * Technical Quality of the paper: Good
 * Presentation: Good
-* Reviewer`s confidence: High
+* Reviewer's confidence: High
 * Significance: High significance
 * Background: Reasonable
 * Novelty: Limited novelty
@@ -146,7 +146,7 @@ Submitted on 19/Oct/2020 by Remzi Celebi ORCID logo https://orcid.org/0000-0001-
 * Suggested Decision: Accept
 * Technical Quality of the paper: Good
 * Presentation: Good
-* Reviewer`s confidence: Medium
+* Reviewer's confidence: Medium
 * Significance: High significance
 * Background: Reasonable
 * Novelty: Limited novelty
@@ -189,7 +189,7 @@ Submitted on 26/Oct/2020 by Anonymous
 * Suggested Decision: Reject
 * Technical Quality of the paper: Average
 * Presentation: Good
-* Reviewer`s confidence: High
+* Reviewer's confidence: High
 * Significance: High significance
 * Background: Reasonable
 * Novelty: Limited novelty
@@ -246,7 +246,7 @@ Submitted on 26/Oct/2020 by Katherine Wolstencroft https://orcid.org/0000-0002-1
 * Suggested Decision: Accept
 * Technical Quality of the paper: Excellent
 * Presentation: Good
-* Reviewer`s confidence: Medium
+* Reviewer's confidence: Medium
 * Significance: Moderate significance
 * Background: Reasonable
 * Novelty: Limited novelty
