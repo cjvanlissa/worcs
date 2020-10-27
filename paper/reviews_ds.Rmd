@@ -1,0 +1,299 @@
+---
+title       : "Manuscript title"
+authors     : "First Author & Second Author"
+journal     : "Journal title"
+manuscript  : "Manuscript number"
+
+class       : "draft"
+
+output      : papaja::revision_letter_pdf
+---
+
+Dear Dr. Editor,
+
+thank you very much for taking the time to consider our manuscript for publication at _`r rmarkdown::metadata$journal`_.
+In the following we address your and each reviewers' concerns point-by-point.
+
+
+# Reviewer \#1
+
+Review #1 submitted on 19/Oct/2020 by Daniel Garijo ORCID logo https://orcid.org/0000-0003-0454-7145
+
+* Overall Impression: Weak
+* Suggested Decision: Reject
+* Technical Quality of the paper: Good
+* Presentation: Good
+* Reviewer`s confidence: High
+* Significance: High significance
+* Background: Reasonable
+* Novelty: Limited novelty
+* Data availability: All used and produced data (if any) are FAIR and openly available in established data repositories
+* Length of the manuscript: The length of this manuscript is about right
+
+This paper describes worcs, a package and workflow to help make R code reproducible according to the TOP guidelines.
+
+The paper describes a tutorial of the tool, and how it implements the TOP guidelines.
+
+Reasons to accept:
+
+- The paper is relevant to the journal and on a timely topic.
+- The capabilities of the tool for synthetic data generation, connect to OSF, preprint publishing and dependency gathering show a lot of promise.
+- All the software (except a 404 page in the help, which is minor) is available online; and the project seems maintained and well documented.
+
+Reasons to reject:
+
+\RC{There is no user evaluation, and therefore all the claims about worcs are unsupported by evidence. If the authors had included a compelling evaluation I would be in favor of accepting the paper.}
+
+Response.
+
+\Assignment{All}
+\WorkInProgress
+\Hard
+
+\RC{This paper describes worcs, a package and workflow to help make R code reproducible according to the TOP guidelines.
+
+The paper is well written, easy to follow and very relevant and timely for the journal. I think the capabilities of the worcs package for synthetic data generation, connect to osf, help with the preprints and capture dependencies are very valuable to the community. However, the main limitation of the paper is that the workflow and proposed package are not evaluated with users, and therefore the claims of the authors with respect of its capabilities are not supported by evidence. I would like to encourage the authors to gather user/community feedback and demonstrate with numbers that worcs can help scientists as they claim. Then, the paper would become a strong contribution for the journal.}
+
+\Assignment{All}
+\WorkInProgress
+\Hard
+
+\RC{Unsupported claims (beyond the ones derived from an absence of evaluation): The paper claims in many parts that worcs helps make an entire research project Open and Reproducible. However, at the same time there is also a claim for not supporting replication. Since replication is generally understood as a necessary steps towards reproducibility, I find this kind of contradictory. Maybe the claims can be modified stating that worcs helps documentation and understanding, hence supporting FAIR.}
+
+\Assignment{All}
+\WorkInProgress
+\Hard
+
+\RC{I am confused by the citation "Van Lissa, Caspar J., Aaron Peikert, and Andreas M. Brandmaier. 2020. “Worcs: Workflow for Open Reproducible Code in Science.”". Is this referring to another paper or the actual package? If it's another paper then what is the contribution of this publication?}
+
+Response: Citation should be formatted as software.
+
+\Assignment{CJ}
+\WorkInProgress
+\Easy
+
+
+\RC{If the paper is generated as DDG, where are the functions that show it's capabilities? It is also not clear to me that some of the functionalities of Latex would be usable in RMarkdown, such as all the equations.}
+
+Response: Add comment that LaTeX is supported in RMarkdown; showing functions (?) out of scope for present paper.
+
+\Assignment{CJ}
+\WorkInProgress
+\Medium
+
+
+\RC{It is not clear how worcs addresses depedency management. The section lists a series of tools that can be used, but the section is not very specific to worcs.}
+
+Response: Not true; explain that worcs project automatically initializes `renv`.
+
+\Assignment{CJ}
+\WorkInProgress
+\Easy
+
+
+\RC{The workflow of releasing data products on GitHub is not ideal. First, because datasets of 100 MBs usually require special handling. Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation. The authors seem to not describe very well what would happen in data science experiments where the data size is significant.}
+
+\Assignment{BV, AB, AL, CJ}
+\WorkInProgress
+\Hard
+
+\RC{In the 3 phases listed, it is not clear what worcs does and does not for users.}
+
+\Assignment{All}
+\WorkInProgress
+\Medium
+
+
+\RC{In some cases it looks like the authors claim that everyone should use R for open science. While R has a strong community behind, I believe there are others with very strong support (e.g. Python). I am not sure if suggesting a shift to R is the right approach. Note that this is the impression I got from reading the paper, maybe it was unintended by the authors.}
+
+Response: Clearly define scope; feedback is welcome.
+
+\Assignment{All}
+\WorkInProgress
+\Hard
+
+
+\RC{Vignete on citation leads to a 404.}
+
+\Assignment{CJ}
+\WorkInProgress
+\Easy
+
+
+\RC{Synthetic data generation is fantastic, but it is not clear to me how does worcs actually keep the data consistent e.g. for training models. Does it follow a similar distribution to the source data?}
+
+Response: Provide reference, clarify explanation in text.
+
+\Assignment{CJ}
+\WorkInProgress
+\Each
+
+
+\RC{Docker is deemed as complicated for novice users, but the setup vignete looks quite complex to me as well. Wouldn't a Docker container with worcs installed be easier to use? Maybe these aspects would be better highlighted in a user evaluation.}
+
+Response: I've never used Docker. Andreas and Aaron - do you think you could clarify why worcs might have benefits over Docker? Should we make this proposed docker container available IN ADDITION to worcs as package?
+
+\Assignment{AP, AB}
+\WorkInProgress
+\Medium
+
+
+
+# Reviewer \#2
+Submitted on 19/Oct/2020 by Remzi Celebi ORCID logo https://orcid.org/0000-0001-7769-4272
+
+* Overall Impression: Good
+* Suggested Decision: Accept
+* Technical Quality of the paper: Good
+* Presentation: Good
+* Reviewer`s confidence: Medium
+* Significance: High significance
+* Background: Reasonable
+* Novelty: Limited novelty
+* Data availability: With exceptions that are admissible according to the data availability guidelines, all used and produced data are FAIR and openly available in established data repositories
+* Length of the manuscript: The length of this manuscript is about right
+
+The paper introduces the Workflow for Open Reproducible Code in Science (WORCS) , a workflow that complies with most of best practices for open sciences projects and demonstrates the use of the R worcs package for adapting WORCS workflow. The package provides a template for R users to create projects that follow open science principles.
+
+Reasons to accept:
+
+It provides a good discussion of TOP-guidelines (a set of open science principles) and how proposed workflow/package can be used to facilitate the adaptation of these guidelines. 
+
+Reasons to reject:
+
+\RC{I would suggest the authors include a flowchart for users that shows the decision making process for which tools/operations should be used in WORCS. An example project would also help users better understand the package.}
+
+\Assignment{ALL}
+\WorkInProgress
+\Medium
+
+\RC{The claim that WORCS is amenable to the FAIR Guiding Principles should be justified. What are the solutions provided by WORCS that make a project interoperable and reusable? It would be improved with a more thorough discussion on how WORCS meets each FAIR principle.}
+
+\Assignment{AL, BV, CJ}
+\WorkInProgress
+\Medium
+
+\RC{Is WORCS providing any service for de-identification?}
+
+Response: What would this entail? Is it within scope?
+
+\Assignment{ALL}
+\WorkInProgress
+\Medium
+
+# \Reviewer \#3
+
+Submitted on 26/Oct/2020 by Anonymous
+
+* Overall Impression: Weak
+* Suggested Decision: Reject
+* Technical Quality of the paper: Average
+* Presentation: Good
+* Reviewer`s confidence: High
+* Significance: High significance
+* Background: Reasonable
+* Novelty: Limited novelty
+* Data availability: All used and produced data (if any) are FAIR and openly available in established data repositories
+* Length of the manuscript: The length of this manuscript is about right
+
+The paper presents WORCS, a library that is implemented within R-studio with the purpose of promoting the creation of reproducible research. In particular, they assist the researchers in the tasks of generating the scholarly article, thereby managing a number of tasks that researchers have to deal with from the reformulation of their hypothesis to version control, to dependency management, and finally generating the scholarly article.
+
+Reasons to accept:
+
+On the positive side, the authors built their tool, with Open Science principles in mind. In doing so, they have pined the actions that need to be performed as part of the research process. For instance, steps such as the pre-registration of the objective of the study before starting the investigation is ignored by existing solutions.
+
+Reasons to reject:
+
+The objective of the author is ambiguous. That said, I do not think that WORCS provide sufficient features that make it stands out from state of the art tools, for the following reasons.
+
+\RC{C1) The process as described by the author for conducting research is assumed to be linear. However, researchers often go back and forth on steps that they have already completed, and sometimes have to undo them completely and start from scratch. This does not seem to be tackled by the tool.}
+
+Response: Opinions? I don't think this is entirely true. Nothing prevents researchers from going back and changing stuff? Or are there specific bottlenecks?
+
+\Assignment{ALL}
+\WorkInProgress
+\Hard
+
+\RC{C2) The gist of the tool seems to allow researchers to document their steps and generate a scholarly document that is ready for submission. In a sense, there is a similarity with existing notebooks such as Jupyter. So I was wondering why don’t the authors start from an existing popular tool such as Jupyter as the starting point (given the similarity in features that they would like to add), and extend Jupyter for instance with the new features such as dependency documentation and version control ?}
+
+Response: Does anyone know Jupyter? What are our advantages?
+
+\Assignment{ALL}
+\WorkInProgress
+\Medium
+
+\RC{C3) Regarding Version control and dependency documentation, the authors uses in their system existing solution, namely git and env, respectively. While I did not criticize reusing existing solution, on the contrary, I don't believe that simply using such solution add a substantial value. For example, git capture changes at the level of the line of code/text, whereas a researcher needs an abstraction that informs him/her on the coarse-grained elements that are significant from the point of view of development and research steps so as to have a clear idea of where s/he is within the process and help him/her make the decision of the next steps to undertake.}
+
+Response: Ideas?
+
+\Assignment{BV, CJ}
+\WorkInProgress
+\Medium
+
+\RC{To sum up, I think that the initial idea is interesting. However, I do not think that WORCS will be adopted by researchers or promote the state of the art of reproducibility, even if we focus on researchers who conduct their development and analysis using R.}
+
+Response: Is this a fair point of criticism? "I do not thing that WORCS will be adopted"? Seems to me that the review should address the paper/software itself, not the reviewer's forecast of adoption. Then again, perhaps it is easily waylaid by referencing the download numbers (~2255 downloads now).
+
+\Assignment{ALL}
+\WorkInProgress
+\Medium
+
+# \Reviewer \#4
+
+Submitted on 26/Oct/2020 by Katherine Wolstencroft https://orcid.org/0000-0002-1279-5133
+
+* Overall Impression: Good
+* Suggested Decision: Accept
+* Technical Quality of the paper: Excellent
+* Presentation: Good
+* Reviewer`s confidence: Medium
+* Significance: Moderate significance
+* Background: Reasonable
+* Novelty: Limited novelty
+* Data availability: All used and produced data (if any) are FAIR and openly available in established data repositories
+* Length of the manuscript: The length of this manuscript is about right
+
+This paper describes a Workflow for Open Reproducible Code in Science (WORCS). It promotes reproducible and FAIR R code and complies with the TOP-guidelines. The workflow is presented with an R library and a Github repository containing worcs templates and all supporting materials for this manuscript.
+
+Reasons to accept:
+
+The paper is well written and clearly describes WORCS, which promotes reproducible and open code for scientific investigations. It complies with current best practices for open and reproducible code and it also follows the FAIR principles. Such initiatives help promote better open and reproducible science. The approach taken here is pragmatic and lightweight, which is necessary for large scale uptake. The authors also focus on ease of use and provide a "one-click solution".
+
+WORCS is for scientists working with R with RMarkdown. It could therefore be argued that the utility is limited. However, R is widely used across science and the approach taken here could serve as an example for other software.
+
+Reasons to reject:
+
+\RC{The abstract of the paper states that the manuscript "provides examples of the implementation of worcs in R", so I was expecting science projects that had been described using worcs. If these examples exist, they should be referenced and linked to from the manuscript, as they would provide a better demonstration of the practical utility of the workflow and software than tutorial style examples.}
+
+Response: Should we do this?
+
+\Assignment{ALL}
+\WorkInProgress
+\Medium
+
+\RC{There is a comparison in the paper to another R-based reproducible science solution (Peikert and Brandmaier (2019)). The authors discuss some of the differences between these approaches, but the comparison is limited. It is not clear to me how different these approaches actually are, apart from ease of use. If scientists are already familiar with R, is there a significant learning curve with either solution?}
+
+\Assignment{AP, AB}
+\WorkInProgress
+\Medium
+
+# Editor
+
+Submitted by Tobias Kuhn on Tue, 10/27/2020 - 02:04, http://orcid.org/0000-0002-1267-0234
+
+\RC{The reviewers agree that the paper has merit, but some of them also point to major shortcomings, in particular the lack of discussion of user adoption and of handling non-linear research processes. Note that according to our guidelines, resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse".}
+
+Response: 
+
+\Assignment{AP, AB}
+\WorkInProgress
+\Medium
+
+# References
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+<div id = "refs"></div>
+\endgroup
