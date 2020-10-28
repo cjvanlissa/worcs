@@ -60,7 +60,19 @@ The paper is well written, easy to follow and very relevant and timely for the j
 
 \RC{Unsupported claims (beyond the ones derived from an absence of evaluation): The paper claims in many parts that worcs helps make an entire research project Open and Reproducible. However, at the same time there is also a claim for not supporting replication. Since replication is generally understood as a necessary steps towards reproducibility, I find this kind of contradictory. Maybe the claims can be modified stating that worcs helps documentation and understanding, hence supporting FAIR.}
 
-\Assignment{All}
+Response: We appreciate the Reviewer's comment, which seems to be rooted in a different definition of the terms "replication" and "reproducibility" than was intended by us. The lack of consistent definitions for these terms has been lamented by other authors (e.g., Patil, Peng, & Leek, 2019; Plesser, 2018). As WORCS aims to meet the requirements set out in the TOP-guidelines, we adhere to the definitions of reproducibility and replication as used in the TOP-guidelines. This definition is formalized by Patil and colleagues: "We define reproducibility as re-performing the same analysis with the same code using a different analyst, and we define replicability as re-performing the experiment and collecting new data". The TOP-guidelines state that the first seven guidelines are intended to ensure the "reproducibility of the reported results based on the originating data". The eighth criterion is "not formally a transparency standard for authors, [but] addresses journal guidelines for consideration of independent replications for publication."
+
+We had taken notice of this definitional quagmire, but decided not to dwell on it in the present paper. This reviewer comment has made it abundantly clear that we need to explicitly define our terms. Thus, in order to address this comment, the revised manuscript now reads: REF.
+
+We wish to fully address this comment, including the criticism of unsupported claims - but it is a bit difficult to do so, given the fundamental misunderstanding about what constitutes "reproducibility". We have stated that worcs helps make an entire research project open and reproducible. It does so by:
+1) Providing a conceptual workflow that addresses all steps required to make a project open and reproducible
+2) Addressing common bottlenecks, such as the inability to share primary data, and offering solutions to overcome these hurdles
+3) Version controlling a project on Git(Hub)
+4) Creating a fully reproducible RMarkdown document
+5) Managing the package dependencies
+
+The Reviewer, by contrast, proposes that the main contribution of worcs is to help documentation and understanding. It is not immediately clear to us which components of worcs address these two points - except perhaps the readme.md that is created upon initialization of a new project.
+\Assignment{CJ, ALL}
 \WorkInProgress
 \Hard
 
