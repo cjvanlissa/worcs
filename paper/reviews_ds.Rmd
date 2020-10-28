@@ -44,9 +44,35 @@ Reasons to reject:
 
 \RC{There is no user evaluation, and therefore all the claims about worcs are unsupported by evidence. If the authors had included a compelling evaluation I would be in favor of accepting the paper.}
 
-Response.
+Response: We appreciate the recommendation of performing a user evaluation, and this is certainly a next step in the development of worcs. However, as the Editor has indicated, 'resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse"'. We will thus first address the potential for re-use, and then we will address steps we have taken and intend to take with regard to user evaluation.
 
-\Assignment{All}
+First, there are several arguments to substantiate the potential for reuse of worcs:
+1) Worcs is implemented in an R-package
+2) This R-package is available in a standardized repository, namely CRAN ("The Comprehensive R Archive Network")
+3) The software meets all criteria of the Core Infrastructure Initiative "best practices" (CII Best Practices)
+4) The R-package uses only tools that are fully integrated within the RStudio IDE, thus enhancing ease of use
+5) The R-package is compatible with other reproducibility solutions, including Docker, drake, and make
+
+Second, there is some evidence to demonstrate that worcs is already being adopted:
+1) The worcs R-package has been downloaded 2255 times from CRAN (GitHub downloads are not tracked)
+2) The video tutorial for worcs has been viewed 356 times, and liked 18 times (https://www.youtube.com/watch?v=uzjpN_yFeUU)
+3) Worcs is the software used for reproducibility education at Utrecht University
+4) The lead author has given invited lectures on worcs at the Erasmus University Rotterdam, Eindhoven University of Technology, and Max Planck Institute, Berlin
+5) The lead author has applied worcs in several projects:
+	* https://github.com/cjvanlissa/storm_meta_father_mother
+	* https://github.com/cjvanlissa/veni_sysrev
+	* https://github.com/cjvanlissa/placebo_adhd
+	* https://github.com/cjvanlissa/schumpe
+	* https://github.com/cjvanlissa/coping_covid
+
+Third, although we have not conducted a user evaluation, there is some evidence that worcs addresses users' needs:
+1) Evaluate worcshops!!
+2) The issues page on the worcs GitHub profile demonstrates that we have been very responsive in addressing users' feedback (as required by the aforementioned CII Best Practices):
+* https://github.com/cjvanlissa/worcs/issues?q=is%3Aissue+is%3Aclosed
+
+<!-- The goal of the present manuscript is to define the problem worcs intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools worcs uses to address this problem, explain how worcs uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence; -->
+
+\Assignment{CJ, BV, AL}
 \WorkInProgress
 \Hard
 
@@ -54,13 +80,29 @@ Response.
 
 The paper is well written, easy to follow and very relevant and timely for the journal. I think the capabilities of the worcs package for synthetic data generation, connect to osf, help with the preprints and capture dependencies are very valuable to the community. However, the main limitation of the paper is that the workflow and proposed package are not evaluated with users, and therefore the claims of the authors with respect of its capabilities are not supported by evidence. I would like to encourage the authors to gather user/community feedback and demonstrate with numbers that worcs can help scientists as they claim. Then, the paper would become a strong contribution for the journal.}
 
-\Assignment{All}
-\WorkInProgress
-\Hard
+Response: In addressing this comment, we respectfully refer to our response to the preceding comment ("There is no user evaluation", R1), and again emphasize the Editor's comment that "resource papers do not need to have a full-blown user evaluation". We would also like to clarify that the goal of the present manuscript is to define the problem worcs intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools worcs uses to address this problem, explain how worcs uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence. In the revision, we have attempted to further clarify this goal from the paper onset: REF. 
+
+We do take the suggestion of performing a user evaluation very seriously, but in our mind, this is a next step. First, the workflow must be published, then it can be taught, and subsequently evaluated.
+
+\Assignment{CJ}
+\Done
+\Easy
 
 \RC{Unsupported claims (beyond the ones derived from an absence of evaluation): The paper claims in many parts that worcs helps make an entire research project Open and Reproducible. However, at the same time there is also a claim for not supporting replication. Since replication is generally understood as a necessary steps towards reproducibility, I find this kind of contradictory. Maybe the claims can be modified stating that worcs helps documentation and understanding, hence supporting FAIR.}
 
-\Assignment{All}
+Response: We appreciate the Reviewer's comment, which seems to be rooted in a different definition of the terms "replication" and "reproducibility" than was intended by us. The lack of consistent definitions for these terms has been lamented by other authors (e.g., Patil, Peng, & Leek, 2019; Plesser, 2018). As WORCS aims to meet the requirements set out in the TOP-guidelines, we adhere to the definitions of reproducibility and replication as used in the TOP-guidelines. This definition is formalized by Patil and colleagues: "We define reproducibility as re-performing the same analysis with the same code using a different analyst, and we define replicability as re-performing the experiment and collecting new data". The TOP-guidelines state that the first seven guidelines are intended to ensure the "reproducibility of the reported results based on the originating data". The eighth criterion is "not formally a transparency standard for authors, [but] addresses journal guidelines for consideration of independent replications for publication."
+
+We had taken notice of this definitional quagmire, but decided not to dwell on it in the present paper. This reviewer comment has made it abundantly clear that we need to explicitly define our terms. Thus, in order to address this comment, the revised manuscript now reads: REF.
+
+We wish to fully address this comment, including the criticism of unsupported claims - but it is a bit difficult to do so, given the fundamental misunderstanding about what constitutes "reproducibility". We have stated that worcs helps make an entire research project open and reproducible. It does so by:
+1) Providing a conceptual workflow that addresses all steps required to make a project open and reproducible
+2) Addressing common bottlenecks, such as the inability to share primary data, and offering solutions to overcome these hurdles
+3) Version controlling a project on Git(Hub)
+4) Creating a fully reproducible RMarkdown document
+5) Managing the package dependencies
+
+The Reviewer, by contrast, proposes that the main contribution of worcs is to help documentation and understanding. It is not immediately clear to us which components of worcs address these two points - except perhaps the readme.md that is created upon initialization of a new project.
+\Assignment{CJ, ALL}
 \WorkInProgress
 \Hard
 
@@ -75,7 +117,7 @@ Response: Citation should be formatted as software.
 
 \RC{If the paper is generated as DDG, where are the functions that show it's capabilities? It is also not clear to me that some of the functionalities of Latex would be usable in RMarkdown, such as all the equations.}
 
-Response: Add comment that LaTeX is supported in RMarkdown; showing functions (?) out of scope for present paper.
+Response: Add comment that LaTeX is supported in RMarkdown; showing functions (?) out of scope for present paper. Reference RMarkdown @xieMarkdownDefinitiveGuide2018
 
 \Assignment{CJ}
 \WorkInProgress
