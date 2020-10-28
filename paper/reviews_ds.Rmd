@@ -173,8 +173,7 @@ Response: Provide reference, clarify explanation in text.
 
 \RC{Docker is deemed as complicated for novice users, but the setup vignete looks quite complex to me as well. Wouldn't a Docker container with worcs installed be easier to use? Maybe these aspects would be better highlighted in a user evaluation.}
 
-Response: I've never used Docker. Andreas and Aaron - do you think you could clarify why worcs might have benefits over Docker? Should we make this proposed docker container available IN ADDITION to worcs as package?
-
+Response: Thank you for this thoughtful suggestion. We explained better why `renv` is more user friendly (because it builds upon the "normal" package workflow of R users). For users familiar with Docker, we have published an image on Docker Hub with all requirements of worcs installed and a Docker specific setup vignette, that is much shorter and given that you know how to use Docker easier.
 \Assignment{AP, AB}
 \WorkInProgress
 \Medium
