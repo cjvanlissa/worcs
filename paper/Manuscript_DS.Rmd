@@ -7,7 +7,6 @@ author:
   - name: Andreas M. Brandmaier
     affiliation: 'Max Planck Institute'
   - name: Loek Brinkman
-    affiliation: 'UMC Utrecht'
   - name: Anna-Lena Lamprecht
     affiliation: 'Utrecht University'
     email: a.l.lamprecht@uu.nl
@@ -19,6 +18,7 @@ author:
     affiliation: 'Utrecht University'
 title: "WORCS: A Workflow for Open Reproducible Code in Science"
 short:      "WORKFLOW FOR OPEN SCIENCE"
+shorttitle:      "WORKFLOW FOR OPEN SCIENCE"
 abstract: |
   Adopting open science
   principles can be challenging and time-intensive, because doing so requires
