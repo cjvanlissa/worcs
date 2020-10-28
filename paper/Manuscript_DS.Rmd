@@ -263,12 +263,17 @@ If strict reproducibility is required, users might choose to conduct all analyse
 virtual computer, which can be stored like a time capsule, and
 identically reinstated on a user computer, or in the cloud.
 This is effective, and also preserves software outside the `R` environment (e.g.,
-preprocessing tools for neuroimaging data). A Docker-based workflow
-that is conceptually and practically compatible with WORCS
-was recently introduced by @peikertReproducibleDataAnalysis2019.
-However, it is somewhat difficult to set up for novice users. 
-The `R` package `repro`
-is currently in development to facilitate adoption [@repro]. 
+preprocessing tools for neuroimaging data).
+The [stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/docker.html)
+describes how users may instantiate a Docker build running `worcs` and its dependencies.
+For more information on this topic,
+@peikertReproducibleDataAnalysis2019 describe 
+a Docker-based workflow for computational reproducibility that is
+conceptually and practically compatible with WORCS.
+One remaining challenge of Docker is that it is somewhat difficult to set up for novice users.
+The `worcs` package meets most reproducibility requirements while using only tools
+native to RStudio, and is therefore easier to adopt for `R` users.
+However, an `R` package is currently in development to facilitate Docker integration [`repro`, @repro].
 Another 
 user-friendly Docker-based workflow is offered by the cloud-based collaboration
 platform 'Code Ocean'. Although Code Ocean enjoys some popularity among 
