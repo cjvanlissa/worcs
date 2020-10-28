@@ -18,3 +18,4 @@ Makefile
 ^.*\.ai$
 ^doc$
 ^Meta$
+Dockerfile
