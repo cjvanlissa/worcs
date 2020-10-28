@@ -294,8 +294,9 @@ need to be installed again. This prevents long installation
 times, large space requirements, and frustration having to re-install software
 that is already installed on the system. When someone else loads your 
 project, `renv` will install all of the required packages onto a cache on their
-computer. 
-This is not a foolproof method to ensure strict computational reproducibility, but it is more user-friendly
+computer. As opposed to the alternatives `renv` is tightly integrated with the
+native R package management system and thus does not require the users to change their workflow of installing/removing and using packages.
+This is not a fail-safe method to ensure strict computational reproducibility, but it is more user-friendly
 and lightweight than any alternative out there, requiring no technical skill to
 setup. When choosing an appropriate solution for dependency management, it is
 important to consider that all solutions have a limited shelf life
