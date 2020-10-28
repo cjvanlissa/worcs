@@ -406,7 +406,9 @@ you have to install the required software.
 This 30 minute procedure is documented
 in [the setup vignette](https://cjvanlissa.github.io/worcs/articles/setup.html).
 After setting up your system, you can use `worcs` for all of your
-projects. The `R` implementation of the workflow introduced earlier is detailed,
+projects. If you have Docker installed and you know how to use it, you may alternatively
+read [the stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/docker.html).
+The `R` implementation of the workflow introduced earlier is detailed,
 step-by-step, in
 [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html).
 
