@@ -117,7 +117,7 @@ Response: Citation should be formatted as software.
 
 \RC{If the paper is generated as DDG, where are the functions that show it's capabilities? It is also not clear to me that some of the functionalities of Latex would be usable in RMarkdown, such as all the equations.}
 
-Response: Add comment that LaTeX is supported in RMarkdown; showing functions (?) out of scope for present paper.
+Response: Add comment that LaTeX is supported in RMarkdown; showing functions (?) out of scope for present paper. Reference RMarkdown @xieMarkdownDefinitiveGuide2018
 
 \Assignment{CJ}
 \WorkInProgress
