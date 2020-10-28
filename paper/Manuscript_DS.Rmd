@@ -783,7 +783,7 @@ called `preregistration.Rmd`. This file should be used to document study plans,
 ideally prior to data collection. 
 Within the workflow, the Git cloud hosting services can be used to preregister a study simply by pushing a text document with the study plans to a Git remote repository.
 By [tagging the commit](https://help.github.com/en/github/administering-a-repository/creating-releases) as a preregistration
-(see [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html)),
+(see [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html)),
 it is distinct from all other commits, and easily findable by people and machines.
 
 ## Compatibility with other standards for open science
