@@ -21,7 +21,7 @@ If you do not want to install R, RStudio, Latex and Git on a personal computer (
 2. Start the `worcs` image:
 
 ```{bash, eval=FALSE}
-docker run -e PASSWORD=secret -p 8787:8787 -it aaronpeikert/worcs:latest
+docker run -e PASSWORD=secret -p 8787:8787 -it cjvanlissa/worcs:latest
 ```
 
 3. Open [127.0.0.1:8787/](http://127.0.0.1:8787/) in a browser. Login using username=rstudio and password=secret.
@@ -50,7 +50,7 @@ And on Windows file systems, as follows:
 Then start the Docker session using this command:
 
 ```{bash, eval=FALSE}
-docker run -e PASSWORD=secret -p 8787:8787 -v /path/on/your/pc:/home/rstudio -it aaronpeikert/worcs:latest
+docker run -e PASSWORD=secret -p 8787:8787 -v /path/on/your/pc:/home/rstudio -it cjvanlissa/worcs:latest
 ```
 
 That's it!
