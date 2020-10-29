@@ -259,7 +259,7 @@ Response: Opinions? I don't think this is entirely true. Nothing prevents resear
 
 Response: Does anyone know Jupyter? What are our advantages?
 
-\Assignment{ALL}
+\Assignment{BV, CJ}
 \WorkInProgress
 \Medium
 
