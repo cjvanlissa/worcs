@@ -1,5 +1,5 @@
 ---
-title: "The WORCS workflow, version 0.1.2"
+title: "The WORCS workflow, version 0.1.5"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{workflow}
@@ -35,7 +35,8 @@ knitr::include_graphics("workflow.png")
 2. <!--S: When using R, initialize a new RStudio project using the WORCS template. Otherwise, clone the remote repository to your local project folder.-->In Rstudio, click File > New Project > New directory > WORCS Project Template
     a. Paste the remote Repository address in the textbox. This address should look like `https://[...].git`
     b. Keep the checkbox for `renv` checked if you want to use dependency management (recommended)
-    c. Select a preregistration template
+    c. Select a preregistration template, or add a preregistration later using `add_preregistration()`
+    d. Select a manuscript template, or add a manuscript later using `add_manuscript()`
 3. <!--S: Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability. The `worcs` project template does this automatically.-->Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability.
 3. <!--S: Optional: Preregister your analysis by committing a plain-text preregistration and tagging the commit as "preregistration".-->Preregister your analysis:
     + Document study plans in a `preregistration.Rmd` file, and optionally, planned analyses in a `.R` file.
