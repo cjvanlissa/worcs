@@ -377,13 +377,13 @@ get_workflow()
 
 WORCS is, first and foremost, a conceptual workflow that could be implemented in any software environment.
 As of this writing, the workflow has been implemented for `R` users in the package `worcs` [@worcspackage2020].
-Several arguments support the choice to implement this workflow in `R` first, although we encourage developers to port the software to other languages.
+Several arguments support the choice to implement this workflow in `R` and RStudio first, although we encourage developers to port the software to other languages.
 First, `R` and all of it extensions are free open source software, which
 make it a tool of choice for open science.
 Second, all tools required for an open science workflow are implemented in `R`,
 most of these tools are directly accessible through the RStudio user interface,
 and some of them are actively developed by the team behind RStudio.
-Third, unlike any competitor, RStudio is a Public Benefit Corporation, whose primary purpose is explicitly aligned with open science principles:
+Third, RStudio is a Public Benefit Corporation, whose commitment to open science is codified in the company charter:
 
 > RStudio’s primary purpose is to create free and open-source software for data science, scientific research, and technical communication. This allows anyone with access to a computer to participate freely in a global economy that rewards data literacy; enhances the production and consumption of knowledge; and facilitates collaboration and reproducible research in science, education and industry.
 
