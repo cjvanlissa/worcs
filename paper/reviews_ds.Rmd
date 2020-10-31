@@ -257,7 +257,28 @@ Response: Opinions? I don't think this is entirely true. Nothing prevents resear
 
 \RC{C2) The gist of the tool seems to allow researchers to document their steps and generate a scholarly document that is ready for submission. In a sense, there is a similarity with existing notebooks such as Jupyter. So I was wondering why don’t the authors start from an existing popular tool such as Jupyter as the starting point (given the similarity in features that they would like to add), and extend Jupyter for instance with the new features such as dependency documentation and version control ?}
 
-Response: Does anyone know Jupyter? What are our advantages?
+Response: We agree with the Reviewer that the conceptual workflow as explained in the paper could be implemented in any software environment, including Jupyter. In fact, we acknowledge this in the paragraph on *Future developments*: *"although the workflow is currently implemented only in `R`, it is conceptually relevant for users of other statistical programming languages, most notably `Python` [@10.5555/1593511]. We welcome efforts to implement WORCS in other platforms."*.
+
+The simple and straightforward response to the Reviewer's question is that we implemented this workflow in R because we are R developers. But in the paper, we provide some more detailed arguments to substantiate a preference for R over other environments:
+
+> First, `R` and all of it extensions are free open source software, which
+make it a tool of choice for open science.
+Second, all tools required for an open science workflow are implemented in `R`,
+most of these tools are directly accessible through the RStudio user interface,
+and some of them are actively developed by the team behind RStudio.
+Third, unlike any competitor, RStudio is a Public Benefit Corporation, whose primary purpose is explicitly aligned with open science principles:  
+*RStudio’s primary purpose is to create free and open-source software for data science, scientific research, and technical communication. This allows anyone with access to a computer to participate freely in a global economy that rewards data literacy; enhances the production and consumption of knowledge; and facilitates collaboration and reproducible research in science, education and industry.*  
+Fourth, `R` is the second-most cited statistical software package [@muenchenPopularityDataScience2012], following SPSS, which has no support for any of the open science tools discussed in this paper.
+Fifth, `R` is well-supported by
+a vibrant and inclusive online community,
+which develops new methods and packages,
+and provides support and tutorials for existing ones.
+Finally, `R` is highly interoperable:
+Packages are available to read and write nearly every filetype,
+including DOCX, PDF (in APA style), and HTML. 
+Moreover, wrappers are available for many tools developed in other programming languages, and code written in other programming languages can be evaluated from `R`, including `C++`, 
+`Fortran`, and `Python` [@allaireMarkdownPythonEngine2020]. There are excellent free
+resources for learning `R` [e.g., @grolemundDataScience2017].
 
 \Assignment{BV, CJ}
 \WorkInProgress
