@@ -53,17 +53,21 @@ First, there are several arguments to substantiate the potential for reuse of wo
 4) The R-package uses only tools that are fully integrated within the RStudio IDE, thus enhancing ease of use
 5) The R-package is compatible with other reproducibility solutions, including Docker, drake, and make
 
-Second, there is some evidence to demonstrate that worcs is already being adopted:
-1) The worcs R-package has been downloaded 2255 times from CRAN (GitHub downloads are not tracked)
-2) The video tutorial for worcs has been viewed 356 times, and liked 18 times (https://www.youtube.com/watch?v=uzjpN_yFeUU)
-3) Worcs is the software used for reproducibility education at Utrecht University
-4) The lead author has given invited lectures on worcs at the Erasmus University Rotterdam, Eindhoven University of Technology, and Max Planck Institute, Berlin
-5) The lead author has applied worcs in several projects:
+Second, there is some evidence to demonstrate that worcs is already being adopted (as of 31-10-2020):
+
+1. The preprint has been downloaded 561 times, since being published on 31-05-2020
+1. The `worcs` R-package has been downloaded 2401 times from CRAN, since being published on 18-05-2020
+1. The GitHub project has been forked by users unknown to us 4 times, and starred (= watched) 32 times
+1. The video tutorial for worcs has been viewed 362 times, and liked 18 times (https://www.youtube.com/watch?v=uzjpN_yFeUU)
+1. WORCS is used to teach reproducibility at Utrecht University
+1. The lead author has given invited lectures on WORCS at the Erasmus University Rotterdam, Eindhoven University of Technology, and Max Planck Institute, Berlin
+1. The lead author has applied worcs in several research projects:
 	* https://github.com/cjvanlissa/storm_meta_father_mother
 	* https://github.com/cjvanlissa/veni_sysrev
 	* https://github.com/cjvanlissa/placebo_adhd
 	* https://github.com/cjvanlissa/schumpe
 	* https://github.com/cjvanlissa/coping_covid
+
 
 Third, although we have not conducted a user evaluation, there is some evidence that worcs addresses users' needs:
 1) Evaluate worcshops!!
@@ -313,13 +317,28 @@ We do see the value in clarifying this point in the manuscript as well, and to a
 \Done
 \Medium
 
-\RC{To sum up, I think that the initial idea is interesting. However, I do not think that WORCS will be adopted by researchers or promote the state of the art of reproducibility, even if we focus on researchers who conduct their development and analysis using R.}
+\RC{C4: To sum up, I think that the initial idea is interesting. However, I do not think that WORCS will be adopted by researchers or promote the state of the art of reproducibility, even if we focus on researchers who conduct their development and analysis using R.}
 
-Response: Is this a fair point of criticism? "I do not thing that WORCS will be adopted"? Seems to me that the review should address the paper/software itself, not the reviewer's forecast of adoption. Then again, perhaps it is easily waylaid by referencing the download numbers (~2255 downloads now).
+Response: We thank the Reviewer for acknowledging the idea to be interesting.
+Whether it will be adopted by researchers remains to be seen after publication.
+There is some prelimiary evidence that the workflow is being adopted (as of 31-10-2020):
 
-\Assignment{ALL}
-\WorkInProgress
-\Medium
+1. The preprint has been downloaded 561 times, since being published on 31-05-2020
+1. The `worcs` R-package has been downloaded 2401 times from CRAN, since being published on 18-05-2020
+1. The GitHub project has been forked by users unknown to us 4 times, and starred (= watched) 32 times
+1. The video tutorial for worcs has been viewed 362 times, and liked 18 times (https://www.youtube.com/watch?v=uzjpN_yFeUU)
+1. WORCS is used to teach reproducibility at Utrecht University
+1. The lead author has given invited lectures on WORCS at the Erasmus University Rotterdam, Eindhoven University of Technology, and Max Planck Institute, Berlin
+1. The lead author has applied worcs in several research projects:
+	* https://github.com/cjvanlissa/storm_meta_father_mother
+	* https://github.com/cjvanlissa/veni_sysrev
+	* https://github.com/cjvanlissa/placebo_adhd
+	* https://github.com/cjvanlissa/schumpe
+	* https://github.com/cjvanlissa/coping_covid
+
+\Assignment{CJ}
+\Done
+\Easy
 
 # \Reviewer \#4
 
