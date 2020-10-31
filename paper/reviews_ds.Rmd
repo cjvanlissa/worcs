@@ -375,6 +375,30 @@ Response: Should we do this?
 
 \RC{There is a comparison in the paper to another R-based reproducible science solution (Peikert and Brandmaier (2019)). The authors discuss some of the differences between these approaches, but the comparison is limited. It is not clear to me how different these approaches actually are, apart from ease of use. If scientists are already familiar with R, is there a significant learning curve with either solution?}
 
+We agree that this is an important point, and have rewritten the paragraph comparing these two solutions (as cited below). We hope that this adresses the Reviewer's question. However, as the workflow of Peikert and Brandmaier is still in the preprint stage, and the software implementation has not yet been developed - a more detailed comparison of these two approaches would be premature.
+
+> A different class of solutions instead focuses on the practical issue of *how*
+researchers can meet the requirements of open science.
+A notable example is the workflow for reproducible analyses developed by @peikertReproducibleDataAnalysis2019,
+which uses Docker to ensure strict computational reproducibility for
+even the most sophisticated analyses.
+There are some key differences with WORCS.
+First, with regard to the scope of the workflow: 
+WORCS is designed to address a unique issue not covered by other existing solutions,
+namely to provide a workflow most conducive to satisfying TOP-guidelines 1-7 while adhering to the FAIR principles.
+Peikert and Brandmaier instead focus primarily on computational reproducibility,
+which is relevant for TOP-guidelines 2, 3, and 5.
+Second, with regard to ease of use,
+WORCS aims to bring down the learning curve by adopting sensible defaults for any decisions to be made.
+Peikert and Brandmaier, by contrast, designed their workflow to be very flexible and comprehensive,
+thus requiring substantially more background knowledge and technical sophistication from users.
+To sum up, WORCS builds upon the same general principles
+as Peikert and Brandmaier, and the two workflows are compatible. What 
+sets WORCS apart is that it is a more lightweight
+approach to safeguard computational reproducibility under *most circumstances*, 
+which is easier to adopt for projects that can be conducted entirely within `R`.
+
+
 \Assignment{AP, AB}
 \WorkInProgress
 \Medium

@@ -880,21 +880,24 @@ based on a semi-automated scoring of the checklist items, by calling the functio
 
 A different class of solutions instead focuses on the practical issue of *how*
 researchers can meet the requirements of open science.
-One notable example is the workflow for
-reproducible analyses developed by @peikertReproducibleDataAnalysis2019. This 
-workflow strives to ensure strict computational reproducibility for
-even the most sophisticated analyses. It has some limitations, however: In
-focusing on reproducibility, it only addresses TOP-guidelines 2, 3, and
-5. Moreover, in aiming for strict computational reproducibility it ends up being
-relatively complex to implement. WORCS builds upon the same general principles
-as Peikert and Brandmaier,
-which means the two workflows are compatible. What 
-sets WORCS apart is that is an easy and sufficient solution for projects that
-can be conducted entirely within `R`, resulting in a much more lightweight
-approach to safeguard computational reproducibility under *most circumstances*.
-WORCS also addresses a unique issue not covered by other existing solutions,
-namely to provide a workflow most conducive to satisfying the TOP-guidelines and
-FAIR principles, while being compatible with existing requirements.
+A notable example is the workflow for reproducible analyses developed by @peikertReproducibleDataAnalysis2019,
+which uses Docker to ensure strict computational reproducibility for
+even the most sophisticated analyses.
+There are some key differences with WORCS.
+First, with regard to the scope of the workflow: 
+WORCS is designed to address a unique issue not covered by other existing solutions,
+namely to provide a workflow most conducive to satisfying TOP-guidelines 1-7 while adhering to the FAIR principles.
+Peikert and Brandmaier instead focus primarily on computational reproducibility,
+which is relevant for TOP-guidelines 2, 3, and 5.
+Second, with regard to ease of use,
+WORCS aims to bring down the learning curve by adopting sensible defaults for any decisions to be made.
+Peikert and Brandmaier, by contrast, designed their workflow to be very flexible and comprehensive,
+thus requiring substantially more background knowledge and technical sophistication from users.
+To sum up, WORCS builds upon the same general principles
+as Peikert and Brandmaier, and the two workflows are compatible. What 
+sets WORCS apart is that it is a more lightweight
+approach to safeguard computational reproducibility under *most circumstances*, 
+which is easier to adopt for projects that can be conducted entirely within `R`.
 
 One initiative that WORCS is fully compatible with, is the [*Scientific Paper of
 the Future*](https://www.scientificpaperofthefuture.org/). This organization encourages
