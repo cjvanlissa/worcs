@@ -375,16 +375,20 @@ get_workflow()
 
 ## The R implementation of WORCS
 
-The `R` package `worcs` automates much of the workflow
-for `R` users.
-Several arguments support the choice to implement this workflow in `R`.
+WORCS is, first and foremost, a conceptual workflow that could be implemented in any software environment.
+As of this writing, the workflow has been implemented for `R` users in the package `worcs` [@worcspackage2020].
+Several arguments support the choice to implement this workflow in `R` first, although we encourage developers to port the software to other languages.
 First, `R` and all of it extensions are free open source software, which
 make it a tool of choice for open science.
 Second, all tools required for an open science workflow are implemented in `R`,
 most of these tools are directly accessible through the RStudio user interface,
 and some of them are actively developed by the team behind RStudio.
-Third, `R` is the second-most cited statistical software package [@muenchenPopularityDataScience2012], following SPSS, which has no support for any of the open science tools discussed in this paper.
-Fourth, `R` is well-supported by
+Third, unlike any competitor, RStudio is a Public Benefit Corporation, whose primary purpose is explicitly aligned with open science principles:
+
+> RStudio’s primary purpose is to create free and open-source software for data science, scientific research, and technical communication. This allows anyone with access to a computer to participate freely in a global economy that rewards data literacy; enhances the production and consumption of knowledge; and facilitates collaboration and reproducible research in science, education and industry.
+
+Fourth, `R` is the second-most cited statistical software package [@muenchenPopularityDataScience2012], following SPSS, which has no support for any of the open science tools discussed in this paper.
+Fifth, `R` is well-supported by
 a vibrant and inclusive online community,
 which develops new methods and packages,
 and provides support and tutorials for existing ones.
