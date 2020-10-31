@@ -265,9 +265,9 @@ Response: There are two points we wish to address here. First, we would like to 
 
 > Manuscript, paragraph titled **The R implementation of WORCS**: *WORCS is, first and foremost, a conceptual workflow that could be implemented in any software environment. As of this writing, the workflow has been implemented for `R` users in the package `worcs` [@worcspackage2020].*
 
-Second, in response to the main comment, we agree with the Reviewer that the conceptual workflow as explained in the paper could be implemented in any software environment, including Jupyter. In fact, we acknowledge this in the paragraph on *Future developments*: *"although the workflow is currently implemented only in `R`, it is conceptually relevant for users of other statistical programming languages, most notably `Python` [@10.5555/1593511]. We welcome efforts to implement WORCS in other platforms."*.
+Second, in response to the main comment, we agree with the Reviewer that the conceptual workflow as explained in the paper could be implemented in any software environment, including Jupyter. In fact, we emphasize this in the paragraph on *Future developments*: *"although the workflow is currently implemented only in `R`, it is conceptually relevant for users of other statistical programming languages, most notably `Python` [@10.5555/1593511]. We welcome efforts to implement WORCS in other platforms."*.
 
-To address the Reviewer's question directly: We implemented this workflow in R because we are R developers. But in the paper, we also provide some arguments that compel our preference for R and RStudio as a choice for statistical computing in open science:
+To answer the Reviewer's question directly: We implemented this workflow in R because we are R developers. But in the paper, we also provide some arguments that compel our preference for R and RStudio as a choice for statistical computing in open science:
 
 > First, `R` and all of it extensions are free open source software, which
 make it a tool of choice for open science.
@@ -289,14 +289,12 @@ Moreover, wrappers are available for many tools developed in other programming l
 resources for learning `R` [e.g., @grolemundDataScience2017].
 
 \Assignment{BV, CJ}
-\WorkInProgress
+\Done
 \Medium
 
 \RC{C3) Regarding Version control and dependency documentation, the authors uses in their system existing solution, namely git and env, respectively. While I did not criticize reusing existing solution, on the contrary, I don't believe that simply using such solution add a substantial value. For example, git capture changes at the level of the line of code/text, whereas a researcher needs an abstraction that informs him/her on the coarse-grained elements that are significant from the point of view of development and research steps so as to have a clear idea of where s/he is within the process and help him/her make the decision of the next steps to undertake.}
 
-Response: Respectfully, we are not entirely sure what the criticism is here. First, there seems to be a misunderstanding about the scope of the paper, which is described in the Abstract: *"This paper introduces [a] step-by-step procedure that researchers can follow to make a research project open and reproducible, accompanied by an open source software implementation that automates these steps"*.
-
-Our paper thus introduces a workflow for open science, based on objective criteria set out in the TOP-guidelines. Aside from the work in progress of our co-authors - which is focused on strict computational reproducibility and is compatible with the present workflow - this is one of the first efforts to translate the requirements of open science into a step-by-step workflow. When you search Google Scholar for "open science workflow", the first hit that actually describes a workflow is the present manuscript.
+Response: Respectfully, we are not entirely sure what the criticism is here. First, as addressed in our response to the previous comment, there seems to be a misunderstanding about the scope of the paper. To clarify, we again state that our paper introduces a workflow for open science, based on objective criteria set out in the TOP-guidelines. Regarding novelty: Aside from the work in progress of our co-authors - which is focused on strict computational reproducibility and is compatible with the present workflow - this is one of the first efforts to translate the requirements of open science into a step-by-step workflow. When you search Google Scholar for "open science workflow", the first hit that actually describes a workflow is the present manuscript.
 
 Second, the Reviewer claims that using e.g. Git does not add substantial value - but this claim is in disagreement with published literature that makes a strong case for the value of using Git for research [see two references cited in the paper, @ramGitCanFacilitate2013;  @blischakQuickIntroductionVersion2016].
 
