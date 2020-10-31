@@ -204,9 +204,12 @@ tracking changes in word processing software, or using cloud hosting services
 that retain backups of previous versions.
 
 An integral part of WORCS is the *explicit* version control software Git
-(www.git-scm.com). Git tracks
-changes to files, and stores these changes when the user makes a "commit" (a 
-snapshot of the version controlled files).
+(www.git-scm.com).
+Git tracks changes to files on a line-by-line basis.
+The user can sture these changes by making a "commit": a 
+snapshot of the version controlled files.
+Each "commit" can contain as many changes as desired;
+for example, a whole new paragraph, or many small changes made to address a single reviewer comment.
 Git retains a complete log of all commits, and users can compare changes between
 different commits, or go back to a previous version of the code (for example,
 after making a mistake, or to replicate a previous version of the results).
@@ -322,8 +325,6 @@ instead of binary files.
 Text-based files can be read by machines and humans alike.
 Binary files, such as Word (`.docx`) or SPSS (`.sav`, `.spo`) files,
 must be decoded first, often requiring commercial software.
-Git is designed for use with text-based files, as it
-logs changes to text-based files on a line-by-line basis.
 Although binary files can be version controlled with Git, 
 their change log is uninterpretable.
 Binary files are also often 
