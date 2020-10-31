@@ -349,7 +349,9 @@ as a web page on GitHub.
 # Introducing the workflow 
 
 We provide a conceptual outline of the WORCS procedure below, based on WORCS
-Version 0.1.2. 
+Version 0.1.5.
+Note that, although the steps are numbered for reference purposes,
+we acknowledge that the process of conducting research is not always linear.
 For users of the `worcs` `R` package, we highly recommend referring to
 [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html),
 which is more detailed and updated with future developments.
