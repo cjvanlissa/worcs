@@ -47,8 +47,8 @@ abstract: |
   This paper addresses the design of the workflow,
   discusses how it meets different 
   standards for open science, and provides examples of the implementation of
-  `worcs` in `R`. All source code for the `R` package,
-  and replication materials for the manuscript, are available at 
+  `worcs` in `R`. The source code for the `R` package and manuscript,
+  and a list of user examples of WORCS projects, are available at 
   https://github.com/cjvanlissa/worcs.
 authornote: "blabla"
 keywords:
@@ -356,6 +356,7 @@ we acknowledge that the process of conducting research is not always linear.
 For users of the `worcs` `R` package, we highly recommend referring to
 [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html),
 which is more detailed and updated with future developments.
+For an up-to-date list of sample `worcs` projects, see the [WORCS GitHub page](https://github.com/cjvanlissa/worcs).
 
 ```{r results="asis", echo = FALSE, eval = TRUE}
 get_workflow <- function(filename = "../vignettes/workflow.Rmd"){

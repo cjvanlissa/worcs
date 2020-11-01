@@ -6,7 +6,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 [![CRAN status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/package=worcs)
-[![metacran downloads](https://cranlogs.r-pkg.org/badges/worcs)](https://cran.r-project.org/package=worcs)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/worcs?color=blue)](https://r-pkg.org/pkg/worcs)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis build status](https://travis-ci.org/cjvanlissa/worcs.svg?branch=master)](https://travis-ci.org/cjvanlissa/worcs)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3969/badge)](https://bestpractices.coreinfrastructure.org/projects/3969)
@@ -85,6 +85,48 @@ descripts <- data.frame(matrix(c(
 names(descripts) <- c("File", "Description", "Usage")
 knitr::kable(descripts)
 ```
+
+## Adoption of WORCS by users
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+library(gh)
+library(dlstats)
+dl <- dlstats::cran_stats("worcs")
+dl <- sum(dl$downloads)
+
+worcs_repo <- gh("/repos/cjvanlissa/worcs")
+
+repos <- gh("GET /search/code", username = "cjvanlissa", q="worcs_version filename:.worcs")
+
+worcs_repos <- data.frame(t(sapply(repos[["items"]], function(x){
+  c(owner = x$repository$owner$login,
+    name = x$repository$name,
+    url = x$repository$html_url
+  )
+})))
+
+worcs_repos <- worcs_repos[!((worcs_repos$owner %in% c("cjvanlissa", "cran") & worcs_repos$name == "worcs")| grepl("(penguin|\\btmp|demo|test)", tolower(worcs_repos$name))), ]
+
+tmp <- paste0(sapply(unique(worcs_repos$owner), function(x){
+  owner_repos <- worcs_repos[worcs_repos$owner == x, , drop = FALSE]
+  paste0("\n    - ", x, "  ",
+         paste0("\n        + [", owner_repos$name, "](", owner_repos$url, ")  ", collapse = ""))
+  }),
+  collapse = "")
+
+invited <- read.table("https://raw.githubusercontent.com/cjvanlissa/resume/master/invited.csv", sep = ",", header = TRUE)
+invited <- invited[grepl("(worcs|workflow)", tolower(invited$Topic)), c("Institute", "Year", "City", "Country", "Date")]
+invited <- paste0(apply(invited, 1, function(x){paste0("\n    - ", x[1], " (", x[2], ")  ")}), collapse = "")
+```
+
+As of `r Sys.Date()`, these are indicators of the adoption of `worcs` by users:
+
+1. The preprint has been downloaded 561 times, since being published on 31-05-2020
+1. The `worcs` R-package has been downloaded `r dl` times from CRAN, since being published on 18-05-2020
+1. The GitHub project has been forked `r worcs_repo$network_count` times, watched `r worcs_repo$subscribers_count` times, and starred `r worcs_repo$watchers` times
+1. The lead author has given invited lectures on WORCS at:`r invited`
+1. WORCS is currently used in the following GitHub repositories (sorted by user):`r tmp`
+
 
 ## Contributing and Contact Information
 

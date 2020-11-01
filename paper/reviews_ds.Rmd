@@ -367,11 +367,11 @@ Reasons to reject:
 
 \RC{C1: The abstract of the paper states that the manuscript "provides examples of the implementation of worcs in R", so I was expecting science projects that had been described using worcs. If these examples exist, they should be referenced and linked to from the manuscript, as they would provide a better demonstration of the practical utility of the workflow and software than tutorial style examples.}
 
-Response: Should we do this?
+Response: We thank the Reviewer for this helpful suggestion! Although such user examples are not yet numerous, the lead author has six public WORCS repositories, and there are two public repositories by other users. In our opinion, it would be most useful to have a continuously cumulating list of example repositories, and link that list in the paper - rather than to publish a static list. Therefore, to address this comment, we have scripted a web scraper that searches GitHub for WORCS repositories (using the metadata tags created by the `worcs` package). We have embedded the scraper in the README.Rmd file on the worcs GitHub page, which is regularly updated. In the revised paper, we point readers to [this readme](https://github.com/cjvanlissa/worcs) for a list of user examples, in the Abstract, and when introducing the workflow.
 
-\Assignment{ALL}
-\WorkInProgress
-\Medium
+\Assignment{CJ}
+\Done
+\Hard
 
 \RC{C2: There is a comparison in the paper to another R-based reproducible science solution (Peikert and Brandmaier (2019)). The authors discuss some of the differences between these approaches, but the comparison is limited. It is not clear to me how different these approaches actually are, apart from ease of use. If scientists are already familiar with R, is there a significant learning curve with either solution?}
 
@@ -399,7 +399,7 @@ approach to safeguard computational reproducibility under *most circumstances*,
 which is easier to adopt for projects that can be conducted entirely within `R`.
 
 
-\Assignment{AP, AB}
+\Assignment{CJ, AP, AB}
 \WorkInProgress
 \Medium
 
