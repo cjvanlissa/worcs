@@ -409,7 +409,27 @@ Submitted by Tobias Kuhn on Tue, 10/27/2020 - 02:04, http://orcid.org/0000-0002-
 
 \RC{The reviewers agree that the paper has merit, but some of them also point to major shortcomings, in particular the lack of discussion of user adoption and of handling non-linear research processes. Note that according to our guidelines, resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse".}
 
-Response: 
+Response: We thank the Editor and all Reviewers for their helpful comments on this manuscript. We have attempted to address all of these points in the action letter above. With regard to the specific point reiterated by the Editor:
+
+### User adoption
+
+We thank the Editor for pointing out that a full-blown user evaluation is not required for a resource paper.
+Of course, we take this Reviewer suggestion very seriously, and intend to conduct a user evaluation after the paper is published and users begin to adopt the workflow.
+In the meantime, we present the following evidence for WORCS' potential for reuse:
+
+TODO
+
+### Non-linear research processes
+
+Although Reviewer 3 claims that WORCS assumes a linear research process, this is incorrect.
+
+We agree with Reviewer 3 that researchers often go back and forth in their work. 
+We did not intend to convey the impression that the process of conducting research is assumed to be linear. 
+Of course, since we are presenting a workflow - there are a number of steps involved, which we have placed in roughly chronological order and numbered for reference purposes.
+For example, Study Design must logically occur prior to Writing and Analysis, and Publication can only logically occur after Writing.
+We also wish to emphasize that the "tool" (we assume the Reviewer is referring to the `worcs` R-package) does not enforce any kind of linearity. 
+
+To address the Reviewer's comment, we have made two changes: First, we now explicitly state, in the paper and the Workflow vignette, that the steps are not necessarily linear:  *"Note that, although the steps are numbered for reference purposes, we acknowledge that the process of conducting research is not always linear."*. Second, while it was always possible to manually add a manuscript or preregistration at a later point in time after creating a new project in RStudio - we have now added functions to make non-linear workflows even more convenient, specifically: `add_manuscript()` and `add_preregistration()`.
 
 \Assignment{AP, AB}
 \WorkInProgress
