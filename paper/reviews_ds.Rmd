@@ -42,7 +42,7 @@ Reasons to accept:
 
 Reasons to reject:
 
-\RC{There is no user evaluation, and therefore all the claims about worcs are unsupported by evidence. If the authors had included a compelling evaluation I would be in favor of accepting the paper.}
+\RC{C1 There is no user evaluation, and therefore all the claims about worcs are unsupported by evidence. If the authors had included a compelling evaluation I would be in favor of accepting the paper.}
 
 Response: We appreciate the recommendation of performing a user evaluation, and this is certainly a next step in the development of worcs. However, as the Editor has indicated, 'resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse"'. We will thus first address the potential for re-use, and then we will address steps we have taken and intend to take with regard to user evaluation.
 
@@ -80,7 +80,7 @@ Third, although we have not conducted a user evaluation, there is some evidence 
 \WorkInProgress
 \Hard
 
-\RC{This paper describes worcs, a package and workflow to help make R code reproducible according to the TOP guidelines.
+\RC{C2 This paper describes worcs, a package and workflow to help make R code reproducible according to the TOP guidelines.
 
 The paper is well written, easy to follow and very relevant and timely for the journal. I think the capabilities of the worcs package for synthetic data generation, connect to osf, help with the preprints and capture dependencies are very valuable to the community. However, the main limitation of the paper is that the workflow and proposed package are not evaluated with users, and therefore the claims of the authors with respect of its capabilities are not supported by evidence. I would like to encourage the authors to gather user/community feedback and demonstrate with numbers that worcs can help scientists as they claim. Then, the paper would become a strong contribution for the journal.}
 
@@ -92,27 +92,61 @@ We do take the suggestion of performing a user evaluation very seriously, but in
 \Done
 \Easy
 
-\RC{Unsupported claims (beyond the ones derived from an absence of evaluation): The paper claims in many parts that worcs helps make an entire research project Open and Reproducible. However, at the same time there is also a claim for not supporting replication. Since replication is generally understood as a necessary steps towards reproducibility, I find this kind of contradictory. Maybe the claims can be modified stating that worcs helps documentation and understanding, hence supporting FAIR.}
+\RC{C3 Unsupported claims (beyond the ones derived from an absence of evaluation): The paper claims in many parts that worcs helps make an entire research project Open and Reproducible. However, at the same time there is also a claim for not supporting replication. Since replication is generally understood as a necessary steps towards reproducibility, I find this kind of contradictory. Maybe the claims can be modified stating that worcs helps documentation and understanding, hence supporting FAIR.}
 
-Response: We appreciate the Reviewer's comment, which seems to be rooted in a different definition of the terms "replication" and "reproducibility" than was intended by us. The lack of consistent definitions for these terms has been lamented by other authors (e.g., Patil, Peng, & Leek, 2019; Plesser, 2018). As WORCS aims to meet the requirements set out in the TOP-guidelines, we adhere to the definitions of reproducibility and replication as used in the TOP-guidelines. This definition is formalized by Patil and colleagues: "We define reproducibility as re-performing the same analysis with the same code using a different analyst, and we define replicability as re-performing the experiment and collecting new data". The TOP-guidelines state that the first seven guidelines are intended to ensure the "reproducibility of the reported results based on the originating data". The eighth criterion is "not formally a transparency standard for authors, [but] addresses journal guidelines for consideration of independent replications for publication."
+Response: We understand that our writing comes across as contradictory,
+and this apparent contradiction arises from a lack of explicit definitions of the terms "replication" and "reproducibility" in the original manuscript.
+We are aware of the oft-lamented lack of consistent definitions for these terms (e.g., Patil, Peng, & Leek, 2019; Plesser, 2018).
+In the Revision, we have attempted to address this lack of clarity by including explicit definitions for these terms:
 
-We had taken notice of this definitional quagmire, but decided not to dwell on it in the present paper. This reviewer comment has made it abundantly clear that we need to explicitly define our terms. Thus, in order to address this comment, the revised manuscript now reads: REF.
+> Throughout this paper, we adhere to the definition of open science as
+"the practice of science in such a way that others can collaborate and contribute,
+where research data, lab notes and other research processes are freely available,
+under terms that enable reuse, redistribution and reproduction of the research and its underlying data and methods" [@vicente-saezOpenScienceNow2018].  
+[...] reproducibility can be defined as "re-performing the same analysis with the same code using a different analyst",
+and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
 
-We wish to fully address this comment, including the criticism of unsupported claims - but it is a bit difficult to do so, given the fundamental misunderstanding about what constitutes "reproducibility". We have stated that worcs helps make an entire research project open and reproducible. It does so by:
+After making these definitions explicit, it becomes clear that the Reviewer's definition of replication as "a necessary steps towards reproducibility" is not consistent with the present paper.
+
+We further wish to clarify that the fact that we address guidelines 1-7, but not guideline 8 ("replication") is consistent with the intended purpose of the TOP-guidelines.
+Specifically, the first seven guidelines are intended to ensure the "reproducibility of the reported results based on the originating data" [direct quote from @nosekPromotingOpenResearch2015a]. The eighth criterion, by contrast, is "not formally a transparency standard for authors, [but] addresses journal guidelines for consideration of independent replications for publication" (again a direct quote).
+To avoid further confusion or controversy, we now address this distinction between the first 7 guidelines and the final 8th explicitly in the revised manuscript:
+
+> These guidelines describe eight standards for open science,
+the first seven of which "account for reproducibility of the reported results
+based on the originating data, and for sharing sufficient information to conduct an independent 
+replication" [@nosekPromotingOpenResearch2015a].
+In this context, 
+reproducibility can be defined as "re-performing the same analysis with the same code using a different analyst",
+and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
+These guidelines are: 1) Comprehensive
+citation of literature, data, materials, and methods; 2) sharing data, 3)
+sharing the code required to reproduce analyses, 4) sharing new research
+materials, and 5) sharing details of the design and analysis; 6)
+pre-registration of studies before data collection, and 7) pre-registration of
+the analysis plan prior to analysis.
+The eighth criterion is "not formally a transparency standard for authors", but "addresses 
+journal guidelines for consideration of independent replications for publication".
+WORCS defines the goals of open science in terms of the first seven TOP-guidelines,
+and the workflow and its `R` implementation are designed to facilitate compliance therewith.
+
+
+<!--We wish to fully address this comment, including the criticism of unsupported claims - but it is a bit difficult to do so, given the fundamental misunderstanding about what constitutes "reproducibility". We have stated that worcs helps make an entire research project open and reproducible. It does so by:
 1) Providing a conceptual workflow that addresses all steps required to make a project open and reproducible
 2) Addressing common bottlenecks, such as the inability to share primary data, and offering solutions to overcome these hurdles
 3) Version controlling a project on Git(Hub)
 4) Creating a fully reproducible RMarkdown document
 5) Managing the package dependencies
 
-The Reviewer, by contrast, proposes that the main contribution of worcs is to help documentation and understanding. It is not immediately clear to us which components of worcs address these two points - except perhaps the readme.md that is created upon initialization of a new project.
+The Reviewer, by contrast, proposes that the main contribution of worcs is to help documentation and understanding. It is not immediately clear to us which components of worcs address these two points - except perhaps the readme.md that is created upon initialization of a new project.--> 
+
 \Assignment{CJ, ALL}
-\WorkInProgress
+\Done
 \Hard
 
 \RC{I am confused by the citation "Van Lissa, Caspar J., Aaron Peikert, and Andreas M. Brandmaier. 2020. “Worcs: Workflow for Open Reproducible Code in Science.”". Is this referring to another paper or the actual package? If it's another paper then what is the contribution of this publication?}
 
-Response: Citation should be formatted as software.
+Response: We apologize; it appears that there were numerous errors in the parsing of the reference list after rendering the manuscript to HTML - the preferred format of Data Science. The reference is indeed to the R-package. In the revised manuscript, we have repaired the references so that it is clear that this is a software package, et cetera.
 
 \Assignment{CJ}
 \WorkInProgress

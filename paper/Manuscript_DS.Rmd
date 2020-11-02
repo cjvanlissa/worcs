@@ -1,21 +1,24 @@
 ---
 author:
-  - name: Caspar J. van Lissa
-    affiliation: 'Utrecht University'
-    address: Padualaan 14, 3584CH Utrecht, The Netherlands
-    email: c.j.vanlissa@uu.nl
-  - name: Andreas M. Brandmaier
-    affiliation: 'Max Planck Institute'
-  - name: Loek Brinkman
-  - name: Anna-Lena Lamprecht
-    affiliation: 'Utrecht University'
-    email: a.l.lamprecht@uu.nl
-  - name: Aaron Peikert
-    affiliation: Max Planck Institute
-  - name: Marijn E. Struiksma
-    affiliation: 'Utrecht University'
-  - name: Barbara Vreede
-    affiliation: 'Utrecht University'
+  name: |
+    [Caspar J. Van Lissa](c.j.vanlissa@uu.nl)$^{a,b}$
+    Andreas M. Brandmaier$^{c,d}$
+    Loek Brinkman$^{b,e}$
+    Anna-Lena Lamprecht$^{b,f}$
+    Aaron Peikert$^{c,g}$
+    Marijn E. Struiksma$^{b,h}$
+    Barbara Vreede$^{i}$
+    
+  affiliation: | 
+      a: Utrecht University faculty of Social and Behavioral Sciences, department of Methodology & Statistics  
+      b: Open Science Community Utrecht  
+      c: Center for Lifespan Psychology, Max Planck Institute for Human Development, Berlin, Germany  
+      d: Max Planck UCL Centre for Computational Psychiatry and Ageing Research, Berlin, Germany and London, UK  
+      e: UMC Utrecht  
+      f: Utrecht University, Department of Information and Computing Sciences  
+      g: Humboldt-Universitaet zu Berlin  
+      h: Utrecht University faculty of Humanities, department of Language, Literature & Communication, Utrecht Institute of Linguistics OTS  
+      i: University Library Utrecht
 title: "WORCS: A Workflow for Open Reproducible Code in Science"
 short:      "WORKFLOW FOR OPEN SCIENCE"
 shorttitle:      "WORKFLOW FOR OPEN SCIENCE"
@@ -60,8 +63,16 @@ preamble: >
 bibliography      : ["worcs.bib"]  
 urlcolor          : blue
 output: rmarkdown::html_document
-knit: worcs::cite_all
 ---
+<!--
+, "worcs_packages.bib"
+output: 
+  rmarkdown::html_document:
+    citation_package: biblatex Note: Citations are always handled by pandoc when format is not PDF
+knit: worcs::cite_all
+csl: apa.csl
+csl: apa.csl
+--> 
 
 ```{r load_packages, include = FALSE}
 library("papaja")
@@ -113,7 +124,7 @@ It can also be used to produce work in accordance with best practices
 in the absence of top-down support or guidelines.
 Although the principles underlying this workflow are universal, WORCS has been
 implemented in `R` [@rcoreteamLanguageEnvironmentStatistical2020].
-The `worcs` package [@worcspackage2020] offers a project template for RStudio
+The `worcs` package [@worcs] offers a project template for RStudio
 [@rstudioteamRStudioIntegratedDevelopment2015], which is, effectively,
 a "one click solution". This paper discusses the principles underlying WORCS,
 introduces the workflow, addresses how WORCS meets best practices for open science,
@@ -124,23 +135,37 @@ knitr::include_graphics("workflow.png")
 #knitr::include_graphics("workflow_graph/workflow.svg")
 ```
 
-# Defining Open Science practices
+# Defining open science practices
 
-Although Open Science is advocated by many, it does not have a unitary definition
-[but see @tennantValuePropositionOpen2020].
-One of the most influential operationalisations
-of Open Science principles is known as the "TOP-guidelines" [@nosekPromotingOpenResearch2015a].
-These guidelines describe eight standards for open science: 1) Comprehensive
+Although open science is advocated by many,
+it does not have a unitary definition.
+Throughout this paper, we adhere to the definition of open science as
+"the practice of science in such a way that others can collaborate and contribute,
+where research data, lab notes and other research processes are freely available,
+under terms that enable reuse, redistribution and reproduction of the research and its underlying data and methods" [@vicente-saezOpenScienceNow2018].
+In this definition, the term "science" refers to all scholarly disciplines.
+We further define the term *reproducible*, as used in the WORCS acronym, as being able to re-perform "the same analysis with the same code using a different analyst" [@patilVisualToolDefining2019].
+
+The "TOP-guidelines" are one of the most influential concrete operationalisations 
+of general open science principles [@nosekPromotingOpenResearch2015a].
+These guidelines describe eight standards for open science,
+the first seven of which "account for reproducibility of the reported results
+based on the originating data, and for sharing sufficient information to conduct an independent 
+replication" [@nosekPromotingOpenResearch2015a].
+In this context, 
+reproducibility can be defined as "re-performing the same analysis with the same code using a different analyst",
+and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
+These guidelines are: 1) Comprehensive
 citation of literature, data, materials, and methods; 2) sharing data, 3)
 sharing the code required to reproduce analyses, 4) sharing new research
 materials, and 5) sharing details of the design and analysis; 6)
 pre-registration of studies before data collection, and 7) pre-registration of
-the analysis plan prior to analysis; and 8) replication of published results.
-WORCS defines the goals of open science in terms of these guidelines, and is
-designed to facilitate meeting each of these guidelines, with one exception: We
-do not address replication of published results, because replication relates to
-the subject of a research project, not to its organization or execution.
-We group the remaining seven guidelines into three categories: citation (1),
+the analysis plan prior to analysis.
+The eighth criterion is "not formally a transparency standard for authors", but "addresses 
+journal guidelines for consideration of independent replications for publication".
+WORCS defines the goals of open science in terms of the first seven TOP-guidelines,
+and the workflow and its `R` implementation are designed to facilitate compliance therewith.
+We group these guidelines into three categories: citation (1),
 sharing (2-5), and preregistration (6-7).
 
 ## Introducing the tools
@@ -1001,6 +1026,6 @@ by @peikertReproducibleDataAnalysis2019.
 
 WORCS offers a workflow for open reproducible code in science. The step-by-step procedure outlined in this tutorial helps researchers make an entire research project Open and Reproducible. The accompanying `R` package provides user-friendly support functions for several steps in the workflow, and an RStudio project template to get the project set up correctly.
 
-WORCS encourages and simplifies the adoption of Open Science principles in daily scientific work. It helps researchers make all research output created throughout the scientific process - not just manuscripts, but data, code, and methods - open and publicly assessible. This enables other researchers to reproduce results, and facilitates cumulative science by allowing others to make direct use of these research objects.
+WORCS encourages and simplifies the adoption of open science principles in daily scientific work. It helps researchers make all research output created throughout the scientific process - not just manuscripts, but data, code, and methods - open and publicly assessible. This enables other researchers to reproduce results, and facilitates cumulative science by allowing others to make direct use of these research objects.
 
 # References
