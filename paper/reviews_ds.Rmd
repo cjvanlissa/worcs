@@ -144,7 +144,7 @@ The Reviewer, by contrast, proposes that the main contribution of worcs is to he
 \Done
 \Hard
 
-\RC{I am confused by the citation "Van Lissa, Caspar J., Aaron Peikert, and Andreas M. Brandmaier. 2020. “Worcs: Workflow for Open Reproducible Code in Science.”". Is this referring to another paper or the actual package? If it's another paper then what is the contribution of this publication?}
+\RC{C4: I am confused by the citation "Van Lissa, Caspar J., Aaron Peikert, and Andreas M. Brandmaier. 2020. “Worcs: Workflow for Open Reproducible Code in Science.”". Is this referring to another paper or the actual package? If it's another paper then what is the contribution of this publication?}
 
 Response: We apologize; it appears that there were numerous errors in the parsing of the reference list after rendering the manuscript to HTML - the preferred format of Data Science. The reference is indeed to the R-package. In the revised manuscript, we have repaired the references so that it is clear that this is a software package, et cetera.
 
@@ -153,9 +153,17 @@ Response: We apologize; it appears that there were numerous errors in the parsin
 \Easy
 
 
-\RC{If the paper is generated as DDG, where are the functions that show it's capabilities? It is also not clear to me that some of the functionalities of Latex would be usable in RMarkdown, such as all the equations.}
+\RC{C5: If the paper is generated as DDG, where are the functions that show it's capabilities? It is also not clear to me that some of the functionalities of Latex would be usable in RMarkdown, such as all the equations.}
 
-Response: Add comment that LaTeX is supported in RMarkdown; showing functions (?) out of scope for present paper. Reference RMarkdown @xieMarkdownDefinitiveGuide2018
+Response: We understand that our introduction of the RMarkdown format was a bit too brief, and that readers may wonder whether specific functionalities of LaTeX would be usable in RMarkdown.
+To address this comment, the revised manuscript now reads:
+
+> In the `R` implementation of WORCS, we recommend centering a research project
+around one dynamically generated `RMarkdown` document [@xieMarkdownDefinitiveGuide2018].
+RMarkdown is based on [`Markdown`](https://en.wikipedia.org/wiki/Markdown),
+which uses plain-text commands to typeset a document.
+It enhances this format with support for R-code, and is compatible with [LaTeX](https://www.latex-project.org/) math typesetting.
+For a full overview of the functionality of `RMarkdown`, see @xieMarkdownDefinitiveGuide2018.
 
 \Assignment{CJ}
 \WorkInProgress

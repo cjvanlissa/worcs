@@ -124,7 +124,7 @@ It can also be used to produce work in accordance with best practices
 in the absence of top-down support or guidelines.
 Although the principles underlying this workflow are universal, WORCS has been
 implemented in `R` [@rcoreteamLanguageEnvironmentStatistical2020].
-The `worcs` package [@worcs] offers a project template for RStudio
+The `worcs` package [@worcspackage2020] offers a project template for RStudio
 [@rstudioteamRStudioIntegratedDevelopment2015], which is, effectively,
 a "one click solution". This paper discusses the principles underlying WORCS,
 introduces the workflow, addresses how WORCS meets best practices for open science,
@@ -205,10 +205,18 @@ academics than most word processing software. It prevents mistakes, and saves
 time.
 
 In the `R` implementation of WORCS, we recommend centering a research project
-around one dynamically generated `RMarkdown` document, which includes all 
-analysis code. Longer scripts can be
-stored in `.R` files, and called from the main document using the `source()`
-function. When a reader or reviewer compiles this document, all code is run
+around one dynamically generated `RMarkdown` document [@xieMarkdownDefinitiveGuide2018].
+RMarkdown is based on [`Markdown`](https://en.wikipedia.org/wiki/Markdown),
+which uses plain-text commands to typeset a document.
+It enhances this format with support for R-code, and is compatible with [LaTeX](https://www.latex-project.org/) math typesetting.
+For a full overview of the functionality of `RMarkdown`, see @xieMarkdownDefinitiveGuide2018.
+
+The RMarkdown document can incorporate blocks of analysis code,
+which can be used to render results directly to [Tables](https://bookdown.org/yihui/rmarkdown-cookbook/kable.html) and [Figures](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/),
+which can be [dynamically referenced](https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html) in the text.
+Long scripts can be stored in `.R` files,
+and included in the main document using the [`read_chunk()`
+function](https://github.com/yihui/knitr-examples/blob/master/113-externalization.Rmd) from the `knitr` package, which comes together with the `rmarkdown` package. When a reader or reviewer compiles this document, all code is run
 automatically, thus verifying computational replicability. The `RMarkdown` 
 document can be automatically formatted in many styles, including
 APA style [thanks to the `R` package `papaja`, @austPapajaPrepareReproducible2020],
