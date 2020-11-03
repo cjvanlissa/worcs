@@ -1045,8 +1045,7 @@ lightweight workflow for open, reproducible research, that meets all
 TOP-guidelines, except replication.
 Nevertheless, there are clear directions for future developments.
 Firstly, although the workflow is currently implemented only in `R`, it is 
-conceptually relevant for users of other statistical programming languages, most
-notably `Python` [@10.5555/1593511].
+conceptually relevant for users of other statistical programming languages, and we welcome efforts to implement WORCS in other platforms.
 We welcome efforts to implement WORCS in other platforms.
 Secondly, even when a project is in `R`, it may have dependencies outside of the
 `R` environment that cannot be managed using `renv`.

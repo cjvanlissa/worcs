@@ -377,25 +377,60 @@ Reasons to reject:
 
 The objective of the author is ambiguous. That said, I do not think that WORCS provide sufficient features that make it stands out from state of the art tools, for the following reasons.
 
-\RC{C1) The process as described by the author for conducting research is assumed to be linear. However, researchers often go back and forth on steps that they have already completed, and sometimes have to undo them completely and start from scratch. This does not seem to be tackled by the tool.}
+\RC{C1: The process as described by the author for conducting research is assumed to be linear. However, researchers often go back and forth on steps that they have already completed, and sometimes have to undo them completely and start from scratch. This does not seem to be tackled by the tool.}
 
 Response: We agree with the Reviewer that researchers often go back and forth in their work. We did not intend to convey the impression that the process of conducting research is assumed to be linear. Of course, since we are presenting a workflow - there are a number of steps involved, which we have placed in roughly chronological order and numbered for reference purposes. For example, Study Design must logically occur prior to Writing and Analysis, and Publication can only logically occur after Writing. We also wish to emphasize that the "tool" (we assume the Reviewer is referring to the `worcs` R-package) does not enforce any kind of linearity. 
 
-To address the Reviewer's comment, we have made two changes: First, we now explicitly state, in the paper and the Workflow vignette, that the steps are not necessarily linear:  *"Note that, although the steps are numbered for reference purposes, we acknowledge that the process of conducting research is not always linear."*. Second, while it was always possible to manually add a manuscript or preregistration at a later point in time after creating a new project in RStudio - we have now added functions to increase the non-linear flexibility of the `worcs` package: `add_manuscript()` and `add_preregistration()`.
+To address the Reviewer's comment, we have made two changes: First, we now explicitly state, in the paper and the Workflow vignette, that the steps are not necessarily linear:  *"Note that, although the steps are numbered for reference purposes, we acknowledge that the process of conducting research is not always linear."*. Second, while it was always possible to manually add a manuscript or preregistration at a later point in time after creating a new project in RStudio - we have added more functions to increase the non-linear flexibility of the `worcs` package: `add_manuscript()` and `add_preregistration()`.
 
 \Assignment{CJ}
 \Done
 \Easy
 
-\RC{C2) The gist of the tool seems to allow researchers to document their steps and generate a scholarly document that is ready for submission. In a sense, there is a similarity with existing notebooks such as Jupyter. So I was wondering why don’t the authors start from an existing popular tool such as Jupyter as the starting point (given the similarity in features that they would like to add), and extend Jupyter for instance with the new features such as dependency documentation and version control ?}
+\RC{C2: The gist of the tool seems to allow researchers to document their steps and generate a scholarly document that is ready for submission. In a sense, there is a similarity with existing notebooks such as Jupyter. So I was wondering why don’t the authors start from an existing popular tool such as Jupyter as the starting point (given the similarity in features that they would like to add), and extend Jupyter for instance with the new features such as dependency documentation and version control ?}
 
-Response: There are two points we wish to address here. First, we would like to clarify that this paper introduces WORCS, a conceptual workflow for open science research projects. When the Reviewer refers to "the tool" - we assume this to mean the `worcs` R-package, which offers convenience functions to help R-users follow the WORCS-workflow. This is clarified in the Abstract and in the paper, e.g.:
+Response: There are two points we wish to address here. First, the Reviewer focuses on "the tool" - which we assume refers to the R package. However, the main goal of this paper is to introduce the conceptual workflow. The R package is merely offered to make adoption of the conceptual workflow easier for R users. This distinction is clarified several places throughout the manuscript, and to prevent further confusion, we have clarified the distinction even further in the revision, e.g.:
 
-> Abstract: *This paper introduces the Workflow for Open Reproducible Code in Science (WORCS): A step-by-step procedure that researchers can follow to make a research project open and reproducible, accompanied by an open source software implementation that automates these steps.*
+Abstract:
 
-> Manuscript, paragraph titled **The R implementation of WORCS**: *WORCS is, first and foremost, a conceptual workflow that could be implemented in any software environment. As of this writing, the workflow has been implemented for `R` users in the package `worcs` [@worcspackage2020].*
+> This paper introduces the Workflow for
+  Open Reproducible Code in Science (WORCS): A step-by-step
+  procedure that researchers can follow to make a research project open and
+  reproducible.  
+  [...]  
+  To facilitate widespread adoption, the WORCS principles have been implemented
+  in the R package `worcs`, which offers an RStudio 
+  project template and utility functions for specific workflow steps.
 
-Second, in response to the main comment, we agree with the Reviewer that the conceptual workflow as explained in the paper could be implemented in any software environment, including Jupyter. In fact, we emphasize this in the paragraph on *Future developments*: *"although the workflow is currently implemented only in `R`, it is conceptually relevant for users of other statistical programming languages, most notably `Python` [@10.5555/1593511]. We welcome efforts to implement WORCS in other platforms."*.
+Manuscript, introduction:
+
+> This paper introduces the conceptual workflow (referred to in upper case, "WORCS"),
+and discusses its underlying principles and how it meets different standards for open science.
+The principles underlying this workflow are universal and largely platform independent.
+We also present a software implementation of WORCS for `R` users [@rcoreteamLanguageEnvironmentStatistical2020]:
+The `R` package `worcs` [referred to in monospace font, @worcspackage2020].
+
+Manuscript, paragraph titled **The R implementation of WORCS**:
+
+> WORCS is, first and foremost, a conceptual workflow that could be implemented in any software environment.
+As of this writing, the workflow has been implemented for `R` users in the package `worcs` [@worcspackage2020].
+
+Second, in response to the question "why don’t the authors start from an existing popular tool such as Jupyter",
+<!--we are sure the Reviewer does not mean to imply that R is not a popular tool,
+or that R users should switch to Jupyter if they wish to make their research open and reproducible.
+To provide some context, on [ITJobsWatch](https://www.itjobswatch.co.uk),
+R is the 216th highest ranked job requirement, and Jupyter is 648th.-->
+we completely agree with the Reviewer that the conceptual workflow as explained in the paper could be implemented in any software environment, including Jupyter.
+In fact, we emphasize this in several places throughout the manuscript, for instance the paragraph titled **The R Implementation of WORCS**:
+
+> WORCS is, first and foremost, a conceptual workflow that could be implemented in any software environment.
+As of this writing, the workflow has been implemented for `R` users in the package `worcs` [@worcspackage2020].
+Several arguments support our choice to implement this workflow first in `R` and RStudio,
+although we encourage developers to port the software to other languages.
+
+And in **Future developments**:
+
+> although the workflow is currently implemented only in `R`, it is conceptually relevant for users of other statistical programming languages, and we welcome efforts to implement WORCS in other platforms."
 
 To answer the Reviewer's question directly: We implemented this workflow in R because we are R developers. But in the paper, we also provide some arguments that compel our preference for R and RStudio as a choice for statistical computing in open science:
 
@@ -422,20 +457,23 @@ resources for learning `R` [e.g., @grolemundDataScience2017].
 \Done
 \Medium
 
-\RC{C3) Regarding Version control and dependency documentation, the authors uses in their system existing solution, namely git and env, respectively. While I did not criticize reusing existing solution, on the contrary, I don't believe that simply using such solution add a substantial value. For example, git capture changes at the level of the line of code/text, whereas a researcher needs an abstraction that informs him/her on the coarse-grained elements that are significant from the point of view of development and research steps so as to have a clear idea of where s/he is within the process and help him/her make the decision of the next steps to undertake.}
+\RC{C3: Regarding Version control and dependency documentation, the authors uses in their system existing solution, namely git and env, respectively. While I did not criticize reusing existing solution, on the contrary, I don't believe that simply using such solution add a substantial value. For example, git capture changes at the level of the line of code/text, whereas a researcher needs an abstraction that informs him/her on the coarse-grained elements that are significant from the point of view of development and research steps so as to have a clear idea of where s/he is within the process and help him/her make the decision of the next steps to undertake.}
 
-Response: Respectfully, we are not entirely sure what the criticism is here. First, as addressed in our response to the previous comment, there seems to be a misunderstanding about the scope of the paper. To clarify, we again state that our paper introduces a workflow for open science, based on objective criteria set out in the TOP-guidelines. Regarding novelty: Aside from the work in progress of our co-authors - which is focused on strict computational reproducibility and is compatible with the present workflow - this is one of the first efforts to translate the requirements of open science into a step-by-step workflow. When you search Google Scholar for "open science workflow", the first hit that actually describes a workflow is the present manuscript.
+Response: Respectfully, we are not entirely sure what the criticism is here.
+First, as addressed in our response to the previous comment, there seems to be a misunderstanding about the scope of the paper. To clarify, we again state that our paper introduces a workflow for open science, based on objective criteria set out in the TOP-guidelines. Regarding novelty: Aside from the work in progress of our co-authors - which is focused on strict computational reproducibility and is compatible with the present workflow - this is one of the first efforts to translate the requirements of open science into a step-by-step workflow. When you search Google Scholar for "open science workflow", the first hit that actually describes a workflow is the present manuscript.
 
-Second, the Reviewer claims that using e.g. Git does not add substantial value - but this claim is in disagreement with published literature that makes a strong case for the value of using Git for research [see two references cited in the paper, @ramGitCanFacilitate2013;  @blischakQuickIntroductionVersion2016].
+Second, the Reviewer claims that using e.g. Git does not add substantial value - but this claim is in disagreement with published literature (which we cite) that makes a strong case for the value of using Git for research [see @ramGitCanFacilitate2013;  @blischakQuickIntroductionVersion2016].
 
-Third, the Reviewer remarks that 
+Third, there seems to be some misunderstanding of the workings of existing solutions.
+For example, the Reviewer remarks that 
 "git capture changes at the level of the line of code/text, whereas a researcher needs an abstraction that informs him/her on the coarse-grained elements [...] so as to have a clear idea of where s/he is within the process and help him/her make the decision of the next steps to undertake".
 This comment suggests a fundamental misunderstanding of how Git works.
 Although Git tracks file changes on a line-by-line basis,
 any number of such changes can be committed together, thereby capturing the more "course-grained elements".
 For example, in our response to these reviews, we have created one Git commit for each Reviewer comment, and these commits contain changes to the action letter, manuscript, and vignettes.
 
-We do see the value in clarifying this point in the manuscript as well, and to address this comment, the manuscript now reads:
+The Reviewer's comment does illustrate the importance of clarifying this point in the manuscript as well
+To address this comment, the revised manuscript now reads:
 
 > Git tracks changes to files on a line-by-line basis. The user can sture these changes by making a "commit": a snapshot of the version controlled files. Each "commit" can contain as many changes as desired; for example, a whole new paragraph, or many small changes made to address a single reviewer comment.
 
