@@ -267,7 +267,7 @@ Response: We agree that synthetic data generation is exciting, but feel obliged 
 As indicated in the paper, we use the algorithm by Nowok and colleagues,
 who explain the details of the method.
 We re-implemented the method in the `worcs` package because the `synthpop` package
-is rarely maintained (e.g., one of our pull requests took almost 10 months to be accepted),
+is rarely maintained (e.g., [one of our pull requests](https://github.com/bnowok/synthpop/pull/12) took almost 10 months to be accepted),
 and because we wanted a more flexible, customizable interface.
 
 To answer the Reviewer's specific question, the synthetic data indeed follow similar distributions to the source data, as indicated in the paper:
@@ -280,17 +280,28 @@ We have additionally clarified the paragraph that introduces the `synthetic()` f
 and to the documentation of the `synthetic()` function (which summarizes the algorithm).
 
 \Assignment{CJ}
-\WorkInProgress
+\Done
 \Easy
 
 
-\RC{Docker is deemed as complicated for novice users, but the setup vignete looks quite complex to me as well. Wouldn't a Docker container with worcs installed be easier to use? Maybe these aspects would be better highlighted in a user evaluation.}
+\RC{C12: Docker is deemed as complicated for novice users, but the setup vignete looks quite complex to me as well. Wouldn't a Docker container with worcs installed be easier to use? Maybe these aspects would be better highlighted in a user evaluation.}
 
-Response: Thank you for this thoughtful suggestion. We explained better why `renv` is more user friendly (because it builds upon the "normal" package workflow of R users). For users familiar with Docker, we have published an image on Docker Hub with all requirements of worcs installed and a Docker specific setup vignette, that is much shorter and given that you know how to use Docker easier.
+Response: We thank the Reviewer for this thoughtful suggestion.
+To address this comment, 
+we have published an image on Docker Hub with all requirements of `worcs` installed,
+and added a Docker-specific setup vignette to the package and website, which is referenced in the Setup pagragraph:
+
+> Before you can use the `R` implementation of the WORCS workflow,
+you have to install the required software.
+This 30 minute procedure is documented
+in [the setup vignette](https://cjvanlissa.github.io/worcs/articles/setup.html).
+After setting up your system, you can use `worcs` for all of your
+projects.
+Alternatively, Docker users can follow [the stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/docker.html).
+
 \Assignment{AP, AB}
-\WorkInProgress
+\Done
 \Medium
-
 
 
 # Reviewer \#2
