@@ -108,7 +108,7 @@ under terms that enable reuse, redistribution and reproduction of the research a
 [...] reproducibility can be defined as "re-performing the same analysis with the same code and the same data using a different analyst",
 and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
 
-After making these definitions explicit, it becomes clear that the Reviewer's definition of replication as "a necessary steps towards reproducibility" is not consistent with the present paper.
+After making these definitions explicit, it becomes clear that the Reviewer's definition of replication as "a necessary steps towards reproducibility" is not consistent with the definitions of the present paper.
 
 We further wish to clarify that the fact that we address guidelines 1-7, but not guideline 8 ("replication") is consistent with the intended purpose of the TOP-guidelines.
 Specifically, the first seven guidelines are intended to ensure the "reproducibility of the reported results based on the originating data" [direct quote from @nosekPromotingOpenResearch2015a]. The eighth criterion, by contrast, is "not formally a transparency standard for authors, [but] addresses journal guidelines for consideration of independent replications for publication" (again a direct quote).
@@ -119,7 +119,7 @@ the first seven of which "account for reproducibility of the reported results
 based on the originating data, and for sharing sufficient information to conduct an independent 
 replication" [@nosekPromotingOpenResearch2015a].
 In this context, 
-reproducibility can be defined as "re-performing the same analysis with the same code using a different analyst",
+reproducibility can be defined as "re-performing the same analysis with the same code and the same data using a different analyst",
 and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
 These guidelines are: 1) Comprehensive
 citation of literature, data, materials, and methods; 2) sharing data, 3)
@@ -148,7 +148,7 @@ The Reviewer, by contrast, proposes that the main contribution of worcs is to he
 
 \RC{C4: I am confused by the citation "Van Lissa, Caspar J., Aaron Peikert, and Andreas M. Brandmaier. 2020. “Worcs: Workflow for Open Reproducible Code in Science.”". Is this referring to another paper or the actual package? If it's another paper then what is the contribution of this publication?}
 
-Response: We apologize; it appears that there were numerous errors in the parsing of the reference list after rendering the manuscript to HTML - the preferred format of Data Science. The reference is indeed to the R-package. In the revised manuscript, we have repaired the references so that it is clear that this is a software package, et cetera.
+Response: We apologize; it appears that there were numerous errors in the parsing of the reference list after rendering the manuscript to HTML - the preferred format of Data Science. The reference is indeed to the R-package. In the revised manuscript, we have repaired the references so that it is clear that this is a software package.
 
 \Assignment{CJ}
 \WorkInProgress
@@ -190,6 +190,8 @@ If the Reviewer so desires, we would also be willing to cut the brief discussion
 
 
 \RC{C7: The workflow of releasing data products on GitHub is not ideal. First, because datasets of 100 MBs usually require special handling. Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation. The authors seem to not describe very well what would happen in data science experiments where the data size is significant.}
+
+We agree that GitHub is not an ideal platform for handling large data. However, it is ideal for handling version control of computer code, Markdown documents, and small to medium-sized data files. Larger files can be linked to git using git-annex (https://git-annex.branchable.com) and similar solutions. We now mention git-annex as a possible route to handle larger data files (TODO). We agree that it is important to make open data findable beyond just providing it freely. Digital object identifiers are the de-factor standard for making unique references to data sets. In line with the reviewer's suggestion, we suggest to use external providers to provide such DOIs while github is still the primary data storage. Our prefered route is to use github web hooks to link Zenodo and a WORCS-compatible repository. With this technique, Zenodo issues DOI for content hosted on github repositories including some nice extras, such as automatic badge DOI badges for the repository.
 
 BV: Can you please argue for why GitHub is equivalent to Zenodo for this purpose?
 AL: Can you address the reference to FAIR principles in relation to GitHub?
