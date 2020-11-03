@@ -387,11 +387,17 @@ as a web page on GitHub.
 
 We provide a conceptual outline of the WORCS procedure below, based on WORCS
 Version 0.1.5.
+The conceptual workflow recommends actions to take 
+in the different phases of a research project, in order to work openly and transparently
+in compliance with the TOP-guidelines and best practices for open science.
 Note that, although the steps are numbered for reference purposes,
 we acknowledge that the process of conducting research is not always linear.
-For users of the `worcs` `R` package, we highly recommend referring to
+We refer users of the `worcs` implementation in `R` to
 [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html),
-which is more detailed and updated with future developments.
+which describes in more detail which steps are automated by the `R` package
+and which actions must be taken by the user.
+The vignette is also updated with future developments of the package.
+
 For an up-to-date list of sample `worcs` projects, see the [WORCS GitHub page](https://github.com/cjvanlissa/worcs).
 
 ```{r results="asis", echo = FALSE, eval = TRUE}

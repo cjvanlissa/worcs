@@ -37,7 +37,8 @@ knitr::include_graphics("workflow.png")
     b. Keep the checkbox for `renv` checked if you want to use dependency management (recommended)
     c. Select a preregistration template, or add a preregistration later using `add_preregistration()`
     d. Select a manuscript template, or add a manuscript later using `add_manuscript()`
-3. <!--S: Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability. The `worcs` project template does this automatically.-->Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability.
+    e. Select a license for your project (we recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited)
+3. <!--S: Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability.-->A template README.md file will be automatically generated during project creation. Edit this template to explain how users should interact with the project. Based on your selections in the New Project dialog, a LICENSE will also be added to the project, to explain users' rights and limit your liability.
 3. <!--S: Optional: Preregister your analysis by committing a plain-text preregistration and tagging the commit as "preregistration".-->Preregister your analysis:
     + Document study plans in a `preregistration.Rmd` file, and optionally, planned analyses in a `.R` file.
     + In the top-right panel of 'RStudio', select the 'Git' tab
@@ -80,7 +81,7 @@ knitr::include_graphics("workflow.png")
     + In the pop-up window, write an informative "Commit message".
     + Click the Commit button below the message dialog
     + Click the green arrow labeled "Push" to send your commit to the remote repository
-10. <!--S: Cite essential references with `@`, and non-essential references with `@@`-->While writing, cite essential references with one at-symbol, `[@essentialref2020]`, and non-essential references with a double at-symbol, `[@@nonessential2020]`.
+10. <!--S: Use comprehensive citation-->While writing, cite essential references with one at-symbol, `[@essentialref2020]`, and non-essential references with a double at-symbol, `[@@nonessential2020]`.
 
 ### Phase 3: Submission and publication
 

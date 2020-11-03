@@ -197,10 +197,31 @@ CJ: I will address "big" data
 \WorkInProgress
 \Hard
 
-\RC{In the 3 phases listed, it is not clear what worcs does and does not for users.}
+\RC{C8: In the 3 phases listed, it is not clear what worcs does and does not for users.}
 
-\Assignment{All}
-\WorkInProgress
+Response: It is not entirely clear to us whether the Reviewer is referring to the conceptual workflow ("WORCS"), or to the `R` implementation of WORCS, i.e., `worcs`. 
+
+We suspect that the Reviewer means the `worcs` R-package, so to address this comment,
+the Revision now states the following:
+
+> For users of the `worcs` `R` package, we highly recommend referring to
+[the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html),
+which describes in more detail which steps are automated by the `R` package
+and which actions must be taken by the user.
+The vignette is also updated with future developments of the package.
+
+Just in case we misunderstood, and the Reviewer actually meant the conceptual workflow WORCS, we have also added a few sentences to clarify the purpose of the conceptual workflow:
+
+> We provide a conceptual outline of the WORCS procedure below, based on WORCS
+Version 0.1.5.
+The conceptual workflow recommends actions to take 
+in the different phases of a research project, in order to work openly and transparently
+in compliance with the TOP-guidelines and best practices for open science.
+Note that, although the steps are numbered for reference purposes,
+we acknowledge that the process of conducting research is not always linear.
+
+\Assignment{CJ}
+\Done
 \Medium
 
 
