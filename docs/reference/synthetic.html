@@ -73,7 +73,7 @@ similar characteristics to the original. See Details for the algorithm used." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.2</span>
       </span>
     </div>
 
@@ -102,10 +102,13 @@ similar characteristics to the original. See Details for the algorithm used." />
       <a href="../articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
     </li>
     <li>
+      <a href="../articles/setup-docker.html">Setting up your computer for WORCS - Docker-edition</a>
+    </li>
+    <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
     </li>
     <li>
-      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.2</a>
+      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.5</a>
     </li>
   </ul>
 </li>
@@ -143,13 +146,13 @@ similar characteristics to the original. See Details for the algorithm used." />
 similar characteristics to the original. See Details for the algorithm used.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>synthetic</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>model_expression</span> <span class='kw'>=</span> <span class='fu'>ranger</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>),
-  <span class='kw'>predict_expression</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>model</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>xsynth</span>)$<span class='no'>predictions</span>,
-  <span class='kw'>missingness_expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>synthetic</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  model_expression <span class='op'>=</span> <span class='fu'>ranger</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>,
+  predict_expression <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model</span>, data <span class='op'>=</span> <span class='va'>xsynth</span><span class='op'>)</span><span class='op'>$</span><span class='va'>predictions</span>,
+  missingness_expression <span class='op'>=</span> <span class='cn'>NULL</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -221,12 +224,14 @@ Other types of variables should be converted to one of these types, or users
 can use a custom <code>model_expression</code> when calling <code>synthetic</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>iris_syn</span> <span class='kw'>&lt;-</span> <span class='fu'>synthetic</span>(<span class='no'>iris</span>)</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</div><div class='input'><span class='no'>iris_missings</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>
-<span class='kw'>for</span>(<span class='no'>i</span> <span class='kw'>in</span> <span class='fl'>1</span>:<span class='fl'>10</span>){
-  <span class='no'>iris_missings</span>[<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>iris_missings</span>), <span class='fl'>1</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-                <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>iris_missings</span>), <span class='fl'>1</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
-}
-<span class='no'>iris_miss_syn</span> <span class='kw'>&lt;-</span> <span class='fu'>synthetic</span>(<span class='no'>iris_missings</span>)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>X  </span><span style='color: #000000;'>Argument 'data' has missing values, but no 'missingness_expression' is specified. Listwise deletion is used.</span><span>
+    <pre class="examples"><div class='input'><span class='va'>iris_syn</span> <span class='op'>&lt;-</span> <span class='fu'>synthetic</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</div><div class='input'><span class='va'>iris_missings</span> <span class='op'>&lt;-</span> <span class='va'>iris</span>
+<span class='kw'>for</span><span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='va'>iris_missings</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>iris_missings</span><span class='op'>)</span>, <span class='fl'>1</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
+                <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>iris_missings</span><span class='op'>)</span>, <span class='fl'>1</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+<span class='op'>}</span>
+<span class='va'>iris_miss_syn</span> <span class='op'>&lt;-</span> <span class='fu'>synthetic</span><span class='op'>(</span><span class='va'>iris_missings</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #BB0000;'>X  </span><span style='color: #000000;'>Argument 'data' has missing values, but no 'missingness_expression' is specified. Listwise deletion is used.</span><span>
 #&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -243,7 +248,7 @@ can use a custom <code>model_expression</code> when calling <code>synthetic</cod
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
