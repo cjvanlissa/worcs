@@ -531,7 +531,7 @@ Moreover, preprint servers ensure that the online version will have a persistent
 
 ## Implementation in worcs
 
-The `worcs` package includes a [vignette on citation](https://cjvanlissa.github.io/worcs/articles/citing.html) to explain the
+The `worcs` package includes a [vignette on citation](https://cjvanlissa.github.io/worcs/articles/citation.html) to explain the
 fundamentals for novice users, and offer recommendations specific to `worcs`. We
 recommend using the free, open-source reference manager
 [Zotero](https://www.zotero.org/download/); it is feature-rich, 

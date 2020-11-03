@@ -236,10 +236,23 @@ Response: We wish to emphasize that it was certainly unintended to claim that ev
 \Hard
 
 
-\RC{Vignete on citation leads to a 404.}
+\RC{C10: Vignete on citation leads to a 404.}
+
+Response: We apologize for the oversight; we have fixed this URL and checked all URLs in the manuscript for mistakes (none found).
+
+<!--
+check_urls <- function(x){
+  #x = "C:/Git_Repositories/worcs/paper/manuscript_ds.Rmd"
+  txt <- readLines(x)
+  mtch <- regmatches(txt,regexpr("(http[^ ]*)|(ftp[^ ]*)|(www\\.[^ ]*)",txt))
+  mtch <- gsub("[\\)\\.,;]+$", "", mtch)
+  #out <- sapply(mtch, RCurl::url.exists)
+  out <- sapply(mtch, httr::http_error)
+}
+-->
 
 \Assignment{CJ}
-\WorkInProgress
+\Done
 \Easy
 
 
