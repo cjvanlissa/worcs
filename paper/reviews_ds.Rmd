@@ -47,11 +47,12 @@ Reasons to reject:
 Response: We appreciate the recommendation of performing a user evaluation, and this is certainly a next step in the development of worcs. However, as the Editor has indicated, 'resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse"'. We will thus first address the potential for re-use, and then we will address steps we have taken and intend to take with regard to user evaluation.
 
 First, there are several arguments to substantiate the potential for reuse of worcs:
-1) Worcs is implemented in an R-package
-2) This R-package is available in a standardized repository, namely CRAN ("The Comprehensive R Archive Network")
-3) The software meets all criteria of the Core Infrastructure Initiative "best practices" (CII Best Practices)
-4) The R-package uses only tools that are fully integrated within the RStudio IDE, thus enhancing ease of use
-5) The R-package is compatible with other reproducibility solutions, including Docker, drake, and make
+
+1. Worcs is implemented in an R-package
+2. This R-package is available in a standardized repository, namely CRAN ("The Comprehensive R Archive Network")
+3. The software meets all criteria of the Core Infrastructure Initiative "best practices" (CII Best Practices)
+4. The R-package uses only tools that are fully integrated within the RStudio IDE, thus enhancing ease of use
+5. The R-package is compatible with other reproducibility solutions, including Docker, drake, and make
 
 Second, there is some evidence to demonstrate that worcs is already being adopted (as of 31-10-2020):
 
@@ -61,7 +62,7 @@ Second, there is some evidence to demonstrate that worcs is already being adopte
 1. The video tutorial for worcs has been viewed 362 times, and liked 18 times (https://www.youtube.com/watch?v=uzjpN_yFeUU)
 1. WORCS is used to teach reproducibility at Utrecht University
 1. The lead author has given invited lectures on WORCS at the Erasmus University Rotterdam, Eindhoven University of Technology, and Max Planck Institute, Berlin
-1. The lead author has applied worcs in several research projects:
+1. The lead author has applied `worcs` in several research projects:
 	* https://github.com/cjvanlissa/storm_meta_father_mother
 	* https://github.com/cjvanlissa/veni_sysrev
 	* https://github.com/cjvanlissa/placebo_adhd
@@ -70,8 +71,9 @@ Second, there is some evidence to demonstrate that worcs is already being adopte
 
 
 Third, although we have not conducted a user evaluation, there is some evidence that worcs addresses users' needs:
-1) Evaluate worcshops!!
-2) The issues page on the worcs GitHub profile demonstrates that we have been very responsive in addressing users' feedback (as required by the aforementioned CII Best Practices):
+
+1. Evaluate worcshops!!
+2. The issues page on the worcs GitHub profile demonstrates that we have been very responsive in addressing users' feedback (as required by the aforementioned CII Best Practices):
 * https://github.com/cjvanlissa/worcs/issues?q=is%3Aissue+is%3Aclosed
 
 <!-- The goal of the present manuscript is to define the problem worcs intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools worcs uses to address this problem, explain how worcs uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence; -->
