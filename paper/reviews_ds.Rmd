@@ -105,7 +105,7 @@ In the revision, we have attempted to address this lack of clarity by including 
 "the practice of science in such a way that others can collaborate and contribute,
 where research data, lab notes and other research processes are freely available,
 under terms that enable reuse, redistribution and reproduction of the research and its underlying data and methods" [@vicente-saezOpenScienceNow2018].  
-[...] reproducibility can be defined as "re-performing the same analysis with the same code using a different analyst",
+[...] reproducibility can be defined as "re-performing the same analysis with the same code and the same data using a different analyst",
 and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
 
 After making these definitions explicit, it becomes clear that the Reviewer's definition of replication as "a necessary steps towards reproducibility" is not consistent with the present paper.
