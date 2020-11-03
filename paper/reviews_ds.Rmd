@@ -225,12 +225,14 @@ we acknowledge that the process of conducting research is not always linear.
 \Medium
 
 
-\RC{In some cases it looks like the authors claim that everyone should use R for open science. While R has a strong community behind, I believe there are others with very strong support (e.g. Python). I am not sure if suggesting a shift to R is the right approach. Note that this is the impression I got from reading the paper, maybe it was unintended by the authors.}
+\RC{C9: In some cases it looks like the authors claim that everyone should use R for open science. While R has a strong community behind, I believe there are others with very strong support (e.g. Python). I am not sure if suggesting a shift to R is the right approach. Note that this is the impression I got from reading the paper, maybe it was unintended by the authors.}
 
-Response: Clearly define scope; feedback is welcome.
+Response: We wish to emphasize that it was certainly unintended to claim that everyone should us R for open science. To address this comment, we have done two things: First, throughout the paper, we have attempted to clarify the distinction between the platform independent conceptual workflow "WORCS", and its implementation for R users, `worcs`. Second, throughout the paper, we encourage the implementation of WORCS in other languages. Most illustrative of these changes is the start of the paragraph on **The R implementation of WORCS**:
 
-\Assignment{All}
-\WorkInProgress
+> WORCS is, first and foremost, a conceptual workflow that could be implemented in any software environment. As of this writing, the workflow has been implemented for `R` users in the package `worcs` [@worcspackage2020]. Several arguments support our choice to implement this workflow first in `R` and RStudio, although we encourage developers to port the software to other languages.
+
+\Assignment{CJ}
+\Done
 \Hard
 
 

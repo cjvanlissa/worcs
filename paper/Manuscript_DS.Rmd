@@ -29,28 +29,26 @@ abstract: |
   This paper introduces the Workflow for
   Open Reproducible Code in Science (WORCS): A step-by-step
   procedure that researchers can follow to make a research project open and
-  reproducible, accompanied by an open source software implementation that 
-  automates these steps.
-  The 
-  purpose of the workflow is to lower the threshold for 
-  adoption of open science principles. 
+  reproducible.
+  The purpose of the workflow is to lower the threshold for 
+  adoption of open science principles.
   It is based on best practices, and can be used either in
   parallel to, or in absence of, top-down requirements by journals,
   institutions, and funding bodies.
-  This workflow is primarily targeted towards
-  scholars working in R on a private computer,
-  conducting research that involves academic prose, analysis code,
-  and (optionally) tabular data - but it is flexible enough to accommodate many
-  other scenarios.
-  To facilitate widespread adoption, the
-  WORCS principles are implemented in the R package `worcs`, which offers an
-  RStudio 
-  project template that is, effectively, a "one-click solution" for R users,
-  and utility functions for specific workflow steps.
-  This paper addresses the design of the workflow,
+  To facilitate widespread adoption, the WORCS principles have been implemented
+  in the R package `worcs`, which offers an RStudio 
+  project template and utility functions for specific workflow steps.
+  This paper introduces the conceptual workflow,
   discusses how it meets different 
-  standards for open science, and provides examples of the implementation of
-  `worcs` in `R`. The source code for the `R` package and manuscript,
+  standards for open science, and provides examples of the implementation in `R`. 
+  This paper is primarily targeted towards
+  scholars conducting research projects in R on a private computer,
+  conducting research that involves academic prose, analysis code,
+  and tabular data that does not require specialized computational
+  provisions.
+  However, the workflow is flexible enough to accommodate other scenarios,
+  and offers a sensible starting point for customized solutions.
+  The source code for the `R` package and manuscript,
   and a list of user examples of WORCS projects, are available at 
   https://github.com/cjvanlissa/worcs.
 authornote: "blabla"
@@ -107,28 +105,33 @@ science and enjoy these benefits. And yet, the question of how to
 get started can be daunting. Making the transition
 requires researchers to become knowledgeable about different open science 
 challenges and solutions, and to become proficient with new and unfamiliar tools.
-This paper is designed to ease that transition by presenting a simple workflow 
-that meets most requirements open science, and is based on best practices:
+This paper is designed to ease that transition by presenting a simple workflow,
+based on best practices,  
+that meets most requirements open science:
 The *Workflow for Open Reproducible Code in Science* (WORCS).
-WORCS is a lightweight approach to open science and
-computational reproducibility for scholars working in `R` on a private computer,
+
+This paper introduces the conceptual workflow (referred to in upper case, "WORCS"),
+and discusses its underlying principles and how it meets different standards for open science.
+The principles underlying this workflow are universal and largely platform independent.
+We also present a software implementation of WORCS for `R` users [@rcoreteamLanguageEnvironmentStatistical2020]:
+The `R` package `worcs` [referred to in monospace font, @worcspackage2020].
+This package offers a project template for RStudio
+[@rstudioteamRStudioIntegratedDevelopment2015],
+and several convenience functions to automate specific workflow steps.
+This paper is most relevant for scholars using R on a private computer to
 conducting research that involves academic prose, analysis code,
-and (optionally) tabular data - but it is flexible enough to accommodate many
-other scenarios. The workflow (Figure 1) 
+and tabular data.
+For other readers, it can serve as a primer on open science workflows,
+and provide a sensible starting point for a customized solution.
+
+The WORCS workflow (Figure 1) 
 constitutes a step-by-step procedure that researchers can follow to make a 
 research project open and reproducible.
 WORCS is compatible with open science
 requirements already implemented by journals and institutions, and will help 
 fulfill them.
-It can also be used to produce work in accordance with best practices
-in the absence of top-down support or guidelines.
-Although the principles underlying this workflow are universal, WORCS has been
-implemented in `R` [@rcoreteamLanguageEnvironmentStatistical2020].
-The `worcs` package [@worcspackage2020] offers a project template for RStudio
-[@rstudioteamRStudioIntegratedDevelopment2015], which is, effectively,
-a "one click solution". This paper discusses the principles underlying WORCS,
-introduces the workflow, addresses how WORCS meets best practices for open science,
-and illustrates the use of the `worcs` package.
+It can also be used by individual authors to produce work in accordance with best practices
+in the absence of top-down support or guidelines (i.e., "grass roots" open science).
 
 ```{r workflow, fig.cap="*Figure 1*: Schematic illustration of the WORCS procedure.", out.width="100%"}
 knitr::include_graphics("workflow.png")
@@ -423,7 +426,8 @@ get_workflow()
 
 WORCS is, first and foremost, a conceptual workflow that could be implemented in any software environment.
 As of this writing, the workflow has been implemented for `R` users in the package `worcs` [@worcspackage2020].
-Several arguments support the choice to implement this workflow in `R` and RStudio first, although we encourage developers to port the software to other languages.
+Several arguments support our choice to implement this workflow first in `R` and RStudio,
+although we encourage developers to port the software to other languages.
 First, `R` and all of it extensions are free open source software, which
 make it a tool of choice for open science.
 Second, all tools required for an open science workflow are implemented in `R`,
@@ -612,12 +616,23 @@ third party can write analysis code based on the synthetic data, and send it to
 the authors who evaluate it on the real data and send back the results. The
 `worcs` package offers a simple but flexible function to generate synthetic data,
 `synthetic()`, which by default uses random forests to generate a model for
-synthesis (see @wrightRangerFastImplementation2015). For data synthesis to work
+synthesis (see @wrightRangerFastImplementation2015).
+
+Note that for data synthesis to work
 properly, it is essential that the `class` (data type) of variables is defined
 correctly. As of `worcs` version `r worcs:::cran_version()`, numeric, integer, factor, and logical data
-are supported out of the box. Other types of variables should be converted to
-one of these types, or users can use a custom `model_expression` when calling
-`synthetic`.
+are supported out of the box. 
+Other types of variables should be converted to one of these types.
+It is important to consider this when using special data types,
+such as the labeled vectors created by the `haven` package when reading an SPSS file.
+We further caution that the default random forests algorithm is computationally intensive,
+and may be unfeasible for use with "large" datasets.
+Users can provide use a custom `model_expression` and `predict_expression`
+to use a different algorithm when calling `synthetic()`.
+For example, users could use `lm()` as a `model_expression` to use linear regression,
+which preserves linear marginal relationships but can give rise to values out of range of the original data.
+Or users could call `sample()` as a `predict_expression` to bootstrap each variable,
+a very quick solution that maintains univariate distributions but loses all marginal relationships.
 
 ### Processing data in WORCS
 
@@ -660,7 +675,7 @@ to proceed with closed data and make the data open once all doubt is assuaged.
 
 In `worcs`, researchers can call the function `open_data(data)` to make the data
 publicly available. This function stores the `data` object (such as a `data.frame` or
-`matrix`) in a tabular data file (called `data.csv` by default).
+`matrix`) in a tabular data file.
 It also generates an
 accompanying codebook - 
 a human-readable document that serves as a legend for the tabular data file -
@@ -681,8 +696,8 @@ accidentally added to the Git repository.
 The function also computes a checksum for the original data, and logs it in the
 `.worcs` project file. This checksum serves as the indelible record of the state 
 of the raw data.
-The function `closed_data()` also creates a synthetic dataset (called
-`synthetic_data.csv` by default).
+The function `closed_data()` also calls the aforementioned `synthetic()` function to
+create a synthetic dataset.
 The user should push all changed files to the remote repository.
 Once the remote repository is made public, people will have access to a
 checksum for the original data that exist on your local machine, a codebook
