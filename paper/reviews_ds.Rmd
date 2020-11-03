@@ -47,13 +47,14 @@ Reasons to reject:
 Response: We appreciate the recommendation of performing a user evaluation, and this is certainly a next step in the development of worcs. However, as the Editor has indicated, 'resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse"'. We will thus first address the potential for re-use, and then we will address steps we have taken and intend to take with regard to user evaluation.
 
 First, there are several arguments to substantiate the potential for reuse of worcs:
-1) Worcs is implemented in an R-package
-2) This R-package is available in a standardized repository, namely CRAN ("The Comprehensive R Archive Network")
-3) The software meets all criteria of the Core Infrastructure Initiative "best practices" (CII Best Practices)
-4) The R-package uses only tools that are fully integrated within the RStudio IDE, thus enhancing ease of use
-5) The R-package is compatible with other reproducibility solutions, including Docker, drake, and make
 
-Second, there is some evidence to demonstrate that worcs is already being adopted (as of 31-10-2020):
+1. WORCS is implemented in an R-package
+2. This R-package is available in a standardized repository, namely CRAN ("The Comprehensive R Archive Network")
+3. The software meets all criteria of the Core Infrastructure Initiative "best practices" (CII Best Practices)
+4. The R-package uses only tools that are fully integrated within the RStudio IDE, thus enhancing ease of use
+5. The R-package is compatible with other reproducibility solutions, including Docker, drake, and make
+
+Second, there is some evidence to demonstrate that WORCS is already being adopted (as of 31-10-2020):
 
 1. The preprint has been downloaded 561 times, since being published on 31-05-2020
 1. The `worcs` R-package has been downloaded 2401 times from CRAN, since being published on 18-05-2020
@@ -61,7 +62,7 @@ Second, there is some evidence to demonstrate that worcs is already being adopte
 1. The video tutorial for worcs has been viewed 362 times, and liked 18 times (https://www.youtube.com/watch?v=uzjpN_yFeUU)
 1. WORCS is used to teach reproducibility at Utrecht University
 1. The lead author has given invited lectures on WORCS at the Erasmus University Rotterdam, Eindhoven University of Technology, and Max Planck Institute, Berlin
-1. The lead author has applied worcs in several research projects:
+1. The lead author has applied `worcs` in several research projects:
 	* https://github.com/cjvanlissa/storm_meta_father_mother
 	* https://github.com/cjvanlissa/veni_sysrev
 	* https://github.com/cjvanlissa/placebo_adhd
@@ -69,9 +70,10 @@ Second, there is some evidence to demonstrate that worcs is already being adopte
 	* https://github.com/cjvanlissa/coping_covid
 
 
-Third, although we have not conducted a user evaluation, there is some evidence that worcs addresses users' needs:
-1) Evaluate worcshops!!
-2) The issues page on the worcs GitHub profile demonstrates that we have been very responsive in addressing users' feedback (as required by the aforementioned CII Best Practices):
+Third, although we have not conducted a user evaluation, there is some evidence that `worcs` addresses users' needs:
+
+1. Evaluate worcshops!!
+2. The issues page on the worcs GitHub profile demonstrates that we have been very responsive in addressing users' feedback (as required by the aforementioned CII Best Practices):
 * https://github.com/cjvanlissa/worcs/issues?q=is%3Aissue+is%3Aclosed
 
 <!-- The goal of the present manuscript is to define the problem worcs intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools worcs uses to address this problem, explain how worcs uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence; -->
@@ -84,9 +86,9 @@ Third, although we have not conducted a user evaluation, there is some evidence 
 
 The paper is well written, easy to follow and very relevant and timely for the journal. I think the capabilities of the worcs package for synthetic data generation, connect to osf, help with the preprints and capture dependencies are very valuable to the community. However, the main limitation of the paper is that the workflow and proposed package are not evaluated with users, and therefore the claims of the authors with respect of its capabilities are not supported by evidence. I would like to encourage the authors to gather user/community feedback and demonstrate with numbers that worcs can help scientists as they claim. Then, the paper would become a strong contribution for the journal.}
 
-Response: In addressing this comment, we respectfully refer to our response to the preceding comment ("There is no user evaluation", R1), and again emphasize the Editor's comment that "resource papers do not need to have a full-blown user evaluation". We would also like to clarify that the goal of the present manuscript is to define the problem worcs intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools worcs uses to address this problem, explain how worcs uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence. In the revision, we have attempted to further clarify this goal from the paper onset: REF. 
+Response: In addressing this comment, we respectfully refer to our response to the preceding comment ("There is no user evaluation", R1), and again emphasize the Editor's comment that "resource papers do not need to have a full-blown user evaluation". We would also like to clarify that the goal of the present manuscript is to define the problem WORCS intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools WORCS uses to address this problem, explain how WORCS uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence. In the revision, we have attempted to further clarify this goal from the paper onset: REF. 
 
-We do take the suggestion of performing a user evaluation very seriously, but in our mind, this is a next step. First, the workflow must be published, then it can be taught, and subsequently evaluated.
+We do take the suggestion of performing a user evaluation very seriously, but in our mind, this is a next step. We have built WORCS based on established tools and best practices, and we have gathered preliminary positive feedback from the community through workshops and teaching. 
 
 \Assignment{CJ}
 \Done
@@ -97,16 +99,16 @@ We do take the suggestion of performing a user evaluation very seriously, but in
 Response: We understand that our writing comes across as contradictory,
 and this apparent contradiction arises from a lack of explicit definitions of the terms "replication" and "reproducibility" in the original manuscript.
 We are aware of the oft-lamented lack of consistent definitions for these terms (e.g., Patil, Peng, & Leek, 2019; Plesser, 2018).
-In the Revision, we have attempted to address this lack of clarity by including explicit definitions for these terms:
+In the revision, we have attempted to address this lack of clarity by including explicit definitions for these terms:
 
 > Throughout this paper, we adhere to the definition of open science as
 "the practice of science in such a way that others can collaborate and contribute,
 where research data, lab notes and other research processes are freely available,
 under terms that enable reuse, redistribution and reproduction of the research and its underlying data and methods" [@vicente-saezOpenScienceNow2018].  
-[...] reproducibility can be defined as "re-performing the same analysis with the same code using a different analyst",
+[...] reproducibility can be defined as "re-performing the same analysis with the same code and the same data using a different analyst",
 and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
 
-After making these definitions explicit, it becomes clear that the Reviewer's definition of replication as "a necessary steps towards reproducibility" is not consistent with the present paper.
+After making these definitions explicit, it becomes clear that the Reviewer's definition of replication as "a necessary steps towards reproducibility" is not consistent with the definitions of the present paper.
 
 We further wish to clarify that the fact that we address guidelines 1-7, but not guideline 8 ("replication") is consistent with the intended purpose of the TOP-guidelines.
 Specifically, the first seven guidelines are intended to ensure the "reproducibility of the reported results based on the originating data" [direct quote from @nosekPromotingOpenResearch2015a]. The eighth criterion, by contrast, is "not formally a transparency standard for authors, [but] addresses journal guidelines for consideration of independent replications for publication" (again a direct quote).
@@ -117,7 +119,7 @@ the first seven of which "account for reproducibility of the reported results
 based on the originating data, and for sharing sufficient information to conduct an independent 
 replication" [@nosekPromotingOpenResearch2015a].
 In this context, 
-reproducibility can be defined as "re-performing the same analysis with the same code using a different analyst",
+reproducibility can be defined as "re-performing the same analysis with the same code and the same data using a different analyst",
 and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
 These guidelines are: 1) Comprehensive
 citation of literature, data, materials, and methods; 2) sharing data, 3)
@@ -146,7 +148,7 @@ The Reviewer, by contrast, proposes that the main contribution of worcs is to he
 
 \RC{C4: I am confused by the citation "Van Lissa, Caspar J., Aaron Peikert, and Andreas M. Brandmaier. 2020. “Worcs: Workflow for Open Reproducible Code in Science.”". Is this referring to another paper or the actual package? If it's another paper then what is the contribution of this publication?}
 
-Response: We apologize; it appears that there were numerous errors in the parsing of the reference list after rendering the manuscript to HTML - the preferred format of Data Science. The reference is indeed to the R-package. In the revised manuscript, we have repaired the references so that it is clear that this is a software package, et cetera.
+Response: We apologize; it appears that there were numerous errors in the parsing of the reference list after rendering the manuscript to HTML - the preferred format of Data Science. The reference is indeed to the R-package. In the revised manuscript, we have repaired the references so that it is clear that this is a software package.
 
 \Assignment{CJ}
 \WorkInProgress
@@ -188,6 +190,8 @@ If the Reviewer so desires, we would also be willing to cut the brief discussion
 
 
 \RC{C7: The workflow of releasing data products on GitHub is not ideal. First, because datasets of 100 MBs usually require special handling. Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation. The authors seem to not describe very well what would happen in data science experiments where the data size is significant.}
+
+We agree that GitHub is not an ideal platform for handling large data. However, it is ideal for handling version control of computer code, Markdown documents, and small to medium-sized data files. Larger files can be linked to git using git-annex (https://git-annex.branchable.com) and similar solutions. We now mention git-annex as a possible route to handle larger data files (TODO). We agree that it is important to make open data findable beyond just providing it freely. Digital object identifiers are the de-factor standard for making unique references to data sets. In line with the reviewer's suggestion, we suggest to use external providers to provide such DOIs while github is still the primary data storage. Our prefered route is to use github web hooks to link Zenodo and a WORCS-compatible repository. With this technique, Zenodo issues DOI for content hosted on github repositories including some nice extras, such as automatic badge DOI badges for the repository.
 
 BV: Can you please argue for why GitHub is equivalent to Zenodo for this purpose?
 AL: Can you address the reference to FAIR principles in relation to GitHub?
