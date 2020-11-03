@@ -41,7 +41,8 @@ This function saves a data.frame as a \code{.csv} file (using
 \code{\link[utils:write.table]{write.csv}}), stores a checksum in '.worcs',
 appends the \code{.gitignore} file to exclude \code{filename}, and saves a
 synthetic copy of \code{data} for public use. To generate these synthetic
-data, the function \code{\link{synthetic}} is used.
+data, the function \code{\link{synthetic}} is used. Additional arguments for
+the call to \code{\link{synthetic}} can be passed through \code{...}.
 }
 \examples{
 old_wd <- getwd()

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.2</span>
       </span>
     </div>
 
@@ -101,10 +101,13 @@
       <a href="../articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
     </li>
     <li>
+      <a href="../articles/setup-docker.html">Setting up your computer for WORCS - Docker-edition</a>
+    </li>
+    <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
     </li>
     <li>
-      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.2</a>
+      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.5</a>
     </li>
   </ul>
 </li>
@@ -141,7 +144,7 @@
     <p>Export project to .zip file</p>
     </div>
 
-    <pre class="usage"><span class='fu'>export_project</span>(<span class='kw'>zipfile</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>worcs_directory</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>open_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>export_project</span><span class='op'>(</span>zipfile <span class='op'>=</span> <span class='cn'>NULL</span>, worcs_directory <span class='op'>=</span> <span class='st'>"."</span>, open_data <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -176,7 +179,8 @@ does not yet exist, a synthetic data set is generated and added to the
 called for its side effect of creating a <code>.zip</code> file.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>export_project</span>(<span class='kw'>worcs_directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file 'C:\Users\lissa102\AppData\Local\Temp\RtmpuUt0ra/.worcs': No such file or directory</span></div><div class='output co'>#&gt; <span style='color: #BB0000;'>X  </span><span style='color: #000000;'>No '.worcs' file found; not a WORCS project, or the working directory has been changed.</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>export_project</span><span class='op'>(</span>worcs_directory <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file 'C:\Users\lissa102\AppData\Local\Temp\RtmpKy38Ms/.worcs': No such file or directory</span></div><div class='output co'>#&gt; <span style='color: #BB0000;'>X  </span><span style='color: #000000;'>No '.worcs' file found; not a WORCS project, or the working directory has been changed.</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -192,7 +196,7 @@ called for its side effect of creating a <code>.zip</code> file.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
