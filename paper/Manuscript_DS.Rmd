@@ -617,6 +617,11 @@ the authors who evaluate it on the real data and send back the results. The
 `worcs` package offers a simple but flexible function to generate synthetic data,
 `synthetic()`, which by default uses random forests to generate a model for
 synthesis (see @wrightRangerFastImplementation2015).
+This function is based on the work by @nowokSynthpopBespokeCreation2016 (see the `R` package `synthpop`),
+but with a simpler and more flexible user interface.
+Specifically, the `worcs` function `synthetic()` accepts any function that can be used to model
+marginal associations in the data.
+For further details, see the [function documentation](https://cjvanlissa.github.io/worcs/reference/synthetic.html).
 
 Note that for data synthesis to work
 properly, it is essential that the `class` (data type) of variables is defined

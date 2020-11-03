@@ -261,9 +261,23 @@ check_urls <- function(x){
 \Easy
 
 
-\RC{Synthetic data generation is fantastic, but it is not clear to me how does worcs actually keep the data consistent e.g. for training models. Does it follow a similar distribution to the source data?}
+\RC{C11: Synthetic data generation is fantastic, but it is not clear to me how does worcs actually keep the data consistent e.g. for training models. Does it follow a similar distribution to the source data?}
 
-Response: Provide reference, clarify explanation in text.
+Response: We agree that synthetic data generation is exciting, but feel obliged to clarify that this is **not** a novel contribution of the present paper nor R-package. 
+As indicated in the paper, we use the algorithm by Nowok and colleagues,
+who explain the details of the method.
+We re-implemented the method in the `worcs` package because the `synthpop` package
+is rarely maintained (e.g., one of our pull requests took almost 10 months to be accepted),
+and because we wanted a more flexible, customizable interface.
+
+To answer the Reviewer's specific question, the synthetic data indeed follow similar distributions to the source data, as indicated in the paper:
+
+> Synthetic data mimic the level of measurement and
+(conditional) distributions of the real data
+[see @nowokSynthpopBespokeCreation2016].
+
+We have additionally clarified the paragraph that introduces the `synthetic()` function, and added further references to the methodological paper,
+and to the documentation of the `synthetic()` function (which summarizes the algorithm).
 
 \Assignment{CJ}
 \WorkInProgress

@@ -51,7 +51,8 @@ Generates a synthetic version of a \code{data.frame}, with
 similar characteristics to the original. See Details for the algorithm used.
 }
 \details{
-This function uses a simple algorithm to generate a synthetic
+Based on the work by Nowok, Raab, and Dibben (2016),
+this function uses a simple algorithm to generate a synthetic
 dataset with similar characteristics to the original. The algorithm is as
 follows:
 \enumerate{
@@ -71,14 +72,77 @@ Note that, for data synthesis to work properly, it is essential that the
 \code{class} of variables is defined correctly. The default algorithm
 \code{\link[ranger]{ranger}} supports numeric, integer, and factor types.
 Other types of variables should be converted to one of these types, or users
-can use a custom \code{model_expression} when calling \code{synthetic}.
+can use a custom \code{model_expression} and \code{predict_expressio}
+when calling \code{synthetic}.
+
+
+Note that for data synthesis to work properly, it is essential that the
+\code{class} of variables is defined correctly. The default algorithm
+\code{\link[ranger]{ranger}} supports numeric, integer, factor, and logical
+data. Other types of variables should be converted to one of these types.
+
+Users can provide use a custom \code{model_expression} and
+\code{predict_expression} to use a different algorithm when calling
+\code{synthetic}.
+
+As demonstrated in the example, users could call \code{lm} as a
+\code{model_expression} to use
+linear regression, which preserves linear marginal relationships but can give
+rise to values out of range of the original data.
+Or users could call \code{sample} as a \code{predict_expression} to bootstrap
+each variable, a very quick solution that maintains univariate distributions
+but loses all marginal relationships. These examples are not exhaustive, and
+users can even create custom functions.
 }
 \examples{
+# Example using the iris dataset and default ranger algorithm
 iris_syn <- synthetic(iris)
+
+# Example using lm as prediction algorithm (only works for numeric variables)
+# note that, within the model_expression, a new data.frame is created because
+# lm() requires a separate data argument:
+dat <- iris[, 1:4]
+synthetic(dat,
+          model_expression = lm(.outcome ~ .,
+                                data = data.frame(.outcome = y,
+                                xsynth)),
+          predict_expression = predict(model, newdata = xsynth))
+
+# Example using bootstrapping:
+synthetic(iris,
+          model_expression = NULL,
+          predict_expression = sample(y, size = length(y), replace = TRUE))
+
+# Example with missing data, no imputation
 iris_missings <- iris
 for(i in 1:10){
   iris_missings[sample.int(nrow(iris_missings), 1, replace = TRUE),
                 sample.int(ncol(iris_missings), 1, replace = TRUE)] <- NA
 }
 iris_miss_syn <- synthetic(iris_missings)
+
+# Example with missing data, imputation by median/mode substitution
+# First, define a simple function for median/mode substitution:
+imp_fun <- function(x){
+  if(is.data.frame(x)){
+    return(data.frame(sapply(x, imp_fun)))
+  } else {
+    out <- x
+    if(inherits(x, "numeric")){
+      out[is.na(out)] <- median(x[!is.na(out)])
+    } else {
+      out[is.na(out)] <- names(sort(table(out), decreasing = TRUE))[1]
+    }
+    out
+  }
+}
+
+# Then, call synthetic() with this function as missingness_expression:
+iris_miss_syn <- synthetic(iris_missings,
+                           missingness_expression = imp_fun(data))
+}
+\references{
+Nowok, B., Raab, G.M and Dibben, C. (2016).
+synthpop: Bespoke creation of synthetic data in R. Journal of Statistical
+Software, 74(11), 1-26. <doi:10.18637/jss.v074.i11>.
 }
