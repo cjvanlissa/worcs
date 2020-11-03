@@ -248,6 +248,7 @@ check_urls <- function(x){
   mtch <- gsub("[\\)\\.,;]+$", "", mtch)
   #out <- sapply(mtch, RCurl::url.exists)
   out <- sapply(mtch, httr::http_error)
+  out
 }
 -->
 
