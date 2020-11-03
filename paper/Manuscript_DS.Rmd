@@ -301,16 +301,17 @@ Therefore, the best approach might be to use a "good-enough" solution, and
 acknowledge that all code requires some maintenance if you want to
 reproduce it in the future.
 
-For analyses conducted entirely in `R`, the recently released package `renv` [@usheyRenvProjectEnvironments2020]
-strikes a great balance between user-friendliness and robustness.
+For dependency management, the `R` implementation of `worcs` relies on the recently released package `renv` [@usheyRenvProjectEnvironments2020].
+This package strikes a great balance between user-friendliness and robustness.
 Developed by the team behind RStudio, 
-this package simply maintains a text-based,
+`renv` maintains a text-based,
 human-readable log of all packages used, their version numbers, and where they
 were installed from (e.g., CRAN, Bioconductor, GitHub).
+This text-based log file can be version controlled with Git.
+When someone else loads your project,
+`renv` will install all of the required packages from this list.
 This lightweight approach safeguards reproducibility as long as these repositories maintain their archives.
-The text-based log file can be version controlled with Git.
-The `renv` function `snapshot()` is used to add packages to the log file.
-This function identifies all packages loaded using `library()` calls in the scripts in the project directory.
+The `worcs` project template in RStudio automatically sets up `renv` for dependency management if the checkbox labeled "renv" is selected during project creation.
 
 All solutions to computational reproducibility require users to make their dependencies explicit, often by reinstalling all software for each project in a controlled environment.
 This can lead to long installation times and large memory requirements.
@@ -318,37 +319,39 @@ Similarly, `renv` requires users to call `install.packages()` for each library u
 Instead, packages reside in a cache that is shared between all projects on the computer.
 If a project uses a package that is already in the cache, it is not reinstalled, but linked from the cache.
 This improves the user experience by saving time and memory.
-When someone else loads your project, `renv` will install all of the required packages.
 As opposed to alternative solutions, `renv` is tightly integrated with the
 native R package management system.
-Therefore, it does not require the users to change their workflow of installing/removing and using packages, and requires no technical skill to setup.
+It monitors the scripts in the project directory for `library()` calls,
+and notifies the user when it is necessary to update the dependencies file using the `snapshot()` function.
+Therefore, `renv` does not require the users to change their workflow of installing/removing and using packages, and requires little technical skill to setup.
 It is not a fail-safe method to ensure strict computational reproducibility,
 but it meets most reproducibility requirements using only tools
-native to RStudio, and is therefore easier to adopt for `R` users.
+native to `R` and RStudio.
 
-If stricter reproducibility is required,
-users might choose to conduct all analyses in a "Docker container": An environment that behaves like a
+When a project is conducted in a different software environment than `R`,
+or if an R-project has external dependencies not tracked by `renv`,
+then users might choose to use [Docker](https://www.docker.com/) for dependency management.  
+Docker instantiates a "Docker container": An environment that behaves like a
 virtual computer, which can be stored like a time capsule, and
 identically reinstated on a user computer, or in the cloud.
-This is effective, and also preserves software outside the `R` environment (e.g.,
-preprocessing tools for neuroimaging data).
+Although the use of Docker falls outside of the scope of the present paper,
+for existing users, a Docker build running `worcs` and its dependencies is available.
 The [stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/docker.html)
-describes how to instantiate a Docker build running `worcs` and its dependencies.
+explains how to instantiate this build.
 For more information on this topic,
 @peikertReproducibleDataAnalysis2019 describe 
 a Docker-based workflow for computational reproducibility that is
 conceptually and practically compatible with WORCS.
-One remaining challenge of Docker is that it is somewhat difficult to set up for novice users.
-To overcome this challenge, an `R` package is currently in development to facilitate Docker integration [`repro`, @repro].
-Another 
-user-friendly Docker-based workflow is offered by the cloud-based collaboration
-platform 'Code Ocean'. Although Code Ocean enjoys some popularity among 
+
+As Docker is somewhat challenging to set up for novice users,
+an `R` package is currently in development to facilitate Docker integration [`repro`, @repro].
+Another example of a Docker-based workflow is the cloud-based collaboration
+platform 'Code Ocean'.
+Although Code Ocean enjoys some popularity among 
 scientists, it is not clear whether this platform
 is GDPR compliant - as of this writing, its [terms of use](https://codeocean.com/terms-of-use) do not address the GDPR, nor is it clear where
 data are stored.
-The necessity to upload human participant data is a liability
-when using any
-cloud-computing solution for data analysis.
+The necessity to upload human participant data for analysis is an important consideration and potential liability when using any cloud-computing solution.
 
 ## Text-based files are better
 

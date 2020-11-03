@@ -5,7 +5,7 @@ journal     : "Journal title"
 manuscript  : "Manuscript number"
 
 class       : "draft"
-
+bibliography      : ["worcs.bib"]  
 output      : papaja::revision_letter_pdf
 ---
 
@@ -166,20 +166,32 @@ It enhances this format with support for R-code, and is compatible with [LaTeX](
 For a full overview of the functionality of `RMarkdown`, see @xieMarkdownDefinitiveGuide2018.
 
 \Assignment{CJ}
-\WorkInProgress
+\Done
 \Medium
 
 
-\RC{It is not clear how worcs addresses depedency management. The section lists a series of tools that can be used, but the section is not very specific to worcs.}
+\RC{C6: It is not clear how worcs addresses depedency management. The section lists a series of tools that can be used, but the section is not very specific to worcs.}
 
-Response: Not true; explain that worcs project automatically initializes `renv`.
+Response: We apologize for the apparent lack of clarity of this section. 
+We have restructured and clarified this section to convey the following information:
+
+1) Introduce the general concept of dependency management
+2) Introduce `renv`, the solution for dependency management used by the R-implementation of `worcs`
+3) Acknowledge the more comprehensive approach to dependency management offered by Docker
+
+We have also, in response to another Reviewer comment, created a Docker Hub build that runs `worcs`. Therefore, as of this revision, both of the tools discussed in this section (i.e., `renv` and Docker) are directly relevant for WORCS-users, and the section should read less like a "series of tools that can be used".
+If the Reviewer so desires, we would also be willing to cut the brief discussion of Code Ocean - but this had been included at the request of an informal reviewer of this paper (Daniël Lakens).
 
 \Assignment{CJ}
-\WorkInProgress
+\Done
 \Easy
 
 
-\RC{The workflow of releasing data products on GitHub is not ideal. First, because datasets of 100 MBs usually require special handling. Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation. The authors seem to not describe very well what would happen in data science experiments where the data size is significant.}
+\RC{C7: The workflow of releasing data products on GitHub is not ideal. First, because datasets of 100 MBs usually require special handling. Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation. The authors seem to not describe very well what would happen in data science experiments where the data size is significant.}
+
+BV: Can you please argue for why GitHub is equivalent to Zenodo for this purpose?
+AL: Can you address the reference to FAIR principles in relation to GitHub?
+CJ: I will address "big" data
 
 \Assignment{BV, AB, AL, CJ}
 \WorkInProgress
@@ -214,7 +226,7 @@ Response: Provide reference, clarify explanation in text.
 
 \Assignment{CJ}
 \WorkInProgress
-\Each
+\Easy
 
 
 \RC{Docker is deemed as complicated for novice users, but the setup vignete looks quite complex to me as well. Wouldn't a Docker container with worcs installed be easier to use? Maybe these aspects would be better highlighted in a user evaluation.}
@@ -268,7 +280,7 @@ Response: What would this entail? Is it within scope?
 \WorkInProgress
 \Medium
 
-# \Reviewer \#3
+# Reviewer \#3
 
 Submitted on 26/Oct/2020 by Anonymous
 
@@ -382,7 +394,7 @@ There is some prelimiary evidence that the workflow is being adopted (as of 31-1
 \Done
 \Easy
 
-# \Reviewer \#4
+# Reviewer \#4
 
 Submitted on 26/Oct/2020 by Katherine Wolstencroft https://orcid.org/0000-0002-1279-5133
 
