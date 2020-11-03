@@ -305,6 +305,7 @@ Alternatively, Docker users can follow [the stetup with Docker vignette](https:/
 
 
 # Reviewer \#2
+
 Submitted on 19/Oct/2020 by Remzi Celebi ORCID logo https://orcid.org/0000-0001-7769-4272
 
 * Overall Impression: Good
@@ -326,7 +327,7 @@ It provides a good discussion of TOP-guidelines (a set of open science principle
 
 Reasons to reject:
 
-\RC{I would suggest the authors include a flowchart for users that shows the decision making process for which tools/operations should be used in WORCS. An example project would also help users better understand the package.}
+\RC{C1: I would suggest the authors include a flowchart for users that shows the decision making process for which tools/operations should be used in WORCS. An example project would also help users better understand the package.}
 
 \Assignment{ALL}
 \WorkInProgress
@@ -334,13 +335,18 @@ Reasons to reject:
 
 \RC{The claim that WORCS is amenable to the FAIR Guiding Principles should be justified. What are the solutions provided by WORCS that make a project interoperable and reusable? It would be improved with a more thorough discussion on how WORCS meets each FAIR principle.}
 
+Anna-Lena?
+
 \Assignment{AL, BV, CJ}
 \WorkInProgress
 \Medium
 
 \RC{Is WORCS providing any service for de-identification?}
 
-Response: What would this entail? Is it within scope?
+Response: It does not. It seems to us that this is outside of the scope of the present paper.
+If a compelling case could be made by the Reviewer to include such a service,
+we are open to the suggestion - but we would need to take on additional coauthors with the required expertise.
+<!--What would this entail? Is it within scope?-->
 
 \Assignment{ALL}
 \WorkInProgress
