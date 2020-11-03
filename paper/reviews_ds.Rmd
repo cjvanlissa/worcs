@@ -48,13 +48,13 @@ Response: We appreciate the recommendation of performing a user evaluation, and 
 
 First, there are several arguments to substantiate the potential for reuse of worcs:
 
-1. Worcs is implemented in an R-package
+1. WORCS is implemented in an R-package
 2. This R-package is available in a standardized repository, namely CRAN ("The Comprehensive R Archive Network")
 3. The software meets all criteria of the Core Infrastructure Initiative "best practices" (CII Best Practices)
 4. The R-package uses only tools that are fully integrated within the RStudio IDE, thus enhancing ease of use
 5. The R-package is compatible with other reproducibility solutions, including Docker, drake, and make
 
-Second, there is some evidence to demonstrate that worcs is already being adopted (as of 31-10-2020):
+Second, there is some evidence to demonstrate that WORCS is already being adopted (as of 31-10-2020):
 
 1. The preprint has been downloaded 561 times, since being published on 31-05-2020
 1. The `worcs` R-package has been downloaded 2401 times from CRAN, since being published on 18-05-2020
@@ -70,7 +70,7 @@ Second, there is some evidence to demonstrate that worcs is already being adopte
 	* https://github.com/cjvanlissa/coping_covid
 
 
-Third, although we have not conducted a user evaluation, there is some evidence that worcs addresses users' needs:
+Third, although we have not conducted a user evaluation, there is some evidence that `worcs` addresses users' needs:
 
 1. Evaluate worcshops!!
 2. The issues page on the worcs GitHub profile demonstrates that we have been very responsive in addressing users' feedback (as required by the aforementioned CII Best Practices):
@@ -86,9 +86,9 @@ Third, although we have not conducted a user evaluation, there is some evidence 
 
 The paper is well written, easy to follow and very relevant and timely for the journal. I think the capabilities of the worcs package for synthetic data generation, connect to osf, help with the preprints and capture dependencies are very valuable to the community. However, the main limitation of the paper is that the workflow and proposed package are not evaluated with users, and therefore the claims of the authors with respect of its capabilities are not supported by evidence. I would like to encourage the authors to gather user/community feedback and demonstrate with numbers that worcs can help scientists as they claim. Then, the paper would become a strong contribution for the journal.}
 
-Response: In addressing this comment, we respectfully refer to our response to the preceding comment ("There is no user evaluation", R1), and again emphasize the Editor's comment that "resource papers do not need to have a full-blown user evaluation". We would also like to clarify that the goal of the present manuscript is to define the problem worcs intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools worcs uses to address this problem, explain how worcs uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence. In the revision, we have attempted to further clarify this goal from the paper onset: REF. 
+Response: In addressing this comment, we respectfully refer to our response to the preceding comment ("There is no user evaluation", R1), and again emphasize the Editor's comment that "resource papers do not need to have a full-blown user evaluation". We would also like to clarify that the goal of the present manuscript is to define the problem WORCS intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools WORCS uses to address this problem, explain how WORCS uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence. In the revision, we have attempted to further clarify this goal from the paper onset: REF. 
 
-We do take the suggestion of performing a user evaluation very seriously, but in our mind, this is a next step. First, the workflow must be published, then it can be taught, and subsequently evaluated.
+We do take the suggestion of performing a user evaluation very seriously, but in our mind, this is a next step. We have built WORCS based on established tools and best practices, and we have gathered preliminary positive feedback from the community through workshops and teaching. 
 
 \Assignment{CJ}
 \Done
@@ -99,7 +99,7 @@ We do take the suggestion of performing a user evaluation very seriously, but in
 Response: We understand that our writing comes across as contradictory,
 and this apparent contradiction arises from a lack of explicit definitions of the terms "replication" and "reproducibility" in the original manuscript.
 We are aware of the oft-lamented lack of consistent definitions for these terms (e.g., Patil, Peng, & Leek, 2019; Plesser, 2018).
-In the Revision, we have attempted to address this lack of clarity by including explicit definitions for these terms:
+In the revision, we have attempted to address this lack of clarity by including explicit definitions for these terms:
 
 > Throughout this paper, we adhere to the definition of open science as
 "the practice of science in such a way that others can collaborate and contribute,
