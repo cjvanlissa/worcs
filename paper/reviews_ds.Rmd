@@ -189,17 +189,37 @@ If the Reviewer so desires, we would also be willing to cut the brief discussion
 \Easy
 
 
-\RC{C7: The workflow of releasing data products on GitHub is not ideal. First, because datasets of 100 MBs usually require special handling. Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation. The authors seem to not describe very well what would happen in data science experiments where the data size is significant.}
+\RC{C7a: The workflow of releasing data products on GitHub is not ideal. First, because datasets of 100 MBs usually require special handling. [...] The authors seem to not describe very well what would happen in data science experiments where the data size is significant.}
 
-We agree that GitHub is not an ideal platform for handling large data. However, it is ideal for handling version control of computer code, Markdown documents, and small to medium-sized data files. Larger files can be linked to git using git-annex (https://git-annex.branchable.com) and similar solutions. We now mention git-annex as a possible route to handle larger data files (TODO). We agree that it is important to make open data findable beyond just providing it freely. Digital object identifiers are the de-factor standard for making unique references to data sets. In line with the reviewer's suggestion, we suggest to use external providers to provide such DOIs while github is still the primary data storage. Our prefered route is to use github web hooks to link Zenodo and a WORCS-compatible repository. With this technique, Zenodo issues DOI for content hosted on github repositories including some nice extras, such as automatic badge DOI badges for the repository.
+We agree that GitHub is not an ideal platform for handling data larger than 100MB.
+However, 100MB is very large for tabular data; for example, if only integer numbers are stored that is $(100MB*1024^2)/(2^2) = 26214400$ unique values.
+
+GitHub is, however, ideal version controlling analysis code, RMarkdown documents, and small to medium-sized data files.
+Larger files can be linked to git using [git-annex](https://git-annex.branchable.com),
+[Git Large File Storage](https://git-lfs.github.com/), and similar solutions. 
+We now mention git-annex as a possible route to handle larger data files (TODO).
+
+We agree that it is important to make open data findable beyond just providing it freely.
+Digital object identifiers are the de-factor standard for making unique references to data sets. In line with the reviewer's suggestion,
+we suggest to use external providers to provide such DOIs while github is still the primary data storage. TODO!!!
+
+Our prefered route is to use github web hooks to link Zenodo and a WORCS-compatible repository. With this technique, Zenodo issues DOI for content hosted on github repositories including some nice extras, such as automatic badge DOI badges for the repository.
 
 BV: Can you please argue for why GitHub is equivalent to Zenodo for this purpose?
 AL: Can you address the reference to FAIR principles in relation to GitHub?
 CJ: I will address "big" data
 
+on second thought, it’s probably worth mentioning to the reviewer that we know these options but defend the OSF-centric approach for our purposes. My impression is that the main challenge are the different expectations and solutions across disciplines that are currently evolving largely in parallel. If we acknowledge that there are alternatives, this may please the reviewers while we still can defend R + OSF for the behavioral and social sciences. Other disciplines may have different foci, e.g., python + jupyter + docker etc... and no single manuscript will be able to cover everything.
+
 \Assignment{BV, AB, AL, CJ}
 \WorkInProgress
 \Hard
+
+
+\RC{C7b: Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation.}
+
+
+
 
 \RC{C8: In the 3 phases listed, it is not clear what worcs does and does not for users.}
 
