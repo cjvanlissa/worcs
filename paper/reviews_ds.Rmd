@@ -236,27 +236,33 @@ so that we may add them to the [overview of WORCS-projects on GitHub](https://gi
 
 \RC{C7b: Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation.}
 
-A crucial advantage of storing the data on GitHub, relative to Zenodo or FigShare,
-is that they are bundled with the
+We agree completely that it is important to make open data findable beyond just providing it freely.
+It is a pity that the Reviewer does not provide arguments to support a preference for Zenodo or FigShare over GitHub, because if there is a strong case to be made, we would be keen to include this in the paper.
+Without such arguments, as far as we are concerned, these repositories are largely interchangeable.
+
+We prefer storing the data on GitHub because they are then bundled with the
 documentation (e.g., codebook), analysis code, and manuscript.
 Thus, readers have access to **all** materials required for replication in one repository.
 GitHub additionally offers user interaction with the materials through
 forking, cloning, opening issues, and sending pull requests -
 all useful tools for replication and collaboration.
 
-We agree that it is important to make open data findable beyond just providing it freely.
+It is further worth noting that [GitHub is compatible with Zenodo](https://guides.github.com/activities/citable-code/);
+users can document GitHub repositories in Zenodo and generate a DOI.
+This is redundant with Step 15 of the workflow, however:
+Connecting the GitHub repository to an OSF project accomplishes effectively the same.
+We do acknowledge, however, 
+that this part of the workflow was not clearly documented in the previous version of the manuscript, 
+and that the use of DOIs warrants further clarification.
+
+In the revision, we have attempted to address this comment in two ways: First, by
+clarifying Step 15 in the WORCS workflow, specifically emphasizing the importance of generating a DOI. 
+Second, by discussing the use of DOIs in the paper.
 
 The approach we advocate is to make all of a project's resources available in a 
 Step 15 of the workflow, "Connect your ‘OSF’ project page to the ‘Git’ remote repository",
 was intended to meet this goal.
-However, we acknowledge that this requires further clarification.
 
-
-Particularly the addition of a robust citation for the data is an essential step that should have been mentioned in the manuscript.
-In the revision, we have addressed this by adding a step to the WORCS workflow, and discussing DOIs in the paper.
-
-Unfortunately, the Reviewer preference for Zenodo or FigShare is not explained.
-We consider these platforms to be somewhat interchangeable with using Git remote repositories - with one key distinction:
 
 Digital object identifiers are the de-factor standard for making unique references to data sets. In line with the reviewer's suggestion,
 we suggest to use external providers to provide such DOIs while github is still the primary data storage. TODO!!!
