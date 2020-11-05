@@ -191,13 +191,51 @@ If the Reviewer so desires, we would also be willing to cut the brief discussion
 
 \RC{C7a: The workflow of releasing data products on GitHub is not ideal. First, because datasets of 100 MBs usually require special handling. [...] The authors seem to not describe very well what would happen in data science experiments where the data size is significant.}
 
-We agree that GitHub is not an ideal platform for handling data larger than 100MB.
-However, 100MB is very large for tabular data; for example, if only integer numbers are stored that is $(100MB*1024^2)/(2^2) = 26214400$ unique values.
+Response: We have split this comment up to separately address the handling of large data, and findability (see below).
 
-GitHub is, however, ideal version controlling analysis code, RMarkdown documents, and small to medium-sized data files.
-Larger files can be linked to git using [git-annex](https://git-annex.branchable.com),
-[Git Large File Storage](https://git-lfs.github.com/), and similar solutions. 
-We now mention git-annex as a possible route to handle larger data files (TODO).
+With regard to the handling of large data,
+we agree that GitHub is not an ideal platform for handling data larger than 100MB.
+It is important to note, however, that there are no restrictions for sharing files up to that size.
+Further, take into consideration that 100MB is very large for tabular data;
+for example, if only integer numbers are stored that is $(100MB*1024^2)/(2^2) = 26214400$ unique values.
+In the social sciences, datasets rarely exceed this limit -
+and so for our readership,
+GitHub is as good a platform for sharing data as any.
+Moreover, GitHub is ideal for version controlling analysis code, RMarkdown documents, and small to medium-sized data files.
+In our opinion, the advantages of having **all** of a paper's resources in the same repository outweighs the advantages of encouraging every reader to additionally use specialized solutions for "big data" (which most will not need).
+
+To address this comment, we now explicitly address the problem of version controlling large files, and introduce a solution for larger files, which can be linked to git using
+[Git Large File Storage](https://git-lfs.github.com/):
+
+> Data sharing may be impeded by several concerns.
+One technical concern is whether data require special storage provisions,
+as is often the case with "big data".
+Most Git remote repositories do not support files larger than 100MB,
+but it is possible to enhance a Git repository with [Git Large File Storage](https://git-lfs.github.com/) to add remotely stored files as large as several GB.
+Files exceeding this size require custom solutions beyond the scope of this paper.
+
+We also added a paragraph to the Limitations section that discusses the fact that no single workflow is suitable for all situations:
+
+> Another limitation is the fact that no single workflow can suit all research projects.
+Not all projects conform to the steps outlined here;
+some may skip steps, add steps, or follow similar steps in a different order.
+In principle, WORCS does not enforce a linear order, and allows extentensive user flexibility.
+A related concern is that some projects might require specialized solutions outside of the scope of this paper.
+For example, some projects might use very large data files,
+rely on data that reside on a protected server,
+or use proprietary software dependencies that cannot be version controlled using `renv` or Docker.
+In such cases, the workflow can serve as a starting point for a custom approach;
+offering a primer on best practices, and a discussion of relevant factors to consider.
+We urge users to inform us of such challenges and custom solutions,
+so that we may add them to the [overview of WORCS-projects on GitHub](https://github.com/cjvanlissa/worcs), where they can serve as an example to others.
+
+\Assignment{BV, AB, AL, CJ}
+\WorkInProgress
+\Done
+
+
+\RC{C7b: Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation.}
+
 
 We agree that it is important to make open data findable beyond just providing it freely.
 Digital object identifiers are the de-factor standard for making unique references to data sets. In line with the reviewer's suggestion,
@@ -214,11 +252,6 @@ on second thought, it’s probably worth mentioning to the reviewer that we know
 \Assignment{BV, AB, AL, CJ}
 \WorkInProgress
 \Hard
-
-
-\RC{C7b: Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation.}
-
-
 
 
 \RC{C8: In the 3 phases listed, it is not clear what worcs does and does not for users.}

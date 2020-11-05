@@ -44,8 +44,7 @@ abstract: |
   This paper is primarily targeted towards
   scholars conducting research projects in R on a private computer,
   conducting research that involves academic prose, analysis code,
-  and tabular data that does not require specialized computational
-  provisions.
+  and (optionally) tabular data.
   However, the workflow is flexible enough to accommodate other scenarios,
   and offers a sensible starting point for customized solutions.
   The source code for the `R` package and manuscript,
@@ -563,46 +562,55 @@ analysis. Computational reproducibility means that a third party can exactly
 recreate the results from the original data, using the published analysis code.
 Secondary analysis means that a third party can conduct sensitivity analyses,
 explore alternative explanations, or even use existing data to answer a
-different research question. From an open science perspective, data sharing is
+different research question. 
+If it is possible to share the data, these can simply be pushed to a Git remote
+repository, along with documentation (such as a codebook) and the analysis code.
+This way, others can download the
+entire repository and reproduce the analyses from start to finish. 
+From an open science perspective, data sharing is
 always desirable. From a practical point of view, it is not always possible.
-Data sharing may be impeded by lack of storage space, legal constraints, ethical restrictions, absence
-of informed consent for data sharing, or privacy concerns. For example, one
-concern that applies when working with human participant data, is
-pseudonimization. 
+
+Data sharing may be impeded by several concerns.
+One technical concern is whether data require special storage provisions,
+as is often the case with "big data".
+Most Git remote repositories do not support files larger than 100MB,
+but it is possible to enhance a Git repository with [Git Large File Storage](https://git-lfs.github.com/) to add remotely stored files as large as several GB.
+Files exceeding this size require custom solutions beyond the scope of this paper.
+
+Sharing human participant data additionally entails legal and ethical concerns.
+Before sharing any
+human participant data, it is recommended to obtain approval from qualified
+ethical and legal advisory organs, guidance from Research Data Management Support, and
+informed consent from participants.
 Many legislatures require researchers to 'de-identify' human subject data upon collection, by removing or deleting any sensitive personal information and
 contact details. However, when researchers have an imperfect understanding of the
 legal obligations and dispensations, they can end up over- or undersharing, and
 risk either placing participants at risk of being identified, or undermine the
 replicability of their own work and potential reuse value of their data [@phillipsDiscombobulationDeidentification2016].
-
-Once data are de-identified or pseudononimized, they can often be shared if participants have
-provided informed consent to that effect. Nevertheles, it is important to note
+Furthermore, it is important to note
 that the European GDPR prohibits storing 'personal data' (information which can
 identify a natural person whether directly or indirectly) on a server outside
 the EU, unless it offers an "adequate level of protection". Although different
 rules may apply to pseudonimized data, there are many repositories that are
 GDPR compliant, such as the European servers of the Open Science Framework.
 Different Universities, countries, and funding bodies also have their own
-repositories that are complient with local legistation. Before sharing any
-human participant data, it is recommended to obtain approval from an internal
-(ethical) review board, guidance from Research Data Management Support, and
-informed consent from participants.
+repositories that are complient with local legistation.
+In sum, data should only be shared after consult qualified legal and ethical advisory organs,
+obtaining informed consent from participants,
+and de-identifying or pseudononimizing data.
 
-If data can be shared openly, they can simply be pushed to a public Git
-repository, along with the analysis code. This way, others can download the
-entire repository and reproduce the analyses from start to finish. 
 If data cannot be shared, researchers should aim to safeguard the potential for
 computational reproducibility and secondary analysis as much as possible. WORCS
 recommends two solutions to accomplish this goal.
 The first solution is to publish a *checksum* of the original data file [@rivest1992md5].
-Think of a checksum as a 32-character summary, or as a "one word" description,
-of the contents of a file.
-Any change to the file will result in a different checksum^[It is theoretically possible but improbable that random changes to a file will result in the same checksum.]. 
+Think of a checksum as a 32-character unique identifier^[It is theoretically possible but improbable that random changes to a file will result in the same checksum.],
+or as a lossy "summary" of the contents of a file.
+Any change to the file will result in a different checksum. 
 Thus, one can use a checksum to verify the identity of a file, and ensure that its contents are unchanged.
 When data cannot be shared, the risk of fraud or abuse can be mitigated by publishing a checksum for the original data, in addition to the complete analysis code.
 Using the checksum to verify the identity of a private dataset, researchers can prove to an independent auditor that running the public analysis code on the private data results in the published results of their work.
 
-The second solution is to share a synthetic dataset with similar characteristics
+A second solution is to share a synthetic dataset with similar characteristics
 to the real data. Synthetic data mimic the level of measurement and
 (conditional) distributions of the real data
 [see @nowokSynthpopBespokeCreation2016]. Sharing synthetic data allows any third
@@ -984,6 +992,19 @@ projects organized, prevents accidental loss of work, enables integrating
 changes by collaborators in a non-destructive manner, and ensures that entire
 research projects are archived and can be accessed or copied by third parties.
 Thus, the time investment is eminently worthwhile.
+
+Another limitation is the fact that no single workflow can suit all research projects.
+Not all projects conform to the steps outlined here;
+some may skip steps, add steps, or follow similar steps in a different order.
+In principle, WORCS does not enforce a linear order, and allows extentensive user flexibility.
+A related concern is that some projects might require specialized solutions outside of the scope of this paper.
+For example, some projects might use very large data files,
+rely on data that reside on a protected server,
+or use proprietary software dependencies that cannot be version controlled using `renv` or Docker.
+In such cases, the workflow can serve as a starting point for a custom approach;
+offering a primer on best practices, and a discussion of relevant factors to consider.
+We urge users to inform us of such challenges and custom solutions,
+so that we may add them to the [overview of WORCS-projects on GitHub](https://github.com/cjvanlissa/worcs), where they can serve as an example to others.
 
 Another important challenge is managing collaborations when only the lead author
 uses RMarkdown, and the coauthors use Word. In this case, it is possible to Knit
