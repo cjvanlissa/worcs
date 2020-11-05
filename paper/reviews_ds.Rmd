@@ -236,12 +236,25 @@ so that we may add them to the [overview of WORCS-projects on GitHub](https://gi
 
 \RC{C7b: Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation.}
 
-
 We agree that it is important to make open data findable beyond just providing it freely.
+Step 15 of the workflow, "Connect your ‘OSF’ project page to the ‘Git’ remote repository",
+was intended to meet this goal.
+However, we acknowledge that this requires further clarification.
+
+
+Particularly the addition of a robust citation for the data is an essential step that should have been mentioned in the manuscript.
+In the revision, we have addressed this by adding a step to the WORCS workflow, and discussing DOIs in the paper.
+
+Unfortunately, the Reviewer preference for Zenodo or FigShare is not explained.
+We consider these platforms to be somewhat interchangeable with using Git remote repositories - with one key distinction:
+A crucial advantage of storing the data on GitHub is that they will be bundled with the data documentation (codebook), analysis code, and manuscript.
+Thus, readers have access to **all** raw materials in one repository.
+Moreover, GitHub additionally offers user interaction with the materials through
+forking, cloning, opening issues, and sending pull requests.
+Thus, this platform is more conducive to collaboration.
+
 Digital object identifiers are the de-factor standard for making unique references to data sets. In line with the reviewer's suggestion,
 we suggest to use external providers to provide such DOIs while github is still the primary data storage. TODO!!!
-
-Our prefered route is to use github web hooks to link Zenodo and a WORCS-compatible repository. With this technique, Zenodo issues DOI for content hosted on github repositories including some nice extras, such as automatic badge DOI badges for the repository.
 
 BV: Can you please argue for why GitHub is equivalent to Zenodo for this purpose?
 AL: Can you address the reference to FAIR principles in relation to GitHub?

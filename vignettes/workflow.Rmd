@@ -95,7 +95,10 @@ knitr::include_graphics("workflow.png")
         - Go to your project's repository
         - Click the "Settings" button
         - Scroll to the bottom of the page; click "Make public", and follow the on-screen instructions
-14. <!--S: Optional: [Create a project page on the Open Science Framework](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project)-->Optional: [Create a project on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project); you may have already done this in Step 4.
+14. <!--S: [Create a project page on the Open Science Framework](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project) and generate a DOI-->Optional: [Create a project on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project) and [add a DOI](https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs).
+    + You may have already created a project page under Step 5 if you preregistered on the OSF
+    + A DOI is a persistent identifier that can be used to link to your project page.
+    + You can create a DOI for the entire project, [or for separate elements (such as a dataset)](https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data)
 15. <!--S: [Connect your 'OSF' project page to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->[Connect your 'OSF' project page to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)
 16. <!--S: Add an open science statement to the Abstract or Author notes, which links to the 'Git' remote repository or 'OSF' page-->Add an open science statement to the Abstract or Author notes, which links to the 'Git' remote repository or 'OSF' page. 
     + Placing this statement in the Abstract or Author note means that readers can find your project even if the paper is published behind a paywall.
