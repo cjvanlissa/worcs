@@ -5,9 +5,9 @@ author:
     Andreas M. Brandmaier$^{c,d}$
     Loek Brinkman$^{b,e}$
     Anna-Lena Lamprecht$^{b,f}$
-    Aaron Peikert$^{c,g}$
-    Marijn E. Struiksma$^{b,h}$
-    Barbara Vreede$^{i}$
+    Aaron Peikert$^{c}$
+    Marijn E. Struiksma$^{b,g}$
+    Barbara Vreede$^{h}$
     
   affiliation: | 
       a: Utrecht University faculty of Social and Behavioral Sciences, department of Methodology & Statistics  
@@ -16,9 +16,8 @@ author:
       d: Max Planck UCL Centre for Computational Psychiatry and Ageing Research, Berlin, Germany and London, UK  
       e: UMC Utrecht  
       f: Utrecht University, Department of Information and Computing Sciences  
-      g: Humboldt-Universitaet zu Berlin  
-      h: Utrecht University faculty of Humanities, department of Language, Literature & Communication, Utrecht Institute of Linguistics OTS  
-      i: University Library Utrecht
+      g: Utrecht University faculty of Humanities, department of Language, Literature & Communication, Utrecht Institute of Linguistics OTS  
+      h: University Library Utrecht
 title: "WORCS: A Workflow for Open Reproducible Code in Science"
 short:      "WORKFLOW FOR OPEN SCIENCE"
 shorttitle:      "WORKFLOW FOR OPEN SCIENCE"
