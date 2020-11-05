@@ -236,7 +236,17 @@ so that we may add them to the [overview of WORCS-projects on GitHub](https://gi
 
 \RC{C7b: Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation.}
 
+A crucial advantage of storing the data on GitHub, relative to Zenodo or FigShare,
+is that they are bundled with the
+documentation (e.g., codebook), analysis code, and manuscript.
+Thus, readers have access to **all** materials required for replication in one repository.
+GitHub additionally offers user interaction with the materials through
+forking, cloning, opening issues, and sending pull requests -
+all useful tools for replication and collaboration.
+
 We agree that it is important to make open data findable beyond just providing it freely.
+
+The approach we advocate is to make all of a project's resources available in a 
 Step 15 of the workflow, "Connect your ‘OSF’ project page to the ‘Git’ remote repository",
 was intended to meet this goal.
 However, we acknowledge that this requires further clarification.
@@ -247,20 +257,14 @@ In the revision, we have addressed this by adding a step to the WORCS workflow, 
 
 Unfortunately, the Reviewer preference for Zenodo or FigShare is not explained.
 We consider these platforms to be somewhat interchangeable with using Git remote repositories - with one key distinction:
-A crucial advantage of storing the data on GitHub is that they will be bundled with the data documentation (codebook), analysis code, and manuscript.
-Thus, readers have access to **all** raw materials in one repository.
-Moreover, GitHub additionally offers user interaction with the materials through
-forking, cloning, opening issues, and sending pull requests.
-Thus, this platform is more conducive to collaboration.
 
 Digital object identifiers are the de-factor standard for making unique references to data sets. In line with the reviewer's suggestion,
 we suggest to use external providers to provide such DOIs while github is still the primary data storage. TODO!!!
 
 BV: Can you please argue for why GitHub is equivalent to Zenodo for this purpose?
 AL: Can you address the reference to FAIR principles in relation to GitHub?
-CJ: I will address "big" data
 
-on second thought, it’s probably worth mentioning to the reviewer that we know these options but defend the OSF-centric approach for our purposes. My impression is that the main challenge are the different expectations and solutions across disciplines that are currently evolving largely in parallel. If we acknowledge that there are alternatives, this may please the reviewers while we still can defend R + OSF for the behavioral and social sciences. Other disciplines may have different foci, e.g., python + jupyter + docker etc... and no single manuscript will be able to cover everything.
+AB: "on second thought, it’s probably worth mentioning to the reviewer that we know these options but defend the OSF-centric approach for our purposes. My impression is that the main challenge are the different expectations and solutions across disciplines that are currently evolving largely in parallel. If we acknowledge that there are alternatives, this may please the reviewers while we still can defend R + OSF for the behavioral and social sciences. Other disciplines may have different foci, e.g., python + jupyter + docker etc... and no single manuscript will be able to cover everything."
 
 \Assignment{BV, AB, AL, CJ}
 \WorkInProgress
