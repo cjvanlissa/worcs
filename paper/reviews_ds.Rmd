@@ -605,12 +605,13 @@ WORCS is designed to address a unique issue not covered by other existing soluti
 namely, to provide a workflow most conducive to satisfying TOP-guidelines 1-7 while adhering to the FAIR principles.
 Peikert and Brandmaier instead focus primarily on computational reproducibility,
 which is relevant for TOP-guidelines 2, 3, and 5.
-Second, WORCS is easier to use, as it only requires familiarity with R.
-WORCS was designed to tightly integrate into the R ecosystem, bringing down the learning curve by utilizing the users' knowledge of R.
+Second, with regard to ease of use,
+WORCS aims to bring down the learning curve by adopting sensible defaults for any decisions to be made.
 Peikert and Brandmaier, by contrast, designed their workflow to be very flexible and comprehensive,
 thus requiring substantially more background knowledge and technical sophistication from users.
 To sum up, WORCS builds upon the same general principles
-as Peikert and Brandmaier, and the two workflows are compatible. What sets WORCS apart is that it is more lightweight in terms of system and user requirements, but still ensures computational reproducibility under *most circumstances* for projects that can be conducted entirely within `R`.
+as Peikert and Brandmaier, and the two workflows are compatible. What sets WORCS apart is that it is more lightweight in terms of system and user requirements,
+thereby facilitating adoption, but still ensures computational reproducibility under *most circumstances*.
 
 
 \Assignment{CJ, AP, AB}
