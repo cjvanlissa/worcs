@@ -151,7 +151,7 @@ The Reviewer, by contrast, proposes that the main contribution of worcs is to he
 Response: We apologize; it appears that there were numerous errors in the parsing of the reference list after rendering the manuscript to HTML - the preferred format of Data Science. The reference is indeed to the R-package. In the revised manuscript, we have repaired the references so that it is clear that this is a software package.
 
 \Assignment{CJ}
-\WorkInProgress
+\Done
 \Easy
 
 
