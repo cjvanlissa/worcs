@@ -423,7 +423,7 @@ Reasons to reject:
 \WorkInProgress
 \Medium
 
-\RC{The claim that WORCS is amenable to the FAIR Guiding Principles should be justified. What are the solutions provided by WORCS that make a project interoperable and reusable? It would be improved with a more thorough discussion on how WORCS meets each FAIR principle.}
+\RC{C2: The claim that WORCS is amenable to the FAIR Guiding Principles should be justified. What are the solutions provided by WORCS that make a project interoperable and reusable? It would be improved with a more thorough discussion on how WORCS meets each FAIR principle.}
 
 Anna-Lena?
 
@@ -438,7 +438,7 @@ R: Dit is wel een belangrijkt punt: Kunnen we opnemen in de workflow dat worcs-p
 \WorkInProgress
 \Medium
 
-\RC{Is WORCS providing any service for de-identification?}
+\RC{C3: Is WORCS providing any service for de-identification?}
 
 Response: WORCS does not provide a service for de-identification,
 and we consider this to be outside of the scope of the present paper.
