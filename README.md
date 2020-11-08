@@ -105,12 +105,12 @@ for the package and paper.
 
 ## Adoption of WORCS by users
 
-As of 2020-11-01, these are indicators of the adoption of `worcs` by
+As of 2020-11-08, these are indicators of the adoption of `worcs` by
 users:
 
 1.  The preprint has been downloaded 561 times, since being published on
     31-05-2020
-2.  The `worcs` R-package has been downloaded 2401 times from CRAN,
+2.  The `worcs` R-package has been downloaded 2474 times from CRAN,
     since being published on 18-05-2020
 3.  The GitHub project has been forked 8 times, watched 5 times, and
     starred 32 times
@@ -134,14 +134,15 @@ users:
 
 ## Contributing and Contact Information
 
-The `worcs` package is open to contributions from collaborators with
-valuable expertise, to improve both the workflow and the software.
-Relevant contributions warrant coauthorship to the package. Please
-contact the lead author at <c.j.vanlissa@uu.nl>, or:
+We are always eager to receive user feedback and contributions to help
+us improve both the workflow and the software. Major contributions
+warrant coauthorship to the package. Please contact the lead author at
+<c.j.vanlissa@uu.nl>, or:
 
-  - File a GitHub issue [here](https://github.com/cjvanlissa/worcs)
-  - Make a pull request
-    [here](https://github.com/cjvanlissa/worcs/pulls)
+  - [File a GitHub issue](https://github.com/cjvanlissa/worcs) for
+    feedback, bug reports or feature requests
+  - [Make a pull request](https://github.com/cjvanlissa/worcs/pulls) to
+    contribute your code or prose
 
 By participating in this project, you agree to abide by the [Contributor
 Code of Conduct v2.0](https://www.contributor-covenant.org/).

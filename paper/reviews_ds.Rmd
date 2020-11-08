@@ -44,20 +44,34 @@ Reasons to reject:
 
 \RC{C1 There is no user evaluation, and therefore all the claims about worcs are unsupported by evidence. If the authors had included a compelling evaluation I would be in favor of accepting the paper.}
 
-Response: We appreciate the recommendation of performing a user evaluation, and this is certainly a next step in the development of worcs. However, as the Editor has indicated, 'resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse"'. We will thus first address the potential for re-use, and then we will address steps we have taken and intend to take with regard to user evaluation.
+Response: We appreciate the recommendation of performing a user evaluation, and this is certainly a next step in the development of WORCS. At this point, we have written this manuscript detailing the conceptual workflow, and released a software implementation for R-users. The next step, which we are now entering, is to build a user base, and then mount a user evaluation. 
 
-First, there are several arguments to substantiate the potential for reuse of worcs:
+To address the Reviewer's comment, we have set up an evaluation questionnaire, and sent it to the attendees of our previous workshops on WORCS. At the time of writing, however, this has not yielded actionable points of improvement.
 
-1. WORCS is implemented in an R-package
-2. This R-package is available in a standardized repository, namely CRAN ("The Comprehensive R Archive Network")
-3. The software meets all criteria of the Core Infrastructure Initiative "best practices" (CII Best Practices)
+We do have a strong history of addressing user comments submitted through the GitHub issues page.
+WORCS adheres to the Core Infrastructure Initiative "best practices" (CII Best Practices),
+which requires that
+the channels through which users can provide feedback are clearly indicated,
+as they are [here](https://github.com/cjvanlissa/worcs#contributing-and-contact-information).
+It is also evident from the [resolved tickets on GitHub](https://github.com/cjvanlissa/worcs/issues?q=is%3Aissue+is%3Aclosed) that we have been very responsive in actively incorporating user feedback - as also required by the CII Best Practices.
+
+We are committed to continue evaluating user experience, both actively through evaluation forms, and passively through the GitHub issues pages.
+We hope that this commitment, along with the evidence of our prior responsiveness to user feedback presented above, assuage the Reviewer's concerns.
+
+Finally, we wish to point out that the Editor has indicated that 'resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse"'. We therefore elaborate on the efforts we have made to ensure that WORCS is reusable, followed by evidence of its current adoption rates.
+
+We have made the following efforts to ensure potential for reuse:
+
+1. WORCS is implemented in an R-package, and thus readily available to R-users
+2. This R-package is available in a standardized repository, namely CRAN ("The Comprehensive R Archive Network"), and can thus be installed through default channels
+3. The software meets all criteria of the Core Infrastructure Initiative "best practices" (CII Best Practices), including clearly indicated channels for user feedback, and being responsive to that feedback
 4. The R-package uses only tools that are fully integrated within the RStudio IDE, thus enhancing ease of use
 5. The R-package is compatible with other reproducibility solutions, including Docker, drake, and make
 
 Second, there is some evidence to demonstrate that WORCS is already being adopted (as of 31-10-2020):
 
-1. The preprint has been downloaded 561 times, since being published on 31-05-2020
-1. The `worcs` R-package has been downloaded 2401 times from CRAN, since being published on 18-05-2020
+1. [The preprint](https://psyarxiv.com/k4wde/) has been downloaded 568 times, since being published on 31-05-2020
+1. The `worcs` R-package has been downloaded 2474 times from CRAN, since being published on 18-05-2020
 1. The GitHub project has been forked by users unknown to us 4 times, and starred (= watched) 32 times
 1. The video tutorial for worcs has been viewed 362 times, and liked 18 times (https://www.youtube.com/watch?v=uzjpN_yFeUU)
 1. WORCS is used to teach reproducibility at Utrecht University
@@ -70,16 +84,11 @@ Second, there is some evidence to demonstrate that WORCS is already being adopte
 	* https://github.com/cjvanlissa/coping_covid
 
 
-Third, although we have not conducted a user evaluation, there is some evidence that `worcs` addresses users' needs:
-
-1. Evaluate worcshops!!
-2. The issues page on the worcs GitHub profile demonstrates that we have been very responsive in addressing users' feedback (as required by the aforementioned CII Best Practices):
-* https://github.com/cjvanlissa/worcs/issues?q=is%3Aissue+is%3Aclosed
 
 <!-- The goal of the present manuscript is to define the problem worcs intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools worcs uses to address this problem, explain how worcs uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence; -->
 
 \Assignment{CJ, BV, AL}
-\WorkInProgress
+\Done
 \Hard
 
 \RC{C2 This paper describes worcs, a package and workflow to help make R code reproducible according to the TOP guidelines.
@@ -237,6 +246,11 @@ so that we may add them to the [overview of WORCS-projects on GitHub](https://gi
 \RC{C7b: Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation.}
 
 We agree completely that it is important to make open data findable beyond just providing it freely.
+This is achieved by linking the GitHub repository to an OSF.io project page;
+on OSF, the project receives a DOI.
+It is also possible to give a separate DOI to specific resources, such as data files.
+We agree that this was not emphasized enough in the manuscript, and have rewritten the revision to clarify.
+
 It is a pity that the Reviewer does not provide arguments to support a preference for Zenodo or FigShare over GitHub, because if there is a strong case to be made, we would be keen to include this in the paper.
 Without such arguments, as far as we are concerned, these repositories are largely interchangeable.
 
@@ -413,19 +427,28 @@ Reasons to reject:
 
 Anna-Lena?
 
+Response: 
+F: Dit heeft weer met DOIs te maken. Ik denk dat als we het gebruik van OSF de default van worcs maken (die mijn opmerking R1C7a) dat we hier een sterk punt kunnen maken mbt findability. 
+A: Eigenlijk hetzelfde antwoord als bij Findability: dit wordt heel eenvouding als we de OSF route voor data storage de default maken. 
+I: Het feit dat we alleen gebruik maken van open-source software maakt alle projecten die worcs gebruiken nogal interoperable. 
+R: Dit is wel een belangrijkt punt: Kunnen we opnemen in de workflow dat worcs-projecten by default een CC-BY licentie krijgen?
+
+
 \Assignment{AL, BV, CJ}
 \WorkInProgress
 \Medium
 
 \RC{Is WORCS providing any service for de-identification?}
 
-Response: It does not. It seems to us that this is outside of the scope of the present paper.
-If a compelling case could be made by the Reviewer to include such a service,
-we are open to the suggestion - but we would need to take on additional coauthors with the required expertise.
+Response: WORCS does not provide a service for de-identification,
+and we consider this to be outside of the scope of the present paper.
+If the Reviewer feels differently, we are open to being convinced, however!
+Of course, since `worcs` is open source software, anybody is welcome to contribute this functionality in exchange for coauthorship, in line with the contribution guidelines [outlined here](https://github.com/cjvanlissa/worcs#contributing-and-contact-information).
+The current team lacks relevant expertise to make this contribution.
 <!--What would this entail? Is it within scope?-->
 
 \Assignment{ALL}
-\WorkInProgress
+\Done
 \Medium
 
 # Reviewer \#3
@@ -545,13 +568,22 @@ For example, the Reviewer remarks that
 "git capture changes at the level of the line of code/text, whereas a researcher needs an abstraction that informs him/her on the coarse-grained elements [...] so as to have a clear idea of where s/he is within the process and help him/her make the decision of the next steps to undertake".
 This comment suggests a fundamental misunderstanding of how Git works.
 Although Git tracks file changes on a line-by-line basis,
-any number of such changes can be committed together, thereby capturing the more "course-grained elements".
+such changes are typically grouped together in a "commit",
+which is how Git captures the more "course-grained elements" the Reviewer refers to.
 For example, in our response to these reviews, we have created one Git commit for each Reviewer comment, and these commits contain changes to the action letter, manuscript, and vignettes.
 
-The Reviewer's comment does illustrate the importance of clarifying this point in the manuscript as well
-To address this comment, the revised manuscript now reads:
+To address the Reviewer's comment, we now clarify this point in the revised manuscript:
 
-> Git tracks changes to files on a line-by-line basis. The user can sture these changes by making a "commit": a snapshot of the version controlled files. Each "commit" can contain as many changes as desired; for example, a whole new paragraph, or many small changes made to address a single reviewer comment.
+> Git tracks changes to files on a line-by-line basis. The user can sture these changes by making a "commit": a 
+snapshot of the version controlled files.
+Each "commit" can contain as many changes as desired;
+for example, a whole new paragraph, or many small changes made to address a single reviewer comment.
+Each commit is further tagged with a message, describing the changes.
+The `R` implementation of `worcs` contains a convenience function,
+`git_update("your commit message")`,
+which creates a new commit for all changes since the previous commit,
+labels it with "your commit message", and pushes these changes to the remote repository.
+It is, effectively, a Git "quick save" command.
 
 \Assignment{CJ}
 \Done

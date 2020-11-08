@@ -244,8 +244,18 @@ The user can sture these changes by making a "commit": a
 snapshot of the version controlled files.
 Each "commit" can contain as many changes as desired;
 for example, a whole new paragraph, or many small changes made to address a single reviewer comment.
-Git retains a complete log of all commits, and users can compare changes between
-different commits, or go back to a previous version of the code (for example,
+Each commit is further tagged with a message, describing the changes.
+The `R` implementation of `worcs` contains a convenience function,
+`git_update("your commit message")`,
+which creates a new commit for all changes since the previous commit,
+labels it with "your commit message", and pushes these changes to the remote repository.
+It is, effectively, a Git "quick save" command.
+
+From an open science perspective, Git is particularly appealing because it
+retains a complete historical backlog of all commits.
+This can be used, for example, to verify that authors executed the steps outlined in a preregistration.
+Users can also compare changes between different commits,
+or go back to a previous version of the code (for example,
 after making a mistake, or to replicate a previous version of the results).
 A project version controlled with Git is called a "Repository", or Repo.
 Git only version controls files explicitly committed by the user. Moreover, it
