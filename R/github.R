@@ -26,8 +26,8 @@ git_ignore <- function(..., ignore = TRUE, repo = "."){
   }
   dots <- unlist(list(...))
   path_gitig <- file.path(ab_path, ".gitignore")
-  cl <- as.list(match.call())[-1]
-  #cl[[1]] <- as.name("write_gitig")
+  cl <- match.call()
+  cl[[1L]] <- str2lang("worcs:::write_gitig")
   cl[["filename"]] <- path_gitig
   cl[c("ignore", "repo")] <- NULL
   cl[["modify"]] <- file.exists(path_gitig)
@@ -37,8 +37,7 @@ git_ignore <- function(..., ignore = TRUE, repo = "."){
       cl[ig_these] <- lapply(cl[ig_these], function(x){ paste0("!", x) })
     }
   }
-  do.call(write_gitig, cl)
-  #eval(cl, sys.frame(sys.parent()))
+  eval(cl, parent.frame())
 }
 
 #' @importFrom gert libgit2_config git_config_global
