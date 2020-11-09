@@ -59,8 +59,13 @@ test_that("save and load", {
   expect_error(load_data())
 
   # Multiple resources
-  unlink(test_dir, recursive = TRUE)
-  list.files()
+  the_test <- "saveload2"
+  test_dir <- file.path(tempdir(), the_test)
+  dir.create(test_dir)
+  setwd(test_dir)
+  worcs:::write_worcsfile(file.path(test_dir, ".worcs"))
+  on.exit(unlink(test_dir, recursive = TRUE), add = TRUE)
+
   worcs:::write_worcsfile(file.path(test_dir, ".worcs"))
   open_data(iris)
   closed_data(cars)
