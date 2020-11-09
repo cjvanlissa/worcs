@@ -53,6 +53,20 @@ test_that("save and load", {
   # test_that("loaded synthetic data same as original", {
   expect_equivalent(tmp, df)
 
+  file.remove("synthetic_iris.csv")
+  closed_data(iris, codebook = NULL, synthetic = FALSE)
+  file.remove("iris.csv")
+  expect_error(load_data())
+
+  # Multiple resources
+  unlink(test_dir, recursive = TRUE)
+  list.files()
+  worcs:::write_worcsfile(file.path(test_dir, ".worcs"))
+  open_data(iris)
+  closed_data(cars)
+  file.remove("cars.csv")
+  list.files()
+  expect_error(load_data(), NA)
   #cat(ls())
   #rm("iris")
   # test_that("loading open data succeeds when loading from a subdirectory", {

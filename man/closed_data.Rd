@@ -9,6 +9,7 @@ closed_data(
   filename = paste0(deparse(substitute(data)), ".csv"),
   codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
   worcs_directory = ".",
+  synthetic = TRUE,
   ...
 )
 }
@@ -30,6 +31,10 @@ Set this argument to \code{NULL} to avoid creating a codebook.}
 which to save data. The default value \code{"."} points to the current
 directory.}
 
+\item{synthetic}{Logical, indicating whether or not to create a synthetic
+dataset using the \code{\link{synthetic}} function. Additional arguments for
+the call to \code{\link{synthetic}} can be passed through \code{...}.}
+
 \item{...}{Additional arguments passed to and from functions.}
 }
 \value{
@@ -41,8 +46,7 @@ This function saves a data.frame as a \code{.csv} file (using
 \code{\link[utils:write.table]{write.csv}}), stores a checksum in '.worcs',
 appends the \code{.gitignore} file to exclude \code{filename}, and saves a
 synthetic copy of \code{data} for public use. To generate these synthetic
-data, the function \code{\link{synthetic}} is used. Additional arguments for
-the call to \code{\link{synthetic}} can be passed through \code{...}.
+data, the function \code{\link{synthetic}} is used.
 }
 \examples{
 old_wd <- getwd()
