@@ -153,9 +153,6 @@ These guidelines describe eight standards for open science,
 the first seven of which "account for reproducibility of the reported results
 based on the originating data, and for sharing sufficient information to conduct an independent 
 replication" [@nosekPromotingOpenResearch2015a].
-In this context, 
-reproducibility can be defined as "re-performing the same analysis with the same code using a different analyst",
-and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
 These guidelines are: 1) Comprehensive
 citation of literature, data, materials, and methods; 2) sharing data, 3)
 sharing the code required to reproduce analyses, 4) sharing new research
@@ -164,6 +161,9 @@ pre-registration of studies before data collection, and 7) pre-registration of
 the analysis plan prior to analysis.
 The eighth criterion is "not formally a transparency standard for authors", but "addresses 
 journal guidelines for consideration of independent replications for publication".
+In this context, 
+reproducibility can be defined as "re-performing the same analysis with the same code using a different analyst",
+and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
 WORCS defines the goals of open science in terms of the first seven TOP-guidelines,
 and the workflow and its `R` implementation are designed to facilitate compliance therewith.
 We group these guidelines into three categories: citation (1),
@@ -171,7 +171,7 @@ sharing (2-5), and preregistration (6-7).
 
 ## Introducing the tools
 
-WORCS relies on several free, open source software solutions which we will
+WORCS relies solely on a set of free, open source software solutions which we will
 discuss before introducing the workflow. 
 
 ### Dynamic document generation
@@ -358,11 +358,15 @@ As Docker is somewhat challenging to set up for novice users,
 an `R` package is currently in development to facilitate Docker integration [`repro`, @repro].
 Another example of a Docker-based workflow is the cloud-based collaboration
 platform 'Code Ocean'.
-Although Code Ocean enjoys some popularity among 
-scientists, it is not clear whether this platform
-is GDPR compliant - as of this writing, its [terms of use](https://codeocean.com/terms-of-use) do not address the GDPR, nor is it clear where
-data are stored.
-The necessity to upload human participant data for analysis is an important consideration and potential liability when using any cloud-computing solution.
+This platform greatly simplifies setting up a reproducible computing environment with version control and dependency management.
+A key feature is that collaborators can log in to the server session,
+rather than each having to set up Docker on a local computer.
+One important consideration when using any cloud-computing solution
+is the necessity to upload human participant data for analysis.
+Such a platform would need to comply with relevant laws and ethical requirements.
+For example, as of this writing, the [terms of use](https://codeocean.com/terms-of-use) for Code Ocean do not address the GDPR,
+nor is it clear where data are stored.
+This is a potential liability for European scholars.
 
 ## Text-based files are better
 
@@ -1065,6 +1069,15 @@ possible to invite such collaboration by
 [opening Issues](https://help.github.com/en/github/managing-your-work-on-github/about-issues)
 for tasks that still need to be accomplished, and tag known collaborators to
 address them, or invite external collaborators to contribute their expertise. 
+
+A final limitation is that, as WORCS is relatively new,
+the number of current users is still limited.
+We therefore do not have elaborate insights in user experiences or feedback.
+We strive to make the uptake of worcs as easy as possible,
+by means of this background paper, extensive documentation and vignettes for the `R` implementation,
+[online video tutorials](https://www.youtube.com/playlist?list=PLOQIOFZl7uYbTgVdUee9n3eebMNmJtV9y),
+webinars and [exemplar use cases](https://github.com/cjvanlissa/worcs/tree/master#adoption-of-worcs-by-users).
+We encourage our users to provide us with feedback, feature requests, or bug reports through the channels [indicated here](https://github.com/cjvanlissa/worcs/tree/master#contributing-and-contact-information). 
 
 ## Future developments
 
