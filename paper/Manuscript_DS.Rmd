@@ -31,7 +31,7 @@ abstract: |
   reproducible.
   The purpose of the workflow is to lower the threshold for 
   adoption of open science principles.
-  It is based on best practices, and can be used either in
+  It is based on established best practices, and can be used either in
   parallel to, or in absence of, top-down requirements by journals,
   institutions, and funding bodies.
   To facilitate widespread adoption, the WORCS principles have been implemented
@@ -39,15 +39,16 @@ abstract: |
   project template and utility functions for specific workflow steps.
   This paper introduces the conceptual workflow,
   discusses how it meets different 
-  standards for open science, and provides examples of the implementation in `R`. 
+  standards for open science, and addresses the functionality provided by the
+  `R` implementation, `worcs`. 
   This paper is primarily targeted towards
-  scholars conducting research projects in R on a private computer,
+  scholars conducting research projects in R,
   conducting research that involves academic prose, analysis code,
   and (optionally) tabular data.
   However, the workflow is flexible enough to accommodate other scenarios,
   and offers a sensible starting point for customized solutions.
   The source code for the `R` package and manuscript,
-  and a list of user examples of WORCS projects, are available at 
+  and a list of [user examples of WORCS projects](https://github.com/cjvanlissa/worcs/tree/master#adoption-of-worcs-by-users), are available at 
   https://github.com/cjvanlissa/worcs.
 authornote: "blabla"
 keywords:
@@ -79,6 +80,8 @@ masked <- function(text){
 knitr::opts_chunk$set(echo = FALSE, eval = TRUE, warning = FALSE, message= FALSE)
 ```
 
+# Introduction
+
 Academia is arguably past the tipping point of a paradigm shift
 towards open science.
 Support for this transition was first motivated by several
@@ -104,7 +107,7 @@ get started can be daunting. Making the transition
 requires researchers to become knowledgeable about different open science 
 challenges and solutions, and to become proficient with new and unfamiliar tools.
 This paper is designed to ease that transition by presenting a simple workflow,
-based on best practices,  
+based on established best practices,  
 that meets most requirements open science:
 The *Workflow for Open Reproducible Code in Science* (WORCS).
 
@@ -116,15 +119,17 @@ The `R` package `worcs` [referred to in monospace font, @worcspackage2020].
 This package offers a project template for RStudio
 [@rstudioteamRStudioIntegratedDevelopment2015],
 and several convenience functions to automate specific workflow steps.
-This paper is most relevant for scholars using R on a private computer to
-conducting research that involves academic prose, analysis code,
+This paper is most relevant for scholars using R to
+conduct research that involves academic prose, analysis code,
 and tabular data.
 For other readers, it can serve as a primer on open science workflows,
 and provide a sensible starting point for a customized solution.
 
-The WORCS workflow (Figure 1) 
-constitutes a step-by-step procedure that researchers can follow to make a 
+The WORCS workflow constitutes a step-by-step procedure that researchers can follow to make a 
 research project open and reproducible.
+See Figure 1 for a schematic overview of the conceptual workflow,
+which shows the steps to take in different stages of the research process.
+The workflow is elaborated in greater detail below.
 WORCS is compatible with open science
 requirements already implemented by journals and institutions, and will help 
 fulfill them.
@@ -240,7 +245,7 @@ that retain backups of previous versions.
 An integral part of WORCS is the *explicit* version control software Git
 (www.git-scm.com).
 Git tracks changes to files on a line-by-line basis.
-The user can sture these changes by making a "commit": a 
+The user can store these changes by making a "commit": a 
 snapshot of the version controlled files.
 Each "commit" can contain as many changes as desired;
 for example, a whole new paragraph, or many small changes made to address a single reviewer comment.
@@ -262,7 +267,7 @@ Git only version controls files explicitly committed by the user. Moreover, it
 is possible to prevent files from being version controlled - which is useful for
 privacy sensitive data.
 A `.gitignore` file lists files that should not be version-controlled.
-These files thus exist only on the user's private computer.
+These files thus exist only on the user's computer.
 
 The functionality of Git is enhanced by services such as GitHub
 (https://github.com). GitHub is best understood as a cloud storage service
@@ -891,24 +896,31 @@ it is distinct from all other commits, and easily findable by people and machine
 
 ## Compatibility with other standards for open science
 
-WORCS was designed to meet the TOP-guidelines, and it does so in a way that
-is compatible with other open science principles. Most notably, WORCS is 
-amenable to the
-FAIR Guiding Principles for scientific data management and stewardship [@wilkinsonFAIRGuidingPrinciples2016a]. These principles advocate that digital research objects should be Findable, Accessible, Interoperable and Reusable. Initially mainly promoted as principles for data, they are increasingly applied as a standard for other types of research output as well,
+Aside from the TOP Guidelines, the FAIR Guiding Principles for scientific data management and stewardship [@wilkinsonFAIRGuidingPrinciples2016a] are an important standard for open science.
+These principles advocate that digital research objects should be Findable, Accessible, Interoperable and Reusable.
+Initially mainly promoted as principles for data, they are increasingly applied as a standard for other types of research output as well,
 most notably software [@lamprechtFAIRPrinciplesResearch2019].
 
-WORCS helps users meet the FAIR principles by making all created research objects -
-including data and code - accessible in a repository that can be made public. 
-The `worcs` package additionally
-facilitates meeting the FAIR principles in several ways. First, each `worcs`
-project has a YAML file (https://yaml.org/) that lists the research objects in
-the project, which will allow web crawlers 
-to index `worcs` projects. Second, a codebook is automatically generated for
-each data file stored
-using `open_data()` or `closed_data()`. We encourage users to elaborate on the
-default codebook by adding
+WORCS was not designed to comprehensively address these principles, but the workflow does facilitate meeting them.
+In terms of Findability, all files in GitHub projects are searchable by content and meta-data, both on the platform and through standard search engines.
+The workflow further recommends that users create a project page on the Open Science Framework – a recognized repository in the social sciences – and generate a DOI for this project.
+Additional DOIs can be generated through the OSF for specific resources, such as data sets.
+It is additionally or alternatively possible to connect the GitHub repository to Zenodo, which also offers DOIs and allows users to document projects with extensive metadata.
+Finally, each worcs project has a [YAML file] (https://yaml.org/) that lists the data objects (and other meta-data) in the project, which will allow web crawlers to index worcs projects.
+We use this metadata, for example, to identify public `worcs` projects on GitHub.
+Accessibility is primarily safeguarded by hosting all project files in a public GitHub repository, which can be downloaded as a ZIP archive, and cloned or forked using the Git protocol. [GitHub is committed to long term accessibility of these resources]( https://archiveprogram.github.com/). We further encourage users to make their data accessible when possible.
+When data must be closed, the `worcs` function `closed_data()` adds a paragraph to the project readme, indicating how readers can contact the author for access.
+
+With regard to interoperability, the workflow recommends using plain-text files whenever possible, which ensures that code and meta-data are human- and machine-readable.
+Furthermore, the `worcs` package is implemented in R, which is open source.
+To promote reusability, we recommend users to specify an appropriate license for their projects.
+The `worcs` package includes the CC licenses, and suggests a CC-BY 4.0 license by default.
+This license is featured in the GitHub repository, and we encourage users to also display it on their project’s OSF page.
+To further facilitate reusability, `worcs` automatically generates a codebook for
+each data file.
+We encourage users to elaborate on the default codebook by adding
 variable description and categories, which would - in the future - enable
-indexing data by topic area. 
+indexing data by topic area.
 
 Incidentally, `worcs` itself follows the recommendations for [FAIR research software](https://fair-software.eu/). It is 
 hosted on a version controlled public remote repository GitHub, has an open
@@ -917,7 +929,7 @@ enables the citation of the software (using the `citation("worcs")` command, or
 by citing this paper), and followed the [*CII Best Practices*](https://bestpractices.coreinfrastructure.org/en)
 software quality checklist during development.
 
-Sharing all research objects, as advocated in WORCS, also provides a proper
+Sharing all research objects, as advocated in WORCS, also provides a thorough
 basis for research evaluation
 according to the San Francisco Declaration on Research Assessment (DORA;
 https://sfdora.org/), which plays an increasing role in grant funding, hiring, 
@@ -1083,7 +1095,7 @@ We encourage our users to provide us with feedback, feature requests, or bug rep
 
 WORCS provides a user-friendly and
 lightweight workflow for open, reproducible research, that meets all
-TOP-guidelines, except replication.
+TOP-guidelines pertaining to reproducibility (1-7).
 Nevertheless, there are clear directions for future developments.
 Firstly, although the workflow is currently implemented only in `R`, it is 
 conceptually relevant for users of other statistical programming languages, and we welcome efforts to implement WORCS in other platforms.
