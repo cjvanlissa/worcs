@@ -1,8 +1,8 @@
 Package: worcs
 Type: Package
-Date: 2020-10-07
+Date: 2020-11-15
 Title: Workflow for Open Reproducible Code in Science
-Version: 0.1.6.2
+Version: 0.1.6.3
 Authors@R: c(
     person(
       given = c("Caspar", "J."),
