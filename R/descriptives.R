@@ -219,21 +219,16 @@ skew_kurtosis.default <-
   }
 
 
-col_message <- function(..., col = 30, success = TRUE, verbose = TRUE) {
-  #94
-  #cat(paste0("\033[0;", col, "m",txt,"\033[0m","\n"))
+col_message <- function (..., col = 30, success = TRUE, verbose = TRUE){
   if(verbose){
     txt <- do.call(paste0, list(...))
-    cat(paste0(
-      ifelse(success,
-             "\033[0;32mv  \033[0m",
-             "\033[0;31mX  \033[0m"),
-      "\033[0;",
-      col,
-      "m",
-      txt,
-      "\033[0m",
-      "\n"
-    ))
+    # Check if this function is called from within an rmarkdown document.
+    # If that is the case, the colorized messages can cause knitting errors.
+    if(!any(grepl("rmarkdown", unlist(lapply(sys.calls(), `[[`, 1)), fixed = TRUE))){
+      cat(paste0(ifelse(success, "\033[0;32mv  \033[0m", "\033[0;31mX  \033[0m"),
+                 "\033[0;", col, "m", txt, "\033[0m", "\n"))
+    } else {
+      cat(paste0(ifelse(success, "v  ", "X  "), txt, "\n"))
+    }
   }
 }
