@@ -105,15 +105,15 @@ for the package and paper.
 
 ## Adoption of WORCS by users
 
-As of 2020-11-08, these are indicators of the adoption of `worcs` by
+As of 2020-11-15, these are indicators of the adoption of `worcs` by
 users:
 
-1.  The preprint has been downloaded 561 times, since being published on
+1.  The preprint has been downloaded 582 times, since being published on
     31-05-2020
-2.  The `worcs` R-package has been downloaded 2474 times from CRAN,
+2.  The `worcs` R-package has been downloaded 2575 times from CRAN,
     since being published on 18-05-2020
 3.  The GitHub project has been forked 8 times, watched 5 times, and
-    starred 32 times
+    starred 40 times
 4.  The lead author has given invited lectures on WORCS at:
       - Max-Planck-Institute for Human Development (2020)  
       - Open Science Community Rotterdam (2020)  
@@ -123,12 +123,17 @@ users:
       - cjvanlissa
           - [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
           - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
+          - [schumpe](https://github.com/cjvanlissa/schumpe)  
           - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
           - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
-          - [schumpe](https://github.com/cjvanlissa/schumpe)  
+          - [mpib](https://github.com/cjvanlissa/mpib)  
           - [coping\_covid](https://github.com/cjvanlissa/coping_covid)  
+      - IndrajeetPatil
+          - [worcs\_practice](https://github.com/IndrajeetPatil/worcs_practice)  
       - EstherPlomp
           - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
+      - lisallreiber
+          - [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
       - KimBaldry
           - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)
 

@@ -89,7 +89,6 @@ save_data <- function(data,
                       verbose = TRUE,
                       synthetic = TRUE,
                       ...){
-  #browser()
   if(grepl("[", filename, fixed = TRUE) | grepl("$", filename, fixed = TRUE)){
     stop("This filename is not allowed: ", filename, ". Please specify a legal filename.", call. = FALSE)
   }
@@ -142,12 +141,17 @@ save_data <- function(data,
     modify = TRUE
   )
   to_worcs$data[[filename]] <- vector(mode = "list")
+  do.call(write_worcsfile, to_worcs)
   store_checksum(fn_write_original, entry_name = filename)
 
   if(open){
     write_gitig(fn_gitig, paste0("!", basename(fn_original)))
   } else {
     write_gitig(fn_gitig, basename(fn_original))
+    # Update readme file with message about closed data
+    update_textfile(file.path(dn_worcs, "README.md"),
+                    "\n\n## Access to data\n\nSome of the data used in this project are not publically available.\nTo request access to the original data, [open a GitHub issue](https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/creating-an-issue).\n\n<!--Clarify here how users should contact you to gain access to the data, or to submit syntax for evaluation on the original data.-->",
+                    verbose = verbose)
     if(synthetic){
       # Synthetic data
       col_message("Generating synthetic data for public use. Ensure that no identifying information is included.", verbose = verbose)
@@ -156,37 +160,12 @@ save_data <- function(data,
       Args$verbose <- verbose
       Args[[1L]] <- quote(worcs::synthetic)
       synth <- eval.parent(Args)
-      synth_success <- TRUE
-      if(synth_success){
-        col_message("Storing synthetic data in '", fn_synthetic, "' and updating the checksum in '.worcs'.", verbose = verbose)
-        write.csv(synth, fn_write_synth, row.names = FALSE)
-        to_worcs$data[[filename]]$synthetic <- fn_synthetic
-        store_checksum(fn_write_synth, entry_name = fn_synthetic)
-        write_gitig(fn_gitig, paste0("!", basename(fn_synthetic)))
-      } else {
-        col_message("Could not generate synthetic data.", success = FALSE, verbose = verbose)
-      }
+      add_synthetic(data = synth,
+                    synthetic_name = fn_synthetic,
+                    original_name = filename,
+                    worcs_directory = dn_worcs,
+                    verbose = verbose)
     }
-    # Update readme file
-    tryCatch({
-      fn_readme <- file.path(dn_worcs, "README.md")
-      if(file.exists(fn_readme)){
-        contentz <- readLines(fn_readme)
-        if(!any(grepl("^## Access to data$", contentz))){
-          txt <- paste(
-            "\n\n## Access to data\n\nSome of the data used in this project are not publically available.",
-            ifelse(synth_success, "Instead, synthetic data have been provided. Using the function load_data() will load these synthetic data if the original data are unavailable. Note that this synthetic data cannot be used to reproduce the original results. However, it does allow users to run the code and, optionally, generate valid code that can be evaluated using the original data by the project authors. To request access to the original data, [open a GitHub issue](https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/creating-an-issue).\n\n<!--Clarify here how users should contact you to gain access to the data, or to submit syntax for evaluation on the original data.-->", ""))
-          write_as_utf(txt, con = fn_readme, append = TRUE)
-          col_message("Updating 'README.md' with information about data access.", verbose = verbose)
-        } else {
-          col_message("'README.md' already contains information about data access.", verbose = verbose)
-        }
-      } else {
-        stop()
-      }
-    }, error = function(e){
-      col_message("Could not update 'README.md' with information about data access.", verbose = verbose, success = FALSE)
-    })
   }
   col_message("Updating '.gitignore'.", verbose = verbose)
 
@@ -198,9 +177,15 @@ save_data <- function(data,
     # Add to gitignore
     write_gitig(filename = fn_gitig, paste0("!", gsub(".md$", "csv", basename(fn_write_codebook))))
     # Add to worcs
-    to_worcs$data[[filename]]$codebook <- codebook
+    to_worcs <- list(filename = fn_worcs,
+                     "data" = list(list("codebook" = codebook)),
+                     modify = TRUE)
+
+    names(to_worcs[["data"]])[1] <- filename
+    #to_worcs$data[[filename]]$codebook <- codebook
+    do.call(write_worcsfile, to_worcs)
+
   }
-  do.call(write_worcsfile, to_worcs)
   invisible(NULL)
 }
 
