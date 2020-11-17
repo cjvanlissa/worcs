@@ -113,9 +113,28 @@ There is also evidence that WORCS is already being adopted, even prior to public
 
 The paper is well written, easy to follow and very relevant and timely for the journal. I think the capabilities of the worcs package for synthetic data generation, connect to osf, help with the preprints and capture dependencies are very valuable to the community. However, the main limitation of the paper is that the workflow and proposed package are not evaluated with users, and therefore the claims of the authors with respect of its capabilities are not supported by evidence. I would like to encourage the authors to gather user/community feedback and demonstrate with numbers that worcs can help scientists as they claim. Then, the paper would become a strong contribution for the journal.}
 
-Response: In addressing this comment, we respectfully refer to our response to the preceding comment ("There is no user evaluation", R1 C1), and again emphasize the Editor's comment that "resource papers do not need to have a full-blown user evaluation". We would also like to clarify that the goal of the present manuscript is to define the problem WORCS intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools WORCS uses to address this problem, explain how WORCS uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence. In the revision, we have attempted to further clarify this goal from the paper onset: REF. 
+Response: In addressing this comment, we respectfully refer to our response to the preceding comment ("There is no user evaluation", R1 C1), and again emphasize the Editor's comment that "resource papers do not need to have a full-blown user evaluation". We would also like to clarify that the goal of the present manuscript is to define the problem WORCS intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools WORCS uses to address this problem, explain how WORCS uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence. In the revision, we have attempted to further clarify this goal from the paper onset:
 
-We do take the suggestion of performing a user evaluation very seriously, but we also feel that it would be premature to do so even before the paper is published. We have built WORCS based on established tools and best practices, and we have gathered preliminary positive feedback from the community through workshops and teaching. 
+**Abstract**:
+
+> This paper introduces the Workflow for
+  Open Reproducible Code in Science (WORCS): A step-by-step
+  procedure that researchers can follow to make a research project open and
+  reproducible.
+  The purpose of the workflow is to lower the threshold for 
+  adoption of open science principles.
+  It is based on established best practices, and can be used either in
+  parallel to, or in absence of, top-down requirements by journals,
+  institutions, and funding bodies.
+  To facilitate widespread adoption, the WORCS principles have been implemented
+  in the R package `worcs`, which offers an RStudio 
+  project template and utility functions for specific workflow steps.
+  This paper introduces the conceptual workflow,
+  discusses how it meets different 
+  standards for open science, and addresses the functionality provided by the
+  `R` implementation, `worcs`. 
+
+We again emphasize that we take the recommendation to perform user evaluation very seriously, but we also feel that it would be premature to do so even before the paper is published. We have built WORCS based on established tools and best practices, and we have gathered preliminary positive feedback from the community through workshops and teaching. 
 
 \Assignment{CJ}
 \Done
