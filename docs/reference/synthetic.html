@@ -73,7 +73,7 @@ similar characteristics to the original. See Details for the algorithm used." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.4</span>
       </span>
     </div>
 
@@ -204,7 +204,8 @@ running the algorithm and provide informative messages.</p></td>
     <p>A <code>data.frame</code> with synthetic data, based on <code>data</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function uses a simple algorithm to generate a synthetic
+    <p>Based on the work by Nowok, Raab, and Dibben (2016),
+this function uses a simple algorithm to generate a synthetic
 dataset with similar characteristics to the original. The algorithm is as
 follows:</p><ol>
 <li><p>Let x be the original data.frame, with columns 1:j</p></li>
@@ -221,18 +222,378 @@ To impute in a different order, reorder the data.</p>
 <code>class</code> of variables is defined correctly. The default algorithm
 <code><a href='https://rdrr.io/pkg/ranger/man/ranger.html'>ranger</a></code> supports numeric, integer, and factor types.
 Other types of variables should be converted to one of these types, or users
-can use a custom <code>model_expression</code> when calling <code>synthetic</code>.</p>
+can use a custom <code>model_expression</code> and <code>predict_expressio</code>
+when calling <code>synthetic</code>.</p>
+
+<p>Note that for data synthesis to work properly, it is essential that the
+<code>class</code> of variables is defined correctly. The default algorithm
+<code><a href='https://rdrr.io/pkg/ranger/man/ranger.html'>ranger</a></code> supports numeric, integer, factor, and logical
+data. Other types of variables should be converted to one of these types.</p>
+<p>Users can provide use a custom <code>model_expression</code> and
+<code>predict_expression</code> to use a different algorithm when calling
+<code>synthetic</code>.</p>
+<p>As demonstrated in the example, users could call <code>lm</code> as a
+<code>model_expression</code> to use
+linear regression, which preserves linear marginal relationships but can give
+rise to values out of range of the original data.
+Or users could call <code>sample</code> as a <code>predict_expression</code> to bootstrap
+each variable, a very quick solution that maintains univariate distributions
+but loses all marginal relationships. These examples are not exhaustive, and
+users can even create custom functions.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Nowok, B., Raab, G.M and Dibben, C. (2016).
+synthpop: Bespoke creation of synthetic data in R. Journal of Statistical
+Software, 74(11), 1-26. &lt;doi:10.18637/jss.v074.i11&gt;.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>iris_syn</span> <span class='op'>&lt;-</span> <span class='fu'>synthetic</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</div><div class='input'><span class='va'>iris_missings</span> <span class='op'>&lt;-</span> <span class='va'>iris</span>
+    <pre class="examples"><div class='input'><span class='co'># Example using the iris dataset and default ranger algorithm</span>
+<span class='va'>iris_syn</span> <span class='op'>&lt;-</span> <span class='fu'>synthetic</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</div><div class='input'>
+<span class='co'># Example using lm as prediction algorithm (only works for numeric variables)</span>
+<span class='co'># note that, within the model_expression, a new data.frame is created because</span>
+<span class='co'># lm() requires a separate data argument:</span>
+<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+<span class='fu'>synthetic</span><span class='op'>(</span><span class='va'>dat</span>,
+          model_expression <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>.outcome</span> <span class='op'>~</span> <span class='va'>.</span>,
+                                data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>.outcome <span class='op'>=</span> <span class='va'>y</span>,
+                                <span class='va'>xsynth</span><span class='op'>)</span><span class='op'>)</span>,
+          predict_expression <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model</span>, newdata <span class='op'>=</span> <span class='va'>xsynth</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%</div><div class='output co'>#&gt; <span class='warning'>Warning: prediction from a rank-deficient fit may be misleading</span></div><div class='output co'>#&gt;   |                                                                              |====================================================                  |  75%</div><div class='output co'>#&gt; <span class='warning'>Warning: prediction from a rank-deficient fit may be misleading</span></div><div class='output co'>#&gt;   |                                                                              |======================================================================| 100%</div><div class='output co'>#&gt;     Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; 1            6.3    3.071978     3.579072   1.1078482
+#&gt; 2            6.3    3.071978     3.579072   1.1078482
+#&gt; 3            7.0    3.091870     3.336026   0.9835799
+#&gt; 4            6.8    3.086186     3.405468   1.0190852
+#&gt; 5            6.9    3.089028     3.370747   1.0013325
+#&gt; 6            5.6    3.052086     3.822118   1.2321165
+#&gt; 7            5.1    3.037877     3.995722   1.3208795
+#&gt; 8            5.8    3.057769     3.752676   1.1966113
+#&gt; 9            6.1    3.066294     3.648514   1.1433534
+#&gt; 10           6.3    3.071978     3.579072   1.1078482
+#&gt; 11           5.1    3.037877     3.995722   1.3208795
+#&gt; 12           5.5    3.049244     3.856839   1.2498691
+#&gt; 13           6.9    3.089028     3.370747   1.0013325
+#&gt; 14           6.1    3.066294     3.648514   1.1433534
+#&gt; 15           5.0    3.035035     4.030443   1.3386322
+#&gt; 16           6.8    3.086186     3.405468   1.0190852
+#&gt; 17           7.0    3.091870     3.336026   0.9835799
+#&gt; 18           5.7    3.054927     3.787397   1.2143639
+#&gt; 19           5.2    3.040719     3.961001   1.3031269
+#&gt; 20           4.8    3.029352     4.099884   1.3741374
+#&gt; 21           6.7    3.083345     3.440189   1.0368378
+#&gt; 22           7.0    3.091870     3.336026   0.9835799
+#&gt; 23           4.8    3.029352     4.099884   1.3741374
+#&gt; 24           7.4    3.103237     3.197143   0.9125695
+#&gt; 25           6.7    3.083345     3.440189   1.0368378
+#&gt; 26           6.0    3.063453     3.683234   1.1611060
+#&gt; 27           5.2    3.040719     3.961001   1.3031269
+#&gt; 28           4.6    3.023668     4.169326   1.4096426
+#&gt; 29           4.9    3.032193     4.065164   1.3563848
+#&gt; 30           6.7    3.083345     3.440189   1.0368378
+#&gt; 31           5.5    3.049244     3.856839   1.2498691
+#&gt; 32           6.2    3.069136     3.613793   1.1256008
+#&gt; 33           7.2    3.097553     3.266585   0.9480747
+#&gt; 34           6.9    3.089028     3.370747   1.0013325
+#&gt; 35           4.6    3.023668     4.169326   1.4096426
+#&gt; 36           6.4    3.074819     3.544351   1.0900956
+#&gt; 37           6.5    3.077661     3.509630   1.0723430
+#&gt; 38           4.6    3.023668     4.169326   1.4096426
+#&gt; 39           5.8    3.057769     3.752676   1.1966113
+#&gt; 40           6.2    3.069136     3.613793   1.1256008
+#&gt; 41           5.9    3.060611     3.717955   1.1788587
+#&gt; 42           5.4    3.046402     3.891559   1.2676217
+#&gt; 43           5.8    3.057769     3.752676   1.1966113
+#&gt; 44           6.9    3.089028     3.370747   1.0013325
+#&gt; 45           5.2    3.040719     3.961001   1.3031269
+#&gt; 46           6.0    3.063453     3.683234   1.1611060
+#&gt; 47           6.2    3.069136     3.613793   1.1256008
+#&gt; 48           5.6    3.052086     3.822118   1.2321165
+#&gt; 49           6.2    3.069136     3.613793   1.1256008
+#&gt; 50           4.6    3.023668     4.169326   1.4096426
+#&gt; 51           6.1    3.066294     3.648514   1.1433534
+#&gt; 52           5.4    3.046402     3.891559   1.2676217
+#&gt; 53           6.4    3.074819     3.544351   1.0900956
+#&gt; 54           4.8    3.029352     4.099884   1.3741374
+#&gt; 55           5.0    3.035035     4.030443   1.3386322
+#&gt; 56           6.0    3.063453     3.683234   1.1611060
+#&gt; 57           5.4    3.046402     3.891559   1.2676217
+#&gt; 58           6.8    3.086186     3.405468   1.0190852
+#&gt; 59           6.4    3.074819     3.544351   1.0900956
+#&gt; 60           6.2    3.069136     3.613793   1.1256008
+#&gt; 61           6.0    3.063453     3.683234   1.1611060
+#&gt; 62           5.0    3.035035     4.030443   1.3386322
+#&gt; 63           7.7    3.111762     3.092980   0.8593117
+#&gt; 64           6.0    3.063453     3.683234   1.1611060
+#&gt; 65           6.9    3.089028     3.370747   1.0013325
+#&gt; 66           5.2    3.040719     3.961001   1.3031269
+#&gt; 67           5.2    3.040719     3.961001   1.3031269
+#&gt; 68           5.7    3.054927     3.787397   1.2143639
+#&gt; 69           6.5    3.077661     3.509630   1.0723430
+#&gt; 70           6.4    3.074819     3.544351   1.0900956
+#&gt; 71           5.5    3.049244     3.856839   1.2498691
+#&gt; 72           4.6    3.023668     4.169326   1.4096426
+#&gt; 73           7.2    3.097553     3.266585   0.9480747
+#&gt; 74           6.0    3.063453     3.683234   1.1611060
+#&gt; 75           5.0    3.035035     4.030443   1.3386322
+#&gt; 76           6.1    3.066294     3.648514   1.1433534
+#&gt; 77           6.2    3.069136     3.613793   1.1256008
+#&gt; 78           5.0    3.035035     4.030443   1.3386322
+#&gt; 79           5.5    3.049244     3.856839   1.2498691
+#&gt; 80           5.0    3.035035     4.030443   1.3386322
+#&gt; 81           6.2    3.069136     3.613793   1.1256008
+#&gt; 82           4.9    3.032193     4.065164   1.3563848
+#&gt; 83           6.1    3.066294     3.648514   1.1433534
+#&gt; 84           5.2    3.040719     3.961001   1.3031269
+#&gt; 85           5.0    3.035035     4.030443   1.3386322
+#&gt; 86           5.5    3.049244     3.856839   1.2498691
+#&gt; 87           5.9    3.060611     3.717955   1.1788587
+#&gt; 88           6.4    3.074819     3.544351   1.0900956
+#&gt; 89           5.0    3.035035     4.030443   1.3386322
+#&gt; 90           6.7    3.083345     3.440189   1.0368378
+#&gt; 91           5.2    3.040719     3.961001   1.3031269
+#&gt; 92           6.4    3.074819     3.544351   1.0900956
+#&gt; 93           7.7    3.111762     3.092980   0.8593117
+#&gt; 94           4.5    3.020826     4.204047   1.4273952
+#&gt; 95           6.9    3.089028     3.370747   1.0013325
+#&gt; 96           5.4    3.046402     3.891559   1.2676217
+#&gt; 97           5.1    3.037877     3.995722   1.3208795
+#&gt; 98           4.9    3.032193     4.065164   1.3563848
+#&gt; 99           5.2    3.040719     3.961001   1.3031269
+#&gt; 100          5.4    3.046402     3.891559   1.2676217
+#&gt; 101          5.6    3.052086     3.822118   1.2321165
+#&gt; 102          6.3    3.071978     3.579072   1.1078482
+#&gt; 103          4.9    3.032193     4.065164   1.3563848
+#&gt; 104          5.7    3.054927     3.787397   1.2143639
+#&gt; 105          5.6    3.052086     3.822118   1.2321165
+#&gt; 106          5.0    3.035035     4.030443   1.3386322
+#&gt; 107          4.8    3.029352     4.099884   1.3741374
+#&gt; 108          6.7    3.083345     3.440189   1.0368378
+#&gt; 109          6.3    3.071978     3.579072   1.1078482
+#&gt; 110          6.1    3.066294     3.648514   1.1433534
+#&gt; 111          5.8    3.057769     3.752676   1.1966113
+#&gt; 112          5.0    3.035035     4.030443   1.3386322
+#&gt; 113          6.4    3.074819     3.544351   1.0900956
+#&gt; 114          6.5    3.077661     3.509630   1.0723430
+#&gt; 115          5.5    3.049244     3.856839   1.2498691
+#&gt; 116          4.4    3.017985     4.238768   1.4451478
+#&gt; 117          4.3    3.015143     4.273489   1.4629004
+#&gt; 118          5.5    3.049244     3.856839   1.2498691
+#&gt; 119          5.4    3.046402     3.891559   1.2676217
+#&gt; 120          5.4    3.046402     3.891559   1.2676217
+#&gt; 121          6.2    3.069136     3.613793   1.1256008
+#&gt; 122          5.0    3.035035     4.030443   1.3386322
+#&gt; 123          4.9    3.032193     4.065164   1.3563848
+#&gt; 124          5.0    3.035035     4.030443   1.3386322
+#&gt; 125          5.1    3.037877     3.995722   1.3208795
+#&gt; 126          5.0    3.035035     4.030443   1.3386322
+#&gt; 127          4.6    3.023668     4.169326   1.4096426
+#&gt; 128          4.6    3.023668     4.169326   1.4096426
+#&gt; 129          5.6    3.052086     3.822118   1.2321165
+#&gt; 130          6.3    3.071978     3.579072   1.1078482
+#&gt; 131          6.6    3.080503     3.474910   1.0545904
+#&gt; 132          7.2    3.097553     3.266585   0.9480747
+#&gt; 133          4.9    3.032193     4.065164   1.3563848
+#&gt; 134          6.7    3.083345     3.440189   1.0368378
+#&gt; 135          6.7    3.083345     3.440189   1.0368378
+#&gt; 136          4.3    3.015143     4.273489   1.4629004
+#&gt; 137          6.7    3.083345     3.440189   1.0368378
+#&gt; 138          4.9    3.032193     4.065164   1.3563848
+#&gt; 139          6.4    3.074819     3.544351   1.0900956
+#&gt; 140          5.0    3.035035     4.030443   1.3386322
+#&gt; 141          6.0    3.063453     3.683234   1.1611060
+#&gt; 142          6.4    3.074819     3.544351   1.0900956
+#&gt; 143          5.9    3.060611     3.717955   1.1788587
+#&gt; 144          6.5    3.077661     3.509630   1.0723430
+#&gt; 145          5.7    3.054927     3.787397   1.2143639
+#&gt; 146          4.6    3.023668     4.169326   1.4096426
+#&gt; 147          6.6    3.080503     3.474910   1.0545904
+#&gt; 148          5.6    3.052086     3.822118   1.2321165
+#&gt; 149          5.7    3.054927     3.787397   1.2143639
+#&gt; 150          5.0    3.035035     4.030443   1.3386322</div><div class='input'>
+<span class='co'># Example using bootstrapping:</span>
+<span class='fu'>synthetic</span><span class='op'>(</span><span class='va'>iris</span>,
+          model_expression <span class='op'>=</span> <span class='cn'>NULL</span>,
+          predict_expression <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='va'>y</span>, size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</div><div class='output co'>#&gt;     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+#&gt; 1            5.2         3.2          4.7         2.5     setosa
+#&gt; 2            6.2         3.0          1.4         2.0  virginica
+#&gt; 3            5.0         2.8          4.7         0.2 versicolor
+#&gt; 4            4.8         2.9          4.1         1.6  virginica
+#&gt; 5            5.6         2.7          5.1         2.0 versicolor
+#&gt; 6            6.3         3.0          4.1         0.2     setosa
+#&gt; 7            6.3         3.7          1.4         0.4     setosa
+#&gt; 8            4.6         3.8          1.4         1.1  virginica
+#&gt; 9            5.4         3.1          4.9         0.2  virginica
+#&gt; 10           5.4         2.7          4.5         1.3     setosa
+#&gt; 11           5.5         3.3          4.0         1.3  virginica
+#&gt; 12           5.6         3.0          4.8         0.4 versicolor
+#&gt; 13           5.7         3.0          1.5         0.1  virginica
+#&gt; 14           5.7         3.4          5.6         1.2     setosa
+#&gt; 15           5.5         3.0          5.0         1.3     setosa
+#&gt; 16           5.6         3.7          4.0         1.5  virginica
+#&gt; 17           5.1         3.5          1.4         0.2  virginica
+#&gt; 18           5.7         3.8          4.7         0.2 versicolor
+#&gt; 19           5.7         3.0          1.7         1.8 versicolor
+#&gt; 20           5.7         3.2          5.1         0.4     setosa
+#&gt; 21           5.9         3.3          5.1         2.4 versicolor
+#&gt; 22           6.4         2.9          1.5         1.8     setosa
+#&gt; 23           5.4         4.4          1.4         0.3     setosa
+#&gt; 24           5.0         3.1          1.4         1.2  virginica
+#&gt; 25           4.7         3.0          3.6         1.4  virginica
+#&gt; 26           6.2         2.7          4.9         1.4     setosa
+#&gt; 27           4.8         2.4          1.5         2.0     setosa
+#&gt; 28           5.0         3.2          4.4         1.5  virginica
+#&gt; 29           5.4         2.5          4.5         1.8     setosa
+#&gt; 30           4.8         3.4          5.5         1.3     setosa
+#&gt; 31           6.3         3.0          5.5         0.2     setosa
+#&gt; 32           6.4         3.6          6.1         1.8  virginica
+#&gt; 33           6.3         2.7          4.4         0.5  virginica
+#&gt; 34           6.7         2.5          3.9         0.6     setosa
+#&gt; 35           5.1         2.9          1.6         1.4  virginica
+#&gt; 36           5.4         3.0          5.1         0.3     setosa
+#&gt; 37           6.3         2.5          5.1         2.0 versicolor
+#&gt; 38           5.5         3.4          1.6         1.3  virginica
+#&gt; 39           5.1         2.5          1.3         1.5     setosa
+#&gt; 40           4.5         3.2          6.4         0.2 versicolor
+#&gt; 41           4.9         3.1          1.4         2.1 versicolor
+#&gt; 42           5.7         3.8          1.3         2.1 versicolor
+#&gt; 43           5.5         3.0          1.5         1.0  virginica
+#&gt; 44           5.4         4.0          6.0         1.3 versicolor
+#&gt; 45           6.7         3.1          1.6         1.5     setosa
+#&gt; 46           5.0         3.0          1.6         1.7 versicolor
+#&gt; 47           5.1         3.5          1.5         2.1     setosa
+#&gt; 48           5.5         3.0          4.1         1.8     setosa
+#&gt; 49           5.6         3.8          4.0         0.4     setosa
+#&gt; 50           6.0         3.8          3.7         2.0  virginica
+#&gt; 51           5.0         2.9          5.1         0.2  virginica
+#&gt; 52           6.7         3.2          3.3         0.4 versicolor
+#&gt; 53           6.5         2.8          4.4         2.3 versicolor
+#&gt; 54           6.4         2.8          4.4         1.8  virginica
+#&gt; 55           5.0         2.4          5.5         2.1  virginica
+#&gt; 56           4.8         3.3          4.5         2.1 versicolor
+#&gt; 57           6.5         3.7          1.4         1.3  virginica
+#&gt; 58           4.9         3.0          6.7         2.0  virginica
+#&gt; 59           6.7         2.5          5.1         1.3     setosa
+#&gt; 60           5.0         3.6          6.1         2.1 versicolor
+#&gt; 61           4.6         2.6          4.5         0.4  virginica
+#&gt; 62           4.9         3.4          6.6         2.1  virginica
+#&gt; 63           5.7         3.0          4.8         2.3     setosa
+#&gt; 64           5.0         2.9          5.3         0.2  virginica
+#&gt; 65           5.5         2.6          5.5         1.3     setosa
+#&gt; 66           5.1         2.7          6.6         2.0  virginica
+#&gt; 67           7.7         2.8          1.5         1.5     setosa
+#&gt; 68           6.1         2.5          4.4         2.5     setosa
+#&gt; 69           4.8         2.8          4.5         0.1  virginica
+#&gt; 70           5.1         2.3          4.9         1.0 versicolor
+#&gt; 71           4.6         3.1          1.2         2.1 versicolor
+#&gt; 72           6.4         2.5          1.5         1.2     setosa
+#&gt; 73           5.0         2.8          3.9         0.1 versicolor
+#&gt; 74           7.7         2.8          4.8         1.4 versicolor
+#&gt; 75           5.2         3.0          1.6         2.3  virginica
+#&gt; 76           6.9         2.9          1.4         0.2 versicolor
+#&gt; 77           5.0         2.7          5.1         0.3     setosa
+#&gt; 78           5.5         3.0          4.4         0.2     setosa
+#&gt; 79           6.3         3.0          4.4         0.2     setosa
+#&gt; 80           5.9         2.8          6.7         2.3 versicolor
+#&gt; 81           6.0         3.3          5.7         0.4     setosa
+#&gt; 82           6.1         3.0          1.4         0.2     setosa
+#&gt; 83           7.2         2.2          1.0         0.2 versicolor
+#&gt; 84           6.5         2.6          5.4         2.3  virginica
+#&gt; 85           5.1         2.9          1.2         1.0     setosa
+#&gt; 86           5.4         3.2          1.5         1.3     setosa
+#&gt; 87           6.3         3.0          4.2         1.5  virginica
+#&gt; 88           5.0         2.7          1.5         1.6  virginica
+#&gt; 89           6.4         3.6          5.7         0.2 versicolor
+#&gt; 90           7.2         2.4          4.0         1.5 versicolor
+#&gt; 91           5.1         3.5          4.0         1.9 versicolor
+#&gt; 92           7.9         2.7          6.3         1.2     setosa
+#&gt; 93           5.7         3.0          4.0         0.2  virginica
+#&gt; 94           5.2         3.4          1.4         0.2 versicolor
+#&gt; 95           6.2         3.1          5.1         2.1     setosa
+#&gt; 96           6.0         3.7          4.1         2.5  virginica
+#&gt; 97           6.7         3.6          4.9         1.3     setosa
+#&gt; 98           5.7         3.0          4.6         1.4 versicolor
+#&gt; 99           6.3         2.5          1.5         1.6 versicolor
+#&gt; 100          4.6         2.7          6.9         2.3  virginica
+#&gt; 101          6.7         2.7          1.1         1.1     setosa
+#&gt; 102          5.5         2.3          4.5         2.3  virginica
+#&gt; 103          6.7         3.4          4.0         1.5  virginica
+#&gt; 104          5.0         3.7          4.8         1.3 versicolor
+#&gt; 105          6.1         2.7          1.5         2.3  virginica
+#&gt; 106          5.2         2.0          4.0         0.2     setosa
+#&gt; 107          5.1         2.9          4.9         0.2  virginica
+#&gt; 108          6.4         2.2          6.1         2.3  virginica
+#&gt; 109          4.3         3.0          1.4         1.0  virginica
+#&gt; 110          6.1         2.8          5.9         0.2     setosa
+#&gt; 111          6.5         3.3          4.8         1.9  virginica
+#&gt; 112          5.1         3.3          1.4         0.2  virginica
+#&gt; 113          6.8         3.8          3.3         1.1 versicolor
+#&gt; 114          6.7         2.5          5.6         1.4  virginica
+#&gt; 115          6.1         2.6          4.4         2.4  virginica
+#&gt; 116          4.4         3.4          6.1         1.8     setosa
+#&gt; 117          5.2         2.8          4.0         1.8  virginica
+#&gt; 118          5.1         3.1          1.5         1.8 versicolor
+#&gt; 119          6.9         2.4          4.5         1.4  virginica
+#&gt; 120          4.7         3.1          4.3         0.2 versicolor
+#&gt; 121          5.0         3.6          5.8         0.2     setosa
+#&gt; 122          6.1         2.8          1.5         0.3 versicolor
+#&gt; 123          5.7         2.9          1.6         0.2 versicolor
+#&gt; 124          5.5         3.1          4.0         0.1  virginica
+#&gt; 125          5.0         3.1          1.7         1.4 versicolor
+#&gt; 126          6.5         2.8          1.3         2.4     setosa
+#&gt; 127          6.2         2.8          4.4         0.2 versicolor
+#&gt; 128          7.0         3.2          3.0         0.2 versicolor
+#&gt; 129          6.4         3.0          1.1         1.8  virginica
+#&gt; 130          6.5         3.7          4.5         1.2  virginica
+#&gt; 131          5.8         3.7          1.6         1.5  virginica
+#&gt; 132          5.1         3.3          4.3         2.0  virginica
+#&gt; 133          6.8         3.2          1.4         0.2  virginica
+#&gt; 134          5.6         3.1          1.5         0.2  virginica
+#&gt; 135          6.0         3.5          4.9         1.3     setosa
+#&gt; 136          6.7         2.8          1.5         1.8  virginica
+#&gt; 137          5.6         2.7          6.4         1.1 versicolor
+#&gt; 138          5.2         3.5          5.9         2.1     setosa
+#&gt; 139          6.5         4.1          1.5         2.2     setosa
+#&gt; 140          5.0         2.3          1.5         1.1  virginica
+#&gt; 141          5.7         2.8          4.5         2.2  virginica
+#&gt; 142          4.8         2.7          1.7         1.4 versicolor
+#&gt; 143          4.4         3.3          5.1         1.0     setosa
+#&gt; 144          4.6         3.0          1.6         1.7  virginica
+#&gt; 145          5.8         2.7          1.3         1.5     setosa
+#&gt; 146          6.9         2.8          4.0         2.3 versicolor
+#&gt; 147          4.9         2.7          5.2         1.6  virginica
+#&gt; 148          5.1         3.1          1.5         0.4 versicolor
+#&gt; 149          5.1         3.3          4.4         2.2 versicolor
+#&gt; 150          7.3         3.4          1.6         0.4     setosa</div><div class='input'>
+<span class='co'># Example with missing data, no imputation</span>
+<span class='va'>iris_missings</span> <span class='op'>&lt;-</span> <span class='va'>iris</span>
 <span class='kw'>for</span><span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>{</span>
   <span class='va'>iris_missings</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>iris_missings</span><span class='op'>)</span>, <span class='fl'>1</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
                 <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>iris_missings</span><span class='op'>)</span>, <span class='fl'>1</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
 <span class='op'>}</span>
 <span class='va'>iris_miss_syn</span> <span class='op'>&lt;-</span> <span class='fu'>synthetic</span><span class='op'>(</span><span class='va'>iris_missings</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #BB0000;'>X  </span><span style='color: #000000;'>Argument 'data' has missing values, but no 'missingness_expression' is specified. Listwise deletion is used.</span><span>
-#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</div></span></pre>
+#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</div><div class='input'>
+<span class='co'># Example with missing data, imputation by median/mode substitution</span>
+<span class='co'># First, define a simple function for median/mode substitution:</span>
+<span class='va'>imp_fun</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>is.data.frame</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+    <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>imp_fun</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+    <span class='va'>out</span> <span class='op'>&lt;-</span> <span class='va'>x</span>
+    <span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>inherits</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"numeric"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+      <span class='va'>out</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
+    <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+      <span class='va'>out</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span>, decreasing <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+    <span class='op'>}</span>
+    <span class='va'>out</span>
+  <span class='op'>}</span>
+<span class='op'>}</span>
+
+<span class='co'># Then, call synthetic() with this function as missingness_expression:</span>
+<span class='va'>iris_miss_syn</span> <span class='op'>&lt;-</span> <span class='fu'>synthetic</span><span class='op'>(</span><span class='va'>iris_missings</span>,
+                           missingness_expression <span class='op'>=</span> <span class='fu'>imp_fun</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in imp_fun(data): could not find function "imp_fun"</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

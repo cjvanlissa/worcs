@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.4</span>
       </span>
     </div>
 
@@ -137,11 +137,11 @@ In Rstudio, click File &gt; New Project &gt; New directory &gt; WORCS Project Te
 </ol>
 </li>
 <li>
-<!--S: Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability.-->
-A template README.md file will be automatically generated during project creation. Edit this template to explain how users should interact with the project. Based on your selections in the New Project dialog, a LICENSE will also be added to the project, to explain users’ rights and limit your liability.</li>
+<!--S: Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability. This is automated by the `worcs` package.-->
+A template README.md file will be automatically generated during project creation. Edit this template to explain how users should interact with the project. Based on your selections in the New Project dialog, a LICENSE will also be added to the project, to explain users’ rights and limit your liability. We recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited.</li>
 <li>
-<!--S: Optional: Preregister your analysis by committing a plain-text preregistration and tagging the commit as "preregistration".-->
-Preregister your analysis:
+<!--S: Optional: Preregister your analysis by committing a plain-text preregistration and [tag this commit](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) with the label "preregistration".-->
+Optional: Preregister your analysis by committing a plain-text preregistration and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">tag this commit</a> with the label “preregistration”:
 <ul>
 <li>Document study plans in a <code>preregistration.Rmd</code> file, and optionally, planned analyses in a <code>.R</code> file.</li>
 <li>In the top-right panel of ‘RStudio’, select the ‘Git’ tab</li>
@@ -150,15 +150,13 @@ Preregister your analysis:
 <li>In the pop-up window, write an informative “Commit message”, e.g., “Preregistration”</li>
 <li>Click the Commit button below the message dialog</li>
 <li>Click the green arrow labeled “Push” to send your commit to the ‘Git’ remote repository</li>
-<li>Tag this commit as a preregistration on the remote repository. A tagged release helps others retrieve this commit.</li>
-<li>Instructions for ‘GitHub’ <a href="https://help.github.com/en/github/administering-a-repository/creating-releases">are explained here</a>
-<ul>
-<li>Go to the ‘GitHub’ page for your project</li>
-<li>Click the label that says “0 releases”</li>
-<li>Click the button labeled “Create new release”</li>
-<li>In the textbox labeled “Tag version” and the textbox “Release title”, write: “Preregistration”</li>
-<li>Click the green button labeled “Publish release”</li>
-</ul>
+<li>
+<a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">Tag this commit as a release</a> on the remote repository, using the label “preregistration”. A tagged release helps others retrieve this commit.</li>
+<li>Instructions for ‘GitHub’ <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">are explained here</a> <!--        - Go to the 'GitHub' page for your project
+     - Click the label that says "0 releases"
+     - Click the button labeled "Create new release"
+     - In the textbox labeled "Tag version" and the textbox "Release title", write: "Preregistration"
+     - Click the green button labeled "Publish release"-->
 </li>
 </ul>
 </li>
@@ -171,8 +169,8 @@ Optional: Render the preregistration to PDF, and upload it as an attachment to a
 </ul>
 </li>
 <li>
-<!--S: Optional: Add study Materials to the repository-->
-Optional: Add study Materials to the repository.
+<!--S: Optional: Add study materials to the repository-->
+Optional: Add study materials to the repository.
 <ul>
 <li>Only do this for study materials to which you own the rights, or when the materials’ license allows it</li>
 <li>You can solicit feedback and outside contributions on a ‘Git’ remote repository by opening an “Issue” or by accepting “Pull requests”</li>
@@ -183,7 +181,7 @@ Optional: Add study Materials to the repository.
 <div id="phase-2-writing-and-analysis" class="section level3">
 <h3 class="hasAnchor">
 <a href="#phase-2-writing-and-analysis" class="anchor"></a>Phase 2: Writing and analysis</h3>
-<ol start="6" style="list-style-type: decimal">
+<ol start="7" style="list-style-type: decimal">
 <li>
 <!--S: Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable-->
 Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable
@@ -231,7 +229,7 @@ While writing, cite essential references with one at-symbol, <code>[@essentialre
 <div id="phase-3-submission-and-publication" class="section level3">
 <h3 class="hasAnchor">
 <a href="#phase-3-submission-and-publication" class="anchor"></a>Phase 3: Submission and publication</h3>
-<ol start="11" style="list-style-type: decimal">
+<ol start="12" style="list-style-type: decimal">
 <li>
 <!--S: Use dependency management to make the computational environment fully reproducible-->
 Use dependency management to make the computational environment fully reproducible. When using <code>renv</code>, you can save the state of the project library (all packages used) by calling <code><a href="https://rstudio.github.io/renv//reference/snapshot.html">renv::snapshot()</a></code>. This updates the lockfile, <code>renv.lock</code>.</li>
@@ -259,15 +257,25 @@ Make the ‘Git’ remote repository “Public” if it was set to “Private”
 </ul>
 </li>
 <li>
-<!--S: Optional: [Create a project page on the Open Science Framework](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project)-->
-Optional: <a href="https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project">Create a project on the Open Science Framework (OSF)</a>; you may have already done this in Step 4.</li>
-<li>
-<!--S: [Connect your 'OSF' project page to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->
-<a href="https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project">Connect your ‘OSF’ project page to the ‘Git’ remote repository</a>
+<!--S: [Create a project page on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project) and [connect it to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->
+<a href="https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project">Create a project on the Open Science Framework (OSF)</a> and <a href="https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project">connect it to the ‘Git’ remote repository</a>.
+<ul>
+<li>On the OSF project page, you can select a License for the project. This helps clearly communicate the terms of reusability of your project. Make sure to use the same License you selected during project creation in Step 3.</li>
+</ul>
 </li>
 <li>
-<!--S: Add an open science statement to the Abstract or Author notes, which links to the 'Git' remote repository or 'OSF' page-->
-Add an open science statement to the Abstract or Author notes, which links to the ‘Git’ remote repository or ‘OSF’ page.
+<!--S: [Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs)-->
+<a href="https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs">Generate a Digital Object Identifier (DOI) for the OSF project</a>
+<ul>
+<li>A DOI is a persistent identifier that can be used to link to your project page.</li>
+<li>You may have already created a project page under Step 5 if you preregistered on the OSF</li>
+<li>Optionally, you can <a href="https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data">generate additional DOIs for specific resources like datasets</a>.</li>
+<li>Alternatively, you can <a href="https://guides.github.com/activities/citable-code/">connect your ‘Git’ remote repository to Zenodo</a>, instead of the OSF, to create DOIs for the project and specific resources.</li>
+</ul>
+</li>
+<li>
+<!--S: Add an open science statement to the Abstract or Author notes, which links to the 'OSF' project page and/or the 'Git' remote repository-->
+Add an open science statement to the Abstract or Author notes, which links to the ‘OSF’ project page and/or the ‘Git’ remote repository.
 <ul>
 <li>Placing this statement in the Abstract or Author note means that readers can find your project even if the paper is published behind a paywall.</li>
 <li>The link can be masked for blind review.</li>
@@ -293,8 +301,8 @@ Optional: <a href="https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-P
 </ul>
 </li>
 <li>
-<!--S: Submit the paper, and tag the release of the submitted paper, as in Step 3.-->
-Submit the paper, and tag the release of the submitted paper as in Step 3.</li>
+<!--S: Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) of the submitted paper as a release, as in Step 4.-->
+Submit the paper, and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">tag the commit of the submitted paper as a release</a>, as in Step 4.</li>
 </ol>
 </div>
 <div id="notes-for-cautious-researchers" class="section level3">

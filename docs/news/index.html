@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.4</span>
       </span>
     </div>
 
@@ -143,8 +143,12 @@
 <a href="#worcs-016" class="anchor"></a>worcs 0.1.6<small> Unreleased </small>
 </h1>
 <ul>
+<li>Workflow vignette updated to address reviewer comments from “Data Science”</li>
+<li>New functions: add_synthetic() and notify_synthetic()</li>
+<li>closed_data() no longer wraps errors from the call to synthetic(). Thus, the function call fails with an error if data synthetis fails.</li>
+<li>closed_data() now passes formal arguments of synthetic() contained in ‘…’ on to synthetic().</li>
 <li>synthetic() now allows ‘y’ to be referenced in ‘predict_expression’ when ‘model_expression’ is set to NULL, thereby enabling bootstrapping.</li>
-<li>closed_data() now passes formal arguments of synthetic() contained in ‘…’ on to synthetic.</li>
+<li>The internal function worcs:::col_message() now renders status messages in black print instead of colored print when rmarkdown::render() is on the callstack. This avoids errors when knitting to PDF. See <a href="https://github.com/rstudio/rmarkdown/issues/1951" class="uri">https://github.com/rstudio/rmarkdown/issues/1951</a> for the error circumvented by this fix.</li>
 </ul>
 </div>
     <div id="worcs-015" class="section level1">
