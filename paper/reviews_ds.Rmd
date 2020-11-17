@@ -363,6 +363,7 @@ check_urls <- function(x){
   txt <- readLines(x)
   mtch <- regmatches(txt,regexpr("(http[^ ]*)|(ftp[^ ]*)|(www\\.[^ ]*)",txt))
   mtch <- gsub("[\\)\\.,;]+$", "", mtch)
+  mtch <- unique(mtch)
   #out <- sapply(mtch, RCurl::url.exists)
   out <- sapply(mtch, httr::http_error)
   out
