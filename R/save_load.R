@@ -408,3 +408,53 @@ write_gitig <- function(filename, ..., modify = TRUE){
   }
   write(new_contents, filename, append = FALSE)
 }
+
+#' @title Notify the user when synthetic data are being used
+#' @description This function prints a notification message when some or all of
+#' the data used in a project are synthetic (see \code{\link{closed_data}} and
+#' \code{\link{synthetic}}). See details for important information.
+#' @details The preferred way to use this function is to provide specific data
+#' objects in the function call, using the \code{...} argument.
+#' If no such objects are provided, \code{notify_synthetic} will scan the
+#' parent environment for objects of class \code{worcs_data}.
+#'
+#' This function is emphatically designed to be included in an 'R Markdown'
+#' file, to dynamically generate a notification message when a third party
+#' 'Knits' such a document without having access to all original data.
+#' @param ... Objects of class \code{worcs_data}. The function will check if
+#' these are original or synthetic data.
+#' @param msg Expression containing the message to print in case not all
+#' \code{worcs_data} are original. This message may refer to \code{is_synth},
+#' a logical vector indicating which \code{worcs_data} objects are synthetic.
+#' @return No return value. This function is called for its side effect of
+#' printing a notification message.
+#' @examples
+#' df <- iris
+#' class(df) <- c("worcs_data", class(df))
+#' attr(df, "type") <- "synthetic"
+#' notify_synthetic(df, msg = "synthetic")
+#' @rdname notify_synthetic
+#' @export
+#' @seealso closed_data synthetic add_synthetic
+notify_synthetic <- function(...,
+                             msg = NULL){
+  dots <- list(...)
+  cl <- as.list(match.call()[-1])
+  if(is.null(cl[["msg"]])){
+    msg <- quote(c("**Note that", ifelse(all(is_synth), "all", "some"), "of the data files used to generate this document are synthetic. The original data are not available. Synthetic data can be used to evaluate the reproducibility of the analysis code, but the results should not be substantively interpreted, and will likely deviate from the results generated using the original data. Please contact the authors for more information.**"))
+  }
+  msg <- substitute(msg)
+  if(length(dots) > 0){
+    if(!all(sapply(dots, inherits, what = "worcs_data"))){
+      stop("Some arguments provided to 'notify_synthetic()' are not objects of class 'worcs_data'.", call. = FALSE)
+    }
+    is_synth <- sapply(dots, attr, which = "type") == "synthetic"
+  } else {
+    worcs_data <- Filter(function(x) inherits(get(x), "worcs_data"), ls(name = parent.env(environment())))
+    is_synth <- sapply(worcs_data, function(x){ attr(get(x), which = "type") }) == "synthetic"
+  }
+  if(any(is_synth)){
+    cat(eval(msg))
+  }
+}
+
