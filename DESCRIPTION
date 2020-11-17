@@ -2,7 +2,7 @@ Package: worcs
 Type: Package
 Date: 2020-11-15
 Title: Workflow for Open Reproducible Code in Science
-Version: 0.1.6.3
+Version: 0.1.6.4
 Authors@R: c(
     person(
       given = c("Caspar", "J."),
@@ -24,8 +24,8 @@ Authors@R: c(
       comment = c(ORCID = "0000-0001-8765-6982")
     )
     )
-Description: Create reproducible and transparent research projects in 'R', with
-    a minimal amount of code. This package is based on the Workflow for Open
+Description: Create reproducible and transparent research projects in 'R'.
+    This package is based on the Workflow for Open
     Reproducible Code in Science (WORCS), a step-by-step procedure based on best
     practices for
     Open Science. It includes an 'RStudio' project template, several

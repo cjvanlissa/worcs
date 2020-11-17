@@ -44,8 +44,7 @@
 write.csv), stores a checksum in '.worcs',
 appends the .gitignore file to exclude filename, and saves a
 synthetic copy of data for public use. To generate these synthetic
-data, the function synthetic is used. Additional arguments for
-the call to synthetic can be passed through ...." />
+data, the function synthetic is used." />
 
 
 
@@ -77,7 +76,7 @@ the call to synthetic can be passed through ...." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.4</span>
       </span>
     </div>
 
@@ -150,8 +149,7 @@ the call to synthetic can be passed through ...." />
 <code><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></code>), stores a checksum in '.worcs',
 appends the <code>.gitignore</code> file to exclude <code>filename</code>, and saves a
 synthetic copy of <code>data</code> for public use. To generate these synthetic
-data, the function <code><a href='synthetic.html'>synthetic</a></code> is used. Additional arguments for
-the call to <code><a href='synthetic.html'>synthetic</a></code> can be passed through <code>...</code>.</p>
+data, the function <code><a href='synthetic.html'>synthetic</a></code> is used.</p>
     </div>
 
     <pre class="usage"><span class='fu'>closed_data</span><span class='op'>(</span>
@@ -159,6 +157,7 @@ the call to <code><a href='synthetic.html'>synthetic</a></code> can be passed th
   filename <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>)</span>, <span class='st'>".csv"</span><span class='op'>)</span>,
   codebook <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"codebook_"</span>, <span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>)</span>, <span class='st'>".Rmd"</span><span class='op'>)</span>,
   worcs_directory <span class='op'>=</span> <span class='st'>"."</span>,
+  synthetic <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -191,6 +190,12 @@ which to save data. The default value <code>"."</code> points to the current
 directory.</p></td>
     </tr>
     <tr>
+      <th>synthetic</th>
+      <td><p>Logical, indicating whether or not to create a synthetic
+dataset using the <code><a href='synthetic.html'>synthetic</a></code> function. Additional arguments for
+the call to <code><a href='synthetic.html'>synthetic</a></code> can be passed through <code>...</code>.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional arguments passed to and from functions.</p></td>
     </tr>
@@ -213,9 +218,12 @@ function is called for its side effects.</p>
 <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='op'>]</span>
 <span class='fu'>closed_data</span><span class='op'>(</span><span class='va'>df</span>, codebook <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Creating C:/Users/lissa102/AppData/Local/Temp/Rtmp4sic78/data/README.md.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Generating synthetic data for public use. Ensure that no identifying information is included.</span><span>
 #&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%</div><div class='output co'>#&gt; <span class='warning'>Warning: Dropped unused factor level(s) in dependent variable: versicolor, virginica.</span></div><div class='output co'>#&gt;   |                                                                              |======================================================================| 100%
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing synthetic data in 'synthetic_df.csv' and updating the checksum in '.worcs'.</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating '.gitignore'.</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating C:/Users/lissa102/AppData/Local/Temp/Rtmp4sic78/data/README.md.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating '.gitignore'.</span><span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>old_wd</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='va'>test_dir</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div></span></pre>
