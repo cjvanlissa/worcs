@@ -243,7 +243,8 @@ that retain backups of previous versions.
 
 An integral part of WORCS is the *explicit* version control software Git
 (www.git-scm.com).
-Git tracks changes to files on a line-by-line basis.
+A project version controlled with Git is called a "repository", or repo.
+Git tracks changes to files in the repository on a line-by-line basis.
 The user can store these changes by making a "commit": a 
 snapshot of the version controlled files.
 Each "commit" can contain as many changes as desired;
@@ -261,7 +262,6 @@ This can be used, for example, to verify that authors executed the steps outline
 Users can also compare changes between different commits,
 or go back to a previous version of the code (for example,
 after making a mistake, or to replicate a previous version of the results).
-A project version controlled with Git is called a "Repository", or Repo.
 Git only version controls files explicitly committed by the user. Moreover, it
 is possible to prevent files from being version controlled - which is useful for
 privacy sensitive data.
@@ -272,8 +272,18 @@ The functionality of Git is enhanced by services such as GitHub
 (https://github.com). GitHub is best understood as a cloud storage service
 with social networking functionality. The cloud storage aspect
 of GitHub allows you to "clone" (copy) a local Git repository to
-the GitHub website, as a backup or research archive. The social network aspect
-comes into play when a repository on GitHub is set to "public": This allows 
+the GitHub website, as a backup or research archive.
+The GitHub platform offers additional functionality over Git. 
+One such feature is that specific stages in the lifecycle of a project
+can be [tagged as a "release"](https://help.github.com/en/github/administering-a-repository/creating-releases):
+A named downloadable snapshot of a specific state of the project,
+that is prominently featured on the GitHub project page.
+The WORCS procedure encourages users to create releases to demarcate project milestones
+such as preregistration and submission to a journal.
+Releases are also useful to mark the submission of a revised manuscript, and publication.
+
+The social network aspect of GitHub
+comes into play when a repository is made "public": This allows 
 other researchers to peruse the repository and see how the work was done; clone
 it to their own computer to replicate the original work or apply the methods to
 their own data; open "Issues" to ask questions or give feedback on the project,

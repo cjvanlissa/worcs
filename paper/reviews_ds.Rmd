@@ -672,6 +672,18 @@ which creates a new commit for all changes since the previous commit,
 labels it with "your commit message", and pushes these changes to the remote repository.
 It is, effectively, a Git "quick save" command.
 
+The GitHub function of creating "releases" also helps mark the "course-grained" progress of a research project. In the WORCS procedure, we encourage taggin the preprint and submitted version of a manuscript as a "release" on GitHub. Such releases are prominently featured on the GitHub project page, and are accompanied by a downloadable archive of the historic state of the project.
+To further address the Reviewer's comment, we now mention this in the manuscript text as well:
+
+> The GitHub platform offers additional functionality over Git. 
+One such feature is that specific stages in the lifecycle of a project
+can be [tagged as a "release"](https://help.github.com/en/github/administering-a-repository/creating-releases):
+A named downloadable snapshot of a specific state of the project,
+that is prominently featured on the GitHub project page.
+The WORCS procedure encourages users to create releases to demarcate project milestones
+such as preregistration and submission to a journal.
+Releases are also useful to mark the submission of a revised manuscript, and publication.
+
 \Assignment{CJ}
 \Done
 \Medium

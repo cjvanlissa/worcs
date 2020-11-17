@@ -118,7 +118,7 @@ knitr::include_graphics("workflow.png")
     Change `knit: worcs::cite_all` to `knit: worcs::cite_essential`
 19. <!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)-->Optional: [Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)
     + Check [Sherpa Romeo](http://sherpa.ac.uk/romeo/index.php) to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.
-20. <!--S: Submit the paper, and [tag the commit](https://help.github.com/en/github/administering-a-repository/creating-releases) of the submitted paper as a release, as in Step 4.-->Submit the paper, and [tag the commit](https://help.github.com/en/github/administering-a-repository/creating-releases) of the submitted paper as a release, as in Step 4.
+20. <!--S: Submit the paper, and [tag the commit of the submitted paper as a release](https://help.github.com/en/github/administering-a-repository/creating-releases) of the submitted paper as a release, as in Step 4.-->Submit the paper, and [tag the commit of the submitted paper as a release](https://help.github.com/en/github/administering-a-repository/creating-releases), as in Step 4.
 
 ### Notes for cautious researchers
 
