@@ -39,7 +39,7 @@ knitr::include_graphics("workflow.png")
     d. Select a manuscript template, or add a manuscript later using `add_manuscript()`
     e. Select a license for your project (we recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited)
 3. <!--S: Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability. This is automated by the `worcs` package.-->A template README.md file will be automatically generated during project creation. Edit this template to explain how users should interact with the project. Based on your selections in the New Project dialog, a LICENSE will also be added to the project, to explain users' rights and limit your liability. We recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited.
-4. <!--S: Optional: Preregister your analysis by committing a plain-text preregistration and [tag this commit](https://help.github.com/en/github/administering-a-repository/creating-releases) with the label "preregistration".-->Optional: Preregister your analysis by committing a plain-text preregistration and [tag this commit](https://help.github.com/en/github/administering-a-repository/creating-releases) with the label "preregistration":
+4. <!--S: Optional: Preregister your analysis by committing a plain-text preregistration and [tag this commit](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) with the label "preregistration".-->Optional: Preregister your analysis by committing a plain-text preregistration and [tag this commit](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) with the label "preregistration":
     + Document study plans in a `preregistration.Rmd` file, and optionally, planned analyses in a `.R` file.
     + In the top-right panel of 'RStudio', select the 'Git' tab
     + Select the checkbox next to the preregistration file(s)
@@ -47,8 +47,8 @@ knitr::include_graphics("workflow.png")
     + In the pop-up window, write an informative "Commit message", e.g., "Preregistration"
     + Click the Commit button below the message dialog
     + Click the green arrow labeled "Push" to send your commit to the 'Git' remote repository
-    + [Tag this commit as a release](https://help.github.com/en/github/administering-a-repository/creating-releases) on the remote repository, using the label "preregistration". A tagged release helps others retrieve this commit.
-    + Instructions for 'GitHub' [are explained here ](https://help.github.com/en/github/administering-a-repository/creating-releases)
+    + [Tag this commit as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) on the remote repository, using the label "preregistration". A tagged release helps others retrieve this commit.
+    + Instructions for 'GitHub' [are explained here ](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository)
 <!--        - Go to the 'GitHub' page for your project
         - Click the label that says "0 releases"
         - Click the button labeled "Create new release"
@@ -118,7 +118,7 @@ knitr::include_graphics("workflow.png")
     Change `knit: worcs::cite_all` to `knit: worcs::cite_essential`
 19. <!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)-->Optional: [Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)
     + Check [Sherpa Romeo](http://sherpa.ac.uk/romeo/index.php) to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.
-20. <!--S: Submit the paper, and [tag the commit of the submitted paper as a release](https://help.github.com/en/github/administering-a-repository/creating-releases) of the submitted paper as a release, as in Step 4.-->Submit the paper, and [tag the commit of the submitted paper as a release](https://help.github.com/en/github/administering-a-repository/creating-releases), as in Step 4.
+20. <!--S: Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) of the submitted paper as a release, as in Step 4.-->Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository), as in Step 4.
 
 ### Notes for cautious researchers
 

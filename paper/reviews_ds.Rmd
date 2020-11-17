@@ -677,7 +677,7 @@ To further address the Reviewer's comment, we now mention this in the manuscript
 
 > The GitHub platform offers additional functionality over Git. 
 One such feature is that specific stages in the lifecycle of a project
-can be [tagged as a "release"](https://help.github.com/en/github/administering-a-repository/creating-releases):
+can be [tagged as a "release"](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository):
 A named downloadable snapshot of a specific state of the project,
 that is prominently featured on the GitHub project page.
 The WORCS procedure encourages users to create releases to demarcate project milestones

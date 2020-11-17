@@ -752,7 +752,7 @@ secure online archive." Two such archives are well-known in the social sciences:
 However, 'Git' cloud hosting services also conform to these standards.
 Thus, it is possible to preregister a study simply by committing a preregistration document
 to the local 'Git' repository, and pushing it to the remote repository.
-Subsequently [taging the release](https://help.github.com/en/github/administering-a-repository/creating-releases)
+Subsequently [taging the release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository)
 as "Preregistration" on the remote repository renders it distinct from all other commits,
 and easily findable by people and programs.
 This approach is simple, quick, and robust.
@@ -838,7 +838,7 @@ these preregistration templates can be selected, which will generate a file
 called `preregistration.Rmd`. This file should be used to document study plans,
 ideally prior to data collection. 
 Within the workflow, the 'Git' cloud hosting services can be used to preregister a study simply by pushing a text document with the study plans to a 'Git' remote repository.
-By [tagging the commit](https://help.github.com/en/github/administering-a-repository/creating-releases) as a preregistration
+By [tagging the commit as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository), labelled "preregistration"
 (see [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html)),
 it is distinct from all other commits, and easily findable by people and machines.
 
