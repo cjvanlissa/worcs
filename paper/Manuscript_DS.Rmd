@@ -1,24 +1,26 @@
 ---
 author:
-  - name: Caspar J. van Lissa
-    affiliation: 'Utrecht University'
-    address: Padualaan 14, 3584CH Utrecht, The Netherlands
-    email: c.j.vanlissa@uu.nl
-  - name: Andreas M. Brandmaier
-    affiliation: 'Max Planck Institute'
-  - name: Loek Brinkman
-    affiliation: 'UMC Utrecht'
-  - name: Anna-Lena Lamprecht
-    affiliation: 'Utrecht University'
-    email: a.l.lamprecht@uu.nl
-  - name: Aaron Peikert
-    affiliation: Max Planck Institute
-  - name: Marijn E. Struiksma
-    affiliation: 'Utrecht University'
-  - name: Barbara Vreede
-    affiliation: 'Utrecht University'
+  name: |
+    [Caspar J. Van Lissa](c.j.vanlissa@uu.nl)$^{a,b}$
+    Andreas M. Brandmaier$^{c,d}$
+    Loek Brinkman$^{b,e}$
+    Anna-Lena Lamprecht$^{b,f}$
+    Aaron Peikert$^{c}$
+    Marijn E. Struiksma$^{b,g}$
+    Barbara Vreede$^{h}$
+    
+  affiliation: | 
+      $a$: Utrecht University faculty of Social and Behavioral Sciences, department of Methodology & Statistics  
+      $b$: Open Science Community Utrecht  
+      $c$: Center for Lifespan Psychology, Max Planck Institute for Human Development, Berlin, Germany  
+      $d$: Max Planck UCL Centre for Computational Psychiatry and Ageing Research, Berlin, Germany and London, UK  
+      $e$: UMC Utrecht  
+      $f$: Utrecht University, Department of Information and Computing Sciences  
+      $g$: Utrecht University faculty of Humanities, department of Language, Literature & Communication, Utrecht Institute of Linguistics OTS  
+      $h$: University Library Utrecht
 title: "WORCS: A Workflow for Open Reproducible Code in Science"
 short:      "WORKFLOW FOR OPEN SCIENCE"
+shorttitle:      "WORKFLOW FOR OPEN SCIENCE"
 abstract: |
   Adopting open science
   principles can be challenging and time-intensive, because doing so requires
@@ -26,29 +28,27 @@ abstract: |
   This paper introduces the Workflow for
   Open Reproducible Code in Science (WORCS): A step-by-step
   procedure that researchers can follow to make a research project open and
-  reproducible, accompanied by an open source software implementation that 
-  automates these steps.
-  The 
-  purpose of the workflow is to lower the threshold for 
-  adoption of open science principles. 
-  It is based on best practices, and can be used either in
+  reproducible.
+  The purpose of the workflow is to lower the threshold for 
+  adoption of open science principles.
+  It is based on established best practices, and can be used either in
   parallel to, or in absence of, top-down requirements by journals,
   institutions, and funding bodies.
-  This workflow is primarily targeted towards
-  scholars working in R on a private computer,
-  conducting research that involves academic prose, analysis code,
-  and (optionally) tabular data - but it is flexible enough to accommodate many
-  other scenarios.
-  To facilitate widespread adoption, the
-  WORCS principles are implemented in the R package `worcs`, which offers an
-  RStudio 
-  project template that is, effectively, a "one-click solution" for R users,
-  and utility functions for specific workflow steps.
-  This paper addresses the design of the workflow,
+  To facilitate widespread adoption, the WORCS principles have been implemented
+  in the R package `worcs`, which offers an RStudio 
+  project template and utility functions for specific workflow steps.
+  This paper introduces the conceptual workflow,
   discusses how it meets different 
-  standards for open science, and provides examples of the implementation of
-  `worcs` in `R`. All source code for the `R` package,
-  and replication materials for the manuscript, are available at 
+  standards for open science, and addresses the functionality provided by the
+  `R` implementation, `worcs`. 
+  This paper is primarily targeted towards
+  scholars conducting research projects in R,
+  conducting research that involves academic prose, analysis code,
+  and (optionally) tabular data.
+  However, the workflow is flexible enough to accommodate other scenarios,
+  and offers a sensible starting point for customized solutions.
+  The source code for the `R` package and manuscript,
+  and a list of [user examples of WORCS projects](https://github.com/cjvanlissa/worcs/tree/master#adoption-of-worcs-by-users), are available at 
   https://github.com/cjvanlissa/worcs.
 authornote: "blabla"
 keywords:
@@ -60,8 +60,16 @@ preamble: >
 bibliography      : ["worcs.bib"]  
 urlcolor          : blue
 output: rmarkdown::html_document
-knit: worcs::cite_all
 ---
+<!--
+, "worcs_packages.bib"
+output: 
+  rmarkdown::html_document:
+    citation_package: biblatex Note: Citations are always handled by pandoc when format is not PDF
+knit: worcs::cite_all
+csl: apa.csl
+csl: apa.csl
+--> 
 
 ```{r load_packages, include = FALSE}
 library("papaja")
@@ -71,6 +79,8 @@ masked <- function(text){
 }
 knitr::opts_chunk$set(echo = FALSE, eval = TRUE, warning = FALSE, message= FALSE)
 ```
+
+# Introduction
 
 Academia is arguably past the tipping point of a paradigm shift
 towards open science.
@@ -96,56 +106,76 @@ science and enjoy these benefits. And yet, the question of how to
 get started can be daunting. Making the transition
 requires researchers to become knowledgeable about different open science 
 challenges and solutions, and to become proficient with new and unfamiliar tools.
-This paper is designed to ease that transition by presenting a simple workflow 
-that meets most requirements open science, and is based on best practices:
+This paper is designed to ease that transition by presenting a simple workflow,
+based on established best practices,  
+that meets most requirements open science:
 The *Workflow for Open Reproducible Code in Science* (WORCS).
-WORCS is a lightweight approach to open science and
-computational reproducibility for scholars working in `R` on a private computer,
-conducting research that involves academic prose, analysis code,
-and (optionally) tabular data - but it is flexible enough to accommodate many
-other scenarios. The workflow (Figure 1) 
-constitutes a step-by-step procedure that researchers can follow to make a 
+
+This paper introduces the conceptual workflow (referred to in upper case, "WORCS"),
+and discusses its underlying principles and how it meets different standards for open science.
+The principles underlying this workflow are universal and largely platform independent.
+We also present a software implementation of WORCS for `R` users [@rcoreteamLanguageEnvironmentStatistical2020]:
+The `R` package `worcs` [referred to in monospace font, @worcspackage2020].
+This package offers a project template for RStudio
+[@rstudioteamRStudioIntegratedDevelopment2015],
+and several convenience functions to automate specific workflow steps.
+This paper is most relevant for scholars using R to
+conduct research that involves academic prose, analysis code,
+and tabular data.
+For other readers, it can serve as a primer on open science workflows,
+and provide a sensible starting point for a customized solution.
+
+The WORCS workflow constitutes a step-by-step procedure that researchers can follow to make a 
 research project open and reproducible.
+These steps are elaborated in greater detail below.
+See Figure \@ref(fig:workflow) for a flowchart that highlights important steps in different stages of the research process.
 WORCS is compatible with open science
 requirements already implemented by journals and institutions, and will help 
 fulfill them.
-It can also be used to produce work in accordance with best practices
-in the absence of top-down support or guidelines.
-Although the principles underlying this workflow are universal, WORCS has been
-implemented in `R` [@rcoreteamLanguageEnvironmentStatistical2020].
-The `worcs` package [@worcspackage2020] offers a project template for RStudio
-[@rstudioteamRStudioIntegratedDevelopment2015], which is, effectively,
-a "one click solution". This paper discusses the principles underlying WORCS,
-introduces the workflow, addresses how WORCS meets best practices for open science,
-and illustrates the use of the `worcs` package.
+It can also be used by individual authors to produce work in accordance with best practices
+in the absence of top-down support or guidelines (i.e., "grass roots" open science).
 
-```{r workflow, fig.cap="*Figure 1*: Schematic illustration of the WORCS procedure.", out.width="100%"}
+```{r workflow, fig.cap="Schematic illustration of important steps in different stages of the WORCS procedure.", out.width="100%"}
 knitr::include_graphics("workflow.png")
 #knitr::include_graphics("workflow_graph/workflow.svg")
 ```
 
-# Defining Open Science practices
+# Defining open science practices
 
-Although Open Science is advocated by many, it does not have a unitary definition
-[but see @tennantValuePropositionOpen2020].
-One of the most influential operationalisations
-of Open Science principles is known as the "TOP-guidelines" [@nosekPromotingOpenResearch2015a].
-These guidelines describe eight standards for open science: 1) Comprehensive
+Although open science is advocated by many,
+it does not have a unitary definition.
+Throughout this paper, we adhere to the definition of open science as
+"the practice of science in such a way that others can collaborate and contribute,
+where research data, lab notes and other research processes are freely available,
+under terms that enable reuse, redistribution and reproduction of the research and its underlying data and methods" [the [FOSTER Open Science Definition](https://www.fosteropenscience.eu/foster-taxonomy/open-science-definition), as discussed in @sonjabezjakOpenScienceTraining2018].
+In this context, the term "science" refers to all scholarly disciplines.
+We further define the term *reproducible*, as used in the WORCS acronym, as being able to re-perform "the same analysis with the same code using a different analyst" [@patilVisualToolDefining2019].
+
+The "TOP-guidelines" are one of the most influential concrete operationalisations 
+of general open science principles [@nosekPromotingOpenResearch2015a].
+These guidelines describe eight standards for open science,
+the first seven of which "account for reproducibility of the reported results
+based on the originating data, and for sharing sufficient information to conduct an independent 
+replication" [@nosekPromotingOpenResearch2015a].
+These guidelines are: 1) Comprehensive
 citation of literature, data, materials, and methods; 2) sharing data, 3)
 sharing the code required to reproduce analyses, 4) sharing new research
 materials, and 5) sharing details of the design and analysis; 6)
 pre-registration of studies before data collection, and 7) pre-registration of
-the analysis plan prior to analysis; and 8) replication of published results.
-WORCS defines the goals of open science in terms of these guidelines, and is
-designed to facilitate meeting each of these guidelines, with one exception: We
-do not address replication of published results, because replication relates to
-the subject of a research project, not to its organization or execution.
-We group the remaining seven guidelines into three categories: citation (1),
+the analysis plan prior to analysis.
+The eighth criterion is "not formally a transparency standard for authors", but "addresses 
+journal guidelines for consideration of independent replications for publication".
+In this context, 
+reproducibility can be defined as "re-performing the same analysis with the same code using a different analyst",
+and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
+WORCS defines the goals of open science in terms of the first seven TOP-guidelines,
+and the workflow and its `R` implementation are designed to facilitate compliance therewith.
+We group these guidelines into three categories: citation (1),
 sharing (2-5), and preregistration (6-7).
 
 ## Introducing the tools
 
-WORCS relies on several free, open source software solutions which we will
+WORCS relies solely on a set of free, open source software solutions which we will
 discuss before introducing the workflow. 
 
 ### Dynamic document generation
@@ -180,10 +210,18 @@ academics than most word processing software. It prevents mistakes, and saves
 time.
 
 In the `R` implementation of WORCS, we recommend centering a research project
-around one dynamically generated `RMarkdown` document, which includes all 
-analysis code. Longer scripts can be
-stored in `.R` files, and called from the main document using the `source()`
-function. When a reader or reviewer compiles this document, all code is run
+around one dynamically generated `RMarkdown` document [@xieMarkdownDefinitiveGuide2018].
+RMarkdown is based on [`Markdown`](https://en.wikipedia.org/wiki/Markdown),
+which uses plain-text commands to typeset a document.
+It enhances this format with support for R-code, and is compatible with [LaTeX](https://www.latex-project.org/) math typesetting.
+For a full overview of the functionality of `RMarkdown`, see @xieMarkdownDefinitiveGuide2018.
+
+The RMarkdown document can incorporate blocks of analysis code,
+which can be used to render results directly to [Tables](https://bookdown.org/yihui/rmarkdown-cookbook/kable.html) and [Figures](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/),
+which can be [dynamically referenced](https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html) in the text.
+Long scripts can be stored in `.R` files,
+and included in the main document using the [`read_chunk()`
+function](https://github.com/yihui/knitr-examples/blob/master/113-externalization.Rmd) from the `knitr` package, which comes together with the `rmarkdown` package. When a reader or reviewer compiles this document, all code is run
 automatically, thus verifying computational replicability. The `RMarkdown` 
 document can be automatically formatted in many styles, including
 APA style [thanks to the `R` package `papaja`, @austPapajaPrepareReproducible2020],
@@ -204,25 +242,48 @@ tracking changes in word processing software, or using cloud hosting services
 that retain backups of previous versions.
 
 An integral part of WORCS is the *explicit* version control software Git
-(www.git-scm.com). Git tracks
-changes to files, and stores these changes when the user makes a "commit" (a 
-snapshot of the version controlled files).
-Git retains a complete log of all commits, and users can compare changes between
-different commits, or go back to a previous version of the code (for example,
+(www.git-scm.com).
+A project version controlled with Git is called a "repository", or repo.
+Git tracks changes to files in the repository on a line-by-line basis.
+The user can store these changes by making a "commit": a 
+snapshot of the version controlled files.
+Each "commit" can contain as many changes as desired;
+for example, a whole new paragraph, or many small changes made to address a single reviewer comment.
+Each commit is further tagged with a message, describing the changes.
+The `R` implementation of `worcs` contains a convenience function,
+`git_update("your commit message")`,
+which creates a new commit for all changes since the previous commit,
+labels it with "your commit message", and pushes these changes to the remote repository.
+It is, effectively, a Git "quick save" command.
+
+From an open science perspective, Git is particularly appealing because it
+retains a complete historical backlog of all commits.
+This can be used, for example, to verify that authors executed the steps outlined in a preregistration.
+Users can also compare changes between different commits,
+or go back to a previous version of the code (for example,
 after making a mistake, or to replicate a previous version of the results).
-A project version controlled with Git is called a "Repository", or Repo.
 Git only version controls files explicitly committed by the user. Moreover, it
 is possible to prevent files from being version controlled - which is useful for
 privacy sensitive data.
 A `.gitignore` file lists files that should not be version-controlled.
-These files thus exist only on the user's private computer.
+These files thus exist only on the user's computer.
 
 The functionality of Git is enhanced by services such as GitHub
 (https://github.com). GitHub is best understood as a cloud storage service
 with social networking functionality. The cloud storage aspect
 of GitHub allows you to "clone" (copy) a local Git repository to
-the GitHub website, as a backup or research archive. The social network aspect
-comes into play when a repository on GitHub is set to "public": This allows 
+the GitHub website, as a backup or research archive.
+The GitHub platform offers additional functionality over Git. 
+One such feature is that specific stages in the lifecycle of a project
+can be [tagged as a "release"](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository):
+A named downloadable snapshot of a specific state of the project,
+that is prominently featured on the GitHub project page.
+The WORCS procedure encourages users to create releases to demarcate project milestones
+such as preregistration and submission to a journal.
+Releases are also useful to mark the submission of a revised manuscript, and publication.
+
+The social network aspect of GitHub
+comes into play when a repository is made "public": This allows 
 other researchers to peruse the repository and see how the work was done; clone
 it to their own computer to replicate the original work or apply the methods to
 their own data; open "Issues" to ask questions or give feedback on the project,
@@ -254,55 +315,72 @@ active community of developers contributing functionality and bugfixes.
 Potentially, any such update could change the results of the code, thus rendering
 the analysis computationally non-reproducible.
 
-Many solutions exist to ensure computational reproducibility, which differ in
-user-friendliness and effectiveness. 
-These solutions typically work by
-enveloping your research project in a distinct "environment" that only has access to programs that
-are explicitly installed, and maintaining a record of these programs.
-If strict reproducibility is required, users might choose to conduct all analyses in a "Docker container": An environment that behaves like a
+Many solutions exist to ensure computational reproducibility,
+which differ in user-friendliness and effectiveness.
+These solutions typically work by 
+enveloping your research project in a distinct "environment" that only has access to programs that are explicitly installed, and maintaining a record of these programs.
+When choosing an appropriate solution for dependency management, there is a tradeoff between ease-of-use on the one hand, and robustness on the other.
+In making this tradeoff, it is important to consider that all solutions have a limited shelf life
+[@brownHowLearnedStop2017].
+Therefore, the best approach might be to use a "good-enough" solution, and
+acknowledge that all code requires some maintenance if you want to
+reproduce it in the future.
+
+For dependency management, the `R` implementation of `worcs` relies on the recently released package `renv` [@usheyRenvProjectEnvironments2020].
+This package strikes a great balance between user-friendliness and robustness.
+Developed by the team behind RStudio, 
+`renv` maintains a text-based,
+human-readable log of all packages used, their version numbers, and where they
+were installed from (e.g., CRAN, Bioconductor, GitHub).
+This text-based log file can be version controlled with Git.
+When someone else loads your project,
+`renv` will install all of the required packages from this list.
+This lightweight approach safeguards reproducibility as long as these repositories maintain their archives.
+The `worcs` project template in RStudio automatically sets up `renv` for dependency management if the checkbox labeled "renv" is selected during project creation.
+
+All solutions to computational reproducibility require users to make their dependencies explicit, often by reinstalling all software for each project in a controlled environment.
+This can lead to long installation times and large memory requirements.
+Similarly, `renv` requires users to call `install.packages()` for each library used - but it does not reinstall packages for each new project.
+Instead, packages reside in a cache that is shared between all projects on the computer.
+If a project uses a package that is already in the cache, it is not reinstalled, but linked from the cache.
+This improves the user experience by saving time and memory.
+As opposed to alternative solutions, `renv` is tightly integrated with the
+native R package management system.
+It monitors the scripts in the project directory for `library()` calls,
+and notifies the user when it is necessary to update the dependencies file using the `snapshot()` function.
+Therefore, `renv` does not require the users to change their workflow of installing/removing and using packages, and requires little technical skill to setup.
+It is not a fail-safe method to ensure strict computational reproducibility,
+but it meets most reproducibility requirements using only tools
+native to `R` and RStudio.
+
+When a project is conducted in a different software environment than `R`,
+or if an R-project has external dependencies not tracked by `renv`,
+then users might choose to use [Docker](https://www.docker.com/) for dependency management.  
+Docker instantiates a "Docker container": An environment that behaves like a
 virtual computer, which can be stored like a time capsule, and
 identically reinstated on a user computer, or in the cloud.
-This is effective, and also preserves software outside the `R` environment (e.g.,
-preprocessing tools for neuroimaging data). A Docker-based workflow
-that is conceptually and practically compatible with WORCS
-was recently introduced by @peikertReproducibleDataAnalysis2019.
-However, it is somewhat difficult to set up for novice users. 
-The `R` package `repro`
-is currently in development to facilitate adoption [@repro]. 
-Another 
-user-friendly Docker-based workflow is offered by the cloud-based collaboration
-platform 'Code Ocean'. Although Code Ocean enjoys some popularity among 
-scientists, it is not clear whether this platform
-is GDPR compliant - as of this writing, its [terms of use](https://codeocean.com/terms-of-use) do not address the GDPR, nor is it clear where
-data are stored.
-The necessity to upload human participant data is a liability
-when using any
-cloud-computing solution for data analysis.
+Although the use of Docker falls outside of the scope of the present paper,
+for existing users, a Docker build running `worcs` and its dependencies is available.
+The [stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/docker.html)
+explains how to instantiate this build.
+For more information on this topic,
+@peikertReproducibleDataAnalysis2019 describe 
+a Docker-based workflow for computational reproducibility that is
+conceptually and practically compatible with WORCS.
 
-For analyses conducted entirely in `R`, the recently released package `renv`
-strikes a great balance between user-friendliness  and effectiveness. Developed by
-the team behind RStudio, this package simply maintains a text-based,
-human-readable log of all packages used, their version numbers, and where they
-were installed from (e.g., CRAN, Bioconductor, GitHub). As long as these
-repositories maintain their archives, this solution is reliable and very
-lightweight.
-The text-based log file can be version controlled with Git. `renv`
-installs the logged packages in a cache that is shared between all
-projects on the computer. Thus, if one of your projects uses a package that is
-already in the cache, it does not
-need to be installed again. This prevents long installation
-times, large space requirements, and frustration having to re-install software
-that is already installed on the system. When someone else loads your 
-project, `renv` will install all of the required packages onto a cache on their
-computer. 
-This is not a foolproof method to ensure strict computational reproducibility, but it is more user-friendly
-and lightweight than any alternative out there, requiring no technical skill to
-setup. When choosing an appropriate solution for dependency management, it is
-important to consider that all solutions have a limited shelf life
-[@brownHowLearnedStop2017].
-Ultimately, the best approach might be to use a "good-enough" solution, and
-acknowledge that all code requires some maintenance if you want to
-reproduce it in the future. For projects in `R`, `renv` meets these requirements.
+As Docker is somewhat challenging to set up for novice users,
+an `R` package is currently in development to facilitate Docker integration [`repro`, @repro].
+Another example of a Docker-based workflow is the cloud-based collaboration
+platform 'Code Ocean'.
+This platform greatly simplifies setting up a reproducible computing environment with version control and dependency management.
+A key feature is that collaborators can log in to the server session,
+rather than each having to set up Docker on a local computer.
+One important consideration when using any cloud-computing solution
+is the necessity to upload human participant data for analysis.
+Such a platform would need to comply with relevant laws and ethical requirements.
+For example, as of this writing, the [terms of use](https://codeocean.com/terms-of-use) for Code Ocean do not address the GDPR,
+nor is it clear where data are stored.
+This is a potential liability for European scholars.
 
 ## Text-based files are better
 
@@ -312,8 +390,6 @@ instead of binary files.
 Text-based files can be read by machines and humans alike.
 Binary files, such as Word (`.docx`) or SPSS (`.sav`, `.spo`) files,
 must be decoded first, often requiring commercial software.
-Git is designed for use with text-based files, as it
-logs changes to text-based files on a line-by-line basis.
 Although binary files can be version controlled with Git, 
 their change log is uninterpretable.
 Binary files are also often 
@@ -339,10 +415,19 @@ as a web page on GitHub.
 # Introducing the workflow 
 
 We provide a conceptual outline of the WORCS procedure below, based on WORCS
-Version 0.1.2. 
-For users of the `worcs` `R` package, we highly recommend referring to
+Version 0.1.6.
+The conceptual workflow recommends actions to take 
+in the different phases of a research project, in order to work openly and transparently
+in compliance with the TOP-guidelines and best practices for open science.
+Note that, although the steps are numbered for reference purposes,
+we acknowledge that the process of conducting research is not always linear.
+We refer users of the `worcs` implementation in `R` to
 [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html),
-which is more detailed and updated with future developments.
+which describes in more detail which steps are automated by the `R` package
+and which actions must be taken by the user.
+The vignette is also updated with future developments of the package.
+For examples of how the workflow is used in practice,
+we maintain [a list of public `worcs` projects](https://github.com/cjvanlissa/worcs/tree/master#adoption-of-worcs-by-users) on the WORCS GitHub page.
 
 ```{r results="asis", echo = FALSE, eval = TRUE}
 get_workflow <- function(filename = "../vignettes/workflow.Rmd"){
@@ -365,16 +450,21 @@ get_workflow()
 
 ## The R implementation of WORCS
 
-The `R` package `worcs` automates much of the workflow
-for `R` users.
-Several arguments support the choice to implement this workflow in `R`.
+WORCS is, first and foremost, a conceptual workflow that could be implemented in any software environment.
+As of this writing, the workflow has been implemented for `R` users in the package `worcs` [@worcspackage2020].
+Several arguments support our choice to implement this workflow first in `R` and RStudio,
+although we encourage developers to port the software to other languages.
 First, `R` and all of it extensions are free open source software, which
 make it a tool of choice for open science.
 Second, all tools required for an open science workflow are implemented in `R`,
 most of these tools are directly accessible through the RStudio user interface,
 and some of them are actively developed by the team behind RStudio.
-Third, `R` is the second-most cited statistical software package [@muenchenPopularityDataScience2012], following SPSS, which has no support for any of the open science tools discussed in this paper.
-Fourth, `R` is well-supported by
+Third, RStudio is a Public Benefit Corporation, whose commitment to open science is codified in the company charter:
+
+> RStudio’s primary purpose is to create free and open-source software for data science, scientific research, and technical communication. This allows anyone with access to a computer to participate freely in a global economy that rewards data literacy; enhances the production and consumption of knowledge; and facilitates collaboration and reproducible research in science, education and industry.
+
+Fourth, `R` is the second-most cited statistical software package [@muenchenPopularityDataScience2012], following SPSS, which has no support for any of the open science tools discussed in this paper.
+Fifth, `R` is well-supported by
 a vibrant and inclusive online community,
 which develops new methods and packages,
 and provides support and tutorials for existing ones.
@@ -405,7 +495,9 @@ you have to install the required software.
 This 30 minute procedure is documented
 in [the setup vignette](https://cjvanlissa.github.io/worcs/articles/setup.html).
 After setting up your system, you can use `worcs` for all of your
-projects. The `R` implementation of the workflow introduced earlier is detailed,
+projects.
+Alternatively, Docker users can follow [the stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/docker.html).
+The `R` implementation of the workflow introduced earlier is detailed,
 step-by-step, in
 [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html).
 
@@ -465,7 +557,7 @@ Moreover, preprint servers ensure that the online version will have a persistent
 
 ## Implementation in worcs
 
-The `worcs` package includes a [vignette on citation](https://cjvanlissa.github.io/worcs/articles/citing.html) to explain the
+The `worcs` package includes a [vignette on citation](https://cjvanlissa.github.io/worcs/articles/citation.html) to explain the
 fundamentals for novice users, and offer recommendations specific to `worcs`. We
 recommend using the free, open-source reference manager
 [Zotero](https://www.zotero.org/download/); it is feature-rich, 
@@ -497,46 +589,55 @@ analysis. Computational reproducibility means that a third party can exactly
 recreate the results from the original data, using the published analysis code.
 Secondary analysis means that a third party can conduct sensitivity analyses,
 explore alternative explanations, or even use existing data to answer a
-different research question. From an open science perspective, data sharing is
+different research question. 
+If it is possible to share the data, these can simply be pushed to a Git remote
+repository, along with documentation (such as a codebook) and the analysis code.
+This way, others can download the
+entire repository and reproduce the analyses from start to finish. 
+From an open science perspective, data sharing is
 always desirable. From a practical point of view, it is not always possible.
-Data sharing may be impeded by lack of storage space, legal constraints, ethical restrictions, absence
-of informed consent for data sharing, or privacy concerns. For example, one
-concern that applies when working with human participant data, is
-pseudonimization. 
+
+Data sharing may be impeded by several concerns.
+One technical concern is whether data require special storage provisions,
+as is often the case with "big data".
+Most Git remote repositories do not support files larger than 100MB,
+but it is possible to enhance a Git repository with [Git Large File Storage](https://git-lfs.github.com/) to add remotely stored files as large as several GB.
+Files exceeding this size require custom solutions beyond the scope of this paper.
+
+Sharing human participant data additionally entails legal and ethical concerns.
+Before sharing any
+human participant data, it is recommended to obtain approval from qualified
+ethical and legal advisory organs, guidance from Research Data Management Support, and
+informed consent from participants.
 Many legislatures require researchers to 'de-identify' human subject data upon collection, by removing or deleting any sensitive personal information and
 contact details. However, when researchers have an imperfect understanding of the
 legal obligations and dispensations, they can end up over- or undersharing, and
 risk either placing participants at risk of being identified, or undermine the
 replicability of their own work and potential reuse value of their data [@phillipsDiscombobulationDeidentification2016].
-
-Once data are de-identified or pseudononimized, they can often be shared if participants have
-provided informed consent to that effect. Nevertheles, it is important to note
+Furthermore, it is important to note
 that the European GDPR prohibits storing 'personal data' (information which can
 identify a natural person whether directly or indirectly) on a server outside
 the EU, unless it offers an "adequate level of protection". Although different
 rules may apply to pseudonimized data, there are many repositories that are
 GDPR compliant, such as the European servers of the Open Science Framework.
 Different Universities, countries, and funding bodies also have their own
-repositories that are complient with local legistation. Before sharing any
-human participant data, it is recommended to obtain approval from an internal
-(ethical) review board, guidance from Research Data Management Support, and
-informed consent from participants.
+repositories that are complient with local legistation.
+In sum, data should only be shared after consult qualified legal and ethical advisory organs,
+obtaining informed consent from participants,
+and de-identifying or pseudononimizing data.
 
-If data can be shared openly, they can simply be pushed to a public Git
-repository, along with the analysis code. This way, others can download the
-entire repository and reproduce the analyses from start to finish. 
 If data cannot be shared, researchers should aim to safeguard the potential for
 computational reproducibility and secondary analysis as much as possible. WORCS
 recommends two solutions to accomplish this goal.
 The first solution is to publish a *checksum* of the original data file [@rivest1992md5].
-Think of a checksum as a 32-character summary, or as a "one word" description,
-of the contents of a file.
-Any change to the file will result in a different checksum^[It is theoretically possible but improbable that random changes to a file will result in the same checksum.]. 
+Think of a checksum as a 32-character unique identifier^[It is theoretically possible but improbable that random changes to a file will result in the same checksum.],
+or as a lossy "summary" of the contents of a file.
+Any change to the file will result in a different checksum. 
 Thus, one can use a checksum to verify the identity of a file, and ensure that its contents are unchanged.
 When data cannot be shared, the risk of fraud or abuse can be mitigated by publishing a checksum for the original data, in addition to the complete analysis code.
 Using the checksum to verify the identity of a private dataset, researchers can prove to an independent auditor that running the public analysis code on the private data results in the published results of their work.
 
-The second solution is to share a synthetic dataset with similar characteristics
+A second solution is to share a synthetic dataset with similar characteristics
 to the real data. Synthetic data mimic the level of measurement and
 (conditional) distributions of the real data
 [see @nowokSynthpopBespokeCreation2016]. Sharing synthetic data allows any third
@@ -549,13 +650,31 @@ Still, sharing synthetic data facilitates data requests from third parties. A
 third party can write analysis code based on the synthetic data, and send it to
 the authors who evaluate it on the real data and send back the results. The
 `worcs` package offers a simple but flexible function to generate synthetic data,
-`synthetic()`, which by default uses random forests to generate a model for
-synthesis (see @wrightRangerFastImplementation2015). For data synthesis to work
+`synthetic()`.
+This function is based on the work by @nowokSynthpopBespokeCreation2016 (see the `R` package `synthpop`),
+but with a simpler and more flexible user interface.
+Specifically, the `worcs` function `synthetic()` accepts any function that can be used to model
+marginal associations in the data.
+By default, this function uses random forests, as implemented in the `ranger` package, to generate a model for synthesis [@wrightRangerFastImplementation2015].
+Note that the `ranger()` function does not handle all available data types in `R`.
+Users can call custom functions to build a prediction model for unsupported data types, using the argument `model_expression`.
+For further details, see the [function documentation](https://cjvanlissa.github.io/worcs/reference/synthetic.html).
+
+Note that for data synthesis to work
 properly, it is essential that the `class` (data type) of variables is defined
 correctly. As of `worcs` version `r worcs:::cran_version()`, numeric, integer, factor, and logical data
-are supported out of the box. Other types of variables should be converted to
-one of these types, or users can use a custom `model_expression` when calling
-`synthetic`.
+are supported out of the box. 
+Other types of variables should be converted to one of these types.
+It is important to consider this when using special data types,
+such as the labeled vectors created by the `haven` package when reading an SPSS file.
+We further caution that the default random forests algorithm is computationally intensive,
+and may be unfeasible for use with "large" datasets.
+Users can provide use a custom `model_expression` and `predict_expression`
+to use a different algorithm when calling `synthetic()`.
+For example, users could use `lm()` as a `model_expression` to use linear regression,
+which preserves linear marginal relationships but can give rise to values out of range of the original data.
+Or users could call `sample()` as a `predict_expression` to bootstrap each variable,
+a very quick solution that maintains univariate distributions but loses all marginal relationships.
 
 ### Processing data in WORCS
 
@@ -598,7 +717,7 @@ to proceed with closed data and make the data open once all doubt is assuaged.
 
 In `worcs`, researchers can call the function `open_data(data)` to make the data
 publicly available. This function stores the `data` object (such as a `data.frame` or
-`matrix`) in a tabular data file (called `data.csv` by default).
+`matrix`) in a tabular data file.
 It also generates an
 accompanying codebook - 
 a human-readable document that serves as a legend for the tabular data file -
@@ -619,8 +738,8 @@ accidentally added to the Git repository.
 The function also computes a checksum for the original data, and logs it in the
 `.worcs` project file. This checksum serves as the indelible record of the state 
 of the raw data.
-The function `closed_data()` also creates a synthetic dataset (called
-`synthetic_data.csv` by default).
+The function `closed_data()` also calls the aforementioned `synthetic()` function to
+create a synthetic dataset.
 The user should push all changed files to the remote repository.
 Once the remote repository is made public, people will have access to a
 checksum for the original data that exist on your local machine, a codebook
@@ -696,7 +815,7 @@ secure online archive." Two such archives are well-known in the social sciences:
 However, Git cloud hosting services also conform to these standards.
 Thus, it is possible to preregister a study simply by committing a preregistration document
 to the local Git repository, and pushing it to the remote repository.
-Subsequently [taging the release](https://help.github.com/en/github/administering-a-repository/creating-releases)
+Subsequently [taging the release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository)
 as "Preregistration" on the remote repository renders it distinct from all other commits,
 and easily findable by people and programs.
 This approach is simple, quick, and robust.
@@ -782,39 +901,58 @@ these preregistration templates can be selected, which will generate a file
 called `preregistration.Rmd`. This file should be used to document study plans,
 ideally prior to data collection. 
 Within the workflow, the Git cloud hosting services can be used to preregister a study simply by pushing a text document with the study plans to a Git remote repository.
-By [tagging the commit](https://help.github.com/en/github/administering-a-repository/creating-releases) as a preregistration
-(see [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html)),
+By [tagging the commit](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) as a preregistration
+(see [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html)),
 it is distinct from all other commits, and easily findable by people and machines.
 
 ## Compatibility with other standards for open science
 
-WORCS was designed to meet the TOP-guidelines, and it does so in a way that
-is compatible with other open science principles. Most notably, WORCS is 
-amenable to the
-FAIR Guiding Principles for scientific data management and stewardship [@wilkinsonFAIRGuidingPrinciples2016a]. These principles advocate that digital research objects should be Findable, Accessible, Interoperable and Reusable. Initially mainly promoted as principles for data, they are increasingly applied as a standard for other types of research output as well,
+Aside from the TOP Guidelines, the FAIR Guiding Principles for scientific data management and stewardship [@wilkinsonFAIRGuidingPrinciples2016a] are an important standard for open science.
+These principles advocate that digital research objects should be Findable, Accessible, Interoperable and Reusable.
+Initially mainly promoted as principles for data, they are increasingly applied as a standard for other types of research output as well,
 most notably software [@lamprechtFAIRPrinciplesResearch2019].
 
-WORCS helps users meet the FAIR principles by making all created research objects -
-including data and code - accessible in a repository that can be made public. 
-The `worcs` package additionally
-facilitates meeting the FAIR principles in several ways. First, each `worcs`
-project has a YAML file (https://yaml.org/) that lists the research objects in
-the project, which will allow web crawlers 
-to index `worcs` projects. Second, a codebook is automatically generated for
-each data file stored
-using `open_data()` or `closed_data()`. We encourage users to elaborate on the
-default codebook by adding
-variable description and categories, which would - in the future - enable
-indexing data by topic area. 
+WORCS was not designed to comprehensively address these principles, but the workflow does facilitate meeting them.
+In terms of Findability, all files in GitHub projects are searchable by content and meta-data, both on the platform and through standard search engines.
+The workflow further recommends that users create a project page on the Open Science Framework – a recognized repository in the social sciences.
+When doing so, it is important to generate a Digital Object Identifier (DOI) for this project.
+A DOI is a persistent way to identify and connect to an object on the internet, which is crucial for findability.
+Additional DOIs can be generated through the OSF for specific resources, such as data sets.
+It is further worth noting that, optionally, [GitHub repositories can be connected to Zenodo](https://guides.github.com/activities/citable-code/):
+On Zenodo, users can store a snapshot of the repository, provide metadata, and generate a DOI for the project or specific resources.
+When a project is connected to the OSF, as recommended, these steps may be redundant.
+Finally, each worcs project has a [YAML file] (https://yaml.org/) that lists the data objects (and other meta-data) in the project, which will allow web crawlers to index worcs projects.
+We use this metadata, for example, to identify public `worcs` projects on GitHub.
 
-Incidentally, `worcs` itself follows the recommendations for [FAIR research software](https://fair-software.eu/). It is 
+Accessibility is primarily safeguarded by hosting all project files in a public GitHub repository, which can be downloaded as a ZIP archive, and cloned or forked using the Git protocol. [GitHub is committed to long term accessibility of these resources]( https://archiveprogram.github.com/). We further encourage users to make their data accessible when possible.
+When data must be closed, the `worcs` function `closed_data()` adds a paragraph to the project readme, indicating how readers can contact the author for access.
+
+With regard to interoperability, the workflow recommends using plain-text files whenever possible, which ensures that code and meta-data are human- and machine-readable.
+Furthermore, the `worcs` package is implemented in R, which is open source.
+To promote reusability, we recommend users to specify an appropriate license for their projects.
+The `worcs` package includes the [Creative Commons (CC) licenses](https://creativecommons.org/licenses/), and suggests a CC-BY 4.0 license by default.
+This license is featured in the GitHub repository, and we encourage users to also display it on their project’s OSF page.
+Note that it is possible to license specific project resources separately under different licenses.
+For instance, whereas the CC-licenses are suitable for data, media, and academic papers - they are ill-suited for licensing software.
+It is thus prudent to consider separately licensing specific project resources,
+particularly when a project contains *original* source code (i.e., you write your own functions).
+For a more extensive discussion of appropriate licensing, see @peikertReproducibleDataAnalysis2019, @stoddenEnhancingReproducibilityComputational2016, and the website [choosealicense.com](https://choosealicense.com/).
+
+To further facilitate reusability, `worcs` automatically generates a codebook for
+each data file.
+We encourage users to elaborate on the default codebook by adding
+variable description and categories, which would - in the future - enable
+indexing data by topic area.
+
+Incidentally, the FAIR principles have been applied to software as well,
+and `worcs` follows these recommendations for [FAIR research software](https://fair-software.eu/). It is 
 hosted on a version controlled public remote repository GitHub, has an open
 source licence (GPL v3.0), is registered in a community registry (CRAN),
 enables the citation of the software (using the `citation("worcs")` command, or
 by citing this paper), and followed the [*CII Best Practices*](https://bestpractices.coreinfrastructure.org/en)
 software quality checklist during development.
 
-Sharing all research objects, as advocated in WORCS, also provides a proper
+Sharing all research objects, as advocated in WORCS, also provides a thorough
 basis for research evaluation
 according to the San Francisco Declaration on Research Assessment (DORA;
 https://sfdora.org/), which plays an increasing role in grant funding, hiring, 
@@ -861,21 +999,22 @@ based on a semi-automated scoring of the checklist items, by calling the functio
 
 A different class of solutions instead focuses on the practical issue of *how*
 researchers can meet the requirements of open science.
-One notable example is the workflow for
-reproducible analyses developed by @peikertReproducibleDataAnalysis2019. This 
-workflow strives to ensure strict computational reproducibility for
-even the most sophisticated analyses. It has some limitations, however: In
-focusing on reproducibility, it only addresses TOP-guidelines 2, 3, and
-5. Moreover, in aiming for strict computational reproducibility it ends up being
-relatively complex to implement. WORCS builds upon the same general principles
-as Peikert and Brandmaier,
-which means the two workflows are compatible. What 
-sets WORCS apart is that is an easy and sufficient solution for projects that
-can be conducted entirely within `R`, resulting in a much more lightweight
-approach to safeguard computational reproducibility under *most circumstances*.
-WORCS also addresses a unique issue not covered by other existing solutions,
-namely to provide a workflow most conducive to satisfying the TOP-guidelines and
-FAIR principles, while being compatible with existing requirements.
+A notable example is the workflow for reproducible analyses developed by @peikertReproducibleDataAnalysis2019,
+which uses Docker to ensure strict computational reproducibility for
+even the most sophisticated analyses.
+There are some decisive differences with WORCS.
+First, concerning the scope of the workflow: 
+WORCS is designed to address a unique issue not covered by other existing solutions,
+namely, to provide a workflow most conducive to satisfying TOP-guidelines 1-7 while adhering to the FAIR principles.
+Peikert and Brandmaier instead focus primarily on computational reproducibility,
+which is relevant for TOP-guidelines 2, 3, and 5.
+Second, with regard to ease of use,
+WORCS aims to bring down the learning curve by adopting sensible defaults for any decisions to be made.
+Peikert and Brandmaier, by contrast, designed their workflow to be very flexible and comprehensive,
+thus requiring substantially more background knowledge and technical sophistication from users.
+To sum up, WORCS builds upon the same general principles
+as Peikert and Brandmaier, and the two workflows are compatible. What sets WORCS apart is that it is more lightweight in terms of system and user requirements,
+thereby facilitating adoption, but still ensures computational reproducibility under *most circumstances*.
 
 One initiative that WORCS is fully compatible with, is the [*Scientific Paper of
 the Future*](https://www.scientificpaperofthefuture.org/). This organization encourages
@@ -899,6 +1038,19 @@ projects organized, prevents accidental loss of work, enables integrating
 changes by collaborators in a non-destructive manner, and ensures that entire
 research projects are archived and can be accessed or copied by third parties.
 Thus, the time investment is eminently worthwhile.
+
+Another limitation is the fact that no single workflow can suit all research projects.
+Not all projects conform to the steps outlined here;
+some may skip steps, add steps, or follow similar steps in a different order.
+In principle, WORCS does not enforce a linear order, and allows extentensive user flexibility.
+A related concern is that some projects might require specialized solutions outside of the scope of this paper.
+For example, some projects might use very large data files,
+rely on data that reside on a protected server,
+or use proprietary software dependencies that cannot be version controlled using `renv` or Docker.
+In such cases, the workflow can serve as a starting point for a custom approach;
+offering a primer on best practices, and a discussion of relevant factors to consider.
+We urge users to inform us of such challenges and custom solutions,
+so that we may add them to the [overview of WORCS-projects on GitHub](https://github.com/cjvanlissa/worcs), where they can serve as an example to others.
 
 Another important challenge is managing collaborations when only the lead author
 uses RMarkdown, and the coauthors use Word. In this case, it is possible to Knit
@@ -953,15 +1105,23 @@ possible to invite such collaboration by
 for tasks that still need to be accomplished, and tag known collaborators to
 address them, or invite external collaborators to contribute their expertise. 
 
+A final limitation is that, as WORCS is relatively new,
+the number of current users is still limited.
+We therefore do not have elaborate insights in user experiences or feedback.
+We strive to make the uptake of worcs as easy as possible,
+by means of this background paper, extensive documentation and vignettes for the `R` implementation,
+[online video tutorials](https://www.youtube.com/playlist?list=PLOQIOFZl7uYbTgVdUee9n3eebMNmJtV9y),
+webinars and [exemplar use cases](https://github.com/cjvanlissa/worcs/tree/master#adoption-of-worcs-by-users).
+We encourage our users to provide us with feedback, feature requests, or bug reports through the channels [indicated here](https://github.com/cjvanlissa/worcs/tree/master#contributing-and-contact-information). 
+
 ## Future developments
 
 WORCS provides a user-friendly and
 lightweight workflow for open, reproducible research, that meets all
-TOP-guidelines, except replication.
+TOP-guidelines pertaining to reproducibility (1-7).
 Nevertheless, there are clear directions for future developments.
 Firstly, although the workflow is currently implemented only in `R`, it is 
-conceptually relevant for users of other statistical programming languages, most
-notably `Python` [@10.5555/1593511].
+conceptually relevant for users of other statistical programming languages, and we welcome efforts to implement WORCS in other platforms.
 We welcome efforts to implement WORCS in other platforms.
 Secondly, even when a project is in `R`, it may have dependencies outside of the
 `R` environment that cannot be managed using `renv`.
@@ -978,6 +1138,6 @@ by @peikertReproducibleDataAnalysis2019.
 
 WORCS offers a workflow for open reproducible code in science. The step-by-step procedure outlined in this tutorial helps researchers make an entire research project Open and Reproducible. The accompanying `R` package provides user-friendly support functions for several steps in the workflow, and an RStudio project template to get the project set up correctly.
 
-WORCS encourages and simplifies the adoption of Open Science principles in daily scientific work. It helps researchers make all research output created throughout the scientific process - not just manuscripts, but data, code, and methods - open and publicly assessible. This enables other researchers to reproduce results, and facilitates cumulative science by allowing others to make direct use of these research objects.
+WORCS encourages and simplifies the adoption of open science principles in daily scientific work. It helps researchers make all research output created throughout the scientific process - not just manuscripts, but data, code, and methods - open and publicly assessible. This enables other researchers to reproduce results, and facilitates cumulative science by allowing others to make direct use of these research objects.
 
 # References

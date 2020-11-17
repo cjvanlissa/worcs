@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>worcs 0.1.2 • worcs</title>
+<title>worcs 0.1.6 • worcs</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="worcs 0.1.2" />
+<meta property="og:title" content="worcs 0.1.6" />
 
 
 
@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.2</span>
       </span>
     </div>
 
@@ -100,10 +100,13 @@
       <a href="articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
     </li>
     <li>
+      <a href="articles/setup-docker.html">Setting up your computer for WORCS - Docker-edition</a>
+    </li>
+    <li>
       <a href="articles/setup.html">Setting up your computer for WORCS</a>
     </li>
     <li>
-      <a href="articles/workflow.html">The WORCS workflow, version 0.1.2</a>
+      <a href="articles/workflow.html">The WORCS workflow, version 0.1.5</a>
     </li>
   </ul>
 </li>
@@ -131,12 +134,50 @@
 <div class="row">
   <div class="contents col-md-9">
     <div class="page-header">
-      <h1>worcs 0.1.2</h1>
+      <h1>worcs 0.1.6</h1>
     </div>
 
 
-<div id="worcs-012" class="section level1">
+<div id="worcs-016" class="section level1">
 
+<ul>
+<li>synthetic() now allows ‘y’ to be referenced in ‘predict_expression’ when ‘model_expression’ is set to NULL, thereby enabling bootstrapping.</li>
+<li>closed_data() now passes formal arguments of synthetic() contained in ‘…’ on to synthetic.</li>
+</ul>
+</div>
+<div id="worcs-015" class="section level1">
+<h1 class="hasAnchor">
+<a href="#worcs-015" class="anchor"></a>worcs 0.1.5</h1>
+<ul>
+<li>Necessary update due to breaking changes in dependency from the <code>gert</code> package</li>
+<li>Add function add_preregistration() to add a preregistration at a later stage</li>
+<li>Add preregistration templates “PSS” and “Secondary”</li>
+</ul>
+</div>
+<div id="worcs-014" class="section level1">
+<h1 class="hasAnchor">
+<a href="#worcs-014" class="anchor"></a>worcs 0.1.4</h1>
+<ul>
+<li>Fixed bugs in handling of filenames by open_data() and closed_data() codebook.Rmd from the name of the object supplied to the ‘data’ argument</li>
+<li>By default, open_data() and closed_data() now construct the filenames of the .csv and codebook.Rmd from the name of the object supplied to the ‘data’ argument. This also means that the object will be loaded with the same name by load_data().</li>
+<li>Add function add_manuscript() to add a manuscript at a later stage</li>
+<li>Major bugfixes in worcs_badge(); this function did not work as intended. Fixed now</li>
+</ul>
+</div>
+<div id="worcs-013" class="section level1">
+<h1 class="hasAnchor">
+<a href="#worcs-013" class="anchor"></a>worcs 0.1.3</h1>
+<ul>
+<li>Minor bugfixes</li>
+<li>descriptives() now returns mean() instead of sd()</li>
+<li>descriptives() now returns both n and missing</li>
+<li>README.md did now correctly shows .Rproj file</li>
+<li>rticles now declared as import</li>
+</ul>
+</div>
+<div id="worcs-012" class="section level1">
+<h1 class="hasAnchor">
+<a href="#worcs-012" class="anchor"></a>worcs 0.1.2</h1>
 <ul>
 <li>All documentation updated to ensure compatibility with the submitted version of the WORCS-paper.</li>
 <li>Authors and references to WORCS-paper updated to include all co-authors.</li>
@@ -175,7 +216,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

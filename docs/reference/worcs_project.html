@@ -74,7 +74,7 @@ create a WORCS project through syntax or the console." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.2</span>
       </span>
     </div>
 
@@ -103,10 +103,13 @@ create a WORCS project through syntax or the console." />
       <a href="../articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
     </li>
     <li>
+      <a href="../articles/setup-docker.html">Setting up your computer for WORCS - Docker-edition</a>
+    </li>
+    <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
     </li>
     <li>
-      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.2</a>
+      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.5</a>
     </li>
   </ul>
 </li>
@@ -145,16 +148,16 @@ the 'RStudio' project template manager, but can also be called directly to
 create a WORCS project through syntax or the console.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>worcs_project</span>(
-  <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"worcs_project"</span>,
-  <span class='kw'>manuscript</span> <span class='kw'>=</span> <span class='st'>"APA6"</span>,
-  <span class='kw'>preregistration</span> <span class='kw'>=</span> <span class='st'>"COS"</span>,
-  <span class='kw'>add_license</span> <span class='kw'>=</span> <span class='st'>"CC_BY_4.0"</span>,
-  <span class='kw'>use_renv</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>remote_repo</span> <span class='kw'>=</span> <span class='st'>"https"</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>worcs_project</span><span class='op'>(</span>
+  path <span class='op'>=</span> <span class='st'>"worcs_project"</span>,
+  manuscript <span class='op'>=</span> <span class='st'>"APA6"</span>,
+  preregistration <span class='op'>=</span> <span class='st'>"COS"</span>,
+  add_license <span class='op'>=</span> <span class='st'>"CC_BY_4.0"</span>,
+  use_renv <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  remote_repo <span class='op'>=</span> <span class='st'>"https"</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,18 +177,14 @@ create a WORCS project through syntax or the console.</p>
 "mdpi_article", "mnras_article", "oup_article", "peerj_article",
 "plos_article", "pnas_article", "rjournal_article", "rsos_article",
 "sage_article", "sim_article", "springer_article", "tf_article"</code>.
-For more information about <code>APA6</code>, see the 'papaja' package, at
-&lt;https://github.com/crsh/papaja&gt;.
-For more information about <code>github_document</code>, see
-<code><a href='https://rdrr.io/pkg/rmarkdown/man/github_document.html'>github_document</a></code>. The remaining formats are
-documented in the 'rticles' package.</p></td>
+For more information, see <code><a href='add_manuscript.html'>add_manuscript</a></code>.</p></td>
     </tr>
     <tr>
       <th>preregistration</th>
       <td><p>Character, indicating what template to use for the
 preregistration. Default: 'COS'. Available choices include:
-<code>"COS", "VantVeer", "Brandt", "AsPredicted", "None"</code>. For more
-information, see, e.g., <code><a href='https://rdrr.io/pkg/prereg/man/cos_prereg.html'>cos_prereg</a></code>.</p></td>
+<code>"COS", "VantVeer", "Brandt", "AsPredicted", "PSS", "Secondary",
+"None"</code>. For more information, see <code><a href='add_preregistration.html'>add_preregistration</a></code>.</p></td>
     </tr>
     <tr>
       <th>add_license</th>
@@ -225,21 +224,24 @@ during project creation. Default: TRUE</p></td>
     <p>No return value. This function is called for its side effects.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>the_test</span> <span class='kw'>&lt;-</span> <span class='st'>"worcs_template"</span>
-<span class='no'>old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span>(<span class='no'>git_user</span>, <span class='kw pkg'>worcs</span><span class='kw ns'>:::</span><span class='fu'>get_user</span>())</div><div class='output co'>#&gt; <span class='message'>To set the 'Git' username and email, call 'git_user()' with the argument 'overwrite = TRUE'.</span></div><div class='input'><span class='fu'>worcs_project</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>, <span class='st'>"worcs_project"</span>),
-              <span class='kw'>manuscript</span> <span class='kw'>=</span> <span class='st'>"github_document"</span>,
-              <span class='kw'>preregistration</span> <span class='kw'>=</span> <span class='st'>"None"</span>,
-              <span class='kw'>add_license</span> <span class='kw'>=</span> <span class='st'>"None"</span>,
-              <span class='kw'>use_renv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-              <span class='kw'>remote_repo</span> <span class='kw'>=</span> <span class='st'>"https"</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Initializing 'Git' repository.</span><span>
+    <pre class="examples"><div class='input'><span class='va'>the_test</span> <span class='op'>&lt;-</span> <span class='st'>"worcs_template"</span>
+<span class='va'>old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>the_test</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>git_user</span>, <span class='fu'>worcs</span><span class='fu'>:::</span><span class='fu'>get_user</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>To set the 'Git' username and email, call 'git_user()' with the argument 'overwrite = TRUE'.</span></div><div class='input'><span class='fu'>worcs_project</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>the_test</span>, <span class='st'>"worcs_project"</span><span class='op'>)</span>,
+              manuscript <span class='op'>=</span> <span class='st'>"github_document"</span>,
+              preregistration <span class='op'>=</span> <span class='st'>"None"</span>,
+              add_license <span class='op'>=</span> <span class='st'>"None"</span>,
+              use_renv <span class='op'>=</span> <span class='cn'>FALSE</span>,
+              remote_repo <span class='op'>=</span> <span class='st'>"https"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Initializing 'Git' repository.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Writing '.worcs' file.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Copying standard files.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Creating manuscript files.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Creating first commit (committing README.md).</span><span>
-#&gt; </span><span style='color: #BB0000;'>X  </span><span style='color: #000000;'>No valid 'GitHub' address provided. You are working with a local 'Git' repository only.</span><span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>old_wd</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>the_test</span>))</div></span></pre>
+#&gt; </span><span style='color: #BB0000;'>X  </span><span style='color: #000000;'>No valid 'GitHub' address provided. You are working with a local 'Git' repository only.</span><span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>old_wd</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>the_test</span><span class='op'>)</span><span class='op'>)</span>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -255,7 +257,7 @@ during project creation. Default: TRUE</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

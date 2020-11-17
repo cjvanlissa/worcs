@@ -80,7 +80,7 @@ removing the file extension, and, when applicable, the prefix
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6.2</span>
       </span>
     </div>
 
@@ -109,10 +109,13 @@ removing the file extension, and, when applicable, the prefix
       <a href="../articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
     </li>
     <li>
+      <a href="../articles/setup-docker.html">Setting up your computer for WORCS - Docker-edition</a>
+    </li>
+    <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
     </li>
     <li>
-      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.2</a>
+      <a href="../articles/workflow.html">The WORCS workflow, version 0.1.5</a>
     </li>
   </ul>
 </li>
@@ -157,7 +160,12 @@ removing the file extension, and, when applicable, the prefix
 <code>"synthetic_data.csv"</code> will be loaded into an object called <code>data</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>load_data</span>(<span class='kw'>worcs_directory</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>to_envir</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(<span class='fl'>1</span>))</pre>
+    <pre class="usage"><span class='fu'>load_data</span><span class='op'>(</span>
+  worcs_directory <span class='op'>=</span> <span class='st'>"."</span>,
+  to_envir <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,6 +192,11 @@ happens.</p></td>
 value <code><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame(1)</a></code> refers to the global environment in an
 interactive session.</p></td>
     </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Logical. Whether or not to print status messages to
+the console. Default: TRUE</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -194,31 +207,402 @@ empty, and the loaded data files are attached directly to the global
 environment.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>test_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"loaddata"</span>)
-<span class='no'>old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='no'>test_dir</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>test_dir</span>)
-<span class='kw pkg'>worcs</span><span class='kw ns'>:::</span><span class='fu'>write_worcsfile</span>(<span class='st'>".worcs"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(<span class='fu'><a href='closed_data.html'>closed_data</a></span>(<span class='no'>iris</span>[<span class='fl'>1</span>:<span class='fl'>5</span>, ], <span class='kw'>codebook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>))</div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing original data in 'data.csv' and updating the checksum in '.worcs'.</span><span>
+    <pre class="examples"><div class='input'><span class='va'>test_dir</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"loaddata"</span><span class='op'>)</span>
+<span class='va'>old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='va'>test_dir</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>test_dir</span><span class='op'>)</span>
+<span class='fu'>worcs</span><span class='fu'>:::</span><span class='fu'>write_worcsfile</span><span class='op'>(</span><span class='st'>".worcs"</span><span class='op'>)</span>
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span><span class='op'>(</span><span class='fu'><a href='closed_data.html'>closed_data</a></span><span class='op'>(</span><span class='va'>df</span>, codebook <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span><span>
 #&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Generating synthetic data for public use. Ensure that no identifying information is included.</span><span>
-#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing synthetic data in 'synthetic_data.csv' and updating the checksum in '.worcs'.</span><span>
-#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating '.gitignore'.</span><span></div><div class='input'><span class='fu'>load_data</span>()</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Loading original data from 'data.csv'.</span><span></div><div class='input'><span class='no'>data</span></div><div class='output co'>#&gt; This is the original data set. The first 6 rows are:
-#&gt; 
-#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-#&gt; 1          5.1         3.5          1.4         0.2  setosa
-#&gt; 2          4.9         3.0          1.4         0.2  setosa
-#&gt; 3          4.7         3.2          1.3         0.2  setosa
-#&gt; 4          4.6         3.1          1.5         0.2  setosa
-#&gt; 5          5.0         3.6          1.4         0.2  setosa</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='st'>"data"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.remove</a></span>(<span class='st'>"data.csv"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>load_data</span>()</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Loading synthetic data from 'synthetic_data.csv'.</span><span></div><div class='input'><span class='no'>data</span></div><div class='output co'>#&gt; This is a synthetic data set. The first 6 rows are:
-#&gt; 
-#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-#&gt; 1          5.0      3.2788      1.39968         0.2  setosa
-#&gt; 2          4.9      3.2788      1.39968         0.2  setosa
-#&gt; 3          4.6      3.2788      1.39968         0.2  setosa
-#&gt; 4          4.9      3.2788      1.39968         0.2  setosa
-#&gt; 5          4.7      3.2788      1.39968         0.2  setosa</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>old_wd</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>test_dir</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></span></pre>
+#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing synthetic data in 'synthetic_df.csv' and updating the checksum in '.worcs'.</span><span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating '.gitignore'.</span><span></div><div class='input'><span class='fu'>load_data</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Loading original data from 'df.csv'.</span><span></div><div class='output co'>#&gt; <span class='warning'>Warning: Object 'df' already exists in the environment designated by 'envir', and will be replaced with the contents of 'df.csv'.</span></div><div class='input'><span class='va'>data</span>
+</div><div class='output co'>#&gt; function (..., list = character(), package = NULL, lib.loc = NULL, 
+#&gt;     verbose = getOption("verbose"), envir = .GlobalEnv, overwrite = TRUE) 
+#&gt; {
+#&gt;     fileExt &lt;- function(x) {
+#&gt;         db &lt;- grepl("\\.[^.]+\\.(gz|bz2|xz)$", x)
+#&gt;         ans &lt;- sub(".*\\.", "", x)
+#&gt;         ans[db] &lt;- sub(".*\\.([^.]+\\.)(gz|bz2|xz)$", "\\1\\2", 
+#&gt;             x[db])
+#&gt;         ans
+#&gt;     }
+#&gt;     my_read_table &lt;- function(...) {
+#&gt;         lcc &lt;- Sys.getlocale("LC_COLLATE")
+#&gt;         on.exit(Sys.setlocale("LC_COLLATE", lcc))
+#&gt;         Sys.setlocale("LC_COLLATE", "C")
+#&gt;         read.table(...)
+#&gt;     }
+#&gt;     names &lt;- c(as.character(substitute(list(...))[-1L]), list)
+#&gt;     if (!is.null(package)) {
+#&gt;         if (!is.character(package)) 
+#&gt;             stop("'package' must be a character string or NULL")
+#&gt;         if (FALSE) {
+#&gt;             if (any(package %in% "base")) 
+#&gt;                 warning("datasets have been moved from package 'base' to package 'datasets'")
+#&gt;             if (any(package %in% "stats")) 
+#&gt;                 warning("datasets have been moved from package 'stats' to package 'datasets'")
+#&gt;             package[package %in% c("base", "stats")] &lt;- "datasets"
+#&gt;         }
+#&gt;     }
+#&gt;     paths &lt;- find.package(package, lib.loc, verbose = verbose)
+#&gt;     if (is.null(lib.loc)) 
+#&gt;         paths &lt;- c(path.package(package, TRUE), if (!length(package)) getwd(), 
+#&gt;             paths)
+#&gt;     paths &lt;- unique(normalizePath(paths[file.exists(paths)]))
+#&gt;     paths &lt;- paths[dir.exists(file.path(paths, "data"))]
+#&gt;     dataExts &lt;- tools:::.make_file_exts("data")
+#&gt;     if (length(names) == 0L) {
+#&gt;         db &lt;- matrix(character(), nrow = 0L, ncol = 4L)
+#&gt;         for (path in paths) {
+#&gt;             entries &lt;- NULL
+#&gt;             packageName &lt;- if (file_test("-f", file.path(path, 
+#&gt;                 "DESCRIPTION"))) 
+#&gt;                 basename(path)
+#&gt;             else "."
+#&gt;             if (file_test("-f", INDEX &lt;- file.path(path, "Meta", 
+#&gt;                 "data.rds"))) {
+#&gt;                 entries &lt;- readRDS(INDEX)
+#&gt;             }
+#&gt;             else {
+#&gt;                 dataDir &lt;- file.path(path, "data")
+#&gt;                 entries &lt;- tools::list_files_with_type(dataDir, 
+#&gt;                   "data")
+#&gt;                 if (length(entries)) {
+#&gt;                   entries &lt;- unique(tools::file_path_sans_ext(basename(entries)))
+#&gt;                   entries &lt;- cbind(entries, "")
+#&gt;                 }
+#&gt;             }
+#&gt;             if (NROW(entries)) {
+#&gt;                 if (is.matrix(entries) &amp;&amp; ncol(entries) == 2L) 
+#&gt;                   db &lt;- rbind(db, cbind(packageName, dirname(path), 
+#&gt;                     entries))
+#&gt;                 else warning(gettextf("data index for package %s is invalid and will be ignored", 
+#&gt;                   sQuote(packageName)), domain = NA, call. = FALSE)
+#&gt;             }
+#&gt;         }
+#&gt;         colnames(db) &lt;- c("Package", "LibPath", "Item", "Title")
+#&gt;         footer &lt;- if (missing(package)) 
+#&gt;             paste0("Use ", sQuote(paste("data(package =", ".packages(all.available = TRUE))")), 
+#&gt;                 "\n", "to list the data sets in all *available* packages.")
+#&gt;         else NULL
+#&gt;         y &lt;- list(title = "Data sets", header = NULL, results = db, 
+#&gt;             footer = footer)
+#&gt;         class(y) &lt;- "packageIQR"
+#&gt;         return(y)
+#&gt;     }
+#&gt;     paths &lt;- file.path(paths, "data")
+#&gt;     for (name in names) {
+#&gt;         found &lt;- FALSE
+#&gt;         for (p in paths) {
+#&gt;             tmp_env &lt;- if (overwrite) 
+#&gt;                 envir
+#&gt;             else new.env()
+#&gt;             if (file_test("-f", file.path(p, "Rdata.rds"))) {
+#&gt;                 rds &lt;- readRDS(file.path(p, "Rdata.rds"))
+#&gt;                 if (name %in% names(rds)) {
+#&gt;                   found &lt;- TRUE
+#&gt;                   if (verbose) 
+#&gt;                     message(sprintf("name=%s:\t found in Rdata.rds", 
+#&gt;                       name), domain = NA)
+#&gt;                   thispkg &lt;- sub(".*/([^/]*)/data$", "\\1", p)
+#&gt;                   thispkg &lt;- sub("_.*$", "", thispkg)
+#&gt;                   thispkg &lt;- paste0("package:", thispkg)
+#&gt;                   objs &lt;- rds[[name]]
+#&gt;                   lazyLoad(file.path(p, "Rdata"), envir = tmp_env, 
+#&gt;                     filter = function(x) x %in% objs)
+#&gt;                   break
+#&gt;                 }
+#&gt;                 else if (verbose) 
+#&gt;                   message(sprintf("name=%s:\t NOT found in names() of Rdata.rds, i.e.,\n\t%s\n", 
+#&gt;                     name, paste(names(rds), collapse = ",")), 
+#&gt;                     domain = NA)
+#&gt;             }
+#&gt;             if (file_test("-f", file.path(p, "Rdata.zip"))) {
+#&gt;                 warning("zipped data found for package ", sQuote(basename(dirname(p))), 
+#&gt;                   ".\nThat is defunct, so please re-install the package.", 
+#&gt;                   domain = NA)
+#&gt;                 if (file_test("-f", fp &lt;- file.path(p, "filelist"))) 
+#&gt;                   files &lt;- file.path(p, scan(fp, what = "", quiet = TRUE))
+#&gt;                 else {
+#&gt;                   warning(gettextf("file 'filelist' is missing for directory %s", 
+#&gt;                     sQuote(p)), domain = NA)
+#&gt;                   next
+#&gt;                 }
+#&gt;             }
+#&gt;             else {
+#&gt;                 files &lt;- list.files(p, full.names = TRUE)
+#&gt;             }
+#&gt;             files &lt;- files[grep(name, files, fixed = TRUE)]
+#&gt;             if (length(files) &gt; 1L) {
+#&gt;                 o &lt;- match(fileExt(files), dataExts, nomatch = 100L)
+#&gt;                 paths0 &lt;- dirname(files)
+#&gt;                 paths0 &lt;- factor(paths0, levels = unique(paths0))
+#&gt;                 files &lt;- files[order(paths0, o)]
+#&gt;             }
+#&gt;             if (length(files)) {
+#&gt;                 for (file in files) {
+#&gt;                   if (verbose) 
+#&gt;                     message("name=", name, ":\t file= ...", .Platform$file.sep, 
+#&gt;                       basename(file), "::\t", appendLF = FALSE, 
+#&gt;                       domain = NA)
+#&gt;                   ext &lt;- fileExt(file)
+#&gt;                   if (basename(file) != paste0(name, ".", ext)) 
+#&gt;                     found &lt;- FALSE
+#&gt;                   else {
+#&gt;                     found &lt;- TRUE
+#&gt;                     zfile &lt;- file
+#&gt;                     zipname &lt;- file.path(dirname(file), "Rdata.zip")
+#&gt;                     if (file.exists(zipname)) {
+#&gt;                       Rdatadir &lt;- tempfile("Rdata")
+#&gt;                       dir.create(Rdatadir, showWarnings = FALSE)
+#&gt;                       topic &lt;- basename(file)
+#&gt;                       rc &lt;- .External(C_unzip, zipname, topic, 
+#&gt;                         Rdatadir, FALSE, TRUE, FALSE, FALSE)
+#&gt;                       if (rc == 0L) 
+#&gt;                         zfile &lt;- file.path(Rdatadir, topic)
+#&gt;                     }
+#&gt;                     if (zfile != file) 
+#&gt;                       on.exit(unlink(zfile))
+#&gt;                     switch(ext, R = , r = {
+#&gt;                       library("utils")
+#&gt;                       sys.source(zfile, chdir = TRUE, envir = tmp_env)
+#&gt;                     }, RData = , rdata = , rda = load(zfile, 
+#&gt;                       envir = tmp_env), TXT = , txt = , tab = , 
+#&gt;                       tab.gz = , tab.bz2 = , tab.xz = , txt.gz = , 
+#&gt;                       txt.bz2 = , txt.xz = assign(name, my_read_table(zfile, 
+#&gt;                         header = TRUE, as.is = FALSE), envir = tmp_env), 
+#&gt;                       CSV = , csv = , csv.gz = , csv.bz2 = , 
+#&gt;                       csv.xz = assign(name, my_read_table(zfile, 
+#&gt;                         header = TRUE, sep = ";", as.is = FALSE), 
+#&gt;                         envir = tmp_env), found &lt;- FALSE)
+#&gt;                   }
+#&gt;                   if (found) 
+#&gt;                     break
+#&gt;                 }
+#&gt;                 if (verbose) 
+#&gt;                   message(if (!found) 
+#&gt;                     "*NOT* ", "found", domain = NA)
+#&gt;             }
+#&gt;             if (found) 
+#&gt;                 break
+#&gt;         }
+#&gt;         if (!found) {
+#&gt;             warning(gettextf("data set %s not found", sQuote(name)), 
+#&gt;                 domain = NA)
+#&gt;         }
+#&gt;         else if (!overwrite) {
+#&gt;             for (o in ls(envir = tmp_env, all.names = TRUE)) {
+#&gt;                 if (exists(o, envir = envir, inherits = FALSE)) 
+#&gt;                   warning(gettextf("an object named %s already exists and will not be overwritten", 
+#&gt;                     sQuote(o)))
+#&gt;                 else assign(o, get(o, envir = tmp_env, inherits = FALSE), 
+#&gt;                   envir = envir)
+#&gt;             }
+#&gt;             rm(tmp_env)
+#&gt;         }
+#&gt;     }
+#&gt;     invisible(names)
+#&gt; }
+#&gt; &lt;bytecode: 0x000000002d5cc390&gt;
+#&gt; &lt;environment: namespace:utils&gt;</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='st'>"data"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: object 'data' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.remove</a></span><span class='op'>(</span><span class='st'>"data.csv"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot remove file 'data.csv', reason 'No such file or directory'</span></div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>load_data</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Loading original data from 'df.csv'.</span><span></div><div class='output co'>#&gt; <span class='warning'>Warning: Object 'df' already exists in the environment designated by 'envir', and will be replaced with the contents of 'df.csv'.</span></div><div class='input'><span class='va'>data</span>
+</div><div class='output co'>#&gt; function (..., list = character(), package = NULL, lib.loc = NULL, 
+#&gt;     verbose = getOption("verbose"), envir = .GlobalEnv, overwrite = TRUE) 
+#&gt; {
+#&gt;     fileExt &lt;- function(x) {
+#&gt;         db &lt;- grepl("\\.[^.]+\\.(gz|bz2|xz)$", x)
+#&gt;         ans &lt;- sub(".*\\.", "", x)
+#&gt;         ans[db] &lt;- sub(".*\\.([^.]+\\.)(gz|bz2|xz)$", "\\1\\2", 
+#&gt;             x[db])
+#&gt;         ans
+#&gt;     }
+#&gt;     my_read_table &lt;- function(...) {
+#&gt;         lcc &lt;- Sys.getlocale("LC_COLLATE")
+#&gt;         on.exit(Sys.setlocale("LC_COLLATE", lcc))
+#&gt;         Sys.setlocale("LC_COLLATE", "C")
+#&gt;         read.table(...)
+#&gt;     }
+#&gt;     names &lt;- c(as.character(substitute(list(...))[-1L]), list)
+#&gt;     if (!is.null(package)) {
+#&gt;         if (!is.character(package)) 
+#&gt;             stop("'package' must be a character string or NULL")
+#&gt;         if (FALSE) {
+#&gt;             if (any(package %in% "base")) 
+#&gt;                 warning("datasets have been moved from package 'base' to package 'datasets'")
+#&gt;             if (any(package %in% "stats")) 
+#&gt;                 warning("datasets have been moved from package 'stats' to package 'datasets'")
+#&gt;             package[package %in% c("base", "stats")] &lt;- "datasets"
+#&gt;         }
+#&gt;     }
+#&gt;     paths &lt;- find.package(package, lib.loc, verbose = verbose)
+#&gt;     if (is.null(lib.loc)) 
+#&gt;         paths &lt;- c(path.package(package, TRUE), if (!length(package)) getwd(), 
+#&gt;             paths)
+#&gt;     paths &lt;- unique(normalizePath(paths[file.exists(paths)]))
+#&gt;     paths &lt;- paths[dir.exists(file.path(paths, "data"))]
+#&gt;     dataExts &lt;- tools:::.make_file_exts("data")
+#&gt;     if (length(names) == 0L) {
+#&gt;         db &lt;- matrix(character(), nrow = 0L, ncol = 4L)
+#&gt;         for (path in paths) {
+#&gt;             entries &lt;- NULL
+#&gt;             packageName &lt;- if (file_test("-f", file.path(path, 
+#&gt;                 "DESCRIPTION"))) 
+#&gt;                 basename(path)
+#&gt;             else "."
+#&gt;             if (file_test("-f", INDEX &lt;- file.path(path, "Meta", 
+#&gt;                 "data.rds"))) {
+#&gt;                 entries &lt;- readRDS(INDEX)
+#&gt;             }
+#&gt;             else {
+#&gt;                 dataDir &lt;- file.path(path, "data")
+#&gt;                 entries &lt;- tools::list_files_with_type(dataDir, 
+#&gt;                   "data")
+#&gt;                 if (length(entries)) {
+#&gt;                   entries &lt;- unique(tools::file_path_sans_ext(basename(entries)))
+#&gt;                   entries &lt;- cbind(entries, "")
+#&gt;                 }
+#&gt;             }
+#&gt;             if (NROW(entries)) {
+#&gt;                 if (is.matrix(entries) &amp;&amp; ncol(entries) == 2L) 
+#&gt;                   db &lt;- rbind(db, cbind(packageName, dirname(path), 
+#&gt;                     entries))
+#&gt;                 else warning(gettextf("data index for package %s is invalid and will be ignored", 
+#&gt;                   sQuote(packageName)), domain = NA, call. = FALSE)
+#&gt;             }
+#&gt;         }
+#&gt;         colnames(db) &lt;- c("Package", "LibPath", "Item", "Title")
+#&gt;         footer &lt;- if (missing(package)) 
+#&gt;             paste0("Use ", sQuote(paste("data(package =", ".packages(all.available = TRUE))")), 
+#&gt;                 "\n", "to list the data sets in all *available* packages.")
+#&gt;         else NULL
+#&gt;         y &lt;- list(title = "Data sets", header = NULL, results = db, 
+#&gt;             footer = footer)
+#&gt;         class(y) &lt;- "packageIQR"
+#&gt;         return(y)
+#&gt;     }
+#&gt;     paths &lt;- file.path(paths, "data")
+#&gt;     for (name in names) {
+#&gt;         found &lt;- FALSE
+#&gt;         for (p in paths) {
+#&gt;             tmp_env &lt;- if (overwrite) 
+#&gt;                 envir
+#&gt;             else new.env()
+#&gt;             if (file_test("-f", file.path(p, "Rdata.rds"))) {
+#&gt;                 rds &lt;- readRDS(file.path(p, "Rdata.rds"))
+#&gt;                 if (name %in% names(rds)) {
+#&gt;                   found &lt;- TRUE
+#&gt;                   if (verbose) 
+#&gt;                     message(sprintf("name=%s:\t found in Rdata.rds", 
+#&gt;                       name), domain = NA)
+#&gt;                   thispkg &lt;- sub(".*/([^/]*)/data$", "\\1", p)
+#&gt;                   thispkg &lt;- sub("_.*$", "", thispkg)
+#&gt;                   thispkg &lt;- paste0("package:", thispkg)
+#&gt;                   objs &lt;- rds[[name]]
+#&gt;                   lazyLoad(file.path(p, "Rdata"), envir = tmp_env, 
+#&gt;                     filter = function(x) x %in% objs)
+#&gt;                   break
+#&gt;                 }
+#&gt;                 else if (verbose) 
+#&gt;                   message(sprintf("name=%s:\t NOT found in names() of Rdata.rds, i.e.,\n\t%s\n", 
+#&gt;                     name, paste(names(rds), collapse = ",")), 
+#&gt;                     domain = NA)
+#&gt;             }
+#&gt;             if (file_test("-f", file.path(p, "Rdata.zip"))) {
+#&gt;                 warning("zipped data found for package ", sQuote(basename(dirname(p))), 
+#&gt;                   ".\nThat is defunct, so please re-install the package.", 
+#&gt;                   domain = NA)
+#&gt;                 if (file_test("-f", fp &lt;- file.path(p, "filelist"))) 
+#&gt;                   files &lt;- file.path(p, scan(fp, what = "", quiet = TRUE))
+#&gt;                 else {
+#&gt;                   warning(gettextf("file 'filelist' is missing for directory %s", 
+#&gt;                     sQuote(p)), domain = NA)
+#&gt;                   next
+#&gt;                 }
+#&gt;             }
+#&gt;             else {
+#&gt;                 files &lt;- list.files(p, full.names = TRUE)
+#&gt;             }
+#&gt;             files &lt;- files[grep(name, files, fixed = TRUE)]
+#&gt;             if (length(files) &gt; 1L) {
+#&gt;                 o &lt;- match(fileExt(files), dataExts, nomatch = 100L)
+#&gt;                 paths0 &lt;- dirname(files)
+#&gt;                 paths0 &lt;- factor(paths0, levels = unique(paths0))
+#&gt;                 files &lt;- files[order(paths0, o)]
+#&gt;             }
+#&gt;             if (length(files)) {
+#&gt;                 for (file in files) {
+#&gt;                   if (verbose) 
+#&gt;                     message("name=", name, ":\t file= ...", .Platform$file.sep, 
+#&gt;                       basename(file), "::\t", appendLF = FALSE, 
+#&gt;                       domain = NA)
+#&gt;                   ext &lt;- fileExt(file)
+#&gt;                   if (basename(file) != paste0(name, ".", ext)) 
+#&gt;                     found &lt;- FALSE
+#&gt;                   else {
+#&gt;                     found &lt;- TRUE
+#&gt;                     zfile &lt;- file
+#&gt;                     zipname &lt;- file.path(dirname(file), "Rdata.zip")
+#&gt;                     if (file.exists(zipname)) {
+#&gt;                       Rdatadir &lt;- tempfile("Rdata")
+#&gt;                       dir.create(Rdatadir, showWarnings = FALSE)
+#&gt;                       topic &lt;- basename(file)
+#&gt;                       rc &lt;- .External(C_unzip, zipname, topic, 
+#&gt;                         Rdatadir, FALSE, TRUE, FALSE, FALSE)
+#&gt;                       if (rc == 0L) 
+#&gt;                         zfile &lt;- file.path(Rdatadir, topic)
+#&gt;                     }
+#&gt;                     if (zfile != file) 
+#&gt;                       on.exit(unlink(zfile))
+#&gt;                     switch(ext, R = , r = {
+#&gt;                       library("utils")
+#&gt;                       sys.source(zfile, chdir = TRUE, envir = tmp_env)
+#&gt;                     }, RData = , rdata = , rda = load(zfile, 
+#&gt;                       envir = tmp_env), TXT = , txt = , tab = , 
+#&gt;                       tab.gz = , tab.bz2 = , tab.xz = , txt.gz = , 
+#&gt;                       txt.bz2 = , txt.xz = assign(name, my_read_table(zfile, 
+#&gt;                         header = TRUE, as.is = FALSE), envir = tmp_env), 
+#&gt;                       CSV = , csv = , csv.gz = , csv.bz2 = , 
+#&gt;                       csv.xz = assign(name, my_read_table(zfile, 
+#&gt;                         header = TRUE, sep = ";", as.is = FALSE), 
+#&gt;                         envir = tmp_env), found &lt;- FALSE)
+#&gt;                   }
+#&gt;                   if (found) 
+#&gt;                     break
+#&gt;                 }
+#&gt;                 if (verbose) 
+#&gt;                   message(if (!found) 
+#&gt;                     "*NOT* ", "found", domain = NA)
+#&gt;             }
+#&gt;             if (found) 
+#&gt;                 break
+#&gt;         }
+#&gt;         if (!found) {
+#&gt;             warning(gettextf("data set %s not found", sQuote(name)), 
+#&gt;                 domain = NA)
+#&gt;         }
+#&gt;         else if (!overwrite) {
+#&gt;             for (o in ls(envir = tmp_env, all.names = TRUE)) {
+#&gt;                 if (exists(o, envir = envir, inherits = FALSE)) 
+#&gt;                   warning(gettextf("an object named %s already exists and will not be overwritten", 
+#&gt;                     sQuote(o)))
+#&gt;                 else assign(o, get(o, envir = tmp_env, inherits = FALSE), 
+#&gt;                   envir = envir)
+#&gt;             }
+#&gt;             rm(tmp_env)
+#&gt;         }
+#&gt;     }
+#&gt;     invisible(names)
+#&gt; }
+#&gt; &lt;bytecode: 0x000000002d5cc390&gt;
+#&gt; &lt;environment: namespace:utils&gt;</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>old_wd</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='va'>test_dir</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -234,7 +618,7 @@ environment.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

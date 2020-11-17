@@ -9,6 +9,7 @@ closed_data(
   filename = paste0(deparse(substitute(data)), ".csv"),
   codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
   worcs_directory = ".",
+  synthetic = TRUE,
   ...
 )
 }
@@ -29,6 +30,10 @@ Set this argument to \code{NULL} to avoid creating a codebook.}
 \item{worcs_directory}{Character, indicating the WORCS project directory to
 which to save data. The default value \code{"."} points to the current
 directory.}
+
+\item{synthetic}{Logical, indicating whether or not to create a synthetic
+dataset using the \code{\link{synthetic}} function. Additional arguments for
+the call to \code{\link{synthetic}} can be passed through \code{...}.}
 
 \item{...}{Additional arguments passed to and from functions.}
 }

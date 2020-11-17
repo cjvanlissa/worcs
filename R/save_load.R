@@ -46,9 +46,11 @@ open_data <- function(data,
 #' \code{\link[utils:write.table]{write.csv}}), stores a checksum in '.worcs',
 #' appends the \code{.gitignore} file to exclude \code{filename}, and saves a
 #' synthetic copy of \code{data} for public use. To generate these synthetic
-#' data, the function \code{\link{synthetic}} is used. Additional arguments for
-#' the call to \code{\link{synthetic}} can be passed through \code{...}.
+#' data, the function \code{\link{synthetic}} is used.
 #' @inheritParams open_data
+#' @param synthetic Logical, indicating whether or not to create a synthetic
+#' dataset using the \code{\link{synthetic}} function. Additional arguments for
+#' the call to \code{\link{synthetic}} can be passed through \code{...}.
 #' @return Returns \code{NULL} invisibly. This
 #' function is called for its side effects.
 #' @examples
@@ -68,8 +70,10 @@ closed_data <- function(data,
                         filename = paste0(deparse(substitute(data)), ".csv"),
                         codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
                         worcs_directory = ".",
+                        synthetic = TRUE,
                         ...){
   Args <- match.call()
+  #browser()
   Args$open <- FALSE
   Args[[1L]] <- str2lang("worcs:::save_data")
   eval(Args, parent.frame())
@@ -83,6 +87,7 @@ save_data <- function(data,
                       codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
                       worcs_directory = ".",
                       verbose = TRUE,
+                      synthetic = TRUE,
                       ...){
   if(grepl("[", filename, fixed = TRUE) | grepl("$", filename, fixed = TRUE)){
     stop("This filename is not allowed: ", filename, ". Please specify a legal filename.", call. = FALSE)
@@ -136,33 +141,30 @@ save_data <- function(data,
     modify = TRUE
   )
   to_worcs$data[[filename]] <- vector(mode = "list")
+  do.call(write_worcsfile, to_worcs)
   store_checksum(fn_write_original, entry_name = filename)
 
   if(open){
     write_gitig(fn_gitig, paste0("!", basename(fn_original)))
   } else {
-    # Synthetic data
-    col_message("Generating synthetic data for public use. Ensure that no identifying information is included.", verbose = verbose)
-    synth_success <- tryCatch({
+    write_gitig(fn_gitig, basename(fn_original))
+    # Update readme file with message about closed data
+    update_textfile(file.path(dn_worcs, "README.md"),
+                    "\n\n## Access to data\n\nSome of the data used in this project are not publically available.\nTo request access to the original data, [open a GitHub issue](https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/creating-an-issue).\n\n<!--Clarify here how users should contact you to gain access to the data, or to submit syntax for evaluation on the original data.-->",
+                    verbose = verbose)
+    if(synthetic){
+      # Synthetic data
+      col_message("Generating synthetic data for public use. Ensure that no identifying information is included.", verbose = verbose)
       Args <- match.call()
-      Args <- Args[c(1, which(names(Args) %in% names(formals(synthetic))))]
+      Args <- Args[c(1, which(names(Args) %in% names(formals("synthetic"))))]
       Args$verbose <- verbose
       Args[[1L]] <- quote(worcs::synthetic)
       synth <- eval.parent(Args)
-      TRUE
-      }, error = function(e){
-        FALSE
-      })
-    if(synth_success){
-      col_message("Storing synthetic data in '", fn_synthetic, "' and updating the checksum in '.worcs'.", verbose = verbose)
-      write.csv(synth, fn_write_synth, row.names = FALSE)
-      to_worcs$data[[filename]]$synthetic <- fn_synthetic
-      store_checksum(fn_write_synth, entry_name = fn_synthetic)
-
-      write_gitig(fn_gitig, basename(fn_original))
-      write_gitig(fn_gitig, paste0("!", basename(fn_synthetic)))
-    } else {
-      col_message("Could not generate synthetic data.", verbose = verbose)
+      add_synthetic(data = synth,
+                    synthetic_name = fn_synthetic,
+                    original_name = filename,
+                    worcs_directory = dn_worcs,
+                    verbose = verbose)
     }
   }
   col_message("Updating '.gitignore'.", verbose = verbose)
@@ -175,9 +177,15 @@ save_data <- function(data,
     # Add to gitignore
     write_gitig(filename = fn_gitig, paste0("!", gsub(".md$", "csv", basename(fn_write_codebook))))
     # Add to worcs
-    to_worcs$data[[filename]]$codebook <- codebook
+    to_worcs <- list(filename = fn_worcs,
+                     "data" = list(list("codebook" = codebook)),
+                     modify = TRUE)
+
+    names(to_worcs[["data"]])[1] <- filename
+    #to_worcs$data[[filename]]$codebook <- codebook
+    do.call(write_worcsfile, to_worcs)
+
   }
-  do.call(write_worcsfile, to_worcs)
   invisible(NULL)
 }
 
@@ -233,6 +241,7 @@ save_data <- function(data,
 #' @importFrom yaml read_yaml
 load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.frame(1),
                       verbose = TRUE){
+  #browser()
   # When users work from Rmd in a subdirectory, the working directory will be
   # set to that subdirectory. Check for .worcs file recursively, and change
   # directory if necessary.
@@ -250,16 +259,27 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
   }
   data <- worcsfile$data
   data_files <- names(data)
+  names(data_files) <- data_files
   fn_data_files <- file.path(dn_worcs, data_files)
   data_original <- sapply(fn_data_files, function(i){file.exists(i)})
+  data_files_synth <- rep(NA, length(data_files))
   if(any(!data_original)){
-     data_files_synth <- sapply(data_files[!data_original], function(i){
-      worcsfile$data[[i]][["synthetic"]]
-      })
-  data_files[!data_original] <- data_files_synth
-  fn_data_files[!data_original] <- file.path(dn_worcs, data_files_synth)
+     for(i in data_files[!data_original]){
+       if(is.null(worcsfile$data[[i]][["synthetic"]])){
+         col_message("Cannot find the original data ", i, ", and there is no synthetic version on record.", success = FALSE, verbose = verbose)
+       } else {
+         data_files_synth <- worcsfile$data[[i]][["synthetic"]]
+       }
+      }
+
+     data_files[!data_original] <- data_files_synth
+     fn_data_files[!data_original] <- file.path(dn_worcs, data_files_synth)
+  }
+  if(anyNA(data_files)){
+    col_message("No valid resource found for these files:", paste0("\n  * ", names(data_files)[is.na(data_files)]), success = FALSE, verbose = verbose)
   }
   data_files <- data_files[!(is.null(data_files)|is.na(data_files))]
+
   data_original <- data_original[!(is.null(data_files)|is.na(data_files))]
   if(length(data_files) == 0) stop("No valid data files found.")
   outlist <- vector(mode = "list")
@@ -388,3 +408,53 @@ write_gitig <- function(filename, ..., modify = TRUE){
   }
   write(new_contents, filename, append = FALSE)
 }
+
+#' @title Notify the user when synthetic data are being used
+#' @description This function prints a notification message when some or all of
+#' the data used in a project are synthetic (see \code{\link{closed_data}} and
+#' \code{\link{synthetic}}). See details for important information.
+#' @details The preferred way to use this function is to provide specific data
+#' objects in the function call, using the \code{...} argument.
+#' If no such objects are provided, \code{notify_synthetic} will scan the
+#' parent environment for objects of class \code{worcs_data}.
+#'
+#' This function is emphatically designed to be included in an 'R Markdown'
+#' file, to dynamically generate a notification message when a third party
+#' 'Knits' such a document without having access to all original data.
+#' @param ... Objects of class \code{worcs_data}. The function will check if
+#' these are original or synthetic data.
+#' @param msg Expression containing the message to print in case not all
+#' \code{worcs_data} are original. This message may refer to \code{is_synth},
+#' a logical vector indicating which \code{worcs_data} objects are synthetic.
+#' @return No return value. This function is called for its side effect of
+#' printing a notification message.
+#' @examples
+#' df <- iris
+#' class(df) <- c("worcs_data", class(df))
+#' attr(df, "type") <- "synthetic"
+#' notify_synthetic(df, msg = "synthetic")
+#' @rdname notify_synthetic
+#' @export
+#' @seealso closed_data synthetic add_synthetic
+notify_synthetic <- function(...,
+                             msg = NULL){
+  dots <- list(...)
+  cl <- as.list(match.call()[-1])
+  if(is.null(cl[["msg"]])){
+    msg <- quote(c("**Note that", ifelse(all(is_synth), "all", "some"), "of the data files used to generate this document are synthetic. The original data are not available. Synthetic data can be used to evaluate the reproducibility of the analysis code, but the results should not be substantively interpreted, and will likely deviate from the results generated using the original data. Please contact the authors for more information.**"))
+  }
+  msg <- substitute(msg)
+  if(length(dots) > 0){
+    if(!all(sapply(dots, inherits, what = "worcs_data"))){
+      stop("Some arguments provided to 'notify_synthetic()' are not objects of class 'worcs_data'.", call. = FALSE)
+    }
+    is_synth <- sapply(dots, attr, which = "type") == "synthetic"
+  } else {
+    worcs_data <- Filter(function(x) inherits(get(x), "worcs_data"), ls(name = parent.env(environment())))
+    is_synth <- sapply(worcs_data, function(x){ attr(get(x), which = "type") }) == "synthetic"
+  }
+  if(any(is_synth)){
+    cat(eval(msg))
+  }
+}
+

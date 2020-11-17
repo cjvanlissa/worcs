@@ -5,8 +5,8 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/package=worcs)
-[![metacran
-downloads](https://cranlogs.r-pkg.org/badges/worcs)](https://cran.r-project.org/package=worcs)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/worcs?color=blue)](https://r-pkg.org/pkg/worcs)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis build
 status](https://travis-ci.org/cjvanlissa/worcs.svg?branch=master)](https://travis-ci.org/cjvanlissa/worcs)
@@ -103,16 +103,51 @@ for the package and paper.
 | R/            | R-package source code           | human editable  |
 | vignettes/    | R-package vignettes             | human editable  |
 
+## Adoption of WORCS by users
+
+As of 2020-11-15, these are indicators of the adoption of `worcs` by
+users:
+
+1.  The preprint has been downloaded 582 times, since being published on
+    31-05-2020
+2.  The `worcs` R-package has been downloaded 2575 times from CRAN,
+    since being published on 18-05-2020
+3.  The GitHub project has been forked 8 times, watched 5 times, and
+    starred 40 times
+4.  The lead author has given invited lectures on WORCS at:
+      - Max-Planck-Institute for Human Development (2020)  
+      - Open Science Community Rotterdam (2020)  
+      - Eindhoven University of Technology (2020)  
+5.  WORCS is currently used in the following GitHub repositories (sorted
+    by user):
+      - cjvanlissa
+          - [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
+          - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
+          - [schumpe](https://github.com/cjvanlissa/schumpe)  
+          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
+          - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
+          - [mpib](https://github.com/cjvanlissa/mpib)  
+          - [coping\_covid](https://github.com/cjvanlissa/coping_covid)  
+      - IndrajeetPatil
+          - [worcs\_practice](https://github.com/IndrajeetPatil/worcs_practice)  
+      - EstherPlomp
+          - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
+      - lisallreiber
+          - [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
+      - KimBaldry
+          - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)
+
 ## Contributing and Contact Information
 
-The `worcs` package is open to contributions from collaborators with
-valuable expertise, to improve both the workflow and the software.
-Relevant contributions warrant coauthorship to the package. Please
-contact the lead author at <c.j.vanlissa@uu.nl>, or:
+We are always eager to receive user feedback and contributions to help
+us improve both the workflow and the software. Major contributions
+warrant coauthorship to the package. Please contact the lead author at
+<c.j.vanlissa@uu.nl>, or:
 
-  - File a GitHub issue [here](https://github.com/cjvanlissa/worcs)
-  - Make a pull request
-    [here](https://github.com/cjvanlissa/worcs/pulls)
+  - [File a GitHub issue](https://github.com/cjvanlissa/worcs) for
+    feedback, bug reports or feature requests
+  - [Make a pull request](https://github.com/cjvanlissa/worcs/pulls) to
+    contribute your code or prose
 
 By participating in this project, you agree to abide by the [Contributor
 Code of Conduct v2.0](https://www.contributor-covenant.org/).

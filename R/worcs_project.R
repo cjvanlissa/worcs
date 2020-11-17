@@ -264,10 +264,14 @@ create_man_papaja <- function(man_fn_abs, remote_repo){
     # Add introductory sentence
     add_lines <- c(
       "",
-      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
+      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [WORCS version ",
+             gsub("^(\\d{1,}(\\.\\d{1,}){2}).+$", "\\1", as.character(packageVersion("worcs"))),
+             ", @vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", gsub("\\.git$", "", remote_repo), ">")), "."),
       "",
       "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2020]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
-      ""
+      "",
+      "<!--The function below inserts a notification if the manuscript is knit using synthetic data. Make sure to insert it after load_data().-->",
+      "`r notify_synthetic()`"
     )
     manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
 
@@ -302,7 +306,9 @@ create_man_github <- function(man_fn_abs, remote_repo){
       paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
       "",
       "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2020]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
-      ""
+      "",
+      "<!--The function below inserts a notification if the manuscript is knit using synthetic data. Make sure to insert it after load_data().-->",
+      "`r notify_synthetic()`"
     )
     manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
     # Write
@@ -338,7 +344,9 @@ create_man_rticles <- function(man_fn_abs, template, remote_repo){
       paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
       "",
       "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2020]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
-      ""
+      "",
+      "<!--The function below inserts a notification if the manuscript is knit using synthetic data. Make sure to insert it after load_data().-->",
+      "`r notify_synthetic()`"
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]))
     write_as_utf(manuscript_text, man_fn_abs)
