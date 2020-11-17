@@ -12,7 +12,7 @@ journal     : "Data Science"
 
 class       : "draft"
 bibliography      : ["worcs.bib"]  
-output      : papaja::revision_letter_pdf
+output      : html_document
 urlcolor          : blue
 ---
 
@@ -53,7 +53,7 @@ Reasons to accept:
 
 Reasons to reject:
 
-\RC{C1 There is no user evaluation, and therefore all the claims about worcs are unsupported by evidence. If the authors had included a compelling evaluation I would be in favor of accepting the paper.}
+## C1 There is no user evaluation, and therefore all the claims about worcs are unsupported by evidence. If the authors had included a compelling evaluation I would be in favor of accepting the paper.
 
 Response: We appreciate the recommendation of performing a user evaluation, and this is certainly a next step in the development of WORCS. At this point, we have written this manuscript detailing the conceptual workflow, and released a software implementation for R-users. The next step, which we are now entering, is to build a user base, and then mount a user evaluation. 
 
@@ -147,7 +147,7 @@ We again emphasize that we take the recommendation to perform user evaluation ve
 \Done
 \Easy
 
-\RC{C3 Unsupported claims (beyond the ones derived from an absence of evaluation): The paper claims in many parts that worcs helps make an entire research project Open and Reproducible. However, at the same time there is also a claim for not supporting replication. Since replication is generally understood as a necessary steps towards reproducibility, I find this kind of contradictory. Maybe the claims can be modified stating that worcs helps documentation and understanding, hence supporting FAIR.}
+## C3 Unsupported claims (beyond the ones derived from an absence of evaluation): The paper claims in many parts that worcs helps make an entire research project Open and Reproducible. However, at the same time there is also a claim for not supporting replication. Since replication is generally understood as a necessary steps towards reproducibility, I find this kind of contradictory. Maybe the claims can be modified stating that worcs helps documentation and understanding, hence supporting FAIR.
 
 Response: We thank the Reviewer for bringing this apparent contradiction to our attention.
 The misunderstanding arises from a lack of explicit definitions of the terms "replication" and "reproducibility" in the original manuscript.
@@ -199,7 +199,7 @@ The Reviewer, by contrast, proposes that the main contribution of worcs is to he
 \Done
 \Hard
 
-\RC{C4: I am confused by the citation "Van Lissa, Caspar J., Aaron Peikert, and Andreas M. Brandmaier. 2020. “Worcs: Workflow for Open Reproducible Code in Science.”". Is this referring to another paper or the actual package? If it's another paper then what is the contribution of this publication?}
+## C4: I am confused by the citation "Van Lissa, Caspar J., Aaron Peikert, and Andreas M. Brandmaier. 2020. “Worcs: Workflow for Open Reproducible Code in Science.”". Is this referring to another paper or the actual package? If it's another paper then what is the contribution of this publication?
 
 Response: We apologize; it appears that the reference list was not parsed correctly after rendering the manuscript to HTML - the preferred format of Data Science. The reference is indeed to the R-package. In the revised manuscript, we have repaired the references so that it is clear that this is a software package.
 
@@ -208,7 +208,7 @@ Response: We apologize; it appears that the reference list was not parsed correc
 \Easy
 
 
-\RC{C5: If the paper is generated as DDG, where are the functions that show it's capabilities? It is also not clear to me that some of the functionalities of Latex would be usable in RMarkdown, such as all the equations.}
+## C5: If the paper is generated as DDG, where are the functions that show it's capabilities? It is also not clear to me that some of the functionalities of Latex would be usable in RMarkdown, such as all the equations.
 
 Response: We understand that our introduction of the RMarkdown format was a bit too brief, and that readers may wonder whether specific functionalities of LaTeX would be usable in RMarkdown.
 To address this comment, the revised manuscript now reads:
@@ -225,7 +225,7 @@ For a full overview of the functionality of `RMarkdown`, see @xieMarkdownDefinit
 \Medium
 
 
-\RC{C6: It is not clear how worcs addresses depedency management. The section lists a series of tools that can be used, but the section is not very specific to worcs.}
+## C6: It is not clear how worcs addresses depedency management. The section lists a series of tools that can be used, but the section is not very specific to worcs.
 
 Response: We apologize for the apparent lack of clarity of this section. 
 We have restructured and clarified this section to convey the following information:
@@ -244,7 +244,7 @@ If the Reviewer so desires, we would also be willing to cut the brief discussion
 \Easy
 
 
-\RC{C7a: The workflow of releasing data products on GitHub is not ideal. First, because datasets of 100 MBs usually require special handling. [...] The authors seem to not describe very well what would happen in data science experiments where the data size is significant.}
+## C7a: The workflow of releasing data products on GitHub is not ideal. First, because datasets of 100 MBs usually require special handling. [...] The authors seem to not describe very well what would happen in data science experiments where the data size is significant.
 
 Response: We have split this comment up to separately address the handling of large data, and findability (see below).
 
@@ -289,7 +289,7 @@ so that we may add them to the [overview of WORCS-projects on GitHub](https://gi
 \Medium
 
 
-\RC{C7b: Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation.}
+## C7b: Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation.
 
 Response: We agree completely that it is important to make open data findable beyond just providing it freely.
 In order to address the Reviewer's comment, we've revised the paper and the workflow vignette to emphasize more clearly that an essential step of the workflow is to connect the GitHub repository to a project page on the Open Science Framework - a standard repository for open research.
@@ -318,7 +318,7 @@ Connecting the GitHub repository to an OSF project and generating a DOI accompli
 \Hard
 
 
-\RC{C8: In the 3 phases listed, it is not clear what worcs does and does not for users.}
+## C8: In the 3 phases listed, it is not clear what worcs does and does not for users.
 
 Response: It is not entirely clear to us whether the Reviewer is referring to the conceptual workflow ("WORCS"), or to the `R` implementation of WORCS, i.e., `worcs`. 
 
@@ -346,7 +346,7 @@ we acknowledge that the process of conducting research is not always linear.
 \Medium
 
 
-\RC{C9: In some cases it looks like the authors claim that everyone should use R for open science. While R has a strong community behind, I believe there are others with very strong support (e.g. Python). I am not sure if suggesting a shift to R is the right approach. Note that this is the impression I got from reading the paper, maybe it was unintended by the authors.}
+## C9: In some cases it looks like the authors claim that everyone should use R for open science. While R has a strong community behind, I believe there are others with very strong support (e.g. Python). I am not sure if suggesting a shift to R is the right approach. Note that this is the impression I got from reading the paper, maybe it was unintended by the authors.
 
 Response: We wish to emphasize that it was certainly unintended to suggest that everyone should us R for open science. To address this comment, we have done two things: First, throughout the paper, we have attempted to clarify the distinction between the platform independent conceptual workflow "WORCS", and its implementation for R users, `worcs`. Second, throughout the paper, we encourage the implementation of WORCS in other languages. Most illustrative of these changes is the start of the paragraph on **The R implementation of WORCS**:
 
@@ -360,7 +360,7 @@ although we encourage developers to port the software to other languages.
 \Hard
 
 
-\RC{C10: Vignete on citation leads to a 404.}
+## C10: Vignete on citation leads to a 404.
 
 Response: We apologize for the oversight; we have fixed this URL and checked all URLs in the manuscript for mistakes (none found).
 
@@ -373,7 +373,7 @@ check_urls <- function(x){
   mtch <- unique(mtch)
   #out <- sapply(mtch, RCurl::url.exists)
   out <- sapply(mtch, httr::http_error)
-  out
+  out[out]
 }
 -->
 
@@ -382,7 +382,7 @@ check_urls <- function(x){
 \Easy
 
 
-\RC{C11: Synthetic data generation is fantastic, but it is not clear to me how does worcs actually keep the data consistent e.g. for training models. Does it follow a similar distribution to the source data?}
+## C11: Synthetic data generation is fantastic, but it is not clear to me how does worcs actually keep the data consistent e.g. for training models. Does it follow a similar distribution to the source data?
 
 Response: We agree that synthetic data generation is exciting, but feel obliged to clarify that this is **not** a novel contribution of the present paper nor R-package. 
 As indicated in the paper, we use the algorithm by Nowok and colleagues,
@@ -405,7 +405,7 @@ and to the documentation of the `synthetic()` function (which summarizes the alg
 \Easy
 
 
-\RC{C12: Docker is deemed as complicated for novice users, but the setup vignete looks quite complex to me as well. Wouldn't a Docker container with worcs installed be easier to use? Maybe these aspects would be better highlighted in a user evaluation.}
+## C12: Docker is deemed as complicated for novice users, but the setup vignete looks quite complex to me as well. Wouldn't a Docker container with worcs installed be easier to use? Maybe these aspects would be better highlighted in a user evaluation.
 
 Response: We thank the Reviewer for this thoughtful suggestion.
 To address this comment, 
@@ -448,7 +448,7 @@ It provides a good discussion of TOP-guidelines (a set of open science principle
 
 Reasons to reject:
 
-\RC{C1: I would suggest the authors include a flowchart for users that shows the decision making process for which tools/operations should be used in WORCS. An example project would also help users better understand the package.}
+## C1: I would suggest the authors include a flowchart for users that shows the decision making process for which tools/operations should be used in WORCS. An example project would also help users better understand the package.
 
 Response: We thank the Reviewer for these suggestions. Regarding the flowchart - we had already included one in the previous version of the manuscript. To address this comment, we have clarified the references in the text to this flowchart:
 
@@ -474,7 +474,7 @@ we maintain [a list of public `worcs` projects](https://github.com/cjvanlissa/wo
 \Done
 \Medium
 
-\RC{C2: The claim that WORCS is amenable to the FAIR Guiding Principles should be justified. What are the solutions provided by WORCS that make a project interoperable and reusable? It would be improved with a more thorough discussion on how WORCS meets each FAIR principle.}
+## C2: The claim that WORCS is amenable to the FAIR Guiding Principles should be justified. What are the solutions provided by WORCS that make a project interoperable and reusable? It would be improved with a more thorough discussion on how WORCS meets each FAIR principle.
 
 Response: To address this comment, we have made three changes:
 
@@ -516,7 +516,7 @@ indexing data by topic area.
 \Done
 \Medium
 
-\RC{C3: Is WORCS providing any service for de-identification?}
+## C3: Is WORCS providing any service for de-identification?
 
 Response: WORCS does not provide a service for de-identification,
 and we consider this to be outside of the scope of the present paper.
@@ -556,7 +556,7 @@ Reasons to reject:
 
 The objective of the author is ambiguous. That said, I do not think that WORCS provide sufficient features that make it stands out from state of the art tools, for the following reasons.
 
-\RC{C1: The process as described by the author for conducting research is assumed to be linear. However, researchers often go back and forth on steps that they have already completed, and sometimes have to undo them completely and start from scratch. This does not seem to be tackled by the tool.}
+## C1: The process as described by the author for conducting research is assumed to be linear. However, researchers often go back and forth on steps that they have already completed, and sometimes have to undo them completely and start from scratch. This does not seem to be tackled by the tool.
 
 Response: We agree with the Reviewer that researchers often go back and forth in their work. We did not intend to convey the impression that the process of conducting research is assumed to be linear. Of course, since we are presenting a workflow - there are a number of steps involved, which we have placed in roughly chronological order and numbered for reference purposes. For example, Study Design must logically occur prior to Writing and Analysis, and Publication can only logically occur after Writing. We also wish to emphasize that the "tool" (we assume the Reviewer is referring to the `worcs` R-package) does not enforce any kind of linearity. 
 
@@ -580,7 +580,7 @@ Second, while it was always possible to manually add a manuscript or preregistra
 \Done
 \Easy
 
-\RC{C2: The gist of the tool seems to allow researchers to document their steps and generate a scholarly document that is ready for submission. In a sense, there is a similarity with existing notebooks such as Jupyter. So I was wondering why don’t the authors start from an existing popular tool such as Jupyter as the starting point (given the similarity in features that they would like to add), and extend Jupyter for instance with the new features such as dependency documentation and version control ?}
+## C2: The gist of the tool seems to allow researchers to document their steps and generate a scholarly document that is ready for submission. In a sense, there is a similarity with existing notebooks such as Jupyter. So I was wondering why don’t the authors start from an existing popular tool such as Jupyter as the starting point (given the similarity in features that they would like to add), and extend Jupyter for instance with the new features such as dependency documentation and version control ?
 
 Response: There are two points we wish to address here. First, the Reviewer focuses on "the tool" - which we assume refers to the R package. However, the main goal of this paper is to introduce the conceptual workflow. The R package is merely offered to make adoption of the conceptual workflow easier for R users. This distinction is clarified several places throughout the manuscript, and to prevent further confusion, we have clarified the distinction even further in the revision, e.g.:
 
@@ -650,7 +650,7 @@ resources for learning `R` [e.g., @grolemundDataScience2017].
 \Done
 \Medium
 
-\RC{C3: Regarding Version control and dependency documentation, the authors uses in their system existing solution, namely git and env, respectively. While I did not criticize reusing existing solution, on the contrary, I don't believe that simply using such solution add a substantial value. For example, git capture changes at the level of the line of code/text, whereas a researcher needs an abstraction that informs him/her on the coarse-grained elements that are significant from the point of view of development and research steps so as to have a clear idea of where s/he is within the process and help him/her make the decision of the next steps to undertake.}
+## C3: Regarding Version control and dependency documentation, the authors uses in their system existing solution, namely git and env, respectively. While I did not criticize reusing existing solution, on the contrary, I don't believe that simply using such solution add a substantial value. For example, git capture changes at the level of the line of code/text, whereas a researcher needs an abstraction that informs him/her on the coarse-grained elements that are significant from the point of view of development and research steps so as to have a clear idea of where s/he is within the process and help him/her make the decision of the next steps to undertake.
 
 Response: Respectfully, we are not entirely sure what the criticism is here.
 First, as addressed in our response to the previous comment, there seems to be a misunderstanding about the scope of the paper. To clarify, we again state that our paper introduces a workflow for open science, based on objective criteria set out in the TOP-guidelines. Regarding novelty: Aside from the work-in-press of our co-authors - which is focused on strict computational reproducibility and is compatible with the present workflow - this is one of the first efforts to translate the requirements of open science into a step-by-step workflow. When you search Google Scholar for "open science workflow", the first hit that actually describes a workflow is the present manuscript.
@@ -696,7 +696,7 @@ Releases are also useful to mark the submission of a revised manuscript, and pub
 \Done
 \Medium
 
-\RC{C4: To sum up, I think that the initial idea is interesting. However, I do not think that WORCS will be adopted by researchers or promote the state of the art of reproducibility, even if we focus on researchers who conduct their development and analysis using R.}
+## C4: To sum up, I think that the initial idea is interesting. However, I do not think that WORCS will be adopted by researchers or promote the state of the art of reproducibility, even if we focus on researchers who conduct their development and analysis using R.
 
 Response: We thank the Reviewer for acknowledging the idea to be interesting.
 Whether it will be adopted by researchers remains to be seen after publication.
@@ -760,7 +760,7 @@ WORCS is for scientists working with R with RMarkdown. It could therefore be arg
 
 Reasons to reject:
 
-\RC{C1: The abstract of the paper states that the manuscript "provides examples of the implementation of worcs in R", so I was expecting science projects that had been described using worcs. If these examples exist, they should be referenced and linked to from the manuscript, as they would provide a better demonstration of the practical utility of the workflow and software than tutorial style examples.}
+## C1: The abstract of the paper states that the manuscript "provides examples of the implementation of worcs in R", so I was expecting science projects that had been described using worcs. If these examples exist, they should be referenced and linked to from the manuscript, as they would provide a better demonstration of the practical utility of the workflow and software than tutorial style examples.
 
 Response: We thank the Reviewer for this helpful suggestion! Although such user examples are not yet numerous, the lead author has six public WORCS repositories, and there are four public repositories by other users. In our opinion, it would be most useful to have a continuously cumulating list of example repositories, and link that list in the paper - rather than to publish a static list. Therefore, to address this comment, we have scripted a web scraper that searches GitHub for WORCS repositories (using the metadata tags created by the `worcs` package). We have embedded the scraper in the README.Rmd file on the worcs GitHub page, which is regularly updated. In the revised paper, we point readers to [a list of public `worcs` projects](https://github.com/cjvanlissa/worcs/tree/master#adoption-of-worcs-by-users) in the Abstract, and when introducing the workflow.
 
@@ -768,7 +768,7 @@ Response: We thank the Reviewer for this helpful suggestion! Although such user 
 \Done
 \Hard
 
-\RC{C2: There is a comparison in the paper to another R-based reproducible science solution (Peikert and Brandmaier (2019)). The authors discuss some of the differences between these approaches, but the comparison is limited. It is not clear to me how different these approaches actually are, apart from ease of use. If scientists are already familiar with R, is there a significant learning curve with either solution?}
+## C2: There is a comparison in the paper to another R-based reproducible science solution (Peikert and Brandmaier (2019)). The authors discuss some of the differences between these approaches, but the comparison is limited. It is not clear to me how different these approaches actually are, apart from ease of use. If scientists are already familiar with R, is there a significant learning curve with either solution?
 
 We agree that this is an important point. We have attemptedto address it by rewriting the paragraph comparing these two solutions (as cited below). We hope that this is satisfactory. At this point in time, this is all we can say about the comparison of the two workflows, because the workflow of Peikert and Brandmaier is still in press, and the software implementation has not yet been fully developed.
 
@@ -800,7 +800,7 @@ thereby facilitating adoption, but still ensures computational reproducibility u
 
 Submitted by Tobias Kuhn on Tue, 10/27/2020 - 02:04, http://orcid.org/0000-0002-1267-0234
 
-\RC{The reviewers agree that the paper has merit, but some of them also point to major shortcomings, in particular the lack of discussion of user adoption and of handling non-linear research processes. Note that according to our guidelines, resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse".}
+## The reviewers agree that the paper has merit, but some of them also point to major shortcomings, in particular the lack of discussion of user adoption and of handling non-linear research processes. Note that according to our guidelines, resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse".
 
 Response: We thank the Editor and all Reviewers for their helpful comments on this manuscript. We have attempted to address all of these points in the action letter above. With regard to the specific point reiterated by the Editor:
 
