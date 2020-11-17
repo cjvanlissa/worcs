@@ -361,7 +361,7 @@ virtual computer, which can be stored like a time capsule, and
 identically reinstated on a user computer, or in the cloud.
 Although the use of Docker falls outside of the scope of the present paper,
 for existing users, a Docker build running `worcs` and its dependencies is available.
-The [stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/docker.html)
+The [stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/setup-docker.html)
 explains how to instantiate this build.
 For more information on this topic,
 @peikertReproducibleDataAnalysis2019 describe 
@@ -496,7 +496,7 @@ This 30 minute procedure is documented
 in [the setup vignette](https://cjvanlissa.github.io/worcs/articles/setup.html).
 After setting up your system, you can use `worcs` for all of your
 projects.
-Alternatively, Docker users can follow [the stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/docker.html).
+Alternatively, Docker users can follow [the stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/setup-docker.html).
 The `R` implementation of the workflow introduced earlier is detailed,
 step-by-step, in
 [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html).

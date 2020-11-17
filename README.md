@@ -105,12 +105,12 @@ for the package and paper.
 
 ## Adoption of WORCS by users
 
-As of 2020-11-15, these are indicators of the adoption of `worcs` by
+As of 2020-11-17, these are indicators of the adoption of `worcs` by
 users:
 
-1.  The preprint has been downloaded 582 times, since being published on
+1.  The preprint has been downloaded 591 times, since being published on
     31-05-2020
-2.  The `worcs` R-package has been downloaded 2575 times from CRAN,
+2.  The `worcs` R-package has been downloaded 2588 times from CRAN,
     since being published on 18-05-2020
 3.  The GitHub project has been forked 8 times, watched 5 times, and
     starred 40 times
@@ -135,7 +135,11 @@ users:
       - lisallreiber
           - [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
       - KimBaldry
-          - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)
+          - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)  
+      - DepressionRegression
+          - [mvs\_rep](https://github.com/DepressionRegression/mvs_rep)  
+      - Hypergeometricdistribution
+          - [github\_document](https://github.com/Hypergeometricdistribution/github_document)
 
 ## Contributing and Contact Information
 

@@ -2,7 +2,7 @@
 title: "Setting up your computer for WORCS - Docker-edition"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{docker}
+  %\VignetteIndexEntry{setup-docker}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

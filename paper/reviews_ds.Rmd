@@ -1,12 +1,19 @@
 ---
-title       : "Manuscript title"
-authors     : "First Author & Second Author"
-journal     : "Journal title"
-manuscript  : "Manuscript number"
+title       : "WORCS: A Workflow for Open Reproducible Code in Science"
+authors     : |
+    [Caspar J. Van Lissa](c.j.vanlissa@uu.nl),
+    Andreas M. Brandmaier,
+    Loek Brinkman,
+    Anna-Lena Lamprecht,
+    Aaron Peikert,
+    Marijn E. Struiksma, &
+    Barbara Vreede
+journal     : "Data Science"
 
 class       : "draft"
 bibliography      : ["worcs.bib"]  
 output      : papaja::revision_letter_pdf
+urlcolor          : blue
 ---
 
 Dear Dr. Kuhn,
@@ -411,7 +418,7 @@ This 30 minute procedure is documented
 in [the setup vignette](https://cjvanlissa.github.io/worcs/articles/setup.html).
 After setting up your system, you can use `worcs` for all of your
 projects.
-Alternatively, Docker users can follow [the stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/docker.html).
+Alternatively, Docker users can follow [the stetup with Docker vignette](https://cjvanlissa.github.io/worcs/articles/setup-docker.html).
 
 \Assignment{AP, AB}
 \Done
