@@ -9,10 +9,14 @@ bibliography      : ["worcs.bib"]
 output      : papaja::revision_letter_pdf
 ---
 
-Dear Dr. Editor,
+Dear Dr. Kuhn,
 
-thank you very much for taking the time to consider our manuscript for publication at _`r rmarkdown::metadata$journal`_.
-In the following we address your and each reviewers' concerns point-by-point.
+We would like to thank you for providing us with the opportunity to revise our manuscript, "WORCS: A Workflow for Open Reproducible Code in Science".
+We sincerely appreciate the time you and the Reviewers have taken to read the manuscript, and the extensive and thought-provoking comments you have raised. 
+We hereby submit our revision of the manuscript for your consideration. We have attempted to address each of the issues raised by yourself and the Reviewers on a point-by-point basis, and detail the changes made in the action letter below. We would like to thank you and the Reviewers for your time, and we look forward to receiving your response.
+
+Sincerely, on behalve of all coauthors,
+Caspar van Lissa
 
 
 # Reviewer \#1
@@ -46,19 +50,19 @@ Reasons to reject:
 
 Response: We appreciate the recommendation of performing a user evaluation, and this is certainly a next step in the development of WORCS. At this point, we have written this manuscript detailing the conceptual workflow, and released a software implementation for R-users. The next step, which we are now entering, is to build a user base, and then mount a user evaluation. 
 
-To address the Reviewer's comment, we have set up an evaluation questionnaire, and sent it to the attendees of our previous workshops on WORCS. At the time of writing, however, this has not yielded actionable points of improvement.
+To address the Reviewer's comment, we have set up an evaluation questionnaire, and sent it to the attendees of our previous workshops on WORCS. At the time of writing, responses are coming in. These are generally very favorable, and have not yet revealed major points of improvement.
 
-We do have a strong history of addressing user comments submitted through the GitHub issues page.
+We further want to point out that we have a strong history of addressing user comments submitted through the GitHub issues page.
 WORCS adheres to the Core Infrastructure Initiative "best practices" (CII Best Practices),
 which requires that
 the channels through which users can provide feedback are clearly indicated,
 as they are [here](https://github.com/cjvanlissa/worcs#contributing-and-contact-information).
-It is also evident from the [resolved tickets on GitHub](https://github.com/cjvanlissa/worcs/issues?q=is%3Aissue+is%3Aclosed) that we have been very responsive in actively incorporating user feedback - as also required by the CII Best Practices.
+It is also evident from the [resolved tickets on GitHub](https://github.com/cjvanlissa/worcs/issues?q=is%3Aissue+is%3Aclosed) that we have been very responsive in actively incorporating user feedback. This is another requirement of CII Best Practices.
 
-We are committed to continue evaluating user experience, both actively through evaluation forms, and passively through the GitHub issues pages.
-We hope that this commitment, along with the evidence of our prior responsiveness to user feedback presented above, assuage the Reviewer's concerns.
+We are committed to continue evaluating user experience, both actively through user evaluation forms, and passively through the GitHub issues pages.
+We hope that this commitment, along with the evidence of our prior responsiveness to user feedback presented above, help assuage the Reviewer's concerns.
 
-Finally, we wish to point out that the Editor has indicated that 'resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse"'. We therefore elaborate on the efforts we have made to ensure that WORCS is reusable, followed by evidence of its current adoption rates.
+Finally, we wish to point out that the Editor has indicated that 'resource papers do not need to have a full-blown user evaluation, but we expect "sound evidence of its (potential for) reuse"'. We therefore also elaborate on the efforts we have made to ensure that WORCS is reusable, followed by evidence of its current adoption rates.
 
 We have made the following efforts to ensure potential for reuse:
 
@@ -68,22 +72,36 @@ We have made the following efforts to ensure potential for reuse:
 4. The R-package uses only tools that are fully integrated within the RStudio IDE, thus enhancing ease of use
 5. The R-package is compatible with other reproducibility solutions, including Docker, drake, and make
 
-Second, there is some evidence to demonstrate that WORCS is already being adopted (as of 31-10-2020):
+There is also evidence that WORCS is already being adopted, even prior to publication (as of 14-11-2020):
 
-1. [The preprint](https://psyarxiv.com/k4wde/) has been downloaded 568 times, since being published on 31-05-2020
-1. The `worcs` R-package has been downloaded 2474 times from CRAN, since being published on 18-05-2020
-1. The GitHub project has been forked by users unknown to us 4 times, and starred (= watched) 32 times
-1. The video tutorial for worcs has been viewed 362 times, and liked 18 times (https://www.youtube.com/watch?v=uzjpN_yFeUU)
-1. WORCS is used to teach reproducibility at Utrecht University
-1. The lead author has given invited lectures on WORCS at the Erasmus University Rotterdam, Eindhoven University of Technology, and Max Planck Institute, Berlin
-1. The lead author has applied `worcs` in several research projects:
-	* https://github.com/cjvanlissa/storm_meta_father_mother
-	* https://github.com/cjvanlissa/veni_sysrev
-	* https://github.com/cjvanlissa/placebo_adhd
-	* https://github.com/cjvanlissa/schumpe
-	* https://github.com/cjvanlissa/coping_covid
-
-
+1.  The preprint has been downloaded 582 times, since being published on
+    31-05-2020
+2.  The `worcs` R-package has been downloaded 2567 times from CRAN,
+    since being published on 18-05-2020
+3.  The GitHub project has been forked 8 times, watched 5 times, and
+    starred 40 times
+4.  The lead author has given invited lectures on WORCS at:
+      - Max-Planck-Institute for Human Development (2020)  
+      - Open Science Community Rotterdam (2020)  
+      - Eindhoven University of Technology (2020)  
+5.  WORCS is currently used in the following GitHub repositories (sorted
+    by user):
+      - cjvanlissa
+          - [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
+          - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
+          - [schumpe](https://github.com/cjvanlissa/schumpe)  
+          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
+          - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
+          - [mpib](https://github.com/cjvanlissa/mpib)  
+          - [coping\_covid](https://github.com/cjvanlissa/coping_covid)  
+      - IndrajeetPatil
+          - [worcs\_practice](https://github.com/IndrajeetPatil/worcs_practice)  
+      - EstherPlomp
+          - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
+      - lisallreiber
+          - [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
+      - KimBaldry
+          - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)
 
 <!-- The goal of the present manuscript is to define the problem worcs intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools worcs uses to address this problem, explain how worcs uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence; -->
 
@@ -95,9 +113,9 @@ Second, there is some evidence to demonstrate that WORCS is already being adopte
 
 The paper is well written, easy to follow and very relevant and timely for the journal. I think the capabilities of the worcs package for synthetic data generation, connect to osf, help with the preprints and capture dependencies are very valuable to the community. However, the main limitation of the paper is that the workflow and proposed package are not evaluated with users, and therefore the claims of the authors with respect of its capabilities are not supported by evidence. I would like to encourage the authors to gather user/community feedback and demonstrate with numbers that worcs can help scientists as they claim. Then, the paper would become a strong contribution for the journal.}
 
-Response: In addressing this comment, we respectfully refer to our response to the preceding comment ("There is no user evaluation", R1), and again emphasize the Editor's comment that "resource papers do not need to have a full-blown user evaluation". We would also like to clarify that the goal of the present manuscript is to define the problem WORCS intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools WORCS uses to address this problem, explain how WORCS uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence. In the revision, we have attempted to further clarify this goal from the paper onset: REF. 
+Response: In addressing this comment, we respectfully refer to our response to the preceding comment ("There is no user evaluation", R1 C1), and again emphasize the Editor's comment that "resource papers do not need to have a full-blown user evaluation". We would also like to clarify that the goal of the present manuscript is to define the problem WORCS intends to address (specifically; meeting the TOP-guidelines for Open Science), introduce the tools WORCS uses to address this problem, explain how WORCS uses these tools, and provide a step-by-step workflow. It is not clear what "claims" are made that are unsupported by evidence. In the revision, we have attempted to further clarify this goal from the paper onset: REF. 
 
-We do take the suggestion of performing a user evaluation very seriously, but in our mind, this is a next step. We have built WORCS based on established tools and best practices, and we have gathered preliminary positive feedback from the community through workshops and teaching. 
+We do take the suggestion of performing a user evaluation very seriously, but we also feel that it would be premature to do so even before the paper is published. We have built WORCS based on established tools and best practices, and we have gathered preliminary positive feedback from the community through workshops and teaching. 
 
 \Assignment{CJ}
 \Done
@@ -105,8 +123,8 @@ We do take the suggestion of performing a user evaluation very seriously, but in
 
 \RC{C3 Unsupported claims (beyond the ones derived from an absence of evaluation): The paper claims in many parts that worcs helps make an entire research project Open and Reproducible. However, at the same time there is also a claim for not supporting replication. Since replication is generally understood as a necessary steps towards reproducibility, I find this kind of contradictory. Maybe the claims can be modified stating that worcs helps documentation and understanding, hence supporting FAIR.}
 
-Response: We understand that our writing comes across as contradictory,
-and this apparent contradiction arises from a lack of explicit definitions of the terms "replication" and "reproducibility" in the original manuscript.
+Response: We thank the Reviewer for bringing this apparent contradiction to our attention.
+The misunderstanding arises from a lack of explicit definitions of the terms "replication" and "reproducibility" in the original manuscript.
 We are aware of the oft-lamented lack of consistent definitions for these terms (e.g., Patil, Peng, & Leek, 2019; Plesser, 2018).
 In the revision, we have attempted to address this lack of clarity by including explicit definitions for these terms:
 
@@ -117,9 +135,9 @@ under terms that enable reuse, redistribution and reproduction of the research a
 [...] reproducibility can be defined as "re-performing the same analysis with the same code and the same data using a different analyst",
 and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
 
-After making these definitions explicit, it becomes clear that the Reviewer's definition of replication as "a necessary steps towards reproducibility" is not consistent with the definitions of the present paper.
+After making these definitions explicit, it becomes clear that the Reviewer's definition of replication as "a necessary steps towards reproducibility" is not consistent with the definitions used in the present paper.
 
-We further wish to clarify that the fact that we address guidelines 1-7, but not guideline 8 ("replication") is consistent with the intended purpose of the TOP-guidelines.
+We further wish to clarify that the fact that we address guidelines 1-7, but not guideline 8 ("replication") is fully consistent with the intended purpose of the TOP-guidelines.
 Specifically, the first seven guidelines are intended to ensure the "reproducibility of the reported results based on the originating data" [direct quote from @nosekPromotingOpenResearch2015a]. The eighth criterion, by contrast, is "not formally a transparency standard for authors, [but] addresses journal guidelines for consideration of independent replications for publication" (again a direct quote).
 To avoid further confusion or controversy, we now address this distinction between the first 7 guidelines and the final 8th explicitly in the revised manuscript:
 
@@ -127,9 +145,6 @@ To avoid further confusion or controversy, we now address this distinction betwe
 the first seven of which "account for reproducibility of the reported results
 based on the originating data, and for sharing sufficient information to conduct an independent 
 replication" [@nosekPromotingOpenResearch2015a].
-In this context, 
-reproducibility can be defined as "re-performing the same analysis with the same code and the same data using a different analyst",
-and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
 These guidelines are: 1) Comprehensive
 citation of literature, data, materials, and methods; 2) sharing data, 3)
 sharing the code required to reproduce analyses, 4) sharing new research
@@ -138,6 +153,9 @@ pre-registration of studies before data collection, and 7) pre-registration of
 the analysis plan prior to analysis.
 The eighth criterion is "not formally a transparency standard for authors", but "addresses 
 journal guidelines for consideration of independent replications for publication".
+In this context, 
+reproducibility can be defined as "re-performing the same analysis with the same code using a different analyst",
+and replicability as "re-performing the experiment and collecting new data" [@patilVisualToolDefining2019].
 WORCS defines the goals of open science in terms of the first seven TOP-guidelines,
 and the workflow and its `R` implementation are designed to facilitate compliance therewith.
 
@@ -157,7 +175,7 @@ The Reviewer, by contrast, proposes that the main contribution of worcs is to he
 
 \RC{C4: I am confused by the citation "Van Lissa, Caspar J., Aaron Peikert, and Andreas M. Brandmaier. 2020. “Worcs: Workflow for Open Reproducible Code in Science.”". Is this referring to another paper or the actual package? If it's another paper then what is the contribution of this publication?}
 
-Response: We apologize; it appears that there were numerous errors in the parsing of the reference list after rendering the manuscript to HTML - the preferred format of Data Science. The reference is indeed to the R-package. In the revised manuscript, we have repaired the references so that it is clear that this is a software package.
+Response: We apologize; it appears that the reference list was not parsed correctly after rendering the manuscript to HTML - the preferred format of Data Science. The reference is indeed to the R-package. In the revised manuscript, we have repaired the references so that it is clear that this is a software package.
 
 \Assignment{CJ}
 \Done
@@ -189,6 +207,8 @@ We have restructured and clarified this section to convey the following informat
 1) Introduce the general concept of dependency management
 2) Introduce `renv`, the solution for dependency management used by the R-implementation of `worcs`
 3) Acknowledge the more comprehensive approach to dependency management offered by Docker
+
+The changes are extensive, so we will not quote them all here. Instead, we refer the Reviewer to the revised manuscript.
 
 We have also, in response to another Reviewer comment, created a Docker Hub build that runs `worcs`. Therefore, as of this revision, both of the tools discussed in this section (i.e., `renv` and Docker) are directly relevant for WORCS-users, and the section should read less like a "series of tools that can be used".
 If the Reviewer so desires, we would also be willing to cut the brief discussion of Code Ocean - but this had been included at the request of an informal reviewer of this paper (Daniël Lakens).
@@ -239,55 +259,36 @@ We urge users to inform us of such challenges and custom solutions,
 so that we may add them to the [overview of WORCS-projects on GitHub](https://github.com/cjvanlissa/worcs), where they can serve as an example to others.
 
 \Assignment{BV, AB, AL, CJ}
-\WorkInProgress
 \Done
+\Medium
 
 
 \RC{C7b: Second, it doesn't follow very well the FAIR principles for findability and attribution of data. Instead, repositories like Zenodo or FigShare could be user to address data storage, with proper metadata and its corresponding citation.}
 
-We agree completely that it is important to make open data findable beyond just providing it freely.
-This is achieved by linking the GitHub repository to an OSF.io project page;
-on OSF, the project receives a DOI.
-It is also possible to give a separate DOI to specific resources, such as data files.
-We agree that this was not emphasized enough in the manuscript, and have rewritten the revision to clarify.
+Response: We agree completely that it is important to make open data findable beyond just providing it freely.
+In order to address the Reviewer's comment, we've revised the paper and the workflow vignette to emphasize more clearly that an essential step of the workflow is to connect the GitHub repository to a project page on the Open Science Framework - a standard repository for open research.
+We also devote more attention to the importance of DOIs; both for the project as a whole, and for specific resources, such as data files.
+Finally, we have elaborated on the discussion of the FAIR principles, emphasizing that WORCS is not designed to address these comprehensively, but pointing out specific ways in which WORCS is consistent with these guiding principles. Please see our response to Reviewer 2, comment 2 for more details.
 
-It is a pity that the Reviewer does not provide arguments to support a preference for Zenodo or FigShare over GitHub, because if there is a strong case to be made, we would be keen to include this in the paper.
+With regard to the specific platforms named by the Reviewer:
+We are not aware of arguments to support a strong preference for Zenodo or FigShare over GitHub.
 Without such arguments, as far as we are concerned, these repositories are largely interchangeable.
-
-We prefer storing the data on GitHub because they are then bundled with the
+One key advantage of storing the data on GitHub is that they are then bundled with the
 documentation (e.g., codebook), analysis code, and manuscript.
 Thus, readers have access to **all** materials required for replication in one repository.
+Moreover, the entire project can be readily updated from the console, and is version controlled.
 GitHub additionally offers user interaction with the materials through
 forking, cloning, opening issues, and sending pull requests -
 all useful tools for replication and collaboration.
 
 It is further worth noting that [GitHub is compatible with Zenodo](https://guides.github.com/activities/citable-code/);
 users can document GitHub repositories in Zenodo and generate a DOI.
-This is redundant with Step 15 of the workflow, however:
-Connecting the GitHub repository to an OSF project accomplishes effectively the same.
-We do acknowledge, however, 
-that this part of the workflow was not clearly documented in the previous version of the manuscript, 
-and that the use of DOIs warrants further clarification.
-
-In the revision, we have attempted to address this comment in two ways: First, by
-clarifying Step 15 in the WORCS workflow, specifically emphasizing the importance of generating a DOI. 
-Second, by discussing the use of DOIs in the paper.
-
-The approach we advocate is to make all of a project's resources available in a 
-Step 15 of the workflow, "Connect your ‘OSF’ project page to the ‘Git’ remote repository",
-was intended to meet this goal.
-
-
-Digital object identifiers are the de-factor standard for making unique references to data sets. In line with the reviewer's suggestion,
-we suggest to use external providers to provide such DOIs while github is still the primary data storage. TODO!!!
-
-BV: Can you please argue for why GitHub is equivalent to Zenodo for this purpose?
-AL: Can you address the reference to FAIR principles in relation to GitHub?
-
-AB: "on second thought, it’s probably worth mentioning to the reviewer that we know these options but defend the OSF-centric approach for our purposes. My impression is that the main challenge are the different expectations and solutions across disciplines that are currently evolving largely in parallel. If we acknowledge that there are alternatives, this may please the reviewers while we still can defend R + OSF for the behavioral and social sciences. Other disciplines may have different foci, e.g., python + jupyter + docker etc... and no single manuscript will be able to cover everything."
+We now explicitly mention this option in the paper and workflow vignette.
+We also mention the potential redundancy with Steps 15-16 of the workflow, however:
+Connecting the GitHub repository to an OSF project and generating a DOI accomplishes effectively the same.
 
 \Assignment{BV, AB, AL, CJ}
-\WorkInProgress
+\Done
 \Hard
 
 
@@ -298,7 +299,7 @@ Response: It is not entirely clear to us whether the Reviewer is referring to th
 We suspect that the Reviewer means the `worcs` R-package, so to address this comment,
 the Revision now states the following:
 
-> For users of the `worcs` `R` package, we highly recommend referring to
+> We refer users of the `worcs` implementation in `R` to
 [the workflow vignette](https://cjvanlissa.github.io/worcs/articles/setup.html),
 which describes in more detail which steps are automated by the `R` package
 and which actions must be taken by the user.
@@ -307,7 +308,7 @@ The vignette is also updated with future developments of the package.
 Just in case we misunderstood, and the Reviewer actually meant the conceptual workflow WORCS, we have also added a few sentences to clarify the purpose of the conceptual workflow:
 
 > We provide a conceptual outline of the WORCS procedure below, based on WORCS
-Version 0.1.5.
+Version 0.1.6.
 The conceptual workflow recommends actions to take 
 in the different phases of a research project, in order to work openly and transparently
 in compliance with the TOP-guidelines and best practices for open science.
@@ -321,9 +322,12 @@ we acknowledge that the process of conducting research is not always linear.
 
 \RC{C9: In some cases it looks like the authors claim that everyone should use R for open science. While R has a strong community behind, I believe there are others with very strong support (e.g. Python). I am not sure if suggesting a shift to R is the right approach. Note that this is the impression I got from reading the paper, maybe it was unintended by the authors.}
 
-Response: We wish to emphasize that it was certainly unintended to claim that everyone should us R for open science. To address this comment, we have done two things: First, throughout the paper, we have attempted to clarify the distinction between the platform independent conceptual workflow "WORCS", and its implementation for R users, `worcs`. Second, throughout the paper, we encourage the implementation of WORCS in other languages. Most illustrative of these changes is the start of the paragraph on **The R implementation of WORCS**:
+Response: We wish to emphasize that it was certainly unintended to suggest that everyone should us R for open science. To address this comment, we have done two things: First, throughout the paper, we have attempted to clarify the distinction between the platform independent conceptual workflow "WORCS", and its implementation for R users, `worcs`. Second, throughout the paper, we encourage the implementation of WORCS in other languages. Most illustrative of these changes is the start of the paragraph on **The R implementation of WORCS**:
 
-> WORCS is, first and foremost, a conceptual workflow that could be implemented in any software environment. As of this writing, the workflow has been implemented for `R` users in the package `worcs` [@worcspackage2020]. Several arguments support our choice to implement this workflow first in `R` and RStudio, although we encourage developers to port the software to other languages.
+> WORCS is, first and foremost, a conceptual workflow that could be implemented in any software environment.
+As of this writing, the workflow has been implemented for `R` users in the package `worcs` [@worcspackage2020].
+Several arguments support our choice to implement this workflow first in `R` and RStudio,
+although we encourage developers to port the software to other languages.
 
 \Assignment{CJ}
 \Done
@@ -419,23 +423,70 @@ Reasons to reject:
 
 \RC{C1: I would suggest the authors include a flowchart for users that shows the decision making process for which tools/operations should be used in WORCS. An example project would also help users better understand the package.}
 
-\Assignment{ALL}
-\WorkInProgress
+Response: We thank the Reviewer for these suggestions. Regarding the flowchart - we had already included one in the previous version of the manuscript. To address this comment, we have clarified the references in the text to this flowchart:
+
+> The WORCS workflow constitutes a step-by-step procedure that researchers can follow to make a 
+research project open and reproducible.
+These steps are elaborated in greater detail below.
+See Figure 1 for a flowchart that highlights important steps in different stages of the research process.
+
+Regarding the example project, we have now curated a list of all public `worcs` projects on GitHub, and we reference this list in several places in the manuscript, including:
+
+**Abstract**
+
+> The source code for the `R` package and manuscript,
+  and a list of [user examples of WORCS projects](https://github.com/cjvanlissa/worcs/tree/master#adoption-of-worcs-by-users), are available at 
+  https://github.com/cjvanlissa/worcs.
+  
+**Introducing the workflow**
+
+> For examples of how the workflow is used in practice,
+we maintain [a list of public `worcs` projects](https://github.com/cjvanlissa/worcs/tree/master#adoption-of-worcs-by-users) on the WORCS GitHub page.
+
+\Assignment{CJ}
+\Done
 \Medium
 
 \RC{C2: The claim that WORCS is amenable to the FAIR Guiding Principles should be justified. What are the solutions provided by WORCS that make a project interoperable and reusable? It would be improved with a more thorough discussion on how WORCS meets each FAIR principle.}
 
-Anna-Lena?
+Response: To address this comment, we have made three changes:
 
-Response: 
-F: Dit heeft weer met DOIs te maken. Ik denk dat als we het gebruik van OSF de default van worcs maken (die mijn opmerking R1C7a) dat we hier een sterk punt kunnen maken mbt findability. 
-A: Eigenlijk hetzelfde antwoord als bij Findability: dit wordt heel eenvouding als we de OSF route voor data storage de default maken. 
-I: Het feit dat we alleen gebruik maken van open-source software maakt alle projecten die worcs gebruiken nogal interoperable. 
-R: Dit is wel een belangrijkt punt: Kunnen we opnemen in de workflow dat worcs-projecten by default een CC-BY licentie krijgen?
+1) We have changed the workflow, emphasizing the importance of creating a project on the OSF and connecting it to the GitHub repository, and emphasizing the importance of DOIs and a license
+2) We have rewritten the paragraph addressing the FAIR principles, with a more thorough discussion of how WORCS can help address each FAIR principle. We also state explicitly that *WORCS was not designed to comprehensively address these principles, but the workflow does facilitate meeting them.*
+3) We have made minor changes to the `worcs` package, e.g., to include information on the project readme about how readers can obtain access to data.
 
+This paragraph now reads:
+
+> Aside from the TOP Guidelines, the FAIR Guiding Principles for scientific data management and stewardship [@wilkinsonFAIRGuidingPrinciples2016a] are an important standard for open science.
+These principles advocate that digital research objects should be Findable, Accessible, Interoperable and Reusable.
+Initially mainly promoted as principles for data, they are increasingly applied as a standard for other types of research output as well,
+most notably software [@lamprechtFAIRPrinciplesResearch2019].  
+  WORCS was not designed to comprehensively address these principles, but the workflow does facilitate meeting them.
+In terms of Findability, all files in GitHub projects are searchable by content and meta-data, both on the platform and through standard search engines.
+The workflow further recommends that users create a project page on the Open Science Framework – a recognized repository in the social sciences.
+When doing so, it is important to generate a Digital Object Identifier (DOI) for this project.
+A DOI is a persistent way to identify and connect to an object on the internet, which is crucial for findability.
+Additional DOIs can be generated through the OSF for specific resources, such as data sets.
+It is further worth noting that, optionally, [GitHub repositories can be connected to Zenodo](https://guides.github.com/activities/citable-code/):
+On Zenodo, users can store a snapshot of the repository, provide metadata, and generate a DOI for the project or specific resources.
+When a project is connected to the OSF, as recommended, these steps may be redundant.
+Finally, each worcs project has a [YAML file] (https://yaml.org/) that lists the data objects (and other meta-data) in the project, which will allow web crawlers to index worcs projects.
+We use this metadata, for example, to identify public `worcs` projects on GitHub.  
+  Accessibility is primarily safeguarded by hosting all project files in a public GitHub repository, which can be downloaded as a ZIP archive, and cloned or forked using the Git protocol. [GitHub is committed to long term accessibility of these resources]( https://archiveprogram.github.com/). We further encourage users to make their data accessible when possible.
+When data must be closed, the `worcs` function `closed_data()` adds a paragraph to the project readme, indicating how readers can contact the author for access.  
+  With regard to interoperability, the workflow recommends using plain-text files whenever possible, which ensures that code and meta-data are human- and machine-readable.
+Furthermore, the `worcs` package is implemented in R, which is open source.
+To promote reusability, we recommend users to specify an appropriate license for their projects.
+The `worcs` package includes the CC licenses, and suggests a CC-BY 4.0 license by default.
+This license is featured in the GitHub repository, and we encourage users to also display it on their project’s OSF page.
+To further facilitate reusability, `worcs` automatically generates a codebook for
+each data file.
+We encourage users to elaborate on the default codebook by adding
+variable description and categories, which would - in the future - enable
+indexing data by topic area.
 
 \Assignment{AL, BV, CJ}
-\WorkInProgress
+\Done
 \Medium
 
 \RC{C3: Is WORCS providing any service for de-identification?}
@@ -443,8 +494,10 @@ R: Dit is wel een belangrijkt punt: Kunnen we opnemen in de workflow dat worcs-p
 Response: WORCS does not provide a service for de-identification,
 and we consider this to be outside of the scope of the present paper.
 If the Reviewer feels differently, we are open to being convinced, however!
-Of course, since `worcs` is open source software, anybody is welcome to contribute this functionality in exchange for coauthorship, in line with the contribution guidelines [outlined here](https://github.com/cjvanlissa/worcs#contributing-and-contact-information).
-The current team lacks relevant expertise to make this contribution.
+
+The current team lacks relevant expertise to make this contribution, but
+since `worcs` is open source software, anybody is welcome to contribute this functionality.
+Such a contribution would warrant coauthorship on the package, in line with the contribution guidelines [outlined here](https://github.com/cjvanlissa/worcs#contributing-and-contact-information).
 <!--What would this entail? Is it within scope?-->
 
 \Assignment{ALL}
@@ -480,7 +533,21 @@ The objective of the author is ambiguous. That said, I do not think that WORCS p
 
 Response: We agree with the Reviewer that researchers often go back and forth in their work. We did not intend to convey the impression that the process of conducting research is assumed to be linear. Of course, since we are presenting a workflow - there are a number of steps involved, which we have placed in roughly chronological order and numbered for reference purposes. For example, Study Design must logically occur prior to Writing and Analysis, and Publication can only logically occur after Writing. We also wish to emphasize that the "tool" (we assume the Reviewer is referring to the `worcs` R-package) does not enforce any kind of linearity. 
 
-To address the Reviewer's comment, we have made two changes: First, we now explicitly state, in the paper and the Workflow vignette, that the steps are not necessarily linear:  *"Note that, although the steps are numbered for reference purposes, we acknowledge that the process of conducting research is not always linear."*. Second, while it was always possible to manually add a manuscript or preregistration at a later point in time after creating a new project in RStudio - we have added more functions to increase the non-linear flexibility of the `worcs` package: `add_manuscript()` and `add_preregistration()`.
+To address the Reviewer's comment, we have made two changes: First, we now explicitly state, in two places in the paper, and in the Workflow vignette included with the `worcs` package, that the steps are not necessarily linear:
+
+**Introducing the workflow:**
+
+> Note that, although the steps are numbered for reference purposes,
+we acknowledge that the process of conducting research is not always linear.
+
+**Limitations:**
+
+> Another limitation is the fact that no single workflow can suit all research projects.
+Not all projects conform to the steps outlined here;
+some may skip steps, add steps, or follow similar steps in a different order.
+In principle, WORCS does not enforce a linear order, and allows extentensive user flexibility.
+
+Second, while it was always possible to manually add a manuscript or preregistration at a later point in time after creating a new project in RStudio - we have added more functions to increase the non-linear flexibility of the `worcs` package: `add_manuscript()` and `add_preregistration()`.
 
 \Assignment{CJ}
 \Done
@@ -559,7 +626,7 @@ resources for learning `R` [e.g., @grolemundDataScience2017].
 \RC{C3: Regarding Version control and dependency documentation, the authors uses in their system existing solution, namely git and env, respectively. While I did not criticize reusing existing solution, on the contrary, I don't believe that simply using such solution add a substantial value. For example, git capture changes at the level of the line of code/text, whereas a researcher needs an abstraction that informs him/her on the coarse-grained elements that are significant from the point of view of development and research steps so as to have a clear idea of where s/he is within the process and help him/her make the decision of the next steps to undertake.}
 
 Response: Respectfully, we are not entirely sure what the criticism is here.
-First, as addressed in our response to the previous comment, there seems to be a misunderstanding about the scope of the paper. To clarify, we again state that our paper introduces a workflow for open science, based on objective criteria set out in the TOP-guidelines. Regarding novelty: Aside from the work in progress of our co-authors - which is focused on strict computational reproducibility and is compatible with the present workflow - this is one of the first efforts to translate the requirements of open science into a step-by-step workflow. When you search Google Scholar for "open science workflow", the first hit that actually describes a workflow is the present manuscript.
+First, as addressed in our response to the previous comment, there seems to be a misunderstanding about the scope of the paper. To clarify, we again state that our paper introduces a workflow for open science, based on objective criteria set out in the TOP-guidelines. Regarding novelty: Aside from the work-in-press of our co-authors - which is focused on strict computational reproducibility and is compatible with the present workflow - this is one of the first efforts to translate the requirements of open science into a step-by-step workflow. When you search Google Scholar for "open science workflow", the first hit that actually describes a workflow is the present manuscript.
 
 Second, the Reviewer claims that using e.g. Git does not add substantial value - but this claim is in disagreement with published literature (which we cite) that makes a strong case for the value of using Git for research [see @ramGitCanFacilitate2013;  @blischakQuickIntroductionVersion2016].
 
@@ -574,7 +641,8 @@ For example, in our response to these reviews, we have created one Git commit fo
 
 To address the Reviewer's comment, we now clarify this point in the revised manuscript:
 
-> Git tracks changes to files on a line-by-line basis. The user can sture these changes by making a "commit": a 
+> Git tracks changes to files on a line-by-line basis.
+The user can store these changes by making a "commit": a 
 snapshot of the version controlled files.
 Each "commit" can contain as many changes as desired;
 for example, a whole new paragraph, or many small changes made to address a single reviewer comment.
@@ -593,20 +661,36 @@ It is, effectively, a Git "quick save" command.
 
 Response: We thank the Reviewer for acknowledging the idea to be interesting.
 Whether it will be adopted by researchers remains to be seen after publication.
-There is some prelimiary evidence that the workflow is being adopted (as of 31-10-2020):
+We can offer some prelimiary evidence that the workflow is already being adopted (as of 14-11-2020):
 
-1. The preprint has been downloaded 561 times, since being published on 31-05-2020
-1. The `worcs` R-package has been downloaded 2401 times from CRAN, since being published on 18-05-2020
-1. The GitHub project has been forked by users unknown to us 4 times, and starred (= watched) 32 times
-1. The video tutorial for worcs has been viewed 362 times, and liked 18 times (https://www.youtube.com/watch?v=uzjpN_yFeUU)
-1. WORCS is used to teach reproducibility at Utrecht University
-1. The lead author has given invited lectures on WORCS at the Erasmus University Rotterdam, Eindhoven University of Technology, and Max Planck Institute, Berlin
-1. The lead author has applied worcs in several research projects:
-	* https://github.com/cjvanlissa/storm_meta_father_mother
-	* https://github.com/cjvanlissa/veni_sysrev
-	* https://github.com/cjvanlissa/placebo_adhd
-	* https://github.com/cjvanlissa/schumpe
-	* https://github.com/cjvanlissa/coping_covid
+1.  The preprint has been downloaded 582 times, since being published on
+    31-05-2020
+2.  The `worcs` R-package has been downloaded 2567 times from CRAN,
+    since being published on 18-05-2020
+3.  The GitHub project has been forked 8 times, watched 5 times, and
+    starred 40 times
+4.  The lead author has given invited lectures on WORCS at:
+      - Max-Planck-Institute for Human Development (2020)  
+      - Open Science Community Rotterdam (2020)  
+      - Eindhoven University of Technology (2020)  
+5.  WORCS is currently used in the following GitHub repositories (sorted
+    by user):
+      - cjvanlissa
+          - [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
+          - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
+          - [schumpe](https://github.com/cjvanlissa/schumpe)  
+          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
+          - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
+          - [mpib](https://github.com/cjvanlissa/mpib)  
+          - [coping\_covid](https://github.com/cjvanlissa/coping_covid)  
+      - IndrajeetPatil
+          - [worcs\_practice](https://github.com/IndrajeetPatil/worcs_practice)  
+      - EstherPlomp
+          - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
+      - lisallreiber
+          - [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
+      - KimBaldry
+          - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)
 
 \Assignment{CJ}
 \Done
@@ -639,7 +723,7 @@ Reasons to reject:
 
 \RC{C1: The abstract of the paper states that the manuscript "provides examples of the implementation of worcs in R", so I was expecting science projects that had been described using worcs. If these examples exist, they should be referenced and linked to from the manuscript, as they would provide a better demonstration of the practical utility of the workflow and software than tutorial style examples.}
 
-Response: We thank the Reviewer for this helpful suggestion! Although such user examples are not yet numerous, the lead author has six public WORCS repositories, and there are two public repositories by other users. In our opinion, it would be most useful to have a continuously cumulating list of example repositories, and link that list in the paper - rather than to publish a static list. Therefore, to address this comment, we have scripted a web scraper that searches GitHub for WORCS repositories (using the metadata tags created by the `worcs` package). We have embedded the scraper in the README.Rmd file on the worcs GitHub page, which is regularly updated. In the revised paper, we point readers to [this readme](https://github.com/cjvanlissa/worcs) for a list of user examples, in the Abstract, and when introducing the workflow.
+Response: We thank the Reviewer for this helpful suggestion! Although such user examples are not yet numerous, the lead author has six public WORCS repositories, and there are four public repositories by other users. In our opinion, it would be most useful to have a continuously cumulating list of example repositories, and link that list in the paper - rather than to publish a static list. Therefore, to address this comment, we have scripted a web scraper that searches GitHub for WORCS repositories (using the metadata tags created by the `worcs` package). We have embedded the scraper in the README.Rmd file on the worcs GitHub page, which is regularly updated. In the revised paper, we point readers to [a list of public `worcs` projects](https://github.com/cjvanlissa/worcs/tree/master#adoption-of-worcs-by-users) in the Abstract, and when introducing the workflow.
 
 \Assignment{CJ}
 \Done
@@ -647,7 +731,7 @@ Response: We thank the Reviewer for this helpful suggestion! Although such user 
 
 \RC{C2: There is a comparison in the paper to another R-based reproducible science solution (Peikert and Brandmaier (2019)). The authors discuss some of the differences between these approaches, but the comparison is limited. It is not clear to me how different these approaches actually are, apart from ease of use. If scientists are already familiar with R, is there a significant learning curve with either solution?}
 
-We agree that this is an important point, and have rewritten the paragraph comparing these two solutions (as cited below). We hope that this adresses the Reviewer's question. However, as the workflow of Peikert and Brandmaier is still in press, and the software implementation has not yet been fully developed - a more detailed comparison of these two approaches would be premature.
+We agree that this is an important point. We have attemptedto address it by rewriting the paragraph comparing these two solutions (as cited below). We hope that this is satisfactory. At this point in time, this is all we can say about the comparison of the two workflows, because the workflow of Peikert and Brandmaier is still in press, and the software implementation has not yet been fully developed.
 
 > A different class of solutions instead focuses on the practical issue of *how*
 researchers can meet the requirements of open science.
@@ -670,7 +754,7 @@ thereby facilitating adoption, but still ensures computational reproducibility u
 
 
 \Assignment{CJ, AP, AB}
-\WorkInProgress
+\Done
 \Medium
 
 # Editor
@@ -685,24 +769,36 @@ Response: We thank the Editor and all Reviewers for their helpful comments on th
 
 We thank the Editor for pointing out that a full-blown user evaluation is not required for a resource paper.
 Of course, we take this Reviewer suggestion very seriously, and intend to conduct a user evaluation after the paper is published and users begin to adopt the workflow.
-In the meantime, we present the following evidence for WORCS' potential for reuse:
-
-TODO
+Please refer to our response to Reviewer 1's comment 1, where we discuss our efforts to ensure the *potential for reuse*, and provide preliminary evidence for actual reuse/uptake of the workflow.
 
 ### Non-linear research processes
 
 Although Reviewer 3 claims that WORCS assumes a linear research process, this is incorrect.
 
 We agree with Reviewer 3 that researchers often go back and forth in their work. 
-We did not intend to convey the impression that the process of conducting research is assumed to be linear. 
+We did not intend to convey the impression that the process of conducting research is assumed to be linear.
 Of course, since we are presenting a workflow - there are a number of steps involved, which we have placed in roughly chronological order and numbered for reference purposes.
-For example, Study Design must logically occur prior to Writing and Analysis, and Publication can only logically occur after Writing.
-We also wish to emphasize that the "tool" (we assume the Reviewer is referring to the `worcs` R-package) does not enforce any kind of linearity. 
+For example, Study Design must logically occur prior to Writing and Analysis, and Publication can only logically occur after Writing. We also wish to emphasize that the "tool" (we assume the Reviewer is referring to the `worcs` R-package) does not enforce any kind of linearity. 
 
-To address the Reviewer's comment, we have made two changes: First, we now explicitly state, in the paper and the Workflow vignette, that the steps are not necessarily linear:  *"Note that, although the steps are numbered for reference purposes, we acknowledge that the process of conducting research is not always linear."*. Second, while it was always possible to manually add a manuscript or preregistration at a later point in time after creating a new project in RStudio - we have now added functions to make non-linear workflows even more convenient, specifically: `add_manuscript()` and `add_preregistration()`.
+To address Reviewer 3's comment, we have made two changes: First, we now explicitly state, in two places in the paper, and in the Workflow vignette included with the `worcs` package, that the steps are not necessarily linear:
+
+**Introducing the workflow:**
+
+> Note that, although the steps are numbered for reference purposes,
+we acknowledge that the process of conducting research is not always linear.
+
+**Limitations:**
+
+> Another limitation is the fact that no single workflow can suit all research projects.
+Not all projects conform to the steps outlined here;
+some may skip steps, add steps, or follow similar steps in a different order.
+In principle, WORCS does not enforce a linear order, and allows extentensive user flexibility.
+
+Second, while it was always possible to manually add a manuscript or preregistration at a later point in time after creating a new project in RStudio - we have added more functions to increase the non-linear flexibility of the `worcs` package: `add_manuscript()` and `add_preregistration()`.
+
 
 \Assignment{AP, AB}
-\WorkInProgress
+\Done
 \Medium
 
 # References

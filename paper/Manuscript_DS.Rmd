@@ -10,14 +10,14 @@ author:
     Barbara Vreede$^{h}$
     
   affiliation: | 
-      a: Utrecht University faculty of Social and Behavioral Sciences, department of Methodology & Statistics  
-      b: Open Science Community Utrecht  
-      c: Center for Lifespan Psychology, Max Planck Institute for Human Development, Berlin, Germany  
-      d: Max Planck UCL Centre for Computational Psychiatry and Ageing Research, Berlin, Germany and London, UK  
-      e: UMC Utrecht  
-      f: Utrecht University, Department of Information and Computing Sciences  
-      g: Utrecht University faculty of Humanities, department of Language, Literature & Communication, Utrecht Institute of Linguistics OTS  
-      h: University Library Utrecht
+      $a$: Utrecht University faculty of Social and Behavioral Sciences, department of Methodology & Statistics  
+      $b$: Open Science Community Utrecht  
+      $c$: Center for Lifespan Psychology, Max Planck Institute for Human Development, Berlin, Germany  
+      $d$: Max Planck UCL Centre for Computational Psychiatry and Ageing Research, Berlin, Germany and London, UK  
+      $e$: UMC Utrecht  
+      $f$: Utrecht University, Department of Information and Computing Sciences  
+      $g$: Utrecht University faculty of Humanities, department of Language, Literature & Communication, Utrecht Institute of Linguistics OTS  
+      $h$: University Library Utrecht
 title: "WORCS: A Workflow for Open Reproducible Code in Science"
 short:      "WORKFLOW FOR OPEN SCIENCE"
 shorttitle:      "WORKFLOW FOR OPEN SCIENCE"
@@ -127,16 +127,15 @@ and provide a sensible starting point for a customized solution.
 
 The WORCS workflow constitutes a step-by-step procedure that researchers can follow to make a 
 research project open and reproducible.
-See Figure 1 for a schematic overview of the conceptual workflow,
-which shows the steps to take in different stages of the research process.
-The workflow is elaborated in greater detail below.
+These steps are elaborated in greater detail below.
+See Figure \@ref(fig:workflow) for a flowchart that highlights important steps in different stages of the research process.
 WORCS is compatible with open science
 requirements already implemented by journals and institutions, and will help 
 fulfill them.
 It can also be used by individual authors to produce work in accordance with best practices
 in the absence of top-down support or guidelines (i.e., "grass roots" open science).
 
-```{r workflow, fig.cap="*Figure 1*: Schematic illustration of the WORCS procedure.", out.width="100%"}
+```{r workflow, fig.cap="Schematic illustration of important steps in different stages of the WORCS procedure.", out.width="100%"}
 knitr::include_graphics("workflow.png")
 #knitr::include_graphics("workflow_graph/workflow.svg")
 ```
@@ -406,7 +405,7 @@ as a web page on GitHub.
 # Introducing the workflow 
 
 We provide a conceptual outline of the WORCS procedure below, based on WORCS
-Version 0.1.5.
+Version 0.1.6.
 The conceptual workflow recommends actions to take 
 in the different phases of a research project, in order to work openly and transparently
 in compliance with the TOP-guidelines and best practices for open science.
@@ -417,8 +416,8 @@ We refer users of the `worcs` implementation in `R` to
 which describes in more detail which steps are automated by the `R` package
 and which actions must be taken by the user.
 The vignette is also updated with future developments of the package.
-
-For an up-to-date list of sample `worcs` projects, see the [WORCS GitHub page](https://github.com/cjvanlissa/worcs).
+For examples of how the workflow is used in practice,
+we maintain [a list of public `worcs` projects](https://github.com/cjvanlissa/worcs/tree/master#adoption-of-worcs-by-users) on the WORCS GitHub page.
 
 ```{r results="asis", echo = FALSE, eval = TRUE}
 get_workflow <- function(filename = "../vignettes/workflow.Rmd"){
@@ -641,12 +640,14 @@ Still, sharing synthetic data facilitates data requests from third parties. A
 third party can write analysis code based on the synthetic data, and send it to
 the authors who evaluate it on the real data and send back the results. The
 `worcs` package offers a simple but flexible function to generate synthetic data,
-`synthetic()`, which by default uses random forests to generate a model for
-synthesis (see @wrightRangerFastImplementation2015).
+`synthetic()`.
 This function is based on the work by @nowokSynthpopBespokeCreation2016 (see the `R` package `synthpop`),
 but with a simpler and more flexible user interface.
 Specifically, the `worcs` function `synthetic()` accepts any function that can be used to model
 marginal associations in the data.
+By default, this function uses random forests, as implemented in the `ranger` package, to generate a model for synthesis [@wrightRangerFastImplementation2015].
+Note that the `ranger()` function does not handle all available data types in `R`.
+Users can call custom functions to build a prediction model for unsupported data types, using the argument `model_expression`.
 For further details, see the [function documentation](https://cjvanlissa.github.io/worcs/reference/synthetic.html).
 
 Note that for data synthesis to work
@@ -903,26 +904,38 @@ most notably software [@lamprechtFAIRPrinciplesResearch2019].
 
 WORCS was not designed to comprehensively address these principles, but the workflow does facilitate meeting them.
 In terms of Findability, all files in GitHub projects are searchable by content and meta-data, both on the platform and through standard search engines.
-The workflow further recommends that users create a project page on the Open Science Framework – a recognized repository in the social sciences – and generate a DOI for this project.
+The workflow further recommends that users create a project page on the Open Science Framework – a recognized repository in the social sciences.
+When doing so, it is important to generate a Digital Object Identifier (DOI) for this project.
+A DOI is a persistent way to identify and connect to an object on the internet, which is crucial for findability.
 Additional DOIs can be generated through the OSF for specific resources, such as data sets.
-It is additionally or alternatively possible to connect the GitHub repository to Zenodo, which also offers DOIs and allows users to document projects with extensive metadata.
+It is further worth noting that, optionally, [GitHub repositories can be connected to Zenodo](https://guides.github.com/activities/citable-code/):
+On Zenodo, users can store a snapshot of the repository, provide metadata, and generate a DOI for the project or specific resources.
+When a project is connected to the OSF, as recommended, these steps may be redundant.
 Finally, each worcs project has a [YAML file] (https://yaml.org/) that lists the data objects (and other meta-data) in the project, which will allow web crawlers to index worcs projects.
 We use this metadata, for example, to identify public `worcs` projects on GitHub.
+
 Accessibility is primarily safeguarded by hosting all project files in a public GitHub repository, which can be downloaded as a ZIP archive, and cloned or forked using the Git protocol. [GitHub is committed to long term accessibility of these resources]( https://archiveprogram.github.com/). We further encourage users to make their data accessible when possible.
 When data must be closed, the `worcs` function `closed_data()` adds a paragraph to the project readme, indicating how readers can contact the author for access.
 
 With regard to interoperability, the workflow recommends using plain-text files whenever possible, which ensures that code and meta-data are human- and machine-readable.
 Furthermore, the `worcs` package is implemented in R, which is open source.
 To promote reusability, we recommend users to specify an appropriate license for their projects.
-The `worcs` package includes the CC licenses, and suggests a CC-BY 4.0 license by default.
+The `worcs` package includes the [Creative Commons (CC) licenses](https://creativecommons.org/licenses/), and suggests a CC-BY 4.0 license by default.
 This license is featured in the GitHub repository, and we encourage users to also display it on their project’s OSF page.
+Note that it is possible to license specific project resources separately under different licenses.
+For instance, whereas the CC-licenses are suitable for data, media, and academic papers - they are ill-suited for licensing software.
+It is thus prudent to consider separately licensing specific project resources,
+particularly when a project contains *original* source code (i.e., you write your own functions).
+For a more extensive discussion of appropriate licensing, see @peikertReproducibleDataAnalysis2019, @stoddenEnhancingReproducibilityComputational2016, and the website [choosealicense.com](https://choosealicense.com/).
+
 To further facilitate reusability, `worcs` automatically generates a codebook for
 each data file.
 We encourage users to elaborate on the default codebook by adding
 variable description and categories, which would - in the future - enable
 indexing data by topic area.
 
-Incidentally, `worcs` itself follows the recommendations for [FAIR research software](https://fair-software.eu/). It is 
+Incidentally, the FAIR principles have been applied to software as well,
+and `worcs` follows these recommendations for [FAIR research software](https://fair-software.eu/). It is 
 hosted on a version controlled public remote repository GitHub, has an open
 source licence (GPL v3.0), is registered in a community registry (CRAN),
 enables the citation of the software (using the `citation("worcs")` command, or
