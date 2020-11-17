@@ -147,8 +147,8 @@ it does not have a unitary definition.
 Throughout this paper, we adhere to the definition of open science as
 "the practice of science in such a way that others can collaborate and contribute,
 where research data, lab notes and other research processes are freely available,
-under terms that enable reuse, redistribution and reproduction of the research and its underlying data and methods" [@vicente-saezOpenScienceNow2018].
-In this definition, the term "science" refers to all scholarly disciplines.
+under terms that enable reuse, redistribution and reproduction of the research and its underlying data and methods" [the [FOSTER Open Science Definition](https://www.fosteropenscience.eu/foster-taxonomy/open-science-definition), as discussed in @sonjabezjakOpenScienceTraining2018].
+In this context, the term "science" refers to all scholarly disciplines.
 We further define the term *reproducible*, as used in the WORCS acronym, as being able to re-perform "the same analysis with the same code using a different analyst" [@patilVisualToolDefining2019].
 
 The "TOP-guidelines" are one of the most influential concrete operationalisations 
