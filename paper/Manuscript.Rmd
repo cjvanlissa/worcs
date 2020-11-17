@@ -222,8 +222,8 @@ time.
 In the R-implementation of WORCS, we recommend centering a research project
 around one dynamically generated 'RMarkdown' document, which includes all 
 analysis code. Longer scripts can be
-stored in `.R` files, and called from the main document using the `source()`
-function. When a reader or reviewer compiles this document, all code is run
+stored in `.R` files, and included in the main document using the [`read_chunk()`
+function](https://github.com/yihui/knitr-examples/blob/master/113-externalization.Rmd) from the `knitr` package, which comes together with the `rmarkdown` package. When a reader or reviewer compiles this document, all code is run
 automatically, thus verifying computational replicability. The 'RMarkdown' 
 document can be automatically formatted in many styles, including
 APA style [thanks to the R package `papaja`, @austPapajaPrepareReproducible2020],
