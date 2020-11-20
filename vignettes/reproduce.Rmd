@@ -1,0 +1,97 @@
+---
+title: "Reproducing a WORCS project"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{reproduce-worcs-project}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This is a tutorial on how to reproduce a project created with the `worcs` package.
+At the core of a typical `worcs` projects is an 'R Markdown' document,
+containing prose and analysis code.
+This document can be compiled, or "knitted", to reproduce the analyses.
+This tutorial will guide you through the steps necessary to make that happen.
+
+## Install 'RStudio' and 'R'
+
+**You can skip these steps if you have a recent and working installation of 'RStudio' and 'R'.**
+
+1. Install R from https://CRAN.R-project.org
+1. Install 'RStudio' Desktop (Free) from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)
+
+## Install R-package dependencies
+
+1. Install all packages required for WORCS by running the following code in the 'RStudio' console. Be prepared for three contingencies:  
+    + If you receive any error saying *There is no package called [package name]*, then run the code `install.packages("package name")`  
+    + If you are prompted to update packages, just press [ENTER] to avoid updating packages. Updating packages this way in an interactive session sometimes leads to errors if the packages are loaded.  
+    + If you see a pop-up dialog asking *Do you want to install from sources the package which needs compilation?*, click *No*.
+
+```
+install.packages("worcs", dependencies = TRUE)
+tinytex::install_tinytex()
+renv::consent(provided = TRUE)
+```
+
+## Obtaining the project repository
+
+WORCS projects are typically hosted on 'GitHub', or another 'Git' remote repository.
+If you are familiar with 'Git' and 'GitHub', you can "clone" the project as usual.
+
+If you are not familiar with these tools, you can download the project repository from the remote repository through the web interface.
+
+On 'GitHub', this is done by clicking the green button labeled "Code". Clicking it reveals the option "Download ZIP" (see below), which allows you to download a compressed archive of the project.
+This can be unpacked using ZIP tools, which are integrated in most operating systems.
+
+![](github_download.png)
+
+## Open the project in 'RStudio'
+
+Most projects can be opened by loading the '.RProj' file in the main folder.
+This should be explained in the project 'README.md' as well.
+
+## Restore the package dependencies
+
+You will need to restore the packages used by the authors, using the `renv` package.
+See [this article](https://rstudio.github.io/renv/articles/renv.html) for more information about `renv`.
+
+With the project open in 'RStudio', type the following in the console:
+
+```
+renv::restore()
+```
+
+## Open the project entry point
+
+The entry point is the core document that can be executed to reproduce the analysis.
+This is typically a manuscript, or occasionally an R-script file.
+Use the following function to open the entry point file in 'RStudio':
+
+```
+load_entrypoint()
+```
+
+## Reproduce the analyses
+
+If the entry point has the extention '.Rmd', press the button labelled 'Knit' in the editor to compile it and run the analyses contained therein. If the entry point has the extention '.R', press the 'Run' button instead.
+The resulting document should reproduce the original work.
+
+## No access to original data
+
+Sometimes, authors have not made the original data available.
+In this case, the project ought to contain a synthetic data file with similar properties
+to the original data.
+This synthetic data allows you to verify that the analyses can be run,
+and that the code is correct.
+The results will likely deviate (substantially) from the original findings.
+
+Authors may use the function `notify_synthetic()` to generate a message in the paper when a synthetic dataset is used.
+Authors should also provide information in the README.md file on how to obtain access to the original data in case an audit is warranted.
+Please read the WORCS paper [@vanlissaWORCSWorkflowOpen2020] for more information about how checksums are used so that auditers can verify the authenticity of the original data.

@@ -13,7 +13,6 @@
 #' @param verbose Logical. Whether or not to print status messages to
 #' the console. Default: TRUE
 #' @param ... Additional arguments passed to and from functions.
-
 #' @return Returns \code{NULL} invisibly. This
 #' function is called for its side effects.
 #' @examples
