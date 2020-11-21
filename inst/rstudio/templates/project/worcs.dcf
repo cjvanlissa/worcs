@@ -6,7 +6,7 @@ Icon: worcs.png
 Parameter: remote_repo
 Widget: TextInput
 Label: Git remote repository address
-Default: https[...].git or git@[...].git
+Default: git@[...].git
 
 Parameter: use_renv
 Widget: CheckboxInput
@@ -16,12 +16,12 @@ Default: On
 Parameter: manuscript
 Widget: SelectInput
 Label: Manuscript template
-Fields: APA6, github_document, None, ams_article, asa_article, biometrics_article, copernicus_article, ctex, elsevier_article, frontiers_article, ieee_article, joss_article, jss_article, mdpi_article, mnras_article, oup_article, peerj_article, plos_article, pnas_article, rjournal_article, rsos_article, sage_article, sim_article, springer_article, tf_article
+Fields: github_document, APA6, None, ams_article, asa_article, biometrics_article, copernicus_article, ctex, elsevier_article, frontiers_article, ieee_article, joss_article, jss_article, mdpi_article, mnras_article, oup_article, peerj_article, plos_article, pnas_article, rjournal_article, rsos_article, sage_article, sim_article, springer_article, tf_article
 
 Parameter: preregistration
 Widget: SelectInput
 Label: Preregistration template
-Fields: COS, VantVeer, Brandt, AsPredicted, None
+Fields: COS, VantVeer, Brandt, AsPredicted, PSS, Secondary, None
 
 Parameter: add_license
 Widget: SelectInput

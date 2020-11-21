@@ -219,3 +219,16 @@ git_update <- function(message = paste0("update ", Sys.time()),
     }, error = function(e){col_message("Could not push local commits to remote repository.", success = FALSE)})
   )
 }
+
+
+parse_repo <- function(remote_repo, verbose = TRUE){
+  valid_repo <- grepl("^git@.+?\\..+?:.+?/.+?(\\.git)?$", remote_repo) | grepl("^https://.+?\\..+?/.+?/.+?(\\.git)?$", remote_repo)
+  if(!valid_repo){
+    col_message("Not a valid 'Git' remote repository address: ", remote_repo, success = FALSE, verbose = verbose)
+    return(NULL)
+  }
+  repo_url <- gsub("(^.+?@)(.*)$", "\\2", remote_repo)
+  repo_url <- gsub("(\\..+?):", "\\1/", repo_url)
+  repo_url <- gsub("\\.git$", "", repo_url)
+  gsub("^(https://)?", "https://", repo_url)
+}

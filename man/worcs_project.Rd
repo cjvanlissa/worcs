@@ -10,7 +10,7 @@ worcs_project(
   preregistration = "COS",
   add_license = "CC_BY_4.0",
   use_renv = TRUE,
-  remote_repo = "https",
+  remote_repo = "git@",
   verbose = TRUE,
   ...
 )
@@ -43,12 +43,11 @@ Default: 'CC_BY_4.0'. Available options include:
 \item{use_renv}{Logical, indicating whether or not to use 'renv' to make the
 project reproducible. Default: TRUE. See \code{\link[renv]{init}}.}
 
-\item{remote_repo}{Character, 'https' link to the remote repository for
-this project. This link should have the form \code{https://[...].git}.
+\item{remote_repo}{Character, 'SSH' address of the remote repository for
+this project. This link should have the form \code{git@[...].git}.
 If a valid remote repository link is provided, a commit will
 be made containing the 'README.md' file, and will be pushed to the remote
-repository. Default: 'https'. When no 'https' address is provided, an 'SSH'
-address of the form \code{git@[...].git} is also accepted.}
+repository. Default: 'git@'.}
 
 \item{verbose}{Logical. Whether or not to print messages to the console
 during project creation. Default: TRUE}
@@ -73,7 +72,7 @@ worcs_project(file.path(tempdir(), the_test, "worcs_project"),
               preregistration = "None",
               add_license = "None",
               use_renv = FALSE,
-              remote_repo = "https")
+              remote_repo = "git@")
 setwd(old_wd)
 unlink(file.path(tempdir(), the_test))
 }

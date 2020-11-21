@@ -35,7 +35,9 @@ an 'R Markdown' codebook.
 }
 \description{
 Creates a codebook for a dataset in 'R Markdown' format, and
-renders it to 'markdown' for 'GitHub'. Users can customize the 'R Markdown'
+renders it to 'markdown' for 'GitHub'. A codebook contains metadata and
+documentation for a data file.
+We urge users to customize the automatically generated 'R Markdown'
 document and re-knit it, for example, to add a paragraph with details on
 the data collection procedures. The variable descriptives are stored in
 a \code{.csv} file, which can be edited in 'R' or a spreadsheet program.

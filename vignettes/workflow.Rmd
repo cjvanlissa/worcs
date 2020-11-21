@@ -31,9 +31,9 @@ knitr::include_graphics("workflow.png")
 
 1. <!--S: Create a (Public or Private) remote repository on a 'Git' hosting service-->Create a new remote repository on a 'Git' hosting service, such as ["GitHub"](https://github.com)
     + For inexperienced users, we recommend making this repository "Private", which means only you and selected co-authors can access it. You can set it to "Public" later - for example, when the paper goes to print - and the entire history of the Repository will be public record. We recommend making the repository "Public" from the start __only if__ you are an experienced user and know what you are doing.
-    + Copy the repository's `https://` link to clipboard; this link should look something like `https://[...].git`
+    + Copy the repository's SSH link to clipboard; this link should look something like `git@github.com:username/repository.git`
 2. <!--S: When using R, initialize a new RStudio project using the WORCS template. Otherwise, clone the remote repository to your local project folder.-->In Rstudio, click File > New Project > New directory > WORCS Project Template
-    a. Paste the remote Repository address in the textbox. This address should look like `https://[...].git`
+    a. Paste the remote Repository address in the textbox. This address should look like `git@github.com:username/repository.git`
     b. Keep the checkbox for `renv` checked if you want to use dependency management (recommended)
     c. Select a preregistration template, or add a preregistration later using `add_preregistration()`
     d. Select a manuscript template, or add a manuscript later using `add_manuscript()`
@@ -57,6 +57,7 @@ knitr::include_graphics("workflow.png")
 5. <!--S: Optional: Upload the preregistration to a dedicated preregistration server-->Optional: Render the preregistration to PDF, and upload it as an attachment to a dedicated preregistration server like AsPredicted.org or OSF.io
     + In 'RStudio', with the file 'preregistration.Rmd' open, click the "Knit" button above the top left panel
     + When the PDF is generated, go to one of the recognized preregistration services' websites, create a new preregistration, and upload it as an attachment.
+    + Optional: Generate a DOI for the preregistration through [the OSF](https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data) or a service like [Zenodo](https://guides.github.com/activities/citable-code/)
 6. <!--S: Optional: Add study materials to the repository-->Optional: Add study materials to the repository.
     + Only do this for study materials to which you own the rights, or when the materials' license allows it
     + You can solicit feedback and outside contributions on a 'Git' remote repository by opening an "Issue" or by accepting "Pull requests"

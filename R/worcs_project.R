@@ -31,12 +31,11 @@ recommend_data <- c('library("worcs")',
 #' <https://creativecommons.org/licenses/>.
 #' @param use_renv Logical, indicating whether or not to use 'renv' to make the
 #' project reproducible. Default: TRUE. See \code{\link[renv]{init}}.
-#' @param remote_repo Character, 'https' link to the remote repository for
-#' this project. This link should have the form \code{https://[...].git}.
+#' @param remote_repo Character, 'SSH' address of the remote repository for
+#' this project. This link should have the form \code{git@[...].git}.
 #' If a valid remote repository link is provided, a commit will
 #' be made containing the 'README.md' file, and will be pushed to the remote
-#' repository. Default: 'https'. When no 'https' address is provided, an 'SSH'
-#' address of the form \code{git@[...].git} is also accepted.
+#' repository. Default: 'git@'.
 #' @param verbose Logical. Whether or not to print messages to the console
 #' during project creation. Default: TRUE
 #' @param ... Additional arguments passed to and from functions.
@@ -51,7 +50,7 @@ recommend_data <- c('library("worcs")',
 #'               preregistration = "None",
 #'               add_license = "None",
 #'               use_renv = FALSE,
-#'               remote_repo = "https")
+#'               remote_repo = "git@")
 #' setwd(old_wd)
 #' unlink(file.path(tempdir(), the_test))
 #' @rdname worcs_project
@@ -62,7 +61,7 @@ recommend_data <- c('library("worcs")',
 #' @importFrom prereg vantveer_prereg
 #' @importFrom methods formalArgs
 # @importFrom renv init
-worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "COS", add_license = "CC_BY_4.0", use_renv = TRUE, remote_repo = "https", verbose = TRUE, ...) {
+worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "COS", add_license = "CC_BY_4.0", use_renv = TRUE, remote_repo = "git@", verbose = TRUE, ...) {
   cl <- match.call(expand.dots = FALSE)
 
   # collect inputs
@@ -207,8 +206,9 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   }
 
   # Connect to remote repo if possible
-  if(use_git & endsWith(remote_repo, ".git") &
-     (startsWith(remote_repo, "https://") | startsWith(remote_repo, "git@"))){
+  repo_url <- parse_repo(remote_repo = remote_repo, verbose = verbose)
+  valid_repo <- !is.null(repo_url)
+  if(use_git & valid_repo){
     tryCatch({
       # For compatibility with old and new gert, check which formals it has
       Args_gert <- list(
@@ -224,7 +224,9 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
       do.call(git_remote_add, Args_gert)
       git_push(remote = "origin", repo = path)
       col_message(paste0("Connected to remote repository at ", remote_repo), verbose = verbose)
-    }, error = function(e){col_message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", success = FALSE, verbose = verbose)})
+    }, error = function(e){
+      col_message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", success = FALSE, verbose = verbose)
+      })
   } else {
     col_message("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.", success = FALSE)
   }
@@ -266,7 +268,8 @@ create_man_papaja <- function(man_fn_abs, remote_repo){
       "",
       paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [WORCS version ",
              gsub("^(\\d{1,}(\\.\\d{1,}){2}).+$", "\\1", as.character(packageVersion("worcs"))),
-             ", @vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", gsub("\\.git$", "", remote_repo), ">")), "."),
+             ", @vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ",
+             ifelse(is.null(remote_repo), "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
       "",
       "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2020]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
       "",
@@ -290,6 +293,8 @@ create_man_github <- function(man_fn_abs, remote_repo){
       create_dir = FALSE,
       edit = FALSE
     )
+
+    repo_address <- remote_repo
     manuscript_text <- readLines(man_fn_abs, encoding = "UTF-8")
     # Add bibliography and citation function
     add_lines <- c(
@@ -301,9 +306,12 @@ create_man_github <- function(man_fn_abs, remote_repo){
     # Add call to library("worcs")
     manuscript_text <- append(manuscript_text, recommend_data, after = grep('^```', manuscript_text)[1])
     # Add introductory sentence
+    repo_url <- parse_repo(remote_repo = remote_repo, verbose = FALSE)
+    valid_repo <- !is.null(repo_url)
     add_lines <- c(
       "",
-      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
+      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ",
+             ifelse(is.null(remote_repo), "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
       "",
       "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2020]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
       "",
@@ -341,7 +349,8 @@ create_man_rticles <- function(man_fn_abs, template, remote_repo){
       recommend_data,
       '```',
       "",
-      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ", ifelse(remote_repo == "https", "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
+      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2020] to ensure reproducibility and transparency. All code <!--and data--> are available at ",
+             ifelse(is.null(remote_repo), "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
       "",
       "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2020]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
       "",
@@ -414,7 +423,7 @@ nice_tab <- function(tab){
 #' @importFrom rmarkdown draft
 #' @importFrom prereg vantveer_prereg
 # @importFrom renv init
-add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_repo = "https", verbose = TRUE, ...) {
+add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_repo = NULL, verbose = TRUE, ...) {
   # collect inputs
   dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
   fn_worcs <- file.path(dn_worcs, ".worcs")
@@ -424,6 +433,7 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
   # ensure path exists
   worcs_directory <- normalizePath(worcs_directory)
   # Check if valid Git signature exists
+  #remote_repo <- parse_repo(remote_repo = remote_repo, verbose = verbose)
 
   # Begin manuscript
     tryCatch({

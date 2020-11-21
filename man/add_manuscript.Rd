@@ -7,7 +7,7 @@
 add_manuscript(
   worcs_directory = ".",
   manuscript = "APA6",
-  remote_repo = "https",
+  remote_repo = NULL,
   verbose = TRUE,
   ...
 )
