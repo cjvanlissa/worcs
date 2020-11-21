@@ -121,7 +121,7 @@
 Create a new remote repository on a ‘Git’ hosting service, such as <a href="https://github.com">“GitHub”</a>
 <ul>
 <li>For inexperienced users, we recommend making this repository “Private”, which means only you and selected co-authors can access it. You can set it to “Public” later - for example, when the paper goes to print - and the entire history of the Repository will be public record. We recommend making the repository “Public” from the start <strong>only if</strong> you are an experienced user and know what you are doing.</li>
-<li>Copy the repository’s <code>https://</code> link to clipboard; this link should look something like <code>https://[...].git</code>
+<li>Copy the repository’s SSH link to clipboard; this link should look something like <code>git@github.com:username/repository.git</code>
 </li>
 </ul>
 </li>
@@ -129,7 +129,7 @@ Create a new remote repository on a ‘Git’ hosting service, such as <a href="
 <!--S: When using R, initialize a new RStudio project using the WORCS template. Otherwise, clone the remote repository to your local project folder.-->
 In Rstudio, click File &gt; New Project &gt; New directory &gt; WORCS Project Template
 <ol style="list-style-type: lower-alpha">
-<li>Paste the remote Repository address in the textbox. This address should look like <code>https://[...].git</code>
+<li>Paste the remote Repository address in the textbox. This address should look like <code>git@github.com:username/repository.git</code>
 </li>
 <li>Keep the checkbox for <code>renv</code> checked if you want to use dependency management (recommended)</li>
 <li>Select a preregistration template, or add a preregistration later using <code><a href="../reference/add_preregistration.html">add_preregistration()</a></code>
@@ -169,6 +169,8 @@ Optional: Render the preregistration to PDF, and upload it as an attachment to a
 <ul>
 <li>In ‘RStudio’, with the file ‘preregistration.Rmd’ open, click the “Knit” button above the top left panel</li>
 <li>When the PDF is generated, go to one of the recognized preregistration services’ websites, create a new preregistration, and upload it as an attachment.</li>
+<li>Optional: Generate a DOI for the preregistration through <a href="https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data">the OSF</a> or a service like <a href="https://guides.github.com/activities/citable-code/">Zenodo</a>
+</li>
 </ul>
 </li>
 <li>
