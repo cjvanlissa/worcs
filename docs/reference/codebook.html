@@ -41,7 +41,9 @@
 
 <meta property="og:title" content="Create codebook for a dataset — make_codebook" />
 <meta property="og:description" content="Creates a codebook for a dataset in 'R Markdown' format, and
-renders it to 'markdown' for 'GitHub'. Users can customize the 'R Markdown'
+renders it to 'markdown' for 'GitHub'. A codebook contains metadata and
+documentation for a data file.
+We urge users to customize the automatically generated 'R Markdown'
 document and re-knit it, for example, to add a paragraph with details on
 the data collection procedures. The variable descriptives are stored in
 a .csv file, which can be edited in 'R' or a spreadsheet program.
@@ -158,7 +160,9 @@ transfer these changes to the 'markdown' file for 'GitHub'." />
 
     <div class="ref-description">
     <p>Creates a codebook for a dataset in 'R Markdown' format, and
-renders it to 'markdown' for 'GitHub'. Users can customize the 'R Markdown'
+renders it to 'markdown' for 'GitHub'. A codebook contains metadata and
+documentation for a data file.
+We urge users to customize the automatically generated 'R Markdown'
 document and re-knit it, for example, to add a paragraph with details on
 the data collection procedures. The variable descriptives are stored in
 a <code>.csv</code> file, which can be edited in 'R' or a spreadsheet program.
@@ -224,7 +228,7 @@ an 'R Markdown' codebook.</p>
 <span class='fu'>make_codebook</span><span class='op'>(</span><span class='va'>iris</span>, filename <span class='op'>=</span> <span class='va'>filename</span>, csv_file <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>processing file: codebook588461fa1c7d.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |..............                                                        |  20%
+#&gt; <span class='message'>processing file: codebook54407d5f6903.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |..............                                                        |  20%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                              |............................                                          |  40%
@@ -240,10 +244,10 @@ an 'R Markdown' codebook.</p>
 #&gt;   |                                                                              |......................................................................| 100%
 #&gt;   ordinary text without R code
 #&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: codebook588461fa1c7d.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook588461fa1c7d.utf8.md --to gfm --from markdown+autolink_bare_uris+tex_math_single_backslash --output codebook588461fa1c7d.md --standalone --template "C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" 
-#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook588461fa1c7d.md --to html4 --from gfm --output codebook588461fa1c7d.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --email-obfuscation none --metadata pagetitle=PREVIEW </div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Preview created: codebook588461fa1c7d.html</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Output created: codebook588461fa1c7d.md</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: codebook54407d5f6903.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook54407d5f6903.utf8.md --to gfm --from markdown+autolink_bare_uris+tex_math_single_backslash --output codebook54407d5f6903.md --standalone --template "C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" 
+#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook54407d5f6903.md --to html4 --from gfm --output codebook54407d5f6903.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --email-obfuscation none --metadata pagetitle=PREVIEW </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Preview created: codebook54407d5f6903.html</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Output created: codebook54407d5f6903.md</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
   <span class='st'>".worcs"</span>,
   <span class='va'>filename</span>,
   <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"\\.Rmd"</span>, <span class='st'>"\\.md"</span>, <span class='va'>filename</span><span class='op'>)</span>,
