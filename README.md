@@ -68,9 +68,9 @@ You can cite WORCS using the following citation (please use the same
 citation for either the package, or the paper):
 
 > Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
-> Peikert, A., , Struiksma, M. E., & Vreede, B. (2020, May 29). WORCS: A
-> Workflow for Open Reproducible Code in Science.
-> <https://doi.org/10.17605/OSF.IO/ZCVBS>
+> Peikert, A., , Struiksma, M. E., & Vreede, B. (in press). WORCS: A
+> Workflow for Open Reproducible Code in Science. Data Science, in
+> press. <https://doi.org/10.17605/OSF.IO/ZCVBS>
 
 ## About this repository
 
@@ -105,15 +105,15 @@ for the package and paper.
 
 ## Adoption of WORCS by users
 
-As of 2020-11-17, these are indicators of the adoption of `worcs` by
+As of 2020-12-16, these are indicators of the adoption of `worcs` by
 users:
 
-1.  The preprint has been downloaded 591 times, since being published on
+1.  The preprint has been downloaded 647 times, since being published on
     31-05-2020
-2.  The `worcs` R-package has been downloaded 2588 times from CRAN,
+2.  The `worcs` R-package has been downloaded 2891 times from CRAN,
     since being published on 18-05-2020
 3.  The GitHub project has been forked 8 times, watched 5 times, and
-    starred 40 times
+    starred 43 times
 4.  The lead author has given invited lectures on WORCS at:
       - Max-Planck-Institute for Human Development (2020)  
       - Open Science Community Rotterdam (2020)  
@@ -122,24 +122,32 @@ users:
     by user):
       - cjvanlissa
           - [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
-          - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
           - [schumpe](https://github.com/cjvanlissa/schumpe)  
-          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
+          - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
           - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
-          - [mpib](https://github.com/cjvanlissa/mpib)  
           - [coping\_covid](https://github.com/cjvanlissa/coping_covid)  
-      - IndrajeetPatil
-          - [worcs\_practice](https://github.com/IndrajeetPatil/worcs_practice)  
+          - [mpib](https://github.com/cjvanlissa/mpib)  
+          - [manyanalysts\_religion](https://github.com/cjvanlissa/manyanalysts_religion)  
       - EstherPlomp
           - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
+      - PaulaVrolijk
+          - [DT](https://github.com/PaulaVrolijk/DT)  
+      - veegeee
+          - [multivar](https://github.com/veegeee/multivar)  
       - lisallreiber
           - [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
+      - agjtimmers
+          - [MS12-Open-Science](https://github.com/agjtimmers/MS12-Open-Science)  
+      - Hypergeometricdistribution
+          - [github\_document](https://github.com/Hypergeometricdistribution/github_document)  
+      - IndrajeetPatil
+          - [worcs\_practice](https://github.com/IndrajeetPatil/worcs_practice)  
+      - jakkermans
+          - [Open-Science-Introdcuction](https://github.com/jakkermans/Open-Science-Introdcuction)  
       - KimBaldry
           - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)  
       - DepressionRegression
-          - [mvs\_rep](https://github.com/DepressionRegression/mvs_rep)  
-      - Hypergeometricdistribution
-          - [github\_document](https://github.com/Hypergeometricdistribution/github_document)
+          - [mvs\_rep](https://github.com/DepressionRegression/mvs_rep)
 
 ## Contributing and Contact Information
 

@@ -24,7 +24,7 @@ If you do not want to install R, RStudio, Latex and Git on a personal computer (
 docker run -e PASSWORD=secret -p 8787:8787 -it cjvanlissa/worcs:latest
 ```
 
-3. Open [127.0.0.1:8787/](http://127.0.0.1:8787/) in a browser. Login using username=rstudio and password=secret.
+3. Open the address `127.0.0.1:8787/` in a browser. Login using username=rstudio and password=secret.
 
 Then setup the container.
 

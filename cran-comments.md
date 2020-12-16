@@ -1,13 +1,18 @@
-# worcs 0.1.5
+# worcs 0.1.6
 
-This update addresses the recent breaking changes in one of our
-dependencies, `gert`. 
-
-* Addresses gert-related problems at
-  https://cran.rstudio.com//web/checks/check_results_worcs.html
-* Necessary update due to breaking changes in dependency from the `gert` package
-* Add function add_preregistration() to add a preregistration at a later stage
-* Add preregistration templates "PSS" and "Secondary"
+* Workflow vignette updated to address reviewer comments from "Data Science"
+* New functions: add_synthetic() and notify_synthetic()
+* closed_data() no longer wraps errors from the call to synthetic().
+  Thus, the function call fails with an error if data synthetis fails.
+* closed_data() now passes formal arguments of synthetic() contained in '...'
+  on to synthetic().
+* synthetic() now allows 'y' to be referenced in 'predict_expression' when
+  'model_expression' is set to NULL, thereby enabling bootstrapping.
+* The internal function worcs:::col_message() now renders status messages in
+  black print instead of colored print when rmarkdown::render() is on the
+  callstack. This avoids errors when knitting to PDF.
+  See https://github.com/rstudio/rmarkdown/issues/1951 for the error
+  circumvented by this fix.
 
 ## Test environments
 

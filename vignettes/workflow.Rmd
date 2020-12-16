@@ -1,5 +1,5 @@
 ---
-title: "The WORCS workflow, version 0.1.5"
+title: "The WORCS workflow, version 0.1.6"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{workflow}
