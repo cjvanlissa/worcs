@@ -3,7 +3,7 @@
 * Workflow vignette updated to address reviewer comments from "Data Science"
 * New functions: add_synthetic() and notify_synthetic()
 * closed_data() no longer wraps errors from the call to synthetic().
-  Thus, the function call fails with an error if data synthetis fails.
+  Thus, the function call fails with an error if data synthesis fails.
 * closed_data() now passes formal arguments of synthetic() contained in '...'
   on to synthetic().
 * synthetic() now allows 'y' to be referenced in 'predict_expression' when
