@@ -8,7 +8,9 @@ test_that("codebook works for iris", {
   worcs::make_codebook(iris)
 
   expect_true(file.exists("codebook.Rmd"))
-  expect_true(file.exists("codebook.md"))
+  if (rmarkdown::pandoc_available("1.12.3")){
+    expect_true(file.exists("codebook.md"))
+  }
   expect_true(file.exists("codebook.csv"))
   contents <- readLines("codebook.Rmd", encoding = "UTF-8")
   expect_true(any(contents == "The data contains 150 cases and 5 variables."))
@@ -29,9 +31,10 @@ test_that("codebook works for PlantGrowth with missings", {
   setwd(test_dir)
 
   worcs::make_codebook(df)
-
   expect_true(file.exists("codebook.Rmd"))
-  expect_true(file.exists("codebook.md"))
+  if (rmarkdown::pandoc_available("1.12.3")){
+    expect_true(file.exists("codebook.md"))
+  }
 
   contents <- readLines("codebook.Rmd", encoding = "UTF-8")
 

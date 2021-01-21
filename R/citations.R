@@ -22,7 +22,9 @@
 #'                         edit = FALSE)
 #' write(c("", "Optional reference: @@reference2020"),
 #'       file = file_name, append = TRUE)
-#' cite_all(file_name)
+#' if (rmarkdown::pandoc_available("1.12.3")){
+#'   cite_all(file_name)
+#' }
 cite_all <- function(...){
   comprehensive_cite(..., citeall = TRUE)
 }
@@ -51,7 +53,9 @@ cite_all <- function(...){
 #'                  edit = FALSE)
 #' write(c("", "Optional reference: @@reference2020"),
 #'       file = file_name, append = TRUE)
-#' cite_essential(file_name)
+#' if (rmarkdown::pandoc_available("1.12.3")){
+#'   cite_essential(file_name)
+#' }
 cite_essential <- function(...){
   comprehensive_cite(..., citeall = FALSE)
 }
