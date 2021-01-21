@@ -1,3 +1,7 @@
+# worcs 0.1.7
+
+* Fixed failing tests as requested by dr. Brian Ripley
+
 # worcs 0.1.6
 
 * Workflow vignette updated to address reviewer comments from "Data Science"
