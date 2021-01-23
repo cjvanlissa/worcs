@@ -2,7 +2,7 @@
 title: "Citing references in worcs"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{citing}
+  %\VignetteIndexEntry{Citing references in worcs}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
