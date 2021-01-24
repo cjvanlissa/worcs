@@ -2,7 +2,7 @@
 title: "Reproducing a WORCS project"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{reproduce-worcs-project}
+  %\VignetteIndexEntry{Reproducing a WORCS project}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

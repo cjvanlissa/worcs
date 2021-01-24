@@ -2,7 +2,7 @@
 title: "Setting up your computer for WORCS"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{setup}
+  %\VignetteIndexEntry{Setting up your computer for WORCS}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
