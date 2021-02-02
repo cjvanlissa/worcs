@@ -1,8 +1,8 @@
 Package: worcs
 Type: Package
-Date: 2021-01-21
+Date: 2021-02-02
 Title: Workflow for Open Reproducible Code in Science
-Version: 0.1.7
+Version: 0.1.8
 Authors@R: c(
     person(
       given = c("Caspar", "J."),
@@ -54,4 +54,5 @@ Suggests:
     knitr,
     missRanger,
     testthat (>= 2.1.0)
+SystemRequirements: pandoc (>= 1.14) - http://pandoc.org 
 VignetteBuilder: knitr

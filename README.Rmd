@@ -121,7 +121,7 @@ invited <- paste0(apply(invited, 1, function(x){paste0("\n    - ", x[1], " (", x
 
 As of `r Sys.Date()`, these are indicators of the adoption of `worcs` by users:
 
-1. The preprint has been downloaded 647 times, since being published on 31-05-2020
+1. The preprint has been downloaded 702 times, since being published on 31-05-2020
 1. The `worcs` R-package has been downloaded `r dl` times from CRAN, since being published on 18-05-2020
 1. The GitHub project has been forked `r worcs_repo$network_count` times, watched `r worcs_repo$subscribers_count` times, and starred `r worcs_repo$watchers` times
 1. The lead author has given invited lectures on WORCS at:`r invited`

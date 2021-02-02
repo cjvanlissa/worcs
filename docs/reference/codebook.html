@@ -87,7 +87,7 @@ transfer these changes to the 'markdown' file for 'GitHub'." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
       </span>
     </div>
 
@@ -95,7 +95,7 @@ transfer these changes to the 'markdown' file for 'GitHub'." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -136,7 +136,7 @@ transfer these changes to the 'markdown' file for 'GitHub'." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/cjvanlissa/worcs/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -222,13 +222,22 @@ successful. This function is mostly called for its side effect of rendering
 an 'R Markdown' codebook.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/rstudio/rmarkdown'>rmarkdown</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span>
-<span class='va'>filename</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='st'>"codebook"</span>, fileext <span class='op'>=</span> <span class='st'>".Rmd"</span><span class='op'>)</span>
-<span class='fu'>make_codebook</span><span class='op'>(</span><span class='va'>iris</span>, filename <span class='op'>=</span> <span class='va'>filename</span>, csv_file <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'>rmarkdown</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rmarkdown/man/pandoc_available.html'>pandoc_available</a></span><span class='op'>(</span><span class='st'>"1.14"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/rstudio/rmarkdown'>rmarkdown</a></span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span>
+  <span class='va'>filename</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='st'>"codebook"</span>, fileext <span class='op'>=</span> <span class='st'>".Rmd"</span><span class='op'>)</span>
+  <span class='fu'>make_codebook</span><span class='op'>(</span><span class='va'>iris</span>, filename <span class='op'>=</span> <span class='va'>filename</span>, csv_file <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+    <span class='st'>".worcs"</span>,
+    <span class='va'>filename</span>,
+    <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"\\.Rmd"</span>, <span class='st'>"\\.md"</span>, <span class='va'>filename</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"\\.Rmd"</span>, <span class='st'>"\\.html"</span>, <span class='va'>filename</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"\\.Rmd"</span>, <span class='st'>"_files"</span>, <span class='va'>filename</span><span class='op'>)</span>
+  <span class='op'>)</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
 </div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>processing file: codebook458c391819ff.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |..............                                                        |  20%
+#&gt; <span class='message'>processing file: codebook22641ade5805.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |..............                                                        |  20%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                              |............................                                          |  40%
@@ -244,17 +253,10 @@ an 'R Markdown' codebook.</p>
 #&gt;   |                                                                              |......................................................................| 100%
 #&gt;   ordinary text without R code
 #&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: codebook458c391819ff.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook458c391819ff.utf8.md --to gfm --from markdown+autolink_bare_uris+tex_math_single_backslash --output codebook458c391819ff.md --standalone --template "C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" 
-#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook458c391819ff.md --to html4 --from gfm --output codebook458c391819ff.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --email-obfuscation none --metadata pagetitle=PREVIEW </div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Preview created: codebook458c391819ff.html</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Output created: codebook458c391819ff.md</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-  <span class='st'>".worcs"</span>,
-  <span class='va'>filename</span>,
-  <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"\\.Rmd"</span>, <span class='st'>"\\.md"</span>, <span class='va'>filename</span><span class='op'>)</span>,
-  <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"\\.Rmd"</span>, <span class='st'>"\\.html"</span>, <span class='va'>filename</span><span class='op'>)</span>,
-  <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"\\.Rmd"</span>, <span class='st'>"_files"</span>, <span class='va'>filename</span><span class='op'>)</span>
-<span class='op'>)</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div></pre>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: codebook22641ade5805.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook22641ade5805.utf8.md --to gfm --from markdown+autolink_bare_uris+tex_math_single_backslash --output codebook22641ade5805.md --standalone --atx-headers --template "C:\PROGRA~1\R\R-40~1.3\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" 
+#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS codebook22641ade5805.md --to html4 --from gfm --output codebook22641ade5805.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-40~1.3\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-40~1.3\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --metadata pagetitle=PREVIEW </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Preview created: codebook22641ade5805.html</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Output created: codebook22641ade5805.md</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

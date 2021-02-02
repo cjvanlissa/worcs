@@ -105,15 +105,15 @@ for the package and paper.
 
 ## Adoption of WORCS by users
 
-As of 2020-12-16, these are indicators of the adoption of `worcs` by
+As of 2021-02-02, these are indicators of the adoption of `worcs` by
 users:
 
-1.  The preprint has been downloaded 647 times, since being published on
+1.  The preprint has been downloaded 702 times, since being published on
     31-05-2020
-2.  The `worcs` R-package has been downloaded 2891 times from CRAN,
+2.  The `worcs` R-package has been downloaded 3799 times from CRAN,
     since being published on 18-05-2020
-3.  The GitHub project has been forked 8 times, watched 5 times, and
-    starred 43 times
+3.  The GitHub project has been forked 9 times, watched 5 times, and
+    starred 45 times
 4.  The lead author has given invited lectures on WORCS at:
       - Max-Planck-Institute for Human Development (2020)  
       - Open Science Community Rotterdam (2020)  
@@ -125,13 +125,11 @@ users:
           - [schumpe](https://github.com/cjvanlissa/schumpe)  
           - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
           - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
-          - [coping\_covid](https://github.com/cjvanlissa/coping_covid)  
+          - [MSRC\_LPA](https://github.com/cjvanlissa/MSRC_LPA)  
           - [mpib](https://github.com/cjvanlissa/mpib)  
-          - [manyanalysts\_religion](https://github.com/cjvanlissa/manyanalysts_religion)  
+          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
       - EstherPlomp
           - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
-      - PaulaVrolijk
-          - [DT](https://github.com/PaulaVrolijk/DT)  
       - veegeee
           - [multivar](https://github.com/veegeee/multivar)  
       - lisallreiber
@@ -146,6 +144,8 @@ users:
           - [Open-Science-Introdcuction](https://github.com/jakkermans/Open-Science-Introdcuction)  
       - KimBaldry
           - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)  
+      - nsunami
+          - [dissertation](https://github.com/nsunami/dissertation)  
       - DepressionRegression
           - [mvs\_rep](https://github.com/DepressionRegression/mvs_rep)
 

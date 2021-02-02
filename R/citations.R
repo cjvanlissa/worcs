@@ -14,15 +14,15 @@
 #' # Only specify it as custom knit function in an 'R Markdown' file, like so:
 #' # knit: worcs::cite_all
 #'
-#' file_name <- file.path(tempdir(), "citeall.Rmd")
-#' loc <- rmarkdown::draft(file_name,
-#'                         template = "github_document",
-#'                         package = "rmarkdown",
-#'                         create_dir = FALSE,
-#'                         edit = FALSE)
-#' write(c("", "Optional reference: @@reference2020"),
-#'       file = file_name, append = TRUE)
-#' if (rmarkdown::pandoc_available("1.12.3")){
+#' if (rmarkdown::pandoc_available("1.14")){
+#'   file_name <- file.path(tempdir(), "citeall.Rmd")
+#'   loc <- rmarkdown::draft(file_name,
+#'                           template = "github_document",
+#'                           package = "rmarkdown",
+#'                           create_dir = FALSE,
+#'                           edit = FALSE)
+#'   write(c("", "Optional reference: @@reference2020"),
+#'         file = file_name, append = TRUE)
 #'   cite_all(file_name)
 #' }
 cite_all <- function(...){
@@ -45,23 +45,27 @@ cite_all <- function(...){
 #' # Only specify it as custom knit function in an R Markdown file, like so:
 #' # knit: worcs::cite_all
 #'
-#' file_name <- tempfile("citeessential", fileext = ".Rmd")
-#' rmarkdown::draft(file_name,
-#'                  template = "github_document",
-#'                  package = "rmarkdown",
-#'                  create_dir = FALSE,
-#'                  edit = FALSE)
-#' write(c("", "Optional reference: @@reference2020"),
-#'       file = file_name, append = TRUE)
-#' if (rmarkdown::pandoc_available("1.12.3")){
+#' if (rmarkdown::pandoc_available("1.14")){
+#'   file_name <- tempfile("citeessential", fileext = ".Rmd")
+#'   rmarkdown::draft(file_name,
+#'                    template = "github_document",
+#'                    package = "rmarkdown",
+#'                    create_dir = FALSE,
+#'                    edit = FALSE)
+#'   write(c("", "Optional reference: @@reference2020"),
+#'         file = file_name, append = TRUE)
 #'   cite_essential(file_name)
 #' }
 cite_essential <- function(...){
   comprehensive_cite(..., citeall = FALSE)
 }
 
-#' @importFrom rmarkdown render
+#' @importFrom rmarkdown render pandoc_available
 comprehensive_cite <- function(input, encoding = "UTF-8", ..., citeall = TRUE) {
+  if(!pandoc_available("1.14")){
+    message("Using rmarkdown requires pandoc version >= 1.14.")
+    return(invisible(NULL))
+  }
   dots <- list(...)
   dots$encoding <- encoding
   dots$input <- input

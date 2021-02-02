@@ -54,15 +54,17 @@ Re-knitting the 'R Markdown' file (using \code{\link[rmarkdown]{render}}) will
 transfer these changes to the 'markdown' file for 'GitHub'.
 }
 \examples{
-library(rmarkdown)
-library(knitr)
-filename <- tempfile("codebook", fileext = ".Rmd")
-make_codebook(iris, filename = filename, csv_file = NULL)
-unlink(c(
-  ".worcs",
-  filename,
-  gsub("\\\\.Rmd", "\\\\.md", filename),
-  gsub("\\\\.Rmd", "\\\\.html", filename),
-  gsub("\\\\.Rmd", "_files", filename)
-), recursive = TRUE)
+if(rmarkdown::pandoc_available("1.14")){
+  library(rmarkdown)
+  library(knitr)
+  filename <- tempfile("codebook", fileext = ".Rmd")
+  make_codebook(iris, filename = filename, csv_file = NULL)
+  unlink(c(
+    ".worcs",
+    filename,
+    gsub("\\\\.Rmd", "\\\\.md", filename),
+    gsub("\\\\.Rmd", "\\\\.html", filename),
+    gsub("\\\\.Rmd", "_files", filename)
+  ), recursive = TRUE)
+}
 }

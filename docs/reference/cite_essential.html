@@ -75,7 +75,7 @@ the file." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@ the file." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -124,7 +124,7 @@ the file." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/cjvanlissa/worcs/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -175,18 +175,20 @@ function is called for its side effect of rendering an
 <span class='co'># Only specify it as custom knit function in an R Markdown file, like so:</span>
 <span class='co'># knit: worcs::cite_all</span>
 
-<span class='va'>file_name</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='st'>"citeessential"</span>, fileext <span class='op'>=</span> <span class='st'>".Rmd"</span><span class='op'>)</span>
-<span class='fu'>rmarkdown</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rmarkdown/man/draft.html'>draft</a></span><span class='op'>(</span><span class='va'>file_name</span>,
-                 template <span class='op'>=</span> <span class='st'>"github_document"</span>,
-                 package <span class='op'>=</span> <span class='st'>"rmarkdown"</span>,
-                 create_dir <span class='op'>=</span> <span class='cn'>FALSE</span>,
-                 edit <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/write.html'>write</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>""</span>, <span class='st'>"Optional reference: @reference2020"</span><span class='op'>)</span>,
-      file <span class='op'>=</span> <span class='va'>file_name</span>, append <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'>cite_essential</span><span class='op'>(</span><span class='va'>file_name</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'>rmarkdown</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rmarkdown/man/pandoc_available.html'>pandoc_available</a></span><span class='op'>(</span><span class='st'>"1.14"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='va'>file_name</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='st'>"citeessential"</span>, fileext <span class='op'>=</span> <span class='st'>".Rmd"</span><span class='op'>)</span>
+  <span class='fu'>rmarkdown</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rmarkdown/man/draft.html'>draft</a></span><span class='op'>(</span><span class='va'>file_name</span>,
+                   template <span class='op'>=</span> <span class='st'>"github_document"</span>,
+                   package <span class='op'>=</span> <span class='st'>"rmarkdown"</span>,
+                   create_dir <span class='op'>=</span> <span class='cn'>FALSE</span>,
+                   edit <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/write.html'>write</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>""</span>, <span class='st'>"Optional reference: @reference2020"</span><span class='op'>)</span>,
+        file <span class='op'>=</span> <span class='va'>file_name</span>, append <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+  <span class='fu'>cite_essential</span><span class='op'>(</span><span class='va'>file_name</span><span class='op'>)</span>
+<span class='op'>}</span>
 </div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>processing file: citeessential458c7466d9f.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |..........                                                            |  14%
+#&gt; <span class='message'>processing file: citeessential22646596e41.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |..........                                                            |  14%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                              |....................                                                  |  29%
@@ -209,10 +211,10 @@ function is called for its side effect of rendering an
 #&gt; </div><div class='output co'>#&gt;   |                                                                              |......................................................................| 100%
 #&gt;   ordinary text without R code
 #&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: citeessential458c7466d9f.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS citeessential458c7466d9f.utf8.md --to gfm --from markdown+autolink_bare_uris+tex_math_single_backslash --output citeessential458c7466d9f.md --standalone --template "C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" 
-#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS citeessential458c7466d9f.md --to html4 --from gfm --output citeessential458c7466d9f.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-40~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --email-obfuscation none --metadata pagetitle=PREVIEW </div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Preview created: citeessential458c7466d9f.html</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Output created: citeessential458c7466d9f.md</span></div></pre>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: citeessential22646596e41.knit.md</span></div><div class='output co'>#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS citeessential22646596e41.utf8.md --to gfm --from markdown+autolink_bare_uris+tex_math_single_backslash --output citeessential22646596e41.md --standalone --atx-headers --template "C:\PROGRA~1\R\R-40~1.3\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" 
+#&gt; "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS citeessential22646596e41.md --to html4 --from gfm --output citeessential22646596e41.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-40~1.3\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-40~1.3\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --metadata pagetitle=PREVIEW </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Preview created: citeessential22646596e41.html</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Output created: citeessential22646596e41.md</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

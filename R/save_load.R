@@ -25,7 +25,7 @@
 #' setwd(test_dir)
 #' worcs:::write_worcsfile(".worcs")
 #' df <- iris[1:5, ]
-#' open_data(df, codebook = "bla.Rmd")
+#' open_data(df, codebook = NULL)
 #' setwd(old_wd)
 #' unlink(test_dir, recursive = TRUE)
 #' @seealso open_data closed_data save_data

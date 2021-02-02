@@ -1,0 +1,24 @@
+Data management plan
+
+Folder / file naming conventions
+Version control
+Metadata & documentation
+
+Describe structure and files in README file
+
+Reproducible code and data workshop RDM
+
+Metadata: Structured data providing information about aspects of the data
+Documentation: A readme file providing information on aspects of the data
+
+dcc.ac.uk/resources/metadata-standards
+
+https://library.stanford.edu/research/data-management-services/data-best-practices/creating-metadata/metadata-tools
+
+datacite is used for yoda https://schema.datacite.org/
+
+Message by Felix-Maina, M.W. (Mary)
+Felix-Maina, M.W. (Mary)11:49 AM
+https://www.dublincore.org/specifications/dublin-core/dces/
+
+"if metadata is not necessary to test your hypotheses, leave it out"

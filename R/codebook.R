@@ -31,17 +31,19 @@
 #' successful. This function is mostly called for its side effect of rendering
 #' an 'R Markdown' codebook.
 #' @examples
-#' library(rmarkdown)
-#' library(knitr)
-#' filename <- tempfile("codebook", fileext = ".Rmd")
-#' make_codebook(iris, filename = filename, csv_file = NULL)
-#' unlink(c(
-#'   ".worcs",
-#'   filename,
-#'   gsub("\\.Rmd", "\\.md", filename),
-#'   gsub("\\.Rmd", "\\.html", filename),
-#'   gsub("\\.Rmd", "_files", filename)
-#' ), recursive = TRUE)
+#' if(rmarkdown::pandoc_available("1.14")){
+#'   library(rmarkdown)
+#'   library(knitr)
+#'   filename <- tempfile("codebook", fileext = ".Rmd")
+#'   make_codebook(iris, filename = filename, csv_file = NULL)
+#'   unlink(c(
+#'     ".worcs",
+#'     filename,
+#'     gsub("\\.Rmd", "\\.md", filename),
+#'     gsub("\\.Rmd", "\\.html", filename),
+#'     gsub("\\.Rmd", "_files", filename)
+#'   ), recursive = TRUE)
+#' }
 #' @rdname codebook
 #' @export
 #' @importFrom rmarkdown draft render

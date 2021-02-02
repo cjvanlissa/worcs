@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
       </span>
     </div>
 
@@ -47,7 +47,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -88,7 +88,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/cjvanlissa/worcs/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -123,14 +123,14 @@
 <a href="#installing-the-package" class="anchor"></a>Installing the package</h2>
 <p>Before installing the package, please read <a href="https://cjvanlissa.github.io/worcs/articles/setup.html">this vignette</a>, which explains how to set up your computer for <code>worcs</code>.</p>
 <p>After reading <a href="https://cjvanlissa.github.io/worcs/articles/setup.html">the vignette</a>, you can install the development version of the <code>worcs</code> package from GitHub with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"cjvanlissa/worcs"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span>
 <span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="reference/git_user.html">git_user</a></span><span class="op">(</span><span class="st">"your_name"</span>, <span class="st">"your_email"</span><span class="op">)</span></pre></div>
+<span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="reference/git_user.html">git_user</a></span><span class="op">(</span><span class="st">"your_name"</span>, <span class="st">"your_email"</span><span class="op">)</span></code></pre></div>
 <p>If you intend to write APA style manuscripts, you can additionally install the <code>papaja</code> package:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"crsh/papaja"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"crsh/papaja"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="citing-worcs" class="section level2">
 <h2 class="hasAnchor">
@@ -231,11 +231,11 @@
 <div id="adoption-of-worcs-by-users" class="section level2">
 <h2 class="hasAnchor">
 <a href="#adoption-of-worcs-by-users" class="anchor"></a>Adoption of WORCS by users</h2>
-<p>As of 2020-12-16, these are indicators of the adoption of <code>worcs</code> by users:</p>
+<p>As of 2021-02-02, these are indicators of the adoption of <code>worcs</code> by users:</p>
 <ol>
-<li>The preprint has been downloaded 647 times, since being published on 31-05-2020</li>
-<li>The <code>worcs</code> R-package has been downloaded 2891 times from CRAN, since being published on 18-05-2020</li>
-<li>The GitHub project has been forked 8 times, watched 5 times, and starred 43 times</li>
+<li>The preprint has been downloaded 702 times, since being published on 31-05-2020</li>
+<li>The <code>worcs</code> R-package has been downloaded 3799 times from CRAN, since being published on 18-05-2020</li>
+<li>The GitHub project has been forked 9 times, watched 5 times, and starred 45 times</li>
 <li>The lead author has given invited lectures on WORCS at:
 <ul>
 <li>Max-Planck-Institute for Human Development (2020)<br>
@@ -263,13 +263,13 @@
 <a href="https://github.com/cjvanlissa/placebo_adhd">placebo_adhd</a><br>
 </li>
 <li>
-<a href="https://github.com/cjvanlissa/coping_covid">coping_covid</a><br>
+<a href="https://github.com/cjvanlissa/MSRC_LPA">MSRC_LPA</a><br>
 </li>
 <li>
 <a href="https://github.com/cjvanlissa/mpib">mpib</a><br>
 </li>
 <li>
-<a href="https://github.com/cjvanlissa/manyanalysts_religion">manyanalysts_religion</a><br>
+<a href="https://github.com/cjvanlissa/storm_meta_father_mother">storm_meta_father_mother</a><br>
 </li>
 </ul>
 </li>
@@ -277,13 +277,6 @@
 <ul>
 <li>
 <a href="https://github.com/EstherPlomp/RDM-survey">RDM-survey</a><br>
-</li>
-</ul>
-</li>
-<li>PaulaVrolijk
-<ul>
-<li>
-<a href="https://github.com/PaulaVrolijk/DT">DT</a><br>
 </li>
 </ul>
 </li>
@@ -333,6 +326,13 @@
 <ul>
 <li>
 <a href="https://github.com/KimBaldry/BIO-MATE">BIO-MATE</a><br>
+</li>
+</ul>
+</li>
+<li>nsunami
+<ul>
+<li>
+<a href="https://github.com/nsunami/dissertation">dissertation</a><br>
 </li>
 </ul>
 </li>
