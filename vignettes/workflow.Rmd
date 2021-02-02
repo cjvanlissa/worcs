@@ -2,7 +2,7 @@
 title: "The WORCS workflow, version 0.1.6"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{workflow}
+  %\VignetteIndexEntry{The WORCS workflow, version 0.1.6}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: "vignettes.bib"

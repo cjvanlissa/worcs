@@ -2,7 +2,7 @@
 title: "Connecting to 'Git' remote repositories"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{git_cloud}
+  %\VignetteIndexEntry{Connecting to 'Git' remote repositories}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
