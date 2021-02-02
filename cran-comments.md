@@ -1,10 +1,9 @@
-# worcs 0.1.7
+# worcs 0.1.8
 
-* Fixed failing tests as requested by dr. Brian Ripley
-  + Note that these tests fail because pandoc is outdated on these systems:
-    - r-patched-solaris-x86
-    - r-release-macos-x86_64
-    - r-oldrel-macos-x86_64
+* Declared pandoc in SystemRequirements
+* Made all examples using pandoc conditional on availability of pandoc
+* Functions that wrap rmarkdown::render() now return NULL when pandoc is not
+  available
 
 ## Test environments
 

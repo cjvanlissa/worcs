@@ -1,3 +1,10 @@
+# worcs 0.1.8
+
+* Declared pandoc in SystemRequirements
+* Made all examples using pandoc conditional on availability of pandoc
+* Functions that wrap rmarkdown::render() now return NULL when pandoc is not
+  available
+
 # worcs 0.1.7
 
 * Fixed failing tests as requested by dr. Brian Ripley
