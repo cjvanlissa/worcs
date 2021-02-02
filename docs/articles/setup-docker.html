@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -80,7 +80,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/cjvanlissa/worcs/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="setup-docker_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Setting up your computer for WORCS - Docker-edition</h1>
@@ -114,21 +114,21 @@
 <li>Open a terminal/cmd/shell.</li>
 <li>Start the <code>worcs</code> image:</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">docker</span> run -e PASSWORD=secret -p 8787:8787 -it cjvanlissa/worcs:latest</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">docker</span> run -e PASSWORD=secret -p 8787:8787 -it cjvanlissa/worcs:latest</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Open the address <code>127.0.0.1:8787/</code> in a browser. Login using username=rstudio and password=secret.</li>
 </ol>
 <p>Then setup the container.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv//reference/consent.html">consent</a></span><span class="op">(</span>provided <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="../reference/git_user.html">git_user</a></span><span class="op">(</span><span class="st">"your_name"</span>, <span class="st">"your_email"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv//reference/consent.html">consent</a></span><span class="op">(</span>provided <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="../reference/git_user.html">git_user</a></span><span class="op">(</span><span class="st">"your_name"</span>, <span class="st">"your_email"</span><span class="op">)</span></code></pre></div>
 <p>To terminate the container, press Ctrl + C in the terminal. To save files from a Docker session on your disk, you have to link a directory explicitly when starting the container.</p>
 <p>On Unix file systems, this is done as follows:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">-v</span> /path/on/your/pc:/home/rstudio</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">-v</span> /path/on/your/pc:/home/rstudio</span></code></pre></div>
 <p>And on Windows file systems, as follows:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1"><span class="ex">-v</span> //c/path/on/your/windows/pc:/home/rstudio</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">-v</span> //c/path/on/your/windows/pc:/home/rstudio</span></code></pre></div>
 <p>Then start the Docker session using this command:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" title="1"><span class="ex">docker</span> run -e PASSWORD=secret -p 8787:8787 -v /path/on/your/pc:/home/rstudio -it cjvanlissa/worcs:latest</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">docker</span> run -e PASSWORD=secret -p 8787:8787 -v /path/on/your/pc:/home/rstudio -it cjvanlissa/worcs:latest</span></code></pre></div>
 <p>That’s it!</p>
   </div>
 

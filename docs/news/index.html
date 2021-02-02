@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -120,7 +120,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/cjvanlissa/worcs/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -141,14 +141,22 @@
       <small>Source: <a href='https://github.com/cjvanlissa/worcs/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="worcs-017" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.7">
+<a href="#worcs-017" class="anchor"></a>worcs 0.1.7<small> 2021-01-21 </small>
+</h1>
+<ul>
+<li>Fixed failing tests as requested by dr. Brian Ripley</li>
+</ul>
+</div>
     <div id="worcs-016" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.6">
-<a href="#worcs-016" class="anchor"></a>worcs 0.1.6<small> Unreleased </small>
+<a href="#worcs-016" class="anchor"></a>worcs 0.1.6<small> 2020-12-16 </small>
 </h1>
 <ul>
 <li>Workflow vignette updated to address reviewer comments from “Data Science”</li>
 <li>New functions: add_synthetic() and notify_synthetic()</li>
-<li>closed_data() no longer wraps errors from the call to synthetic(). Thus, the function call fails with an error if data synthetis fails.</li>
+<li>closed_data() no longer wraps errors from the call to synthetic(). Thus, the function call fails with an error if data synthesis fails.</li>
 <li>closed_data() now passes formal arguments of synthetic() contained in ‘…’ on to synthetic().</li>
 <li>synthetic() now allows ‘y’ to be referenced in ‘predict_expression’ when ‘model_expression’ is set to NULL, thereby enabling bootstrapping.</li>
 <li>The internal function worcs:::col_message() now renders status messages in black print instead of colored print when rmarkdown::render() is on the callstack. This avoids errors when knitting to PDF. See <a href="https://github.com/rstudio/rmarkdown/issues/1951" class="uri">https://github.com/rstudio/rmarkdown/issues/1951</a> for the error circumvented by this fix.</li>

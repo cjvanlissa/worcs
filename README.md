@@ -26,10 +26,12 @@ specific issues.
 
 ## Where do I start?
 
-For most users, the recommended starting point is to [read the preprint
-paper](https://osf.io/zcvbs/), which introduces the WORCS workflow,
-explains the underlying tools, and illustrates how the `worcs` package
-can be used to create a new project that follows the workflow.
+For most users, the recommended starting point is to [read the
+paper](https://osf.io/zcvbs/), currently in press in [Data
+Science](https://content.iospress.com/journals/data-science/Pre-press/Pre-press),
+which introduces the WORCS workflow, explains the underlying tools, and
+illustrates how the `worcs` package can be used to create a new project
+that follows the workflow.
 
 The workflow is illustrated below; the [workflow
 vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html)
@@ -109,7 +111,8 @@ As of 2021-02-02, these are indicators of the adoption of `worcs` by
 users:
 
 1.  The preprint has been downloaded 702 times, since being published on
-    31-05-2020
+    31-05-2020 (currently in press in [Data
+    Science](https://content.iospress.com/journals/data-science/Pre-press/Pre-press))
 2.  The `worcs` R-package has been downloaded 3799 times from CRAN,
     since being published on 18-05-2020
 3.  The GitHub project has been forked 9 times, watched 5 times, and

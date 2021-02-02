@@ -74,7 +74,7 @@ and amends the .gitignore file to exclude filename." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ and amends the .gitignore file to exclude filename." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -123,7 +123,7 @@ and amends the .gitignore file to exclude filename." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/cjvanlissa/worcs/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -208,13 +208,9 @@ function is called for its side effects.</p>
 <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>test_dir</span><span class='op'>)</span>
 <span class='fu'>worcs</span><span class='fu'>:::</span><span class='fu'>write_worcsfile</span><span class='op'>(</span><span class='st'>".worcs"</span><span class='op'>)</span>
 <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='op'>]</span>
-<span class='fu'>open_data</span><span class='op'>(</span><span class='va'>df</span>, codebook <span class='op'>=</span> <span class='st'>"bla.Rmd"</span><span class='op'>)</span>
+<span class='fu'>open_data</span><span class='op'>(</span><span class='va'>df</span>, codebook <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span><span>
-#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating '.gitignore'.</span><span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>processing file: bla.Rmd</span></div><div class='output co'>#&gt; <span class='message'>output file: bla.knit.md</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Preview created: bla.html</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Output created: bla.md</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>old_wd</span><span class='op'>)</span>
+#&gt; </span><span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating '.gitignore'.</span><span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>old_wd</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='va'>test_dir</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div></span></pre>
   </div>
