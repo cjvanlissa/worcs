@@ -22,7 +22,7 @@ We would like to thank you for providing us with the opportunity to revise our m
 We sincerely appreciate the time you and the Reviewers have taken to read the manuscript, and the extensive and thought-provoking comments you have raised. 
 We hereby submit our revision of the manuscript for your consideration. We have attempted to address each of the issues raised by yourself and the Reviewers on a point-by-point basis, and detail the changes made in the action letter below. We would like to thank you and the Reviewers for your time, and we look forward to receiving your response.
 
-Sincerely, on behalve of all coauthors,
+Sincerely, on behalf of all coauthors,
 Caspar van Lissa
 
 
@@ -297,9 +297,11 @@ We also devote more attention to the importance of DOIs; both for the project as
 Finally, we have elaborated on the discussion of the FAIR principles, emphasizing that WORCS is not designed to address these comprehensively, but pointing out specific ways in which WORCS is consistent with these guiding principles. Please see our response to Reviewer 2, comment 2 for more details.
 
 With regard to the specific platforms named by the Reviewer:
-We are not aware of arguments to support a strong preference for Zenodo or FigShare over GitHub.
-Without such arguments, as far as we are concerned, these repositories are largely interchangeable.
-One key advantage of storing the data on GitHub is that they are then bundled with the
+The nature of a repository created by worcs is initially a living project, for which the worcs package automates the workflow.
+This workflow includes version control through git, for which remote storage at Github (or similar websites) is a logical extension that fits the workflow.
+<!--We are not aware of arguments to support a strong preference for Zenodo or FigShare over GitHub.
+Without such arguments, as far as we are concerned, these repositories are largely interchangeable. BV I disagree with this: they are very different repositories that do very different things, and for our purposes GH is clearly the one to go to. It's not a toss-up!-->
+One key advantage of storing the data on GitHub as well, as part of the project, is that they are then bundled with the
 documentation (e.g., codebook), analysis code, and manuscript.
 Thus, readers have access to **all** materials required for replication in one repository.
 Moreover, the entire project can be readily updated from the console, and is version controlled.
