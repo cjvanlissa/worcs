@@ -8,7 +8,7 @@ status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/worcs?color=blue)](https://r-pkg.org/pkg/worcs)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![check-standard](https://github.com/cjvanlissa/worcs/workflows/check-standard/badge.svg)](https://github.com/cjvanlissa/worcs/actions)
+[![R-CMD-check](https://github.com/cjvanlissa/worcs/workflows/R-CMD-check/badge.svg)](https://github.com/cjvanlissa/worcs/actions)
 [![CII Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/3969/badge)](https://bestpractices.coreinfrastructure.org/projects/3969)
 <!--[![Codecov test
@@ -129,7 +129,7 @@ users:
           - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
           - [MSRC\_LPA](https://github.com/cjvanlissa/MSRC_LPA)  
           - [mpib](https://github.com/cjvanlissa/mpib)  
-          - [manyanalysts\_religion](https://github.com/cjvanlissa/manyanalysts_religion)  
+          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
       - EstherPlomp
           - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
       - veegeee
