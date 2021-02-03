@@ -11,8 +11,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/worcs?color=blue)](http
 [![R-CMD-check](https://github.com/cjvanlissa/worcs/workflows/R-CMD-check/badge.svg)](https://github.com/cjvanlissa/worcs/actions)
 [![CII Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/3969/badge)](https://bestpractices.coreinfrastructure.org/projects/3969)
-<!--[![Codecov test
-coverage](https://codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg)](https://codecov.io/gh/cjvanlissa/worcs?branch=master)-->
+[![test-coverage](https://github.com/cjvanlissa/worcs/workflows/test-coverage/badge.svg)](https://github.com/cjvanlissa/worcs/actions)
 <!--[![DOI](http://joss.theoj.org/papers/10.21105/joss.00978/status.svg)](https://doi.org/10.21105/joss.00978)-->
 
 The Workflow for Open Reproducible Code in Science (WORCS) is an easy to
@@ -129,7 +128,7 @@ users:
           - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
           - [MSRC\_LPA](https://github.com/cjvanlissa/MSRC_LPA)  
           - [mpib](https://github.com/cjvanlissa/mpib)  
-          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
+          - [manyanalysts\_religion](https://github.com/cjvanlissa/manyanalysts_religion)  
       - EstherPlomp
           - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
       - veegeee
@@ -168,8 +167,8 @@ Code of Conduct v2.0](https://www.contributor-covenant.org/).
 Contributions to the package must adhere to the [tidyverse style
 guide](https://style.tidyverse.org/). When contributing code, please add
 tests for that contribution to the `tests/testthat` folder, and ensure
-that these tests
-pass<!-- on [Travis-CI](https://travis-ci.org/github/cjvanlissa/worcs)-->.
+that these tests pass in the [GitHub Actions
+panel](https://github.com/cjvanlissa/worcs/actions/workflows/R-CMD-check).
 
 ## Acknowledgements
 
