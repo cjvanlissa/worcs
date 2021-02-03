@@ -22,3 +22,7 @@ Felix-Maina, M.W. (Mary)11:49 AM
 https://www.dublincore.org/specifications/dublin-core/dces/
 
 "if metadata is not necessary to test your hypotheses, leave it out"
+
+Data loss/ deterioration
+Lots of copies keeps shit safe
+

@@ -10,6 +10,8 @@ closed_data(
   codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
   worcs_directory = ".",
   synthetic = TRUE,
+  save_expression = write.csv(x = data, file = filename, row.names = FALSE),
+  load_expression = read.csv(file = filename, stringsAsFactors = TRUE),
   ...
 )
 }
@@ -34,6 +36,18 @@ directory.}
 \item{synthetic}{Logical, indicating whether or not to create a synthetic
 dataset using the \code{\link{synthetic}} function. Additional arguments for
 the call to \code{\link{synthetic}} can be passed through \code{...}.}
+
+\item{save_expression}{An R-expression used to save the \code{data}.
+Defaults to \code{write.csv(x = data, file = filename, row.names = FALSE)},
+which writes a comma-separated, spreadsheet-style file.
+The arguments \code{data} and \code{filename} are passed from
+\code{open_data()} to the expression defined in \code{save_expression}.}
+
+\item{load_expression}{An R-expression used to load the \code{data} from the
+file created by \code{save_expression}. Defaults to
+\code{read.csv(file = filename, stringsAsFactors = TRUE)}. This expression
+is stored in the project's \code{.worcs} file, and invoked by
+\code{load_data()}.}
 
 \item{...}{Additional arguments passed to and from functions.}
 }

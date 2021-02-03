@@ -15,6 +15,16 @@
 #' @param worcs_directory Character, indicating the WORCS project directory to
 #' which to save data. The default value \code{"."} points to the current
 #' directory.
+#' @param save_expression An R-expression used to save the \code{data}.
+#' Defaults to \code{write.csv(x = data, file = filename, row.names = FALSE)},
+#' which writes a comma-separated, spreadsheet-style file.
+#' The arguments \code{data} and \code{filename} are passed from
+#' \code{open_data()} to the expression defined in \code{save_expression}.
+#' @param load_expression An R-expression used to load the \code{data} from the
+#' file created by \code{save_expression}. Defaults to
+#' \code{read.csv(file = filename, stringsAsFactors = TRUE)}. This expression
+#' is stored in the project's \code{.worcs} file, and invoked by
+#' \code{load_data()}.
 #' @param ... Additional arguments passed to and from functions.
 #' @return Returns \code{NULL} invisibly. This
 #' function is called for its side effects.
@@ -35,10 +45,15 @@ open_data <- function(data,
                       filename = paste0(deparse(substitute(data)), ".csv"),
                       codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
                       worcs_directory = ".",
+                      save_expression = write.csv(x = data, file = filename, row.names = FALSE),
+                      load_expression = read.csv(file = filename, stringsAsFactors = TRUE),
                       ...){
-  Args <- all_args()
+  Args <- match.call()
   Args$open <- TRUE
-  do.call(save_data, Args)
+  Args$save_expression <- substitute(save_expression)
+  Args$load_expression <- substitute(load_expression)
+  Args[[1L]] <- str2lang("worcs:::save_data")
+  eval(Args, parent.frame())
 }
 
 #' @title Use closed data in WORCS project
@@ -71,10 +86,13 @@ closed_data <- function(data,
                         codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
                         worcs_directory = ".",
                         synthetic = TRUE,
+                        save_expression = write.csv(x = data, file = filename, row.names = FALSE),
+                        load_expression = read.csv(file = filename, stringsAsFactors = TRUE),
                         ...){
   Args <- match.call()
-  #browser()
   Args$open <- FALSE
+  Args$save_expression <- substitute(save_expression)
+  Args$load_expression <- substitute(load_expression)
   Args[[1L]] <- str2lang("worcs:::save_data")
   eval(Args, parent.frame())
 }
@@ -88,6 +106,8 @@ save_data <- function(data,
                       worcs_directory = ".",
                       verbose = TRUE,
                       synthetic = TRUE,
+                      save_expression = write.csv(x = data, file = filename, row.names = FALSE),
+                      load_expression = read.csv(file = filename, stringsAsFactors = TRUE),
                       ...){
   if(grepl("[", filename, fixed = TRUE) | grepl("$", filename, fixed = TRUE)){
     stop("This filename is not allowed: ", filename, ". Please specify a legal filename.", call. = FALSE)
@@ -133,7 +153,8 @@ save_data <- function(data,
 # Store data --------------------------------------------------------------
 
   col_message("Storing original data in '", filename, "' and updating the checksum in '.worcs'.", verbose = verbose)
-  write.csv(data, fn_write_original, row.names = FALSE)
+  eval(substitute(save_expression))
+  #write.csv(data, fn_write_original, row.names = FALSE)
 
   # Prepare for writing to worcs file
   to_worcs <- list(
@@ -141,6 +162,8 @@ save_data <- function(data,
     modify = TRUE
   )
   to_worcs$data[[filename]] <- vector(mode = "list")
+  to_worcs$data[[filename]][["save_expression"]] <- deparse(substitute(save_expression))
+  to_worcs$data[[filename]][["load_expression"]] <- deparse(substitute(load_expression))
   do.call(write_worcsfile, to_worcs)
   store_checksum(fn_write_original, entry_name = filename)
 
@@ -241,7 +264,6 @@ save_data <- function(data,
 #' @importFrom yaml read_yaml
 load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.frame(1),
                       verbose = TRUE){
-  #browser()
   # When users work from Rmd in a subdirectory, the working directory will be
   # set to that subdirectory. Check for .worcs file recursively, and change
   # directory if necessary.
@@ -289,8 +311,20 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
     check_sum(fn_this_file, worcsfile$checksums[[data_name_this_file]])
     col_message("Loading ", c("synthetic", "original")[data_original[file_num]+1], " data from '", data_name_this_file, "'.", verbose = verbose)
     object_name <- sub('^(synthetic_)?(.+)\\..*$', '\\2', basename(data_name_this_file))
-    # Replace this with flexible load function from .worcs file
-    out <- read.csv(fn_this_file, stringsAsFactors = TRUE)
+
+    # Obtain load_expression from the worcsfile
+    load_expression <- worcsfile$data[[names(data_files)[file_num]]][["load_expression"]]
+    # If there is no load_expression, this is a legacy worcsfile.
+    # Use the default load expression of previous worcs versions.
+    if(is.null(load_expression)){
+      load_expression <- "read.csv(file = filename, stringsAsFactors = TRUE)"
+    }
+    # Create an environment in which to evaluate the load_expression, in which
+    # filename is an object with value equal to fn_this_file
+    load_env <- new.env()
+    assign(x = "filename", value = fn_this_file, envir = load_env)
+    out <- eval(parse(text = load_expression), envir = load_env)
+    # Update attributes and class of output object
     attr(out, "type") <- c("synthetic", "original")[data_original[file_num]+1]
     class(out) <- c("worcs_data", class(out))
     if(to_envir){

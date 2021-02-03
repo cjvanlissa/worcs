@@ -29,7 +29,8 @@ test_that("save and load", {
 
   # test_that("loading open data fails when data changed", {
   expect_error({load_data()})
-
+  #rm(iris)
+  #data("iris")
   set.seed(555)
   closed_data(iris, codebook = NULL)
   checksums <- read_yaml(".worcs")

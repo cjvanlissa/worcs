@@ -1,3 +1,10 @@
+# worcs 0.1.9
+
+* Add arguments 'save_expression' and 'load_expression' to closed_data() and
+  open_data(). This allows users to save data in different formats. 
+  The 'load_expression' is stored in the .worcs file, and referenced by
+  load_data().
+
 # worcs 0.1.8
 
 * Declared pandoc in SystemRequirements

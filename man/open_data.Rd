@@ -9,6 +9,8 @@ open_data(
   filename = paste0(deparse(substitute(data)), ".csv"),
   codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
   worcs_directory = ".",
+  save_expression = write.csv(x = data, file = filename, row.names = FALSE),
+  load_expression = read.csv(file = filename, stringsAsFactors = TRUE),
   ...
 )
 }
@@ -29,6 +31,18 @@ Set this argument to \code{NULL} to avoid creating a codebook.}
 \item{worcs_directory}{Character, indicating the WORCS project directory to
 which to save data. The default value \code{"."} points to the current
 directory.}
+
+\item{save_expression}{An R-expression used to save the \code{data}.
+Defaults to \code{write.csv(x = data, file = filename, row.names = FALSE)},
+which writes a comma-separated, spreadsheet-style file.
+The arguments \code{data} and \code{filename} are passed from
+\code{open_data()} to the expression defined in \code{save_expression}.}
+
+\item{load_expression}{An R-expression used to load the \code{data} from the
+file created by \code{save_expression}. Defaults to
+\code{read.csv(file = filename, stringsAsFactors = TRUE)}. This expression
+is stored in the project's \code{.worcs} file, and invoked by
+\code{load_data()}.}
 
 \item{...}{Additional arguments passed to and from functions.}
 }

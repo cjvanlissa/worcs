@@ -95,13 +95,27 @@ add_synthetic <- function(data,
 
   # Synthetic data
   col_message("Storing synthetic data in '", fn_synthetic, "' and updating the checksum in '.worcs'.", verbose = verbose)
-    write.csv(data, fn_write_synth, row.names = FALSE)
-    to_worcs$data[[original_name]]$synthetic <- fn_synthetic
-    store_checksum(fn_write_synth, entry_name = fn_synthetic)
-    write_gitig(fn_gitig, paste0("!", basename(fn_synthetic)))
-    col_message("Updating '.gitignore'.", verbose = verbose)
 
-    update_textfile(filename = file.path(dn_worcs, "README.md"),
+
+  # Obtain save_expression from the worcs_file
+  save_expression <- worcs_file$data[[original_name]][["save_expression"]]
+  # If there is no save_expression, this is a legacy worcs_file.
+  # Use the default save expression of previous worcs versions.
+  if(is.null(save_expression)){
+    save_expression <- "write.csv(data, filename, row.names = FALSE)"
+  }
+  # Create an environment in which to evaluate the save_expression, in which
+  # filename is an object with value equal to fn_write_synth
+  save_env <- new.env()
+  assign(x = "filename", value = fn_write_synth, envir = save_env)
+  out <- eval(parse(text = save_expression), envir = save_env)
+  # Add info to worcs_file
+  to_worcs$data[[original_name]]$synthetic <- fn_synthetic
+  store_checksum(fn_write_synth, entry_name = fn_synthetic)
+  write_gitig(fn_gitig, paste0("!", basename(fn_synthetic)))
+  col_message("Updating '.gitignore'.", verbose = verbose)
+
+  update_textfile(filename = file.path(dn_worcs, "README.md"),
                   txt = "Synthetic data with similar characteristics to the original data have been provided. Using the function load_data() will load these synthetic data when the original data are unavailable. Note that these synthetic data cannot be used to reproduce the original results. However, it does allow users to run the code and, optionally, generate valid code that can be evaluated using the original data by the project authors.",
                   next_to = "Some of the data used in this project are not publically available.",
                   verbose = verbose)
