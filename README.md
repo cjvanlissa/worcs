@@ -8,8 +8,7 @@ status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/worcs?color=blue)](https://r-pkg.org/pkg/worcs)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Travis build
-status](https://travis-ci.org/cjvanlissa/worcs.svg?branch=master)](https://travis-ci.org/cjvanlissa/worcs)
+[![check-standard](https://github.com/cjvanlissa/worcs/workflows/check-standard/badge.svg)](https://github.com/cjvanlissa/worcs/actions)
 [![CII Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/3969/badge)](https://bestpractices.coreinfrastructure.org/projects/3969)
 <!--[![Codecov test
@@ -107,13 +106,13 @@ for the package and paper.
 
 ## Adoption of WORCS by users
 
-As of 2021-02-02, these are indicators of the adoption of `worcs` by
+As of 2021-02-03, these are indicators of the adoption of `worcs` by
 users:
 
 1.  The preprint has been downloaded 702 times, since being published on
     31-05-2020 (currently in press in [Data
     Science](https://content.iospress.com/journals/data-science/Pre-press/Pre-press))
-2.  The `worcs` R-package has been downloaded 3799 times from CRAN,
+2.  The `worcs` R-package has been downloaded 3813 times from CRAN,
     since being published on 18-05-2020
 3.  The GitHub project has been forked 9 times, watched 5 times, and
     starred 45 times
@@ -130,7 +129,7 @@ users:
           - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
           - [MSRC\_LPA](https://github.com/cjvanlissa/MSRC_LPA)  
           - [mpib](https://github.com/cjvanlissa/mpib)  
-          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
+          - [manyanalysts\_religion](https://github.com/cjvanlissa/manyanalysts_religion)  
       - EstherPlomp
           - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
       - veegeee
@@ -169,8 +168,8 @@ Code of Conduct v2.0](https://www.contributor-covenant.org/).
 Contributions to the package must adhere to the [tidyverse style
 guide](https://style.tidyverse.org/). When contributing code, please add
 tests for that contribution to the `tests/testthat` folder, and ensure
-that these tests pass on
-[Travis-CI](https://travis-ci.org/github/cjvanlissa/worcs).
+that these tests
+pass<!-- on [Travis-CI](https://travis-ci.org/github/cjvanlissa/worcs)-->.
 
 ## Acknowledgements
 

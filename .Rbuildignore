@@ -10,7 +10,6 @@
 ^LICENSE\.md$
 ^cran-comments\.md
 ^news\.md
-^\.travis\.yml$
 ^CRAN-RELEASE$
 ^codebook.*$
 Makefile
@@ -19,3 +18,4 @@ Makefile
 ^doc$
 ^Meta$
 Dockerfile
+^\.github$
