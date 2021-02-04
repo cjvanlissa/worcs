@@ -105,13 +105,13 @@ for the package and paper.
 
 ## Adoption of WORCS by users
 
-As of 2021-02-03, these are indicators of the adoption of `worcs` by
+As of 2021-02-04, these are indicators of the adoption of `worcs` by
 users:
 
 1.  The preprint has been downloaded 702 times, since being published on
     31-05-2020 (currently in press in [Data
     Science](https://content.iospress.com/journals/data-science/Pre-press/Pre-press))
-2.  The `worcs` R-package has been downloaded 3813 times from CRAN,
+2.  The `worcs` R-package has been downloaded 3840 times from CRAN,
     since being published on 18-05-2020
 3.  The GitHub project has been forked 9 times, watched 5 times, and
     starred 45 times
