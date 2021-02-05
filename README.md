@@ -9,9 +9,11 @@ status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/worcs?color=blue)](https://r-pkg.org/pkg/worcs)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![R-CMD-check](https://github.com/cjvanlissa/worcs/workflows/R-CMD-check/badge.svg)](https://github.com/cjvanlissa/worcs/actions)
+[![codecov](https://codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg?token=7S9XKDRT4M)](https://codecov.io/gh/cjvanlissa/worcs)
+[![Contributor
+Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 [![CII Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/3969/badge)](https://bestpractices.coreinfrastructure.org/projects/3969)
-[![test-coverage](https://github.com/cjvanlissa/worcs/workflows/test-coverage/badge.svg)](https://github.com/cjvanlissa/worcs/actions)
 <!--[![DOI](http://joss.theoj.org/papers/10.21105/joss.00978/status.svg)](https://doi.org/10.21105/joss.00978)-->
 
 The Workflow for Open Reproducible Code in Science (WORCS) is an easy to
@@ -105,13 +107,13 @@ for the package and paper.
 
 ## Adoption of WORCS by users
 
-As of 2021-02-04, these are indicators of the adoption of `worcs` by
+As of 2021-02-05, these are indicators of the adoption of `worcs` by
 users:
 
 1.  The preprint has been downloaded 702 times, since being published on
     31-05-2020 (currently in press in [Data
     Science](https://content.iospress.com/journals/data-science/Pre-press/Pre-press))
-2.  The `worcs` R-package has been downloaded 3840 times from CRAN,
+2.  The `worcs` R-package has been downloaded 3893 times from CRAN,
     since being published on 18-05-2020
 3.  The GitHub project has been forked 9 times, watched 5 times, and
     starred 45 times
