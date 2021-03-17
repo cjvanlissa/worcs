@@ -107,38 +107,38 @@ for the package and paper.
 
 ## Adoption of WORCS by users
 
-As of 2021-02-05, these are indicators of the adoption of `worcs` by
+As of 2021-03-12, these are indicators of the adoption of `worcs` by
 users:
 
-1.  The preprint has been downloaded 702 times, since being published on
+1.  The preprint has been downloaded 776 times, since being published on
     31-05-2020 (currently in press in [Data
     Science](https://content.iospress.com/journals/data-science/Pre-press/Pre-press))
-2.  The `worcs` R-package has been downloaded 3893 times from CRAN,
+2.  The `worcs` R-package has been downloaded 4672 times from CRAN,
     since being published on 18-05-2020
 3.  The GitHub project has been forked 9 times, watched 5 times, and
-    starred 45 times
+    starred 46 times
 4.  The lead author has given invited lectures on WORCS at:
       - Max-Planck-Institute for Human Development (2020)  
       - Open Science Community Rotterdam (2020)  
       - Eindhoven University of Technology (2020)  
 5.  WORCS is currently used in the following GitHub repositories (sorted
     by user):
-      - cjvanlissa
-          - [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
-          - [schumpe](https://github.com/cjvanlissa/schumpe)  
-          - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
-          - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
-          - [MSRC\_LPA](https://github.com/cjvanlissa/MSRC_LPA)  
-          - [mpib](https://github.com/cjvanlissa/mpib)  
-          - [manyanalysts\_religion](https://github.com/cjvanlissa/manyanalysts_religion)  
       - EstherPlomp
           - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
       - veegeee
           - [multivar](https://github.com/veegeee/multivar)  
-      - lisallreiber
-          - [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
+      - cjvanlissa
+          - [schumpe](https://github.com/cjvanlissa/schumpe)  
+          - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
+          - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
+          - [mpib](https://github.com/cjvanlissa/mpib)  
+          - [worcs\_oscoffee](https://github.com/cjvanlissa/worcs_oscoffee)  
+          - [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
+          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
       - agjtimmers
           - [MS12-Open-Science](https://github.com/agjtimmers/MS12-Open-Science)  
+      - lisallreiber
+          - [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
       - Hypergeometricdistribution
           - [github\_document](https://github.com/Hypergeometricdistribution/github_document)  
       - IndrajeetPatil
@@ -147,10 +147,10 @@ users:
           - [Open-Science-Introdcuction](https://github.com/jakkermans/Open-Science-Introdcuction)  
       - KimBaldry
           - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)  
+      - ocbe-uio
+          - [nor-solidarity](https://github.com/ocbe-uio/nor-solidarity)  
       - nsunami
-          - [dissertation](https://github.com/nsunami/dissertation)  
-      - DepressionRegression
-          - [mvs\_rep](https://github.com/DepressionRegression/mvs_rep)
+          - [dissertation](https://github.com/nsunami/dissertation)
 
 ## Contributing and Contact Information
 
