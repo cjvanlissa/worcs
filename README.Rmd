@@ -53,7 +53,7 @@ remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
 
 You can cite WORCS using the following citation (please use the same citation for either the package, or the paper):
 
-> Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A., Peikert, A., , Struiksma, M. E., & Vreede, B. (in press). WORCS: A Workflow for Open Reproducible Code in Science. Data Science, in press. https://doi.org/10.17605/OSF.IO/ZCVBS
+> Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A., Peikert, A., , Struiksma, M. E., & Vreede, B. (in press). WORCS: A Workflow for Open Reproducible Code in Science. Data Science, in press. https://doi.org/10.3233/DS-210031
 
 ## About this repository
 
