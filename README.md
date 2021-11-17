@@ -1,3 +1,4 @@
+
 # WORCS <a href='https://osf.io/zcvbs/'><img src='https://github.com/cjvanlissa/worcs/raw/master/docs/worcs_icon.png' align="right" height="139" /></a>
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -25,9 +26,9 @@ specific issues.
 
 ## Where do I start?
 
-For most users, the recommended starting point is to [read the
-paper](https://osf.io/zcvbs/), currently in press in [Data
-Science](https://content.iospress.com/journals/data-science/Pre-press/Pre-press),
+For most users, the recommended starting point is to [read the paper,
+published in Data
+Science](https://content.iospress.com/articles/data-science/ds210031),
 which introduces the WORCS workflow, explains the underlying tools, and
 illustrates how the `worcs` package can be used to create a new project
 that follows the workflow.
@@ -70,8 +71,8 @@ citation for either the package, or the paper):
 
 > Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
 > Peikert, A., , Struiksma, M. E., & Vreede, B. (in press). WORCS: A
-> Workflow for Open Reproducible Code in Science. Data Science, in
-> press. <https://doi.org/10.17605/OSF.IO/ZCVBS>
+> Workflow for Open Reproducible Code in Science. Data Science, 2021.
+> Data Science, vol. 4, no. 1, pp. 29-49. DOI: 10.3233/DS-210031.
 
 ## About this repository
 
@@ -89,12 +90,12 @@ for the package and paper.
 ## Repository structure
 
 | File          | Description                     | Usage           |
-| :------------ | :------------------------------ | :-------------- |
+|:--------------|:--------------------------------|:----------------|
 | \_pkgdown.yml | YAML for package website        | do not edit     |
 | DESCRIPTION   | R-package DESCRIPTION           | do not edit     |
 | LICENSE.md    | Project license                 | do not edit     |
 | NAMESPACE     | R-package namespace             | machine-written |
-| README.md     | Read this file to get started\! | do not edit     |
+| README.md     | Read this file to get started!  | do not edit     |
 | README.Rmd    | R-markdown source for readme.md | human editable  |
 | worcs.Rproj   | RStudio project file            | do not edit     |
 | docs/         | Package website                 | machine-written |
@@ -106,50 +107,56 @@ for the package and paper.
 
 ## Adoption of WORCS by users
 
-As of 2021-03-12, these are indicators of the adoption of `worcs` by
+As of 2021-11-17, these are indicators of the adoption of `worcs` by
 users:
 
-1.  The preprint has been downloaded 776 times, since being published on
-    31-05-2020 (currently in press in [Data
-    Science](https://content.iospress.com/journals/data-science/Pre-press/Pre-press))
-2.  The `worcs` R-package has been downloaded 4672 times from CRAN,
+1.  The preprint has been downloaded 1372 times, since being published
+    on 31-05-2020
+2.  The paper in [Data
+    Science](https://content.iospress.com/articles/data-science/ds210031)
+    has been cited 13 times
+3.  The `worcs` R-package has been downloaded 8350 times from CRAN,
     since being published on 18-05-2020
-3.  The GitHub project has been forked 9 times, watched 5 times, and
-    starred 46 times
-4.  The lead author has given invited lectures on WORCS at:
-      - Max-Planck-Institute for Human Development (2020)  
-      - Open Science Community Rotterdam (2020)  
-      - Eindhoven University of Technology (2020)  
-5.  WORCS is currently used in the following GitHub repositories (sorted
-    by user):
-      - EstherPlomp
-          - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
-      - veegeee
-          - [multivar](https://github.com/veegeee/multivar)  
-      - cjvanlissa
-          - [schumpe](https://github.com/cjvanlissa/schumpe)  
-          - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
-          - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
-          - [mpib](https://github.com/cjvanlissa/mpib)  
-          - [worcs\_oscoffee](https://github.com/cjvanlissa/worcs_oscoffee)  
-          - [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
-          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
-      - agjtimmers
-          - [MS12-Open-Science](https://github.com/agjtimmers/MS12-Open-Science)  
-      - lisallreiber
-          - [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
-      - Hypergeometricdistribution
-          - [github\_document](https://github.com/Hypergeometricdistribution/github_document)  
-      - IndrajeetPatil
-          - [worcs\_practice](https://github.com/IndrajeetPatil/worcs_practice)  
-      - jakkermans
-          - [Open-Science-Introdcuction](https://github.com/jakkermans/Open-Science-Introdcuction)  
-      - KimBaldry
-          - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)  
-      - ocbe-uio
-          - [nor-solidarity](https://github.com/ocbe-uio/nor-solidarity)  
-      - nsunami
-          - [dissertation](https://github.com/nsunami/dissertation)
+4.  The GitHub project has been forked 9 times, watched 5 times, and
+    starred 54 times
+5.  The lead author has given invited lecturegs on WORCS at:
+    -   One Health PACT (2021)  
+    -   Max-Planck-Institute for Human Development (2020)  
+    -   Open Science Community Rotterdam (2020)  
+    -   Eindhoven University of Technology (2020)  
+6.  WORCS is currently used in the following public itHub repositories
+    (sorted by user):
+    -   cjvanlissa
+        -   [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
+        -   [werner\_lpa](https://github.com/cjvanlissa/werner_lpa)  
+        -   [welzijnsmeter](https://github.com/cjvanlissa/welzijnsmeter)  
+        -   [schumpe](https://github.com/cjvanlissa/schumpe)  
+        -   [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
+        -   [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
+        -   [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
+    -   CirculatoryHealth
+        -   [gwas2single](https://github.com/CirculatoryHealth/gwas2single)  
+        -   [AE\_171212\_9p21\_IRAK4](https://github.com/CirculatoryHealth/AE_171212_9p21_IRAK4)  
+    -   EstherPlomp
+        -   [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
+    -   KimBaldry
+        -   [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)  
+    -   agjtimmers
+        -   [MS12-Open-Science](https://github.com/agjtimmers/MS12-Open-Science)  
+    -   ocbe-uio
+        -   [nor-solidarity](https://github.com/ocbe-uio/nor-solidarity)  
+    -   lisallreiber
+        -   [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
+    -   veegeee
+        -   [multivar](https://github.com/veegeee/multivar)  
+    -   nsunami
+        -   [dissertation](https://github.com/nsunami/dissertation)  
+    -   Hypergeometricdistribution
+        -   [github\_document](https://github.com/Hypergeometricdistribution/github_document)  
+    -   jakkermans
+        -   [Open-Science-Introdcuction](https://github.com/jakkermans/Open-Science-Introdcuction)  
+    -   PaulaVrolijk
+        -   [DT](https://github.com/PaulaVrolijk/DT)
 
 ## Contributing and Contact Information
 
@@ -158,9 +165,9 @@ us improve both the workflow and the software. Major contributions
 warrant coauthorship to the package. Please contact the lead author at
 <c.j.vanlissa@uu.nl>, or:
 
-  - [File a GitHub issue](https://github.com/cjvanlissa/worcs) for
+-   [File a GitHub issue](https://github.com/cjvanlissa/worcs) for
     feedback, bug reports or feature requests
-  - [Make a pull request](https://github.com/cjvanlissa/worcs/pulls) to
+-   [Make a pull request](https://github.com/cjvanlissa/worcs/pulls) to
     contribute your code or prose
 
 By participating in this project, you agree to abide by the [Contributor

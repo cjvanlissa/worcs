@@ -213,12 +213,12 @@ function is called for its side effects.</p>
 <span class='co'># Run closed_data without synthetic</span>
 <span class='fu'><a href='closed_data.html'>closed_data</a></span><span class='op'>(</span><span class='va'>df</span>, codebook <span class='op'>=</span> <span class='cn'>NULL</span>, synthetic <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span>
-#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Creating C:/Users/lissa102/AppData/Local/Temp/Rtmp2pPuv6/add_synthetic/README.md.</span>
+#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Creating C:/Users/lissa102/AppData/Local/Temp/RtmpCGMePU/add_synthetic/README.md.</span>
 #&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating '.gitignore'.</span></div><div class='input'><span class='co'># Manually add synthetic</span>
 <span class='fu'>add_synthetic</span><span class='op'>(</span><span class='va'>df</span>, original_name <span class='op'>=</span> <span class='st'>"df.csv"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Storing synthetic data in 'synthetic_df.csv' and updating the checksum in '.worcs'.</span>
 #&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating '.gitignore'.</span>
-#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating C:/Users/lissa102/AppData/Local/Temp/Rtmp2pPuv6/add_synthetic/README.md.</span></div><div class='input'><span class='co'># Remove original from file and environment</span>
+#&gt; <span style='color: #00BB00;'>v  </span><span style='color: #000000;'>Updating C:/Users/lissa102/AppData/Local/Temp/RtmpCGMePU/add_synthetic/README.md.</span></div><div class='input'><span class='co'># Remove original from file and environment</span>
 <span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.remove</a></span><span class='op'>(</span><span class='st'>"df.csv"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
 <span class='co'># See that load_data() now loads the synthetic file</span>
