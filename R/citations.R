@@ -113,3 +113,41 @@ comprehensive_cite <- function(input, encoding = "UTF-8", ..., citeall = TRUE) {
   out <- gsub("\\s{0,1}\\[XXXXXDELETEMEXXXXX\\]", "", out) # The \\s might cause trouble
   substr(out, 1, nchar(out)-6)
 }
+
+
+# Extract citations
+#
+# This function extracts all citations from a character vector.
+# @param txt Character vector, defaults to
+# \code{readLines("manuscript/manuscript.Rmd")}.
+# @param split Character vector to use for splitting, passed to
+# \code{\link{strsplit}}.
+# @param ... Additional arguments are passed to \code{\link{strsplit}}.
+#@export
+# @return Character vector.
+# @examples
+# extract_citations("This is just an example [@extract_cites; @works].")
+
+extract_citations <- function(x = readLines("manuscript/manuscript.Rmd"),
+                              split = "@+", ...){
+
+  cl <- match.call()
+  cl[[1L]] <- quote(strsplit)
+  cl[["x"]] <- gsub("\\w@", "", paste0(x, collapse = ""))
+  cl[["split"]] <- split
+  cites <- eval(cl, envir = environment())[[1]][-1]
+  cites <- gsub("^([a-zA-Z0-9-]+?)\\b.*$", "\\1", cites)
+  tabcit <- as.data.frame.table(table(cites))
+  tabcit[order(tabcit$Freq, decreasing = T), ]
+}
+
+string_citations <- function(x = readLines("manuscript/manuscript.Rmd"),
+                              split = "@+", ...){
+
+  cl <- match.call()
+  cl[[1L]] <- quote(strsplit)
+  cl[["x"]] <- gsub("\\w@", "", paste0(x, collapse = ""))
+  cl[["split"]] <- split
+  cites <- eval(cl, envir = environment())[[1]][-1]
+  gsub("^([a-zA-Z0-9-]+?)\\b.*$", "\\1", cites)
+}

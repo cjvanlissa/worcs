@@ -37,7 +37,7 @@ License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/cjvanlissa/worcs
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports:
     methods,
     rmarkdown,
