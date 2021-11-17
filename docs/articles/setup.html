@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9.1</span>
       </span>
     </div>
 
@@ -94,7 +94,7 @@
 
       
 
-      </header><script src="setup_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="setup_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Setting up your computer for WORCS</h1>
@@ -162,7 +162,7 @@
 <pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("worcs", dependencies = TRUE)
 tinytex::install_tinytex()
 renv::consent(provided = TRUE)
-worcs::git_user("your_name", "your_email")</a></code></pre>
+worcs::git_user("your_name", "your_email", overwrite = TRUE)</a></code></pre>
 <p>If you intend to write documents in APA style, you should additionally install the <code>papaja</code> package. Unfortunately, this package is not yet available on the central R repository CRAN, but you can install it from ‘GitHub’ using the following code:</p>
 <pre><code><a href="https://remotes.r-lib.org/reference/install_github.html">remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")</a></code></pre>
 <p>Because <code>papaja</code> has many dependencies, it is recommended to skip this step if you intend to write documents in a different style than APA.</p>
