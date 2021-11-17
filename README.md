@@ -1,4 +1,3 @@
-
 # WORCS <a href='https://osf.io/zcvbs/'><img src='https://github.com/cjvanlissa/worcs/raw/master/docs/worcs_icon.png' align="right" height="139" /></a>
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
