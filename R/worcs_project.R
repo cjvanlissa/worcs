@@ -138,7 +138,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
       # copy 'resources' folder to path
       license_dir = system.file('rstudio', 'templates', 'project', 'licenses', package = 'worcs', mustWork = TRUE)
       license_file <- file.path(license_dir, paste0(add_license, ".txt"))
-      file.copy(license_file, file.path(path, "LICENSE"))
+      file.copy(license_file, file.path(path, "LICENSE"), copy.mode = FALSE)
       col_message("Writing license file.", verbose = verbose)
     }, error = function(e){
       col_message("Writing license file.", success = FALSE)
@@ -370,7 +370,7 @@ copy_resources <- function(which_files, path){
   files <- files[files %in% which_files]
   source <- file.path(resources, files)
   target <- file.path(path, files)
-  file.copy(source, target)
+  file.copy(source, target, copy.mode = FALSE)
 }
 
 nice_tab <- function(tab){

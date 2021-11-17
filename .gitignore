@@ -14,3 +14,5 @@ Meta
 *.blg
 authors_latex.txt
 !reviews_ds.pdf
+/doc/
+/Meta/

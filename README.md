@@ -1,4 +1,3 @@
-
 # WORCS <a href='https://osf.io/zcvbs/'><img src='https://github.com/cjvanlissa/worcs/raw/master/docs/worcs_icon.png' align="right" height="139" /></a>
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -72,7 +71,7 @@ citation for either the package, or the paper):
 > Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
 > Peikert, A., , Struiksma, M. E., & Vreede, B. (in press). WORCS: A
 > Workflow for Open Reproducible Code in Science. Data Science, in
-> press. <https://doi.org/10.3233/DS-210031>
+> press. <https://doi.org/10.17605/OSF.IO/ZCVBS>
 
 ## About this repository
 
@@ -107,52 +106,50 @@ for the package and paper.
 
 ## Adoption of WORCS by users
 
-As of 2021-05-15, these are indicators of the adoption of `worcs` by
+As of 2021-03-12, these are indicators of the adoption of `worcs` by
 users:
 
-1.  The preprint has been downloaded 702 times, since being published on
+1.  The preprint has been downloaded 776 times, since being published on
     31-05-2020 (currently in press in [Data
     Science](https://content.iospress.com/journals/data-science/Pre-press/Pre-press))
-2.  The `worcs` R-package has been downloaded 5589 times from CRAN,
+2.  The `worcs` R-package has been downloaded 4672 times from CRAN,
     since being published on 18-05-2020
 3.  The GitHub project has been forked 9 times, watched 5 times, and
-    starred 48 times
+    starred 46 times
 4.  The lead author has given invited lectures on WORCS at:
       - Max-Planck-Institute for Human Development (2020)  
       - Open Science Community Rotterdam (2020)  
       - Eindhoven University of Technology (2020)  
 5.  WORCS is currently used in the following GitHub repositories (sorted
     by user):
-      - cjvanlissa
-          - [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
-          - [schumpe](https://github.com/cjvanlissa/schumpe)  
-          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
-          - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
-          - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
-          - [MSRC\_LPA](https://github.com/cjvanlissa/MSRC_LPA)  
-          - [mpib](https://github.com/cjvanlissa/mpib)  
       - EstherPlomp
           - [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
-      - KimBaldry
-          - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)  
-      - ocbe-uio
-          - [nor-solidarity](https://github.com/ocbe-uio/nor-solidarity)  
       - veegeee
           - [multivar](https://github.com/veegeee/multivar)  
-      - nsunami
-          - [dissertation](https://github.com/nsunami/dissertation)  
-      - CirculatoryHealth
-          - [AE\_171212\_9p21\_IRAK4](https://github.com/CirculatoryHealth/AE_171212_9p21_IRAK4)  
-      - lisallreiber
-          - [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
+      - cjvanlissa
+          - [schumpe](https://github.com/cjvanlissa/schumpe)  
+          - [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
+          - [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
+          - [mpib](https://github.com/cjvanlissa/mpib)  
+          - [worcs\_oscoffee](https://github.com/cjvanlissa/worcs_oscoffee)  
+          - [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
+          - [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
       - agjtimmers
           - [MS12-Open-Science](https://github.com/agjtimmers/MS12-Open-Science)  
+      - lisallreiber
+          - [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
       - Hypergeometricdistribution
           - [github\_document](https://github.com/Hypergeometricdistribution/github_document)  
       - IndrajeetPatil
           - [worcs\_practice](https://github.com/IndrajeetPatil/worcs_practice)  
       - jakkermans
-          - [Open-Science-Introdcuction](https://github.com/jakkermans/Open-Science-Introdcuction)
+          - [Open-Science-Introdcuction](https://github.com/jakkermans/Open-Science-Introdcuction)  
+      - KimBaldry
+          - [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)  
+      - ocbe-uio
+          - [nor-solidarity](https://github.com/ocbe-uio/nor-solidarity)  
+      - nsunami
+          - [dissertation](https://github.com/nsunami/dissertation)
 
 ## Contributing and Contact Information
 

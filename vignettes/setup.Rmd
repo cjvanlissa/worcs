@@ -56,7 +56,7 @@ Follow these steps in order:
 install.packages("worcs", dependencies = TRUE)
 tinytex::install_tinytex()
 renv::consent(provided = TRUE)
-worcs::git_user("your_name", "your_email")
+worcs::git_user("your_name", "your_email", overwrite = TRUE)
 ```
 
 If you intend to write documents in APA style, you should additionally install the `papaja` package.
