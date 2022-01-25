@@ -34,7 +34,7 @@ Follow these steps in order:
     + If you run into any trouble, a more comprehensive tutorial on installing Git is available at [happygitwithr.com](https://happygitwithr.com/install-git.html).
 4. Register on 'GitHub' (alternatively: see [this vignette](https://cjvanlissa.github.io/worcs/articles/git_cloud.html) on how to use 'GitLab' or 'Bitbucket')
     + Go to [github.com](https://github.com/) and click *Sign up*. Choose an "Individual", "Free" plan.
-    + Request a [free academic upgrade](https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount). This allows you to create *private repositories*, which are only visible to you and selected collaborators, and can be made public when your work is published.
+    <!-- + Request a [free academic upgrade](https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount). This allows you to create *private repositories*, which are only visible to you and selected collaborators, and can be made public when your work is published. -->
 5. Connect 'RStudio' to Git and GitHub (for more support, see [this 'RStudio' article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/2015/07/rstudio-and-github/))
     a. Open 'RStudio', open the Tools menu, click *Global Options*, and click *Git/SVN*
     b. Verify that *Enable version control interface for RStudio projects* is selected
@@ -56,6 +56,11 @@ Follow these steps in order:
 install.packages("worcs", dependencies = TRUE)
 tinytex::install_tinytex()
 renv::consent(provided = TRUE)
+```
+
+If you do not have a Git user set up on your computer yet (e.g., if this is the first time you will be using Git), run the following - making sure to substitute your actual username and email:
+
+```
 worcs::git_user("your_name", "your_email", overwrite = TRUE)
 ```
 

@@ -27,6 +27,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -39,18 +41,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -87,7 +83,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/cjvanlissa/worcs/">
+  <a href="https://github.com/cjvanlissa/worcs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -104,55 +100,55 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="worcs-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#worcs-" class="anchor"></a>WORCS <a href="https://osf.io/zcvbs/"><img src="https://github.com/cjvanlissa/worcs/raw/master/docs/worcs_icon.png" align="right" height="139"></a>
+<div class="section level1">
+<div class="page-header"><h1 id="worcs-">WORCS <a href="https://osf.io/zcvbs/" class="external-link"><img src="https://github.com/cjvanlissa/worcs/raw/master/docs/worcs_icon.png" align="right" height="139"></a>
+<a class="anchor" aria-label="anchor" href="#worcs-"></a>
 </h1></div>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p>The Workflow for Open Reproducible Code in Science (WORCS) is an easy to adopt approach to ensuring a research project meets the requirements of Open Science from the start. It is based on a “good enough” philosophy, prioritizing user-friendliness over exhaustiveness. It can be used either in absence of, or in parallel to, existing requirements for Open workflows. It can also be enhanced with more elaborate solutions for specific issues.</p>
-<div id="where-do-i-start" class="section level2">
-<h2 class="hasAnchor">
-<a href="#where-do-i-start" class="anchor"></a>Where do I start?</h2>
-<p>For most users, the recommended starting point is to <a href="https://content.iospress.com/articles/data-science/ds210031">read the paper, published in Data Science</a>, which introduces the WORCS workflow, explains the underlying tools, and illustrates how the <code>worcs</code> package can be used to create a new project that follows the workflow.</p>
-<p>The workflow is illustrated below; the <a href="https://cjvanlissa.github.io/worcs/articles/workflow.html">workflow vignette</a> describes each step in detail.</p>
+<div class="section level2">
+<h2 id="where-do-i-start">Where do I start?<a class="anchor" aria-label="anchor" href="#where-do-i-start"></a>
+</h2>
+<p>For most users, the recommended starting point is to <a href="https://content.iospress.com/articles/data-science/ds210031" class="external-link">read the paper, published in Data Science</a>, which introduces the WORCS workflow, explains the underlying tools, and illustrates how the <code>worcs</code> package can be used to create a new project that follows the workflow.</p>
+<p>The workflow is illustrated below; the <a href="https://cjvanlissa.github.io/worcs/articles/workflow.html" class="external-link">workflow vignette</a> describes each step in detail.</p>
 <p><img src="https://github.com/cjvanlissa/worcs/raw/master/paper/workflow_graph/workflow.png"><!-- --></p>
 </div>
-<div id="installing-the-package" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installing-the-package" class="anchor"></a>Installing the package</h2>
-<p>Before installing the package, please read <a href="https://cjvanlissa.github.io/worcs/articles/setup.html">this vignette</a>, which explains how to set up your computer for <code>worcs</code>.</p>
-<p>After reading <a href="https://cjvanlissa.github.io/worcs/articles/setup.html">the vignette</a>, you can install the development version of the <code>worcs</code> package from GitHub with:</p>
+<div class="section level2">
+<h2 id="installing-the-package">Installing the package<a class="anchor" aria-label="anchor" href="#installing-the-package"></a>
+</h2>
+<p>Before installing the package, please read <a href="https://cjvanlissa.github.io/worcs/articles/setup.html" class="external-link">this vignette</a>, which explains how to set up your computer for <code>worcs</code>.</p>
+<p>After reading <a href="https://cjvanlissa.github.io/worcs/articles/setup.html" class="external-link">the vignette</a>, you can install the development version of the <code>worcs</code> package from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"cjvanlissa/worcs"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span>
-<span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"cjvanlissa/worcs"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span>
+<span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html" class="external-link">install_tinytex</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="reference/git_user.html">git_user</a></span><span class="op">(</span><span class="st">"your_name"</span>, <span class="st">"your_email"</span><span class="op">)</span></code></pre></div>
 <p>If you intend to write APA style manuscripts, you can additionally install the <code>papaja</code> package:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"crsh/papaja"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"crsh/papaja"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="citing-worcs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#citing-worcs" class="anchor"></a>Citing WORCS</h2>
+<div class="section level2">
+<h2 id="citing-worcs">Citing WORCS<a class="anchor" aria-label="anchor" href="#citing-worcs"></a>
+</h2>
 <p>You can cite WORCS using the following citation (please use the same citation for either the package, or the paper):</p>
 <blockquote>
 <p>Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A., Peikert, A., , Struiksma, M. E., &amp; Vreede, B. (in press). WORCS: A Workflow for Open Reproducible Code in Science. Data Science, 2021. Data Science, vol. 4, no. 1, pp. 29-49. DOI: 10.3233/DS-210031.</p>
 </blockquote>
 </div>
-<div id="about-this-repository" class="section level2">
-<h2 class="hasAnchor">
-<a href="#about-this-repository" class="anchor"></a>About this repository</h2>
+<div class="section level2">
+<h2 id="about-this-repository">About this repository<a class="anchor" aria-label="anchor" href="#about-this-repository"></a>
+</h2>
 <p>This repository contains the following:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>An R-package called <code>worcs</code>, with convenience functions to facilitate the WORCS workflow.</li>
 <li>In the subfolder <code>./paper</code>, the source files for the paper describing the WORCS workflow.</li>
 </ol>
 <p>The repository serves two functions: To allow users to install the <code>worcs</code> package, and to allow collaborators access to the source code for the package and paper.</p>
 </div>
-<div id="repository-structure" class="section level2">
-<h2 class="hasAnchor">
-<a href="#repository-structure" class="anchor"></a>Repository structure</h2>
+<div class="section level2">
+<h2 id="repository-structure">Repository structure<a class="anchor" aria-label="anchor" href="#repository-structure"></a>
+</h2>
 <table class="table">
 <thead><tr class="header">
 <th align="left">File</th>
@@ -228,13 +224,13 @@
 </tbody>
 </table>
 </div>
-<div id="adoption-of-worcs-by-users" class="section level2">
-<h2 class="hasAnchor">
-<a href="#adoption-of-worcs-by-users" class="anchor"></a>Adoption of WORCS by users</h2>
+<div class="section level2">
+<h2 id="adoption-of-worcs-by-users">Adoption of WORCS by users<a class="anchor" aria-label="anchor" href="#adoption-of-worcs-by-users"></a>
+</h2>
 <p>As of 2021-11-17, these are indicators of the adoption of <code>worcs</code> by users:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>The preprint has been downloaded 1372 times, since being published on 31-05-2020</li>
-<li>The paper in <a href="https://content.iospress.com/articles/data-science/ds210031">Data Science</a> has been cited 13 times</li>
+<li>The paper in <a href="https://content.iospress.com/articles/data-science/ds210031" class="external-link">Data Science</a> has been cited 13 times</li>
 <li>The <code>worcs</code> R-package has been downloaded 8350 times from CRAN, since being published on 18-05-2020</li>
 <li>The GitHub project has been forked 9 times, watched 5 times, and starred 54 times</li>
 <li>The lead author has given invited lecturegs on WORCS at:
@@ -254,125 +250,125 @@
 <li>cjvanlissa
 <ul>
 <li>
-<a href="https://github.com/cjvanlissa/veni_sysrev">veni_sysrev</a><br>
+<a href="https://github.com/cjvanlissa/veni_sysrev" class="external-link">veni_sysrev</a><br>
 </li>
 <li>
-<a href="https://github.com/cjvanlissa/werner_lpa">werner_lpa</a><br>
+<a href="https://github.com/cjvanlissa/werner_lpa" class="external-link">werner_lpa</a><br>
 </li>
 <li>
-<a href="https://github.com/cjvanlissa/welzijnsmeter">welzijnsmeter</a><br>
+<a href="https://github.com/cjvanlissa/welzijnsmeter" class="external-link">welzijnsmeter</a><br>
 </li>
 <li>
-<a href="https://github.com/cjvanlissa/schumpe">schumpe</a><br>
+<a href="https://github.com/cjvanlissa/schumpe" class="external-link">schumpe</a><br>
 </li>
 <li>
-<a href="https://github.com/cjvanlissa/storm_meta_father_mother">storm_meta_father_mother</a><br>
+<a href="https://github.com/cjvanlissa/storm_meta_father_mother" class="external-link">storm_meta_father_mother</a><br>
 </li>
 <li>
-<a href="https://github.com/cjvanlissa/IHBT-SEM">IHBT-SEM</a><br>
+<a href="https://github.com/cjvanlissa/IHBT-SEM" class="external-link">IHBT-SEM</a><br>
 </li>
 <li>
-<a href="https://github.com/cjvanlissa/placebo_adhd">placebo_adhd</a><br>
+<a href="https://github.com/cjvanlissa/placebo_adhd" class="external-link">placebo_adhd</a><br>
 </li>
 </ul>
 </li>
 <li>CirculatoryHealth
 <ul>
 <li>
-<a href="https://github.com/CirculatoryHealth/gwas2single">gwas2single</a><br>
+<a href="https://github.com/CirculatoryHealth/gwas2single" class="external-link">gwas2single</a><br>
 </li>
 <li>
-<a href="https://github.com/CirculatoryHealth/AE_171212_9p21_IRAK4">AE_171212_9p21_IRAK4</a><br>
+<a href="https://github.com/CirculatoryHealth/AE_171212_9p21_IRAK4" class="external-link">AE_171212_9p21_IRAK4</a><br>
 </li>
 </ul>
 </li>
 <li>EstherPlomp
 <ul>
 <li>
-<a href="https://github.com/EstherPlomp/RDM-survey">RDM-survey</a><br>
+<a href="https://github.com/EstherPlomp/RDM-survey" class="external-link">RDM-survey</a><br>
 </li>
 </ul>
 </li>
 <li>KimBaldry
 <ul>
 <li>
-<a href="https://github.com/KimBaldry/BIO-MATE">BIO-MATE</a><br>
+<a href="https://github.com/KimBaldry/BIO-MATE" class="external-link">BIO-MATE</a><br>
 </li>
 </ul>
 </li>
 <li>agjtimmers
 <ul>
 <li>
-<a href="https://github.com/agjtimmers/MS12-Open-Science">MS12-Open-Science</a><br>
+<a href="https://github.com/agjtimmers/MS12-Open-Science" class="external-link">MS12-Open-Science</a><br>
 </li>
 </ul>
 </li>
 <li>ocbe-uio
 <ul>
 <li>
-<a href="https://github.com/ocbe-uio/nor-solidarity">nor-solidarity</a><br>
+<a href="https://github.com/ocbe-uio/nor-solidarity" class="external-link">nor-solidarity</a><br>
 </li>
 </ul>
 </li>
 <li>lisallreiber
 <ul>
 <li>
-<a href="https://github.com/lisallreiber/worcs_ws_empty">worcs_ws_empty</a><br>
+<a href="https://github.com/lisallreiber/worcs_ws_empty" class="external-link">worcs_ws_empty</a><br>
 </li>
 </ul>
 </li>
 <li>veegeee
 <ul>
 <li>
-<a href="https://github.com/veegeee/multivar">multivar</a><br>
+<a href="https://github.com/veegeee/multivar" class="external-link">multivar</a><br>
 </li>
 </ul>
 </li>
 <li>nsunami
 <ul>
 <li>
-<a href="https://github.com/nsunami/dissertation">dissertation</a><br>
+<a href="https://github.com/nsunami/dissertation" class="external-link">dissertation</a><br>
 </li>
 </ul>
 </li>
 <li>Hypergeometricdistribution
 <ul>
 <li>
-<a href="https://github.com/Hypergeometricdistribution/github_document">github_document</a><br>
+<a href="https://github.com/Hypergeometricdistribution/github_document" class="external-link">github_document</a><br>
 </li>
 </ul>
 </li>
 <li>jakkermans
 <ul>
 <li>
-<a href="https://github.com/jakkermans/Open-Science-Introdcuction">Open-Science-Introdcuction</a><br>
+<a href="https://github.com/jakkermans/Open-Science-Introdcuction" class="external-link">Open-Science-Introdcuction</a><br>
 </li>
 </ul>
 </li>
 <li>PaulaVrolijk
 <ul>
-<li><a href="https://github.com/PaulaVrolijk/DT">DT</a></li>
+<li><a href="https://github.com/PaulaVrolijk/DT" class="external-link">DT</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
 </div>
-<div id="contributing-and-contact-information" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contributing-and-contact-information" class="anchor"></a>Contributing and Contact Information</h2>
+<div class="section level2">
+<h2 id="contributing-and-contact-information">Contributing and Contact Information<a class="anchor" aria-label="anchor" href="#contributing-and-contact-information"></a>
+</h2>
 <p>We are always eager to receive user feedback and contributions to help us improve both the workflow and the software. Major contributions warrant coauthorship to the package. Please contact the lead author at <a href="mailto:c.j.vanlissa@uu.nl" class="email">c.j.vanlissa@uu.nl</a>, or:</p>
 <ul>
 <li>
-<a href="https://github.com/cjvanlissa/worcs">File a GitHub issue</a> for feedback, bug reports or feature requests</li>
+<a href="https://github.com/cjvanlissa/worcs" class="external-link">File a GitHub issue</a> for feedback, bug reports or feature requests</li>
 <li>
-<a href="https://github.com/cjvanlissa/worcs/pulls">Make a pull request</a> to contribute your code or prose</li>
+<a href="https://github.com/cjvanlissa/worcs/pulls" class="external-link">Make a pull request</a> to contribute your code or prose</li>
 </ul>
-<p>By participating in this project, you agree to abide by the <a href="https://www.contributor-covenant.org/">Contributor Code of Conduct v2.0</a>. Contributions to the package must adhere to the <a href="https://style.tidyverse.org/">tidyverse style guide</a>. When contributing code, please add tests for that contribution to the <code>tests/testthat</code> folder, and ensure that these tests pass in the <a href="https://github.com/cjvanlissa/worcs/actions/workflows/R-CMD-check">GitHub Actions panel</a>.</p>
+<p>By participating in this project, you agree to abide by the <a href="https://www.contributor-covenant.org/" class="external-link">Contributor Code of Conduct v2.0</a>. Contributions to the package must adhere to the <a href="https://style.tidyverse.org/" class="external-link">tidyverse style guide</a>. When contributing code, please add tests for that contribution to the <code>tests/testthat</code> folder, and ensure that these tests pass in the <a href="https://github.com/cjvanlissa/worcs/actions/workflows/R-CMD-check" class="external-link">GitHub Actions panel</a>.</p>
 </div>
-<div id="acknowledgements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
+<div class="section level2">
+<h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
+</h2>
 <p>The worcs logo is inspired by the Open Science Badges by the Center for Open Science (CC-BY-4.0), and makes use of the gear, services, gears, preferences, settings icon, made by MD Badsha Meah from www.freeicons.io (CC-BY-3.0).</p>
 </div>
 </div>
@@ -380,52 +376,63 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=worcs">https://​cloud.r-project.org/​package=worcs</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/cjvanlissa/worcs/">https://​github.com/​cjvanlissa/​worcs/​</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=worcs" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/cjvanlissa/worcs/" class="external-link">Browse source code</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small>GPL (&gt;= 3)</small></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Caspar J. van Lissa <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-0808-5024" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Aaron Peikert <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-7813-818X" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Andreas M. Brandmaier <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8765-6982" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing worcs</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=worcs"><img src="https://www.r-pkg.org/badges/version/worcs" alt="CRAN status"></a></li>
-<li><a href="https://r-pkg.org/pkg/worcs"><img src="https://cranlogs.r-pkg.org/badges/grand-total/worcs?color=blue" alt="CRAN RStudio mirror downloads"></a></li>
-<li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
-<li><a href="https://github.com/cjvanlissa/worcs/actions"><img src="https://github.com/cjvanlissa/worcs/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/cjvanlissa/worcs"><img src="https://codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg?token=7S9XKDRT4M" alt="codecov"></a></li>
-<li><a href="code_of_conduct.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Contributor Covenant"></a></li>
-<li><a href="https://bestpractices.coreinfrastructure.org/projects/3969"><img src="https://bestpractices.coreinfrastructure.org/projects/3969/badge" alt="CII Best Practices"></a></li>
+<li>Caspar J. van Lissa <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-0808-5024" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Aaron Peikert <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-7813-818X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Andreas M. Brandmaier <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8765-6982" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=worcs" class="external-link"><img src="https://www.r-pkg.org/badges/version/worcs" alt="CRAN status"></a></li>
+<li><a href="https://r-pkg.org/pkg/worcs" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/worcs?color=blue" alt="CRAN RStudio mirror downloads"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#maturing" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
+<li><a href="https://github.com/cjvanlissa/worcs/actions" class="external-link"><img src="https://github.com/cjvanlissa/worcs/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://codecov.io/gh/cjvanlissa/worcs" class="external-link"><img src="https://codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg?token=7S9XKDRT4M" alt="codecov"></a></li>
+<li><a href="code_of_conduct.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Contributor Covenant"></a></li>
+<li><a href="https://bestpractices.coreinfrastructure.org/projects/3969" class="external-link"><img src="https://bestpractices.coreinfrastructure.org/projects/3969/badge" alt="CII Best Practices"></a></li>
+</ul>
 </div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+  <p></p>
+<p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -433,6 +440,8 @@
 
   
 
+
+  
 
   </body>
 </html>
