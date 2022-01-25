@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -79,7 +75,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/cjvanlissa/worcs/">
+  <a href="https://github.com/cjvanlissa/worcs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -94,13 +90,13 @@
 
       
 
-      </header><script src="citation_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Citing references in worcs</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/cjvanlissa/worcs/blob/master/vignettes/citation.Rmd"><code>vignettes/citation.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/cjvanlissa/worcs/blob/HEAD/vignettes/citation.Rmd" class="external-link"><code>vignettes/citation.Rmd</code></a></small>
       <div class="hidden name"><code>citation.Rmd</code></div>
 
     </div>
@@ -112,14 +108,14 @@
 <ol style="list-style-type: decimal">
 <li>During writing, maintain a plain-text <code>.bib</code> file with the BibTeX references for all citations.
 <ul>
-<li>You can export a <code>.bib</code> file from most reference manager programs; the free, open-source reference manager <a href="https://www.zotero.org/download/">Zotero</a> is excellent and user-friendly, and highly interoperable with other commercial reference managers. <a href="https://christopherjunk.netlify.com/blog/2019/02/25/zotero-RMarkdown/">Here</a> is a tutorial for using Zotero with RMarkdown.</li>
+<li>You can export a <code>.bib</code> file from most reference manager programs; the free, open-source reference manager <a href="https://www.zotero.org/download/" class="external-link">Zotero</a> is excellent and user-friendly, and highly interoperable with other commercial reference managers. <a href="https://christopherjunk.netlify.com/blog/2019/02/25/zotero-RMarkdown/" class="external-link">Here</a> is a tutorial for using Zotero with RMarkdown.</li>
 <li>Alternatively, it is possible to make this file by hand, copy and pasting each new reference below the previous one; e.g., Figure @ref(fig:scholarbib) shows how to obtain a BibTeX reference from Google Scholar; simply copy-paste each reference into the <code>.bib</code> file</li>
 </ul>
 </li>
-<li>To cite a reference, use the <code>citekey</code> - the first word in the BibTeX entry for that reference. Insert it in the RMarkdown file like so: <code>@yourcitekey2020</code>. For a parenthesized reference, use <code>[@citekeyone2020; @citekeytwo2020]</code>. For more options, see the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html">RMarkdown cookbook</a>.</li>
+<li>To cite a reference, use the <code>citekey</code> - the first word in the BibTeX entry for that reference. Insert it in the RMarkdown file like so: <code>@yourcitekey2020</code>. For a parenthesized reference, use <code>[@citekeyone2020; @citekeytwo2020]</code>. For more options, see the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html" class="external-link">RMarkdown cookbook</a>.</li>
 <li>To indicate a <em>non-essential</em> citation, mark it with a double at-symbol: <code>@@nonessential2020</code>.</li>
 <li>When Knitting the document, adapt the <code>knit</code> command in the YAML header.<br><code>knit: worcs::cite_all</code> renders all citations, and<br><code>knit: worcs::cite_essential</code> removes all <em>non-essential</em> citations.</li>
-<li>Optional: To be extremely thorough, you could make a “branch” of the GitHub repository for the print version of the manuscript. Only in this branch, you use the function <code>knit: worcs::cite_essential</code>. The procedure is documented in <a href="http://rstudio-pubs-static.s3.amazonaws.com/142364_3b344a38149b465c8ebc9a8cd2eee3aa.html">this tutorial</a>.</li>
+<li>Optional: To be extremely thorough, you could make a “branch” of the GitHub repository for the print version of the manuscript. Only in this branch, you use the function <code>knit: worcs::cite_essential</code>. The procedure is documented in <a href="http://rstudio-pubs-static.s3.amazonaws.com/142364_3b344a38149b465c8ebc9a8cd2eee3aa.html" class="external-link">this tutorial</a>.</li>
 </ol>
 <div class="figure">
 <img src="scholar_bib.png" alt="Exporting a BibTex reference from Google Scholar" width="394"><p class="caption">
@@ -137,11 +133,13 @@ Exporting a BibTex reference from Google Scholar
 
 
       <footer><div class="copyright">
-  <p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+  <p></p>
+<p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -149,6 +147,8 @@ Exporting a BibTex reference from Google Scholar
 
   
 
+
+  
 
   </body>
 </html>

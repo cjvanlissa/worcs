@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -79,7 +75,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/cjvanlissa/worcs/">
+  <a href="https://github.com/cjvanlissa/worcs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -94,35 +90,35 @@
 
       
 
-      </header><script src="git_cloud_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Connecting to ‘Git’ remote repositories</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/cjvanlissa/worcs/blob/master/vignettes/git_cloud.Rmd"><code>vignettes/git_cloud.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/cjvanlissa/worcs/blob/HEAD/vignettes/git_cloud.Rmd" class="external-link"><code>vignettes/git_cloud.Rmd</code></a></small>
       <div class="hidden name"><code>git_cloud.Rmd</code></div>
 
     </div>
 
     
     
-<p>The WORCS paper describes a workflow centered around ‘GitHub’, but there are several other cloud hosting services that offer similar functionality. This vignette describes the process of connecting a <code>worcs</code> project to these other cloud hosting services. If you are missing your preferred cloud hosting service, please submit a pull request with a step-by-step tutorial for that service <a href="https://github.com/cjvanlissa/worcs/pulls">here</a>.</p>
-<div id="gitlab" class="section level2">
-<h2 class="hasAnchor">
-<a href="#gitlab" class="anchor"></a>GitLab</h2>
-<div id="setup-steps-do-this-only-once" class="section level3">
-<h3 class="hasAnchor">
-<a href="#setup-steps-do-this-only-once" class="anchor"></a>Setup steps (do this only once)</h3>
+<p>The WORCS paper describes a workflow centered around ‘GitHub’, but there are several other cloud hosting services that offer similar functionality. This vignette describes the process of connecting a <code>worcs</code> project to these other cloud hosting services. If you are missing your preferred cloud hosting service, please submit a pull request with a step-by-step tutorial for that service <a href="https://github.com/cjvanlissa/worcs/pulls" class="external-link">here</a>.</p>
+<div class="section level2">
+<h2 id="gitlab">GitLab<a class="anchor" aria-label="anchor" href="#gitlab"></a>
+</h2>
+<div class="section level3">
+<h3 id="setup-steps-do-this-only-once">Setup steps (do this only once)<a class="anchor" aria-label="anchor" href="#setup-steps-do-this-only-once"></a>
+</h3>
 <p>The ‘GitLab’ website looks and feels almost identical to ‘GitHub’. Steps 4 and 5 of the <code>setup</code> vignette can be applied nearly without alterations. To connect <code>worcs</code> to ‘GitLab’, I proceeded as follows:</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Register on GitLab
 <ul>
-<li>Go to <a href="https://about.gitlab.com/">gitlab.com</a> and click <em>Register now</em>. Choose an “Individual”, “Free” plan.</li>
-<li>Request a <a href="https://about.gitlab.com/solutions/education/">free academic upgrade</a>.</li>
+<li>Go to <a href="https://about.gitlab.com/" class="external-link">gitlab.com</a> and click <em>Register now</em>. Choose an “Individual”, “Free” plan.</li>
+<li>Request a <a href="https://about.gitlab.com/solutions/education/" class="external-link">free academic upgrade</a>.</li>
 </ul>
 </li>
-<li>Connect ‘RStudio’ to Git and GitLab (for more support, see <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN">this ‘RStudio’ article</a>, and <a href="https://www.r-bloggers.com/2015/07/rstudio-and-github/">this blog post</a>)
+<li>Connect ‘RStudio’ to Git and GitLab (for more support, see <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN" class="external-link">this ‘RStudio’ article</a>, and <a href="https://www.r-bloggers.com/2015/07/rstudio-and-github/" class="external-link">this blog post</a>)
 <ol style="list-style-type: lower-alpha">
 <li>Open ‘RStudio’, open the Tools menu, click <em>Global Options</em>, and click <em>Git/SVN</em>
 </li>
@@ -131,7 +127,7 @@
 <li>Click <em>Create RSA Key</em>. Do not enter a passphrase. Press <em>Create</em>. A window with some information will open, which you can close.</li>
 <li>Click <em>View public key</em>, and copy the entire text to the clipboard.</li>
 <li>Close ‘RStudio’ (it might offer to restart by itself; this is fine)</li>
-<li>Go to <a href="https://about.gitlab.com/">gitlab.com</a>
+<li>Go to <a href="https://about.gitlab.com/" class="external-link">gitlab.com</a>
 </li>
 <li>Click your user icon in the top right of the screen, click <em>Settings</em>
 </li>
@@ -143,9 +139,9 @@
 </li>
 </ol>
 </div>
-<div id="connect-new-worcs-project-to-gitlab" class="section level3">
-<h3 class="hasAnchor">
-<a href="#connect-new-worcs-project-to-gitlab" class="anchor"></a>Connect new <code>worcs</code> project to ‘GitLab’</h3>
+<div class="section level3">
+<h3 id="connect-new-worcs-project-to-gitlab">Connect new <code>worcs</code> project to ‘GitLab’<a class="anchor" aria-label="anchor" href="#connect-new-worcs-project-to-gitlab"></a>
+</h3>
 <p>To create a new project on ‘GitLab’, go to your account page, and click the <em>Create a project</em> tile in the middle of the screen.</p>
 <ul>
 <li>Fill in a <em>Project name</em>; do not change anything else. Click the green <em>Create project</em> button.</li>
@@ -156,21 +152,21 @@
 </ul>
 </div>
 </div>
-<div id="bitbucket" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bitbucket" class="anchor"></a>Bitbucket</h2>
-<div id="setup-steps-do-this-only-once-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#setup-steps-do-this-only-once-1" class="anchor"></a>Setup steps (do this only once)</h3>
+<div class="section level2">
+<h2 id="bitbucket">Bitbucket<a class="anchor" aria-label="anchor" href="#bitbucket"></a>
+</h2>
+<div class="section level3">
+<h3 id="setup-steps-do-this-only-once-1">Setup steps (do this only once)<a class="anchor" aria-label="anchor" href="#setup-steps-do-this-only-once-1"></a>
+</h3>
 <p>The ‘Bitbucket’ website has cosmetic differences from ‘GitHub’, but works similarly. Steps 4 and 5 of the <code>setup</code> vignette can be applied nearly without alterations. To connect <code>worcs</code> to ‘Bitbucket’, I proceeded as follows:</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Register on Bitbucket
 <ul>
-<li>Go to <a href="https://bitbucket.org/">Bitbucket.org</a> and click <em>Get started for free</em>. Follow the steps to create your account. Sign in.</li>
-<li>Bitbucket has largely automated the process of awarding free academic upgrades. If your email address is not recognized as belonging to an academic institution, fill out the form <a href="https://www.atlassian.com/software/views/bitbucket-academic-license">here</a>.</li>
+<li>Go to <a href="https://bitbucket.org/" class="external-link">Bitbucket.org</a> and click <em>Get started for free</em>. Follow the steps to create your account. Sign in.</li>
+<li>Bitbucket has largely automated the process of awarding free academic upgrades. If your email address is not recognized as belonging to an academic institution, fill out the form <a href="https://www.atlassian.com/software/views/bitbucket-academic-license" class="external-link">here</a>.</li>
 </ul>
 </li>
-<li>Connect ‘RStudio’ to Git and Bitbucket (for more support, see <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN">this ‘RStudio’ article</a>, and <a href="https://www.r-bloggers.com/2015/07/rstudio-and-github/">this blog post</a>)
+<li>Connect ‘RStudio’ to Git and Bitbucket (for more support, see <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN" class="external-link">this ‘RStudio’ article</a>, and <a href="https://www.r-bloggers.com/2015/07/rstudio-and-github/" class="external-link">this blog post</a>)
 <ol style="list-style-type: lower-alpha">
 <li>Open ‘RStudio’, open the Tools menu, click <em>Global Options</em>, and click <em>Git/SVN</em>
 </li>
@@ -179,7 +175,7 @@
 <li>Click <em>Create RSA Key</em>. Do not enter a passphrase. Press <em>Create</em>. A window with some information will open, which you can close.</li>
 <li>Click <em>View public key</em>, and copy the entire text to the clipboard.</li>
 <li>Close ‘RStudio’ (it might offer to restart by itself; this is fine)</li>
-<li>Go to <a href="https://bitbucket.org/">Bitbucket.org</a>
+<li>Go to <a href="https://bitbucket.org/" class="external-link">Bitbucket.org</a>
 </li>
 <li>In the bottom left of the screen, click the circular icon with your initials. Select <em>Personal settings</em>
 </li>
@@ -192,9 +188,9 @@
 </li>
 </ol>
 </div>
-<div id="connect-new-worcs-project-to-bitbucket" class="section level3">
-<h3 class="hasAnchor">
-<a href="#connect-new-worcs-project-to-bitbucket" class="anchor"></a>Connect new <code>worcs</code> project to ‘Bitbucket’</h3>
+<div class="section level3">
+<h3 id="connect-new-worcs-project-to-bitbucket">Connect new <code>worcs</code> project to ‘Bitbucket’<a class="anchor" aria-label="anchor" href="#connect-new-worcs-project-to-bitbucket"></a>
+</h3>
 <p>To create a new project on ‘Bitbucket’, go to your account page, and click <em>Create repository</em> in the middle of the page. These steps differ somewhat from the procedure for ‘GitHub’:</p>
 <ul>
 <li>Enter a <em>Project name</em> and a <em>Repository name</em>. The latter will be used to connect your <code>worcs</code> project.</li>
@@ -221,11 +217,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+  <p></p>
+<p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -233,6 +231,8 @@
 
   
 
+
+  
 
   </body>
 </html>

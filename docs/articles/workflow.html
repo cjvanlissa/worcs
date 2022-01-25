@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -79,7 +75,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/cjvanlissa/worcs/">
+  <a href="https://github.com/cjvanlissa/worcs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -94,31 +90,31 @@
 
       
 
-      </header><script src="workflow_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>The WORCS workflow, version 0.1.6</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/cjvanlissa/worcs/blob/master/vignettes/workflow.Rmd"><code>vignettes/workflow.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/cjvanlissa/worcs/blob/HEAD/vignettes/workflow.Rmd" class="external-link"><code>vignettes/workflow.Rmd</code></a></small>
       <div class="hidden name"><code>workflow.Rmd</code></div>
 
     </div>
 
     
     
-<div id="worcs-steps-to-follow-for-a-project" class="section level2">
-<h2 class="hasAnchor">
-<a href="#worcs-steps-to-follow-for-a-project" class="anchor"></a>WORCS: Steps to follow for a project</h2>
+<div class="section level2">
+<h2 id="worcs-steps-to-follow-for-a-project">WORCS: Steps to follow for a project<a class="anchor" aria-label="anchor" href="#worcs-steps-to-follow-for-a-project"></a>
+</h2>
 <p>This vignette describes the Workflow for Open Reproducible Code in Science, as introduced in <span class="citation">Van Lissa et al. (2020)</span>. The paper describes the rationale and principled approach on which the workflow is based; this vignette describes the practical steps for R-users in greater detail. Note that, although the steps are numbered for reference purposes, we acknowledge that the process of conducting research is not always linear. The workflow is illustrated in the graph below, with optional steps displayed in blue nodes:</p>
 <p><img src="workflow.png" width="100%"></p>
-<div id="phase-1-study-design" class="section level3">
-<h3 class="hasAnchor">
-<a href="#phase-1-study-design" class="anchor"></a>Phase 1: Study design</h3>
+<div class="section level3">
+<h3 id="phase-1-study-design">Phase 1: Study design<a class="anchor" aria-label="anchor" href="#phase-1-study-design"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>
 <!--S: Create a (Public or Private) remote repository on a 'Git' hosting service-->
-Create a new remote repository on a ‘Git’ hosting service, such as <a href="https://github.com">“GitHub”</a>
+Create a new remote repository on a ‘Git’ hosting service, such as <a href="https://github.com" class="external-link">“GitHub”</a>
 <ul>
 <li>For inexperienced users, we recommend making this repository “Private,” which means only you and selected co-authors can access it. You can set it to “Public” later - for example, when the paper goes to print - and the entire history of the Repository will be public record. We recommend making the repository “Public” from the start <strong>only if</strong> you are an experienced user and know what you are doing.</li>
 <li>Copy the repository’s SSH link to clipboard; this link should look something like <code>git@github.com:username/repository.git</code>
@@ -144,7 +140,7 @@ In Rstudio, click File &gt; New Project &gt; New directory &gt; WORCS Project Te
 A template README.md file will be automatically generated during project creation. Edit this template to explain how users should interact with the project. Based on your selections in the New Project dialog, a LICENSE will also be added to the project, to explain users’ rights and limit your liability. We recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited.</li>
 <li>
 <!--S: Optional: Preregister your analysis by committing a plain-text preregistration and [tag this commit](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) with the label "preregistration".-->
-Optional: Preregister your analysis by committing a plain-text preregistration and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">tag this commit</a> with the label “preregistration”:
+Optional: Preregister your analysis by committing a plain-text preregistration and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">tag this commit</a> with the label “preregistration”:
 <ul>
 <li>Document study plans in a <code>preregistration.Rmd</code> file, and optionally, planned analyses in a <code>.R</code> file.</li>
 <li>In the top-right panel of ‘RStudio,’ select the ‘Git’ tab</li>
@@ -154,8 +150,8 @@ Optional: Preregister your analysis by committing a plain-text preregistration a
 <li>Click the Commit button below the message dialog</li>
 <li>Click the green arrow labeled “Push” to send your commit to the ‘Git’ remote repository</li>
 <li>
-<a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">Tag this commit as a release</a> on the remote repository, using the label “preregistration.” A tagged release helps others retrieve this commit.</li>
-<li>Instructions for ‘GitHub’ <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">are explained here</a> <!--        - Go to the 'GitHub' page for your project
+<a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">Tag this commit as a release</a> on the remote repository, using the label “preregistration.” A tagged release helps others retrieve this commit.</li>
+<li>Instructions for ‘GitHub’ <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">are explained here</a> <!--        - Go to the 'GitHub' page for your project
      - Click the label that says "0 releases"
      - Click the button labeled "Create new release"
      - In the textbox labeled "Tag version" and the textbox "Release title", write: "Preregistration"
@@ -169,7 +165,7 @@ Optional: Render the preregistration to PDF, and upload it as an attachment to a
 <ul>
 <li>In ‘RStudio,’ with the file ‘preregistration.Rmd’ open, click the “Knit” button above the top left panel</li>
 <li>When the PDF is generated, go to one of the recognized preregistration services’ websites, create a new preregistration, and upload it as an attachment.</li>
-<li>Optional: Generate a DOI for the preregistration through <a href="https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data">the OSF</a> or a service like <a href="https://guides.github.com/activities/citable-code/">Zenodo</a>
+<li>Optional: Generate a DOI for the preregistration through <a href="https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data" class="external-link">the OSF</a> or a service like <a href="https://guides.github.com/activities/citable-code/" class="external-link">Zenodo</a>
 </li>
 </ul>
 </li>
@@ -183,9 +179,9 @@ Optional: Add study materials to the repository.
 </li>
 </ol>
 </div>
-<div id="phase-2-writing-and-analysis" class="section level3">
-<h3 class="hasAnchor">
-<a href="#phase-2-writing-and-analysis" class="anchor"></a>Phase 2: Writing and analysis</h3>
+<div class="section level3">
+<h3 id="phase-2-writing-and-analysis">Phase 2: Writing and analysis<a class="anchor" aria-label="anchor" href="#phase-2-writing-and-analysis"></a>
+</h3>
 <ol start="7" style="list-style-type: decimal">
 <li>
 <!--S: Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable-->
@@ -231,13 +227,13 @@ Regularly Commit your progress to the Git repository; ideally, after completing 
 While writing, cite essential references with one at-symbol, <code>[@essentialref2020]</code>, and non-essential references with a double at-symbol, <code>[@@nonessential2020]</code>.</li>
 </ol>
 </div>
-<div id="phase-3-submission-and-publication" class="section level3">
-<h3 class="hasAnchor">
-<a href="#phase-3-submission-and-publication" class="anchor"></a>Phase 3: Submission and publication</h3>
+<div class="section level3">
+<h3 id="phase-3-submission-and-publication">Phase 3: Submission and publication<a class="anchor" aria-label="anchor" href="#phase-3-submission-and-publication"></a>
+</h3>
 <ol start="12" style="list-style-type: decimal">
 <li>
 <!--S: Use dependency management to make the computational environment fully reproducible-->
-Use dependency management to make the computational environment fully reproducible. When using <code>renv</code>, you can save the state of the project library (all packages used) by calling <code><a href="https://rstudio.github.io/renv/reference/snapshot.html">renv::snapshot()</a></code>. This updates the lockfile, <code>renv.lock</code>.</li>
+Use dependency management to make the computational environment fully reproducible. When using <code>renv</code>, you can save the state of the project library (all packages used) by calling <code><a href="https://rstudio.github.io/renv/reference/snapshot.html" class="external-link">renv::snapshot()</a></code>. This updates the lockfile, <code>renv.lock</code>.</li>
 <li>
 <!--S: Optional: Add a WORCS-badge to your project's README file-->
 Optional: Add a WORCS-badge to your project’s README file and complete the optional elements of the WORCS checklist to qualify for a “Perfect” rating. Run the <code><a href="../reference/check_worcs.html">check_worcs()</a></code> function to see whether your project adheres to the WORCS checklist (see <code>worcs::checklist</code>)
@@ -263,19 +259,19 @@ Make the ‘Git’ remote repository “Public” if it was set to “Private”
 </li>
 <li>
 <!--S: [Create a project page on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project) and [connect it to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->
-<a href="https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project">Create a project on the Open Science Framework (OSF)</a> and <a href="https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project">connect it to the ‘Git’ remote repository</a>.
+<a href="https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project" class="external-link">Create a project on the Open Science Framework (OSF)</a> and <a href="https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project" class="external-link">connect it to the ‘Git’ remote repository</a>.
 <ul>
 <li>On the OSF project page, you can select a License for the project. This helps clearly communicate the terms of reusability of your project. Make sure to use the same License you selected during project creation in Step 3.</li>
 </ul>
 </li>
 <li>
 <!--S: [Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs)-->
-<a href="https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs">Generate a Digital Object Identifier (DOI) for the OSF project</a>
+<a href="https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs" class="external-link">Generate a Digital Object Identifier (DOI) for the OSF project</a>
 <ul>
 <li>A DOI is a persistent identifier that can be used to link to your project page.</li>
 <li>You may have already created a project page under Step 5 if you preregistered on the OSF</li>
-<li>Optionally, you can <a href="https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data">generate additional DOIs for specific resources like datasets</a>.</li>
-<li>Alternatively, you can <a href="https://guides.github.com/activities/citable-code/">connect your ‘Git’ remote repository to Zenodo</a>, instead of the OSF, to create DOIs for the project and specific resources.</li>
+<li>Optionally, you can <a href="https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data" class="external-link">generate additional DOIs for specific resources like datasets</a>.</li>
+<li>Alternatively, you can <a href="https://guides.github.com/activities/citable-code/" class="external-link">connect your ‘Git’ remote repository to Zenodo</a>, instead of the OSF, to create DOIs for the project and specific resources.</li>
 </ul>
 </li>
 <li>
@@ -300,36 +296,36 @@ Change <code>knit: worcs::cite_all</code> to <code>knit: worcs::cite_essential</
 </li>
 <li>
 <!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)-->
-Optional: <a href="https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint">Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project</a>
+Optional: <a href="https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint" class="external-link">Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project</a>
 <ul>
-<li>Check <a href="http://sherpa.ac.uk/romeo/index.php">Sherpa Romeo</a> to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.</li>
+<li>Check <a href="http://sherpa.ac.uk/romeo/index.php" class="external-link">Sherpa Romeo</a> to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.</li>
 </ul>
 </li>
 <li>
 <!--S: Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) of the submitted paper as a release, as in Step 4.-->
-Submit the paper, and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">tag the commit of the submitted paper as a release</a>, as in Step 4.</li>
+Submit the paper, and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">tag the commit of the submitted paper as a release</a>, as in Step 4.</li>
 </ol>
 </div>
-<div id="notes-for-cautious-researchers" class="section level3">
-<h3 class="hasAnchor">
-<a href="#notes-for-cautious-researchers" class="anchor"></a>Notes for cautious researchers</h3>
+<div class="section level3">
+<h3 id="notes-for-cautious-researchers">Notes for cautious researchers<a class="anchor" aria-label="anchor" href="#notes-for-cautious-researchers"></a>
+</h3>
 <!--S: Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance.-->
 <p>Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a “Private” repository in Step 1, and completing Steps 13-18 upon acceptance by the journal.</p>
 <p><strong>Image attribution</strong></p>
-<p>The <a href="https://git-scm.com/">Git Logo</a> by Jason Long is licensed under the Creative Commons Attribution 3.0 Unported License. The <a href="https://osf.io/">OSF logo</a> is licensed under CC0 1.0 Universal. Icons in the workflow graph are obtained from <a href="https://www.flaticon.com">Flaticon</a>; see <a href="https://github.com/cjvanlissa/worcs/blob/master/paper/workflow_graph/Attribution_for_images.txt">detailed attribution</a>.</p>
+<p>The <a href="https://git-scm.com/" class="external-link">Git Logo</a> by Jason Long is licensed under the Creative Commons Attribution 3.0 Unported License. The <a href="https://osf.io/" class="external-link">OSF logo</a> is licensed under CC0 1.0 Universal. Icons in the workflow graph are obtained from <a href="https://www.flaticon.com" class="external-link">Flaticon</a>; see <a href="https://github.com/cjvanlissa/worcs/blob/master/paper/workflow_graph/Attribution_for_images.txt" class="external-link">detailed attribution</a>.</p>
 </div>
 </div>
-<div id="sample-worcs-projects" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sample-worcs-projects" class="anchor"></a>Sample WORCS projects</h2>
-<p>For a list of sample <code>worcs</code> projects created by the authors and other users, see the <a href="https://github.com/cjvanlissa/worcs"><code>README.md</code> file on the WORCS GitHub page</a>. This list is regularly updated.</p>
+<div class="section level2">
+<h2 id="sample-worcs-projects">Sample WORCS projects<a class="anchor" aria-label="anchor" href="#sample-worcs-projects"></a>
+</h2>
+<p>For a list of sample <code>worcs</code> projects created by the authors and other users, see the <a href="https://github.com/cjvanlissa/worcs" class="external-link"><code>README.md</code> file on the WORCS GitHub page</a>. This list is regularly updated.</p>
 <p><strong>References</strong></p>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-aalbersbergMakingScienceTransparent2018" class="csl-entry">
-Aalbersberg, IJsbrand Jan, Tom Appleyard, Sarah Brookhart, Todd Carpenter, Michael Clarke, Stephen Curry, Josh Dahl, et al. 2018. <span>“Making <span>Science Transparent By Default</span>; <span>Introducing</span> the <span>TOP Statement</span>,”</span> February. <a href="https://doi.org/10.31219/osf.io/sm78t">https://doi.org/10.31219/osf.io/sm78t</a>.
+Aalbersberg, IJsbrand Jan, Tom Appleyard, Sarah Brookhart, Todd Carpenter, Michael Clarke, Stephen Curry, Josh Dahl, et al. 2018. <span>“Making <span>Science Transparent By Default</span>; <span>Introducing</span> the <span>TOP Statement</span>,”</span> February. <a href="https://doi.org/10.31219/osf.io/sm78t" class="external-link">https://doi.org/10.31219/osf.io/sm78t</a>.
 </div>
 <div id="ref-vanlissaWORCSWorkflowOpen2020" class="csl-entry">
-Van Lissa, Caspar J., Andreas M. Brandmaier, Loek Brinkman, Anna-Lena Lamprecht, Aaron Peikert, Marijn E. Struiksma, and Barbara Vreede. 2020. <span>“<span>WORCS</span>: <span>A Workflow</span> for <span>Open Reproducible Code</span> in <span>Science</span>,”</span> May. <a href="https://doi.org/10.17605/OSF.IO/ZCVBS">https://doi.org/10.17605/OSF.IO/ZCVBS</a>.
+Van Lissa, Caspar J., Andreas M. Brandmaier, Loek Brinkman, Anna-Lena Lamprecht, Aaron Peikert, Marijn E. Struiksma, and Barbara Vreede. 2020. <span>“<span>WORCS</span>: <span>A Workflow</span> for <span>Open Reproducible Code</span> in <span>Science</span>,”</span> May. <a href="https://doi.org/10.17605/OSF.IO/ZCVBS" class="external-link">https://doi.org/10.17605/OSF.IO/ZCVBS</a>.
 </div>
 </div>
 </div>
@@ -346,11 +342,13 @@ Van Lissa, Caspar J., Andreas M. Brandmaier, Loek Brinkman, Anna-Lena Lamprecht,
 
 
       <footer><div class="copyright">
-  <p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+  <p></p>
+<p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -358,6 +356,8 @@ Van Lissa, Caspar J., Andreas M. Brandmaier, Loek Brinkman, Anna-Lena Lamprecht,
 
   
 
+
+  
 
   </body>
 </html>

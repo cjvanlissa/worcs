@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -79,7 +75,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/cjvanlissa/worcs/">
+  <a href="https://github.com/cjvanlissa/worcs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -94,22 +90,22 @@
 
       
 
-      </header><script src="setup-docker_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Setting up your computer for WORCS - Docker-edition</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/cjvanlissa/worcs/blob/master/vignettes/setup-docker.Rmd"><code>vignettes/setup-docker.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/cjvanlissa/worcs/blob/HEAD/vignettes/setup-docker.Rmd" class="external-link"><code>vignettes/setup-docker.Rmd</code></a></small>
       <div class="hidden name"><code>setup-docker.Rmd</code></div>
 
     </div>
 
     
     
-<p>If you do not want to install R, RStudio, Latex and Git on a personal computer (as described in <a href="https://cjvanlissa.github.io/worcs/articles/setup.html"><code>vignette("setup", package = "worcs")</code></a>), but would like to use Docker instead, follow these steps in order:</p>
+<p>If you do not want to install R, RStudio, Latex and Git on a personal computer (as described in <a href="https://cjvanlissa.github.io/worcs/articles/setup.html" class="external-link"><code>vignette("setup", package = "worcs")</code></a>), but would like to use Docker instead, follow these steps in order:</p>
 <ol style="list-style-type: decimal">
-<li>Install <a href="https://docs.docker.com/get-docker/">Docker</a>
+<li>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker</a>
 </li>
 <li>Open a terminal/cmd/shell.</li>
 <li>Start the <code>worcs</code> image:</li>
@@ -120,7 +116,7 @@
 </ol>
 <p>Then setup the container.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv/reference/consent.html">consent</a></span><span class="op">(</span>provided <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv/reference/consent.html" class="external-link">consent</a></span><span class="op">(</span>provided <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="../reference/git_user.html">git_user</a></span><span class="op">(</span><span class="st">"your_name"</span>, <span class="st">"your_email"</span><span class="op">)</span></code></pre></div>
 <p>To terminate the container, press Ctrl + C in the terminal. To save files from a Docker session on your disk, you have to link a directory explicitly when starting the container.</p>
 <p>On Unix file systems, this is done as follows:</p>
@@ -141,11 +137,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+  <p></p>
+<p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -153,6 +151,8 @@
 
   
 
+
+  
 
   </body>
 </html>
