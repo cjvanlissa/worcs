@@ -19,3 +19,4 @@ Makefile
 ^Meta$
 Dockerfile
 ^\.github$
+^CITATION\.cff$

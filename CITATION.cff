@@ -1,0 +1,441 @@
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.2.2
+# See also: https://docs.ropensci.org/cffr/
+# -----------------------------------------------------------
+
+cff-version: 1.2.0
+message: 'To cite package "worcs" in publications use:'
+type: article
+title: 'WORCS: A Workflow for Open Reproducible Code in Science'
+authors:
+- family-names: Van Lissa
+  given-names: Caspar J.
+- family-names: Brandmaier
+  given-names: Andreas M.
+- family-names: Brinkman
+  given-names: Loek
+- family-names: Lamprecht
+  given-names: Anna-Lena
+- family-names: Peikert
+  given-names: Aaron
+- family-names: Struiksma
+  given-names: Marijn E.
+- family-names: Vreede
+  given-names: Barbara M.I.
+year: '2021'
+journal: Data Science
+volume: '4'
+issue: '1'
+publisher:
+  name: IOS Press
+issn: 2451-8492
+doi: 10.3233/DS-210031
+abstract: 'Adopting open science principles can be challenging, requiring conceptual
+  education and training in the use of new tools. This paper introduces the Workflow
+  for Open Reproducible Code in Science (WORCS): A step-by-step procedure that researchers
+  can follow to make a research project open and reproducible. This workflow intends
+  to lower the threshold for adoption of open science principles. It is based on established
+  best practices, and can be used either in parallel to, or in absence of, top-down
+  requirements by journals, institutions, and funding bodies. To facilitate widespread
+  adoption, the WORCS principles have been implemented in the R package worcs , which
+  offers an RStudio project template and utility functions for specific workflow steps.
+  This paper introduces the conceptual workflow, discusses how it meets different
+  standards for open science, and addresses the functionality provided by the R implementation,
+  worcs . This paper is primarily targeted towards scholars conducting research projects
+  in R, conducting research that involves academic prose, analysis code, and tabular
+  data. However, the workflow is flexible enough to accommodate other scenarios, and
+  offers a starting point for customized solutions. The source code for the R package
+  and manuscript, and a list of examplesof WORCS projects , are available at https://github.com/cjvanlissa/worcs
+  .'
+keywords:
+- dynamic document generation
+- Open science
+- r
+- reproducibility
+- version control
+start: '29'
+end: '49'
+repository: https://CRAN.R-project.org/package=worcs
+repository-code: https://github.com/cjvanlissa/worcs
+url: https://github.com/cjvanlissa/worcs
+date-released: '2021-02-03'
+contact:
+- family-names: van Lissa
+  given-names: Caspar J.
+  email: c.j.vanlissa@uu.nl
+  orcid: https://orcid.org/0000-0002-0808-5024
+references:
+- type: software
+  title: methods
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2022'
+  url: https://www.R-project.org/
+  institution:
+    name: R Foundation for Statistical Computing
+- type: software
+  title: rmarkdown
+  abstract: 'rmarkdown: Dynamic Documents for R'
+  notes: Imports
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@rstudio.com
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: McPherson
+    given-names: Jonathan
+    email: jonathan@rstudio.com
+  - family-names: Luraschi
+    given-names: Javier
+    email: javier@rstudio.com
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@rstudio.com
+  - family-names: Atkins
+    given-names: Aron
+    email: aron@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@rstudio.com
+  - family-names: Chang
+    given-names: Winston
+    email: winston@rstudio.com
+  - family-names: Iannone
+    given-names: Richard
+    email: rich@rstudio.com
+    orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2022'
+  url: https://CRAN.R-project.org/package=rmarkdown
+- type: software
+  title: prereg
+  abstract: 'prereg: R Markdown Templates to Preregister Scientific Studies'
+  notes: Imports
+  authors:
+  - family-names: Aust
+    given-names: Frederik
+    email: frederik.aust@uni-koeln.de
+    orcid: https://orcid.org/0000-0003-4900-788X
+  - family-names: Spitzer
+    given-names: Lisa
+    email: lisa.spitzer95@yahoo.de
+  year: '2022'
+  url: https://CRAN.R-project.org/package=prereg
+- type: software
+  title: gert
+  abstract: 'gert: Simple Git Client for R'
+  notes: Imports
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroen@berkeley.edu
+    orcid: https://orcid.org/0000-0002-4035-0289
+  year: '2022'
+  url: https://CRAN.R-project.org/package=gert
+- type: software
+  title: ranger
+  abstract: 'ranger: A Fast Implementation of Random Forests'
+  notes: Imports
+  authors:
+  - family-names: Wright
+    given-names: Marvin N.
+  - family-names: Wager
+    given-names: Stefan
+  - family-names: Probst
+    given-names: Philipp
+  year: '2022'
+  url: https://CRAN.R-project.org/package=ranger
+- type: software
+  title: yaml
+  abstract: 'yaml: Methods to Convert R Data to YAML and Back'
+  notes: Imports
+  authors:
+  - family-names: Stephens
+    given-names: Jeremy
+  - family-names: Simonov
+    given-names: Kirill
+  - family-names: Xie
+    given-names: Yihui
+  - family-names: Dong
+    given-names: Zhuoer
+  - family-names: Wickham
+    given-names: Hadley
+  - family-names: Horner
+    given-names: Jeffrey
+  - name: reikoch
+  - family-names: Beasley
+    given-names: Will
+  - family-names: O'Connor
+    given-names: Brendan
+  - family-names: Warnes
+    given-names: Gregory R.
+  year: '2022'
+  url: https://CRAN.R-project.org/package=yaml
+- type: software
+  title: digest
+  abstract: 'digest: Create Compact Hash Digests of R Objects'
+  notes: Imports
+  authors:
+  - family-names: Lucas
+    given-names: Dirk Eddelbuettel with contributions by Antoine
+    email: edd@debian.org
+  - family-names: Tuszynski
+    given-names: Jarek
+  - family-names: Bengtsson
+    given-names: Henrik
+  - family-names: Urbanek
+    given-names: Simon
+  - family-names: Frasca
+    given-names: Mario
+  - family-names: Lewis
+    given-names: Bryan
+  - family-names: Stokely
+    given-names: Murray
+  - family-names: Muehleisen
+    given-names: Hannes
+  - family-names: Murdoch
+    given-names: Duncan
+  - family-names: Hester
+    given-names: Jim
+  - family-names: Wu
+    given-names: Wush
+  - family-names: Kou
+    given-names: Qiang
+  - family-names: Onkelinx
+    given-names: Thierry
+  - family-names: Lang
+    given-names: Michel
+  - family-names: Simko
+    given-names: Viliam
+  - family-names: Hornik
+    given-names: Kurt
+  - family-names: Neal
+    given-names: Radford
+  - family-names: Bell
+    given-names: Kendon
+  - family-names: de Queljoe
+    given-names: Matthew
+  - family-names: Suruceanu
+    given-names: Ion
+  - family-names: Denney
+    given-names: Bill
+  - family-names: Schumacher
+    given-names: Dirk
+  - family-names: Chang.
+    given-names: and Winston
+  year: '2022'
+  url: https://CRAN.R-project.org/package=digest
+- type: software
+  title: rticles
+  abstract: 'rticles: Article Formats for R Markdown'
+  notes: Imports
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@rstudio.com
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: Dervieux
+    given-names: Christophe
+    email: cderv@rstudio.com
+    orcid: https://orcid.org/0000-0003-4474-2498
+  - name: R Foundation
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - name: Journal of Statistical Software
+  - family-names: Vaidyanathan
+    given-names: Ramnath
+    email: ramnath.vaidya@gmail.com
+  - name: Association for Computing Machinery
+  - family-names: Boettiger
+    given-names: Carl
+    email: cboettig@gmail.com
+  - name: Elsevier
+  - family-names: Broman
+    given-names: Karl
+    email: kbroman@gmail.com
+  - family-names: Mueller
+    given-names: Kirill
+    email: kirill.mueller@ivt.baug.ethz.ch
+  - family-names: Quast
+    given-names: Bastiaan
+    email: bquast@gmail.com
+  - family-names: Pruim
+    given-names: Randall
+    email: rpruim@gmail.com
+  - family-names: Marwick
+    given-names: Ben
+    email: bmarwick@uw.edu
+  - family-names: Wickham
+    given-names: Charlotte
+    email: cwickham@gmail.com
+  - family-names: Keyes
+    given-names: Oliver
+    email: okeyes@wikimedia.org
+  - family-names: Yu
+    given-names: Miao
+    email: yufreecas@gmail.com
+  - family-names: Emaasit
+    given-names: Daniel
+    email: daniel.emaasit@gmail.com
+  - family-names: Onkelinx
+    given-names: Thierry
+    email: thierry.onkelinx@inbo.be
+  - family-names: Gasparini
+    given-names: Alessandro
+    email: ellessenne@gmail.com
+    orcid: https://orcid.org/0000-0002-8319-7624
+  - family-names: Desautels
+    given-names: Marc-Andre
+    email: marc-andre.desautels@cstjean.qc.ca
+  - family-names: Leutnant
+    given-names: Dominik
+    email: leutnant@fh-muenster.de
+    orcid: https://orcid.org/0000-0003-3293-2315
+  - name: MDPI
+  - name: Taylor and Francis
+  - family-names: Ögreden
+    given-names: Oguzhan
+    orcid: https://orcid.org/0000-0002-9949-3348
+  - family-names: Hance
+    given-names: Dalton
+    email: dhance@usgs.gov
+  - family-names: Nüst
+    given-names: Daniel
+    email: daniel.nuest@uni-muenster.de
+    orcid: https://orcid.org/0000-0002-0024-5046
+  - family-names: Uvesten
+    given-names: Petter
+    email: petter.uvesten.7362@student.lu.se
+  - family-names: Campitelli
+    given-names: Elio
+    email: elio.campitelli@cima.fcen.uba.ar
+    orcid: https://orcid.org/0000-0002-7742-9230
+  - family-names: Muschelli
+    given-names: John
+    email: muschellij2@gmail.com
+    orcid: https://orcid.org/0000-0001-6469-1750
+  - family-names: Hayes
+    given-names: Alex
+    email: alexpghayes@gmail.com
+    orcid: https://orcid.org/0000-0002-4985-5160
+  - family-names: Kamvar
+    given-names: Zhian N.
+    email: zkamvar@gmail.com
+    orcid: https://orcid.org/0000-0003-1458-7108
+  - family-names: Ross
+    given-names: Noam
+    email: noam.ross@gmail.com
+    orcid: https://orcid.org/0000-0002-2136-0000
+  - family-names: Cannoodt
+    given-names: Robrecht
+    email: rcannood@gmail.com
+    orcid: https://orcid.org/0000-0003-3641-729X
+  - family-names: Luguern
+    given-names: Duncan
+    email: duncan.luguern@gmail.com
+  - family-names: Kaplan
+    given-names: David M.
+    email: dmkaplan2000@gmail.com
+    orcid: https://orcid.org/0000-0001-6087-359X
+  - family-names: Kreutzer
+    given-names: Sebastian
+    email: sebastian.kreutzer@aber.ac.uk
+    orcid: https://orcid.org/0000-0002-0734-2199
+  - family-names: Wang
+    given-names: Shixiang
+    email: w_shixiang@163.com
+    orcid: https://orcid.org/0000-0001-9855-7357
+  - family-names: Hesselberth
+    given-names: Jay
+    email: jay.hesselberth@gmail.com
+    orcid: https://orcid.org/0000-0002-6299-179X
+  year: '2022'
+  url: https://CRAN.R-project.org/package=rticles
+- type: software
+  title: remotes
+  abstract: 'remotes: R Package Installation from Remote Repositories, Including ''GitHub'''
+  notes: Suggests
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  - family-names: Hester
+    given-names: Jim
+    email: jim.hester@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+  - family-names: Chang
+    given-names: Winston
+  - family-names: Morgan
+    given-names: Martin
+  - family-names: Tenenbaum
+    given-names: Dan
+  year: '2022'
+  url: https://CRAN.R-project.org/package=remotes
+- type: software
+  title: tinytex
+  abstract: 'tinytex: Helper Functions to Install and Maintain TeX Live, and Compile
+    LaTeX Documents'
+  notes: Suggests
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2022'
+  url: https://CRAN.R-project.org/package=tinytex
+- type: software
+  title: renv
+  abstract: 'renv: Project Environments'
+  notes: Suggests
+  authors:
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@rstudio.com
+  year: '2022'
+  url: https://CRAN.R-project.org/package=renv
+- type: software
+  title: knitr
+  abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+  notes: Suggests
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2022'
+  url: https://CRAN.R-project.org/package=knitr
+- type: software
+  title: missRanger
+  abstract: 'missRanger: Fast Imputation of Missing Values'
+  notes: Suggests
+  authors:
+  - family-names: Mayer
+    given-names: Michael
+    email: mayermichael79@gmail.com
+  year: '2022'
+  url: https://CRAN.R-project.org/package=missRanger
+- type: software
+  title: testthat
+  abstract: 'testthat: Unit Testing for R'
+  notes: Suggests
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2022'
+  url: https://CRAN.R-project.org/package=testthat
+  version: '>= 2.1.0'
