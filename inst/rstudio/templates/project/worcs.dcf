@@ -16,12 +16,12 @@ Default: On
 Parameter: manuscript
 Widget: SelectInput
 Label: Manuscript template
-Fields: github_document, APA6, None, ams_article, asa_article, biometrics_article, copernicus_article, ctex, elsevier_article, frontiers_article, ieee_article, joss_article, jss_article, mdpi_article, mnras_article, oup_article, peerj_article, plos_article, pnas_article, rjournal_article, rsos_article, sage_article, sim_article, springer_article, tf_article
+Fields: github_document, APA6, None, acm_article, acs_article, aea_article, agu_article, ajs_article, amq_article, ams_article, arxiv_article, asa_article, bioinformatics_article, biometrics_article, copernicus_article, ctex_article, elsevier_article, frontiers_article, glossa_article, ieee_article, ims_article, informs_article, iop_article, isba_article, jasa_article, jedm_article, joss_article, jss_article, lipics_article, mdpi_article, mnras_article, oup_article, peerj_article, pihph_article, plos_article, pnas_article, rjournal_article, rsos_article, rss_article, sage_article, sim_article, springer_article, tf_article, trb_article, wellcomeor_article
 
 Parameter: preregistration
 Widget: SelectInput
 Label: Preregistration template
-Fields: COS, VantVeer, Brandt, AsPredicted, PSS, Secondary, None
+Fields: aspredicted_prereg, brandt_prereg, cos_prereg, fmri_prereg, prp_quant_prereg, psyquant_prereg, rr_prereg, vantveer_prereg, PSS, Secondary, None
 
 Parameter: add_license
 Widget: SelectInput

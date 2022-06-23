@@ -9,7 +9,7 @@ test_that("preregistration can be generated", {
 
   add_preregistration(
     worcs_directory = ".",
-    preregistration = "vantveer"
+    preregistration = "vantveer_prereg"
   )
   expect_true(file.exists(".worcs"))
   #expect_true(file.exists("manuscript/american-chemical-society.csl"))

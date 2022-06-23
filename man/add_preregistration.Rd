@@ -6,7 +6,7 @@
 \usage{
 add_preregistration(
   worcs_directory = ".",
-  preregistration = "COS",
+  preregistration = "cos_prereg",
   verbose = TRUE,
   ...
 )
@@ -17,7 +17,7 @@ in which to create the manuscript files. Default: '.', which points to the
 current working directory.}
 
 \item{preregistration}{Character, indicating what template to use for the
-preregistration. Default: \code{"COS"}; use \code{"None"} to omit a
+preregistration. Default: \code{"cos_prereg"}; use \code{"None"} to omit a
 preregistration. See Details for other available choices.}
 
 \item{verbose}{Logical. Whether or not to print messages to the console
@@ -32,15 +32,22 @@ No return value. This function is called for its side effects.
 Adds an Rmarkdown preregistration template to a 'worcs' project.
 }
 \details{
-Available choices include the templates
-\code{"COS", "VantVeer", "Brandt", "AsPredicted"}, which are imported from the
-\code{\link[prereg]{cos_prereg}} package, and documented there. Furthermore,
-several unique templates are included with \code{worcs}:
+Available choices include the templates from the
+\code{\link[prereg:prereg]{prereg}} package, and several unique templates
+included with \code{worcs}:
 \itemize{
-  \item{\code{"PSS"}}{Preregistration and Sharing Software (Krypotos,
+  \item{\code{'PSS'}}{Preregistration and Sharing Software (Krypotos,
   Klugkist, Mertens, & Engelhard, 2019)}
-  \item{\code{"Secondary"}}{Preregistration for secondary analyses (Mertens &
+  \item{\code{'Secondary'}}{Preregistration for secondary analyses (Mertens &
   Krypotos, 2019)}
+  \item{\code{'aspredicted_prereg'}}{aspredicted template from the \code{prereg} package}
+  \item{\code{'brandt_prereg'}}{brandt template from the \code{prereg} package}
+  \item{\code{'cos_prereg'}}{cos template from the \code{prereg} package}
+  \item{\code{'fmri_prereg'}}{fmri template from the \code{prereg} package}
+  \item{\code{'prp_quant_prereg'}}{prp_quant template from the \code{prereg} package}
+  \item{\code{'psyquant_prereg'}}{psyquant template from the \code{prereg} package}
+  \item{\code{'rr_prereg'}}{rr template from the \code{prereg} package}
+  \item{\code{'vantveer_prereg'}}{vantveer template from the \code{prereg} package}
 }
 }
 \examples{
@@ -49,7 +56,7 @@ old_wd <- getwd()
 dir.create(file.path(tempdir(), the_test))
 file.create(file.path(tempdir(), the_test, ".worcs"))
 add_preregistration(file.path(tempdir(), the_test),
-                    preregistration = "COS")
+                    preregistration = "cos_prereg")
 setwd(old_wd)
 unlink(file.path(tempdir(), the_test))
 }

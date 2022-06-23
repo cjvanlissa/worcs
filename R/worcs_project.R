@@ -12,18 +12,16 @@ recommend_data <- c('library("worcs")',
 #' @param path Character, indicating the directory in which to create the
 #' 'worcs' project. Default: 'worcs_project'.
 #' @param manuscript Character, indicating what template to use for the
-#' 'R Markdown' manuscript. Default: 'APA6'. Available choices include:
-#' \code{"APA6", "github_document", "None", "ams_article", "asa_article",
-#' "biometrics_article", "copernicus_article", "ctex", "elsevier_article",
-#' "frontiers_article", "ieee_article", "joss_article", "jss_article",
-#' "mdpi_article", "mnras_article", "oup_article", "peerj_article",
-#' "plos_article", "pnas_article", "rjournal_article", "rsos_article",
-#' "sage_article", "sim_article", "springer_article", "tf_article"}.
+#' 'R Markdown' manuscript. Default: 'APA6'. Available choices include
+#' \code{\link[papaja:papaja]{APA6}} from the \code{papaja} package,
+#' a \code{\link[rmarkdown]{github_document}}, and templates included in the
+#' \code{\link[rticles:rticles]{rticles}} package.
 #' For more information, see \code{\link{add_manuscript}}.
 #' @param preregistration Character, indicating what template to use for the
-#' preregistration. Default: 'COS'. Available choices include:
-#' \code{"COS", "VantVeer", "Brandt", "AsPredicted", "PSS", "Secondary",
-#' "None"}. For more information, see \code{\link{add_preregistration}}.
+#' preregistration. Default: 'cos_prereg'. Available choices include:
+#' \code{"PSS", "Secondary", "None"}, and all templates from the
+#' \code{\link[prereg:prereg]{prereg}} package. For more information, see
+#' \code{\link{add_preregistration}}.
 #' @param add_license Character, indicating what license to include.
 #' Default: 'CC_BY_4.0'. Available options include:
 #' \code{"CC_BY_4.0", "CC_BY-SA_4.0", "CC_BY-NC_4.0", "CC_BY-NC-SA_4.0",
@@ -61,7 +59,7 @@ recommend_data <- c('library("worcs")',
 #' @importFrom prereg vantveer_prereg
 #' @importFrom methods formalArgs
 # @importFrom renv init
-worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "COS", add_license = "CC_BY_4.0", use_renv = TRUE, remote_repo = "git@", verbose = TRUE, ...) {
+worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "cos_prereg", add_license = "CC_BY_4.0", use_renv = TRUE, remote_repo = "git@", verbose = TRUE, ...) {
   cl <- match.call(expand.dots = FALSE)
 
   # collect inputs
@@ -391,23 +389,72 @@ nice_tab <- function(tab){
 #' current working directory.
 #' @param manuscript Character, indicating what template to use for the
 #' 'R Markdown' manuscript. Default: 'APA6'. Available choices include:
-#' \code{"APA6", "github_document", "None", "ams_article", "asa_article",
-#' "biometrics_article", "copernicus_article", "ctex", "elsevier_article",
-#' "frontiers_article", "ieee_article", "joss_article", "jss_article",
-#' "mdpi_article", "mnras_article", "oup_article", "peerj_article",
-#' "plos_article", "pnas_article", "rjournal_article", "rsos_article",
-#' "sage_article", "sim_article", "springer_article", "tf_article"}.
-#' For more information about \code{APA6}, see the
-#' \code{\link[papaja:papaja]{papaja}} package.
-#' For more information about \code{github_document}, see
-#' \code{\link[rmarkdown]{github_document}}. The remaining formats are
-#' documented in the 'rticles' package.
+#' \code{"APA6", "github_document", "None"} and the templates from the
+#' \code{\link[rticles:rticles]{rticles}} package. See Details.
 #' @param remote_repo Character, 'https' link to the remote repository for
 #' this project. This link should have the form \code{https://[...].git}.
 #' This link will be inserted in the draft manuscript.
 #' @param verbose Logical. Whether or not to print messages to the console
 #' during project creation. Default: TRUE
 #' @param ... Additional arguments passed to and from functions.
+#' @details Available choices include the following manuscript templates:
+#' \itemize{
+#'   \item{\code{'APA6'}}{A \code{\link[papaja:papaja]{APA6}} style template from the \code{papaja} package}
+#'   \item{\code{'github_document'}}{A \code{\link[rmarkdown]{github_document}} from the \code{rmarkdown} package}
+#'   \item{\code{'acm_article'}}{acm style template from the \code{rtices} package}
+#'   \item{\code{'acs_article'}}{acs style template from the \code{rtices} package}
+#'   \item{\code{'aea_article'}}{aea style template from the \code{rtices} package}
+#'   \item{\code{'agu_article'}}{agu style template from the \code{rtices} package}
+#'   \item{\code{'ajs_article'}}{ajs style template from the \code{rtices} package}
+#'   \item{\code{'amq_article'}}{amq style template from the \code{rtices} package}
+#'   \item{\code{'ams_article'}}{ams style template from the \code{rtices} package}
+#'   \item{\code{'arxiv_article'}}{arxiv style template from the \code{rtices} package}
+#'   \item{\code{'asa_article'}}{asa style template from the \code{rtices} package}
+#'   \item{\code{'bioinformatics_article'}}{bioinformatics style template from the \code{rtices} package}
+#'   \item{\code{'biometrics_article'}}{biometrics style template from the \code{rtices} package}
+#'   \item{\code{'copernicus_article'}}{copernicus style template from the \code{rtices} package}
+#'   \item{\code{'ctex_article'}}{ctex style template from the \code{rtices} package}
+#'   \item{\code{'elsevier_article'}}{elsevier style template from the \code{rtices} package}
+#'   \item{\code{'frontiers_article'}}{frontiers style template from the \code{rtices} package}
+#'   \item{\code{'glossa_article'}}{glossa style template from the \code{rtices} package}
+#'   \item{\code{'ieee_article'}}{ieee style template from the \code{rtices} package}
+#'   \item{\code{'ims_article'}}{ims style template from the \code{rtices} package}
+#'   \item{\code{'informs_article'}}{informs style template from the \code{rtices} package}
+#'   \item{\code{'iop_article'}}{iop style template from the \code{rtices} package}
+#'   \item{\code{'isba_article'}}{isba style template from the \code{rtices} package}
+#'   \item{\code{'jasa_article'}}{jasa style template from the \code{rtices} package}
+#'   \item{\code{'jedm_article'}}{jedm style template from the \code{rtices} package}
+#'   \item{\code{'joss_article'}}{joss style template from the \code{rtices} package}
+#'   \item{\code{'jss_article'}}{jss style template from the \code{rtices} package}
+#'   \item{\code{'lipics_article'}}{lipics style template from the \code{rtices} package}
+#'   \item{\code{'mdpi_article'}}{mdpi style template from the \code{rtices} package}
+#'   \item{\code{'mnras_article'}}{mnras style template from the \code{rtices} package}
+#'   \item{\code{'oup_article'}}{oup style template from the \code{rtices} package}
+#'   \item{\code{'peerj_article'}}{peerj style template from the \code{rtices} package}
+#'   \item{\code{'pihph_article'}}{pihph style template from the \code{rtices} package}
+#'   \item{\code{'plos_article'}}{plos style template from the \code{rtices} package}
+#'   \item{\code{'pnas_article'}}{pnas style template from the \code{rtices} package}
+#'   \item{\code{'rjournal_article'}}{rjournal style template from the \code{rtices} package}
+#'   \item{\code{'rsos_article'}}{rsos style template from the \code{rtices} package}
+#'   \item{\code{'rss_article'}}{rss style template from the \code{rtices} package}
+#'   \item{\code{'sage_article'}}{sage style template from the \code{rtices} package}
+#'   \item{\code{'sim_article'}}{sim style template from the \code{rtices} package}
+#'   \item{\code{'springer_article'}}{springer style template from the \code{rtices} package}
+#'   \item{\code{'tf_article'}}{tf style template from the \code{rtices} package}
+#'   \item{\code{'trb_article'}}{trb style template from the \code{rtices} package}
+#'   \item{\code{'wellcomeor_article'}}{wellcomeor style template from the \code{rtices} package}
+#' }
+# p <- ls(asNamespace("rticles"))
+# p <- p[endsWith(p, "_article")]
+# out <- c(
+#   "\\itemize{",
+#   "  \\item{\\code{'APA6'}}{A \\code{\\link[papaja:papaja]{APA6}} style template from the \\code{papaja} package}",
+#   "  \\item{\\code{'github_document'}}{A \\code{\\link[rmarkdown]{github_document}} from the \\code{rmarkdown} package}",
+#   paste0("  \\item{\\code{'", p, "'}}{", gsub("_article", "", p, fixed = TRUE), " style template from the \\code{rtices} package}"),
+#   "}"
+# )
+# out <- paste0("#' ", out)
+# cat(out, sep = '\n', file = "clipboard")
 #' @return No return value. This function is called for its side effects.
 #' @examples
 #' the_test <- "worcs_manuscript"
@@ -443,37 +490,22 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
       man_fn_rel <- file.path(man_dir_rel, "manuscript.Rmd")
       man_fn_abs <- file.path(man_dir_abs, "manuscript.Rmd")
       dir.create(man_dir_abs)
-      switch(manuscript,
-             apa6 = create_man_papaja(man_fn_abs, remote_repo = remote_repo),
-             acm_article = create_man_rticles(man_fn_abs, "acm_article", remote_repo = remote_repo),
-             acs_article = create_man_rticles(man_fn_abs, "acs_article", remote_repo = remote_repo),
-             aea_article = create_man_rticles(man_fn_abs, "aea_article", remote_repo = remote_repo),
-             agu_article = create_man_rticles(man_fn_abs, "agu_article", remote_repo = remote_repo),
-             amq_article = create_man_rticles(man_fn_abs, "amq_article", remote_repo = remote_repo),
-             ams_article = create_man_rticles(man_fn_abs, "ams_article", remote_repo = remote_repo),
-             asa_article = create_man_rticles(man_fn_abs, "asa_article", remote_repo = remote_repo),
-             biometrics_article = create_man_rticles(man_fn_abs, "biometrics_article", remote_repo = remote_repo),
-             copernicus_article = create_man_rticles(man_fn_abs, "copernicus_article", remote_repo = remote_repo),
-             ctex = create_man_rticles(man_fn_abs, "ctex", remote_repo = remote_repo),
-             elsevier_article = create_man_rticles(man_fn_abs, "elsevier_article", remote_repo = remote_repo),
-             frontiers_article = create_man_rticles(man_fn_abs, "frontiers_article", remote_repo = remote_repo),
-             ieee_article = create_man_rticles(man_fn_abs, "ieee_article", remote_repo = remote_repo),
-             joss_article = create_man_rticles(man_fn_abs, "joss_article", remote_repo = remote_repo),
-             jss_article = create_man_rticles(man_fn_abs, "jss_article", remote_repo = remote_repo),
-             mdpi_article = create_man_rticles(man_fn_abs, "mdpi_article", remote_repo = remote_repo),
-             mnras_article = create_man_rticles(man_fn_abs, "mnras_article", remote_repo = remote_repo),
-             oup_article = create_man_rticles(man_fn_abs, "oup_article", remote_repo = remote_repo),
-             peerj_article = create_man_rticles(man_fn_abs, "peerj_article", remote_repo = remote_repo),
-             plos_article = create_man_rticles(man_fn_abs, "plos_article", remote_repo = remote_repo),
-             pnas_article = create_man_rticles(man_fn_abs, "pnas_article", remote_repo = remote_repo),
-             rjournal_article = create_man_rticles(man_fn_abs, "rjournal_article", remote_repo = remote_repo),
-             rsos_article = create_man_rticles(man_fn_abs, "rsos_article", remote_repo = remote_repo),
-             sage_article = create_man_rticles(man_fn_abs, "sage_article", remote_repo = remote_repo),
-             sim_article = create_man_rticles(man_fn_abs, "sim_article", remote_repo = remote_repo),
-             springer_article = create_man_rticles(man_fn_abs, "springer_article", remote_repo = remote_repo),
-             tf_article = create_man_rticles(man_fn_abs, "tf_article", remote_repo = remote_repo),
-             create_man_github(man_fn_abs, remote_repo = remote_repo)
-      )
+      if(manuscript == "apa6"){
+        create_man_papaja(man_fn_abs, remote_repo = remote_repo)
+      } else {
+        if("rticles" %in% rownames(installed.packages())){
+          all_rticles <- ls(asNamespace("rticles"))
+          all_rticles <- all_rticles[endsWith(all_rticles, "_article")]
+          if(manuscript %in% all_rticles){
+            create_man_rticles(man_fn_abs, manuscript, remote_repo = remote_repo)
+          } else {
+            create_man_github(man_fn_abs, remote_repo = remote_repo)
+          }
+        } else {
+          create_man_github(man_fn_abs, remote_repo = remote_repo)
+        }
+      }
+
       # Add references.bib
       copy_resources(which_files = "references.bib", path = man_dir_abs)
       bibfiles <- list.files(path = man_dir_abs, pattern = ".bib$", full.names = TRUE)
@@ -500,21 +532,41 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
 #' in which to create the manuscript files. Default: '.', which points to the
 #' current working directory.
 #' @param preregistration Character, indicating what template to use for the
-#' preregistration. Default: \code{"COS"}; use \code{"None"} to omit a
+#' preregistration. Default: \code{"cos_prereg"}; use \code{"None"} to omit a
 #' preregistration. See Details for other available choices.
 #' @param verbose Logical. Whether or not to print messages to the console
 #' during project creation. Default: TRUE
 #' @param ... Additional arguments passed to and from functions.
 #' @return No return value. This function is called for its side effects.
-#' @details Available choices include the templates
-#' \code{"COS", "VantVeer", "Brandt", "AsPredicted"}, which are imported from the
-#' \code{\link[prereg]{cos_prereg}} package, and documented there. Furthermore,
-#' several unique templates are included with \code{worcs}:
+#' @details Available choices include the templates from the
+#' \code{\link[prereg:prereg]{prereg}} package, and several unique templates
+#' included with \code{worcs}:
+# p <- ls(asNamespace("prereg"))
+# p <- p[endsWith(p, "_prereg")]
+# out <- c(
+#   "\\itemize{",
+#   "  \\item{\\code{'PSS'}}{Preregistration and Sharing Software (Krypotos,",
+#   "  Klugkist, Mertens, & Engelhard, 2019)}",
+#   "  \\item{\\code{'Secondary'}}{Preregistration for secondary analyses (Mertens &",
+#   "  Krypotos, 2019)}",
+#   paste0("  \\item{\\code{'", p, "'}}{", gsub("_prereg", "", p, fixed = TRUE), " template from the \\code{prereg} package}"),
+#   "}"
+# )
+# out <- paste0("#' ", out)
+# cat(out, sep = '\n', file = "clipboard")
 #' \itemize{
-#'   \item{\code{"PSS"}}{Preregistration and Sharing Software (Krypotos,
+#'   \item{\code{'PSS'}}{Preregistration and Sharing Software (Krypotos,
 #'   Klugkist, Mertens, & Engelhard, 2019)}
-#'   \item{\code{"Secondary"}}{Preregistration for secondary analyses (Mertens &
+#'   \item{\code{'Secondary'}}{Preregistration for secondary analyses (Mertens &
 #'   Krypotos, 2019)}
+#'   \item{\code{'aspredicted_prereg'}}{aspredicted template from the \code{prereg} package}
+#'   \item{\code{'brandt_prereg'}}{brandt template from the \code{prereg} package}
+#'   \item{\code{'cos_prereg'}}{cos template from the \code{prereg} package}
+#'   \item{\code{'fmri_prereg'}}{fmri template from the \code{prereg} package}
+#'   \item{\code{'prp_quant_prereg'}}{prp_quant template from the \code{prereg} package}
+#'   \item{\code{'psyquant_prereg'}}{psyquant template from the \code{prereg} package}
+#'   \item{\code{'rr_prereg'}}{rr template from the \code{prereg} package}
+#'   \item{\code{'vantveer_prereg'}}{vantveer template from the \code{prereg} package}
 #' }
 #' @examples
 #' the_test <- "worcs_prereg"
@@ -522,7 +574,7 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
 #' dir.create(file.path(tempdir(), the_test))
 #' file.create(file.path(tempdir(), the_test, ".worcs"))
 #' add_preregistration(file.path(tempdir(), the_test),
-#'                     preregistration = "COS")
+#'                     preregistration = "cos_prereg")
 #' setwd(old_wd)
 #' unlink(file.path(tempdir(), the_test))
 #' @rdname add_preregistration
@@ -530,7 +582,7 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
 #' @importFrom rmarkdown draft
 #' @importFrom prereg vantveer_prereg
 add_preregistration <- function(worcs_directory = ".",
-                                preregistration = "COS",
+                                preregistration = "cos_prereg",
                                 verbose = TRUE,
                                 ...) {
   # collect inputs
@@ -544,13 +596,16 @@ add_preregistration <- function(worcs_directory = ".",
   tryCatch({
     # Different handling for prereg preregistrations and those included in worcs
     if(!preregistration %in% c("pss", "secondary")){
-      draft(
-        file.path(worcs_directory, "preregistration.Rmd"),
-        paste0(preregistration, "_prereg"),
-        package = "prereg",
-        create_dir = FALSE,
-        edit = FALSE
-      )
+      if(endsWith(preregistration, "_prereg")){
+        draft(
+          file.path(worcs_directory, "preregistration.Rmd"),
+          preregistration,
+          package = "prereg",
+          create_dir = FALSE,
+          edit = FALSE
+        )
+      }
+
     } else {
       if(file.exists(paste0(preregistration, ".Rmd"))|file.exists("preregistration.Rmd")){
         stop("Preregistration already exists.")

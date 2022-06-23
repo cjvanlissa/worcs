@@ -7,7 +7,7 @@
 worcs_project(
   path = "worcs_project",
   manuscript = "APA6",
-  preregistration = "COS",
+  preregistration = "cos_prereg",
   add_license = "CC_BY_4.0",
   use_renv = TRUE,
   remote_repo = "git@",
@@ -20,19 +20,17 @@ worcs_project(
 'worcs' project. Default: 'worcs_project'.}
 
 \item{manuscript}{Character, indicating what template to use for the
-'R Markdown' manuscript. Default: 'APA6'. Available choices include:
-\code{"APA6", "github_document", "None", "ams_article", "asa_article",
-"biometrics_article", "copernicus_article", "ctex", "elsevier_article",
-"frontiers_article", "ieee_article", "joss_article", "jss_article",
-"mdpi_article", "mnras_article", "oup_article", "peerj_article",
-"plos_article", "pnas_article", "rjournal_article", "rsos_article",
-"sage_article", "sim_article", "springer_article", "tf_article"}.
+'R Markdown' manuscript. Default: 'APA6'. Available choices include
+\code{\link[papaja:papaja]{APA6}} from the \code{papaja} package,
+a \code{\link[rmarkdown]{github_document}}, and templates included in the
+\code{\link[rticles:rticles]{rticles}} package.
 For more information, see \code{\link{add_manuscript}}.}
 
 \item{preregistration}{Character, indicating what template to use for the
-preregistration. Default: 'COS'. Available choices include:
-\code{"COS", "VantVeer", "Brandt", "AsPredicted", "PSS", "Secondary",
-"None"}. For more information, see \code{\link{add_preregistration}}.}
+preregistration. Default: 'cos_prereg'. Available choices include:
+\code{"PSS", "Secondary", "None"}, and all templates from the
+\code{\link[prereg:prereg]{prereg}} package. For more information, see
+\code{\link{add_preregistration}}.}
 
 \item{add_license}{Character, indicating what license to include.
 Default: 'CC_BY_4.0'. Available options include:

@@ -12,7 +12,7 @@ test_that("worcs project can be generated", {
   worcs_project(
     path = "worcs_project",
     manuscript = "github_document",
-    preregistration = "COS",
+    preregistration = "cos_prereg",
     add_license = "CC_BY_4.0",
     use_renv = FALSE,
     remote_repo = "bla"
