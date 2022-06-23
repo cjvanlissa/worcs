@@ -455,6 +455,8 @@ nice_tab <- function(tab){
 # )
 # out <- paste0("#' ", out)
 # cat(out, sep = '\n', file = "clipboard")
+## !!!ALSO ADD THEM TO THE PROJECT TEMPLATE FILE WORCS.DCF!!!!
+# cat(p, sep = ', ', file = "clipboard")
 #' @return No return value. This function is called for its side effects.
 #' @examples
 #' the_test <- "worcs_manuscript"
@@ -554,6 +556,8 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
 # )
 # out <- paste0("#' ", out)
 # cat(out, sep = '\n', file = "clipboard")
+## !!!ALSO ADD THEM TO THE PROJECT TEMPLATE FILE WORCS.DCF!!!!
+# cat(p, sep = ', ', file = "clipboard")
 #' \itemize{
 #'   \item{\code{'PSS'}}{Preregistration and Sharing Software (Krypotos,
 #'   Klugkist, Mertens, & Engelhard, 2019)}

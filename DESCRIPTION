@@ -1,8 +1,7 @@
 Package: worcs
 Type: Package
-Date: 2021-02-03
 Title: Workflow for Open Reproducible Code in Science
-Version: 0.1.9.1
+Version: 0.1.9
 Authors@R: c(
     person(
       given = c("Caspar", "J."),
@@ -31,8 +30,8 @@ Description: Create reproducible and transparent research projects in 'R'.
     Open Science. It includes an 'RStudio' project template, several
     convenience functions, and all dependencies required to make your project
     reproducible and transparent. WORCS is explained in the tutorial paper
-    by Van Lissa, Brandmaier, Brinkman, Lamprecht, Struiksma, & Vreede (2020).
-    <doi:10.17605/OSF.IO/ZCVBS>.
+    by Van Lissa, Brandmaier, Brinkman, Lamprecht, Struiksma, & Vreede (2021).
+    <doi:10.3233/DS-210031>.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
@@ -48,6 +47,7 @@ Imports:
     digest,
     rticles
 Suggests:
+    papaja,
     remotes,
     tinytex,
     renv,

@@ -1,5 +1,10 @@
 # worcs 0.1.9
 
+* Replace GitHub version of papaja with CRAN version
+* Update rticles and prereg templates
+* Handle literal function names from rticles and prereg, such that users can use
+  all available options from those packages without worcs explicitly referencing
+  those functions
 * Add arguments 'save_expression' and 'load_expression' to closed_data() and
   open_data(). This allows users to save data in different formats. 
   The 'load_expression' is stored in the .worcs file, and referenced by
