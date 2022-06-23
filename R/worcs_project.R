@@ -596,6 +596,8 @@ add_preregistration <- function(worcs_directory = ".",
   tryCatch({
     # Different handling for prereg preregistrations and those included in worcs
     if(!preregistration %in% c("pss", "secondary")){
+      p <- ls(asNamespace("prereg"))
+      if(paste0(preregistration, "_prereg") %in% p) preregistration <- paste0(preregistration, "_prereg")
       if(endsWith(preregistration, "_prereg")){
         draft(
           file.path(worcs_directory, "preregistration.Rmd"),
