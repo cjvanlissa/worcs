@@ -44,7 +44,7 @@ worcs::git_user("your_name", "your_email")
 If you intend to write APA style manuscripts, you can additionally install the `papaja` package:
 
 ``` r
-remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
+install.packages("papaja", dependencies = TRUE, update = "never")
 
 ```
 

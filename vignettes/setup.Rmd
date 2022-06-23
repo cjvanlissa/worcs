@@ -65,12 +65,11 @@ worcs::git_user("your_name", "your_email", overwrite = TRUE)
 ```
 
 If you intend to write documents in APA style, you should additionally install the `papaja` package.
+Because `papaja` has many dependencies, it is recommended to skip this step if you intend to write documents in a different style than APA.
 Unfortunately, this package is not yet available on the central R repository CRAN, but you can install it from 'GitHub' using the following code:
 
 ```
-remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
+install.packages("papaja", dependencies = TRUE, update = "never")
 ```
-
-Because `papaja` has many dependencies, it is recommended to skip this step if you intend to write documents in a different style than APA.
 
 That's it! Everything should be installed and connected now.
