@@ -14,7 +14,7 @@
 #' # Only specify it as custom knit function in an 'R Markdown' file, like so:
 #' # knit: worcs::cite_all
 #'
-#' if (rmarkdown::pandoc_available("1.14")){
+#' if (rmarkdown::pandoc_available("2.0")){
 #'   file_name <- file.path(tempdir(), "citeall.Rmd")
 #'   loc <- rmarkdown::draft(file_name,
 #'                           template = "github_document",
@@ -45,7 +45,7 @@ cite_all <- function(...){
 #' # Only specify it as custom knit function in an R Markdown file, like so:
 #' # knit: worcs::cite_all
 #'
-#' if (rmarkdown::pandoc_available("1.14")){
+#' if (rmarkdown::pandoc_available("2.0")){
 #'   file_name <- tempfile("citeessential", fileext = ".Rmd")
 #'   rmarkdown::draft(file_name,
 #'                    template = "github_document",
@@ -62,8 +62,8 @@ cite_essential <- function(...){
 
 #' @importFrom rmarkdown render pandoc_available
 comprehensive_cite <- function(input, encoding = "UTF-8", ..., citeall = TRUE) {
-  if(!pandoc_available("1.14")){
-    message("Using rmarkdown requires pandoc version >= 1.14.")
+  if(!pandoc_available("2.0")){
+    message("Using rmarkdown requires pandoc version >= 2.0.")
     return(invisible(NULL))
   }
   dots <- list(...)

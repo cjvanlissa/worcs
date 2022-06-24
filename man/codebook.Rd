@@ -54,7 +54,7 @@ Re-knitting the 'R Markdown' file (using \code{\link[rmarkdown]{render}}) will
 transfer these changes to the 'markdown' file for 'GitHub'.
 }
 \examples{
-if(rmarkdown::pandoc_available("1.14")){
+if(rmarkdown::pandoc_available("2.0")){
   library(rmarkdown)
   library(knitr)
   filename <- tempfile("codebook", fileext = ".Rmd")

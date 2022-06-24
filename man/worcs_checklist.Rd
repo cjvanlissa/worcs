@@ -30,7 +30,7 @@ of open reproducible code in science, as set out in the WORCS paper.
 }
 \references{
 Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
-Peikert, A., , Struiksma, M. E., & Vreede, B. (2020)
-<doi:10.17605/OSF.IO/ZCVBS>.
+Peikert, A., , Struiksma, M. E., & Vreede, B. (2021)
+<doi:10.3233/DS-210031>.
 }
 \keyword{datasets}

@@ -31,7 +31,7 @@
 #' successful. This function is mostly called for its side effect of rendering
 #' an 'R Markdown' codebook.
 #' @examples
-#' if(rmarkdown::pandoc_available("1.14")){
+#' if(rmarkdown::pandoc_available("2.0")){
 #'   library(rmarkdown)
 #'   library(knitr)
 #'   filename <- tempfile("codebook", fileext = ".Rmd")

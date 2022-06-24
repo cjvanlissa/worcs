@@ -57,7 +57,7 @@ knitr::include_graphics("workflow.png")
 5. <!--S: Optional: Upload the preregistration to a dedicated preregistration server-->Optional: Render the preregistration to PDF, and upload it as an attachment to a dedicated preregistration server like AsPredicted.org or OSF.io
     + In 'RStudio', with the file 'preregistration.Rmd' open, click the "Knit" button above the top left panel
     + When the PDF is generated, go to one of the recognized preregistration services' websites, create a new preregistration, and upload it as an attachment.
-    + Optional: Generate a DOI for the preregistration through [the OSF](https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data) or a service like [Zenodo](https://guides.github.com/activities/citable-code/)
+    + Optional: Generate a DOI for the preregistration through [the OSF](https://help.osf.io/article/218-sharing-data) or a service like [Zenodo](https://docs.github.com/repositories/archiving-a-github-repository/referencing-and-citing-content)
 6. <!--S: Optional: Add study materials to the repository-->Optional: Add study materials to the repository.
     + Only do this for study materials to which you own the rights, or when the materials' license allows it
     + You can solicit feedback and outside contributions on a 'Git' remote repository by opening an "Issue" or by accepting "Pull requests"
@@ -96,15 +96,15 @@ knitr::include_graphics("workflow.png")
         - Go to your project's repository
         - Click the "Settings" button
         - Scroll to the bottom of the page; click "Make public", and follow the on-screen instructions
-15. <!--S: [Create a project page on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project) and [connect it to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->
-[Create a project on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project) and [connect it to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project).
+15. <!--S: [Create a project page on the Open Science Framework (OSF)](https://help.osf.io/article/252-create-a-project) and [connect it to the 'Git' remote repository](https://help.osf.io/article/211-connect-github-to-a-project)-->
+[Create a project on the Open Science Framework (OSF)](https://help.osf.io/article/252-create-a-project) and [connect it to the 'Git' remote repository](https://help.osf.io/article/211-connect-github-to-a-project).
     + On the OSF project page, you can select a License for the project. This helps clearly communicate the terms of reusability of your project. Make sure to use the same License you selected during project creation in Step 3.
-16. <!--S: [Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs)-->
-[Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs)
+16. <!--S: [Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/article/220-create-dois)-->
+[Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/article/220-create-dois)
     + A DOI is a persistent identifier that can be used to link to your project page.
     + You may have already created a project page under Step 5 if you preregistered on the OSF
-    + Optionally, you can [generate additional DOIs for specific resources like datasets](https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data).
-    + Alternatively, you can [connect your 'Git' remote repository to Zenodo](https://guides.github.com/activities/citable-code/), instead of the OSF, to create DOIs for the project and specific resources.
+    + Optionally, you can [generate additional DOIs for specific resources like datasets](https://help.osf.io/article/218-sharing-data).
+    + Alternatively, you can [connect your 'Git' remote repository to Zenodo](https://docs.github.com/repositories/archiving-a-github-repository/referencing-and-citing-content), instead of the OSF, to create DOIs for the project and specific resources.
 17. <!--S: Add an open science statement to the Abstract or Author notes, which links to the 'OSF' project page and/or the 'Git' remote repository-->Add an open science statement to the Abstract or Author notes, which links to the 'OSF' project page and/or the 'Git' remote repository. 
     + Placing this statement in the Abstract or Author note means that readers can find your project even if the paper is published behind a paywall.
     + The link can be masked for blind review.
@@ -117,7 +117,7 @@ knitr::include_graphics("workflow.png")
     + In 'RStudio', with the file 'manuscript.Rmd' open, click the "Knit" button above the top left panel
     + To retain essential citations only, change the front matter of the 'manuscript.Rmd' file:  
     Change `knit: worcs::cite_all` to `knit: worcs::cite_essential`
-19. <!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)-->Optional: [Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)
+19. <!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/article/177-upload-a-preprint)-->Optional: [Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project](https://help.osf.io/article/177-upload-a-preprint)
     + Check [Sherpa Romeo](http://sherpa.ac.uk/romeo/index.php) to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.
 20. <!--S: Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) of the submitted paper as a release, as in Step 4.-->Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository), as in Step 4.
 

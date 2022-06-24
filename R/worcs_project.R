@@ -464,7 +464,7 @@ nice_tab <- function(tab){
 #' dir.create(file.path(tempdir(), the_test))
 #' file.create(file.path(tempdir(), the_test, ".worcs"))
 #' add_manuscript(file.path(tempdir(), the_test),
-#'               manuscript = "github_document")
+#'               manuscript = "None")
 #' setwd(old_wd)
 #' unlink(file.path(tempdir(), the_test))
 #' @rdname add_manuscript
@@ -494,18 +494,25 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
       dir.create(man_dir_abs)
       if(manuscript == "apa6"){
         create_man_papaja(man_fn_abs, remote_repo = remote_repo)
-      } else {
-        if("rticles" %in% rownames(installed.packages())){
-          all_rticles <- ls(asNamespace("rticles"))
-          all_rticles <- all_rticles[endsWith(all_rticles, "_article")]
-          if(manuscript %in% all_rticles){
-            create_man_rticles(man_fn_abs, manuscript, remote_repo = remote_repo)
-          } else {
-            create_man_github(man_fn_abs, remote_repo = remote_repo)
-          }
-        } else {
-          create_man_github(man_fn_abs, remote_repo = remote_repo)
-        }
+      }
+      # all_rticles <- ls(asNamespace("rticles"))
+      # all_rticles <- all_rticles[endsWith(all_rticles, "_article")]
+      # dput(all_rticles, "clipboard")
+      if(manuscript %in% c("acm_article", "acs_article", "aea_article", "agu_article",
+                           "ajs_article", "amq_article", "ams_article", "arxiv_article",
+                           "asa_article", "bioinformatics_article", "biometrics_article",
+                           "copernicus_article", "ctex_article", "elsevier_article", "frontiers_article",
+                           "glossa_article", "ieee_article", "ims_article", "informs_article",
+                           "iop_article", "isba_article", "jasa_article", "jedm_article",
+                           "joss_article", "jss_article", "lipics_article", "mdpi_article",
+                           "mnras_article", "oup_article", "peerj_article", "pihph_article",
+                           "plos_article", "pnas_article", "rjournal_article", "rsos_article",
+                           "rss_article", "sage_article", "sim_article", "springer_article",
+                           "tf_article", "trb_article", "wellcomeor_article")){
+        create_man_rticles(man_fn_abs, manuscript, remote_repo = remote_repo)
+      }
+      if(manuscript == "github_document"){
+        create_man_github(man_fn_abs, remote_repo = remote_repo)
       }
 
       # Add references.bib

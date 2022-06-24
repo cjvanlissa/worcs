@@ -92,7 +92,7 @@ old_wd <- getwd()
 dir.create(file.path(tempdir(), the_test))
 file.create(file.path(tempdir(), the_test, ".worcs"))
 add_manuscript(file.path(tempdir(), the_test),
-              manuscript = "github_document")
+              manuscript = "None")
 setwd(old_wd)
 unlink(file.path(tempdir(), the_test))
 }

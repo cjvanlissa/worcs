@@ -1,16 +1,25 @@
-# worcs 0.1.8
+# worcs 0.1.9
 
-* Declared pandoc in SystemRequirements
-* Made all examples using pandoc conditional on availability of pandoc
-* Functions that wrap rmarkdown::render() now return NULL when pandoc is not
-  available
+* Add check_worcs_installation() function to determine whether all non-R-package
+  dependencies are installed correctly
+* Update references to WORCS paper
+* Replace GitHub version of papaja with CRAN version
+* Fix URLs
+* Update rticles and prereg templates
+* Handle literal function names from rticles and prereg, such that users can use
+  all available options from those packages without worcs explicitly referencing
+  those functions
+* Add arguments 'save_expression' and 'load_expression' to closed_data() and
+  open_data(). This allows users to save data in different formats. 
+  The 'load_expression' is stored in the .worcs file, and referenced by
+  load_data().
 
 ## Test environments
 
-* local Windows 10 install, R 4.0.3
-* win-builder: R version 4.0.3 (2020-10-10)
-* win-builder: R Under development (unstable) (2021-01-18 r79846)
-* win-builder: R version 3.6.3 (2020-02-29)
+* local Windows 10 install, R 4.1.2
+* win-builder: release
+* win-builder: development
+* win-builder: oldversion
 * rhub check: Windows Server 2008 R2 SP1, R-devel, 32/64 bit
 * rhub check: Ubuntu Linux 16.04 LTS, R-release, GCC
   + Dependency "gert" not available (because openssl is not installed)
@@ -22,4 +31,7 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
+
+* New maintainer
+    + I changed my email address because I have a new affiliation

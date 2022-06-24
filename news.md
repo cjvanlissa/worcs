@@ -1,6 +1,10 @@
 # worcs 0.1.9
 
+* Add check_worcs_installation() function to determine whether all non-R-package
+  dependencies are installed correctly
+* Update references to WORCS paper
 * Replace GitHub version of papaja with CRAN version
+* Fix URLs
 * Update rticles and prereg templates
 * Handle literal function names from rticles and prereg, such that users can use
   all available options from those packages without worcs explicitly referencing

@@ -5,8 +5,8 @@ Version: 0.1.9
 Authors@R: c(
     person(
       given = c("Caspar", "J."),
-      family = "van Lissa",
-      email = "c.j.vanlissa@uu.nl",
+      family = "Van Lissa",
+      email = "c.j.vanlissa@tilburguniversity.edu",
       role = c("aut", "cre"),
       comment = c(ORCID = "0000-0002-0808-5024")
     ),
@@ -45,11 +45,13 @@ Imports:
     ranger,
     yaml,
     digest,
-    rticles
+    rticles,
+    tinytex,
+    credentials,
+    usethis
 Suggests:
     papaja,
     remotes,
-    tinytex,
     renv,
     knitr,
     missRanger,

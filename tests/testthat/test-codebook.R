@@ -1,5 +1,5 @@
 test_that("codebook works for iris", {
-  if (rmarkdown::pandoc_available("1.14")){
+  if (rmarkdown::pandoc_available("2.0")){
     old_wd <- getwd()
     test_dir <- file.path(tempdir(), "codebook")
     dir.create(test_dir)
@@ -22,7 +22,7 @@ test_that("codebook works for iris", {
 
 if(TRUE){
 test_that("codebook works for PlantGrowth with missings", {
-  if (rmarkdown::pandoc_available("1.14")){
+  if (rmarkdown::pandoc_available("2.0")){
     df <- CO2
     df[c(7:8), 1] <- NA
     df[c(1, 25), 2] <- NA

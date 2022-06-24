@@ -61,7 +61,7 @@ If you intend to write APA style manuscripts, you can additionally
 install the `papaja` package:
 
 ``` r
-remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
+install.packages("papaja", dependencies = TRUE, update = "never")
 ```
 
 ## Citing WORCS
@@ -70,9 +70,9 @@ You can cite WORCS using the following citation (please use the same
 citation for either the package, or the paper):
 
 > Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
-> Peikert, A., , Struiksma, M. E., & Vreede, B. (in press). WORCS: A
-> Workflow for Open Reproducible Code in Science. Data Science, 2021.
-> Data Science, vol. 4, no. 1, pp. 29-49. DOI: 10.3233/DS-210031.
+> Peikert, A., , Struiksma, M. E., & Vreede, B. (2021). WORCS: A
+> Workflow for Open Reproducible Code in Science. Data Science. Data
+> Science, vol. 4, no. 1, pp. 29-49. DOI: 10.3233/DS-210031.
 
 ## About this repository
 
@@ -105,58 +105,14 @@ for the package and paper.
 | R/            | R-package source code           | human editable  |
 | vignettes/    | R-package vignettes             | human editable  |
 
-## Adoption of WORCS by users
-
-As of 2021-11-17, these are indicators of the adoption of `worcs` by
-users:
-
-1.  The preprint has been downloaded 1372 times, since being published
-    on 31-05-2020
-2.  The paper in [Data
-    Science](https://content.iospress.com/articles/data-science/ds210031)
-    has been cited 13 times
-3.  The `worcs` R-package has been downloaded 8350 times from CRAN,
-    since being published on 18-05-2020
-4.  The GitHub project has been forked 9 times, watched 5 times, and
-    starred 54 times
-5.  The lead author has given invited lecturegs on WORCS at:
-    -   One Health PACT (2021)  
-    -   Max-Planck-Institute for Human Development (2020)  
-    -   Open Science Community Rotterdam (2020)  
-    -   Eindhoven University of Technology (2020)  
-6.  WORCS is currently used in the following public itHub repositories
-    (sorted by user):
-    -   cjvanlissa
-        -   [veni\_sysrev](https://github.com/cjvanlissa/veni_sysrev)  
-        -   [werner\_lpa](https://github.com/cjvanlissa/werner_lpa)  
-        -   [welzijnsmeter](https://github.com/cjvanlissa/welzijnsmeter)  
-        -   [schumpe](https://github.com/cjvanlissa/schumpe)  
-        -   [storm\_meta\_father\_mother](https://github.com/cjvanlissa/storm_meta_father_mother)  
-        -   [IHBT-SEM](https://github.com/cjvanlissa/IHBT-SEM)  
-        -   [placebo\_adhd](https://github.com/cjvanlissa/placebo_adhd)  
-    -   CirculatoryHealth
-        -   [gwas2single](https://github.com/CirculatoryHealth/gwas2single)  
-        -   [AE\_171212\_9p21\_IRAK4](https://github.com/CirculatoryHealth/AE_171212_9p21_IRAK4)  
-    -   EstherPlomp
-        -   [RDM-survey](https://github.com/EstherPlomp/RDM-survey)  
-    -   KimBaldry
-        -   [BIO-MATE](https://github.com/KimBaldry/BIO-MATE)  
-    -   agjtimmers
-        -   [MS12-Open-Science](https://github.com/agjtimmers/MS12-Open-Science)  
-    -   ocbe-uio
-        -   [nor-solidarity](https://github.com/ocbe-uio/nor-solidarity)  
-    -   lisallreiber
-        -   [worcs\_ws\_empty](https://github.com/lisallreiber/worcs_ws_empty)  
-    -   veegeee
-        -   [multivar](https://github.com/veegeee/multivar)  
-    -   nsunami
-        -   [dissertation](https://github.com/nsunami/dissertation)  
-    -   Hypergeometricdistribution
-        -   [github\_document](https://github.com/Hypergeometricdistribution/github_document)  
-    -   jakkermans
-        -   [Open-Science-Introdcuction](https://github.com/jakkermans/Open-Science-Introdcuction)  
-    -   PaulaVrolijk
-        -   [DT](https://github.com/PaulaVrolijk/DT)
+<!-- ## Adoption of WORCS by users -->
+<!-- As of 2022-06-23, these are indicators of the adoption of `worcs` by users: -->
+<!-- 1. The preprint has been downloaded 1372 times, since being published on 31-05-2020 -->
+<!-- 1. The paper in [Data Science](https://content.iospress.com/articles/data-science/ds210031) has been cited 13 times -->
+<!-- 1. The `worcs` R-package has been downloaded r dl times from CRAN, since being published on 18-05-2020 -->
+<!-- 1. The GitHub project has been forked r worcs_repo$network_count times, watched r worcs_repo$subscribers_count` times, and starred r worcs_repo$watchers times -->
+<!-- 1. The lead author has given invited lecturegs on WORCS at: r invited -->
+<!-- 1. WORCS is currently used in the following public itHub repositories (sorted by user): r tmp -->
 
 ## Contributing and Contact Information
 

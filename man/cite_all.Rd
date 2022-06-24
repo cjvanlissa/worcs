@@ -25,7 +25,7 @@ citations, e.g.: \code{@reference2020}. Then, it renders the file.
 # Only specify it as custom knit function in an 'R Markdown' file, like so:
 # knit: worcs::cite_all
 
-if (rmarkdown::pandoc_available("1.14")){
+if (rmarkdown::pandoc_available("2.0")){
   file_name <- file.path(tempdir(), "citeall.Rmd")
   loc <- rmarkdown::draft(file_name,
                           template = "github_document",
