@@ -13,6 +13,7 @@
 #' @importFrom credentials ssh_key_info
 #' @importFrom tinytex pdflatex
 #' @importFrom utils packageDescription
+#' @importFrom gh gh_token
 check_worcs_installation <- function(what = "all"){
   pass <- list()
   errors <- list()
@@ -32,6 +33,10 @@ check_worcs_installation <- function(what = "all"){
   # Git ---------------------------------------------------------------------
 
   if(any(c("all", "git") %in% what)){
+    # Check command line git
+    pass[["git_cmd"]] <- system2("git", "--version", stdout = tempfile(), stderr = tempfile()) == 0L
+    if(!pass[["git_cmd"]]) errors[["git_cmd"]] <- "Could not execute Git on the command line; please reinstall from https://git-scm.com/"
+
     # Check user
     pass[["git_user"]] <- gert::user_is_configured()
     if(!pass[["git_user"]]) errors[["git_user"]] <- "No user configured; please run worcs::git_user(yourname, youremail, overwrite = TRUE)"
@@ -51,9 +56,7 @@ check_worcs_installation <- function(what = "all"){
     dir_name <- file.path(tempdir(), the_test)
     if(dir.exists(dir_name)) unlink(dir_name, recursive = TRUE, force = TRUE)
     dir.create(dir_name)
-    pass[["git_init"]] <- tryCatch({
-      gert::git_init(dir_name);
-      TRUE}, error = function(e){ FALSE })
+    pass[["git_init"]] <- !inherits(try({gert::git_init(dir_name)}, silent = TRUE), "try-error")
     if(!pass[["git_init"]]){
       errors[["git_init"]] <- "Package gert could not initialize a Git repository."
     } else {
@@ -65,9 +68,7 @@ check_worcs_installation <- function(what = "all"){
         errors[["git_add"]] <- "Package gert could not add files to Git repository."
       } else {
         # More tests
-        pass[["git_commit"]] <- tryCatch({
-          gert::git_commit("First commit", repo = dir_name);
-          TRUE}, error = function(e){ FALSE })
+        pass[["git_commit"]] <- !inherits(try(gert::git_commit("First commit", repo = dir_name), silent = TRUE), "try-error")
         if(!pass[["git_commit"]]){
           errors[["git_commit"]] <- "Package gert could not commit to Git repository."
         }
@@ -77,20 +78,30 @@ check_worcs_installation <- function(what = "all"){
   }
 
 
+  # GitHub ------------------------------------------------------------------
+  if(any(c("all", "github") %in% what)){
+
+    pass[["github_pat"]] <- isFALSE(gh::gh_token() == "")
+    if(!pass[["github_pat"]]) errors[["github_pat"]] <- "You do not have a personal access token for GitHub; if you intend to use GitHub, consider creating one, see https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token"
+
+    # GitHub SSH
+    temp <- tempfile()
+    system2("ssh", "-T git@github.com", stdout = temp, stderr = temp)
+    output <- readLines(temp)
+    pass[["github_ssh"]] <- isTRUE(any(grepl("success", output, fixed = TRUE)))
+    if(!pass[["github_ssh"]]) errors[["github_ssh"]] <- "Could not authenticate GitHub via SSH; if you intend to use GitHub, consult https://happygitwithr.com/rstudio-git-github.html"
+  }
+
   # SSH ---------------------------------------------------------------------
   if(any(c("all", "SSH") %in% what)){
-    pass[["SSH"]] <- tryCatch({
-      tmp <- credentials::ssh_key_info()
-      isTRUE(!is.null(tmp$key)) & isTRUE(!is.null(tmp$pubkey))
-    }, error = function(e){
-      FALSE
-    })
-    if(!pass[["SSH"]]) errors[["SSH"]] <- "Could not find a valid SSH key; please turn to https://happygitwithr.com/ssh-keys.html"
+    pass[["SSH"]] <- isTRUE(!inherits(try(credentials::ssh_key_info(host = NULL, auto_keygen = FALSE)$key, silent = TRUE), "try-error") & !inherits(try(credentials::ssh_read_key(), silent = TRUE), "try-error"))
+
+    if(!pass[["SSH"]]) errors[["SSH"]] <- "Could not find a valid SSH key; please consult https://happygitwithr.com/ssh-keys.html"
   }
 
   # tinytex -----------------------------------------------------------------
   if(any(c("all", "tinytex") %in% what)){
-    pass[["tinytex"]] <- tryCatch({
+    pass[["tinytex"]] <- !inherits(try({
       tmpfl <- tempfile(fileext = ".tex")
       writeLines(c(
         '\\documentclass{article}',
@@ -98,11 +109,38 @@ check_worcs_installation <- function(what = "all"){
       ), tmpfl)
       tmp <- tinytex::pdflatex(tmpfl)
       isTRUE(endsWith(tmp, ".pdf"))
-    }, error = function(e){
-      FALSE
-    })
+    }, silent = TRUE), "try-error")
+
     if(!pass[["tinytex"]]) errors[["tinytex"]] <- "tinytex could not render a pdf document and may need to be reinstalled; please turn to https://yihui.org/tinytex/"
   }
+
+  if(any(c("all", "rmarkdown") %in% what)){
+
+    pass[["rmarkdown_html"]] <- !inherits(try({
+      tmpinp <- tempfile(fileext = ".rmd")
+      tmpout <- tempfile(fileext = ".html")
+      writeLines(c(
+        '---', 'title: "Untitled"', 'author: "test"', 'output: html_document', '---'), tmpinp)
+      tmp <- rmarkdown::render(input = tmpinp, output_file = tmpout, quiet = TRUE)
+      isTRUE(endsWith(tmp, ".html"))
+    }, silent = TRUE), "try-error")
+
+    if(!pass[["rmarkdown_html"]]) errors[["rmarkdown_html"]] <- "Rmarkdown could not render a HTML file."
+
+    pass[["rmarkdown_pdf"]] <- !inherits(try({
+      tmpinp <- tempfile(fileext = ".rmd")
+      tmpout <- tempfile(fileext = ".pdf")
+      writeLines(c(
+        '---', 'title: "Untitled"', 'author: "test"', 'output: pdf_document', '---'), tmpinp)
+      tmp <- rmarkdown::render(input = tmpinp, output_file = tmpout, quiet = TRUE)
+      isTRUE(endsWith(tmp, ".pdf"))
+    }, silent = TRUE), "try-error")
+
+    if(!pass[["rmarkdown_pdf"]]) errors[["rmarkdown_pdf"]] <- "Rmarkdown could not render a PDF file."
+  }
+  # Show results ------------------------------------------------------------
+
+
   pass <- unlist(pass)
   padlength <- max(sapply(names(pass), nchar))
   for(n in names(pass)){

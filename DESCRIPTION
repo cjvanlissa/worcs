@@ -48,7 +48,8 @@ Imports:
     rticles,
     tinytex,
     credentials,
-    usethis
+    usethis,
+    gh
 Suggests:
     papaja,
     remotes,
