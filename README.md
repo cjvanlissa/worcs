@@ -43,25 +43,15 @@ describes each step in detail.
 
 Before installing the package, please read [this
 vignette](https://cjvanlissa.github.io/worcs/articles/setup.html), which
-explains how to set up your computer for `worcs`.
+explains how to set up your computer for `worcs` (using the CRAN
+version).
 
-After reading [the
-vignette](https://cjvanlissa.github.io/worcs/articles/setup.html), you
-can install the development version of the `worcs` package from GitHub
-with:
+If you know what you’re doing and you wish to install the development
+version of the `worcs` package from GitHub instead, you can use:
 
 ``` r
-if(!requireNamespace("remotes"))install.packages("remotes")
+if(!requireNamespace("remotes")) install.packages("remotes")
 remotes::install_github("cjvanlissa/worcs", dependencies = TRUE, update = "never")
-tinytex::install_tinytex()
-worcs::git_user("your_name", "your_email")
-```
-
-If you intend to write APA style manuscripts, you can additionally
-install the `papaja` package:
-
-``` r
-install.packages("papaja", dependencies = TRUE, update = "never")
 ```
 
 ## Citing WORCS
@@ -106,7 +96,7 @@ for the package and paper.
 | vignettes/    | R-package vignettes             | human editable  |
 
 <!-- ## Adoption of WORCS by users -->
-<!-- As of 2022-06-23, these are indicators of the adoption of `worcs` by users: -->
+<!-- As of 2022-06-25, these are indicators of the adoption of `worcs` by users: -->
 <!-- 1. The preprint has been downloaded 1372 times, since being published on 31-05-2020 -->
 <!-- 1. The paper in [Data Science](https://content.iospress.com/articles/data-science/ds210031) has been cited 13 times -->
 <!-- 1. The `worcs` R-package has been downloaded r dl times from CRAN, since being published on 18-05-2020 -->

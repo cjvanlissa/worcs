@@ -18,7 +18,7 @@ public use to a WORCS project with closed data."><!-- mathjax --><script src="ht
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9</span>
       </span>
     </div>
 
@@ -27,7 +27,7 @@ public use to a WORCS project with closed data."><!-- mathjax --><script src="ht
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -133,21 +133,21 @@ function is called for its side effects.</p>
 <span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span>
 <span class="r-in"><span class="co"># Run closed_data without synthetic</span></span>
 <span class="r-in"><span class="fu"><a href="closed_data.html">closed_data</a></span><span class="op">(</span><span class="va">df</span>, codebook <span class="op">=</span> <span class="cn">NULL</span>, synthetic <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Creating C:/Users/lissa102/AppData/Local/Temp/RtmpczRWfk/add_synthetic/README.md.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Updating '.gitignore'.</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Creating C:/Users/lissa102/AppData/Local/Temp/RtmpueiTnT/add_synthetic/README.md.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating '.gitignore'.</span>
 <span class="r-in"><span class="co"># Manually add synthetic</span></span>
 <span class="r-in"><span class="fu">add_synthetic</span><span class="op">(</span><span class="va">df</span>, original_name <span class="op">=</span> <span class="st">"df.csv"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Storing synthetic data in 'synthetic_df.csv' and updating the checksum in '.worcs'.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Updating '.gitignore'.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Updating C:/Users/lissa102/AppData/Local/Temp/RtmpczRWfk/add_synthetic/README.md.</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing synthetic data in 'synthetic_df.csv' and updating the checksum in '.worcs'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating '.gitignore'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating C:/Users/lissa102/AppData/Local/Temp/RtmpueiTnT/add_synthetic/README.md.</span>
 <span class="r-in"><span class="co"># Remove original from file and environment</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="st">"df.csv"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span class="r-in"><span class="co"># See that load_data() now loads the synthetic file</span></span>
 <span class="r-in"><span class="fu"><a href="load_data.html">load_data</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Loading synthetic data from 'synthetic_df.csv'.</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Loading synthetic data from 'synthetic_df.csv'.</span>
 <span class="r-in"><span class="co"># Cleaning example directory</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">test_dir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -161,11 +161,13 @@ function is called for its side effects.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
+Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.1.</p>
 </div>
 
       </footer></div>

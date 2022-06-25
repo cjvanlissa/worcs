@@ -20,7 +20,7 @@ the file."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9</span>
       </span>
     </div>
 
@@ -29,7 +29,7 @@ the file."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -105,7 +105,7 @@ function is called for its side effect of rendering an
 <span class="r-in"><span class="co"># Only specify it as custom knit function in an R Markdown file, like so:</span></span>
 <span class="r-in"><span class="co"># knit: worcs::cite_all</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/pandoc_available.html" class="external-link">pandoc_available</a></span><span class="op">(</span><span class="st">"1.14"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/pandoc_available.html" class="external-link">pandoc_available</a></span><span class="op">(</span><span class="st">"2.0"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span class="r-in">  <span class="va">file_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"citeessential"</span>, fileext <span class="op">=</span> <span class="st">".Rmd"</span><span class="op">)</span></span>
 <span class="r-in">  <span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/draft.html" class="external-link">draft</a></span><span class="op">(</span><span class="va">file_name</span>,</span>
 <span class="r-in">                   template <span class="op">=</span> <span class="st">"github_document"</span>,</span>
@@ -118,7 +118,7 @@ function is called for its side effect of rendering an
 <span class="r-in"><span class="op">}</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> processing file: citeessential4fcc2d6f1c91.Rmd</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> processing file: citeessential6ef47f6017af.Rmd</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |..........                                                            |  14%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ordinary text without R code</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -144,13 +144,13 @@ function is called for its side effect of rendering an
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ordinary text without R code</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> output file: citeessential4fcc2d6f1c91.knit.md</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS citeessential4fcc2d6f1c91.knit.md --to gfm-yaml_metadata_block --from markdown+autolink_bare_uris+tex_math_single_backslash --output citeessential4fcc2d6f1c91.md --template "C:\PROGRA~1\R\R-41~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS citeessential4fcc2d6f1c91.md --to html4 --from gfm --output citeessential4fcc2d6f1c91.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-41~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-41~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --metadata pagetitle=PREVIEW </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> output file: citeessential6ef47f6017af.knit.md</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "C:/Program Files/RStudio/bin/quarto/bin/pandoc" +RTS -K512m -RTS citeessential6ef47f6017af.knit.md --to gfm+tex_math_dollars-yaml_metadata_block --from markdown+autolink_bare_uris+tex_math_single_backslash --output citeessential6ef47f6017af.md --template "C:\PROGRA~1\R\R-41~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\default.md" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "C:/Program Files/RStudio/bin/quarto/bin/pandoc" +RTS -K512m -RTS citeessential6ef47f6017af.md --to html4 --from gfm+tex_math_dollars --output citeessential6ef47f6017af.html --standalone --self-contained --highlight-style pygments --template "C:\PROGRA~1\R\R-41~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\PREVIE~1.HTM" --variable "github-markdown-css:C:\PROGRA~1\R\R-41~1.2\library\RMARKD~1\RMARKD~1\TEMPLA~1\GITHUB~1\RESOUR~1\github.css" --metadata pagetitle=PREVIEW --mathjax </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preview created: citeessential4fcc2d6f1c91.html</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Preview created: citeessential6ef47f6017af.html</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Output created: citeessential4fcc2d6f1c91.md</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Output created: citeessential6ef47f6017af.md</span>
 </code></pre></div>
     </div>
   </div>
@@ -161,11 +161,13 @@ function is called for its side effect of rendering an
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
+Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.1.</p>
 </div>
 
       </footer></div>

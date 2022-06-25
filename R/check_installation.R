@@ -14,6 +14,7 @@
 #' @importFrom tinytex pdflatex
 #' @importFrom utils packageDescription
 #' @importFrom gh gh_token
+#' @importFrom renv consent
 check_worcs_installation <- function(what = "all"){
   pass <- list()
   errors <- list()
@@ -138,6 +139,20 @@ check_worcs_installation <- function(what = "all"){
 
     if(!pass[["rmarkdown_pdf"]]) errors[["rmarkdown_pdf"]] <- "Rmarkdown could not render a PDF file."
   }
+
+
+  # renv --------------------------------------------------------------------
+
+  if(any(c("all", "renv") %in% what)){
+
+    pass[["renv_consent"]] <- !inherits(try({
+      { sink(tempfile()); tmp <- invisible(renv::consent()); sink(); }
+      if(!isTRUE(tmp)) stop()
+    }, silent = TRUE), "try-error")
+
+    if(!pass[["renv_consent"]]) errors[["renv_consent"]] <- "renv does not have consent yet; run renv::consent(provided = TRUE)"
+  }
+
   # Show results ------------------------------------------------------------
 
 

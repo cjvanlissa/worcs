@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -96,17 +96,8 @@ current working directory.</p></dd>
 <dt>manuscript</dt>
 <dd><p>Character, indicating what template to use for the
 'R Markdown' manuscript. Default: 'APA6'. Available choices include:
-<code>"APA6", "github_document", "None", "ams_article", "asa_article",
-"biometrics_article", "copernicus_article", "ctex", "elsevier_article",
-"frontiers_article", "ieee_article", "joss_article", "jss_article",
-"mdpi_article", "mnras_article", "oup_article", "peerj_article",
-"plos_article", "pnas_article", "rjournal_article", "rsos_article",
-"sage_article", "sim_article", "springer_article", "tf_article"</code>.
-For more information about <code>APA6</code>, see the 'papaja' package, at
-&lt;https://github.com/crsh/papaja&gt;.
-For more information about <code>github_document</code>, see
-<code><a href="https://pkgs.rstudio.com/rmarkdown/reference/github_document.html" class="external-link">github_document</a></code>. The remaining formats are
-documented in the 'rticles' package.</p></dd>
+<code>"APA6", "github_document", "None"</code> and the templates from the
+<code><a href="https://rdrr.io/pkg/rticles/man/rticles-package.html" class="external-link">rticles</a></code> package. See Details.</p></dd>
 <dt>remote_repo</dt>
 <dd><p>Character, 'https' link to the remote repository for
 this project. This link should have the form <code>https://[...].git</code>.
@@ -121,6 +112,53 @@ during project creation. Default: TRUE</p></dd>
     <h2>Value</h2>
     <p>No return value. This function is called for its side effects.</p>
     </div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>Available choices include the following manuscript templates:</p><ul><li><p><code>'APA6'</code>A <code><a href="https://rdrr.io/pkg/papaja/man/papaja.html" class="external-link">APA6</a></code> style template from the <code>papaja</code> package</p></li>
+<li><p><code>'github_document'</code>A <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/github_document.html" class="external-link">github_document</a></code> from the <code>rmarkdown</code> package</p></li>
+<li><p><code>'acm_article'</code>acm style template from the <code>rtices</code> package</p></li>
+<li><p><code>'acs_article'</code>acs style template from the <code>rtices</code> package</p></li>
+<li><p><code>'aea_article'</code>aea style template from the <code>rtices</code> package</p></li>
+<li><p><code>'agu_article'</code>agu style template from the <code>rtices</code> package</p></li>
+<li><p><code>'ajs_article'</code>ajs style template from the <code>rtices</code> package</p></li>
+<li><p><code>'amq_article'</code>amq style template from the <code>rtices</code> package</p></li>
+<li><p><code>'ams_article'</code>ams style template from the <code>rtices</code> package</p></li>
+<li><p><code>'arxiv_article'</code>arxiv style template from the <code>rtices</code> package</p></li>
+<li><p><code>'asa_article'</code>asa style template from the <code>rtices</code> package</p></li>
+<li><p><code>'bioinformatics_article'</code>bioinformatics style template from the <code>rtices</code> package</p></li>
+<li><p><code>'biometrics_article'</code>biometrics style template from the <code>rtices</code> package</p></li>
+<li><p><code>'copernicus_article'</code>copernicus style template from the <code>rtices</code> package</p></li>
+<li><p><code>'ctex_article'</code>ctex style template from the <code>rtices</code> package</p></li>
+<li><p><code>'elsevier_article'</code>elsevier style template from the <code>rtices</code> package</p></li>
+<li><p><code>'frontiers_article'</code>frontiers style template from the <code>rtices</code> package</p></li>
+<li><p><code>'glossa_article'</code>glossa style template from the <code>rtices</code> package</p></li>
+<li><p><code>'ieee_article'</code>ieee style template from the <code>rtices</code> package</p></li>
+<li><p><code>'ims_article'</code>ims style template from the <code>rtices</code> package</p></li>
+<li><p><code>'informs_article'</code>informs style template from the <code>rtices</code> package</p></li>
+<li><p><code>'iop_article'</code>iop style template from the <code>rtices</code> package</p></li>
+<li><p><code>'isba_article'</code>isba style template from the <code>rtices</code> package</p></li>
+<li><p><code>'jasa_article'</code>jasa style template from the <code>rtices</code> package</p></li>
+<li><p><code>'jedm_article'</code>jedm style template from the <code>rtices</code> package</p></li>
+<li><p><code>'joss_article'</code>joss style template from the <code>rtices</code> package</p></li>
+<li><p><code>'jss_article'</code>jss style template from the <code>rtices</code> package</p></li>
+<li><p><code>'lipics_article'</code>lipics style template from the <code>rtices</code> package</p></li>
+<li><p><code>'mdpi_article'</code>mdpi style template from the <code>rtices</code> package</p></li>
+<li><p><code>'mnras_article'</code>mnras style template from the <code>rtices</code> package</p></li>
+<li><p><code>'oup_article'</code>oup style template from the <code>rtices</code> package</p></li>
+<li><p><code>'peerj_article'</code>peerj style template from the <code>rtices</code> package</p></li>
+<li><p><code>'pihph_article'</code>pihph style template from the <code>rtices</code> package</p></li>
+<li><p><code>'plos_article'</code>plos style template from the <code>rtices</code> package</p></li>
+<li><p><code>'pnas_article'</code>pnas style template from the <code>rtices</code> package</p></li>
+<li><p><code>'rjournal_article'</code>rjournal style template from the <code>rtices</code> package</p></li>
+<li><p><code>'rsos_article'</code>rsos style template from the <code>rtices</code> package</p></li>
+<li><p><code>'rss_article'</code>rss style template from the <code>rtices</code> package</p></li>
+<li><p><code>'sage_article'</code>sage style template from the <code>rtices</code> package</p></li>
+<li><p><code>'sim_article'</code>sim style template from the <code>rtices</code> package</p></li>
+<li><p><code>'springer_article'</code>springer style template from the <code>rtices</code> package</p></li>
+<li><p><code>'tf_article'</code>tf style template from the <code>rtices</code> package</p></li>
+<li><p><code>'trb_article'</code>trb style template from the <code>rtices</code> package</p></li>
+<li><p><code>'wellcomeor_article'</code>wellcomeor style template from the <code>rtices</code> package</p></li>
+</ul></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
@@ -130,8 +168,8 @@ during project creation. Default: TRUE</p></dd>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.create</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">the_test</span>, <span class="st">".worcs"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span class="fu">add_manuscript</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">the_test</span><span class="op">)</span>,</span>
-<span class="r-in">              manuscript <span class="op">=</span> <span class="st">"github_document"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">X  </span><span style="color: #000000;">Creating manuscript files.</span></span>
+<span class="r-in">              manuscript <span class="op">=</span> <span class="st">"None"</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Creating manuscript files.</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">the_test</span><span class="op">)</span><span class="op">)</span></span>
 </code></pre></div>
@@ -144,11 +182,13 @@ during project creation. Default: TRUE</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
+Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.1.</p>
 </div>
 
       </footer></div>

@@ -72,4 +72,9 @@ Unfortunately, this package is not yet available on the central R repository CRA
 install.packages("papaja", dependencies = TRUE, update = "never")
 ```
 
-That's it! Everything should be installed and connected now.
+Everything should be installed and connected now. You can verify your installation using the convenience function `worcs::check_worcs_installation()`. It will run a test suite and print the results; in case any tests fail, it will provide a hint for how to resolve it:
+
+```
+worcs::check_worcs_installation()
+```
+

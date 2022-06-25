@@ -22,16 +22,11 @@
 * win-builder: oldversion
 * rhub check: Windows Server 2008 R2 SP1, R-devel, 32/64 bit
 * rhub check: Ubuntu Linux 16.04 LTS, R-release, GCC
-  + Dependency "gert" not available (because openssl is not installed)
 * rhub check: Fedora Linux, R-devel, clang, gfortran
-  + Dependency "gert" not available (because openssl is not installed)
-* Travis linux, release
-* Travis linux, oldrel
-* Travis linux, devel
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
 
 * New maintainer
-    + I changed my email address because I have a new affiliation
+    + I changed jobs and updated my email address accordingly
