@@ -83,7 +83,7 @@ check_worcs_installation <- function(what = "all"){
   if(any(c("all", "github") %in% what)){
 
     pass[["github_pat"]] <- isFALSE(gh::gh_token() == "")
-    if(!pass[["github_pat"]]) errors[["github_pat"]] <- "You do not have a personal access token for GitHub; if you intend to use GitHub, consider creating one, see https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token"
+    if(!pass[["github_pat"]]) errors[["github_pat"]] <- "You do not have a personal access token for GitHub; if you intend to use GitHub, consider creating one following the instructions at https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token. Then, run credentials::set_github_pat('YourPAT') in R."
 
     # GitHub SSH
     temp <- tempfile()
@@ -157,12 +157,11 @@ check_worcs_installation <- function(what = "all"){
 
 
   pass <- unlist(pass)
-  padlength <- max(sapply(names(pass), nchar))
   for(n in names(pass)){
     if(pass[n]){
       col_message(n, success = TRUE)
     } else {
-      col_message(paste0(sprintf(paste0("%-", padlength, "s"), n), ": ", errors[[n]]), success = FALSE)
+      col_message(paste0(n, ": ", errors[[n]]), success = FALSE)
     }
   }
   return(invisible(isTRUE(all(pass))))
