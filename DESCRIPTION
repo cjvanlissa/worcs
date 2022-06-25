@@ -40,6 +40,7 @@ RoxygenNote: 7.1.2
 Imports:
     methods,
     rmarkdown,
+    renv,
     prereg,
     gert,
     ranger,
@@ -53,7 +54,6 @@ Imports:
 Suggests:
     papaja,
     remotes,
-    renv,
     knitr,
     missRanger,
     testthat (>= 2.1.0)
