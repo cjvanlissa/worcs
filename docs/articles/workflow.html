@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9</span>
       </span>
     </div>
 
@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -106,7 +106,14 @@
 <div class="section level2">
 <h2 id="worcs-steps-to-follow-for-a-project">WORCS: Steps to follow for a project<a class="anchor" aria-label="anchor" href="#worcs-steps-to-follow-for-a-project"></a>
 </h2>
-<p>This vignette describes the Workflow for Open Reproducible Code in Science, as introduced in <span class="citation">Van Lissa et al. (2020)</span>. The paper describes the rationale and principled approach on which the workflow is based; this vignette describes the practical steps for R-users in greater detail. Note that, although the steps are numbered for reference purposes, we acknowledge that the process of conducting research is not always linear. The workflow is illustrated in the graph below, with optional steps displayed in blue nodes:</p>
+<p>This vignette describes the Workflow for Open Reproducible Code in
+Science, as introduced in <span class="citation">Van Lissa et al.
+(2020)</span>. The paper describes the rationale and principled approach
+on which the workflow is based; this vignette describes the practical
+steps for R-users in greater detail. Note that, although the steps are
+numbered for reference purposes, we acknowledge that the process of
+conducting research is not always linear. The workflow is illustrated in
+the graph below, with optional steps displayed in blue nodes:</p>
 <p><img src="workflow.png" width="100%"></p>
 <div class="section level3">
 <h3 id="phase-1-study-design">Phase 1: Study design<a class="anchor" aria-label="anchor" href="#phase-1-study-design"></a>
@@ -116,42 +123,72 @@
 <!--S: Create a (Public or Private) remote repository on a 'Git' hosting service-->
 Create a new remote repository on a ‘Git’ hosting service, such as <a href="https://github.com" class="external-link">“GitHub”</a>
 <ul>
-<li>For inexperienced users, we recommend making this repository “Private,” which means only you and selected co-authors can access it. You can set it to “Public” later - for example, when the paper goes to print - and the entire history of the Repository will be public record. We recommend making the repository “Public” from the start <strong>only if</strong> you are an experienced user and know what you are doing.</li>
-<li>Copy the repository’s SSH link to clipboard; this link should look something like <code>git@github.com:username/repository.git</code>
+<li>For inexperienced users, we recommend making this repository
+“Private”, which means only you and selected co-authors can access it.
+You can set it to “Public” later - for example, when the paper goes to
+print - and the entire history of the Repository will be public record.
+We recommend making the repository “Public” from the start <strong>only
+if</strong> you are an experienced user and know what you are
+doing.</li>
+<li>Copy the repository’s SSH link to clipboard; this link should look
+something like <code>git@github.com:username/repository.git</code>
 </li>
 </ul>
 </li>
 <li>
 <!--S: When using R, initialize a new RStudio project using the WORCS template. Otherwise, clone the remote repository to your local project folder.-->
-In Rstudio, click File &gt; New Project &gt; New directory &gt; WORCS Project Template
+In Rstudio, click File &gt; New Project &gt; New directory &gt; WORCS
+Project Template
 <ol style="list-style-type: lower-alpha">
-<li>Paste the remote Repository address in the textbox. This address should look like <code>git@github.com:username/repository.git</code>
+<li>Paste the remote Repository address in the textbox. This address
+should look like
+<code>git@github.com:username/repository.git</code>
 </li>
-<li>Keep the checkbox for <code>renv</code> checked if you want to use dependency management (recommended)</li>
-<li>Select a preregistration template, or add a preregistration later using <code><a href="../reference/add_preregistration.html">add_preregistration()</a></code>
+<li>Keep the checkbox for <code>renv</code> checked if you want to use
+dependency management (recommended)</li>
+<li>Select a preregistration template, or add a preregistration later
+using <code><a href="../reference/add_preregistration.html">add_preregistration()</a></code>
 </li>
-<li>Select a manuscript template, or add a manuscript later using <code><a href="../reference/add_manuscript.html">add_manuscript()</a></code>
+<li>Select a manuscript template, or add a manuscript later using
+<code><a href="../reference/add_manuscript.html">add_manuscript()</a></code>
 </li>
-<li>Select a license for your project (we recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited)</li>
+<li>Select a license for your project (we recommend a CC-BY license,
+which allows free use of the licensed material as long as the creator is
+credited)</li>
 </ol>
 </li>
 <li>
 <!--S: Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability. This is automated by the `worcs` package.-->
-A template README.md file will be automatically generated during project creation. Edit this template to explain how users should interact with the project. Based on your selections in the New Project dialog, a LICENSE will also be added to the project, to explain users’ rights and limit your liability. We recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited.</li>
+A template README.md file will be automatically generated during project
+creation. Edit this template to explain how users should interact with
+the project. Based on your selections in the New Project dialog, a
+LICENSE will also be added to the project, to explain users’ rights and
+limit your liability. We recommend a CC-BY license, which allows free
+use of the licensed material as long as the creator is credited.</li>
 <li>
 <!--S: Optional: Preregister your analysis by committing a plain-text preregistration and [tag this commit](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) with the label "preregistration".-->
-Optional: Preregister your analysis by committing a plain-text preregistration and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">tag this commit</a> with the label “preregistration”:
+Optional: Preregister your analysis by committing a plain-text
+preregistration and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">tag
+this commit</a> with the label “preregistration”:
 <ul>
-<li>Document study plans in a <code>preregistration.Rmd</code> file, and optionally, planned analyses in a <code>.R</code> file.</li>
-<li>In the top-right panel of ‘RStudio,’ select the ‘Git’ tab</li>
+<li>Document study plans in a <code>preregistration.Rmd</code> file, and
+optionally, planned analyses in a <code>.R</code> file.</li>
+<li>In the top-right panel of ‘RStudio’, select the ‘Git’ tab</li>
 <li>Select the checkbox next to the preregistration file(s)</li>
 <li>Click the Commit button.</li>
-<li>In the pop-up window, write an informative “Commit message,” e.g., “Preregistration”</li>
+<li>In the pop-up window, write an informative “Commit message”, e.g.,
+“Preregistration”</li>
 <li>Click the Commit button below the message dialog</li>
-<li>Click the green arrow labeled “Push” to send your commit to the ‘Git’ remote repository</li>
+<li>Click the green arrow labeled “Push” to send your commit to the
+‘Git’ remote repository</li>
 <li>
-<a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">Tag this commit as a release</a> on the remote repository, using the label “preregistration.” A tagged release helps others retrieve this commit.</li>
-<li>Instructions for ‘GitHub’ <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">are explained here</a> <!--        - Go to the 'GitHub' page for your project
+<a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">Tag
+this commit as a release</a> on the remote repository, using the label
+“preregistration”. A tagged release helps others retrieve this
+commit.</li>
+<li>Instructions for ‘GitHub’ <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">are
+explained here</a>
+<!--        - Go to the 'GitHub' page for your project
      - Click the label that says "0 releases"
      - Click the button labeled "Create new release"
      - In the textbox labeled "Tag version" and the textbox "Release title", write: "Preregistration"
@@ -161,11 +198,17 @@ Optional: Preregister your analysis by committing a plain-text preregistration a
 </li>
 <li>
 <!--S: Optional: Upload the preregistration to a dedicated preregistration server-->
-Optional: Render the preregistration to PDF, and upload it as an attachment to a dedicated preregistration server like AsPredicted.org or OSF.io
+Optional: Render the preregistration to PDF, and upload it as an
+attachment to a dedicated preregistration server like AsPredicted.org or
+OSF.io
 <ul>
-<li>In ‘RStudio,’ with the file ‘preregistration.Rmd’ open, click the “Knit” button above the top left panel</li>
-<li>When the PDF is generated, go to one of the recognized preregistration services’ websites, create a new preregistration, and upload it as an attachment.</li>
-<li>Optional: Generate a DOI for the preregistration through <a href="https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data" class="external-link">the OSF</a> or a service like <a href="https://guides.github.com/activities/citable-code/" class="external-link">Zenodo</a>
+<li>In ‘RStudio’, with the file ‘preregistration.Rmd’ open, click the
+“Knit” button above the top left panel</li>
+<li>When the PDF is generated, go to one of the recognized
+preregistration services’ websites, create a new preregistration, and
+upload it as an attachment.</li>
+<li>Optional: Generate a DOI for the preregistration through <a href="https://help.osf.io/article/218-sharing-data" class="external-link">the OSF</a> or a
+service like <a href="https://docs.github.com/repositories/archiving-a-github-repository/referencing-and-citing-content" class="external-link">Zenodo</a>
 </li>
 </ul>
 </li>
@@ -173,8 +216,10 @@ Optional: Render the preregistration to PDF, and upload it as an attachment to a
 <!--S: Optional: Add study materials to the repository-->
 Optional: Add study materials to the repository.
 <ul>
-<li>Only do this for study materials to which you own the rights, or when the materials’ license allows it</li>
-<li>You can solicit feedback and outside contributions on a ‘Git’ remote repository by opening an “Issue” or by accepting “Pull requests”</li>
+<li>Only do this for study materials to which you own the rights, or
+when the materials’ license allows it</li>
+<li>You can solicit feedback and outside contributions on a ‘Git’ remote
+repository by opening an “Issue” or by accepting “Pull requests”</li>
 </ul>
 </li>
 </ol>
@@ -185,46 +230,68 @@ Optional: Add study materials to the repository.
 <ol start="7" style="list-style-type: decimal">
 <li>
 <!--S: Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable-->
-Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable
+Create an executable script documenting the code required to load the
+raw data into a tabular format, and de-identify human subjects if
+applicable
 <ul>
-<li>Document this preprocessing (“data wrangling”) procedure in the <code>prepare_data.R</code> file.</li>
-<li>This file is intended to document steps that can not or should not be replicated by end users, unless they have access to the raw data file.</li>
-<li>These are steps you would run only once, the first time you load data into R.</li>
-<li>Make this file as short as possible; only include steps that are absolutely necessary</li>
+<li>Document this preprocessing (“data wrangling”) procedure in the
+<code>prepare_data.R</code> file.</li>
+<li>This file is intended to document steps that can not or should not
+be replicated by end users, unless they have access to the raw data
+file.</li>
+<li>These are steps you would run only once, the first time you load
+data into R.</li>
+<li>Make this file as short as possible; only include steps that are
+absolutely necessary</li>
 </ul>
 </li>
 <li>
 <!--S: Save the data into a plain-text tabular format like `.csv`. When using open data, commit this file to 'Git'. When using closed data, commit a checksum of the file, and a synthetic copy of the data.-->
-Save the data using <code><a href="../reference/open_data.html">open_data()</a></code> or <code><a href="../reference/closed_data.html">closed_data()</a></code>
+Save the data using <code><a href="../reference/open_data.html">open_data()</a></code> or
+<code><a href="../reference/closed_data.html">closed_data()</a></code>
 <ul>
-<li><font colour="red"><strong>WARNING:</strong> Once you commit a data file to the ‘Git’ repository, its record will be retained forever (unless the entire repository is deleted). Assume that pushing data to a ‘Git’ remote repository cannot be undone. Follow the mantra: “Never commit something you do not intend to share.”</font></li>
-<li>When using external data sources (e.g., obtained using an API), it is recommended to store a local copy, to make the project portable and to ensure that end users have access to the same version of the data you used.</li>
+<li><font colour="red"><strong>WARNING:</strong> Once you commit a
+data file to the ‘Git’ repository, its record will be retained forever
+(unless the entire repository is deleted). Assume that pushing data to a
+‘Git’ remote repository cannot be undone. Follow the mantra: “Never
+commit something you do not intend to share”.</font></li>
+<li>When using external data sources (e.g., obtained using an API), it
+is recommended to store a local copy, to make the project portable and
+to ensure that end users have access to the same version of the data you
+used.</li>
 </ul>
 </li>
 <li>
 <!--S: Write the manuscript using a dynamic document generation format, with code chunks to perform the analyses.-->
 Write the manuscript in <code>Manuscript.Rmd</code>
 <ul>
-<li>Use code chunks to perform the analyses. The first code chunk should call <code><a href="../reference/load_data.html">load_data()</a></code>
+<li>Use code chunks to perform the analyses. The first code chunk should
+call <code><a href="../reference/load_data.html">load_data()</a></code>
 </li>
-<li>Finish each sentence with one carriage return (enter); separate paragraphs with a double carriage return.</li>
+<li>Finish each sentence with one carriage return (enter); separate
+paragraphs with a double carriage return.</li>
 </ul>
 </li>
 <li>
 <!--S: Commit every small change to the 'Git' repository-->
-Regularly Commit your progress to the Git repository; ideally, after completing each small and clearly defined task.
+Regularly Commit your progress to the Git repository; ideally, after
+completing each small and clearly defined task.
 <ul>
-<li>In the top-right panel of ‘RStudio,’ select the ‘Git’ tab</li>
-<li>Select the checkboxes next to all files whose changes you wish to Commit</li>
+<li>In the top-right panel of ‘RStudio’, select the ‘Git’ tab</li>
+<li>Select the checkboxes next to all files whose changes you wish to
+Commit</li>
 <li>Click the Commit button.</li>
-<li>In the pop-up window, write an informative “Commit message.”</li>
+<li>In the pop-up window, write an informative “Commit message”.</li>
 <li>Click the Commit button below the message dialog</li>
-<li>Click the green arrow labeled “Push” to send your commit to the remote repository</li>
+<li>Click the green arrow labeled “Push” to send your commit to the
+remote repository</li>
 </ul>
 </li>
 <li>
 <!--S: Use comprehensive citation-->
-While writing, cite essential references with one at-symbol, <code>[@essentialref2020]</code>, and non-essential references with a double at-symbol, <code>[@@nonessential2020]</code>.</li>
+While writing, cite essential references with one at-symbol,
+<code>[@essentialref2020]</code>, and non-essential references with a
+double at-symbol, <code>[@@nonessential2020]</code>.</li>
 </ol>
 </div>
 <div class="section level3">
@@ -233,15 +300,26 @@ While writing, cite essential references with one at-symbol, <code>[@essentialre
 <ol start="12" style="list-style-type: decimal">
 <li>
 <!--S: Use dependency management to make the computational environment fully reproducible-->
-Use dependency management to make the computational environment fully reproducible. When using <code>renv</code>, you can save the state of the project library (all packages used) by calling <code><a href="https://rstudio.github.io/renv/reference/snapshot.html" class="external-link">renv::snapshot()</a></code>. This updates the lockfile, <code>renv.lock</code>.</li>
+Use dependency management to make the computational environment fully
+reproducible. When using <code>renv</code>, you can save the state of
+the project library (all packages used) by calling
+<code><a href="https://rstudio.github.io/renv/reference/snapshot.html" class="external-link">renv::snapshot()</a></code>. This updates the lockfile,
+<code>renv.lock</code>.</li>
 <li>
 <!--S: Optional: Add a WORCS-badge to your project's README file-->
-Optional: Add a WORCS-badge to your project’s README file and complete the optional elements of the WORCS checklist to qualify for a “Perfect” rating. Run the <code><a href="../reference/check_worcs.html">check_worcs()</a></code> function to see whether your project adheres to the WORCS checklist (see <code>worcs::checklist</code>)
+Optional: Add a WORCS-badge to your project’s README file and complete
+the optional elements of the WORCS checklist to qualify for a “Perfect”
+rating. Run the <code><a href="../reference/check_worcs.html">check_worcs()</a></code> function to see whether your
+project adheres to the WORCS checklist (see
+<code>worcs::checklist</code>)
 <ul>
-<li>This adds a WORCS-badge to your ‘README.md’ file, with a rank of “Fail,” “Limited,” or “Open.”</li>
-<li>Reference the WORCS checklist and your paper’s score in the paper.</li>
+<li>This adds a WORCS-badge to your ‘README.md’ file, with a rank of
+“Fail”, “Limited”, or “Open”.</li>
+<li>Reference the WORCS checklist and your paper’s score in the
+paper.</li>
 <li>
-<em>Optional:</em> Complete the additional optional items in the WORCS checklist by hand, and get a “Perfect” rating.</li>
+<em>Optional:</em> Complete the additional optional items in the
+WORCS checklist by hand, and get a “Perfect” rating.</li>
 </ul>
 </li>
 <li>
@@ -252,35 +330,58 @@ Make the ‘Git’ remote repository “Public” if it was set to “Private”
 <ul>
 <li>Go to your project’s repository</li>
 <li>Click the “Settings” button</li>
-<li>Scroll to the bottom of the page; click “Make public,” and follow the on-screen instructions</li>
+<li>Scroll to the bottom of the page; click “Make public”, and follow
+the on-screen instructions</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<!--S: [Create a project page on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project) and [connect it to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->
-<a href="https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project" class="external-link">Create a project on the Open Science Framework (OSF)</a> and <a href="https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project" class="external-link">connect it to the ‘Git’ remote repository</a>.
+<!--S: [Create a project page on the Open Science Framework (OSF)](https://help.osf.io/article/252-create-a-project) and [connect it to the 'Git' remote repository](https://help.osf.io/article/211-connect-github-to-a-project)-->
+<a href="https://help.osf.io/article/252-create-a-project" class="external-link">Create a
+project on the Open Science Framework (OSF)</a> and <a href="https://help.osf.io/article/211-connect-github-to-a-project" class="external-link">connect
+it to the ‘Git’ remote repository</a>.
 <ul>
-<li>On the OSF project page, you can select a License for the project. This helps clearly communicate the terms of reusability of your project. Make sure to use the same License you selected during project creation in Step 3.</li>
+<li>On the OSF project page, you can select a License for the project.
+This helps clearly communicate the terms of reusability of your project.
+Make sure to use the same License you selected during project creation
+in Step 3.</li>
 </ul>
 </li>
 <li>
-<!--S: [Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs)-->
-<a href="https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs" class="external-link">Generate a Digital Object Identifier (DOI) for the OSF project</a>
+<!--S: [Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/article/220-create-dois)-->
+<a href="https://help.osf.io/article/220-create-dois" class="external-link">Generate a Digital
+Object Identifier (DOI) for the OSF project</a>
 <ul>
-<li>A DOI is a persistent identifier that can be used to link to your project page.</li>
-<li>You may have already created a project page under Step 5 if you preregistered on the OSF</li>
-<li>Optionally, you can <a href="https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data" class="external-link">generate additional DOIs for specific resources like datasets</a>.</li>
-<li>Alternatively, you can <a href="https://guides.github.com/activities/citable-code/" class="external-link">connect your ‘Git’ remote repository to Zenodo</a>, instead of the OSF, to create DOIs for the project and specific resources.</li>
+<li>A DOI is a persistent identifier that can be used to link to your
+project page.</li>
+<li>You may have already created a project page under Step 5 if you
+preregistered on the OSF</li>
+<li>Optionally, you can <a href="https://help.osf.io/article/218-sharing-data" class="external-link">generate additional
+DOIs for specific resources like datasets</a>.</li>
+<li>Alternatively, you can <a href="https://docs.github.com/repositories/archiving-a-github-repository/referencing-and-citing-content" class="external-link">connect
+your ‘Git’ remote repository to Zenodo</a>, instead of the OSF, to
+create DOIs for the project and specific resources.</li>
 </ul>
 </li>
 <li>
 <!--S: Add an open science statement to the Abstract or Author notes, which links to the 'OSF' project page and/or the 'Git' remote repository-->
-Add an open science statement to the Abstract or Author notes, which links to the ‘OSF’ project page and/or the ‘Git’ remote repository.
+Add an open science statement to the Abstract or Author notes, which
+links to the ‘OSF’ project page and/or the ‘Git’ remote repository.
 <ul>
-<li>Placing this statement in the Abstract or Author note means that readers can find your project even if the paper is published behind a paywall.</li>
+<li>Placing this statement in the Abstract or Author note means that
+readers can find your project even if the paper is published behind a
+paywall.</li>
 <li>The link can be masked for blind review.</li>
-<li>The open science statement should indicate which resources are available in the online repository; data, code, materials, study design details, a pre-registration, and/or comprehensive citations. For further guidance, see <span class="citation">Aalbersberg et al. (2018)</span>. Example:<br><em>In the spirit of open science, an online repository is available at XXX, which contains [the data/a synthetic data file], analysis code, the research materials used, details about the study design, more comprehensive citations, and a tagged release with the preregistration.</em>
+<li>The open science statement should indicate which resources are
+available in the online repository; data, code, materials, study design
+details, a pre-registration, and/or comprehensive citations. For further
+guidance, see <span class="citation">Aalbersberg et al. (2018)</span>.
+Example:<br><em>In the spirit of open science, an online repository is available at
+XXX, which contains [the data/a synthetic data file], analysis code, the
+research materials used, details about the study design, more
+comprehensive citations, and a tagged release with the
+preregistration.</em>
 </li>
 </ul>
 </li>
@@ -288,44 +389,69 @@ Add an open science statement to the Abstract or Author notes, which links to th
 <!--S: Render the dynamic document to PDF-->
 Knit the paper to PDF for submission
 <ul>
-<li>In ‘RStudio,’ with the file ‘manuscript.Rmd’ open, click the “Knit” button above the top left panel</li>
-<li>To retain essential citations only, change the front matter of the ‘manuscript.Rmd’ file:<br>
-Change <code>knit: worcs::cite_all</code> to <code>knit: worcs::cite_essential</code>
+<li>In ‘RStudio’, with the file ‘manuscript.Rmd’ open, click the “Knit”
+button above the top left panel</li>
+<li>To retain essential citations only, change the front matter of the
+‘manuscript.Rmd’ file:<br>
+Change <code>knit: worcs::cite_all</code> to
+<code>knit: worcs::cite_essential</code>
 </li>
 </ul>
 </li>
 <li>
-<!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)-->
-Optional: <a href="https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint" class="external-link">Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project</a>
+<!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/article/177-upload-a-preprint)-->
+Optional: <a href="https://help.osf.io/article/177-upload-a-preprint" class="external-link">Publish
+preprint in a not-for-profit preprint repository such as PsyArchiv, and
+connect it to your existing OSF project</a>
 <ul>
-<li>Check <a href="http://sherpa.ac.uk/romeo/index.php" class="external-link">Sherpa Romeo</a> to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.</li>
+<li>Check <a href="http://sherpa.ac.uk/romeo/index.php" class="external-link">Sherpa Romeo</a>
+to be sure that your intended outlet allows the publication of
+preprints; many journals do, nowadays - and if they do not, it is worth
+considering other outlets.</li>
 </ul>
 </li>
 <li>
 <!--S: Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) of the submitted paper as a release, as in Step 4.-->
-Submit the paper, and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">tag the commit of the submitted paper as a release</a>, as in Step 4.</li>
+Submit the paper, and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository" class="external-link">tag
+the commit of the submitted paper as a release</a>, as in Step 4.</li>
 </ol>
 </div>
 <div class="section level3">
 <h3 id="notes-for-cautious-researchers">Notes for cautious researchers<a class="anchor" aria-label="anchor" href="#notes-for-cautious-researchers"></a>
 </h3>
 <!--S: Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance.-->
-<p>Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a “Private” repository in Step 1, and completing Steps 13-18 upon acceptance by the journal.</p>
+<p>Some researchers might want to share their work only once the paper
+is accepted for publication. In this case, we recommend creating a
+“Private” repository in Step 1, and completing Steps 13-18 upon
+acceptance by the journal.</p>
 <p><strong>Image attribution</strong></p>
-<p>The <a href="https://git-scm.com/" class="external-link">Git Logo</a> by Jason Long is licensed under the Creative Commons Attribution 3.0 Unported License. The <a href="https://osf.io/" class="external-link">OSF logo</a> is licensed under CC0 1.0 Universal. Icons in the workflow graph are obtained from <a href="https://www.flaticon.com" class="external-link">Flaticon</a>; see <a href="https://github.com/cjvanlissa/worcs/blob/master/paper/workflow_graph/Attribution_for_images.txt" class="external-link">detailed attribution</a>.</p>
+<p>The <a href="https://git-scm.com/" class="external-link">Git Logo</a> by Jason Long is
+licensed under the Creative Commons Attribution 3.0 Unported License.
+The <a href="https://osf.io/" class="external-link">OSF logo</a> is licensed under CC0 1.0
+Universal. Icons in the workflow graph are obtained from <a href="https://www.flaticon.com" class="external-link">Flaticon</a>; see <a href="https://github.com/cjvanlissa/worcs/blob/master/paper/workflow_graph/Attribution_for_images.txt" class="external-link">detailed
+attribution</a>.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="sample-worcs-projects">Sample WORCS projects<a class="anchor" aria-label="anchor" href="#sample-worcs-projects"></a>
 </h2>
-<p>For a list of sample <code>worcs</code> projects created by the authors and other users, see the <a href="https://github.com/cjvanlissa/worcs" class="external-link"><code>README.md</code> file on the WORCS GitHub page</a>. This list is regularly updated.</p>
+<p>For a list of sample <code>worcs</code> projects created by the
+authors and other users, see the <a href="https://github.com/cjvanlissa/worcs" class="external-link"><code>README.md</code> file
+on the WORCS GitHub page</a>. This list is regularly updated.</p>
 <p><strong>References</strong></p>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-aalbersbergMakingScienceTransparent2018" class="csl-entry">
-Aalbersberg, IJsbrand Jan, Tom Appleyard, Sarah Brookhart, Todd Carpenter, Michael Clarke, Stephen Curry, Josh Dahl, et al. 2018. <span>“Making <span>Science Transparent By Default</span>; <span>Introducing</span> the <span>TOP Statement</span>,”</span> February. <a href="https://doi.org/10.31219/osf.io/sm78t" class="external-link">https://doi.org/10.31219/osf.io/sm78t</a>.
+Aalbersberg, IJsbrand Jan, Tom Appleyard, Sarah Brookhart, Todd
+Carpenter, Michael Clarke, Stephen Curry, Josh Dahl, et al. 2018.
+<span>“Making <span>Science Transparent By Default</span>;
+<span>Introducing</span> the <span>TOP Statement</span>,”</span>
+February. <a href="https://doi.org/10.31219/osf.io/sm78t" class="external-link">https://doi.org/10.31219/osf.io/sm78t</a>.
 </div>
 <div id="ref-vanlissaWORCSWorkflowOpen2020" class="csl-entry">
-Van Lissa, Caspar J., Andreas M. Brandmaier, Loek Brinkman, Anna-Lena Lamprecht, Aaron Peikert, Marijn E. Struiksma, and Barbara Vreede. 2020. <span>“<span>WORCS</span>: <span>A Workflow</span> for <span>Open Reproducible Code</span> in <span>Science</span>,”</span> May. <a href="https://doi.org/10.17605/OSF.IO/ZCVBS" class="external-link">https://doi.org/10.17605/OSF.IO/ZCVBS</a>.
+Van Lissa, Caspar J., Andreas M. Brandmaier, Loek Brinkman, Anna-Lena
+Lamprecht, Aaron Peikert, Marijn E. Struiksma, and Barbara Vreede. 2020.
+<span>“<span>WORCS</span>: <span>A Workflow</span> for <span>Open
+Reproducible Code</span> in <span>Science</span>,”</span> May. <a href="https://doi.org/10.17605/OSF.IO/ZCVBS" class="external-link">https://doi.org/10.17605/OSF.IO/ZCVBS</a>.
 </div>
 </div>
 </div>
@@ -343,12 +469,14 @@ Van Lissa, Caspar J., Andreas M. Brandmaier, Loek Brinkman, Anna-Lena Lamprecht,
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+<p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
+Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.1.</p>
 </div>
 
       </footer>

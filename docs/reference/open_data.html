@@ -19,7 +19,7 @@ and amends the .gitignore file to exclude filename."><!-- mathjax --><script src
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9</span>
       </span>
     </div>
 
@@ -28,7 +28,7 @@ and amends the .gitignore file to exclude filename."><!-- mathjax --><script src
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -146,8 +146,8 @@ function is called for its side effects.</p>
 <span class="r-in"><span class="fu">worcs</span><span class="fu">:::</span><span class="fu">write_worcsfile</span><span class="op">(</span><span class="st">".worcs"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span></span>
 <span class="r-in"><span class="fu">open_data</span><span class="op">(</span><span class="va">df</span>, codebook <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Updating '.gitignore'.</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating '.gitignore'.</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">test_dir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 </code></pre></div>
@@ -160,11 +160,13 @@ function is called for its side effects.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
+Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.1.</p>
 </div>
 
       </footer></div>

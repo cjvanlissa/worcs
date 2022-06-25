@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9</span>
       </span>
     </div>
 
@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -103,36 +103,58 @@
 
     
     
-<p>The WORCS paper describes a workflow centered around ‘GitHub’, but there are several other cloud hosting services that offer similar functionality. This vignette describes the process of connecting a <code>worcs</code> project to these other cloud hosting services. If you are missing your preferred cloud hosting service, please submit a pull request with a step-by-step tutorial for that service <a href="https://github.com/cjvanlissa/worcs/pulls" class="external-link">here</a>.</p>
+<p>The WORCS paper describes a workflow centered around ‘GitHub’, but
+there are several other cloud hosting services that offer similar
+functionality. This vignette describes the process of connecting a
+<code>worcs</code> project to these other cloud hosting services. If you
+are missing your preferred cloud hosting service, please submit a pull
+request with a step-by-step tutorial for that service <a href="https://github.com/cjvanlissa/worcs/pulls" class="external-link">here</a>.</p>
 <div class="section level2">
 <h2 id="gitlab">GitLab<a class="anchor" aria-label="anchor" href="#gitlab"></a>
 </h2>
 <div class="section level3">
 <h3 id="setup-steps-do-this-only-once">Setup steps (do this only once)<a class="anchor" aria-label="anchor" href="#setup-steps-do-this-only-once"></a>
 </h3>
-<p>The ‘GitLab’ website looks and feels almost identical to ‘GitHub’. Steps 4 and 5 of the <code>setup</code> vignette can be applied nearly without alterations. To connect <code>worcs</code> to ‘GitLab’, I proceeded as follows:</p>
+<p>The ‘GitLab’ website looks and feels almost identical to ‘GitHub’.
+Steps 4 and 5 of the <code>setup</code> vignette can be applied nearly
+without alterations. To connect <code>worcs</code> to ‘GitLab’, I
+proceeded as follows:</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Register on GitLab
 <ul>
-<li>Go to <a href="https://about.gitlab.com/" class="external-link">gitlab.com</a> and click <em>Register now</em>. Choose an “Individual”, “Free” plan.</li>
-<li>Request a <a href="https://about.gitlab.com/solutions/education/" class="external-link">free academic upgrade</a>.</li>
+<li>Go to <a href="https://about.gitlab.com/" class="external-link">gitlab.com</a> and click
+<em>Register now</em>. Choose an “Individual”, “Free” plan.</li>
+<li>Request a <a href="https://about.gitlab.com/solutions/education/" class="external-link">free academic
+upgrade</a>.</li>
 </ul>
 </li>
-<li>Connect ‘RStudio’ to Git and GitLab (for more support, see <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN" class="external-link">this ‘RStudio’ article</a>, and <a href="https://www.r-bloggers.com/2015/07/rstudio-and-github/" class="external-link">this blog post</a>)
+<li>Connect ‘RStudio’ to Git and GitLab (for more support, see <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN" class="external-link">this
+‘RStudio’ article</a>, and <a href="https://www.r-bloggers.com/2015/07/rstudio-and-github/" class="external-link">this blog
+post</a>)
 <ol style="list-style-type: lower-alpha">
-<li>Open ‘RStudio’, open the Tools menu, click <em>Global Options</em>, and click <em>Git/SVN</em>
+<li>Open ‘RStudio’, open the Tools menu, click <em>Global Options</em>,
+and click <em>Git/SVN</em>
 </li>
-<li>Verify that <em>Enable version control interface for RStudio projects</em> is selected</li>
-<li>Verify that <em>Git executable:</em> shows the location of git.exe. If it is missing, manually fix the location of the file.</li>
-<li>Click <em>Create RSA Key</em>. Do not enter a passphrase. Press <em>Create</em>. A window with some information will open, which you can close.</li>
-<li>Click <em>View public key</em>, and copy the entire text to the clipboard.</li>
-<li>Close ‘RStudio’ (it might offer to restart by itself; this is fine)</li>
+<li>Verify that <em>Enable version control interface for RStudio
+projects</em> is selected</li>
+<li>Verify that <em>Git executable:</em> shows the location of git.exe.
+If it is missing, manually fix the location of the file.</li>
+<li>Click <em>Create RSA Key</em>. Do not enter a passphrase. Press
+<em>Create</em>. A window with some information will open, which you can
+close.</li>
+<li>Click <em>View public key</em>, and copy the entire text to the
+clipboard.</li>
+<li>Close ‘RStudio’ (it might offer to restart by itself; this is
+fine)</li>
 <li>Go to <a href="https://about.gitlab.com/" class="external-link">gitlab.com</a>
 </li>
-<li>Click your user icon in the top right of the screen, click <em>Settings</em>
+<li>Click your user icon in the top right of the screen, click
+<em>Settings</em>
 </li>
-<li>On the settings page, click <em>SSH Keys</em> in the left sidebar</li>
-<li>Copy-paste the public key from your clipboard into the box labeled <em>Key</em>.</li>
+<li>On the settings page, click <em>SSH Keys</em> in the left
+sidebar</li>
+<li>Copy-paste the public key from your clipboard into the box labeled
+<em>Key</em>.</li>
 <li>Click <em>Add key</em>.</li>
 <li>Open ‘RStudio’ again (unless it restarted by itself)</li>
 </ol>
@@ -142,12 +164,18 @@
 <div class="section level3">
 <h3 id="connect-new-worcs-project-to-gitlab">Connect new <code>worcs</code> project to ‘GitLab’<a class="anchor" aria-label="anchor" href="#connect-new-worcs-project-to-gitlab"></a>
 </h3>
-<p>To create a new project on ‘GitLab’, go to your account page, and click the <em>Create a project</em> tile in the middle of the screen.</p>
+<p>To create a new project on ‘GitLab’, go to your account page, and
+click the <em>Create a project</em> tile in the middle of the
+screen.</p>
 <ul>
-<li>Fill in a <em>Project name</em>; do not change anything else. Click the green <em>Create project</em> button.</li>
-<li>You will see a page titled <em>“The repository for this project is empty”</em>. Under the header <em>“Create a new repository”</em>, you can see a web address starting with https, like so:<br><code>git clone https://gitlab.com/yourname/yourrepo.git</code>
+<li>Fill in a <em>Project name</em>; do not change anything else. Click
+the green <em>Create project</em> button.</li>
+<li>You will see a page titled <em>“The repository for this project is
+empty”</em>. Under the header <em>“Create a new repository”</em>, you
+can see a web address starting with https, like so:<br><code>git clone https://gitlab.com/yourname/yourrepo.git</code>
 </li>
-<li>Copy only this address, from <code>https://</code> to <code>.git</code>.</li>
+<li>Copy only this address, from <code>https://</code> to
+<code>.git</code>.</li>
 <li>Paste this address into the New project dialog window.</li>
 </ul>
 </div>
@@ -158,31 +186,51 @@
 <div class="section level3">
 <h3 id="setup-steps-do-this-only-once-1">Setup steps (do this only once)<a class="anchor" aria-label="anchor" href="#setup-steps-do-this-only-once-1"></a>
 </h3>
-<p>The ‘Bitbucket’ website has cosmetic differences from ‘GitHub’, but works similarly. Steps 4 and 5 of the <code>setup</code> vignette can be applied nearly without alterations. To connect <code>worcs</code> to ‘Bitbucket’, I proceeded as follows:</p>
+<p>The ‘Bitbucket’ website has cosmetic differences from ‘GitHub’, but
+works similarly. Steps 4 and 5 of the <code>setup</code> vignette can be
+applied nearly without alterations. To connect <code>worcs</code> to
+‘Bitbucket’, I proceeded as follows:</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Register on Bitbucket
 <ul>
-<li>Go to <a href="https://bitbucket.org/" class="external-link">Bitbucket.org</a> and click <em>Get started for free</em>. Follow the steps to create your account. Sign in.</li>
-<li>Bitbucket has largely automated the process of awarding free academic upgrades. If your email address is not recognized as belonging to an academic institution, fill out the form <a href="https://www.atlassian.com/software/views/bitbucket-academic-license" class="external-link">here</a>.</li>
+<li>Go to <a href="https://bitbucket.org/" class="external-link">Bitbucket.org</a> and click
+<em>Get started for free</em>. Follow the steps to create your account.
+Sign in.</li>
+<li>Bitbucket has largely automated the process of awarding free
+academic upgrades. If your email address is not recognized as belonging
+to an academic institution, fill out the form <a href="https://www.atlassian.com/software/views/bitbucket-academic-license" class="external-link">here</a>.</li>
 </ul>
 </li>
-<li>Connect ‘RStudio’ to Git and Bitbucket (for more support, see <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN" class="external-link">this ‘RStudio’ article</a>, and <a href="https://www.r-bloggers.com/2015/07/rstudio-and-github/" class="external-link">this blog post</a>)
+<li>Connect ‘RStudio’ to Git and Bitbucket (for more support, see <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN" class="external-link">this
+‘RStudio’ article</a>, and <a href="https://www.r-bloggers.com/2015/07/rstudio-and-github/" class="external-link">this blog
+post</a>)
 <ol style="list-style-type: lower-alpha">
-<li>Open ‘RStudio’, open the Tools menu, click <em>Global Options</em>, and click <em>Git/SVN</em>
+<li>Open ‘RStudio’, open the Tools menu, click <em>Global Options</em>,
+and click <em>Git/SVN</em>
 </li>
-<li>Verify that <em>Enable version control interface for RStudio projects</em> is selected</li>
-<li>Verify that <em>Git executable:</em> shows the location of git.exe. If it is missing, manually fix the location of the file.</li>
-<li>Click <em>Create RSA Key</em>. Do not enter a passphrase. Press <em>Create</em>. A window with some information will open, which you can close.</li>
-<li>Click <em>View public key</em>, and copy the entire text to the clipboard.</li>
-<li>Close ‘RStudio’ (it might offer to restart by itself; this is fine)</li>
+<li>Verify that <em>Enable version control interface for RStudio
+projects</em> is selected</li>
+<li>Verify that <em>Git executable:</em> shows the location of git.exe.
+If it is missing, manually fix the location of the file.</li>
+<li>Click <em>Create RSA Key</em>. Do not enter a passphrase. Press
+<em>Create</em>. A window with some information will open, which you can
+close.</li>
+<li>Click <em>View public key</em>, and copy the entire text to the
+clipboard.</li>
+<li>Close ‘RStudio’ (it might offer to restart by itself; this is
+fine)</li>
 <li>Go to <a href="https://bitbucket.org/" class="external-link">Bitbucket.org</a>
 </li>
-<li>In the bottom left of the screen, click the circular icon with your initials. Select <em>Personal settings</em>
+<li>In the bottom left of the screen, click the circular icon with your
+initials. Select <em>Personal settings</em>
 </li>
-<li>On the settings page, click <em>SSH Keys</em> in the left sidebar</li>
+<li>On the settings page, click <em>SSH Keys</em> in the left
+sidebar</li>
 <li>Click <em>Add key</em>
 </li>
-<li>Copy-paste the public key from your clipboard into the box labeled <em>Key</em>, and give it a label. Click the <em>Add key</em> button.</li>
+<li>Copy-paste the public key from your clipboard into the box labeled
+<em>Key</em>, and give it a label. Click the <em>Add key</em>
+button.</li>
 <li>Open ‘RStudio’ again (unless it restarted by itself)</li>
 </ol>
 </li>
@@ -191,15 +239,23 @@
 <div class="section level3">
 <h3 id="connect-new-worcs-project-to-bitbucket">Connect new <code>worcs</code> project to ‘Bitbucket’<a class="anchor" aria-label="anchor" href="#connect-new-worcs-project-to-bitbucket"></a>
 </h3>
-<p>To create a new project on ‘Bitbucket’, go to your account page, and click <em>Create repository</em> in the middle of the page. These steps differ somewhat from the procedure for ‘GitHub’:</p>
+<p>To create a new project on ‘Bitbucket’, go to your account page, and
+click <em>Create repository</em> in the middle of the page. These steps
+differ somewhat from the procedure for ‘GitHub’:</p>
 <ul>
-<li>Enter a <em>Project name</em> and a <em>Repository name</em>. The latter will be used to connect your <code>worcs</code> project.</li>
+<li>Enter a <em>Project name</em> and a <em>Repository name</em>. The
+latter will be used to connect your <code>worcs</code> project.</li>
 <li>
-<strong>Important:</strong> Change the setting <em>Include a README?</em> to <em>No</em>.</li>
+<strong>Important:</strong> Change the setting <em>Include a
+README?</em> to <em>No</em>.</li>
 <li>Click “Create repository”</li>
-<li>When the project page opens, you will see the tagline “Let’s put some bits in your bucket”. Change the dropdown menu Just below this tagline from <em>SSH</em> to <em>https</em>. It will show a web address starting with https, like this:<br><code>git clone https://cjvanlissa@bitbucket.org/yourname/yourrepo.git</code>
+<li>When the project page opens, you will see the tagline “Let’s put
+some bits in your bucket”. Change the dropdown menu Just below this
+tagline from <em>SSH</em> to <em>https</em>. It will show a web address
+starting with https, like this:<br><code>git clone https://cjvanlissa@bitbucket.org/yourname/yourrepo.git</code>
 </li>
-<li>Copy only this address, from <code>https://</code> to <code>.git</code>.</li>
+<li>Copy only this address, from <code>https://</code> to
+<code>.git</code>.</li>
 <li>Paste this address into the New project dialog window.</li>
 </ul>
 </div>
@@ -218,12 +274,14 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+<p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
+Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.1.</p>
 </div>
 
       </footer>

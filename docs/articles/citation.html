@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9</span>
       </span>
     </div>
 
@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -103,19 +103,47 @@
 
     
     
-<p>Comprehensive citation of literature, data, materials, methods, and software is one of the hallmarks of open science. When using the R-implementation of WORCS, you will most likely be writing your manuscript in <code>RMarkdown</code> format. This means that you will use Markdown <code>citekey</code>s to refer to references, and these references will be stored in a separate text file known as a <code>.bib</code> file.</p>
-<p>To ease this process, we recommend following this procedure for citation:</p>
+<p>Comprehensive citation of literature, data, materials, methods, and
+software is one of the hallmarks of open science. When using the
+R-implementation of WORCS, you will most likely be writing your
+manuscript in <code>RMarkdown</code> format. This means that you will
+use Markdown <code>citekey</code>s to refer to references, and these
+references will be stored in a separate text file known as a
+<code>.bib</code> file.</p>
+<p>To ease this process, we recommend following this procedure for
+citation:</p>
 <ol style="list-style-type: decimal">
-<li>During writing, maintain a plain-text <code>.bib</code> file with the BibTeX references for all citations.
+<li>During writing, maintain a plain-text <code>.bib</code> file with
+the BibTeX references for all citations.
 <ul>
-<li>You can export a <code>.bib</code> file from most reference manager programs; the free, open-source reference manager <a href="https://www.zotero.org/download/" class="external-link">Zotero</a> is excellent and user-friendly, and highly interoperable with other commercial reference managers. <a href="https://christopherjunk.netlify.com/blog/2019/02/25/zotero-RMarkdown/" class="external-link">Here</a> is a tutorial for using Zotero with RMarkdown.</li>
-<li>Alternatively, it is possible to make this file by hand, copy and pasting each new reference below the previous one; e.g., Figure @ref(fig:scholarbib) shows how to obtain a BibTeX reference from Google Scholar; simply copy-paste each reference into the <code>.bib</code> file</li>
+<li>You can export a <code>.bib</code> file from most reference manager
+programs; the free, open-source reference manager <a href="https://www.zotero.org/download/" class="external-link">Zotero</a> is excellent and
+user-friendly, and highly interoperable with other commercial reference
+managers. <a href="https://christopherjunk.netlify.com/blog/2019/02/25/zotero-RMarkdown/" class="external-link">Here</a>
+is a tutorial for using Zotero with RMarkdown.</li>
+<li>Alternatively, it is possible to make this file by hand, copy and
+pasting each new reference below the previous one; e.g., Figure
+@ref(fig:scholarbib) shows how to obtain a BibTeX reference from Google
+Scholar; simply copy-paste each reference into the <code>.bib</code>
+file</li>
 </ul>
 </li>
-<li>To cite a reference, use the <code>citekey</code> - the first word in the BibTeX entry for that reference. Insert it in the RMarkdown file like so: <code>@yourcitekey2020</code>. For a parenthesized reference, use <code>[@citekeyone2020; @citekeytwo2020]</code>. For more options, see the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html" class="external-link">RMarkdown cookbook</a>.</li>
-<li>To indicate a <em>non-essential</em> citation, mark it with a double at-symbol: <code>@@nonessential2020</code>.</li>
-<li>When Knitting the document, adapt the <code>knit</code> command in the YAML header.<br><code>knit: worcs::cite_all</code> renders all citations, and<br><code>knit: worcs::cite_essential</code> removes all <em>non-essential</em> citations.</li>
-<li>Optional: To be extremely thorough, you could make a “branch” of the GitHub repository for the print version of the manuscript. Only in this branch, you use the function <code>knit: worcs::cite_essential</code>. The procedure is documented in <a href="http://rstudio-pubs-static.s3.amazonaws.com/142364_3b344a38149b465c8ebc9a8cd2eee3aa.html" class="external-link">this tutorial</a>.</li>
+<li>To cite a reference, use the <code>citekey</code> - the first word
+in the BibTeX entry for that reference. Insert it in the RMarkdown file
+like so: <code>@yourcitekey2020</code>. For a parenthesized reference,
+use <code>[@citekeyone2020; @citekeytwo2020]</code>. For more options,
+see the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html" class="external-link">RMarkdown
+cookbook</a>.</li>
+<li>To indicate a <em>non-essential</em> citation, mark it with a double
+at-symbol: <code>@@nonessential2020</code>.</li>
+<li>When Knitting the document, adapt the <code>knit</code> command in
+the YAML header.<br><code>knit: worcs::cite_all</code> renders all citations, and<br><code>knit: worcs::cite_essential</code> removes all
+<em>non-essential</em> citations.</li>
+<li>Optional: To be extremely thorough, you could make a “branch” of the
+GitHub repository for the print version of the manuscript. Only in this
+branch, you use the function <code>knit: worcs::cite_essential</code>.
+The procedure is documented in <a href="http://rstudio-pubs-static.s3.amazonaws.com/142364_3b344a38149b465c8ebc9a8cd2eee3aa.html" class="external-link">this
+tutorial</a>.</li>
 </ol>
 <div class="figure">
 <img src="scholar_bib.png" alt="Exporting a BibTex reference from Google Scholar" width="394"><p class="caption">
@@ -134,12 +162,14 @@ Exporting a BibTex reference from Google Scholar
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+<p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
+Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.1.</p>
 </div>
 
       </footer>

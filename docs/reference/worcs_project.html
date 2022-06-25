@@ -19,7 +19,7 @@ create a WORCS project through syntax or the console."><!-- mathjax --><script s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9</span>
       </span>
     </div>
 
@@ -28,7 +28,7 @@ create a WORCS project through syntax or the console."><!-- mathjax --><script s
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -85,7 +85,7 @@ create a WORCS project through syntax or the console.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">worcs_project</span><span class="op">(</span>
   path <span class="op">=</span> <span class="st">"worcs_project"</span>,
   manuscript <span class="op">=</span> <span class="st">"APA6"</span>,
-  preregistration <span class="op">=</span> <span class="st">"COS"</span>,
+  preregistration <span class="op">=</span> <span class="st">"cos_prereg"</span>,
   add_license <span class="op">=</span> <span class="st">"CC_BY_4.0"</span>,
   use_renv <span class="op">=</span> <span class="cn">TRUE</span>,
   remote_repo <span class="op">=</span> <span class="st">"git@"</span>,
@@ -101,19 +101,17 @@ create a WORCS project through syntax or the console.</p>
 'worcs' project. Default: 'worcs_project'.</p></dd>
 <dt>manuscript</dt>
 <dd><p>Character, indicating what template to use for the
-'R Markdown' manuscript. Default: 'APA6'. Available choices include:
-<code>"APA6", "github_document", "None", "ams_article", "asa_article",
-"biometrics_article", "copernicus_article", "ctex", "elsevier_article",
-"frontiers_article", "ieee_article", "joss_article", "jss_article",
-"mdpi_article", "mnras_article", "oup_article", "peerj_article",
-"plos_article", "pnas_article", "rjournal_article", "rsos_article",
-"sage_article", "sim_article", "springer_article", "tf_article"</code>.
+'R Markdown' manuscript. Default: 'APA6'. Available choices include
+<code><a href="https://rdrr.io/pkg/papaja/man/papaja.html" class="external-link">APA6</a></code> from the <code>papaja</code> package,
+a <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/github_document.html" class="external-link">github_document</a></code>, and templates included in the
+<code><a href="https://rdrr.io/pkg/rticles/man/rticles-package.html" class="external-link">rticles</a></code> package.
 For more information, see <code><a href="add_manuscript.html">add_manuscript</a></code>.</p></dd>
 <dt>preregistration</dt>
 <dd><p>Character, indicating what template to use for the
-preregistration. Default: 'COS'. Available choices include:
-<code>"COS", "VantVeer", "Brandt", "AsPredicted", "PSS", "Secondary",
-"None"</code>. For more information, see <code><a href="add_preregistration.html">add_preregistration</a></code>.</p></dd>
+preregistration. Default: 'cos_prereg'. Available choices include:
+<code>"PSS", "Secondary", "None"</code>, and all templates from the
+<code><a href="https://rdrr.io/pkg/prereg/man/prereg.html" class="external-link">prereg</a></code> package. For more information, see
+<code><a href="add_preregistration.html">add_preregistration</a></code>.</p></dd>
 <dt>add_license</dt>
 <dd><p>Character, indicating what license to include.
 Default: 'CC_BY_4.0'. Available options include:
@@ -153,13 +151,13 @@ during project creation. Default: TRUE</p></dd>
 <span class="r-in">              add_license <span class="op">=</span> <span class="st">"None"</span>,</span>
 <span class="r-in">              use_renv <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span class="r-in">              remote_repo <span class="op">=</span> <span class="st">"git@"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Initializing 'Git' repository.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Writing '.worcs' file.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Copying standard files.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Creating manuscript files.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v  </span><span style="color: #000000;">Creating first commit (committing README.md).</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">X  </span><span style="color: #000000;">Not a valid 'Git' remote repository address: git@</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">X  </span><span style="color: #000000;">No valid 'GitHub' address provided. You are working with a local 'Git' repository only.</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Initializing 'Git' repository.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Writing '.worcs' file.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Copying standard files.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Creating manuscript files.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Creating first commit (committing README.md).</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">x</span> Not a valid 'Git' remote repository address: git@</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">x</span> No valid 'GitHub' address provided. You are working with a local 'Git' repository only.</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">the_test</span><span class="op">)</span><span class="op">)</span></span>
 </code></pre></div>
@@ -172,11 +170,13 @@ during project creation. Default: TRUE</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
+Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.1.</p>
 </div>
 
       </footer></div>

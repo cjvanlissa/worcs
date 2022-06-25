@@ -165,7 +165,7 @@ check_worcs_installation <- function(what = "all"){
       col_message(paste0(sprintf(paste0("%-", padlength, "s"), n), ": ", errors[[n]]), success = FALSE)
     }
   }
-  return(invisible(all(pass)))
+  return(invisible(isTRUE(all(pass))))
 }
 
 get_deps <- function() {
