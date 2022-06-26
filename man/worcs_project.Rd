@@ -36,7 +36,7 @@ preregistration. Default: 'cos_prereg'. Available choices include:
 Default: 'CC_BY_4.0'. Available options include:
 \code{"CC_BY_4.0", "CC_BY-SA_4.0", "CC_BY-NC_4.0", "CC_BY-NC-SA_4.0",
 "CC_BY-ND_4.0", "CC_BY-NC-ND_4.0", "None"}. For more information, see
-<https://creativecommons.org/licenses/>.}
+\url{https://creativecommons.org/licenses/}.}
 
 \item{use_renv}{Logical, indicating whether or not to use 'renv' to make the
 project reproducible. Default: TRUE. See \code{\link[renv]{init}}.}

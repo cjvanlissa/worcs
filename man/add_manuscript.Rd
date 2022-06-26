@@ -40,50 +40,50 @@ Adds an Rmarkdown manuscript to a 'worcs' project.
 \details{
 Available choices include the following manuscript templates:
 \itemize{
-  \item{\code{'APA6'}}{A \code{\link[papaja:papaja]{APA6}} style template from the \code{papaja} package}
-  \item{\code{'github_document'}}{A \code{\link[rmarkdown]{github_document}} from the \code{rmarkdown} package}
-  \item{\code{'acm_article'}}{acm style template from the \code{rtices} package}
-  \item{\code{'acs_article'}}{acs style template from the \code{rtices} package}
-  \item{\code{'aea_article'}}{aea style template from the \code{rtices} package}
-  \item{\code{'agu_article'}}{agu style template from the \code{rtices} package}
-  \item{\code{'ajs_article'}}{ajs style template from the \code{rtices} package}
-  \item{\code{'amq_article'}}{amq style template from the \code{rtices} package}
-  \item{\code{'ams_article'}}{ams style template from the \code{rtices} package}
-  \item{\code{'arxiv_article'}}{arxiv style template from the \code{rtices} package}
-  \item{\code{'asa_article'}}{asa style template from the \code{rtices} package}
-  \item{\code{'bioinformatics_article'}}{bioinformatics style template from the \code{rtices} package}
-  \item{\code{'biometrics_article'}}{biometrics style template from the \code{rtices} package}
-  \item{\code{'copernicus_article'}}{copernicus style template from the \code{rtices} package}
-  \item{\code{'ctex_article'}}{ctex style template from the \code{rtices} package}
-  \item{\code{'elsevier_article'}}{elsevier style template from the \code{rtices} package}
-  \item{\code{'frontiers_article'}}{frontiers style template from the \code{rtices} package}
-  \item{\code{'glossa_article'}}{glossa style template from the \code{rtices} package}
-  \item{\code{'ieee_article'}}{ieee style template from the \code{rtices} package}
-  \item{\code{'ims_article'}}{ims style template from the \code{rtices} package}
-  \item{\code{'informs_article'}}{informs style template from the \code{rtices} package}
-  \item{\code{'iop_article'}}{iop style template from the \code{rtices} package}
-  \item{\code{'isba_article'}}{isba style template from the \code{rtices} package}
-  \item{\code{'jasa_article'}}{jasa style template from the \code{rtices} package}
-  \item{\code{'jedm_article'}}{jedm style template from the \code{rtices} package}
-  \item{\code{'joss_article'}}{joss style template from the \code{rtices} package}
-  \item{\code{'jss_article'}}{jss style template from the \code{rtices} package}
-  \item{\code{'lipics_article'}}{lipics style template from the \code{rtices} package}
-  \item{\code{'mdpi_article'}}{mdpi style template from the \code{rtices} package}
-  \item{\code{'mnras_article'}}{mnras style template from the \code{rtices} package}
-  \item{\code{'oup_article'}}{oup style template from the \code{rtices} package}
-  \item{\code{'peerj_article'}}{peerj style template from the \code{rtices} package}
-  \item{\code{'pihph_article'}}{pihph style template from the \code{rtices} package}
-  \item{\code{'plos_article'}}{plos style template from the \code{rtices} package}
-  \item{\code{'pnas_article'}}{pnas style template from the \code{rtices} package}
-  \item{\code{'rjournal_article'}}{rjournal style template from the \code{rtices} package}
-  \item{\code{'rsos_article'}}{rsos style template from the \code{rtices} package}
-  \item{\code{'rss_article'}}{rss style template from the \code{rtices} package}
-  \item{\code{'sage_article'}}{sage style template from the \code{rtices} package}
-  \item{\code{'sim_article'}}{sim style template from the \code{rtices} package}
-  \item{\code{'springer_article'}}{springer style template from the \code{rtices} package}
-  \item{\code{'tf_article'}}{tf style template from the \code{rtices} package}
-  \item{\code{'trb_article'}}{trb style template from the \code{rtices} package}
-  \item{\code{'wellcomeor_article'}}{wellcomeor style template from the \code{rtices} package}
+\item{\code{'APA6'}}{A \code{\link[papaja:papaja]{APA6}} style template from the \code{papaja} package}
+\item{\code{'github_document'}}{A \code{\link[rmarkdown]{github_document}} from the \code{rmarkdown} package}
+\item{\code{'acm_article'}}{acm style template from the \code{rtices} package}
+\item{\code{'acs_article'}}{acs style template from the \code{rtices} package}
+\item{\code{'aea_article'}}{aea style template from the \code{rtices} package}
+\item{\code{'agu_article'}}{agu style template from the \code{rtices} package}
+\item{\code{'ajs_article'}}{ajs style template from the \code{rtices} package}
+\item{\code{'amq_article'}}{amq style template from the \code{rtices} package}
+\item{\code{'ams_article'}}{ams style template from the \code{rtices} package}
+\item{\code{'arxiv_article'}}{arxiv style template from the \code{rtices} package}
+\item{\code{'asa_article'}}{asa style template from the \code{rtices} package}
+\item{\code{'bioinformatics_article'}}{bioinformatics style template from the \code{rtices} package}
+\item{\code{'biometrics_article'}}{biometrics style template from the \code{rtices} package}
+\item{\code{'copernicus_article'}}{copernicus style template from the \code{rtices} package}
+\item{\code{'ctex_article'}}{ctex style template from the \code{rtices} package}
+\item{\code{'elsevier_article'}}{elsevier style template from the \code{rtices} package}
+\item{\code{'frontiers_article'}}{frontiers style template from the \code{rtices} package}
+\item{\code{'glossa_article'}}{glossa style template from the \code{rtices} package}
+\item{\code{'ieee_article'}}{ieee style template from the \code{rtices} package}
+\item{\code{'ims_article'}}{ims style template from the \code{rtices} package}
+\item{\code{'informs_article'}}{informs style template from the \code{rtices} package}
+\item{\code{'iop_article'}}{iop style template from the \code{rtices} package}
+\item{\code{'isba_article'}}{isba style template from the \code{rtices} package}
+\item{\code{'jasa_article'}}{jasa style template from the \code{rtices} package}
+\item{\code{'jedm_article'}}{jedm style template from the \code{rtices} package}
+\item{\code{'joss_article'}}{joss style template from the \code{rtices} package}
+\item{\code{'jss_article'}}{jss style template from the \code{rtices} package}
+\item{\code{'lipics_article'}}{lipics style template from the \code{rtices} package}
+\item{\code{'mdpi_article'}}{mdpi style template from the \code{rtices} package}
+\item{\code{'mnras_article'}}{mnras style template from the \code{rtices} package}
+\item{\code{'oup_article'}}{oup style template from the \code{rtices} package}
+\item{\code{'peerj_article'}}{peerj style template from the \code{rtices} package}
+\item{\code{'pihph_article'}}{pihph style template from the \code{rtices} package}
+\item{\code{'plos_article'}}{plos style template from the \code{rtices} package}
+\item{\code{'pnas_article'}}{pnas style template from the \code{rtices} package}
+\item{\code{'rjournal_article'}}{rjournal style template from the \code{rtices} package}
+\item{\code{'rsos_article'}}{rsos style template from the \code{rtices} package}
+\item{\code{'rss_article'}}{rss style template from the \code{rtices} package}
+\item{\code{'sage_article'}}{sage style template from the \code{rtices} package}
+\item{\code{'sim_article'}}{sim style template from the \code{rtices} package}
+\item{\code{'springer_article'}}{springer style template from the \code{rtices} package}
+\item{\code{'tf_article'}}{tf style template from the \code{rtices} package}
+\item{\code{'trb_article'}}{trb style template from the \code{rtices} package}
+\item{\code{'wellcomeor_article'}}{wellcomeor style template from the \code{rtices} package}
 }
 }
 \examples{

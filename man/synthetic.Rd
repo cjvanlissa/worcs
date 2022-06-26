@@ -75,7 +75,6 @@ Other types of variables should be converted to one of these types, or users
 can use a custom \code{model_expression} and \code{predict_expressio}
 when calling \code{synthetic}.
 
-
 Note that for data synthesis to work properly, it is essential that the
 \code{class} of variables is defined correctly. The default algorithm
 \code{\link[ranger]{ranger}} supports numeric, integer, factor, and logical
@@ -144,5 +143,5 @@ iris_miss_syn <- synthetic(iris_missings,
 \references{
 Nowok, B., Raab, G.M and Dibben, C. (2016).
 synthpop: Bespoke creation of synthetic data in R. Journal of Statistical
-Software, 74(11), 1-26. <doi:10.18637/jss.v074.i11>.
+Software, 74(11), 1-26. \url{doi:10.18637/jss.v074.i11}.
 }

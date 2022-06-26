@@ -29,8 +29,8 @@ check_renv()
 }
 \arguments{
 \item{what}{Character vector indicating which dependencies to check. Default:
-`"all"`. All checks defined in the Usage section can be called, e.g.
-`check_git` can be called using the argument `what = "git"`.}
+\code{"all"}. All checks defined in the Usage section can be called, e.g.
+\code{check_git} can be called using the argument \code{what = "git"}.}
 
 \item{package}{Atomic character vector, indicating for which package to check
 the dependencies.}

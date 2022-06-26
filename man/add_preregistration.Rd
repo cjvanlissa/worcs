@@ -36,18 +36,18 @@ Available choices include the templates from the
 \code{\link[prereg:prereg]{prereg}} package, and several unique templates
 included with \code{worcs}:
 \itemize{
-  \item{\code{'PSS'}}{Preregistration and Sharing Software (Krypotos,
-  Klugkist, Mertens, & Engelhard, 2019)}
-  \item{\code{'Secondary'}}{Preregistration for secondary analyses (Mertens &
-  Krypotos, 2019)}
-  \item{\code{'aspredicted_prereg'}}{aspredicted template from the \code{prereg} package}
-  \item{\code{'brandt_prereg'}}{brandt template from the \code{prereg} package}
-  \item{\code{'cos_prereg'}}{cos template from the \code{prereg} package}
-  \item{\code{'fmri_prereg'}}{fmri template from the \code{prereg} package}
-  \item{\code{'prp_quant_prereg'}}{prp_quant template from the \code{prereg} package}
-  \item{\code{'psyquant_prereg'}}{psyquant template from the \code{prereg} package}
-  \item{\code{'rr_prereg'}}{rr template from the \code{prereg} package}
-  \item{\code{'vantveer_prereg'}}{vantveer template from the \code{prereg} package}
+\item{\code{'PSS'}}{Preregistration and Sharing Software (Krypotos,
+Klugkist, Mertens, & Engelhard, 2019)}
+\item{\code{'Secondary'}}{Preregistration for secondary analyses (Mertens &
+Krypotos, 2019)}
+\item{\code{'aspredicted_prereg'}}{aspredicted template from the \code{prereg} package}
+\item{\code{'brandt_prereg'}}{brandt template from the \code{prereg} package}
+\item{\code{'cos_prereg'}}{cos template from the \code{prereg} package}
+\item{\code{'fmri_prereg'}}{fmri template from the \code{prereg} package}
+\item{\code{'prp_quant_prereg'}}{prp_quant template from the \code{prereg} package}
+\item{\code{'psyquant_prereg'}}{psyquant template from the \code{prereg} package}
+\item{\code{'rr_prereg'}}{rr template from the \code{prereg} package}
+\item{\code{'vantveer_prereg'}}{vantveer template from the \code{prereg} package}
 }
 }
 \examples{
