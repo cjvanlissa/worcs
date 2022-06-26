@@ -2,14 +2,38 @@
 % Please edit documentation in R/check_installation.R
 \name{check_worcs_installation}
 \alias{check_worcs_installation}
+\alias{check_dependencies}
+\alias{check_git}
+\alias{check_github}
+\alias{check_ssh}
+\alias{check_tinytext}
+\alias{check_rmarkdown}
+\alias{check_renv}
 \title{Check worcs dependencies}
 \usage{
 check_worcs_installation(what = "all")
+
+check_dependencies(package = "worcs")
+
+check_git()
+
+check_github()
+
+check_ssh()
+
+check_tinytext()
+
+check_rmarkdown()
+
+check_renv()
 }
 \arguments{
 \item{what}{Character vector indicating which dependencies to check. Default:
-`"all"`. Options include: `c("dependencies", "git_user", "libgit2",
-"git_init", "git_add", "git_commit", "SSH", "tinytex")`.}
+`"all"`. All checks defined in the Usage section can be called, e.g.
+`check_git` can be called using the argument `what = "git"`.}
+
+\item{package}{Atomic character vector, indicating for which package to check
+the dependencies.}
 }
 \value{
 Logical, indicating whether all checks passed or not.
@@ -19,5 +43,5 @@ This function checks that all worcs dependencies are correctly
 installed, and suggests how to remedy any missing dependencies.
 }
 \examples{
-check_worcs_installation("dependencies")
+check_worcs_installation("none")
 }
