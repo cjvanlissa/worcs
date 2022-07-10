@@ -509,6 +509,7 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
                            "plos_article", "pnas_article", "rjournal_article", "rsos_article",
                            "rss_article", "sage_article", "sim_article", "springer_article",
                            "tf_article", "trb_article", "wellcomeor_article")){
+        manuscript <- gsub("_article", "", manuscript, fixed = TRUE)
         create_man_rticles(man_fn_abs, manuscript, remote_repo = remote_repo)
       }
       if(manuscript == "github_document"){

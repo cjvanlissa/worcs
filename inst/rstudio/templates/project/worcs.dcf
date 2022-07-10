@@ -21,7 +21,7 @@ Fields: github_document, APA6, None, acm_article, acs_article, aea_article, agu_
 Parameter: preregistration
 Widget: SelectInput
 Label: Preregistration template
-Fields: PSS, Secondary, None, aspredicted_prereg, brandt_prereg, cos_prereg, fmri_prereg, pdf_pre_processor, prereg_pdf, prp_quant_prereg, psyquant_prereg, rr_prereg, vantveer_prereg
+Fields: PSS, Secondary, None, aspredicted_prereg, brandt_prereg, cos_prereg, fmri_prereg, prereg_pdf, prp_quant_prereg, psyquant_prereg, rr_prereg, vantveer_prereg
 
 Parameter: add_license
 Widget: SelectInput
