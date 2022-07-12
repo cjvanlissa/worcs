@@ -1,5 +1,6 @@
 # worcs 0.1.9
 
+* Update templates from rticles and prereg packages
 * Add check_worcs_installation() function to determine whether all non-R-package
   dependencies are installed correctly
 * Update references to WORCS paper
