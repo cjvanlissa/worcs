@@ -22,7 +22,6 @@ check_worcs_installation <- function(what = "all") {
   errors <- list()
   checkfuns <- ls(asNamespace("worcs"))
   checkfuns <- checkfuns[startsWith(checkfuns, "check_")]
-  browser()
   checkfuns <- setdiff(checkfuns, c("check_recursive", "check_sum", "check_worcs", "check_worcs_installation"))
   if(!what == "all"){
     checkfuns <- checkfuns[checkfuns %in% paste0("check_", what)]
@@ -31,7 +30,6 @@ check_worcs_installation <- function(what = "all") {
     }
   }
   out <- lapply(checkfuns, do.call, args = list())
-  browser()
   worcs_checkres <- list(pass = do.call(c, lapply(out, `[[`, "pass")),
                          errors = do.call(c, lapply(out, `[[`, "errors")))
   class(worcs_checkres) <- c("worcs_check", class(worcs_checkres))
