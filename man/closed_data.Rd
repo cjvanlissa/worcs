@@ -8,6 +8,7 @@ closed_data(
   data,
   filename = paste0(deparse(substitute(data)), ".csv"),
   codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
+  value_labels = paste0("value_labels_", deparse(substitute(data)), ".yml"),
   worcs_directory = ".",
   synthetic = TRUE,
   save_expression = write.csv(x = data, file = filename, row.names = FALSE),
@@ -28,6 +29,12 @@ An 'R Markdown' codebook will be created and rendered to
 By default, constructs a filename from the name of the object passed to
 \code{data}, adding the word 'codebook'.
 Set this argument to \code{NULL} to avoid creating a codebook.}
+
+\item{value_labels}{Character, naming the file the value labels of factors
+and ordinal variables should be written to.
+By default, constructs a filename from the name of the object passed to
+\code{data}, adding the word 'value_labels'.
+Set this argument to \code{NULL} to avoid creating a file with value labels.}
 
 \item{worcs_directory}{Character, indicating the WORCS project directory to
 which to save data. The default value \code{"."} points to the current

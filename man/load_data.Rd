@@ -8,7 +8,8 @@ load_data(
   worcs_directory = ".",
   to_envir = TRUE,
   envir = parent.frame(1),
-  verbose = TRUE
+  verbose = TRUE,
+  use_metadata = TRUE
 )
 }
 \arguments{
@@ -30,6 +31,10 @@ interactive session.}
 
 \item{verbose}{Logical. Whether or not to print status messages to
 the console. Default: TRUE}
+
+\item{use_metadata}{Logical. Whether or not to use the codebook and
+value labels and attempt to coerce the class and values of variables to
+those recorded therein. Default: TRUE}
 }
 \value{
 Returns a list invisibly. If \code{to_envir = TRUE}, this list

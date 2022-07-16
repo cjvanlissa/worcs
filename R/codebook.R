@@ -155,7 +155,7 @@ make_codebook <-
     })
     if (render_file) {
       function_success <- function_success | tryCatch({
-        render(filename)
+        render(filename, quiet = TRUE)
         TRUE
       }, error = function(e) {
         return(FALSE)

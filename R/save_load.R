@@ -12,6 +12,11 @@
 #' By default, constructs a filename from the name of the object passed to
 #' \code{data}, adding the word 'codebook'.
 #' Set this argument to \code{NULL} to avoid creating a codebook.
+#' @param value_labels Character, naming the file the value labels of factors
+#' and ordinal variables should be written to.
+#' By default, constructs a filename from the name of the object passed to
+#' \code{data}, adding the word 'value_labels'.
+#' Set this argument to \code{NULL} to avoid creating a file with value labels.
 #' @param worcs_directory Character, indicating the WORCS project directory to
 #' which to save data. The default value \code{"."} points to the current
 #' directory.
@@ -44,6 +49,7 @@
 open_data <- function(data,
                       filename = paste0(deparse(substitute(data)), ".csv"),
                       codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
+                      value_labels = paste0("value_labels_", deparse(substitute(data)), ".yml"),
                       worcs_directory = ".",
                       save_expression = write.csv(x = data, file = filename, row.names = FALSE),
                       load_expression = read.csv(file = filename, stringsAsFactors = TRUE),
@@ -84,6 +90,7 @@ open_data <- function(data,
 closed_data <- function(data,
                         filename = paste0(deparse(substitute(data)), ".csv"),
                         codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
+                        value_labels = paste0("value_labels_", deparse(substitute(data)), ".yml"),
                         worcs_directory = ".",
                         synthetic = TRUE,
                         save_expression = write.csv(x = data, file = filename, row.names = FALSE),
@@ -103,6 +110,7 @@ save_data <- function(data,
                       filename = paste0(deparse(substitute(data)), ".csv"),
                       open,
                       codebook = paste0("codebook_", deparse(substitute(data)), ".Rmd"),
+                      value_labels = paste0("value_labels_", deparse(substitute(data)), ".yml"),
                       worcs_directory = ".",
                       verbose = TRUE,
                       synthetic = TRUE,
@@ -114,6 +122,10 @@ save_data <- function(data,
   }
   cl <- as.list(match.call()[-1])
   create_codebook <- !is.null(codebook)
+  create_labels <- !is.null(value_labels)
+
+
+# Filenames housekeeping --------------------------------------------------
   if(create_codebook){
     if(grepl("[", codebook, fixed = TRUE) | grepl("$", codebook, fixed = TRUE)){
     stop("This codebook filename is not allowed: ", codebook, ". Please specify a legal filename.", call. = FALSE)
@@ -121,6 +133,15 @@ save_data <- function(data,
     fn_code <- basename(codebook)
     dn_code <- dirname(codebook)
     fn_write_codebook <- file.path(dn_code, fn_code)
+  }
+
+  if(create_labels){
+    if(grepl("[", value_labels, fixed = TRUE) | grepl("$", value_labels, fixed = TRUE)){
+      stop("This filename is not allowed: ", value_labels, ". Please specify a legal filename.", call. = FALSE)
+    }
+    fn_labels <- basename(value_labels)
+    dn_labels <- dirname(value_labels)
+    fn_write_labels <- file.path(dn_labels, fn_labels)
   }
   # Filenames housekeeping
   dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
@@ -194,6 +215,7 @@ save_data <- function(data,
 
 # codebook ----------------------------------------------------------------
   if(create_codebook){
+    col_message("Creating a codebook in '", fn_code, "'.", success = TRUE, verbose = verbose)
     Args_cb <- cl["data"]
     Args_cb$filename <- fn_write_codebook
     cb_out <- capture.output(do.call(make_codebook, Args_cb))
@@ -206,6 +228,24 @@ save_data <- function(data,
 
     names(to_worcs[["data"]])[1] <- filename
     #to_worcs$data[[filename]]$codebook <- codebook
+    do.call(write_worcsfile, to_worcs)
+
+  }
+
+# Value labels ------------------------------------------------------------
+
+  if(create_labels){
+    col_message("Storing value labels in '", fn_labels, "'.", success = TRUE, verbose = verbose)
+    Args_labs <- cl["data"]
+    Args_labs$variables <- names(data)[sapply(data, inherits, what = "factor")]
+    Args_labs$filename <- fn_write_labels
+    do.call(make_labels, Args_labs)
+    # Add to worcs
+    to_worcs <- list(filename = fn_worcs,
+                     "data" = list(list("labels" = value_labels)),
+                     modify = TRUE)
+
+    names(to_worcs[["data"]])[1] <- filename
     do.call(write_worcsfile, to_worcs)
 
   }
@@ -237,6 +277,9 @@ save_data <- function(data,
 #' interactive session.
 #' @param verbose Logical. Whether or not to print status messages to
 #' the console. Default: TRUE
+#' @param use_metadata Logical. Whether or not to use the codebook and
+#' value labels and attempt to coerce the class and values of variables to
+#' those recorded therein. Default: TRUE
 #' @return Returns a list invisibly. If \code{to_envir = TRUE}, this list
 #' contains the loaded data files. If \code{to_envir = FALSE}, the list is
 #' empty, and the loaded data files are attached directly to the global
@@ -263,7 +306,7 @@ save_data <- function(data,
 #' @importFrom utils read.csv
 #' @importFrom yaml read_yaml
 load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.frame(1),
-                      verbose = TRUE){
+                      verbose = TRUE, use_metadata = TRUE){
   # When users work from Rmd in a subdirectory, the working directory will be
   # set to that subdirectory. Check for .worcs file recursively, and change
   # directory if necessary.
@@ -324,6 +367,18 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
     load_env <- new.env()
     assign(x = "filename", value = fn_this_file, envir = load_env)
     out <- eval(parse(text = load_expression), envir = load_env)
+    # Check classes
+    if(use_metadata){
+      codebook <- tryCatch({
+        codebook <- gsub(".Rmd", ".csv", worcsfile$data[[names(data_files)[file_num]]][["codebook"]], fixed = TRUE)
+        read.csv(codebook, stringsAsFactors = FALSE)
+      }, error = function(e){ NULL })
+      value_labels <- tryCatch({
+        value_labels <- worcsfile$data[[names(data_files)[file_num]]][["labels"]]
+        yaml::read_yaml(value_labels)
+      }, error = function(e){ NULL })
+      out <- check_metadata(out, codebook, value_labels)
+    }
     # Update attributes and class of output object
     attr(out, "type") <- c("synthetic", "original")[data_original[file_num]+1]
     class(out) <- c("worcs_data", class(out))
@@ -335,6 +390,56 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
     }
   }
   return(invisible(outlist))
+}
+
+# orderedvars <- sapply(out, inherits, what = "ordered")
+# if(any(orderedvars)){
+#   browser()
+#   value_labels <- worcsfile$data[[names(data_files)[file_num]]][["labels"]]
+#   value_labels <- yaml::read_yaml(value_labels)
+#   for(v in names(out)[orderedvars]){
+#     out[[v]] <-
+#   }
+# }
+
+check_metadata <- function(x, codebook, value_labels){
+  if(!is.null(codebook)){
+    classes <- codebook[["type"]]
+    multiclass <- grepl(",", classes, fixed = TRUE)
+    if(any(multiclass)){
+      classes[multiclass] <- gsub(",.*$", "", classes[multiclass])
+    }
+    names(classes) <- codebook[["name"]]
+  } else {
+    col_message("No valid codebook found.", success = FALSE)
+    classes <- sapply(x, function(i){class(i)[1]})
+    names(classes) <- names(x)
+  }
+
+  for(v in names(x)){
+    if(!class(x[[v]])[1] == classes[v]){
+      x[[v]] <- switch(classes[v],
+                       ordered = {
+                         tryCatch({
+                           if(is.null(value_labels[[v]])) stop()
+                           ordered(x[[v]], levels = unlist(value_labels[[v]][-1]))
+                           },
+                                  error = function(e){
+                                    col_message("Could not restore class of variable '", v, "'.", success = FALSE)
+                                    x[[v]]
+                                  })
+                       },
+                       {
+                         tryCatch({do.call(paste0("as.", classes[v]), list(x[[v]]))},
+                                  error = function(e){
+                                    message("Could not restore class of variable '", v, "'.")
+                                    x[[v]]
+                                  })
+                       }
+      )
+    }
+  }
+  x
 }
 
 #' @importFrom digest digest
