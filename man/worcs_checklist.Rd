@@ -31,6 +31,6 @@ automatically by \code{\link{worcs_badge}}.
 \references{
 Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
 Peikert, A., , Struiksma, M. E., & Vreede, B. (2021)
-\url{doi:10.3233/DS-210031}.
+\doi{10.3233/DS-210031}.
 }
 \keyword{datasets}
