@@ -94,6 +94,7 @@ but loses all marginal relationships. These examples are not exhaustive, and
 users can even create custom functions.
 }
 \examples{
+\dontrun{
 # Example using the iris dataset and default ranger algorithm
 iris_syn <- synthetic(iris)
 
@@ -106,12 +107,12 @@ synthetic(dat,
                                 data = data.frame(.outcome = y,
                                 xsynth)),
           predict_expression = predict(model, newdata = xsynth))
-
+}
 # Example using bootstrapping:
 synthetic(iris,
           model_expression = NULL,
           predict_expression = sample(y, size = length(y), replace = TRUE))
-
+\dontrun{
 # Example with missing data, no imputation
 iris_missings <- iris
 for(i in 1:10){
@@ -139,6 +140,7 @@ imp_fun <- function(x){
 # Then, call synthetic() with this function as missingness_expression:
 iris_miss_syn <- synthetic(iris_missings,
                            missingness_expression = imp_fun(data))
+}
 }
 \references{
 Nowok, B., Raab, G.M and Dibben, C. (2016).

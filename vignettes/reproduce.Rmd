@@ -94,4 +94,4 @@ The results will likely deviate (substantially) from the original findings.
 
 Authors may use the function `notify_synthetic()` to generate a message in the paper when a synthetic dataset is used.
 Authors should also provide information in the README.md file on how to obtain access to the original data in case an audit is warranted.
-Please read the WORCS paper [@vanlissaWORCSWorkflowOpen2020] for more information about how checksums are used so that auditers can verify the authenticity of the original data.
+Please read the WORCS paper [@vanlissaWORCSWorkflowOpen2020] for more information about how checksums are used so that auditors can verify the authenticity of the original data.
