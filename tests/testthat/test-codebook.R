@@ -4,7 +4,7 @@ test_that("codebook works for iris", {
     test_dir <- file.path(tempdir(), "codebook")
     dir.create(test_dir)
     setwd(test_dir)
-
+    data("iris")
     worcs::make_codebook(iris)
 
     expect_true(file.exists("codebook.Rmd"))

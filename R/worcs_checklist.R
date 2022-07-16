@@ -21,6 +21,6 @@
 #' @usage data(worcs_checklist)
 #' @references Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
 #' Peikert, A., , Struiksma, M. E., & Vreede, B. (2021)
-#' <doi:10.3233/DS-210031>.
+#' \doi{10.3233/DS-210031}.
 #' @format A data frame with 15 rows and 5 variables.
 NULL

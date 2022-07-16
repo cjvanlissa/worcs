@@ -74,7 +74,14 @@
 
 <div id="worcs-019" class="section level1">
 
-<ul><li>Update templates from rticles and prereg packages</li>
+<ul><li>closed_data() and open_data() now store factor and ordered value
+labels in a YAML file</li>
+<li>Added functions data_unlabel() and data_label(), which respectively
+coerce factors to integer, and restore integers to factors using
+metadata stored in a YAML file</li>
+<li>load_data() attempts to coerce variable classes using the codebook,
+and restores ordered levels from the value_labels YAML file</li>
+<li>Update templates from rticles and prereg packages</li>
 <li>Add check_worcs_installation() function to determine whether all
 non-R-package dependencies are installed correctly</li>
 <li>Update references to WORCS paper</li>

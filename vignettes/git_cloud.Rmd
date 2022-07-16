@@ -26,7 +26,7 @@ The 'GitLab' website looks and feels almost identical to 'GitHub'. Steps 4 and 5
 4. Register on GitLab
     + Go to [gitlab.com](https://about.gitlab.com/) and click *Register now*. Choose an "Individual", "Free" plan.
     + Request a [free academic upgrade](https://about.gitlab.com/solutions/education/). 
-5. Connect 'RStudio' to Git and GitLab (for more support, see [this 'RStudio' article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/2015/07/rstudio-and-github/))
+5. Connect 'RStudio' to Git and GitLab (for more support, see [Happy Git with R](https://happygitwithr.com/)
     a. Open 'RStudio', open the Tools menu, click *Global Options*, and click *Git/SVN*
     b. Verify that *Enable version control interface for RStudio projects* is selected
     c. Verify that *Git executable:* shows the location of git.exe. If it is missing, manually fix the location of the file.
@@ -59,7 +59,7 @@ The 'Bitbucket' website has cosmetic differences from 'GitHub', but works simila
 4. Register on Bitbucket
     + Go to [Bitbucket.org](https://bitbucket.org/) and click *Get started for free*. Follow the steps to create your account. Sign in.
     + Bitbucket has largely automated the process of awarding free academic upgrades. If your email address is not recognized as belonging to an academic institution, fill out the form [here](https://www.atlassian.com/software/views/bitbucket-academic-license). 
-5. Connect 'RStudio' to Git and Bitbucket (for more support, see [this 'RStudio' article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/2015/07/rstudio-and-github/))
+5. Connect 'RStudio' to Git and Bitbucket (for more support, see [Happy Git with R](https://happygitwithr.com/)
     a. Open 'RStudio', open the Tools menu, click *Global Options*, and click *Git/SVN*
     b. Verify that *Enable version control interface for RStudio projects* is selected
     c. Verify that *Git executable:* shows the location of git.exe. If it is missing, manually fix the location of the file.

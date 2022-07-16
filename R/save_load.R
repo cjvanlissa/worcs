@@ -236,10 +236,10 @@ save_data <- function(data,
 
   if(create_labels){
     col_message("Storing value labels in '", fn_labels, "'.", success = TRUE, verbose = verbose)
-    Args_labs <- cl["data"]
-    Args_labs$variables <- names(data)[sapply(data, inherits, what = "factor")]
-    Args_labs$filename <- fn_write_labels
-    do.call(make_labels, Args_labs)
+    make_labels(data = data,
+                variables = names(data)[sapply(data, inherits, what = "factor")],
+                fn_write_labels
+                )
     # Add to worcs
     to_worcs <- list(filename = fn_worcs,
                      "data" = list(list("labels" = value_labels)),

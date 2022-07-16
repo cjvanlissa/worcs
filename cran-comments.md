@@ -1,5 +1,12 @@
 # worcs 0.1.9
 
+* closed_data() and open_data() now store factor and ordered value labels in a
+  YAML file
+* Added functions data_unlabel() and data_label(), which respectively coerce
+  factors to integer, and restore integers to factors using metadata stored in
+  a YAML file
+* load_data() attempts to coerce variable classes using the codebook, and
+  restores ordered levels from the value_labels YAML file 
 * Update templates from rticles and prereg packages
 * Add check_worcs_installation() function to determine whether all non-R-package
   dependencies are installed correctly
@@ -14,7 +21,7 @@
   open_data(). This allows users to save data in different formats. 
   The 'load_expression' is stored in the .worcs file, and referenced by
   load_data().
-
+  
 ## Test environments
 
 * local Windows 10 install, R 4.1.2

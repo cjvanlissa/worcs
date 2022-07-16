@@ -1,3 +1,4 @@
+data("iris")
 tmp <- descriptives(iris)
 
 test_that("descriptives creates correct output", {

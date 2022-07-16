@@ -90,6 +90,7 @@ data, the function <code><a href="synthetic.html">synthetic</a></code> is used.<
   <span class="va">data</span>,
   filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span>, <span class="st">".csv"</span><span class="op">)</span>,
   codebook <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"codebook_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span>, <span class="st">".Rmd"</span><span class="op">)</span>,
+  value_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"value_labels_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span>, <span class="st">".yml"</span><span class="op">)</span>,
   worcs_directory <span class="op">=</span> <span class="st">"."</span>,
   synthetic <span class="op">=</span> <span class="cn">TRUE</span>,
   save_expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">data</span>, file <span class="op">=</span> <span class="va">filename</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
@@ -113,6 +114,12 @@ An 'R Markdown' codebook will be created and rendered to
 By default, constructs a filename from the name of the object passed to
 <code>data</code>, adding the word 'codebook'.
 Set this argument to <code>NULL</code> to avoid creating a codebook.</p></dd>
+<dt>value_labels</dt>
+<dd><p>Character, naming the file the value labels of factors
+and ordinal variables should be written to.
+By default, constructs a filename from the name of the object passed to
+<code>data</code>, adding the word 'value_labels'.
+Set this argument to <code>NULL</code> to avoid creating a file with value labels.</p></dd>
 <dt>worcs_directory</dt>
 <dd><p>Character, indicating the WORCS project directory to
 which to save data. The default value <code>"."</code> points to the current
@@ -156,15 +163,16 @@ function is called for its side effects.</p>
 <span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span>
 <span class="r-in"><span class="fu">closed_data</span><span class="op">(</span><span class="va">df</span>, codebook <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Creating C:/Users/lissa102/AppData/Local/Temp/RtmpeYOryB/data/README.md.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Creating C:/Users/lissa102/AppData/Local/Temp/RtmpuaGADA/data/README.md.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Generating synthetic data for public use. Ensure that no identifying information is included.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Dropped unused factor level(s) in dependent variable: versicolor, virginica.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |======================================================================| 100%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing synthetic data in 'synthetic_df.csv' and updating the checksum in '.worcs'.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating '.gitignore'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating C:/Users/lissa102/AppData/Local/Temp/RtmpeYOryB/data/README.md.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating C:/Users/lissa102/AppData/Local/Temp/RtmpuaGADA/data/README.md.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating '.gitignore'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing value labels in 'value_labels_df.yml'.</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">test_dir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 </code></pre></div>
