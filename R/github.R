@@ -216,7 +216,10 @@ git_update <- function(message = paste0("update ", Sys.time()),
     tryCatch({
       do.call(git_push, Args_push)
       col_message("Pushed local commits to remote repository.", verbose = verbose)
-    }, error = function(e){col_message("Could not push local commits to remote repository.", success = FALSE)})
+    }, error = function(e){
+      col_message("Could not push local commits to remote repository.", success = FALSE)
+      message(e)
+      })
   )
 }
 
