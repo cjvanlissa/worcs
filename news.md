@@ -1,3 +1,7 @@
+# worcs 0.1.10
+
+* Fix bug in check_worcs_installation()
+
 # worcs 0.1.9
 
 * closed_data() and open_data() now store factor and ordered value labels in a
