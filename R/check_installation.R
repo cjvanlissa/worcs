@@ -20,9 +20,11 @@ check_worcs_installation <- function(what = "all") {
     return(invisible(TRUE))
   pass <- list()
   errors <- list()
-  checkfuns <- ls(asNamespace("worcs"))
-  checkfuns <- checkfuns[startsWith(checkfuns, "check_")]
-  checkfuns <- setdiff(checkfuns, c("check_recursive", "check_sum", "check_worcs", "check_worcs_installation"))
+  checkfuns <- c("check_dependencies", "check_git", "check_github", "check_renv", "check_rmarkdown", "check_ssh", "check_tinytext")
+
+  # checkfuns <- ls(asNamespace("worcs"))
+  # checkfuns <- checkfuns[startsWith(checkfuns, "check_")]
+  # checkfuns <- setdiff(checkfuns, c("check_recursive", "check_sum", "check_worcs", "check_worcs_installation"))
   if(!what == "all"){
     checkfuns <- checkfuns[checkfuns %in% paste0("check_", what)]
     if(isFALSE(length(checkfuns) > 0)){
