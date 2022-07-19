@@ -37,15 +37,18 @@ Follow these steps in order:
     <!-- + Request a [free academic upgrade](https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount). This allows you to create *private repositories*, which are only visible to you and selected collaborators, and can be made public when your work is published. -->
 5. Connect 'RStudio' to Git and GitHub (for more support, see [Happy Git with R](https://happygitwithr.com/)
     a. Open 'RStudio', open the Tools menu, click *Global Options*, and click *Git/SVN*
-    b. Verify that *Enable version control interface for RStudio projects* is selected
-    c. Verify that *Git executable:* shows the location of git.exe. If it is missing, manually fix the location of the file.
-    d. Click *Create RSA Key*. Do not enter a passphrase. Press *Create*. A window with some information will open, which you can close.
-    e. Click *View public key*, and copy the entire text to the clipboard.
-    f. Close 'RStudio' (it might offer to restart by itself; this is fine)
-    g. Go to [github.com](https://github.com/)
-    h. Click your user icon, click *Settings*, and then select the *SSH and GPG keys* tab.
-    i. Click *New SSH key*. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled *Key*.
-    j. Open 'RStudio' again (unless it restarted by itself)
+    a. Verify that *Enable version control interface for RStudio projects* is selected
+    a. Verify that *Git executable:* shows the location of git.exe. If it is missing, manually fix the location of the file.
+    <!-- a. Click *Create RSA Key*. Do not enter a passphrase. Press *Create*. A window with some information will open, which you can close. -->
+    <!-- a. Click *View public key*, and copy the entire text to the clipboard. -->
+    a. Restart your computer
+    <!-- a. Go to [github.com](https://github.com/) -->
+    <!-- a. Click your user icon, click *Settings*, and then select the *SSH and GPG keys* tab. -->
+    <!-- a. Click *New SSH key*. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled *Key*. -->
+    <!-- a. Open 'RStudio' again (unless it restarted by itself) -->
+    a. Run `usethis::create_github_token()`. This should open a webpage with a dialog that allows you to create a Personal Access Token (PAT) to authorize your computer to exchange information with your GitHub account. The default settings are fine; just click "Generate Token" (bottom of the page).
+    a. Copy the generated PAT to your clipboard (NOTE: You will not be able to view it again!)
+    a. Run `gitcreds::gitcreds_set()`. This should open a dialog in the R console that allows you to paste the PAT from your clipboard.
 6. Install all packages required for WORCS by running the following code in the 'RStudio' console. Be prepared for three contingencies:  
     + If you receive any error saying *There is no package called [package name]*, then run the code `install.packages("package name")`  
     + If you are prompted to update packages, just press [ENTER] to avoid updating packages. Updating packages this way in an interactive session sometimes leads to errors if the packages are loaded.  

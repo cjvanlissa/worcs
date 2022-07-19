@@ -31,9 +31,9 @@ knitr::include_graphics("workflow.png")
 
 1. <!--S: Create a (Public or Private) remote repository on a 'Git' hosting service-->Create a new remote repository on a 'Git' hosting service, such as ["GitHub"](https://github.com)
     + For inexperienced users, we recommend making this repository "Private", which means only you and selected co-authors can access it. You can set it to "Public" later - for example, when the paper goes to print - and the entire history of the Repository will be public record. We recommend making the repository "Public" from the start __only if__ you are an experienced user and know what you are doing.
-    + Copy the repository's SSH link to clipboard; this link should look something like `git@github.com:username/repository.git`
+    + Copy the repository link to clipboard; this link should look something like `https://github.com/username/repository.git`
 2. <!--S: When using R, initialize a new RStudio project using the WORCS template. Otherwise, clone the remote repository to your local project folder.-->In Rstudio, click File > New Project > New directory > WORCS Project Template
-    a. Paste the remote Repository address in the textbox. This address should look like `git@github.com:username/repository.git`
+    a. Paste the remote Repository address in the textbox. This address should look like `https://github.com/username/repository.git`
     b. Keep the checkbox for `renv` checked if you want to use dependency management (recommended)
     c. Select a preregistration template, or add a preregistration later using `add_preregistration()`
     d. Select a manuscript template, or add a manuscript later using `add_manuscript()`

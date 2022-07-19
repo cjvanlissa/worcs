@@ -31,7 +31,9 @@ check_worcs_installation <- function(what = "all") {
       stop("Argument 'what' does not refer to any valid checks.")
     }
   }
-  out <- lapply(checkfuns, do.call, args = list())
+  out <- lapply(checkfuns, function(thisfun){
+    eval(str2lang(paste0("worcs::", thisfun, "()")))})
+
   worcs_checkres <- list(pass = do.call(c, lapply(out, `[[`, "pass")),
                          errors = do.call(c, lapply(out, `[[`, "errors")))
   class(worcs_checkres) <- c("worcs_check", class(worcs_checkres))
@@ -144,7 +146,7 @@ check_github <- function() {
   pass[["github_pat"]] <- isFALSE(gh::gh_token() == "")
   if (!pass[["github_pat"]])
     errors[["github_pat"]] <-
-    "You do not have a personal access token for GitHub; if you intend to use GitHub, consider creating one following the instructions at https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token. Then, run credentials::set_github_pat('YourPAT') in R."
+    "You do not have a personal access token for GitHub; to fix this, run usethis::create_github_token() to create a PAT on GitHub; copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked."
 
   # GitHub SSH
   temp <- tempfile()
@@ -155,9 +157,10 @@ check_github <- function() {
   output <- readLines(temp)
   pass[["github_ssh"]] <-
     isTRUE(any(grepl("success", output, fixed = TRUE)))
+  # Maybe check if *any* type of authentication is possible
   if (!pass[["github_ssh"]])
     errors[["github_ssh"]] <-
-    "Could not authenticate GitHub via SSH; if you intend to use GitHub, consult https://happygitwithr.com/rstudio-git-github.html"
+    "Could not authenticate GitHub via SSH, but that's OK. We recommend using a Personal Access Token (PAT). If you intend to use SSH with GitHub, consult https://happygitwithr.com/rstudio-git-github.html"
   out <- list(pass = pass, errors = errors)
   class(out) <- c("worcs_check", class(out))
   return(out)
@@ -177,7 +180,7 @@ check_ssh <- function() {
 
   if (!pass[["ssh"]])
     errors[["ssh"]] <-
-    "Could not find a valid SSH key; please consult https://happygitwithr.com/ssh-keys.html"
+    "Could not find a valid SSH key, but that's OK. We recommend using a Personal Access Token (PAT). If you do wish to set up SSH, please consult https://happygitwithr.com/ssh-keys.html"
   out <- list(pass = pass, errors = errors)
   class(out) <- c("worcs_check", class(out))
   return(out)
