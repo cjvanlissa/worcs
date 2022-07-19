@@ -146,7 +146,7 @@ check_github <- function() {
   pass[["github_pat"]] <- isFALSE(gh::gh_token() == "")
   if (!pass[["github_pat"]])
     errors[["github_pat"]] <-
-    "You do not have a personal access token for GitHub; to fix this, run usethis::create_github_token() to create a PAT on GitHub; copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked."
+    "You do not have a personal access token for GitHub; to fix this, run usethis::create_github_token() to create a PAT on GitHub; copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked. If you still experience problems try usethis::gh_token_help() for help."
 
   # GitHub SSH
   temp <- tempfile()
