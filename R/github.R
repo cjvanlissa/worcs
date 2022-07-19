@@ -204,13 +204,19 @@ git_update <- function(message = paste0("update ", Sys.time()),
     tryCatch({
       do.call(git_add, Args_add)
       col_message("Added files to staging area of 'Git' repository.", verbose = verbose)
-    }, error = function(e){col_message("Could not add files to staging area of 'Git' repository.", success = FALSE)})
+    }, error = function(e){
+      col_message("Could not add files to staging area of 'Git' repository.", success = FALSE)
+      message(e)
+      })
   )
   invisible(
     tryCatch({
       do.call(git_commit, Args_commit)
       col_message("Committed staged files to 'Git' repository.", verbose = verbose)
-    }, error = function(e){col_message("Could not commit staged files to 'Git' repository.", success = FALSE)})
+    }, error = function(e){
+      col_message("Could not commit staged files to 'Git' repository.", success = FALSE)
+      message(e)
+      })
   )
   invisible(
     tryCatch({
