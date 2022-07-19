@@ -150,8 +150,8 @@ check_github <- function(pat = TRUE, ssh = FALSE) {
   # Check if currently in a git repo with remote
   repo <- try({gert::git_remote_list()})
   if(!inherits(repo, "try-error")){
-    if(grepl("^https://", repo$url)) pass[["current git repo requires PAT authentication"]]
-    if(grepl("^git@", repo$url)) pass[["current git repo requires SSH authentication"]]
+    if(grepl("^https://", repo$url)) pass[["current git repo has a remote that requires PAT authentication"]] <- TRUE
+    if(grepl("^git@", repo$url)) pass[["current git repo has a remote that requires SSH authentication"]] <- TRUE
   }
   if(pat){
     pass[["github_pat"]] <- isFALSE(gh::gh_token() == "")
