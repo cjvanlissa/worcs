@@ -19,7 +19,7 @@ create a WORCS project through syntax or the console."><!-- mathjax --><script s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.10.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@ create a WORCS project through syntax or the console.</p>
   preregistration <span class="op">=</span> <span class="st">"cos_prereg"</span>,
   add_license <span class="op">=</span> <span class="st">"CC_BY_4.0"</span>,
   use_renv <span class="op">=</span> <span class="cn">TRUE</span>,
-  remote_repo <span class="op">=</span> <span class="st">"git@"</span>,
+  remote_repo <span class="op">=</span> <span class="st">"https"</span>,
   verbose <span class="op">=</span> <span class="cn">TRUE</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
@@ -122,11 +122,13 @@ Default: 'CC_BY_4.0'. Available options include:
 <dd><p>Logical, indicating whether or not to use 'renv' to make the
 project reproducible. Default: TRUE. See <code><a href="https://rstudio.github.io/renv/reference/init.html" class="external-link">init</a></code>.</p></dd>
 <dt>remote_repo</dt>
-<dd><p>Character, 'SSH' address of the remote repository for
-this project. This link should have the form <code>git@[...].git</code>.
+<dd><p>Character, address of the remote repository for
+this project. This link should have the form
+<code>https://github.com[username][repo].git</code> (preferred) or
+<code>git@[...].git</code> (if using SSH).
 If a valid remote repository link is provided, a commit will
 be made containing the 'README.md' file, and will be pushed to the remote
-repository. Default: 'git@'.</p></dd>
+repository. Default: 'https'.</p></dd>
 <dt>verbose</dt>
 <dd><p>Logical. Whether or not to print messages to the console
 during project creation. Default: TRUE</p></dd>
@@ -150,13 +152,13 @@ during project creation. Default: TRUE</p></dd>
 <span class="r-in">              preregistration <span class="op">=</span> <span class="st">"None"</span>,</span>
 <span class="r-in">              add_license <span class="op">=</span> <span class="st">"None"</span>,</span>
 <span class="r-in">              use_renv <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">              remote_repo <span class="op">=</span> <span class="st">"git@"</span><span class="op">)</span></span>
+<span class="r-in">              remote_repo <span class="op">=</span> <span class="st">"https"</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Initializing 'Git' repository.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Writing '.worcs' file.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Copying standard files.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Creating manuscript files.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Creating first commit (committing README.md).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">x</span> Not a valid 'Git' remote repository address: git@</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">x</span> Not a valid 'Git' remote repository address: https</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">x</span> No valid 'GitHub' address provided. You are working with a local 'Git' repository only.</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">the_test</span><span class="op">)</span><span class="op">)</span></span>

@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.10.1</span>
       </span>
     </div>
 
@@ -151,22 +151,26 @@ and click <em>Git/SVN</em>
 <li>Verify that <em>Enable version control interface for RStudio
 projects</em> is selected</li>
 <li>Verify that <em>Git executable:</em> shows the location of git.exe.
-If it is missing, manually fix the location of the file.</li>
-<li>Click <em>Create RSA Key</em>. Do not enter a passphrase. Press
-<em>Create</em>. A window with some information will open, which you can
-close.</li>
-<li>Click <em>View public key</em>, and copy the entire text to the
-clipboard.</li>
-<li>Close ‘RStudio’ (it might offer to restart by itself; this is
-fine)</li>
-<li>Go to <a href="https://github.com/" class="external-link">github.com</a>
+If it is missing, manually fix the location of the file.
+<!-- a. Click *Create RSA Key*. Do not enter a passphrase. Press *Create*. A window with some information will open, which you can close. -->
+<!-- a. Click *View public key*, and copy the entire text to the clipboard. -->
 </li>
-<li>Click your user icon, click <em>Settings</em>, and then select the
-<em>SSH and GPG keys</em> tab.</li>
-<li>Click <em>New SSH key</em>. Give it an arbitrary name (e.g., your
-computer ID), and paste the public key from your clipboard into the box
-labeled <em>Key</em>.</li>
-<li>Open ‘RStudio’ again (unless it restarted by itself)</li>
+<li>Restart your computer
+<!-- a. Go to [github.com](https://github.com/) -->
+<!-- a. Click your user icon, click *Settings*, and then select the *SSH and GPG keys* tab. -->
+<!-- a. Click *New SSH key*. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled *Key*. -->
+<!-- a. Open 'RStudio' again (unless it restarted by itself) -->
+</li>
+<li>Run <code><a href="https://usethis.r-lib.org/reference/github-token.html" class="external-link">usethis::create_github_token()</a></code>. This should open a
+webpage with a dialog that allows you to create a Personal Access Token
+(PAT) to authorize your computer to exchange information with your
+GitHub account. The default settings are fine; just click “Generate
+Token” (bottom of the page).</li>
+<li>Copy the generated PAT to your clipboard (NOTE: You will not be able
+to view it again!)</li>
+<li>Run <code><a href="https://rdrr.io/pkg/gitcreds/man/gitcreds_get.html" class="external-link">gitcreds::gitcreds_set()</a></code>. This should open a dialog
+in the R console that allows you to paste the PAT from your
+clipboard.</li>
 </ol>
 </li>
 <li>Install all packages required for WORCS by running the following
