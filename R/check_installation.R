@@ -143,6 +143,12 @@ check_git <- function() {
 }
 
 #' @rdname check_worcs_installation
+#' @param pat Logical, whether to run tests for the existence and functioning of
+#' a GitHub Personal Access Token (PAT). This is the preferred method of
+#' authentication, so defaults to TRUE.
+#' @param ssh Logical, whether to run tests for the existence and functioning of
+#' an SSH key. This method of authentication is not recommended, so defaults to
+#' FALSE.
 #' @export
 check_github <- function(pat = TRUE, ssh = FALSE) {
   pass <- list()

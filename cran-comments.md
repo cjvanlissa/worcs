@@ -1,30 +1,12 @@
-# worcs 0.1.9
+# worcs 0.1.10
 
-* closed_data() and open_data() now store factor and ordered value labels in a
-  YAML file
-* Added functions data_unlabel() and data_label(), which respectively coerce
-  factors to integer, and restore integers to factors using metadata stored in
-  a YAML file
-* load_data() attempts to coerce variable classes using the codebook, and
-  restores ordered levels from the value_labels YAML file 
-* Update templates from rticles and prereg packages
-* Add check_worcs_installation() function to determine whether all non-R-package
-  dependencies are installed correctly
-* Update references to WORCS paper
-* Replace GitHub version of papaja with CRAN version
-* Fix URLs
-* Update rticles and prereg templates
-* Handle literal function names from rticles and prereg, such that users can use
-  all available options from those packages without worcs explicitly referencing
-  those functions
-* Add arguments 'save_expression' and 'load_expression' to closed_data() and
-  open_data(). This allows users to save data in different formats. 
-  The 'load_expression' is stored in the .worcs file, and referenced by
-  load_data().
+* Fix breaking bug in check_worcs_installation() introduced in version 0.1.9
+* Update setup vignette to reflect new GitHub authentication protocols
   
 ## Test environments
 
 * local Windows 10 install, R 4.1.2
+* local Windows 11 install, R 4.2.1
 * win-builder: release
 * win-builder: development
 * win-builder: oldversion
@@ -36,5 +18,6 @@
 
 0 errors | 0 warnings | 1 note
 
-* New maintainer
-    + I changed jobs and updated my email address accordingly
+* Days since last update: 4
+    + The previous version introduced a bug that is now fixed. Apologies for the
+      inconvenience!

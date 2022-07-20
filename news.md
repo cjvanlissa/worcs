@@ -1,6 +1,7 @@
 # worcs 0.1.10
 
-* Fix bug in check_worcs_installation()
+* Fix breaking bug in check_worcs_installation() introduced in version 0.1.9
+* Update setup vignette to reflect new GitHub authentication protocols
 
 # worcs 0.1.9
 

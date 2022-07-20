@@ -17,7 +17,7 @@ check_dependencies(package = "worcs")
 
 check_git()
 
-check_github()
+check_github(pat = TRUE, ssh = FALSE)
 
 check_ssh()
 
@@ -34,6 +34,14 @@ check_renv()
 
 \item{package}{Atomic character vector, indicating for which package to check
 the dependencies.}
+
+\item{pat}{Logical, whether to run tests for the existence and functioning of
+a GitHub Personal Access Token (PAT). This is the preferred method of
+authentication, so defaults to TRUE.}
+
+\item{ssh}{Logical, whether to run tests for the existence and functioning of
+an SSH key. This method of authentication is not recommended, so defaults to
+FALSE.}
 }
 \value{
 Logical, indicating whether all checks passed or not.

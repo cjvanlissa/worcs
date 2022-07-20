@@ -18,7 +18,7 @@ installed, and suggests how to remedy any missing dependencies."><!-- mathjax --
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.10.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.10</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@ installed, and suggests how to remedy any missing dependencies.</p>
 
 <span class="fu">check_git</span><span class="op">(</span><span class="op">)</span>
 
-<span class="fu">check_github</span><span class="op">(</span><span class="op">)</span>
+<span class="fu">check_github</span><span class="op">(</span>pat <span class="op">=</span> <span class="cn">TRUE</span>, ssh <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="fu">check_ssh</span><span class="op">(</span><span class="op">)</span>
 
@@ -106,6 +106,14 @@ installed, and suggests how to remedy any missing dependencies.</p>
 <dt>package</dt>
 <dd><p>Atomic character vector, indicating for which package to check
 the dependencies.</p></dd>
+<dt>pat</dt>
+<dd><p>Logical, whether to run tests for the existence and functioning of
+a GitHub Personal Access Token (PAT). This is the preferred method of
+authentication, so defaults to TRUE.</p></dd>
+<dt>ssh</dt>
+<dd><p>Logical, whether to run tests for the existence and functioning of
+an SSH key. This method of authentication is not recommended, so defaults to
+FALSE.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>

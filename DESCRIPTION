@@ -1,7 +1,7 @@
 Package: worcs
 Type: Package
 Title: Workflow for Open Reproducible Code in Science
-Version: 0.1.10.3
+Version: 0.1.10
 Authors@R: c(
     person(
       given = c("Caspar", "J."),
@@ -36,7 +36,7 @@ License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/cjvanlissa/worcs
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 Imports:
     methods,
