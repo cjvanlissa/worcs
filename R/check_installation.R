@@ -163,19 +163,19 @@ check_github <- function(pat = TRUE, ssh = FALSE) {
     pass[["github_pat"]] <- isFALSE(gh::gh_token() == "")
     if (!pass[["github_pat"]])
       errors[["github_pat"]] <-
-        "You have not set a Personal Access Token (PAT) for GitHub; to fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked."
+        "You have not set a Personal Access Token (PAT) for GitHub; to fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked. If you still experience problems try usethis::gh_token_help() for help."
 
     # github pat grants access
     if(pass[["github_pat"]]){
       result <- tryCatch(gh::gh("/user"), error = function(e)e)
       pass[["github_pat_response"]] <- isTRUE(inherits(result, "gh_response"))
       if (!pass[["github_pat_response"]]){
-        errors[["github_pat_response"]] <- "The Personal Access Token (PAT) in your Git credential store does not grant access to GitHub. To fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked."
+        errors[["github_pat_response"]] <- "The Personal Access Token (PAT) in your Git credential store does not grant access to GitHub. To fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked. If you still experience problems try usethis::gh_token_help() for help."
         if(inherits(result, "http_error_401")){
-          errors[["github_pat_response"]] <- "The Personal Access Token (PAT) in your Git credential store does not grant access to GitHub. It may have expired. To fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked."
+          errors[["github_pat_response"]] <- "The Personal Access Token (PAT) in your Git credential store does not grant access to GitHub. It may have expired. To fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked. If you still experience problems try usethis::gh_token_help() for help."
         }
         if(inherits(result, "rlib_error") && grepl("one of these forms", result$message)){
-          errors[["github_pat_response"]] <- "To fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked. It has the wrong format."
+          errors[["github_pat_response"]] <- "The Personal Access Token (PAT) in your Git credential store has the wrong format. To fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked. If you still experience problems try usethis::gh_token_help() for help."
         }
       }
     }
