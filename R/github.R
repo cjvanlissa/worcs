@@ -177,7 +177,7 @@ git_update <- function(message = paste0("update ", Sys.time()),
                        force,
                        verbose = TRUE){
   tryCatch({
-    git_ls(repo)
+    git_ls(repo = repo)
     col_message("Identified local 'Git' repository.", verbose = verbose)
   }, error = function(e){
     col_message("Not a 'Git' repository.", success = FALSE)
