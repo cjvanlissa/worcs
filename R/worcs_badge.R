@@ -113,7 +113,7 @@ check_worcs <- function(path = ".", verbose = TRUE){
 
     # See what files are tracked by git
     tracked <- tryCatch({
-      git_ls(path)
+      git_ls(repo = path)
     }, error = function(e){NULL})
     # If git tracks any files
     checks$pass[checks$name == "git_repo"] <- length(tracked) > 0
