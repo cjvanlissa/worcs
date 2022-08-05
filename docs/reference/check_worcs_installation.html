@@ -80,21 +80,21 @@ installed, and suggests how to remedy any missing dependencies.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">check_worcs_installation</span><span class="op">(</span>what <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span>
-
-<span class="fu">check_dependencies</span><span class="op">(</span>package <span class="op">=</span> <span class="st">"worcs"</span><span class="op">)</span>
-
-<span class="fu">check_git</span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu">check_github</span><span class="op">(</span>pat <span class="op">=</span> <span class="cn">TRUE</span>, ssh <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">check_ssh</span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu">check_tinytext</span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu">check_rmarkdown</span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu">check_renv</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_worcs_installation</span><span class="op">(</span>what <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">check_dependencies</span><span class="op">(</span>package <span class="op">=</span> <span class="st">"worcs"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">check_git</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">check_github</span><span class="op">(</span>pat <span class="op">=</span> <span class="cn">TRUE</span>, ssh <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">check_ssh</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">check_tinytext</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">check_rmarkdown</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">check_renv</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -103,26 +103,35 @@ installed, and suggests how to remedy any missing dependencies.</p>
 <dd><p>Character vector indicating which dependencies to check. Default:
 <code>"all"</code>. All checks defined in the Usage section can be called, e.g.
 <code>check_git</code> can be called using the argument <code>what = "git"</code>.</p></dd>
+
+
 <dt>package</dt>
 <dd><p>Atomic character vector, indicating for which package to check
 the dependencies.</p></dd>
+
+
 <dt>pat</dt>
 <dd><p>Logical, whether to run tests for the existence and functioning of
 a GitHub Personal Access Token (PAT). This is the preferred method of
 authentication, so defaults to TRUE.</p></dd>
+
+
 <dt>ssh</dt>
 <dd><p>Logical, whether to run tests for the existence and functioning of
 an SSH key. This method of authentication is not recommended, so defaults to
 FALSE.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Logical, indicating whether all checks passed or not.</p>
+    
+
+<p>Logical, indicating whether all checks passed or not.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">check_worcs_installation</span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">check_worcs_installation</span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -133,13 +142,11 @@ FALSE.</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
-Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -86,27 +86,31 @@ data, the function <code><a href="synthetic.html">synthetic</a></code> is used.<
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">closed_data</span><span class="op">(</span>
-  <span class="va">data</span>,
-  filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span>, <span class="st">".csv"</span><span class="op">)</span>,
-  codebook <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"codebook_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span>, <span class="st">".Rmd"</span><span class="op">)</span>,
-  value_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"value_labels_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span>, <span class="st">".yml"</span><span class="op">)</span>,
-  worcs_directory <span class="op">=</span> <span class="st">"."</span>,
-  synthetic <span class="op">=</span> <span class="cn">TRUE</span>,
-  save_expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">data</span>, file <span class="op">=</span> <span class="va">filename</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
-  load_expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">filename</span>, stringsAsFactors <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">closed_data</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span>, <span class="st">".csv"</span><span class="op">)</span>,</span>
+<span>  codebook <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"codebook_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span>, <span class="st">".Rmd"</span><span class="op">)</span>,</span>
+<span>  value_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"value_labels_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span>, <span class="st">".yml"</span><span class="op">)</span>,</span>
+<span>  worcs_directory <span class="op">=</span> <span class="st">"."</span>,</span>
+<span>  synthetic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  save_expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">data</span>, file <span class="op">=</span> <span class="va">filename</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>  load_expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">filename</span>, stringsAsFactors <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>A data.frame to save.</p></dd>
+
+
 <dt>filename</dt>
 <dd><p>Character, naming the file data should be written to. By
 default, constructs a filename from the name of the object passed to
 <code>data</code>.</p></dd>
+
+
 <dt>codebook</dt>
 <dd><p>Character, naming the file the codebook should be written to.
 An 'R Markdown' codebook will be created and rendered to
@@ -114,38 +118,53 @@ An 'R Markdown' codebook will be created and rendered to
 By default, constructs a filename from the name of the object passed to
 <code>data</code>, adding the word 'codebook'.
 Set this argument to <code>NULL</code> to avoid creating a codebook.</p></dd>
+
+
 <dt>value_labels</dt>
 <dd><p>Character, naming the file the value labels of factors
 and ordinal variables should be written to.
 By default, constructs a filename from the name of the object passed to
 <code>data</code>, adding the word 'value_labels'.
 Set this argument to <code>NULL</code> to avoid creating a file with value labels.</p></dd>
+
+
 <dt>worcs_directory</dt>
 <dd><p>Character, indicating the WORCS project directory to
 which to save data. The default value <code>"."</code> points to the current
 directory.</p></dd>
+
+
 <dt>synthetic</dt>
 <dd><p>Logical, indicating whether or not to create a synthetic
 dataset using the <code><a href="synthetic.html">synthetic</a></code> function. Additional arguments for
 the call to <code><a href="synthetic.html">synthetic</a></code> can be passed through <code>...</code>.</p></dd>
+
+
 <dt>save_expression</dt>
 <dd><p>An R-expression used to save the <code>data</code>.
 Defaults to <code>write.csv(x = data, file = filename, row.names = FALSE)</code>,
 which writes a comma-separated, spreadsheet-style file.
 The arguments <code>data</code> and <code>filename</code> are passed from
 <code><a href="open_data.html">open_data()</a></code> to the expression defined in <code>save_expression</code>.</p></dd>
+
+
 <dt>load_expression</dt>
 <dd><p>An R-expression used to load the <code>data</code> from the
 file created by <code>save_expression</code>. Defaults to
 <code>read.csv(file = filename, stringsAsFactors = TRUE)</code>. This expression
 is stored in the project's <code>.worcs</code> file, and invoked by
 <code><a href="load_data.html">load_data()</a></code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments passed to and from functions.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns <code>NULL</code> invisibly. This
+    
+
+<p>Returns <code>NULL</code> invisibly. This
 function is called for its side effects.</p>
     </div>
     <div id="see-also">
@@ -155,26 +174,26 @@ function is called for its side effects.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">old_wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">test_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"data"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="va">test_dir</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">test_dir</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">worcs</span><span class="fu">:::</span><span class="fu">write_worcsfile</span><span class="op">(</span><span class="st">".worcs"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span>
-<span class="r-in"><span class="fu">closed_data</span><span class="op">(</span><span class="va">df</span>, codebook <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Creating C:/Users/lissa102/AppData/Local/Temp/RtmpSoKjsk/data/README.md.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Generating synthetic data for public use. Ensure that no identifying information is included.</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">old_wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">test_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"data"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="va">test_dir</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">test_dir</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">worcs</span><span class="fu">:::</span><span class="fu">write_worcsfile</span><span class="op">(</span><span class="st">".worcs"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu">closed_data</span><span class="op">(</span><span class="va">df</span>, codebook <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Creating C:/Users/vanlissa/AppData/Local/Temp/RtmpUzSQYS/data/README.md.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Generating synthetic data for public use. Ensure that no identifying information is included.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Dropped unused factor level(s) in dependent variable: versicolor, virginica.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |======================================================================| 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing synthetic data in 'synthetic_df.csv' and updating the checksum in '.worcs'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating '.gitignore'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating C:/Users/lissa102/AppData/Local/Temp/RtmpSoKjsk/data/README.md.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating '.gitignore'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing value labels in 'value_labels_df.yml'.</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">test_dir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Storing synthetic data in 'synthetic_df.csv' and updating the checksum in '.worcs'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Updating '.gitignore'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Updating C:/Users/vanlissa/AppData/Local/Temp/RtmpUzSQYS/data/README.md.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Updating '.gitignore'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Storing value labels in 'value_labels_df.yml'.</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">test_dir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -185,13 +204,11 @@ function is called for its side effects.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
-Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

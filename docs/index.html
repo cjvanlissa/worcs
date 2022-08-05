@@ -101,54 +101,34 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="worcs-">WORCS
-<a href="https://osf.io/zcvbs/" class="external-link"><img src="https://github.com/cjvanlissa/worcs/raw/master/docs/worcs_icon.png" align="right" height="139"></a>
+<div class="page-header"><h1 id="worcs-">WORCS <a href="https://osf.io/zcvbs/" class="external-link"><img src="https://github.com/cjvanlissa/worcs/raw/master/docs/worcs_icon.png" align="right" height="139"></a>
 <a class="anchor" aria-label="anchor" href="#worcs-"></a>
 </h1></div>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<p>The Workflow for Open Reproducible Code in Science (WORCS) is an easy
-to adopt approach to ensuring a research project meets the requirements
-of Open Science from the start. It is based on a “good enough”
-philosophy, prioritizing user-friendliness over exhaustiveness. It can
-be used either in absence of, or in parallel to, existing requirements
-for Open workflows. It can also be enhanced with more elaborate
-solutions for specific issues.</p>
+<p>The Workflow for Open Reproducible Code in Science (WORCS) is an easy to adopt approach to ensuring a research project meets the requirements of Open Science from the start. It is based on a “good enough” philosophy, prioritizing user-friendliness over exhaustiveness. It can be used either in absence of, or in parallel to, existing requirements for Open workflows. It can also be enhanced with more elaborate solutions for specific issues.</p>
 <div class="section level2">
 <h2 id="where-do-i-start">Where do I start?<a class="anchor" aria-label="anchor" href="#where-do-i-start"></a>
 </h2>
-<p>For most users, the recommended starting point is to <a href="https://content.iospress.com/articles/data-science/ds210031" class="external-link">read
-the paper, published in Data Science</a>, which introduces the WORCS
-workflow, explains the underlying tools, and illustrates how the
-<code>worcs</code> package can be used to create a new project that
-follows the workflow.</p>
-<p>The workflow is illustrated below; the <a href="https://cjvanlissa.github.io/worcs/articles/workflow.html" class="external-link">workflow
-vignette</a> describes each step in detail.</p>
+<p>For most users, the recommended starting point is to <a href="https://content.iospress.com/articles/data-science/ds210031" class="external-link">read the paper, published in Data Science</a>, which introduces the WORCS workflow, explains the underlying tools, and illustrates how the <code>worcs</code> package can be used to create a new project that follows the workflow.</p>
+<p>The workflow is illustrated below; the <a href="https://cjvanlissa.github.io/worcs/articles/workflow.html" class="external-link">workflow vignette</a> describes each step in detail.</p>
 <p><img src="https://github.com/cjvanlissa/worcs/raw/master/paper/workflow_graph/workflow.png"><!-- --></p>
 </div>
 <div class="section level2">
 <h2 id="installing-the-package">Installing the package<a class="anchor" aria-label="anchor" href="#installing-the-package"></a>
 </h2>
-<p>Before installing the package, please read <a href="https://cjvanlissa.github.io/worcs/articles/setup.html" class="external-link">this
-vignette</a>, which explains how to set up your computer for
-<code>worcs</code> (using the CRAN version).</p>
-<p>If you know what you’re doing and you wish to install the development
-version of the <code>worcs</code> package from GitHub instead, you can
-use:</p>
+<p>Before installing the package, please read <a href="https://cjvanlissa.github.io/worcs/articles/setup.html" class="external-link">this vignette</a>, which explains how to set up your computer for <code>worcs</code> (using the CRAN version).</p>
+<p>If you know what you’re doing and you wish to install the development version of the <code>worcs</code> package from GitHub instead, you can use:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"cjvanlissa/worcs"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"cjvanlissa/worcs"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="citing-worcs">Citing WORCS<a class="anchor" aria-label="anchor" href="#citing-worcs"></a>
 </h2>
-<p>You can cite WORCS using the following citation (please use the same
-citation for either the package, or the paper):</p>
+<p>You can cite WORCS using the following citation (please use the same citation for either the package, or the paper):</p>
 <blockquote>
-<p>Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
-Peikert, A., , Struiksma, M. E., &amp; Vreede, B. (2021). WORCS: A
-Workflow for Open Reproducible Code in Science. Data Science. Data
-Science, vol. 4, no. 1, pp. 29-49. DOI: 10.3233/DS-210031.</p>
+<p>Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A., Peikert, A., , Struiksma, M. E., &amp; Vreede, B. (2021). WORCS: A Workflow for Open Reproducible Code in Science. Data Science. Data Science, vol. 4, no. 1, pp. 29-49. DOI: 10.3233/DS-210031.</p>
 </blockquote>
 </div>
 <div class="section level2">
@@ -156,14 +136,10 @@ Science, vol. 4, no. 1, pp. 29-49. DOI: 10.3233/DS-210031.</p>
 </h2>
 <p>This repository contains the following:</p>
 <ol style="list-style-type: decimal">
-<li>An R-package called <code>worcs</code>, with convenience functions
-to facilitate the WORCS workflow.</li>
-<li>In the subfolder <code>./paper</code>, the source files for the
-paper describing the WORCS workflow.</li>
+<li>An R-package called <code>worcs</code>, with convenience functions to facilitate the WORCS workflow.</li>
+<li>In the subfolder <code>./paper</code>, the source files for the paper describing the WORCS workflow.</li>
 </ol>
-<p>The repository serves two functions: To allow users to install the
-<code>worcs</code> package, and to allow collaborators access to the
-source code for the package and paper.</p>
+<p>The repository serves two functions: To allow users to install the <code>worcs</code> package, and to allow collaborators access to the source code for the package and paper.</p>
 </div>
 <div class="section level2">
 <h2 id="repository-structure">Repository structure<a class="anchor" aria-label="anchor" href="#repository-structure"></a>
@@ -247,32 +223,19 @@ source code for the package and paper.</p>
 <div class="section level2">
 <h2 id="contributing-and-contact-information">Contributing and Contact Information<a class="anchor" aria-label="anchor" href="#contributing-and-contact-information"></a>
 </h2>
-<p>We are always eager to receive user feedback and contributions to
-help us improve both the workflow and the software. Major contributions
-warrant coauthorship to the package. Please contact the lead author at
-<a href="mailto:c.j.vanlissa@uu.nl" class="email">c.j.vanlissa@uu.nl</a>, or:</p>
+<p>We are always eager to receive user feedback and contributions to help us improve both the workflow and the software. Major contributions warrant coauthorship to the package. Please contact the lead author at <a href="mailto:c.j.vanlissa@uu.nl" class="email">c.j.vanlissa@uu.nl</a>, or:</p>
 <ul>
 <li>
-<a href="https://github.com/cjvanlissa/worcs" class="external-link">File a GitHub
-issue</a> for feedback, bug reports or feature requests</li>
+<a href="https://github.com/cjvanlissa/worcs" class="external-link">File a GitHub issue</a> for feedback, bug reports or feature requests</li>
 <li>
-<a href="https://github.com/cjvanlissa/worcs/pulls" class="external-link">Make a pull
-request</a> to contribute your code or prose</li>
+<a href="https://github.com/cjvanlissa/worcs/pulls" class="external-link">Make a pull request</a> to contribute your code or prose</li>
 </ul>
-<p>By participating in this project, you agree to abide by the <a href="https://www.contributor-covenant.org/" class="external-link">Contributor Code of Conduct
-v2.0</a>. Contributions to the package must adhere to the <a href="https://style.tidyverse.org/" class="external-link">tidyverse style guide</a>. When
-contributing code, please add tests for that contribution to the
-<code>tests/testthat</code> folder, and ensure that these tests pass in
-the <a href="https://github.com/cjvanlissa/worcs/actions/workflows/R-CMD-check" class="external-link">GitHub
-Actions panel</a>.</p>
+<p>By participating in this project, you agree to abide by the <a href="https://www.contributor-covenant.org/" class="external-link">Contributor Code of Conduct v2.0</a>. Contributions to the package must adhere to the <a href="https://style.tidyverse.org/" class="external-link">tidyverse style guide</a>. When contributing code, please add tests for that contribution to the <code>tests/testthat</code> folder, and ensure that these tests pass in the <a href="https://github.com/cjvanlissa/worcs/actions/workflows/R-CMD-check" class="external-link">GitHub Actions panel</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
 </h2>
-<p>The worcs logo is inspired by the Open Science Badges by the Center
-for Open Science (CC-BY-4.0), and makes use of the gear, services,
-gears, preferences, settings icon, made by MD Badsha Meah from
-www.freeicons.io (CC-BY-3.0).</p>
+<p>The worcs logo is inspired by the Open Science Badges by the Center for Open Science (CC-BY-4.0), and makes use of the gear, services, gears, preferences, settings icon, made by MD Badsha Meah from www.freeicons.io (CC-BY-3.0).</p>
 </div>
 </div>
   </div>
@@ -330,14 +293,12 @@ www.freeicons.io (CC-BY-3.0).</p>
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
-Brandmaier.</p>
+<p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

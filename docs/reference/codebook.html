@@ -107,55 +107,66 @@ transfer these changes to the 'markdown' file for 'GitHub'.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_codebook</span><span class="op">(</span>
-  <span class="va">data</span>,
-  filename <span class="op">=</span> <span class="st">"codebook.Rmd"</span>,
-  render_file <span class="op">=</span> <span class="cn">TRUE</span>,
-  csv_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"Rmd$"</span>, <span class="st">"csv"</span>, <span class="va">filename</span><span class="op">)</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_codebook</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  filename <span class="op">=</span> <span class="st">"codebook.Rmd"</span>,</span>
+<span>  render_file <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  csv_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"Rmd$"</span>, <span class="st">"csv"</span>, <span class="va">filename</span><span class="op">)</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>A data.frame for which to create a codebook.</p></dd>
+
+
 <dt>filename</dt>
 <dd><p>Character. File name to write the codebook <code>rmarkdown</code>
 file to.</p></dd>
+
+
 <dt>render_file</dt>
 <dd><p>Logical. Whether or not to render the document.</p></dd>
+
+
 <dt>csv_file</dt>
 <dd><p>Character. File name to write the codebook <code>rmarkdown</code>
 file to. By default, uses the filename stem of the <code>filename</code> argument.
 Set to <code>NULL</code> to write the codebook only to the 'R Markdown' file, and
 not to <code>.csv</code>.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Logical. Whether or not to print status messages to
 the console. Default: TRUE</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>Logical</code>, indicating whether or not the operation was
+    
+
+<p><code>Logical</code>, indicating whether or not the operation was
 successful. This function is mostly called for its side effect of rendering
 an 'R Markdown' codebook.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span><span class="op">(</span><span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/pandoc_available.html" class="external-link">pandoc_available</a></span><span class="op">(</span><span class="st">"2.0"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/rmarkdown" class="external-link">rmarkdown</a></span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"codebook"</span>, fileext <span class="op">=</span> <span class="st">".Rmd"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">make_codebook</span><span class="op">(</span><span class="va">iris</span>, filename <span class="op">=</span> <span class="va">filename</span>, csv_file <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="st">".worcs"</span>,</span>
-<span class="r-in">    <span class="va">filename</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"\\.Rmd"</span>, <span class="st">"\\.md"</span>, <span class="va">filename</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"\\.Rmd"</span>, <span class="st">"\\.html"</span>, <span class="va">filename</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"\\.Rmd"</span>, <span class="st">"_files"</span>, <span class="va">filename</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/pandoc_available.html" class="external-link">pandoc_available</a></span><span class="op">(</span><span class="st">"2.0"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/rmarkdown" class="external-link">rmarkdown</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"codebook"</span>, fileext <span class="op">=</span> <span class="st">".Rmd"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">make_codebook</span><span class="op">(</span><span class="va">iris</span>, filename <span class="op">=</span> <span class="va">filename</span>, csv_file <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="st">".worcs"</span>,</span></span>
+<span class="r-in"><span>    <span class="va">filename</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"\\.Rmd"</span>, <span class="st">"\\.md"</span>, <span class="va">filename</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"\\.Rmd"</span>, <span class="st">"\\.html"</span>, <span class="va">filename</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"\\.Rmd"</span>, <span class="st">"_files"</span>, <span class="va">filename</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -166,13 +177,11 @@ an 'R Markdown' codebook.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
-Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

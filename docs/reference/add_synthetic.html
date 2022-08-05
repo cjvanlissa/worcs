@@ -80,40 +80,53 @@ public use to a WORCS project with closed data.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">add_synthetic</span><span class="op">(</span>
-  <span class="va">data</span>,
-  synthetic_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"synthetic_"</span>, <span class="va">original_name</span><span class="op">)</span>,
-  <span class="va">original_name</span>,
-  worcs_directory <span class="op">=</span> <span class="st">"."</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_synthetic</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  synthetic_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"synthetic_"</span>, <span class="va">original_name</span><span class="op">)</span>,</span>
+<span>  <span class="va">original_name</span>,</span>
+<span>  worcs_directory <span class="op">=</span> <span class="st">"."</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>A <code>data.frame</code> containing the synthetic data.</p></dd>
+
+
 <dt>synthetic_name</dt>
 <dd><p>Character, naming the file synthetic data should be
 written to. By
 default, prepends <code>"synthetic_"</code> to the <code>original_name</code>.</p></dd>
+
+
 <dt>original_name</dt>
 <dd><p>Character, naming an existing data resource in the WORCS
 project with which to associate the synthetic <code>data</code> object.</p></dd>
+
+
 <dt>worcs_directory</dt>
 <dd><p>Character, indicating the WORCS project directory to
 which to save data. The default value <code>"."</code> points to the current
 directory.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Logical. Whether or not to print status messages to
 the console. Default: TRUE</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments passed to and from functions.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns <code>NULL</code> invisibly. This
+    
+
+<p>Returns <code>NULL</code> invisibly. This
 function is called for its side effects.</p>
     </div>
     <div id="see-also">
@@ -123,36 +136,36 @@ function is called for its side effects.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Create directory to run the example</span></span>
-<span class="r-in"><span class="va">old_wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">test_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"add_synthetic"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="va">test_dir</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">test_dir</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">worcs</span><span class="fu">:::</span><span class="fu">write_worcsfile</span><span class="op">(</span><span class="st">".worcs"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Prepare data</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span>
-<span class="r-in"><span class="co"># Run closed_data without synthetic</span></span>
-<span class="r-in"><span class="fu"><a href="closed_data.html">closed_data</a></span><span class="op">(</span><span class="va">df</span>, codebook <span class="op">=</span> <span class="cn">NULL</span>, synthetic <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Creating C:/Users/lissa102/AppData/Local/Temp/RtmpSoKjsk/add_synthetic/README.md.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating '.gitignore'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing value labels in 'value_labels_df.yml'.</span>
-<span class="r-in"><span class="co"># Manually add synthetic</span></span>
-<span class="r-in"><span class="fu">add_synthetic</span><span class="op">(</span><span class="va">df</span>, original_name <span class="op">=</span> <span class="st">"df.csv"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Storing synthetic data in 'synthetic_df.csv' and updating the checksum in '.worcs'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating '.gitignore'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Updating C:/Users/lissa102/AppData/Local/Temp/RtmpSoKjsk/add_synthetic/README.md.</span>
-<span class="r-in"><span class="co"># Remove original from file and environment</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="st">"df.csv"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create directory to run the example</span></span></span>
+<span class="r-in"><span><span class="va">old_wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">test_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"add_synthetic"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="va">test_dir</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">test_dir</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">worcs</span><span class="fu">:::</span><span class="fu">write_worcsfile</span><span class="op">(</span><span class="st">".worcs"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Prepare data</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span></span>
+<span class="r-in"><span><span class="co"># Run closed_data without synthetic</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="closed_data.html">closed_data</a></span><span class="op">(</span><span class="va">df</span>, codebook <span class="op">=</span> <span class="cn">NULL</span>, synthetic <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Creating C:/Users/vanlissa/AppData/Local/Temp/RtmpUzSQYS/add_synthetic/README.md.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Updating '.gitignore'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Storing value labels in 'value_labels_df.yml'.</span>
+<span class="r-in"><span><span class="co"># Manually add synthetic</span></span></span>
+<span class="r-in"><span><span class="fu">add_synthetic</span><span class="op">(</span><span class="va">df</span>, original_name <span class="op">=</span> <span class="st">"df.csv"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Storing synthetic data in 'synthetic_df.csv' and updating the checksum in '.worcs'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Updating '.gitignore'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Updating C:/Users/vanlissa/AppData/Local/Temp/RtmpUzSQYS/add_synthetic/README.md.</span>
+<span class="r-in"><span><span class="co"># Remove original from file and environment</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="st">"df.csv"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># See that load_data() now loads the synthetic file</span></span>
-<span class="r-in"><span class="fu"><a href="load_data.html">load_data</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">v</span> Loading synthetic data from 'synthetic_df.csv'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">x</span> No valid codebook found.</span>
-<span class="r-in"><span class="co"># Cleaning example directory</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">test_dir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># See that load_data() now loads the synthetic file</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="load_data.html">load_data</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Loading synthetic data from 'synthetic_df.csv'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> No valid codebook found.</span>
+<span class="r-in"><span><span class="co"># Cleaning example directory</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">test_dir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -163,13 +176,11 @@ function is called for its side effects.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
-Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

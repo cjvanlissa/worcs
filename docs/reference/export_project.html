@@ -78,7 +78,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">export_project</span><span class="op">(</span>zipfile <span class="op">=</span> <span class="cn">NULL</span>, worcs_directory <span class="op">=</span> <span class="st">"."</span>, open_data <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">export_project</span><span class="op">(</span>zipfile <span class="op">=</span> <span class="cn">NULL</span>, worcs_directory <span class="op">=</span> <span class="st">"."</span>, open_data <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -89,28 +89,35 @@ The default argument <code>NULL</code> creates a <code>.zip</code> file in the d
 one level above the 'worcs' project directory. By default, all files tracked
 by 'Git' are included in the <code>.zip</code> file, excluding 'data.csv' if
 <code>open_data = FALSE</code>.</p></dd>
+
+
 <dt>worcs_directory</dt>
 <dd><p>Character. Path to the WORCS project directory to
 export. Defaults to <code>"."</code>, which refers to the current working
 directory.</p></dd>
+
+
 <dt>open_data</dt>
 <dd><p>Logical. Whether or not to include the original data,
 'data.csv', if this file exists. If <code>open_data = FALSE</code> and an open
 data file does exist, then it is excluded from the <code>.zip</code> file. If it
 does not yet exist, a synthetic data set is generated and added to the
 <code>.zip</code> file.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Logical, indicating the success of the operation. This function is
+    
+
+<p>Logical, indicating the success of the operation. This function is
 called for its side effect of creating a <code>.zip</code> file.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">export_project</span><span class="op">(</span>worcs_directory <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'C:\Users\lissa102\AppData\Local\Temp\RtmpSoKjsk/.worcs': No such file or directory</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">x</span> No '.worcs' file found; not a WORCS project, or the working directory has been changed.</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">export_project</span><span class="op">(</span>worcs_directory <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'C:\Users\vanlissa\AppData\Local\Temp\RtmpUzSQYS/.worcs': No such file or directory</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> No '.worcs' file found; not a WORCS project, or the working directory has been changed.</span>
 </code></pre></div>
     </div>
   </div>
@@ -121,13 +128,11 @@ called for its side effect of creating a <code>.zip</code> file.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
-Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
