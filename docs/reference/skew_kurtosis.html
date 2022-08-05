@@ -84,29 +84,38 @@ large sample sizes, significant skew/kurtosis is common.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">skew_kurtosis</span><span class="op">(</span><span class="va">x</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">skew_kurtosis</span><span class="op">(</span><span class="va">x</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>An object for which a method exists.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Logical. Whether or not to print messages to the console,
 Default: FALSE</p></dd>
+
+
 <dt>se</dt>
 <dd><p>Whether or not to return the standard errors, Default: FALSE</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments to pass to and from functions.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <code>matrix</code> of skew and kurtosis statistics for <code>x</code>.</p>
+    
+
+<p>A <code>matrix</code> of skew and kurtosis statistics for <code>x</code>.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">skew_kurtosis</span><span class="op">(</span><span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/anscombe.html" class="external-link">anscombe</a></span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">skew_kurtosis</span><span class="op">(</span><span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/anscombe.html" class="external-link">anscombe</a></span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           skew   skew_2se       kurt   kurt_2se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x1  0.00000000  0.0000000 -1.5289256 -0.5975093</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x2  0.00000000  0.0000000 -1.5289256 -0.5975093</span>
@@ -126,13 +135,11 @@ Default: FALSE</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
-Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

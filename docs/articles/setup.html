@@ -143,6 +143,28 @@ vignette</a> on how to use ‘GitLab’ or ‘Bitbucket’)
 </li>
 </ul>
 </li>
+<li>Install all packages required for WORCS by running the code block
+below this writing in the ‘RStudio’ console. Be prepared for three
+contingencies:
+<ul>
+<li>If you receive any error saying <em>There is no package called
+[package name]</em>, then run the code
+<code>install.packages("package name")</code><br>
+</li>
+<li>If you are prompted to update packages, just press [ENTER] to avoid
+updating packages. Updating packages this way in an interactive session
+sometimes leads to errors if the packages are loaded.<br>
+</li>
+<li>If you see a pop-up dialog asking <em>Do you want to install from
+sources the package which needs compilation?</em>, click
+<em>No</em>.</li>
+</ul>
+</li>
+</ol>
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"worcs"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html" class="external-link">install_tinytex</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv/reference/consent.html" class="external-link">consent</a></span><span class="op">(</span>provided <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
+<ol start="6" style="list-style-type: decimal">
 <li>Connect ‘RStudio’ to Git and GitHub (for more support, see <a href="https://happygitwithr.com/" class="external-link">Happy Git with R</a>
 <ol style="list-style-type: lower-alpha">
 <li>Open ‘RStudio’, open the Tools menu, click <em>Global Options</em>,
@@ -171,32 +193,24 @@ to view it again!)</li>
 <li>Run <code><a href="https://rdrr.io/pkg/gitcreds/man/gitcreds_get.html" class="external-link">gitcreds::gitcreds_set()</a></code>. This should open a dialog
 in the R console that allows you to paste the PAT from your
 clipboard.</li>
-</ol>
-</li>
-<li>Install all packages required for WORCS by running the following
-code in the ‘RStudio’ console. Be prepared for three contingencies:
-<ul>
-<li>If you receive any error saying <em>There is no package called
-[package name]</em>, then run the code
-<code>install.packages("package name")</code><br>
-</li>
-<li>If you are prompted to update packages, just press [ENTER] to avoid
-updating packages. Updating packages this way in an interactive session
-sometimes leads to errors if the packages are loaded.<br>
-</li>
-<li>If you see a pop-up dialog asking <em>Do you want to install from
-sources the package which needs compilation?</em>, click
-<em>No</em>.</li>
-</ul>
-</li>
-</ol>
-<pre><code><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"worcs"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html" class="external-link">install_tinytex</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv/reference/consent.html" class="external-link">consent</a></span><span class="op">(</span>provided <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre>
-<p>If you do not have a Git user set up on your computer yet (e.g., if
+<li>If you do not have a Git user set up on your computer yet (e.g., if
 this is the first time you will be using Git), run the following -
-making sure to substitute your actual username and email:</p>
-<pre><code><span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="../reference/git_user.html">git_user</a></span><span class="op">(</span><span class="st">"your_name"</span>, <span class="st">"your_email"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre>
+making sure to substitute your actual username and email:</li>
+</ol>
+</li>
+</ol>
+<pre><code><span><span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="../reference/git_user.html">git_user</a></span><span class="op">(</span><span class="st">"your_name"</span>, <span class="st">"your_email"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Everything should be installed and connected now. You can verify
+your installation using an automated test suite. The results will be
+printed to the console; if any tests fail, you will see a hint for how
+to resolve it. Run the code below this writing in the ‘RStudio’
+console:</li>
+</ol>
+<pre><code><span><span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="../reference/check_worcs_installation.html">check_worcs_installation</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<div class="section level3">
+<h3 id="optional-step">Optional step<a class="anchor" aria-label="anchor" href="#optional-step"></a>
+</h3>
 <p>If you intend to write documents in APA style, you should
 additionally install the <code>papaja</code> package. Because
 <code>papaja</code> has many dependencies, it is recommended to skip
@@ -204,13 +218,8 @@ this step if you intend to write documents in a different style than
 APA. Unfortunately, this package is not yet available on the central R
 repository CRAN, but you can install it from ‘GitHub’ using the
 following code:</p>
-<pre><code><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"papaja"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></code></pre>
-<p>Everything should be installed and connected now. You can verify your
-installation using the convenience function
-<code><a href="../reference/check_worcs_installation.html">worcs::check_worcs_installation()</a></code>. It will run a test suite
-and print the results; in case any tests fail, it will provide a hint
-for how to resolve it:</p>
-<pre><code><span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="../reference/check_worcs_installation.html">check_worcs_installation</a></span><span class="op">(</span><span class="op">)</span></code></pre>
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"papaja"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></span></code></pre>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -223,14 +232,12 @@ for how to resolve it:</p>
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
-Brandmaier.</p>
+<p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

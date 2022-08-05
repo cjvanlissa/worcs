@@ -73,43 +73,29 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.1.10" id="worcs-0110">worcs 0.1.10<a class="anchor" aria-label="anchor" href="#worcs-0110"></a></h2>
-<ul><li>Fix breaking bug in check_worcs_installation() introduced in version
-0.1.9</li>
-<li>Update setup vignette to reflect new GitHub authentication
-protocols</li>
+<h2 class="page-header" data-toc-text="0.1.10" id="worcs-0110">worcs 0.1.10<small>2022-07-20</small><a class="anchor" aria-label="anchor" href="#worcs-0110"></a></h2>
+<ul><li>Fix breaking bug in check_worcs_installation() introduced in version 0.1.9</li>
+<li>Update setup vignette to reflect new GitHub authentication protocols</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.9" id="worcs-019">worcs 0.1.9<small>2022-07-16</small><a class="anchor" aria-label="anchor" href="#worcs-019"></a></h2>
-<ul><li>closed_data() and open_data() now store factor and ordered value
-labels in a YAML file</li>
-<li>Added functions data_unlabel() and data_label(), which respectively
-coerce factors to integer, and restore integers to factors using
-metadata stored in a YAML file</li>
-<li>load_data() attempts to coerce variable classes using the codebook,
-and restores ordered levels from the value_labels YAML file</li>
+<ul><li>closed_data() and open_data() now store factor and ordered value labels in a YAML file</li>
+<li>Added functions data_unlabel() and data_label(), which respectively coerce factors to integer, and restore integers to factors using metadata stored in a YAML file</li>
+<li>load_data() attempts to coerce variable classes using the codebook, and restores ordered levels from the value_labels YAML file</li>
 <li>Update templates from rticles and prereg packages</li>
-<li>Add check_worcs_installation() function to determine whether all
-non-R-package dependencies are installed correctly</li>
+<li>Add check_worcs_installation() function to determine whether all non-R-package dependencies are installed correctly</li>
 <li>Update references to WORCS paper</li>
 <li>Replace GitHub version of papaja with CRAN version</li>
 <li>Fix URLs</li>
 <li>Update rticles and prereg templates</li>
-<li>Handle literal function names from rticles and prereg, such that
-users can use all available options from those packages without worcs
-explicitly referencing those functions</li>
-<li>Add arguments ‘save_expression’ and ‘load_expression’ to
-closed_data() and open_data(). This allows users to save data in
-different formats. The ‘load_expression’ is stored in the .worcs file,
-and referenced by load_data().</li>
+<li>Handle literal function names from rticles and prereg, such that users can use all available options from those packages without worcs explicitly referencing those functions</li>
+<li>Add arguments ‘save_expression’ and ‘load_expression’ to closed_data() and open_data(). This allows users to save data in different formats. The ‘load_expression’ is stored in the .worcs file, and referenced by load_data().</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.8" id="worcs-018">worcs 0.1.8<small>2021-02-02</small><a class="anchor" aria-label="anchor" href="#worcs-018"></a></h2>
 <ul><li>Declared pandoc in SystemRequirements</li>
-<li>Made all examples using pandoc conditional on availability of
-pandoc</li>
-<li>Functions that wrap rmarkdown::render() now return NULL when pandoc
-is not available</li>
+<li>Made all examples using pandoc conditional on availability of pandoc</li>
+<li>Functions that wrap rmarkdown::render() now return NULL when pandoc is not available</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.7" id="worcs-017">worcs 0.1.7<small>2021-01-21</small><a class="anchor" aria-label="anchor" href="#worcs-017"></a></h2>
@@ -117,44 +103,25 @@ is not available</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.6" id="worcs-016">worcs 0.1.6<small>2020-12-16</small><a class="anchor" aria-label="anchor" href="#worcs-016"></a></h2>
-<ul><li>Workflow vignette updated to address reviewer comments from “Data
-Science”</li>
+<ul><li>Workflow vignette updated to address reviewer comments from “Data Science”</li>
 <li>New functions: add_synthetic() and notify_synthetic()</li>
-<li>closed_data() no longer wraps errors from the call to synthetic().
-Thus, the function call fails with an error if data synthesis
-fails.</li>
-<li>closed_data() now passes formal arguments of synthetic() contained
-in ‘…’ on to synthetic().</li>
-<li>synthetic() now allows ‘y’ to be referenced in ‘predict_expression’
-when ‘model_expression’ is set to NULL, thereby enabling
-bootstrapping.</li>
-<li>The internal function worcs:::col_message() now renders status
-messages in black print instead of colored print when
-rmarkdown::render() is on the callstack. This avoids errors when
-knitting to PDF. See <a href="https://github.com/rstudio/rmarkdown/issues/1951" class="external-link uri">https://github.com/rstudio/rmarkdown/issues/1951</a> for the
-error circumvented by this fix.</li>
+<li>closed_data() no longer wraps errors from the call to synthetic(). Thus, the function call fails with an error if data synthesis fails.</li>
+<li>closed_data() now passes formal arguments of synthetic() contained in ‘…’ on to synthetic().</li>
+<li>synthetic() now allows ‘y’ to be referenced in ‘predict_expression’ when ‘model_expression’ is set to NULL, thereby enabling bootstrapping.</li>
+<li>The internal function worcs:::col_message() now renders status messages in black print instead of colored print when rmarkdown::render() is on the callstack. This avoids errors when knitting to PDF. See <a href="https://github.com/rstudio/rmarkdown/issues/1951" class="external-link uri">https://github.com/rstudio/rmarkdown/issues/1951</a> for the error circumvented by this fix.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.5" id="worcs-015">worcs 0.1.5<small>2020-10-09</small><a class="anchor" aria-label="anchor" href="#worcs-015"></a></h2>
-<ul><li>Necessary update due to breaking changes in dependency from the
-<code>gert</code> package</li>
-<li>Add function add_preregistration() to add a preregistration at a
-later stage</li>
+<ul><li>Necessary update due to breaking changes in dependency from the <code>gert</code> package</li>
+<li>Add function add_preregistration() to add a preregistration at a later stage</li>
 <li>Add preregistration templates “PSS” and “Secondary”</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.4" id="worcs-014">worcs 0.1.4<small>2020-09-29</small><a class="anchor" aria-label="anchor" href="#worcs-014"></a></h2>
-<ul><li>Fixed bugs in handling of filenames by open_data() and closed_data()
-codebook.Rmd from the name of the object supplied to the ‘data’
-argument</li>
-<li>By default, open_data() and closed_data() now construct the
-filenames of the .csv and codebook.Rmd from the name of the object
-supplied to the ‘data’ argument. This also means that the object will be
-loaded with the same name by load_data().</li>
-<li>Add function add_manuscript() to add a manuscript at a later
-stage</li>
-<li>Major bugfixes in worcs_badge(); this function did not work as
-intended. Fixed now</li>
+<ul><li>Fixed bugs in handling of filenames by open_data() and closed_data() codebook.Rmd from the name of the object supplied to the ‘data’ argument</li>
+<li>By default, open_data() and closed_data() now construct the filenames of the .csv and codebook.Rmd from the name of the object supplied to the ‘data’ argument. This also means that the object will be loaded with the same name by load_data().</li>
+<li>Add function add_manuscript() to add a manuscript at a later stage</li>
+<li>Major bugfixes in worcs_badge(); this function did not work as intended. Fixed now</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.3" id="worcs-013">worcs 0.1.3<small>2020-06-27</small><a class="anchor" aria-label="anchor" href="#worcs-013"></a></h2>
@@ -166,28 +133,13 @@ intended. Fixed now</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.2" id="worcs-012">worcs 0.1.2<small>2020-05-30</small><a class="anchor" aria-label="anchor" href="#worcs-012"></a></h2>
-<ul><li>All documentation updated to ensure compatibility with the submitted
-version of the WORCS-paper.</li>
-<li>Authors and references to WORCS-paper updated to include all
-co-authors.</li>
-<li>Prevent git_user() from engaging in antisocial behavior, resetting
-users’ ‘Git’ credentials, by adding a default argument ‘overwrite =
-!has_git_user()’. By default, the function will do nothing when ‘Git’
-user credentials already exist.</li>
-<li>Bug fix to load_data() to ensure compatibility with the ‘RMarkdown’
-behavior of running code chunks from the .Rmd file directory, instead of
-from the actual working directory.</li>
-<li>Bug fix to cite_all() and cite_essential() to allow escaping literal
-double @.</li>
-<li>Bug fix to export_project(), which now respects the folder structure
-within a project, and also supports relative paths to ensure
-portability, even when called from a different working than the working
-directory. Fixing this bug required changing the working directory
-before calling zip(). This change in working directory is immediately
-followed by a call to on.exit(setwd(oldwd)), in line with CRAN
-policy.</li>
-<li>.worcs file is used to determine the existence of a worcs-project
-recursively.</li>
+<ul><li>All documentation updated to ensure compatibility with the submitted version of the WORCS-paper.</li>
+<li>Authors and references to WORCS-paper updated to include all co-authors.</li>
+<li>Prevent git_user() from engaging in antisocial behavior, resetting users’ ‘Git’ credentials, by adding a default argument ‘overwrite = !has_git_user()’. By default, the function will do nothing when ‘Git’ user credentials already exist.</li>
+<li>Bug fix to load_data() to ensure compatibility with the ‘RMarkdown’ behavior of running code chunks from the .Rmd file directory, instead of from the actual working directory.</li>
+<li>Bug fix to cite_all() and cite_essential() to allow escaping literal double @.</li>
+<li>Bug fix to export_project(), which now respects the folder structure within a project, and also supports relative paths to ensure portability, even when called from a different working than the working directory. Fixing this bug required changing the working directory before calling zip(). This change in working directory is immediately followed by a call to on.exit(setwd(oldwd)), in line with CRAN policy.</li>
+<li>.worcs file is used to determine the existence of a worcs-project recursively.</li>
 <li>.worcs file now tracks entry point for analyses.</li>
 </ul></div>
     <div class="section level2">
@@ -204,13 +156,11 @@ recursively.</li>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M.
-Brandmaier.</p>
+  <p></p><p>Developed by Caspar J. Van Lissa, Aaron Peikert, Andreas M. Brandmaier.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
