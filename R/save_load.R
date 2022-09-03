@@ -371,11 +371,11 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
     if(use_metadata){
       codebook <- tryCatch({
         codebook <- gsub(".Rmd", ".csv", worcsfile$data[[names(data_files)[file_num]]][["codebook"]], fixed = TRUE)
-        read.csv(codebook, stringsAsFactors = FALSE)
+        read.csv(file.path(dn_worcs, codebook), stringsAsFactors = FALSE)
       }, error = function(e){ NULL })
       value_labels <- tryCatch({
         value_labels <- worcsfile$data[[names(data_files)[file_num]]][["labels"]]
-        yaml::read_yaml(value_labels)
+        yaml::read_yaml(file.path(dn_worcs, value_labels))
       }, error = function(e){ NULL })
       out <- check_metadata(out, codebook, value_labels)
     }
