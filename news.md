@@ -1,5 +1,10 @@
 # worcs 0.1.10
 
+* fix bug related to file path of codebook and metadata
+* add function report()
+
+# worcs 0.1.10
+
 * Fix breaking bug in check_worcs_installation() introduced in version 0.1.9
 * Update setup vignette to reflect new GitHub authentication protocols
 
