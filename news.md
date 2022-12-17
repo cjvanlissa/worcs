@@ -1,4 +1,4 @@
-# worcs 0.1.10
+# worcs 0.1.11
 
 * fix bug related to file path of codebook and metadata
 * add function report()

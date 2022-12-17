@@ -117,6 +117,9 @@ save_data <- function(data,
                       save_expression = write.csv(x = data, file = filename, row.names = FALSE),
                       load_expression = read.csv(file = filename, stringsAsFactors = TRUE),
                       ...){
+  # Find .worcs file
+  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
+
   if(grepl("[", filename, fixed = TRUE) | grepl("$", filename, fixed = TRUE)){
     stop("This filename is not allowed: ", filename, ". Please specify a legal filename.", call. = FALSE)
   }
@@ -130,40 +133,35 @@ save_data <- function(data,
     if(grepl("[", codebook, fixed = TRUE) | grepl("$", codebook, fixed = TRUE)){
     stop("This codebook filename is not allowed: ", codebook, ". Please specify a legal filename.", call. = FALSE)
     }
-    fn_code <- basename(codebook)
-    dn_code <- dirname(codebook)
-    fn_write_codebook <- file.path(dn_code, fn_code)
+    fn_write_codebook <- path_abs_worcs(codebook, dn_worcs)
   }
 
   if(create_labels){
     if(grepl("[", value_labels, fixed = TRUE) | grepl("$", value_labels, fixed = TRUE)){
       stop("This filename is not allowed: ", value_labels, ". Please specify a legal filename.", call. = FALSE)
     }
-    fn_labels <- basename(value_labels)
-    dn_labels <- dirname(value_labels)
-    fn_write_labels <- file.path(dn_labels, fn_labels)
+    fn_write_labels <- path_abs_worcs(value_labels, dn_worcs)
   }
   # Filenames housekeeping
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
-  fn_worcs <- file.path(dn_worcs, ".worcs")
-  fn_gitig <- file.path(dn_worcs, ".gitignore")
+  fn_worcs <- path_abs_worcs(".worcs", dn_worcs)
+  fn_gitig <- path_abs_worcs(".gitignore", dn_worcs)
   fn_original <- basename(filename)
   dn_original <- dirname(filename)
-  fn_synthetic <- paste0("synthetic_", fn_original)
 
+  fn_synthetic <- paste0("synthetic_", fn_original)
   if(!dn_original == "."){
     fn_synthetic <- file.path(dn_original, fn_synthetic)
   }
 
-  fn_write_original <- file.path(dn_original, fn_original)
-  fn_write_synth <- file.path(dn_original, fn_synthetic)
+  fn_write_original <- path_abs_worcs(filename, dn_worcs)
+  fn_write_synth <- path_abs_worcs(fn_synthetic, dn_worcs)
 
   # End filenames
 
   # Remove this when worcs can handle different types:
-  if(!inherits(data, c("data.frame", "matrix"))){
-    stop("Argument 'data' must be a data.frame, matrix, or inherit from these classes.")
-  }
+  # if(!inherits(data, c("data.frame", "matrix"))){
+  #   stop("Argument 'data' must be a data.frame, matrix, or inherit from these classes.")
+  # }
   # End remove
 
   # Insert three checks:
@@ -174,28 +172,37 @@ save_data <- function(data,
 # Store data --------------------------------------------------------------
 
   col_message("Storing original data in '", filename, "' and updating the checksum in '.worcs'.", verbose = verbose)
+  filename <- fn_write_original
   eval(substitute(save_expression))
-  #write.csv(data, fn_write_original, row.names = FALSE)
 
   # Prepare for writing to worcs file
   to_worcs <- list(
     filename = fn_worcs,
     modify = TRUE
   )
+  filename <- path_rel_worcs(filename, dn_worcs)
   to_worcs$data[[filename]] <- vector(mode = "list")
   to_worcs$data[[filename]][["save_expression"]] <- deparse(substitute(save_expression))
   to_worcs$data[[filename]][["load_expression"]] <- deparse(substitute(load_expression))
   do.call(write_worcsfile, to_worcs)
-  store_checksum(fn_write_original, entry_name = filename)
+  store_checksum(fn_write_original, entry_name = filename, worcsfile = fn_worcs)
 
   if(open){
-    write_gitig(fn_gitig, paste0("!", basename(fn_original)))
+    write_gitig(fn_gitig, paste0("!", filename))
   } else {
-    write_gitig(fn_gitig, basename(fn_original))
+    write_gitig(fn_gitig, filename)
     # Update readme file with message about closed data
-    update_textfile(file.path(dn_worcs, "README.md"),
-                    "\n\n## Access to data\n\nSome of the data used in this project are not publically available.\nTo request access to the original data, [open a GitHub issue](https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/creating-an-issue).\n\n<!--Clarify here how users should contact you to gain access to the data, or to submit syntax for evaluation on the original data.-->",
-                    verbose = verbose)
+    fn_readme <- path_abs_worcs("README.md", dn_worcs)
+    if(file.exists(fn_readme)){
+      lnz <- readLines(fn_readme)
+      if(!any(grepl("not publically available", lnz, fixed = TRUE))){
+        update_textfile(fn_readme,
+                        "\n\n## Access to data\n\nSome of the data used in this project are not publically available.\nTo request access to the original data, [open a GitHub issue](https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/creating-an-issue).\n\n<!--Clarify here how users should contact you to gain access to the data, or to submit syntax for evaluation on the original data.-->",
+                        verbose = verbose)
+      }
+
+    }
+
     if(synthetic){
       # Synthetic data
       col_message("Generating synthetic data for public use. Ensure that no identifying information is included.", verbose = verbose)
@@ -215,33 +222,34 @@ save_data <- function(data,
 
 # codebook ----------------------------------------------------------------
   if(create_codebook){
-    col_message("Creating a codebook in '", fn_code, "'.", success = TRUE, verbose = verbose)
-    Args_cb <- cl["data"]
+    col_message("Creating a codebook in '", codebook, "'.", success = TRUE, verbose = verbose)
+    Args_cb <- match.call()
+    Args_cb[[1L]] <- str2lang("make_codebook")
+    Args_cb <- Args_cb[c(1L, match("data", names(Args_cb)))]
     Args_cb$filename <- fn_write_codebook
-    cb_out <- capture.output(do.call(make_codebook, Args_cb))
+    cb_out <- capture.output(eval.parent(Args_cb))
     # Add to gitignore
-    write_gitig(filename = fn_gitig, paste0("!", gsub(".md$", "csv", basename(fn_write_codebook))))
+    write_gitig(filename = fn_gitig, paste0("!", gsub(".md$", "csv", path_rel_worcs(fn_write_codebook))))
     # Add to worcs
     to_worcs <- list(filename = fn_worcs,
-                     "data" = list(list("codebook" = codebook)),
+                     "data" = list(list("codebook" = path_rel_worcs(fn_write_codebook))),
                      modify = TRUE)
 
     names(to_worcs[["data"]])[1] <- filename
-    #to_worcs$data[[filename]]$codebook <- codebook
     do.call(write_worcsfile, to_worcs)
 
   }
 
 # Value labels ------------------------------------------------------------
-
-  if(create_labels){
-    col_message("Storing value labels in '", fn_labels, "'.", success = TRUE, verbose = verbose)
+  has_factors <- any(sapply(data, inherits, what = "factor"))
+  if(create_labels & has_factors){
+    col_message("Storing value labels in '", path_rel_worcs(fn_write_labels, dn_worcs), "'.", success = TRUE, verbose = verbose)
     make_labels(data = data,
                 variables = names(data)[sapply(data, inherits, what = "factor")],
                 fn_write_labels
                 )
     # Add to worcs
-    to_worcs <- list(filename = fn_worcs,
+    to_worcs <- list(filename = path_rel_worcs(fn_write_labels),
                      "data" = list(list("labels" = value_labels)),
                      modify = TRUE)
 
@@ -597,3 +605,33 @@ notify_synthetic <- function(...,
   }
 }
 
+path_abs_worcs <- function(fn, dn_worcs = NULL, worcs_directory = "."){
+  if(grepl("^.:", fn)){
+    stop("Filename must be a relative path.", call. = FALSE)
+  }
+  if(is.null(dn_worcs)){
+    dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
+  }
+  invisible(checkworcs(dn_worcs, iserror = TRUE))
+  basen <- basename(fn)
+  dirn <- dirname(fn)
+  if(dirn == "."){
+    return(file.path(dn_worcs, basen))
+  } else {
+    return(file.path(dn_worcs, dirn, basen))
+  }
+}
+
+path_rel_worcs <- function(fn, dn_worcs = NULL, worcs_directory = "."){
+  if(!grepl("^.:", fn)){
+    stop("Filename must be an absolute path.", call. = FALSE)
+  }
+  if(is.null(dn_worcs)){
+    dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
+  }
+  invisible(checkworcs(dn_worcs, iserror = TRUE))
+  full_path <- normalizePath(fn, mustWork = FALSE)
+  worcs_path <- normalizePath(dn_worcs, mustWork = FALSE)
+  rel_path <- gsub("^\\\\+", "", gsub(worcs_path, "", full_path, fixed = TRUE))
+  return(rel_path)
+}

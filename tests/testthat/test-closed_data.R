@@ -76,7 +76,7 @@ test_that("save and load", {
   #cat(ls())
   #rm("iris")
   # test_that("loading open data succeeds when loading from a subdirectory", {
-  skip_if_not(Sys.info()["user"] %in% c("Lissa102", "Studio"))
+
   dir.create("manuscript")
   expect_error({suppressWarnings(load_data("manuscript"))}, NA)
 

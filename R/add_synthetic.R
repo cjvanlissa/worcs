@@ -48,7 +48,10 @@ add_synthetic <- function(data,
   cl <- as.list(match.call()[-1])
   # Filenames housekeeping
   dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
-  fn_worcs <- file.path(dn_worcs, ".worcs")
+  fn_worcs <- path_abs_worcs(".worcs", dn_worcs)
+  if(!file.exists(fn_worcs)){
+    stop(".worcs file not found.")
+  }
   worcs_file <- read_yaml(fn_worcs)
   if(is.null(worcs_file[["data"]])){
     stop("This WORCS project does not contain any data resources.", call. = FALSE)
@@ -67,14 +70,14 @@ add_synthetic <- function(data,
   }
 
   #fn_write_original <- file.path(dn_original, fn_original)
-  fn_write_synth <- file.path(dn_original, fn_synthetic)
-
+  fn_write_synth_abs <- path_abs_worcs(fn_synthetic, dn_worcs)
+  fn_write_synth_rel <- path_rel_worcs(fn_write_synth_abs, dn_worcs)
   # End filenames
 
   # Remove this when worcs can handle different types:
-  if(!inherits(data, c("data.frame", "matrix"))){
-    stop("Argument 'data' must be a data.frame, matrix, or inherit from these classes.")
-  }
+  # if(!inherits(data, c("data.frame", "matrix"))){
+  #   stop("Argument 'data' must be a data.frame, matrix, or inherit from these classes.")
+  # }
   # End remove
 
   # Insert three checks:
@@ -94,7 +97,7 @@ add_synthetic <- function(data,
 
 
   # Synthetic data
-  col_message("Storing synthetic data in '", fn_synthetic, "' and updating the checksum in '.worcs'.", verbose = verbose)
+  col_message("Storing synthetic data in '", fn_write_synth_rel, "' and updating the checksum in '.worcs'.", verbose = verbose)
 
 
   # Obtain save_expression from the worcs_file
@@ -107,18 +110,24 @@ add_synthetic <- function(data,
   # Create an environment in which to evaluate the save_expression, in which
   # filename is an object with value equal to fn_write_synth
   save_env <- new.env()
-  assign(x = "filename", value = fn_write_synth, envir = save_env)
+  assign(x = "filename", value = fn_write_synth_abs, envir = save_env)
   out <- eval(parse(text = save_expression), envir = save_env)
   # Add info to worcs_file
-  to_worcs$data[[original_name]]$synthetic <- fn_synthetic
-  store_checksum(fn_write_synth, entry_name = fn_synthetic)
+  to_worcs$data[[original_name]]$synthetic <- fn_write_synth_rel
+  store_checksum(fn_write_synth_abs, entry_name = fn_write_synth_rel, worcsfile = fn_worcs)
   write_gitig(fn_gitig, paste0("!", basename(fn_synthetic)))
   col_message("Updating '.gitignore'.", verbose = verbose)
+  fn_readme <- path_abs_worcs("README.md", dn_worcs)
+  if(file.exists(fn_readme)){
+    lnz <- readLines(fn_readme)
+    if(!any(grepl("Synthetic data with similar", lnz, fixed = TRUE))){
+      update_textfile(filename = fn_readme,
+                      txt = "Synthetic data with similar characteristics to the original data have been provided. Using the function load_data() will load these synthetic data when the original data are unavailable. Note that these synthetic data cannot be used to reproduce the original results. However, it does allow users to run the code and, optionally, generate valid code that can be evaluated using the original data by the project authors.",
+                      next_to = "Some of the data used in this project are not publically available.",
+                      verbose = verbose)
+    }
+  }
 
-  update_textfile(filename = file.path(dn_worcs, "README.md"),
-                  txt = "Synthetic data with similar characteristics to the original data have been provided. Using the function load_data() will load these synthetic data when the original data are unavailable. Note that these synthetic data cannot be used to reproduce the original results. However, it does allow users to run the code and, optionally, generate valid code that can be evaluated using the original data by the project authors.",
-                  next_to = "Some of the data used in this project are not publically available.",
-                  verbose = verbose)
   do.call(write_worcsfile, to_worcs)
   invisible(NULL)
 }
