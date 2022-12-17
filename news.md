@@ -1,5 +1,6 @@
 # worcs 0.1.11
 
+* Improve handling of relative filenames in save_data()
 * fix bug related to file path of codebook and metadata
 * add function report()
 
