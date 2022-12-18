@@ -1,5 +1,5 @@
 test_that("data stored in correct dir", {
-  the_test <- "savedat6"
+  the_test <- "savedat2"
   old_wd <- getwd()
   test_dir <- file.path(tempdir(), the_test)
   dir.create(test_dir)
@@ -33,9 +33,10 @@ test_that("data stored in correct dir", {
   expect_true(all(names(yml$data) == paste0("df", 1:2, ".csv")))
   expect_true(all(names(yml$checksums) %in% f))
 
-  expect_true(yml$data$df1.csv$synthetic %in% f)
-  expect_true(yml$data$df2.csv$synthetic %in% f)
-  expect_true(yml$data$df1.csv$codebook %in% f)
-  expect_true(yml$data$df2.csv$codebook %in% f)
+  expect_true(tolower(yml$data$df1.csv$synthetic) %in% tolower(f))
+  expect_true(tolower(yml$data$df2.csv$synthetic) %in% tolower(f))
+
+  expect_true(tolower(yml$data$df1.csv$codebook) %in% tolower(f))
+  expect_true(tolower(yml$data$df2.csv$codebook) %in% tolower(f))
   setwd(old_wd)
 })

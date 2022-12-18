@@ -623,15 +623,31 @@ path_abs_worcs <- function(fn, dn_worcs = NULL, worcs_directory = "."){
 }
 
 path_rel_worcs <- function(fn, dn_worcs = NULL, worcs_directory = "."){
-  if(!grepl("^.:", fn)){
-    stop("Filename must be an absolute path.", call. = FALSE)
-  }
-  if(is.null(dn_worcs)){
-    dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
+  if (is.null(dn_worcs)) {
+    dn_worcs <-
+      dirname(check_recursive(file.path(
+        normalizePath(worcs_directory), ".worcs"
+      )))
   }
   invisible(checkworcs(dn_worcs, iserror = TRUE))
-  full_path <- normalizePath(fn, mustWork = FALSE)
-  worcs_path <- normalizePath(dn_worcs, mustWork = FALSE)
-  rel_path <- gsub("^\\\\+", "", gsub(worcs_path, "", full_path, fixed = TRUE))
-  return(rel_path)
+  # Normalize both
+  fn <- normalizePath(fn, winslash = .Platform$file.sep, mustWork = FALSE)
+  dn_worcs <- normalizePath(dn_worcs, winslash = .Platform$file.sep)
+  # Check for OS
+  on_windows <- isTRUE(grepl("mingw", R.Version()$os, fixed = TRUE))
+  if (on_windows) {
+    dn_worcs <- tolower(dn_worcs)
+    fn <- tolower(fn)
+  }
+  # Split pathnames into components
+  dn_worcs <- unlist(strsplit(dn_worcs, split = .Platform$file.sep, fixed = TRUE))
+  fn <- unlist(strsplit(fn, split = .Platform$file.sep, fixed = TRUE))
+  if(length(dn_worcs) > length(fn)){
+    stop("File path must be inside of the worcs project file.", call. = FALSE)
+  }
+
+  if(!all(dn_worcs == fn[seq_along(dn_worcs)])){
+    stop("File path must be inside of the worcs project file.", call. = FALSE)
+  }
+  return(file.path(fn[-seq_along(dn_worcs)]))
 }
