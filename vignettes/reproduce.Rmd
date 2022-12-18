@@ -24,8 +24,8 @@ This tutorial will guide you through the steps necessary to make that happen.
 
 **You can skip these steps if you have a recent and working installation of 'RStudio' and 'R'.**
 
-1. Install R from https://CRAN.R-project.org
-1. Install 'RStudio' Desktop (Free) from [rstudio.com](https://www.rstudio.com/products/rstudio/download/)
+1. Install [R (free)](https://CRAN.R-project.org)
+1. Install ['RStudio' Desktop (Free)](https://posit.co/download/rstudio-desktop/)
 
 ## Install R-package dependencies
 

@@ -20,8 +20,8 @@ In case some of the software is already installed on your system, you can skip t
 
 Follow these steps in order:
 
-1. Install R from https://CRAN.R-project.org
-2. Install 'RStudio' Desktop (Free) from [rstudio.com](https://www.rstudio.com/products/rstudio/download/)
+1. Install [R (free)](https://CRAN.R-project.org)
+2. Install ['RStudio' Desktop (Free)](https://posit.co/download/rstudio-desktop/)
 3. Install Git from [git-scm.com](https://git-scm.com/downloads). Use the default, recommended settings. It is especially important to leave these settings selected:
     + Git from the command line and also from third party software  
     <!--*The `worcs` R-package calls Git from the command line*-->
