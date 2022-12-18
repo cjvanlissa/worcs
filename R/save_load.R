@@ -534,7 +534,7 @@ check_recursive <- function(path){
              filename <- basename(path)
              cur_dir <- dirname(path)
              parent_dir <- dirname(dirname(path))
-             doesnt_exist <- any(grepl("No such file or directory", e$message))
+             doesnt_exist <- !dir.exists(cur_dir)
              if(cur_dir == parent_dir){
                stop("No '.worcs' file found in this directory or any of its parent directories; either this is not a worcs project, or the working directory is not set to the project directory.", call. = FALSE)
              } else if(doesnt_exist) {
