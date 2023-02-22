@@ -249,9 +249,8 @@ save_data <- function(data,
                 fn_write_labels
                 )
     # Add to worcs
-    to_worcs <- list(filename = path_rel_worcs(fn_write_labels),
-                     "data" = list(list("labels" = value_labels)),
-                     modify = TRUE)
+    to_worcs <- list(filename = fn_worcs,
+                     data = list(list(labels = value_labels)), modify = TRUE)
 
     names(to_worcs[["data"]])[1] <- filename
     do.call(write_worcsfile, to_worcs)
