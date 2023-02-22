@@ -378,7 +378,7 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
     # Check classes
     if(use_metadata){
       codebook <- tryCatch({
-        codebook <- gsub("\\.rmd$", "\\.csv$", worcsfile$data[[names(data_files)[file_num]]][["codebook"]], ignore.case = TRUE)
+        codebook <- gsub("\\.rmd$", ".csv", worcsfile$data[[names(data_files)[file_num]]][["codebook"]], ignore.case = TRUE)
         read.csv(file.path(dn_worcs, codebook), stringsAsFactors = FALSE)
       }, error = function(e){ NULL })
       value_labels <- tryCatch({
