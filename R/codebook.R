@@ -59,7 +59,7 @@ make_codebook <-
     filename <- force(filename)
     function_success <- TRUE
     
-    if (stats == "") {
+    if (stats == "" || is.null(stats)) {
       summaries <- do.call(descriptives, list(x = data))
     }
     else {
