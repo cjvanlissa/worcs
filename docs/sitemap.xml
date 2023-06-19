@@ -40,6 +40,9 @@
     <loc>/news.html</loc>
   </url>
   <url>
+    <loc>/reference/add_endpoint.html</loc>
+  </url>
+  <url>
     <loc>/reference/add_manuscript.html</loc>
   </url>
   <url>
@@ -47,6 +50,9 @@
   </url>
   <url>
     <loc>/reference/add_synthetic.html</loc>
+  </url>
+  <url>
+    <loc>/reference/check_endpoints.html</loc>
   </url>
   <url>
     <loc>/reference/check_worcs.html</loc>
@@ -119,6 +125,9 @@
   </url>
   <url>
     <loc>/reference/skew_kurtosis.html</loc>
+  </url>
+  <url>
+    <loc>/reference/snapshot_endpoints.html</loc>
   </url>
   <url>
     <loc>/reference/synthetic.html</loc>

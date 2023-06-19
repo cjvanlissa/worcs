@@ -18,7 +18,7 @@
 #' test_dir <- file.path(tempdir(), "add_endpoint")
 #' dir.create(test_dir)
 #' setwd(test_dir)
-#' write_worcsfile(".worcs")
+#' file.create(".worcs")
 #' writeLines("test", "test.txt")
 #' add_endpoint("test.txt")
 #' # Cleaning example directory
@@ -79,17 +79,18 @@ add_endpoint <- function(filename = NULL, worcs_directory = ".", verbose = TRUE,
 #' test_dir <- file.path(tempdir(), "update_endpoint")
 #' dir.create(test_dir)
 #' setwd(test_dir)
-#' worcs:::write_worcsfile(".worcs")
+#' file.create(".worcs")
 #' writeLines("test", "test.txt")
 #' add_endpoint("test.txt")
 #' writeLines("second test", "test.txt")
-#' snapshot_endpoint("test.txt")
+#' snapshot_endpoints()
 #' # Cleaning example directory
 #' setwd(old_wd)
 #' unlink(test_dir, recursive = TRUE)
 #' @seealso
 #'  \code{\link[worcs]{add_endpoint}}
 #'  \code{\link[worcs]{check_endpoints}}
+#' @export
 snapshot_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
                                                         ".worcs")))
@@ -102,7 +103,7 @@ snapshot_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   for(ep in endpoints){
     out <- try({
       fn_endpoint <- path_abs_worcs(ep, dn_worcs)
-      store_checksum(fn_endpoint, entry_name = filename, worcsfile = fn_worcs)
+      store_checksum(fn_endpoint, entry_name = ep, worcsfile = fn_worcs)
     })
     if(inherits(out, "try-error")){
       col_message("Could not snapshot endpoint '", ep, "'.",
@@ -130,7 +131,7 @@ snapshot_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
 #' test_dir <- file.path(tempdir(), "check_endpoint")
 #' dir.create(test_dir)
 #' setwd(test_dir)
-#' worcs:::write_worcsfile(".worcs")
+#' file.create(".worcs")
 #' writeLines("test", "test.txt")
 #' add_endpoint("test.txt")
 #' check_endpoints()
@@ -139,7 +140,8 @@ snapshot_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
 #' unlink(test_dir, recursive = TRUE)
 #' @seealso
 #'  \code{\link[worcs]{add_endpoint}}
-#'  \code{\link[worcs]{check_endpoints}}
+#'  \code{\link[worcs]{snapshot_endpoints}}
+#' @export
 check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
                                                         ".worcs")))

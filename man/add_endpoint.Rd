@@ -34,7 +34,7 @@ old_wd <- getwd()
 test_dir <- file.path(tempdir(), "add_endpoint")
 dir.create(test_dir)
 setwd(test_dir)
-write_worcsfile(".worcs")
+file.create(".worcs")
 writeLines("test", "test.txt")
 add_endpoint("test.txt")
 # Cleaning example directory

@@ -29,7 +29,7 @@ old_wd <- getwd()
 test_dir <- file.path(tempdir(), "check_endpoint")
 dir.create(test_dir)
 setwd(test_dir)
-worcs:::write_worcsfile(".worcs")
+file.create(".worcs")
 writeLines("test", "test.txt")
 add_endpoint("test.txt")
 check_endpoints()
@@ -39,5 +39,5 @@ unlink(test_dir, recursive = TRUE)
 }
 \seealso{
 \code{\link[worcs]{add_endpoint}}
-\code{\link[worcs]{check_endpoints}}
+\code{\link[worcs]{snapshot_endpoints}}
 }
