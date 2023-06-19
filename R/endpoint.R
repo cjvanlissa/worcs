@@ -36,7 +36,6 @@ add_endpoint <- function(filename = NULL, worcs_directory = ".", verbose = TRUE,
   fn_worcs <- file.path(dn_worcs, ".worcs")
   worcsfile <- yaml::read_yaml(fn_worcs)
   endpoints <- worcsfile[["endpoints"]]
-
   # if(is.null(entry_point)){
   #   if(is.null(worcsfile[["entry_point"]])){
   #     stop("No 'entry_point' specified, and the project contains no existing entry points.")
@@ -48,6 +47,9 @@ add_endpoint <- function(filename = NULL, worcs_directory = ".", verbose = TRUE,
   #
   # }
   fn_endpoint <- path_abs_worcs(filename, dn_worcs)
+  if(!file.exists(fn_endpoint)){
+    stop("The file does not exist: ", filename)
+  }
   endpoints <- append(endpoints, filename)
   endpoints <- unique(endpoints)
   # Append worcsfile
