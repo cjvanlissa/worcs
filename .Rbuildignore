@@ -23,3 +23,4 @@ Dockerfile
 ^\.github$
 ^CITATION\.cff$
 ^CRAN-SUBMISSION$
+^codecov\.yml$
