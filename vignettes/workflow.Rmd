@@ -18,7 +18,7 @@ library(worcs)
 
 ## WORCS: Steps to follow for a project
 
-This vignette describes the Workflow for Open Reproducible Code in Science, as introduced in @vanlissaWORCSWorkflowOpen2020. The paper describes the rationale and principled approach on which the workflow is based; this vignette describes the practical steps for R-users in greater detail.
+This vignette describes the Workflow for Open Reproducible Code in Science, as introduced in @vanlissaWORCSWorkflowOpen2021. The paper describes the rationale and principled approach on which the workflow is based; this vignette describes the practical steps for R-users in greater detail.
 Note that, although the steps are numbered for reference purposes,
 we acknowledge that the process of conducting research is not always linear.
 The workflow is illustrated in the graph below, with optional steps displayed in blue nodes:
