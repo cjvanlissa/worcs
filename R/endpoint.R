@@ -181,3 +181,19 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   }
   return(invisible(all(replicates)))
 }
+
+#' @title Set up GitHub Actions to Check Endpoints
+#' @description Sets up a GitHub Action to perform continuous integration (CI)
+#' for a WORCS project. CI automatically evaluates `check_endpoints()`
+#' at each push or pull request.
+#' @return No return value. This function is called for its side effects.
+#' @seealso
+#'  \code{\link[usethis]{use_github_action}}
+#'  \code{\link[worcs]{add_endpoint}}
+#'  \code{\link[worcs]{check_endpoints}}
+#' @export
+#' @importFrom usethis use_github_action
+github_action_check_endpoints <- function(){
+
+  usethis::use_github_action(url = "https://github.com/cjvanlissa/actions/blob/main/worcs_endpoints.yaml", badge = TRUE)
+}

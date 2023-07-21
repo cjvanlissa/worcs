@@ -453,7 +453,7 @@ check_metadata <- function(x, codebook, value_labels){
 store_checksum <- function(filename, entry_name = filename, worcsfile = ".worcs") {
   # Compute checksum on loaded data to ensure conformity
   cs <- digest(object = filename, file = TRUE)
-  checkworcs(dirname(filename), iserror = FALSE)
+  checkworcs(dirname(worcsfile), iserror = FALSE)
   checksums <- list(cs)
   names(checksums) <- entry_name
   do.call(write_worcsfile,

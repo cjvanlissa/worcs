@@ -1,5 +1,8 @@
 # worcs 0.1.11
 
+* Add endpoint functionality: add_endpoint(), snapshot_endpoints(), and
+  check_endpoints()
+* Add github action for endpoints: github_action_check_endpoints()
 * Improve handling of relative filenames in save_data()
 * fix bug related to file path of codebook and metadata
 * add function report()
