@@ -150,7 +150,12 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   fn_worcs <- file.path(dn_worcs, ".worcs")
   worcsfile <- yaml::read_yaml(fn_worcs)
   if(is.null(worcsfile[["endpoints"]])){
-    col_message("No endpoints found in WORCS project.", verbose = verbose, success = FALSE)
+    if(interactive()){
+      col_message("No endpoints found in WORCS project.", verbose = verbose, success = FALSE)
+    } else {
+      stop("No endpoints found in WORCS project.")
+    }
+
   }
   endpoints <- worcsfile[["endpoints"]]
   replicates <- rep(x = TRUE, times = length(endpoints))
@@ -167,6 +172,11 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
     } else {
       col_message("Endpoint '", ep, "' replicates.",
                           verbose = verbose)
+    }
+  }
+  if(!interactive()){
+    if(any(!replicates)){
+      stop("Endpoints ", paste0(endpoints[which(!replicates)], collapse = ", "), " did not replicate.")
     }
   }
   return(invisible(all(replicates)))
