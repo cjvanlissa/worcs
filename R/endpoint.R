@@ -176,7 +176,7 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   }
   if(!interactive()){
     if(any(!replicates)){
-      stop("Endpoints ", paste0(endpoints[which(!replicates)], collapse = ", "), " did not replicate.")
+      stop("Endpoints ", paste0(endpoints[which(!replicates)], collapse = ", "), " did not replicate. R version: ", R.Version()$version.string, ", renv version: ", as.character(packageVersion("renv")), ", checksum: ", worcsfile[["checksums"]][[endpoints[1]]])
     }
   }
   return(invisible(all(replicates)))
