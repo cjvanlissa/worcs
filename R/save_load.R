@@ -449,12 +449,20 @@ check_metadata <- function(x, codebook, value_labels){
   x
 }
 
+cs_fun <- function(filename){#, worcsfile = ".worcs"){
+  # gitfiles <- system2("git", '-C "pathtofile" ls-files --eol', stdout = TRUE)
+  # gitfiles <- gitfiles[grepl("/lf", gitfiles, fixed = TRUE)|grepl("/crlf", gitfiles, fixed = TRUE)]
+  # gitfiles <- gsub("^.+attr/.+?\\t", "", gitfiles)
+  suppressWarnings(digest::digest(paste0(readLines(filename), collapse = ""), serialize = FALSE, file = FALSE))
+}
+
 #' @importFrom digest digest
-#' @importFrom tools md5sum
+# @importFrom tools md5sum
 store_checksum <- function(filename, entry_name = filename, worcsfile = ".worcs") {
   # Compute checksum on loaded data to ensure conformity
   #cs <- digest(object = filename, file = TRUE)
-  cs <- tools::md5sum(files = filename)
+  #cs <- tools::md5sum(files = filename)
+  cs <- cs_fun(filename)
   checkworcs(dirname(worcsfile), iserror = FALSE)
   checksums <- list(cs)
   names(checksums) <- entry_name
@@ -468,7 +476,7 @@ store_checksum <- function(filename, entry_name = filename, worcsfile = ".worcs"
 checksum_data_as_csv <- function(object){
   filename <- tempfile(fileext = ".csv")
   write.csv(object, filename, row.names = FALSE)
-  return(digest(object = filename, file = TRUE))
+  return(cs_fun(filename))
 }
 
 load_checksum <- function(filename){
@@ -487,7 +495,7 @@ load_checksum <- function(filename){
 
 #' @importFrom digest digest
 check_sum <- function(filename, old_cs = NULL){
-  cs <- digest(object = filename, file = TRUE)
+  cs <- cs_fun(filename)
   if(is.null(old_cs)){
     old_cs <- load_checksum(filename = filename)
   }

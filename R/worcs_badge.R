@@ -143,7 +143,7 @@ check_worcs <- function(path = ".", verbose = TRUE){
       checks$pass[checks$name == "data_checksums"] <-
         tryCatch({
           #cs_now <- sapply(worcs_data, digest, file = TRUE)
-          cs_now <- sapply(worcs_data, md5sum)
+          cs_now <- sapply(worcs_data, cs_fun)
           names(cs_now) <- worcs_data
           cs_stored <- unlist(worcsfile$checksums)
           if(all(names(cs_now) %in% names(cs_stored))){

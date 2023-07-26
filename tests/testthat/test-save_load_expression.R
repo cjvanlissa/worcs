@@ -51,7 +51,7 @@ test_that("save_expression and load_expression", {
 
   # test_that(".worcs contains checksum for synthetic_data.csv", {
   expect_true(!is.null(checksums$checksums[["synthetic_dat.dat"]]))
-  expect_equivalent(checksums$checksums$synthetic_dat.dat, md5sum("synthetic_dat.dat"))
+  expect_equivalent(checksums$checksums$synthetic_dat.dat, worcs:::cs_fun("synthetic_dat.dat"))
 
   # test_that("loading open data works", {
   rm(dat)
