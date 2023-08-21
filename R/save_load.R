@@ -450,6 +450,8 @@ check_metadata <- function(x, codebook, value_labels){
 }
 
 cs_fun <- function(filename, worcsfile = ".worcs"){
+  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcsfile))))
+  fn_rel <- path_rel_worcs(filename, dn_worcs)
   tryCatch({
     git_record <- system2("git", paste0('-C "', dirname(worcsfile), '" ls-files --eol'), stdout = TRUE)
     git_record <- git_record[grepl(filename, git_record, fixed = TRUE)]
@@ -667,5 +669,5 @@ path_rel_worcs <- function(fn, dn_worcs = NULL, worcs_directory = "."){
   if(!all(dn_worcs == fn[seq_along(dn_worcs)])){
     stop("File path must be inside of the worcs project file.", call. = FALSE)
   }
-  return(file.path(fn[-seq_along(dn_worcs)]))
+  return(do.call(file.path, as.list(fn[-seq_along(dn_worcs)])))
 }
