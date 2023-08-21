@@ -85,7 +85,7 @@ make_codebook <-
     file_contents <-
       file_contents[1:(grep("^##", file_contents)[1] - 1)]
     dm <- dim(data)
-    checksum <- checksum_data_as_csv(data)
+    # checksum <- checksum_data_as_csv(data)
     if (is.null(csv_file)) {
       sum_tab <-
         paste0(c("summaries <- ", capture.output(dput(summaries))))

@@ -358,7 +358,7 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
   for(file_num in seq_along(data_files)){
     fn_this_file <- fn_data_files[file_num]
     data_name_this_file <- data_files[file_num]
-    check_sum(fn_this_file, worcsfile$checksums[[data_name_this_file]])
+    check_sum(fn_this_file, worcsfile$checksums[[data_name_this_file]], worcsfile = fn_worcs)
     col_message("Loading ", c("synthetic", "original")[data_original[file_num]+1], " data from '", data_name_this_file, "'.", verbose = verbose)
     object_name <- sub('^(synthetic_)?(.+)\\..*$', '\\2', basename(data_name_this_file))
 
@@ -449,11 +449,20 @@ check_metadata <- function(x, codebook, value_labels){
   x
 }
 
-cs_fun <- function(filename){#, worcsfile = ".worcs"){
-  # gitfiles <- system2("git", '-C "pathtofile" ls-files --eol', stdout = TRUE)
-  # gitfiles <- gitfiles[grepl("/lf", gitfiles, fixed = TRUE)|grepl("/crlf", gitfiles, fixed = TRUE)]
-  # gitfiles <- gsub("^.+attr/.+?\\t", "", gitfiles)
-  suppressWarnings(digest::digest(paste0(readLines(filename), collapse = ""), serialize = FALSE, file = FALSE))
+cs_fun <- function(filename, worcsfile = ".worcs"){
+  tryCatch({
+    git_record <- system2("git", paste0('-C "', dirname(worcsfile), '" ls-files --eol'), stdout = TRUE)
+    git_record <- git_record[grepl(filename, git_record, fixed = TRUE)]
+    git_record <- strsplit(git_record[1], split = "\\s+")[[1]][c(1:2)]
+    git_record <- gsub("^./", "", git_record)
+    if(isFALSE(git_record[1] == git_record[2])){
+      stop()
+    }
+    digest::digest(filename, file = TRUE)
+  }, error = function(e){
+    message("Git modified the line endings of '", filename, "'; this may affect its checksum.")
+    suppressWarnings(digest::digest(paste0(readLines(filename), collapse = ""), serialize = FALSE, file = FALSE))
+  })
 }
 
 #' @importFrom digest digest
@@ -462,8 +471,8 @@ store_checksum <- function(filename, entry_name = filename, worcsfile = ".worcs"
   # Compute checksum on loaded data to ensure conformity
   #cs <- digest(object = filename, file = TRUE)
   #cs <- tools::md5sum(files = filename)
-  cs <- cs_fun(filename)
   checkworcs(dirname(worcsfile), iserror = FALSE)
+  cs <- cs_fun(filename, worcsfile = worcsfile)
   checksums <- list(cs)
   names(checksums) <- entry_name
   do.call(write_worcsfile,
@@ -473,11 +482,11 @@ store_checksum <- function(filename, entry_name = filename, worcsfile = ".worcs"
           )
 }
 
-checksum_data_as_csv <- function(object){
-  filename <- tempfile(fileext = ".csv")
-  write.csv(object, filename, row.names = FALSE)
-  return(cs_fun(filename))
-}
+# checksum_data_as_csv <- function(object){
+#   filename <- tempfile(fileext = ".csv")
+#   write.csv(object, filename, row.names = FALSE)
+#   return(cs_fun(filename))
+# }
 
 load_checksum <- function(filename){
   if(file.exists(".worcs")){
@@ -494,8 +503,8 @@ load_checksum <- function(filename){
 }
 
 #' @importFrom digest digest
-check_sum <- function(filename, old_cs = NULL){
-  cs <- cs_fun(filename)
+check_sum <- function(filename, old_cs = NULL, worcsfile = ".worcs"){
+  cs <- cs_fun(filename, worcsfile = ".worcs")
   if(is.null(old_cs)){
     old_cs <- load_checksum(filename = filename)
   }
