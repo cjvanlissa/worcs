@@ -456,13 +456,11 @@ cs_fun <- function(filename, worcsfile = ".worcs"){
     git_record <- system2("git", paste0('-C "', dirname(worcsfile), '" ls-files --eol'), stdout = TRUE)
     git_record <- git_record[grepl(fn_rel, git_record, fixed = TRUE)]
     git_record <- strsplit(git_record[1], split = "\\s+")[[1]][c(1:2)]
-    git_record <- gsub("^./", "", git_record)
-    if(isFALSE(git_record[1] == git_record[2])){
+    if(isTRUE(any(grepl("/lf", git_record, fixed = TRUE) | grepl("/cr", git_record, fixed = TRUE)))){
       stop()
     }
     digest::digest(filename, file = TRUE)
   }, error = function(e){
-    message("Git modified the line endings of '", filename, "'; this may affect its checksum.")
     suppressWarnings(digest::digest(paste0(readLines(filename), collapse = ""), serialize = FALSE, file = FALSE))
   })
 }
