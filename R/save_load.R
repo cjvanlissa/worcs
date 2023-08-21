@@ -454,7 +454,7 @@ cs_fun <- function(filename, worcsfile = ".worcs"){
   fn_rel <- path_rel_worcs(filename, dn_worcs)
   tryCatch({
     git_record <- system2("git", paste0('-C "', dirname(worcsfile), '" ls-files --eol'), stdout = TRUE)
-    git_record <- git_record[grepl(filename, git_record, fixed = TRUE)]
+    git_record <- git_record[grepl(fn_rel, git_record, fixed = TRUE)]
     git_record <- strsplit(git_record[1], split = "\\s+")[[1]][c(1:2)]
     git_record <- gsub("^./", "", git_record)
     if(isFALSE(git_record[1] == git_record[2])){
