@@ -506,7 +506,7 @@ load_checksum <- function(filename){
 
 #' @importFrom digest digest
 check_sum <- function(filename, old_cs = NULL, worcsfile = ".worcs"){
-  cs <- cs_fun(filename, worcsfile = ".worcs")
+  cs <- cs_fun(filename, worcsfile = worcsfile)
   if(is.null(old_cs)){
     old_cs <- load_checksum(filename = filename)
   }

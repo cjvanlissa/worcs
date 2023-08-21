@@ -162,8 +162,8 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   for(i in seq_along(endpoints)){
     ep <- endpoints[i]
     out <- try({
-      fn_endpoint <- path_abs_worcs(ep, dn_worcs)
-      check_sum(fn_endpoint, old_cs = worcsfile[["checksums"]][[ep]], worcsfile = fn_worcs)
+      #fn_endpoint <- path_abs_worcs(ep, dn_worcs)
+      check_sum(ep, old_cs = worcsfile[["checksums"]][[ep]], worcsfile = fn_worcs)
     }, silent = TRUE)
     if(inherits(out, "try-error")){
       col_message("Endpoint '", ep, "' did not replicate.",
@@ -176,7 +176,7 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   }
   if(!interactive()){
     if(any(!replicates)){
-      stop("Endpoints ", paste0(endpoints[which(!replicates)], collapse = ", "), " did not replicate. R version: ", R.Version()$version.string, ", renv version: ", as.character(packageVersion("renv")), ", checksum: ", worcsfile[["checksums"]][[endpoints[1]]])
+      stop("Endpoints ", paste0(endpoints[which(!replicates)], collapse = ", "), " did not replicate. Checksum of record: ", worcsfile[["checksums"]][[endpoints[1]]], ", local checksum: ", cs_fun(ep, fn_worcs))
     }
   }
   return(invisible(all(replicates)))
