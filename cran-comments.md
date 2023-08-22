@@ -19,6 +19,11 @@
 * rhub check: Windows Server 2008 R2 SP1, R-devel, 32/64 bit
 * rhub check: Ubuntu Linux 16.04 LTS, R-release, GCC
 * rhub check: Fedora Linux, R-devel, clang, gfortran
+* GitHub Actions, os: macos-latest,   r: 'release'
+* GitHub Actions, os: windows-latest, r: 'release'
+* GitHub Actions, os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'
+* GitHub Actions, os: ubuntu-latest,   r: 'release'
+* GitHub Actions, os: ubuntu-latest,   r: 'oldrel-1'
 
 ## R CMD check results
 
