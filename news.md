@@ -1,8 +1,8 @@
 # worcs 0.1.11
 
-* Checksums are computed differently from preceding versions, as a workaround
-  for the fact that Git changes end of line characters which breaks consistency
-  of checksums across operating systems.
+* Checksums are computed differently from preceding versions,
+  to account for the fact that Git changes end of line characters which breaks
+  consistency of checksums across operating systems.
 * Add endpoint functionality: add_endpoint(), snapshot_endpoints(), and
   check_endpoints()
 * Add github action for endpoints: github_action_check_endpoints()

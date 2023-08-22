@@ -176,9 +176,10 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   }
   if(!interactive()){
     if(any(!replicates)){
-      git_record <- system2("git", paste0('-C "', dirname(fn_worcs), '" ls-files --eol'), stdout = TRUE)
-      git_record <- git_record[grepl(endpoints[1], git_record, fixed = TRUE)]
-      stop("Endpoints ", paste0(endpoints[which(!replicates)], collapse = ", "), " did not replicate. Checksum of record: ", worcsfile[["checksums"]][[endpoints[1]]], ", local checksum: ", cs_fun(ep, fn_worcs), ", git ls: ", git_record)
+      # git_record <- system2("git", paste0('-C "', dirname(fn_worcs), '" ls-files --eol'), stdout = TRUE)
+      # git_record <- git_record[grepl(endpoints[1], git_record, fixed = TRUE)]
+      # stop("Endpoints ", paste0(endpoints[which(!replicates)], collapse = ", "), " did not replicate. Checksum of record: ", worcsfile[["checksums"]][[endpoints[1]]], ", local checksum: ", cs_fun(ep, fn_worcs), ", git ls: ", git_record)
+      stop("Endpoints ", paste0(endpoints[which(!replicates)], collapse = ", "), " did not replicate. Make sure that the endpoint snapshot and renv are up to date, and verify that differences are not due to Git changing the line endings of text files.")
     }
   }
   return(invisible(all(replicates)))

@@ -1,12 +1,17 @@
 # worcs 0.1.11
 
+* Checksums are computed differently from preceding versions,
+  to account for the fact that Git changes end of line characters which breaks
+  consistency of checksums across operating systems.
+* Add endpoint functionality: add_endpoint(), snapshot_endpoints(), and
+  check_endpoints()
+* Add github action for endpoints: github_action_check_endpoints()
 * Improve handling of relative filenames in save_data()
 * fix bug related to file path of codebook and metadata
 * add function report()
   
 ## Test environments
 
-* local Windows 10 install, R 4.1.2
 * local Windows 11 install, R 4.2.1
 * win-builder: release
 * win-builder: development
@@ -17,8 +22,4 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
-
-* Days since last update: 4
-    + The previous version introduced a bug that is now fixed. Apologies for the
-      inconvenience!
+0 errors | 0 warnings | 0 notes

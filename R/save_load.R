@@ -453,10 +453,13 @@ cs_fun <- function(filename, worcsfile = ".worcs"){
   dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcsfile))))
   fn_rel <- path_rel_worcs(filename, dn_worcs)
   tryCatch({
-    git_record <- system2("git", paste0('-C "', dirname(worcsfile), '" ls-files --eol'), stdout = TRUE)
+    git_record <- tryCatch(system2("git", paste0('-C "', dirname(worcsfile), '" ls-files --eol'), stdout = TRUE), error = function(e){ stop() }, warning = function(w){
+      message("This worcs project is not version controlled with Git.")
+      stop()
+    })
     git_record <- git_record[grepl(fn_rel, git_record, fixed = TRUE)]
     git_record <- strsplit(git_record[1], split = "\\s+")[[1]][c(1:2)]
-    if(isTRUE(any(grepl("/lf", git_record, fixed = TRUE) | grepl("/cr", git_record, fixed = TRUE)))){
+    if(isTRUE(any(grepl("/-text", git_record, fixed = TRUE) | grepl("/lf", git_record, fixed = TRUE) | grepl("/cr", git_record, fixed = TRUE)))){
       stop()
     }
     digest::digest(filename, file = TRUE)
