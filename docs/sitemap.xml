@@ -7,6 +7,9 @@
     <loc>/articles/citation.html</loc>
   </url>
   <url>
+    <loc>/articles/endpoints.html</loc>
+  </url>
+  <url>
     <loc>/articles/git_cloud.html</loc>
   </url>
   <url>
@@ -92,6 +95,9 @@
   </url>
   <url>
     <loc>/reference/export_project.html</loc>
+  </url>
+  <url>
+    <loc>/reference/github_action_check_endpoints.html</loc>
   </url>
   <url>
     <loc>/reference/git_ignore.html</loc>
