@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
       </span>
     </div>
 
@@ -33,6 +33,9 @@
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="articles/citation.html">Citing references in worcs</a>
+    </li>
+    <li>
+      <a href="articles/endpoints.html">Using Endpoints to Check Reproducibility</a>
     </li>
     <li>
       <a href="articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
@@ -74,7 +77,10 @@
 
 <div id="worcs-0111" class="section level1">
 
-<ul><li>Improve handling of relative filenames in save_data()</li>
+<ul><li>Checksums are computed differently from preceding versions, to account for the fact that Git changes end of line characters which breaks consistency of checksums across operating systems.</li>
+<li>Add endpoint functionality: add_endpoint(), snapshot_endpoints(), and check_endpoints()</li>
+<li>Add github action for endpoints: github_action_check_endpoints()</li>
+<li>Improve handling of relative filenames in save_data()</li>
 <li>fix bug related to file path of codebook and metadata</li>
 <li>add function report()</li>
 </ul></div>

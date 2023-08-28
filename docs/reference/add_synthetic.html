@@ -18,7 +18,7 @@ public use to a WORCS project with closed data."><!-- mathjax --><script src="ht
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
       </span>
     </div>
 
@@ -34,6 +34,9 @@ public use to a WORCS project with closed data."><!-- mathjax --><script src="ht
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/citation.html">Citing references in worcs</a>
+    </li>
+    <li>
+      <a href="../articles/endpoints.html">Using Endpoints to Check Reproducibility</a>
     </li>
     <li>
       <a href="../articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
@@ -147,11 +150,13 @@ function is called for its side effects.</p>
 <span class="r-in"><span><span class="co"># Run closed_data without synthetic</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="closed_data.html">closed_data</a></span><span class="op">(</span><span class="va">df</span>, codebook <span class="op">=</span> <span class="cn">NULL</span>, synthetic <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Storing original data in 'df.csv' and updating the checksum in '.worcs'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> This worcs project is not version controlled with Git.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Updating '.gitignore'.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Storing value labels in 'value_labels_df.yml'.</span>
 <span class="r-in"><span><span class="co"># Manually add synthetic</span></span></span>
 <span class="r-in"><span><span class="fu">add_synthetic</span><span class="op">(</span><span class="va">df</span>, original_name <span class="op">=</span> <span class="st">"df.csv"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Storing synthetic data in 'synthetic_df.csv' and updating the checksum in '.worcs'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> This worcs project is not version controlled with Git.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Updating '.gitignore'.</span>
 <span class="r-in"><span><span class="co"># Remove original from file and environment</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="st">"df.csv"</span><span class="op">)</span></span></span>
@@ -159,6 +164,7 @@ function is called for its side effects.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># See that load_data() now loads the synthetic file</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="load_data.html">load_data</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> This worcs project is not version controlled with Git.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Loading synthetic data from 'synthetic_df.csv'.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> No valid codebook found.</span>
 <span class="r-in"><span><span class="co"># Cleaning example directory</span></span></span>

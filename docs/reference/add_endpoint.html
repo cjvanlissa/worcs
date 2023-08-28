@@ -20,7 +20,7 @@ endpoint's checksum is unchanged."><!-- mathjax --><script src="https://cdnjs.cl
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
       </span>
     </div>
 
@@ -36,6 +36,9 @@ endpoint's checksum is unchanged."><!-- mathjax --><script src="https://cdnjs.cl
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/citation.html">Citing references in worcs</a>
+    </li>
+    <li>
+      <a href="../articles/endpoints.html">Using Endpoints to Check Reproducibility</a>
     </li>
     <li>
       <a href="../articles/git_cloud.html">Connecting to 'Git' remote repositories</a>
@@ -128,11 +131,12 @@ console. Default: TRUE</p></dd>
 <span class="r-in"><span><span class="va">test_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"add_endpoint"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="va">test_dir</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">test_dir</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">write_worcsfile</span><span class="op">(</span><span class="st">".worcs"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in write_worcsfile(".worcs"):</span> could not find function "write_worcsfile"</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.create</a></span><span class="op">(</span><span class="st">".worcs"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="st">"test"</span>, <span class="st">"test.txt"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">add_endpoint</span><span class="op">(</span><span class="st">"test.txt"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> No '.worcs' file found in this directory or any of its parent directories; either this is not a worcs project, or the working directory is not set to the project directory.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> This worcs project is not version controlled with Git.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Adding endpoint 'test.txt' to '.worcs'.</span>
 <span class="r-in"><span><span class="co"># Cleaning example directory</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">test_dir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
