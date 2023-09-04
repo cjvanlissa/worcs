@@ -46,9 +46,26 @@ check_worcs_installation <- function(what = "all") {
 #' the dependencies.
 #' @export
 check_dependencies <- function(package = "worcs") {
-  thesedeps <- get_deps(package = package)
-  available <- installed.packages()[, "Package"]
-  if (all(thesedeps %in% available)) {
+  available <- data.frame(installed.packages()[, c("Package", "Version")])
+  thesedeps <- worcs:::get_deps(package = package)
+  has_version <- grepl("(", thesedeps, fixed = TRUE)
+
+  is_avlb <- thesedeps %in% available$Package
+  correct_vers <- rep(TRUE, length(thesedeps))
+  if(any(has_version)){
+    vers <- data.frame(do.call(rbind, strsplit(thesedeps[has_version], "(", fixed = TRUE)))
+    vers[,2] <- gsub(")", "", vers[,2], fixed = TRUE)
+    vers$op <- gsub("[0-9\\.]", "", vers[,2])
+    vers[,2] <- gsub("[^0-9.-]", "", vers[,2])
+    thesedeps[has_version] <- vers[,1]
+    correct_vers[has_version] <- sapply(vers$X1, function(n){
+      tryCatch({
+        do.call(vers$op[vers[[1]] == n], list(x = packageVersion(n), y = vers[1,2]))
+        }, error = function(e){ FALSE })
+    })
+  }
+
+  if (all(is_avlb & correct_vers)) {
     out <- list(pass = list(dependencies = TRUE), errors = list(dependencies = ""))
   } else {
     errors <- thesedeps[!thesedeps %in% available]

@@ -1,3 +1,8 @@
+# worcs 0.1.12
+
+* check_worcs_installation() no longer throws error for rticles and prereg
+* Add more defensive programming to save_data() and load_data() to prevent errors.
+
 # worcs 0.1.11
 
 * Checksums are computed differently from preceding versions,
