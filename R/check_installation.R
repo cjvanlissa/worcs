@@ -49,8 +49,6 @@ check_dependencies <- function(package = "worcs") {
   available <- data.frame(installed.packages()[, c("Package", "Version")])
   thesedeps <- worcs:::get_deps(package = package)
   has_version <- grepl("(", thesedeps, fixed = TRUE)
-
-  is_avlb <- thesedeps %in% available$Package
   correct_vers <- rep(TRUE, length(thesedeps))
   if(any(has_version)){
     vers <- data.frame(do.call(rbind, strsplit(thesedeps[has_version], "(", fixed = TRUE)))
@@ -64,7 +62,7 @@ check_dependencies <- function(package = "worcs") {
         }, error = function(e){ FALSE })
     })
   }
-
+  is_avlb <- thesedeps %in% available$Package
   if (all(is_avlb & correct_vers)) {
     out <- list(pass = list(dependencies = TRUE), errors = list(dependencies = ""))
   } else {
