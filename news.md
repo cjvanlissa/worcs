@@ -1,5 +1,6 @@
 # worcs 0.1.12
 
+* Add functions add_recipe() and reproduce()
 * check_worcs_installation() no longer throws error for rticles and prereg
 * Add more defensive programming to save_data() and load_data() to prevent errors.
 

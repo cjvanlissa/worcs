@@ -47,7 +47,7 @@ check_worcs_installation <- function(what = "all") {
 #' @export
 check_dependencies <- function(package = "worcs") {
   available <- data.frame(installed.packages()[, c("Package", "Version")])
-  thesedeps <- worcs:::get_deps(package = package)
+  thesedeps <- get_deps(package = package)
   has_version <- grepl("(", thesedeps, fixed = TRUE)
   correct_vers <- rep(TRUE, length(thesedeps))
   if(any(has_version)){

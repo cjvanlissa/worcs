@@ -28,10 +28,11 @@ test_that("save and load", {
   write.csv(df, "iris.csv", row.names = FALSE)
 
   # test_that("loading open data fails when data changed", {
-  expect_error({load_data()})
+  expect_warning({load_data()})
   #rm(iris)
   #data("iris")
   set.seed(555)
+  iris <- iris[1:5,]
   closed_data(iris, codebook = NULL)
   checksums <- read_yaml(".worcs")
   tmp <- read.csv("synthetic_iris.csv", stringsAsFactors = TRUE)

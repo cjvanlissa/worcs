@@ -32,7 +32,7 @@ test_that("save_expression and load_expression", {
 
 
   # test_that("loading open data fails when data changed", {
-  expect_error({load_data()})
+  expect_warning({load_data()})
 
   set.seed(555)
   dat <- iris
