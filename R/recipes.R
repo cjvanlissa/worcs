@@ -94,11 +94,18 @@ reproduce <- function(worcs_directory = ".", verbose = TRUE, check_endpoints = T
   worcs_file <- read_yaml(fn_worcs)
 
   if(is.null(worcsfile[["recipe"]])){
-    if(interactive()){
-      col_message("No recipe found in WORCS project.", verbose = verbose, success = FALSE)
-      return()
+    # Check if it's an old worcs version that does have an entry point
+    if(!is.null(worcsfile[["entry_point"]])){
+      col_message("No recipe found in WORCS project. Attempting to deduce recipe from entry_point.", verbose = verbose, success = FALSE)
+
+      if(grepl(".rmd", tolower(worcsfile[["entry_point"]]), fixed = TRUE)){
+        worcsfile[["recipe"]] <- list(recipe = paste0("rmarkdown::render('", worcsfile[["entry_point"]],"')"), terminal = FALSE)
+      }
+      if(grepl(".r", tolower(worcsfile[["entry_point"]]), fixed = TRUE)){
+        worcsfile[["recipe"]] <- list(recipe = paste0("source('", worcsfile[["entry_point"]], "')"), terminal = FALSE)
+      }
     } else {
-      stop("No recipe found in '.worcs' file.")
+      stop("No recipe or entry_point found in '.worcs' file.")
     }
   }
 

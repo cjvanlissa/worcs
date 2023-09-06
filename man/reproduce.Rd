@@ -4,7 +4,7 @@
 \alias{reproduce}
 \title{Reproduce WORCS Project}
 \usage{
-reproduce(worcs_directory = ".", verbose = TRUE, ...)
+reproduce(worcs_directory = ".", verbose = TRUE, check_endpoints = TRUE, ...)
 }
 \arguments{
 \item{worcs_directory}{Character, indicating the WORCS project directory
