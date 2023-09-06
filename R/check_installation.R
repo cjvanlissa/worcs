@@ -46,10 +46,31 @@ check_worcs_installation <- function(what = "all") {
 #' the dependencies.
 #' @export
 check_dependencies <- function(package = "worcs") {
-  available <- data.frame(installed.packages()[, c("Package", "Version")])
-  thesedeps <- get_deps(package = package)
+  available <- data.frame(installed.packages()) #[, c("Package", "Version")])
+  thesedeps <- {
+    pks <- packageDescription(package)
+    if (isTRUE(is.na(pks))) pks <- vector("character")
+    pks <- gsub("\n", "", pks$Imports, fixed = TRUE)
+    pks <- gsub("\\s", "", pks)
+    pks <- strsplit(pks, ",")[[1]]
+    setdiff(
+      pks,
+      c(
+        "R",
+        "stats",
+        "graphics",
+        "grDevices",
+        "utils",
+        "datasets",
+        "methods",
+        "base",
+        "tools"
+      )
+    )
+  }
   has_version <- grepl("(", thesedeps, fixed = TRUE)
   correct_vers <- rep(TRUE, length(thesedeps))
+
   if(any(has_version)){
     vers <- data.frame(do.call(rbind, strsplit(thesedeps[has_version], "(", fixed = TRUE)))
     vers[,2] <- gsub(")", "", vers[,2], fixed = TRUE)
@@ -66,12 +87,12 @@ check_dependencies <- function(package = "worcs") {
   if (all(is_avlb & correct_vers)) {
     out <- list(pass = list(dependencies = TRUE), errors = list(dependencies = ""))
   } else {
-    errors <- thesedeps[!thesedeps %in% available]
+    errors <- thesedeps[which(!(is_avlb & correct_vers))]
     out <- list(
       pass = list(dependencies = FALSE),
       errors = list(
         dependencies = paste0(
-          "The following packages are not installed, run install.packages() for: ",
+          "The following packages are not installed (or their correct versions are not installed), run install.packages() for: ",
           paste0(errors, collapse = ", ")
         )
       )

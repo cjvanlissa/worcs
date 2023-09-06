@@ -113,11 +113,14 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     cl[[1L]] <- quote(worcs::add_manuscript)
     names(cl)[which(names(cl) == "path")] <- "worcs_directory"
     eval(cl, parent.frame())
+    add_recipe(worcs_directory = path)
   } else {
     write_as_utf(recommend_data, file.path(path, "run_me.R"))
     write_worcsfile(filename = file.path(path, ".worcs"),
                     entry_point = "run_me.R",
                     modify = TRUE)
+    add_recipe(worcs_directory = path,
+               recipe = "source('run_me.R')")
   }
   # End manuscript
 

@@ -36,9 +36,9 @@ add_recipe <- function(worcs_directory = ".", recipe = "rmarkdown::render('manus
     stop(".worcs file not found.")
   }
   worcs_file <- read_yaml(fn_worcs)
-  if(is.null(worcs_file[["entry_point"]])){
-    col_message("This WORCS project does not contain an entry point. Recipe will fail upon execution.", success = FALSE, verbose = verbose)
-  }
+  # if(is.null(worcs_file[["entry_point"]])){
+  #   col_message("This WORCS project does not contain an entry point. Make sure that it .", success = FALSE, verbose = verbose)
+  # }
 
   # Prepare for writing to worcs file
   to_worcs <- list(
@@ -85,19 +85,40 @@ add_recipe <- function(worcs_directory = ".", recipe = "rmarkdown::render('manus
 #'  \code{\link[worcs]{snapshot_endpoints}}
 #'  \code{\link[worcs]{check_endpoints}}
 #' @export
-reproduce <- function(worcs_directory = ".", verbose = TRUE, ...){
+reproduce <- function(worcs_directory = ".", verbose = TRUE, check_endpoints = TRUE, ...){
   checkworcs(worcs_directory, iserror = TRUE)
   fn_worcs <- path_abs_worcs(".worcs", worcs_directory)
   if(!file.exists(fn_worcs)){
     stop(".worcs file not found.")
   }
   worcs_file <- read_yaml(fn_worcs)
-  if(is.null(worcs_file[["recipe"]])){
-    stop("No recipe found in '.worcs' file.")
+
+  if(is.null(worcsfile[["recipe"]])){
+    if(interactive()){
+      col_message("No recipe found in WORCS project.", verbose = verbose, success = FALSE)
+      return()
+    } else {
+      stop("No recipe found in '.worcs' file.")
+    }
   }
-  if(isTRUE(worcs_file[["recipe"]][["terminal"]])){
-    do.call(system, list(command = worcs_file[["recipe"]][["recipe"]]))
+
+  out <- if(isTRUE(worcs_file[["recipe"]][["terminal"]])){
+    try(do.call(system, list(command = worcs_file[["recipe"]][["recipe"]])))
   } else {
-    eval.parent(parse(text = worcs_file[["recipe"]][["recipe"]]))
+    try(eval.parent(parse(text = worcs_file[["recipe"]][["recipe"]])))
   }
+
+  if(inherits(out, "try-error")){
+      if(interactive()){
+        col_message("Attempt to run recipe to reproduce this WORCS project failed.", verbose = verbose, success = FALSE)
+        return()
+      } else {
+        stop("Attempt to run recipe to reproduce this WORCS project failed.")
+      }
+  }
+
+  if(check_endpoints){
+    check_endpoints(worcs_directory = dirname(worcs_file), verbose = verbose)
+  }
+
 }

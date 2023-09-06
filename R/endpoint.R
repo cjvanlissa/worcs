@@ -200,3 +200,21 @@ github_action_check_endpoints <- function(){
 
   usethis::use_github_action(url = "https://github.com/cjvanlissa/actions/blob/main/worcs_endpoints.yaml", badge = TRUE)
 }
+
+
+#' @title Set up GitHub Action to Reproduce WORCS Project
+#' @description Sets up a GitHub Action to perform continuous integration (CI)
+#' for a WORCS project. CI automatically evaluates `reproduce()` and
+#' `check_endpoints()` at each push or pull request.
+#' @return No return value. This function is called for its side effects.
+#' @seealso
+#'  \code{\link[usethis]{use_github_action}}
+#'  \code{\link[worcs]{add_endpoint}}
+#'  \code{\link[worcs]{check_endpoints}}
+#'  \code{\link[worcs]{github_action_check_endpoints}}
+#' @export
+#' @importFrom usethis use_github_action
+github_action_reproduce <- function(){
+
+  usethis::use_github_action(url = "https://github.com/cjvanlissa/actions/blob/main/worcs_reproduce.yaml", badge = TRUE)
+}
