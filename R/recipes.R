@@ -93,16 +93,16 @@ reproduce <- function(worcs_directory = ".", verbose = TRUE, check_endpoints = T
   }
   worcs_file <- read_yaml(fn_worcs)
 
-  if(is.null(worcsfile[["recipe"]])){
+  if(is.null(worcs_file[["recipe"]])){
     # Check if it's an old worcs version that does have an entry point
-    if(!is.null(worcsfile[["entry_point"]])){
+    if(!is.null(worcs_file[["entry_point"]])){
       col_message("No recipe found in WORCS project. Attempting to deduce recipe from entry_point.", verbose = verbose, success = FALSE)
 
-      if(grepl(".rmd", tolower(worcsfile[["entry_point"]]), fixed = TRUE)){
-        worcsfile[["recipe"]] <- list(recipe = paste0("rmarkdown::render('", worcsfile[["entry_point"]],"')"), terminal = FALSE)
+      if(grepl(".rmd", tolower(worcs_file[["entry_point"]]), fixed = TRUE)){
+        worcs_file[["recipe"]] <- list(recipe = paste0("rmarkdown::render('", worcs_file[["entry_point"]],"')"), terminal = FALSE)
       }
-      if(grepl(".r", tolower(worcsfile[["entry_point"]]), fixed = TRUE)){
-        worcsfile[["recipe"]] <- list(recipe = paste0("source('", worcsfile[["entry_point"]], "')"), terminal = FALSE)
+      if(grepl(".r", tolower(worcs_file[["entry_point"]]), fixed = TRUE)){
+        worcs_file[["recipe"]] <- list(recipe = paste0("source('", worcs_file[["entry_point"]], "')"), terminal = FALSE)
       }
     } else {
       stop("No recipe or entry_point found in '.worcs' file.")
@@ -125,7 +125,7 @@ reproduce <- function(worcs_directory = ".", verbose = TRUE, check_endpoints = T
   }
 
   if(check_endpoints){
-    check_endpoints(worcs_directory = dirname(worcs_file), verbose = verbose)
+    check_endpoints(worcs_directory = dirname(fn_worcs), verbose = verbose)
   }
 
 }
