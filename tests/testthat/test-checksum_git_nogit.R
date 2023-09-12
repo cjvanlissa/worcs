@@ -11,6 +11,11 @@ test_that("checksum is consistent if git repository is lost", {
   pdf("binary_file.pdf")
   plot(rnorm(20))
   dev.off()
+  # Set git stuff
+  if(isFALSE(gert::user_is_configured())){
+    gert::git_config_set(name = "user.name", value = "testuser", repo = ".")
+    gert::git_config_set(name = "user.email", value = "c.j.vanlissa@tilburguniversity.edu", repo = ".")
+  }
   gert::git_init(path = test_dir)
   gert::git_add(".")
   gert::git_commit("first commit")
