@@ -14,6 +14,9 @@ Default: '.'}
 \item{verbose}{Logical. Whether or not to print status messages to the
 console. Default: \code{TRUE}}
 
+\item{check_endpoints}{Logical. Whether or not to call \code{check_endpoints()}
+after reproducing the recipe. Default: \code{TRUE}}
+
 \item{...}{Additional arguments.}
 }
 \value{
@@ -31,7 +34,6 @@ dir.create(test_dir)
 setwd(test_dir)
 file.create(".worcs")
 worcs:::add_recipe(recipe = 'writeLines("test", "test.txt")')
-worcs:::reproduce()
 # Cleaning example directory
 setwd(old_wd)
 unlink(test_dir, recursive = TRUE)

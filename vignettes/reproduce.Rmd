@@ -80,8 +80,9 @@ load_entrypoint()
 
 ## Reproduce the analyses
 
-If the entry point has the extention '.Rmd', press the button labelled 'Knit' in the editor to compile it and run the analyses contained therein. If the entry point has the extention '.R', press the 'Run' button instead.
-The resulting document should reproduce the original work.
+From `worcs` version 0.1.12, projects can be reproduced using the function `reproduce()`.
+This function will evaluate the reproducibility recipe stored in the `.worcs` project file,
+and checks whether the resulting endpoints have the correct checksums (i.e., are unchanged relative to the authors' original work).
 
 ## No access to original data
 
@@ -90,7 +91,7 @@ In this case, the project ought to contain a synthetic data file with similar pr
 to the original data.
 This synthetic data allows you to verify that the analyses can be run,
 and that the code is correct.
-The results will likely deviate (substantially) from the original findings.
+The results will, however, deviate from the original findings and should not be substantively interpreted.
 
 Authors may use the function `notify_synthetic()` to generate a message in the paper when a synthetic dataset is used.
 Authors should also provide information in the README.md file on how to obtain access to the original data in case an audit is warranted.

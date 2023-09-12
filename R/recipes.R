@@ -65,6 +65,8 @@ add_recipe <- function(worcs_directory = ".", recipe = "rmarkdown::render('manus
 #' Default: '.'
 #' @param verbose Logical. Whether or not to print status messages to the
 #' console. Default: `TRUE`
+#' @param check_endpoints Logical. Whether or not to call `check_endpoints()`
+#' after reproducing the recipe. Default: `TRUE`
 #' @param ... Additional arguments.
 #' @return No return value. This function is called for its side effects.
 #' @examples
@@ -75,7 +77,6 @@ add_recipe <- function(worcs_directory = ".", recipe = "rmarkdown::render('manus
 #' setwd(test_dir)
 #' file.create(".worcs")
 #' worcs:::add_recipe(recipe = 'writeLines("test", "test.txt")')
-#' worcs:::reproduce()
 #' # Cleaning example directory
 #' setwd(old_wd)
 #' unlink(test_dir, recursive = TRUE)

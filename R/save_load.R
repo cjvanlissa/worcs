@@ -463,16 +463,11 @@ cs_fun <- function(filename, worcsfile = ".worcs"){
   dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcsfile))))
   fn_rel <- path_rel_worcs(filename, dn_worcs)
   tryCatch({
-    git_record <- tryCatch(system2("git", paste0('-C "', dirname(worcsfile), '" ls-files --eol'), stdout = TRUE), error = function(e){ stop() }, warning = function(w){
-      message("This worcs project is not version controlled with Git.")
-      stop()
-    })
-    git_record <- git_record[grepl(fn_rel, git_record, fixed = TRUE)]
-    git_record <- strsplit(git_record[1], split = "\\s+")[[1]][c(1:2)]
-    if(isTRUE(any(grepl("/-text", git_record, fixed = TRUE) | grepl("/lf", git_record, fixed = TRUE) | grepl("/cr", git_record, fixed = TRUE)))){
+    if(is_binary(fn_rel)){
+      digest::digest(filename, file = TRUE)
+    } else {
       stop()
     }
-    digest::digest(filename, file = TRUE)
   }, error = function(e){
     suppressWarnings(digest::digest(paste0(readLines(filename), collapse = ""), serialize = FALSE, file = FALSE))
   })
@@ -685,4 +680,9 @@ path_rel_worcs <- function(fn, dn_worcs = NULL, worcs_directory = "."){
     stop("File path must be inside of the worcs project file.", call. = FALSE)
   }
   return(do.call(file.path, as.list(fn[-seq_along(dn_worcs)])))
+}
+
+is_binary <- function(x){
+  out <- tryCatch(system2("file", args = paste0("--mime '", x, "'"), stdout = TRUE), error = function(e){ stop() })
+  return(isFALSE(grepl(": text/", out, fixed = TRUE)))
 }
