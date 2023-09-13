@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.12</span>
       </span>
     </div>
 
@@ -153,18 +153,30 @@ sources the package which needs compilation?</em>, click
 <div class="section level2">
 <h2 id="obtaining-the-project-repository">Obtaining the project repository<a class="anchor" aria-label="anchor" href="#obtaining-the-project-repository"></a>
 </h2>
+<!-- To do so, open RStudio and, in the console,  -->
+<!-- If you are familiar with 'Git' and 'GitHub', you can "clone" the project as usual. -->
 <p>WORCS projects are typically hosted on ‘GitHub’, or another ‘Git’
-remote repository. If you are familiar with ‘Git’ and ‘GitHub’, you can
-“clone” the project as usual.</p>
-<p>If you are not familiar with these tools, you can download the
-project repository from the remote repository through the web
-interface.</p>
+remote repository.</p>
+<p>The recommended way to obtain a local copy of the project repository
+is to “clone” it.</p>
 <p>On ‘GitHub’, this is done by clicking the green button labeled
-“Code”. Clicking it reveals the option “Download ZIP” (see below), which
-allows you to download a compressed archive of the project. This can be
-unpacked using ZIP tools, which are integrated in most operating
-systems.</p>
+“Code”. Clicking it reveals the HTTPS link to the project repository
+(see below). Copy this link to the clipboard by clicking the clipboard
+icon next to it.</p>
 <p><img src="github_download.png"></p>
+<p>Next, open an RStudio instance and run the following code in the
+console, replacing <code>https://github.com/username/reponame.git</code>
+with the HTTPS address you just copied to clipboard, and replacing the
+<code>c:/where/you/want/the/repo</code> with the location on your hard
+drive where you want to clone the repository:</p>
+<pre><code><span><span class="fu">gert</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/gert/reference/git_fetch.html" class="external-link">git_clone</a></span><span class="op">(</span><span class="st">"https://github.com/username/reponame.git"</span>, path <span class="op">=</span> <span class="st">"c:/where/you/want/the/repo"</span><span class="op">)</span></span></code></pre>
+<p><strong>Note: While it is also possible to download a compressed
+(ZIP) archive containing the project (see the image above), this has an
+important limitation: a repository downloaded via the GitHub interface
+is, itself, not a Git repository! This is a peculiarity of the GitHub
+interface. This might result in unexpected behavior when using any WORCS
+functionality that relies on Git for version control. Thus, as a general
+rule, we advise cloning projects instead.</strong></p>
 </div>
 <div class="section level2">
 <h2 id="open-the-project-in-rstudio">Open the project in ‘RStudio’<a class="anchor" aria-label="anchor" href="#open-the-project-in-rstudio"></a>
@@ -194,11 +206,12 @@ file in ‘RStudio’:</p>
 <div class="section level2">
 <h2 id="reproduce-the-analyses">Reproduce the analyses<a class="anchor" aria-label="anchor" href="#reproduce-the-analyses"></a>
 </h2>
-<p>If the entry point has the extention ‘.Rmd’, press the button
-labelled ‘Knit’ in the editor to compile it and run the analyses
-contained therein. If the entry point has the extention ‘.R’, press the
-‘Run’ button instead. The resulting document should reproduce the
-original work.</p>
+<p>From <code>worcs</code> version 0.1.12, projects can be reproduced
+using the function <code><a href="../reference/reproduce.html">reproduce()</a></code>. This function will evaluate
+the reproducibility recipe stored in the <code>.worcs</code> project
+file, and checks whether the resulting endpoints have the correct
+checksums (i.e., are unchanged relative to the authors’ original
+work).</p>
 </div>
 <div class="section level2">
 <h2 id="no-access-to-original-data">No access to original data<a class="anchor" aria-label="anchor" href="#no-access-to-original-data"></a>
@@ -207,8 +220,8 @@ original work.</p>
 case, the project ought to contain a synthetic data file with similar
 properties to the original data. This synthetic data allows you to
 verify that the analyses can be run, and that the code is correct. The
-results will likely deviate (substantially) from the original
-findings.</p>
+results will, however, deviate from the original findings and should not
+be substantively interpreted.</p>
 <p>Authors may use the function <code><a href="../reference/notify_synthetic.html">notify_synthetic()</a></code> to
 generate a message in the paper when a synthetic dataset is used.
 Authors should also provide information in the README.md file on how to

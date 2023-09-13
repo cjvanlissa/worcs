@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.12</span>
       </span>
     </div>
 
@@ -75,6 +75,15 @@
       <small>Source: <a href="https://github.com/cjvanlissa/worcs/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.1.12" id="worcs-0112">worcs 0.1.12<a class="anchor" aria-label="anchor" href="#worcs-0112"></a></h2>
+<ul><li>Add functions add_recipe() and reproduce()</li>
+<li>check_worcs_installation() no longer throws error for rticles and prereg</li>
+<li>Add more defensive programming to save_data() and load_data() to prevent errors.</li>
+<li>Further improvement to how checksums are computed; instead of checking how Git treats the line endings (which breaks when a project is no longer version controlled, e.g., when downloading a ZIP from GitHub), we check if files are binary.</li>
+<li>Add github action to reproduce a repo via github actions: github_action_reproduce()</li>
+<li>Update Reproduce.Rmd vignette; the advice to download a ZIP from GitHub is bad practice, because this ZIP is no longer version controlled with Git.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.11" id="worcs-0111">worcs 0.1.11<small>2023-08-22</small><a class="anchor" aria-label="anchor" href="#worcs-0111"></a></h2>
 <ul><li>Checksums are computed differently from preceding versions, to account for the fact that Git changes end of line characters which breaks consistency of checksums across operating systems.</li>

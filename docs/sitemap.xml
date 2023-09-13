@@ -52,6 +52,9 @@
     <loc>/reference/add_preregistration.html</loc>
   </url>
   <url>
+    <loc>/reference/add_recipe.html</loc>
+  </url>
+  <url>
     <loc>/reference/add_synthetic.html</loc>
   </url>
   <url>
@@ -100,6 +103,9 @@
     <loc>/reference/github_action_check_endpoints.html</loc>
   </url>
   <url>
+    <loc>/reference/github_action_reproduce.html</loc>
+  </url>
+  <url>
     <loc>/reference/git_ignore.html</loc>
   </url>
   <url>
@@ -128,6 +134,9 @@
   </url>
   <url>
     <loc>/reference/report.html</loc>
+  </url>
+  <url>
+    <loc>/reference/reproduce.html</loc>
   </url>
   <url>
     <loc>/reference/skew_kurtosis.html</loc>
