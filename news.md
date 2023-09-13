@@ -3,7 +3,15 @@
 * Add functions add_recipe() and reproduce()
 * check_worcs_installation() no longer throws error for rticles and prereg
 * Add more defensive programming to save_data() and load_data() to prevent errors.
-
+* Further improvement to how checksums are computed; instead of checking how Git
+  treats the line endings (which breaks when a project is no longer version
+  controlled, e.g., when downloading a ZIP from GitHub), we check if files are
+  binary.
+* Add github action to reproduce a repo via github actions:
+  github_action_reproduce()
+* Update Reproduce.Rmd vignette; the advice to download a ZIP from GitHub is bad
+  practice, because this ZIP is no longer version controlled with Git.
+  
 # worcs 0.1.11
 
 * Checksums are computed differently from preceding versions,

@@ -1,18 +1,20 @@
-# worcs 0.1.11
+# worcs 0.1.12
 
-* Checksums are computed differently from preceding versions,
-  to account for the fact that Git changes end of line characters which breaks
-  consistency of checksums across operating systems.
-* Add endpoint functionality: add_endpoint(), snapshot_endpoints(), and
-  check_endpoints()
-* Add github action for endpoints: github_action_check_endpoints()
-* Improve handling of relative filenames in save_data()
-* fix bug related to file path of codebook and metadata
-* add function report()
+* Add functions add_recipe() and reproduce()
+* check_worcs_installation() no longer throws error for rticles and prereg
+* Add more defensive programming to save_data() and load_data() to prevent errors.
+* Further improvement to how checksums are computed; instead of checking how Git
+  treats the line endings (which breaks when a project is no longer version
+  controlled, e.g., when downloading a ZIP from GitHub), we check if files are
+  binary.
+* Add github action to reproduce a repo via github actions:
+  github_action_reproduce()
+* Update Reproduce.Rmd vignette; the advice to download a ZIP from GitHub is bad
+  practice, because this ZIP is no longer version controlled with Git.
   
 ## Test environments
 
-* local Windows 11 install, R 4.2.1
+* local Windows 11 install, R 4.3.0
 * win-builder: release
 * win-builder: development
 * win-builder: oldversion
