@@ -59,7 +59,7 @@ Copy this link to the clipboard by clicking the clipboard icon next to it.
 
 Next, open an RStudio instance and run the following code in the console, replacing `https://github.com/username/reponame.git` with the HTTPS address you just copied to clipboard, and replacing the `c:/where/you/want/the/repo` with the location on your hard drive where you want to clone the repository:
 
-```{r}
+```
 gert::git_clone("https://github.com/username/reponame.git", path = "c:/where/you/want/the/repo")
 ```
 
