@@ -42,15 +42,26 @@ renv::consent(provided = TRUE)
 
 ## Obtaining the project repository
 
+<!-- To do so, open RStudio and, in the console,  -->
+<!-- If you are familiar with 'Git' and 'GitHub', you can "clone" the project as usual. -->
+
+<!-- If you are not familiar with these tools, you can download the project repository from the remote repository through the web interface. **Note however that a repository downloaded via the GitHub interface is no longer, itself, a Git repository! This is a peculiarity of the GitHub interface.** -->
+
+
 WORCS projects are typically hosted on 'GitHub', or another 'Git' remote repository.
-If you are familiar with 'Git' and 'GitHub', you can "clone" the project as usual.
 
-If you are not familiar with these tools, you can download the project repository from the remote repository through the web interface.
+The recommended way to obtain a local copy of the project repository is to "clone" it.
 
-On 'GitHub', this is done by clicking the green button labeled "Code". Clicking it reveals the option "Download ZIP" (see below), which allows you to download a compressed archive of the project.
-This can be unpacked using ZIP tools, which are integrated in most operating systems.
+On 'GitHub', this is done by clicking the green button labeled "Code". Clicking it reveals the HTTPS link to the project repository (see below).
+Copy this link to the clipboard by clicking the clipboard icon next to it.
 
 ![](github_download.png)
+
+Next, open an RStudio instance and run the following code in the console, replacing `https://github.com/username/reponame.git` with the HTTPS address you just copied to clipboard, and replacing the `c:/where/you/want/the/repo` with the location on your hard drive where you want to clone the repository:
+
+```{r}
+gert::git_clone("https://github.com/username/reponame.git", path = "c:/where/you/want/the/repo")
+```
 
 ## Open the project in 'RStudio'
 
