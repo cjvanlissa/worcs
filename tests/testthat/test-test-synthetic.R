@@ -1,3 +1,5 @@
+if (requireNamespace("missRanger", quietly = TRUE)) {
+
 library(missRanger)
 test_that("Argument missingness_expression works", {
   iris_missings <- iris
@@ -8,3 +10,5 @@ test_that("Argument missingness_expression works", {
   iris_miss_syn <- synthetic(iris_missings, missingness_expression = missRanger(data = data))
   expect_true(anyNA(iris_miss_syn))
 })
+
+}
