@@ -1,3 +1,4 @@
+if(worcs:::gert_works()){
 test_that("checksum is consistent if git repository is lost", {
   the_test <- "cs_git"
   old_wd <- getwd()
@@ -31,5 +32,5 @@ test_that("checksum is consistent if git repository is lost", {
   expect_true(suppressMessages(worcs:::cs_fun("test.txt")) == old_cs)
   expect_true(suppressMessages(worcs:::cs_fun("binary_file.pdf")) == old_cs_binary)
 })
-
+}
 

@@ -32,7 +32,14 @@ check_worcs_installation <- function(what = "all") {
     }
   }
   out <- lapply(checkfuns, function(thisfun){
-    eval(str2lang(paste0("worcs::", thisfun, "()")))})
+    out <- try(eval(str2lang(paste0("worcs::", thisfun, "()"))))
+    if(inherits(out, "try-error")){
+      out <- structure(list(pass = list(name = FALSE), errors = list()), class = c("worcs_check",
+                                                                          "list"))
+      names(out[["pass"]]) <- thisfun
+    }
+    out
+    })
 
   worcs_checkres <- list(pass = do.call(c, lapply(out, `[[`, "pass")),
                          errors = do.call(c, lapply(out, `[[`, "errors")))

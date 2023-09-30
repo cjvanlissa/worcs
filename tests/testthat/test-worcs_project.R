@@ -1,3 +1,4 @@
+if(worcs:::gert_works()){
 library(gert)
 test_that("worcs project can be generated", {
 
@@ -29,3 +30,4 @@ test_that("worcs project can be generated", {
 
   setwd(old_wd)
 })
+}

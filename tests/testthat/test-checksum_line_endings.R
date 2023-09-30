@@ -1,3 +1,4 @@
+if(worcs:::gert_works()){
 library(gert)
 library(digest)
 test_that("checksum handles different line endings", {
@@ -56,4 +57,4 @@ test_that("checksum handles different line endings", {
 
   setwd(old_wd)
 })
-
+}

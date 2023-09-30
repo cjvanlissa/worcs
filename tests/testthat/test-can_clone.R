@@ -1,3 +1,4 @@
+if(worcs:::gert_works()){
 test_that("gert can clone repos", {
   the_test <- "gert_clone"
   old_wd <- getwd()
@@ -14,5 +15,5 @@ test_that("gert can clone repos", {
   # }
   expect_true(file.exists("worcs_reproduce.yaml"))
 })
-
+}
 
