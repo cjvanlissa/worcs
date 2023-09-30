@@ -54,11 +54,22 @@ make_codebook <-
            filename = "codebook.Rmd",
            render_file = TRUE,
            csv_file = gsub("Rmd$", "csv", filename),
-           verbose = TRUE) {
+           verbose = TRUE,
+           stats = "") {
     filename <- force(filename)
     function_success <- TRUE
-
-    summaries <- do.call(descriptives, list(x = data))
+    
+    if (stats == "" || is.null(stats)) {
+      summaries <- do.call(descriptives, list(x = data))
+    }
+    else {
+      identifiers <- list("name","type")
+      stats <- as.list(strsplit(stats,'\\s+')[[1]])
+      stats <- c(identifiers, stats)
+      summaries <- do.call(descriptives, list(x = data))
+      summaries <- summaries[,(names(summaries) %in% stats)]
+    }
+ 
     summaries <- cbind(summaries,
             category = NA,
             description = NA)
