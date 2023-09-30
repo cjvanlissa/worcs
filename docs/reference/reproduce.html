@@ -18,7 +18,7 @@ endpoints."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.13</span>
       </span>
     </div>
 
@@ -131,7 +131,7 @@ after reproducing the recipe. Default: <code>TRUE</code></p></dd>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.create</a></span><span class="op">(</span><span class="st">".worcs"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu">worcs</span><span class="fu">:::</span><span class="fu"><a href="add_recipe.html">add_recipe</a></span><span class="op">(</span>recipe <span class="op">=</span> <span class="st">'writeLines("test", "test.txt")'</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'add_recipe' not found</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Adding recipe to '.worcs'.</span>
 <span class="r-in"><span><span class="co"># Cleaning example directory</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">test_dir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
