@@ -1,17 +1,10 @@
-# worcs 0.1.12
+# worcs 0.1.13
 
-* Add functions add_recipe() and reproduce()
-* check_worcs_installation() no longer throws error for rticles and prereg
-* Add more defensive programming to save_data() and load_data() to prevent errors.
-* Further improvement to how checksums are computed; instead of checking how Git
-  treats the line endings (which breaks when a project is no longer version
-  controlled, e.g., when downloading a ZIP from GitHub), we check if files are
-  binary.
-* Add github action to reproduce a repo via github actions:
-  github_action_reproduce()
-* Update Reproduce.Rmd vignette; the advice to download a ZIP from GitHub is bad
-  practice, because this ZIP is no longer version controlled with Git.
-  
+* Address Prof. Brian Ripley's comment: "Packages in Suggests should be used
+  conditionally: see 'Writing R Extensions'. This needs to be corrected even if
+  the missing package(s) become available. It can be tested by checking with
+  _R_CHECK_DEPENDS_ONLY_=true."
+
 ## Test environments
 
 * local Windows 11 install, R 4.3.0

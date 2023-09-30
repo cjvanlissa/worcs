@@ -13,7 +13,7 @@ recommend_data <- c('library("worcs")',
 #' 'worcs' project. Default: 'worcs_project'.
 #' @param manuscript Character, indicating what template to use for the
 #' 'R Markdown' manuscript. Default: 'APA6'. Available choices include
-#' \code{\link[papaja:papaja]{APA6}} from the \code{papaja} package,
+#' \code{APA6} from the \code{papaja} package,
 #' a \code{\link[rmarkdown]{github_document}}, and templates included in the
 #' \code{\link[rticles:rticles]{rticles}} package.
 #' For more information, see \code{\link{add_manuscript}}.
@@ -246,7 +246,7 @@ describe_file <- function(file, desc, usage, tab, path){
 
 
 create_man_papaja <- function(man_fn_abs, remote_repo){
-  if("papaja" %in% rownames(installed.packages())){
+  if(requireNamespace("papaja", quietly = TRUE)) {
     draft(
       file = man_fn_abs,
       "apa6",
@@ -404,7 +404,7 @@ nice_tab <- function(tab){
 #' @param ... Additional arguments passed to and from functions.
 #' @details Available choices include the following manuscript templates:
 #' \itemize{
-#'   \item{\code{'APA6'}}{A \code{\link[papaja:papaja]{APA6}} style template from the \code{papaja} package}
+#'   \item{\code{'APA6'}}{An APA6 style template from the \code{papaja} package}
 #'   \item{\code{'github_document'}}{A \code{\link[rmarkdown]{github_document}} from the \code{rmarkdown} package}
 #'   \item{\code{'acm_article'}}{acm style template from the \code{rtices} package}
 #'   \item{\code{'acs_article'}}{acs style template from the \code{rtices} package}

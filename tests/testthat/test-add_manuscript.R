@@ -44,8 +44,9 @@ test_that("rticles manuscript can be generated", {
   setwd(old_wd)
 })
 
+if(requireNamespace("papaja", quietly = TRUE)){
 test_that("papaja manuscript can be generated", {
-  library(papaja)
+
   the_test <- "manuscript"
   old_wd <- getwd()
   test_dir <- file.path(tempdir(), the_test)
@@ -66,3 +67,4 @@ test_that("papaja manuscript can be generated", {
   expect_true(file.exists("manuscript/references.bib"))
   setwd(old_wd)
 })
+}

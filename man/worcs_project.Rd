@@ -21,7 +21,7 @@ worcs_project(
 
 \item{manuscript}{Character, indicating what template to use for the
 'R Markdown' manuscript. Default: 'APA6'. Available choices include
-\code{\link[papaja:papaja]{APA6}} from the \code{papaja} package,
+\code{APA6} from the \code{papaja} package,
 a \code{\link[rmarkdown]{github_document}}, and templates included in the
 \code{\link[rticles:rticles]{rticles}} package.
 For more information, see \code{\link{add_manuscript}}.}

@@ -40,7 +40,7 @@ Adds an Rmarkdown manuscript to a 'worcs' project.
 \details{
 Available choices include the following manuscript templates:
 \itemize{
-\item{\code{'APA6'}}{A \code{\link[papaja:papaja]{APA6}} style template from the \code{papaja} package}
+\item{\code{'APA6'}}{An APA6 style template from the \code{papaja} package}
 \item{\code{'github_document'}}{A \code{\link[rmarkdown]{github_document}} from the \code{rmarkdown} package}
 \item{\code{'acm_article'}}{acm style template from the \code{rtices} package}
 \item{\code{'acs_article'}}{acs style template from the \code{rtices} package}
