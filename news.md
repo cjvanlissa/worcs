@@ -1,3 +1,10 @@
+# worcs 0.1.13
+
+* Address Prof. Brian Ripley's comment: "Packages in Suggests should be used
+  conditionally: see 'Writing R Extensions'. This needs to be corrected even if
+  the missing package(s) become available. It can be tested by checking with
+  _R_CHECK_DEPENDS_ONLY_=true."
+
 # worcs 0.1.12
 
 * Add functions add_recipe() and reproduce()
