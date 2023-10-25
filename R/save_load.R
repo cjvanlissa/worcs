@@ -101,6 +101,7 @@ closed_data <- function(data,
   Args$save_expression <- substitute(save_expression)
   Args$load_expression <- substitute(load_expression)
   Args[[1L]] <- str2lang("worcs:::save_data")
+  Args[["worcs_directory"]] <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
   eval(Args, parent.frame())
 }
 
@@ -232,7 +233,8 @@ save_data <- function(data,
     Args_cb <- match.call()
     Args_cb[[1L]] <- str2lang("make_codebook")
     Args_cb <- Args_cb[c(1L, match("data", names(Args_cb)))]
-    Args_cb$filename <- fn_write_codebook
+    Args_cb$filename <- fn_write_codebook #path_rel_worcs(fn_write_codebook, dn_worcs)
+    #Args_cb$worcs_directory <- dn_worcs
     cb_out <- capture.output(eval.parent(Args_cb))
     # Add to gitignore
     write_gitig(filename = fn_gitig, paste0("!", gsub(".md$", "csv", path_rel_worcs(fn_write_codebook))))
@@ -636,21 +638,18 @@ notify_synthetic <- function(...,
   }
 }
 
+#' @importFrom xfun is_abs_path
 path_abs_worcs <- function(fn, dn_worcs = NULL, worcs_directory = "."){
-  if(grepl("^.:", fn)){
-    stop("Filename must be a relative path.", call. = FALSE)
+  if (xfun::is_abs_path(fn)) {
+    return(fn)
   }
-  if(is.null(dn_worcs)){
-    dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
+  if (is.null(dn_worcs)) {
+    dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
+                                                          ".worcs")))
   }
   invisible(checkworcs(dn_worcs, iserror = TRUE))
-  basen <- basename(fn)
-  dirn <- dirname(fn)
-  if(dirn == "."){
-    return(file.path(dn_worcs, basen))
-  } else {
-    return(file.path(dn_worcs, dirn, basen))
-  }
+  dirn <- normalizePath(dn_worcs)
+  return(file.path(dirn, fn))
 }
 
 path_rel_worcs <- function(fn, dn_worcs = NULL, worcs_directory = "."){

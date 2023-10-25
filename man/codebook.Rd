@@ -8,7 +8,7 @@ make_codebook(
   data,
   filename = "codebook.Rmd",
   render_file = TRUE,
-  csv_file = gsub("Rmd$", "csv", filename),
+  csv_file = gsub("rmd$", "csv", filename, ignore.case = TRUE),
   verbose = TRUE
 )
 }

@@ -27,6 +27,9 @@
 #' not to \code{.csv}.
 #' @param verbose Logical. Whether or not to print status messages to
 #' the console. Default: TRUE
+# @param worcs_directory Character, indicating the WORCS project directory from
+# which to load data. The default value \code{"."} points to the current
+# directory.
 #' @return \code{Logical}, indicating whether or not the operation was
 #' successful. This function is mostly called for its side effect of rendering
 #' an 'R Markdown' codebook.
@@ -53,8 +56,12 @@ make_codebook <-
   function(data,
            filename = "codebook.Rmd",
            render_file = TRUE,
-           csv_file = gsub("Rmd$", "csv", filename),
-           verbose = TRUE) {
+           csv_file = gsub("rmd$", "csv", filename, ignore.case = TRUE),
+           verbose = TRUE
+           #, worcs_directory = "."
+           ) {
+
+    # dn_worcs <- tryCatch(dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs"))), error = function(e){dirname(filename)})
     filename <- force(filename)
     function_success <- TRUE
 
@@ -97,7 +104,7 @@ make_codebook <-
         invisible(file.remove(csv_file))
       }
       write.csv(x = summaries, file = csv_file, row.names = FALSE)
-      sum_tab <- c(paste0('summaries <- read.csv("', csv_file, '", stringsAsFactors = FALSE)'),
+      sum_tab <- c(paste0('summaries <- read.csv("', basename(csv_file), '", stringsAsFactors = FALSE)'),
           "summaries <- summaries[, !colSums(is.na(summaries)) == nrow(summaries)]"
         )
       #write_worcsfile(".worcs",

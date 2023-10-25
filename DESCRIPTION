@@ -51,7 +51,8 @@ Imports:
     tinytex,
     credentials,
     usethis,
-    gh
+    gh,
+    xfun
 Suggests:
     papaja (>= 0.1.1),
     remotes,
