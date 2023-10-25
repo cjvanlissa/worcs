@@ -10,7 +10,7 @@ test_that("checksum works from within Rmarkdown", {
   worcs:::write_worcsfile(file.path(test_dir, ".worcs"))
   dat <- iris[1:4,1:4]
   open_data(dat)
-  cs_correct <- "44a5d36f15d4c85b2447395671a3ddf0"
+  cs_correct <- read_yaml(".worcs")$checksums[["dat.csv"]]
   expect_true(worcs:::cs_fun(filename = file.path(test_dir, "dat.csv"), worcsfile = file.path(test_dir, ".worcs")) == cs_correct)
   dir.create(file.path(test_dir, "manuscript"))
   setwd(file.path(test_dir, "manuscript"))

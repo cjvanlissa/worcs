@@ -163,7 +163,7 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
     ep <- endpoints[i]
     out <- try({
       #fn_endpoint <- path_abs_worcs(ep, dn_worcs)
-      check_sum(ep, old_cs = worcsfile[["checksums"]][[ep]], worcsfile = fn_worcs)
+      check_sum(ep, old_cs = worcsfile[["checksums"]][[ep]], worcsfile = fn_worcs, error = TRUE)
     }, silent = TRUE)
     if(inherits(out, "try-error")){
       col_message("Endpoint '", ep, "' did not replicate.",

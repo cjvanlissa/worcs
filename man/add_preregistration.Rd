@@ -35,7 +35,7 @@ Adds an Rmarkdown preregistration template to a 'worcs' project.
 Available choices include the templates from the
 \code{\link[prereg:prereg]{prereg}} package, and several unique templates
 included with \code{worcs}:
-\itemize{
+\describe{
 \item{\code{'PSS'}}{Preregistration and Sharing Software (Krypotos,
 Klugkist, Mertens, & Engelhard, 2019)}
 \item{\code{'Secondary'}}{Preregistration for secondary analyses (Mertens &

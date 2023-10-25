@@ -43,12 +43,12 @@ the data collection procedures. The variable descriptives are stored in
 a \code{.csv} file, which can be edited in 'R' or a spreadsheet program.
 Columns can be appended, and we encourage users to complete at least the
 following two columns in this file:
-\itemize{
-\item{category} Describe the type of variable in this column. For example:
-"morality".
-\item{description} Provide a plain-text description of the variable. For
+\describe{
+\item{category}{Describe the type of variable in this column. For example:
+"morality".}
+\item{description}{Provide a plain-text description of the variable. For
 example, the full text of a questionnaire item: "People should be willing to
-do anything to help a member of their family".
+do anything to help a member of their family".}
 }
 Re-knitting the 'R Markdown' file (using \code{\link[rmarkdown]{render}}) will
 transfer these changes to the 'markdown' file for 'GitHub'.

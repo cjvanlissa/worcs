@@ -403,7 +403,7 @@ nice_tab <- function(tab){
 #' during project creation. Default: TRUE
 #' @param ... Additional arguments passed to and from functions.
 #' @details Available choices include the following manuscript templates:
-#' \itemize{
+#' \describe{
 #'   \item{\code{'APA6'}}{An APA6 style template from the \code{papaja} package}
 #'   \item{\code{'github_document'}}{A \code{\link[rmarkdown]{github_document}} from the \code{rmarkdown} package}
 #'   \item{\code{'acm_article'}}{acm style template from the \code{rtices} package}
@@ -571,7 +571,7 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
 # cat(out, sep = '\n', file = "clipboard")
 ## !!!ALSO ADD THEM TO THE PROJECT TEMPLATE FILE WORCS.DCF!!!!
 # cat(p, sep = ', ', file = "clipboard")
-#' \itemize{
+#' \describe{
 #'   \item{\code{'PSS'}}{Preregistration and Sharing Software (Krypotos,
 #'   Klugkist, Mertens, & Engelhard, 2019)}
 #'   \item{\code{'Secondary'}}{Preregistration for secondary analyses (Mertens &
