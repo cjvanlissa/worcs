@@ -461,9 +461,10 @@ check_metadata <- function(x, codebook, value_labels){
 
 cs_fun <- function(filename, worcsfile = ".worcs"){
   dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcsfile))))
-  fn_rel <- path_rel_worcs(filename, dn_worcs)
+  # fn_rel <- path_rel_worcs(filename, dn_worcs)
+  # fn_abs <- path_abs_worcs(fn_rel, dn_worcs = dn_worcs)
   tryCatch({
-    if(is_binary(fn_rel)){
+    if(is_binary(filename)){
       digest::digest(filename, file = TRUE)
     } else {
       stop()

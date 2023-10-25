@@ -1,9 +1,6 @@
-# worcs 0.1.13
+# worcs 0.1.14
 
-* Address Prof. Brian Ripley's comment: "Packages in Suggests should be used
-  conditionally: see 'Writing R Extensions'. This needs to be corrected even if
-  the missing package(s) become available. It can be tested by checking with
-  _R_CHECK_DEPENDS_ONLY_=true."
+* Fix checksum when it is calculated indirectly (e.g., in Rmarkdown code chunk)
 
 ## Test environments
 
