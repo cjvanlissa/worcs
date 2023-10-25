@@ -1,3 +1,10 @@
+# worcs 0.1.14
+
+* Fix checksum when it is calculated indirectly (e.g., in Rmarkdown code chunk)
+* Fix error on r-release-linux-x86_64
+* Fix documentation; replace \itemize tags with \describe tags
+* Improve handling of relative file paths in worcs:::save_data()
+
 # worcs 0.1.13
 
 * Address Prof. Brian Ripley's comment: "Packages in Suggests should be used

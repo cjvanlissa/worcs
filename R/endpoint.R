@@ -148,7 +148,6 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
                                                         ".worcs")))
   fn_worcs <- file.path(dn_worcs, ".worcs")
-  print(fn_worcs)
   worcsfile <- yaml::read_yaml(fn_worcs)
   if(is.null(worcsfile[["endpoints"]])){
     if(interactive()){
@@ -165,8 +164,6 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
     out <- try({
       #fn_endpoint <- path_abs_worcs(ep, dn_worcs)
       # Use absolute file path here
-      print(file.path(dn_worcs, ep))
-      print(cs_fun(file.path(dn_worcs, ep), fn_worcs))
       check_sum(file.path(dn_worcs, ep), old_cs = worcsfile[["checksums"]][[ep]], worcsfile = fn_worcs, error = TRUE)
     }, silent = TRUE)
     if(inherits(out, "try-error")){

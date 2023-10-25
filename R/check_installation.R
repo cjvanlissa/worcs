@@ -44,7 +44,6 @@ check_worcs_installation <- function(what = "all") {
   worcs_checkres <- list(pass = do.call(c, lapply(out, `[[`, "pass")),
                          errors = do.call(c, lapply(out, `[[`, "errors")))
   class(worcs_checkres) <- c("worcs_check", class(worcs_checkres))
-  print(worcs_checkres)
   return(invisible(isTRUE(all(pass))))
 }
 
@@ -199,8 +198,8 @@ check_github <- function(pat = TRUE, ssh = FALSE) {
   # Check if currently in a git repo with remote
   repo <- try({gert::git_remote_list()})
   if(!inherits(repo, "try-error")){
-    if(grepl("^https://", repo$url)) pass[["current git repo has a remote that requires PAT authentication"]] <- TRUE
-    if(grepl("^git@", repo$url)) pass[["current git repo has a remote that requires SSH authentication"]] <- TRUE
+    if(isTRUE(grepl("^https://", repo$url))) pass[["current git repo has a remote that requires PAT authentication"]] <- TRUE
+    if(isTRUE(grepl("^git@", repo$url))) pass[["current git repo has a remote that requires SSH authentication"]] <- TRUE
   }
   if(pat){
     pass[["github_pat"]] <- isFALSE(gh::gh_token() == "")
