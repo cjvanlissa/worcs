@@ -89,6 +89,7 @@ add_recipe <- function(worcs_directory = ".", recipe = "rmarkdown::render('manus
 reproduce <- function(worcs_directory = ".", verbose = TRUE, check_endpoints = TRUE, ...){
   checkworcs(worcs_directory, iserror = TRUE)
   fn_worcs <- path_abs_worcs(".worcs", worcs_directory)
+  print(fn_worcs)
   if(!file.exists(fn_worcs)){
     stop(".worcs file not found.")
   }
