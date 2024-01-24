@@ -25,6 +25,9 @@
     <loc>/articles/setup.html</loc>
   </url>
   <url>
+    <loc>/articles/synthetic_data.html</loc>
+  </url>
+  <url>
     <loc>/articles/workflow.html</loc>
   </url>
   <url>
@@ -56,6 +59,9 @@
   </url>
   <url>
     <loc>/reference/add_synthetic.html</loc>
+  </url>
+  <url>
+    <loc>/reference/add_targets.html</loc>
   </url>
   <url>
     <loc>/reference/check_endpoints.html</loc>
