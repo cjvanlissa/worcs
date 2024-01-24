@@ -41,7 +41,9 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
 
     worcs_file <- yaml::read_yaml(fn_worcs)
     tryCatch({
-      targets::use_targets(...)
+      Args <- list(...)
+      Args[["open"]] <- FALSE
+      do.call(targets::use_targets, Args)
       col_message("Added targets to project.")
     }, error = function(e){col_message("Could not add targets to project.", success = FALSE)})
     to_worcs <- list(filename = fn_worcs, modify = TRUE)
@@ -58,7 +60,7 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
       lnz <- readLines(worcs:::path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
       if(all(tail(lnz, 2) == c("  )", ")"))){
         col_message("Adding rmarkdown manuscript to targets pipeline.", verbose = verbose)
-        lnz <- c(lnz[1:(length(lnz)-3)],
+        lnz <- c(lnz[1:(length(lnz)-2)],
                  c("  ),", "  tarchetypes::tar_render(manuscript, \"manuscript/manuscript.rmd\")",
                    ")"))
         writeLines(text = lnz, con = worcs:::path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
