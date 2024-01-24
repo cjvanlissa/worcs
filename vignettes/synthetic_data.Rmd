@@ -1,0 +1,172 @@
+---
+title: "Using Custom Synthetic Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Synthetic Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+# curdir <- getwd()
+thedir <- getwd()
+
+library(worcs)
+#ir.create(getwd())
+file.create(file.path(thedir, ".worcs"))
+#setwd(thedir)
+```
+
+```{r setup}
+library(worcs)
+```
+
+Oftentimes, it is not possible to share original research data publicly, for example, due to privacy constraints.
+As explained in the `worcs` paper, in such cases, it is advantageous to share a synthetic dataset instead, so that the code can still be vetted, debugged, and adapted by others.
+By default, the function `closed_data()` generates a synthetic dataset using the function `synthetic()`; a rudimentary random forest-based algorithm.
+However, sometimes this default option falls short.
+In such cases, it is possible to fully customize synthetic dataset generation.
+This vignette discusses some of the options.
+
+## Generating Data from a Structural Equation Model
+
+Structural equation models may have problems converging when estimated on synthetic datasets.
+To avoid this problem, synthetic data can be generated directly from the SEM model.
+Generating data from an SEM model will often result in a synthetic dataset that will closely reproduce the model parameters estimated on the original dataset.
+
+### Illustrating the Problem
+
+For this example, we will use the `PoliticalDemocracy` data included with the `lavaan` package.
+Imagine that we collected these data, and are not allowed to share them.
+In an existing `worcs` project, we could then store them using the command:
+
+```{r echo = TRUE, eval = FALSE}
+library(lavaan)
+library(tidySEM)
+set.seed(4)
+dat <- PoliticalDemocracy
+closed_data(dat)
+```
+```{r echo = FALSE, eval = TRUE, error=FALSE, warning=FALSE, message=FALSE, results = "hide"}
+library(lavaan)
+library(tidySEM)
+dat <- PoliticalDemocracy
+file.create(".worcs")
+set.seed(4)
+closed_data(dat, worcs_directory = thedir)
+```
+
+Now, we estimate our SEM-model, based on the example in the `lavaan` documentation:
+
+```{r echo = TRUE, eval = FALSE}
+load_data()
+model <- '
+ind60 =~ x1 + x2 + x3
+dem60 =~ y1 + a*y2 + b*y3 + c*y4
+dem65 =~ y5 + a*y6 + b*y7 + c*y8
+
+# regressions
+dem60 ~ ind60
+dem65 ~ ind60 + dem60
+
+# residual correlations
+y1 ~~ y5
+y2 ~~ y4 + y6
+y3 ~~ y7
+y4 ~~ y8
+y6 ~~ y8'
+
+fit <- lavaan::sem(model, data = dat)
+tidySEM::table_results(fit)
+```
+```{r echo = FALSE, eval = TRUE, error=FALSE, warning=FALSE}
+load_data(worcs_directory = thedir)
+model <- '
+ind60 =~ x1 + x2 + x3
+dem60 =~ y1 + a*y2 + b*y3 + c*y4
+dem65 =~ y5 + a*y6 + b*y7 + c*y8
+
+# regressions
+dem60 ~ ind60
+dem65 ~ ind60 + dem60
+
+# residual correlations
+y1 ~~ y5
+y2 ~~ y4 + y6
+y3 ~~ y7
+y4 ~~ y8
+y6 ~~ y8'
+
+fit <- lavaan::sem(model, data = dat)
+tidySEM::table_results(fit)
+```
+
+This should work fine.
+But what if someone tries to reproduce our analysis?
+They would not have access to the original data, only the synthetic dataset.
+To simulate their experience reproducing the analysis,
+we can load the synthetic dataset and try to run our model:
+
+```{r echo = TRUE, eval = FALSE}
+dat2 <- read.csv("synthetic_dat.csv", stringsAsFactors = FALSE)
+fit2 <- lavaan::sem(model, data = dat2)
+```
+```{r echo = FALSE, eval = TRUE, error=FALSE, warning=TRUE}
+dat2 <- read.csv("synthetic_dat.csv", stringsAsFactors = FALSE)
+fit2 <- lavaan::sem(model, data = dat2)
+```
+
+This should result in several warnings, about negative latent variable variances (an impossibility) and a warning that the observed covariance matrix of the residuals is not positive definite.
+In other words: the model cannot be fit to the synthetic data,
+because the structure in the data is not adequately reproduced by the default algorithm of `synthetic()`.
+
+### Adding a Custom Dataset
+
+A dataset generated *from the model* will be much better able to reproduce that model.
+So, let's use this SEM model to generate a synthetic dataset:
+
+```{r eval = TRUE, echo = TRUE}
+set.seed(33)
+dat_synthetic <- lavaan::simulateData(model = lavaan::partable(fit))
+```
+
+Note that the function `simulateData()` accepts a parameter table as its argument,
+which must first be extracted from the fitted model object using `partable()`.
+
+To add this custom synthetic dataset to our original dataset, use the function below.
+Note that `original_name` should reference the *file name* of the data the synthetic dataset should be associated with, not the name of the R-object.
+We started with an R-object called `dat`, which we saved to a file called `dat.csv` using the function `closed_data()`.
+
+```{r echo = TRUE, eval = FALSE}
+add_synthetic(dat_synthetic, original_name = "dat.csv")
+```
+```{r echo = FALSE, eval = TRUE, error=FALSE, warning=FALSE}
+add_synthetic(dat_synthetic, original_name = "dat.csv", worcs_directory = thedir)
+```
+
+If we now remove the original data, and call `load_data()` again, we can verify that the synthetic dataset is loaded, and we can see that it's possible to reproduce the analysis - if not the exact results - with it:
+
+```{r echo = TRUE, eval = FALSE}
+file.remove("dat.csv")
+load_data()
+fit2 <- lavaan::sem(model, data = dat)
+tidySEM::table_results(fit2)
+```
+```{r echo = FALSE, eval = TRUE, error=FALSE, warning=FALSE}
+file.remove(file.path(thedir, "dat.csv"))
+load_data(worcs_directory = thedir)
+fit2 <- lavaan::sem(model, data = dat)
+tidySEM::table_results(fit2)
+```
+
+```{r echo = FALSE, results='hide'}
+f <- list.files(pattern = "_dat\\.")
+file.remove(f)
+file.remove(".worcs")
+#setwd(curdir)
+#unlink(thedir, recursive = TRUE)
+```

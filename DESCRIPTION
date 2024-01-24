@@ -55,6 +55,8 @@ Imports:
     xfun
 Suggests:
     papaja (>= 0.1.1),
+    targets,
+    tarchetypes,
     remotes,
     knitr,
     missRanger,

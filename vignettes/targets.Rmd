@@ -1,0 +1,100 @@
+---
+title: "Using WORCS with targets"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using WORCS with targets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(worcs)
+```
+
+The `worcs` package establishes an open and reproducible workflow with a low threshold (easy to use) and high ceiling (easy to extend and customize).
+One of its key goals is reproducibility: re-running analyses to verify that the outcome is the same.
+And yet there are situations in which reproducibility introduces challenges.
+For example, when code takes long to run - minutes, hours, or even days - it quickly becomes unfeasible to rerun it regularly.
+
+This challenge is addressed by another package in the open science ecosystem: `targets`.
+Its purpose is to manage the "pipeline" of an analysis, particularly for computationally demanding projects.
+It keeps track of what code has already been run and what its output was;
+if the code and data remain unchanged,
+it will not re-run that code but instead load its output straight from a cache.
+
+Targets is [well documented here](https://books.ropensci.org/targets/),
+so in this tutorial we will assume that the reader has familiarized itself with the `targets` package and focus on how it integrates with a `worcs` project.
+
+## Set up Targets
+
+To integrate `targets` with `worcs`, first, create a new `worcs` project or open an existing one.
+
+Next, install the `targets` package. If the package is installed on your system but you are using `renv` to track your project dependencies, you will have to re-install it:
+
+```
+install.packages("targets")
+```
+
+Next, set up the basic infrastructure for a `targets` pipeline by running:
+
+```
+targets::use_targets()
+```
+
+This will create three files: `_targets.R`, `run.R` and `run.sh`.
+
+The default `targets` pipeline will assume that all your analysis functions are stored in a folder titled `R`. So, let's create this folder, add an empty script file for our analysis functions, and open it to edit it:
+
+```
+dir.create("R")
+file.create("R/analysis.R")
+file.edit("R/analysis.R")
+```
+
+<!--
+## Create a Custom Pipeline
+
+Let's add some analysis code to the file `analysis.R` by copy-pasting the following function, which simply plots the data and model coefficients from the default analysis:
+
+```
+plot_model <- function(model, data){
+  plot(x = data$x, y = data$y)
+  abline(a = model[1], b = model[2])
+}
+```
+
+Save this code to `analysis.R`, and open `_targets.R`. There, you should see this pipeline to run a regression analysis:
+
+```
+# Replace the target list below with your own:
+list(
+  tar_target(
+    name = data,
+    command = tibble(x = rnorm(100), y = rnorm(100))
+    # format = "feather" # efficient storage for large data frames
+  ),
+  tar_target(
+    name = model,
+    command = coefficients(lm(y ~ x, data = data))
+  )
+)
+```
+
+To this pipeline, add the following command
+-->
+
+In most `worcs` projects, the endpoint will be an `Rmarkdown` file located in `manuscript/manuscript.Rmd`.
+As the `targets` store is in its parent directory, you will need to set its location in an Rmarkdown chunk before you can load the output of your analyses with `tar_load()`:
+
+```
+targets::tar_config_set(store = "../_targets")
+tar_load(your_output_object)
+```
+
