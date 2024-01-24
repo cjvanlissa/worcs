@@ -36,7 +36,7 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
                         " then try again."
                         , success = FALSE
     )
-    return()
+    return(invisible(FALSE))
   } else {
 
     worcs_file <- yaml::read_yaml(fn_worcs)
@@ -61,11 +61,12 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
         lnz <- c(lnz[1:(length(lnz)-3)],
                  c("  ),", "  tarchetypes::tar_render(manuscript, \"manuscript/manuscript.rmd\")",
                    ")"))
-        writeLines(lnz, worcs:::path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
+        writeLines(text = lnz, con = worcs:::path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
+      } else {
+        col_message("Could not add rmarkdown manuscript to targets pipeline.", verbose = verbose, success = FALSE)
       }
     }
     do.call(write_worcsfile, to_worcs)
-
   }
-
+  return(invisible(TRUE))
 }
