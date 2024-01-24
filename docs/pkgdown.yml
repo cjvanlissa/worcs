@@ -8,6 +8,7 @@ articles:
   reproduce: reproduce.html
   setup-docker: setup-docker.html
   setup: setup.html
+  synthetic_data: synthetic_data.html
   workflow: workflow.html
-last_built: 2023-09-30T12:47Z
+last_built: 2024-01-24T18:07Z
 

@@ -30,7 +30,7 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
   }
   if(!(requireNamespace("targets", quietly = TRUE) & requireNamespace("tarchetypes", quietly = TRUE))) {
     c(requireNamespace("targets", quietly = TRUE) & requireNamespace("tarchetypes", quietly = TRUE))
-    worcs:::col_message("Could not find required packages; please run ",
+    col_message("Could not find required packages; please run ",
 
                         paste0(c(c("install.packages('targets')", "")[requireNamespace("targets", quietly = TRUE)+1L], c("install.packages('tarchetypes')", "")[requireNamespace("tarchetypes", quietly = TRUE)+1L]), collapse = "; "),
                         " then try again."
@@ -50,7 +50,7 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
 
     to_worcs <- list(filename = fn_worcs, modify = TRUE)
     # Change entry point
-    if(file.exists(worcs:::path_abs_worcs("run.r", worcs_directory = worcs_directory))){
+    if(file.exists(path_abs_worcs("run.r", worcs_directory = worcs_directory))){
       col_message("Setting entry point to 'run.r'.", verbose = verbose)
       to_worcs$entry_point <- "run.r"
       to_worcs$recipe <- list(recipe = "source('run.r')", terminal = FALSE)
@@ -63,21 +63,21 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
     do.call(write_worcsfile, to_worcs)
 
     # Add manuscript to pipeline
-    if(file.exists(worcs:::path_abs_worcs("manuscript/manuscript.rmd", worcs_directory = worcs_directory)) & file.exists(worcs:::path_abs_worcs("_targets.R", worcs_directory = worcs_directory))){
+    if(file.exists(path_abs_worcs("manuscript/manuscript.rmd", worcs_directory = worcs_directory)) & file.exists(path_abs_worcs("_targets.R", worcs_directory = worcs_directory))){
       # First, add manuscript to pipeline
-      lnz <- readLines(worcs:::path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
+      lnz <- readLines(path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
       if(all(tail(lnz, 2) == c("  )", ")"))){
         col_message("Adding rmarkdown manuscript to targets pipeline.", verbose = verbose)
         lnz <- c(lnz[1:(length(lnz)-2)],
                  c("  ),", "  tarchetypes::tar_render(manuscript, \"manuscript/manuscript.rmd\")",
                    ")"))
-        writeLines(text = lnz, con = worcs:::path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
+        writeLines(text = lnz, con = path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
       } else {
         col_message("Could not add rmarkdown manuscript to targets pipeline.", verbose = verbose, success = FALSE)
       }
 
         # Then, add demo to manuscript
-        lnz <- readLines(worcs:::path_abs_worcs("manuscript/manuscript.rmd", worcs_directory = worcs_directory))
+        lnz <- readLines(path_abs_worcs("manuscript/manuscript.rmd", worcs_directory = worcs_directory))
 
         if(any(lnz == "```{r setup, include=FALSE}")){
           col_message("Adding targets to rmarkdown manuscript.", verbose = verbose)
@@ -88,16 +88,15 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
                        "tar_load(model)", "# You can interact with tar objects as usual, e.g.:",
                        "# print(model)")
           lnz <- c(lnz[1:(endd-1)], addthis, lnz[endd:length(lnz)])
-          writeLines(lnz, worcs:::path_abs_worcs("manuscript/manuscript.rmd", worcs_directory = worcs_directory))
+          writeLines(lnz, path_abs_worcs("manuscript/manuscript.rmd", worcs_directory = worcs_directory))
         } else {
           col_message("Could not add targets to rmarkdown manuscript.", verbose = verbose, success = FALSE)
         }
-      # HIer
     }
     # Create R directory
-    if(!dir.exists(worcs:::path_abs_worcs("r", worcs_directory = worcs_directory))){
+    if(!dir.exists(path_abs_worcs("r", worcs_directory = worcs_directory))){
       col_message("Creating directory './R/' for targets scripts.", verbose = verbose)
-      dir.create(worcs:::path_abs_worcs("R", worcs_directory = worcs_directory))
+      dir.create(path_abs_worcs("R", worcs_directory = worcs_directory))
     }
 
   }

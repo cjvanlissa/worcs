@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worcs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.15.2</span>
       </span>
     </div>
 
@@ -48,6 +48,9 @@
     </li>
     <li>
       <a href="../articles/setup.html">Setting up your computer for WORCS</a>
+    </li>
+    <li>
+      <a href="../articles/synthetic_data.html">Using Custom Synthetic Data</a>
     </li>
     <li>
       <a href="../articles/workflow.html">The WORCS workflow, version 0.1.6</a>
@@ -128,51 +131,140 @@ during project creation. Default: TRUE</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Available choices include the following manuscript templates:</p><ul><li><p><code>'APA6'</code>An APA6 style template from the <code>papaja</code> package</p></li>
-<li><p><code>'github_document'</code>A <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/github_document.html" class="external-link">github_document</a></code> from the <code>rmarkdown</code> package</p></li>
-<li><p><code>'acm_article'</code>acm style template from the <code>rtices</code> package</p></li>
-<li><p><code>'acs_article'</code>acs style template from the <code>rtices</code> package</p></li>
-<li><p><code>'aea_article'</code>aea style template from the <code>rtices</code> package</p></li>
-<li><p><code>'agu_article'</code>agu style template from the <code>rtices</code> package</p></li>
-<li><p><code>'ajs_article'</code>ajs style template from the <code>rtices</code> package</p></li>
-<li><p><code>'amq_article'</code>amq style template from the <code>rtices</code> package</p></li>
-<li><p><code>'ams_article'</code>ams style template from the <code>rtices</code> package</p></li>
-<li><p><code>'arxiv_article'</code>arxiv style template from the <code>rtices</code> package</p></li>
-<li><p><code>'asa_article'</code>asa style template from the <code>rtices</code> package</p></li>
-<li><p><code>'bioinformatics_article'</code>bioinformatics style template from the <code>rtices</code> package</p></li>
-<li><p><code>'biometrics_article'</code>biometrics style template from the <code>rtices</code> package</p></li>
-<li><p><code>'copernicus_article'</code>copernicus style template from the <code>rtices</code> package</p></li>
-<li><p><code>'ctex_article'</code>ctex style template from the <code>rtices</code> package</p></li>
-<li><p><code>'elsevier_article'</code>elsevier style template from the <code>rtices</code> package</p></li>
-<li><p><code>'frontiers_article'</code>frontiers style template from the <code>rtices</code> package</p></li>
-<li><p><code>'glossa_article'</code>glossa style template from the <code>rtices</code> package</p></li>
-<li><p><code>'ieee_article'</code>ieee style template from the <code>rtices</code> package</p></li>
-<li><p><code>'ims_article'</code>ims style template from the <code>rtices</code> package</p></li>
-<li><p><code>'informs_article'</code>informs style template from the <code>rtices</code> package</p></li>
-<li><p><code>'iop_article'</code>iop style template from the <code>rtices</code> package</p></li>
-<li><p><code>'isba_article'</code>isba style template from the <code>rtices</code> package</p></li>
-<li><p><code>'jasa_article'</code>jasa style template from the <code>rtices</code> package</p></li>
-<li><p><code>'jedm_article'</code>jedm style template from the <code>rtices</code> package</p></li>
-<li><p><code>'joss_article'</code>joss style template from the <code>rtices</code> package</p></li>
-<li><p><code>'jss_article'</code>jss style template from the <code>rtices</code> package</p></li>
-<li><p><code>'lipics_article'</code>lipics style template from the <code>rtices</code> package</p></li>
-<li><p><code>'mdpi_article'</code>mdpi style template from the <code>rtices</code> package</p></li>
-<li><p><code>'mnras_article'</code>mnras style template from the <code>rtices</code> package</p></li>
-<li><p><code>'oup_article'</code>oup style template from the <code>rtices</code> package</p></li>
-<li><p><code>'peerj_article'</code>peerj style template from the <code>rtices</code> package</p></li>
-<li><p><code>'pihph_article'</code>pihph style template from the <code>rtices</code> package</p></li>
-<li><p><code>'plos_article'</code>plos style template from the <code>rtices</code> package</p></li>
-<li><p><code>'pnas_article'</code>pnas style template from the <code>rtices</code> package</p></li>
-<li><p><code>'rjournal_article'</code>rjournal style template from the <code>rtices</code> package</p></li>
-<li><p><code>'rsos_article'</code>rsos style template from the <code>rtices</code> package</p></li>
-<li><p><code>'rss_article'</code>rss style template from the <code>rtices</code> package</p></li>
-<li><p><code>'sage_article'</code>sage style template from the <code>rtices</code> package</p></li>
-<li><p><code>'sim_article'</code>sim style template from the <code>rtices</code> package</p></li>
-<li><p><code>'springer_article'</code>springer style template from the <code>rtices</code> package</p></li>
-<li><p><code>'tf_article'</code>tf style template from the <code>rtices</code> package</p></li>
-<li><p><code>'trb_article'</code>trb style template from the <code>rtices</code> package</p></li>
-<li><p><code>'wellcomeor_article'</code>wellcomeor style template from the <code>rtices</code> package</p></li>
-</ul></div>
+    <p>Available choices include the following manuscript templates:</p><dl><dt><code>'APA6'</code></dt>
+<dd><p>An APA6 style template from the <code>papaja</code> package</p></dd>
+
+<dt><code>'github_document'</code></dt>
+<dd><p>A <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/github_document.html" class="external-link">github_document</a></code> from the <code>rmarkdown</code> package</p></dd>
+
+<dt><code>'acm_article'</code></dt>
+<dd><p>acm style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'acs_article'</code></dt>
+<dd><p>acs style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'aea_article'</code></dt>
+<dd><p>aea style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'agu_article'</code></dt>
+<dd><p>agu style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'ajs_article'</code></dt>
+<dd><p>ajs style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'amq_article'</code></dt>
+<dd><p>amq style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'ams_article'</code></dt>
+<dd><p>ams style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'arxiv_article'</code></dt>
+<dd><p>arxiv style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'asa_article'</code></dt>
+<dd><p>asa style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'bioinformatics_article'</code></dt>
+<dd><p>bioinformatics style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'biometrics_article'</code></dt>
+<dd><p>biometrics style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'copernicus_article'</code></dt>
+<dd><p>copernicus style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'ctex_article'</code></dt>
+<dd><p>ctex style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'elsevier_article'</code></dt>
+<dd><p>elsevier style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'frontiers_article'</code></dt>
+<dd><p>frontiers style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'glossa_article'</code></dt>
+<dd><p>glossa style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'ieee_article'</code></dt>
+<dd><p>ieee style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'ims_article'</code></dt>
+<dd><p>ims style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'informs_article'</code></dt>
+<dd><p>informs style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'iop_article'</code></dt>
+<dd><p>iop style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'isba_article'</code></dt>
+<dd><p>isba style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'jasa_article'</code></dt>
+<dd><p>jasa style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'jedm_article'</code></dt>
+<dd><p>jedm style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'joss_article'</code></dt>
+<dd><p>joss style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'jss_article'</code></dt>
+<dd><p>jss style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'lipics_article'</code></dt>
+<dd><p>lipics style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'mdpi_article'</code></dt>
+<dd><p>mdpi style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'mnras_article'</code></dt>
+<dd><p>mnras style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'oup_article'</code></dt>
+<dd><p>oup style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'peerj_article'</code></dt>
+<dd><p>peerj style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'pihph_article'</code></dt>
+<dd><p>pihph style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'plos_article'</code></dt>
+<dd><p>plos style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'pnas_article'</code></dt>
+<dd><p>pnas style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'rjournal_article'</code></dt>
+<dd><p>rjournal style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'rsos_article'</code></dt>
+<dd><p>rsos style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'rss_article'</code></dt>
+<dd><p>rss style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'sage_article'</code></dt>
+<dd><p>sage style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'sim_article'</code></dt>
+<dd><p>sim style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'springer_article'</code></dt>
+<dd><p>springer style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'tf_article'</code></dt>
+<dd><p>tf style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'trb_article'</code></dt>
+<dd><p>trb style template from the <code>rtices</code> package</p></dd>
+
+<dt><code>'wellcomeor_article'</code></dt>
+<dd><p>wellcomeor style template from the <code>rtices</code> package</p></dd>
+
+
+</dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>

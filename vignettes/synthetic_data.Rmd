@@ -12,17 +12,16 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-# curdir <- getwd()
 thedir <- getwd()
 
 library(worcs)
-#ir.create(getwd())
+library(lavaan)
 file.create(file.path(thedir, ".worcs"))
-#setwd(thedir)
 ```
 
 ```{r setup}
 library(worcs)
+library(lavaan)
 ```
 
 Oftentimes, it is not possible to share original research data publicly, for example, due to privacy constraints.

@@ -1,5 +1,0 @@
-*.html
-*.R
-dat.csv
-!codebook_dat.csv
-!synthetic_dat.csv
