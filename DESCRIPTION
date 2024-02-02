@@ -35,7 +35,7 @@ Description: Create reproducible and transparent research projects in 'R'.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/cjvanlissa/worcs
+URL: https://github.com/cjvanlissa/worcs, https://cjvanlissa.github.io/worcs/
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Imports:
