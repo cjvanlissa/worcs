@@ -87,7 +87,7 @@ console. Default: <code>TRUE</code></p></dd>
 
 
 <dt>...</dt>
-<dd><p>Arguments passed to <code>targets::use_targets()</code>.</p></dd>
+<dd><p>Arguments passed to <code><a href="https://docs.ropensci.org/targets/reference/use_targets.html" class="external-link">targets::use_targets()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -107,7 +107,14 @@ console. Default: <code>TRUE</code></p></dd>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.create</a></span><span class="op">(</span><span class="st">".worcs"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu">add_targets</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Could not find required packages; please run install.packages('targets'); install.packages('tarchetypes') then try again.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ✖ Install packages {{future}}, {{future.callr}}, and {{future.batchtools}} to allow use_targets() to configure tar_make_future() options.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Writing file "_targets.R".</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Writing file "run.R".</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Writing file "run.sh".</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Added targets to project.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Setting entry point to 'run.r'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Setting recipe to source('run.r').</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Creating directory './R/' for targets scripts.</span>
 <span class="r-in"><span><span class="co"># Cleaning example directory</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">test_dir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
