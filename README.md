@@ -1,20 +1,23 @@
 
-# WORCS <a href='https://osf.io/zcvbs/'><img src='https://github.com/cjvanlissa/worcs/raw/master/docs/worcs_icon.png' align="right" height="139" /></a>
+# WORCS <a href="https://cjvanlissa.github.io/worcs/"><img src="man/figures/logo.png" align="right" height="120" alt="worcs website" /></a>
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start --->
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/package=worcs)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/worcs?color=blue)](https://r-pkg.org/pkg/worcs)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![R-CMD-check](https://github.com/cjvanlissa/worcs/workflows/R-CMD-check/badge.svg)](https://github.com/cjvanlissa/worcs/actions)
-[![codecov](https://codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg?token=7S9XKDRT4M)](https://codecov.io/gh/cjvanlissa/worcs)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
+[![R-CMD-check](https://github.com/cjvanlissa/worcs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cjvanlissa/worcs/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://app.codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg)](https://app.codecov.io/gh/cjvanlissa/worcs?branch=master)
 [![Contributor
 Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 [![CII Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/3969/badge)](https://bestpractices.coreinfrastructure.org/projects/3969)
 <!--[![DOI](http://joss.theoj.org/papers/10.21105/joss.00978/status.svg)](https://doi.org/10.21105/joss.00978)-->
+<!-- badges: end --->
 
 The Workflow for Open Reproducible Code in Science (WORCS) is an easy to
 adopt approach to ensuring a research project meets the requirements of
@@ -96,7 +99,7 @@ for the package and paper.
 | vignettes/    | R-package vignettes             | human editable  |
 
 <!-- ## Adoption of WORCS by users -->
-<!-- As of 2023-06-19, these are indicators of the adoption of `worcs` by users: -->
+<!-- As of 2024-02-02, these are indicators of the adoption of `worcs` by users: -->
 <!-- 1. The preprint has been downloaded 1372 times, since being published on 31-05-2020 -->
 <!-- 1. The paper in [Data Science](https://content.iospress.com/articles/data-science/ds210031) has been cited 13 times -->
 <!-- 1. The `worcs` R-package has been downloaded r dl times from CRAN, since being published on 18-05-2020 -->

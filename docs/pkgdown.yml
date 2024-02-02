@@ -1,4 +1,4 @@
-pandoc: 3.1.1
+pandoc: 3.1.8
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
@@ -10,5 +10,8 @@ articles:
   setup: setup.html
   synthetic_data: synthetic_data.html
   workflow: workflow.html
-last_built: 2024-01-24T18:07Z
+last_built: 2024-02-02T13:46Z
+urls:
+  reference: https://cjvanlissa.github.io/worcs/reference
+  article: https://cjvanlissa.github.io/worcs/articles
 
