@@ -2,7 +2,7 @@
 title: "Using Custom Synthetic Data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Synthetic Data}
+  %\VignetteIndexEntry{Using Custom Synthetic Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
