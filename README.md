@@ -112,7 +112,7 @@ for the package and paper.
 We are always eager to receive user feedback and contributions to help
 us improve both the workflow and the software. Major contributions
 warrant coauthorship to the package. Please contact the lead author at
-<c.j.vanlissa@uu.nl>, or:
+<c.j.vanlissa@tilburguniversity.nl>, or:
 
 - [File a GitHub issue](https://github.com/cjvanlissa/worcs) for
   feedback, bug reports or feature requests
