@@ -63,7 +63,12 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
       to_worcs$recipe <- list(recipe = "source('run.r')", terminal = FALSE)
       col_message("Setting recipe to source('run.r').", verbose = verbose)
     } else {
-      to_worcs$recipe <- list(recipe = "targets::tar_make()", terminal = FALSE)
+      if(file.exists(file.path(worcs_directory, "_targets.rmd"))){
+        # If this already exists, it will write _targets.R when first compiled
+        to_worcs$recipe <- list(recipe = "rmarkdown::render('_targets.rmd')", terminal = FALSE)
+      } else {
+        to_worcs$recipe <- list(recipe = "targets::tar_make()", terminal = FALSE)
+      }
       col_message("Setting recipe to targets::tar_make().", verbose = verbose)
     }
     # Write worcsfile
