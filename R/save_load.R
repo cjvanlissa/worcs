@@ -392,7 +392,7 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
         value_labels <- worcsfile$data[[names(data_files)[file_num]]][["labels"]]
         yaml::read_yaml(file.path(dn_worcs, value_labels))
       }, error = function(e){ NULL })
-      out <- check_metadata(out, codebook, value_labels)
+      out <- check_metadata(out, codebook, value_labels, verbose = verbose)
     }
     # Update attributes and class of output object
     attr(out, "type") <- c("synthetic", "original")[data_original[file_num]+1]
@@ -417,7 +417,7 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
 #   }
 # }
 
-check_metadata <- function(x, codebook, value_labels){
+check_metadata <- function(x, codebook, value_labels, verbose = FALSE){
   if(!is.null(codebook)){
     classes <- codebook[["type"]]
     multiclass <- grepl(",", classes, fixed = TRUE)
@@ -426,14 +426,14 @@ check_metadata <- function(x, codebook, value_labels){
     }
     names(classes) <- codebook[["name"]]
   } else {
-    col_message("No valid codebook found.", success = FALSE)
+    if(verbose) col_message("No valid codebook found.", success = FALSE)
     classes <- sapply(x, function(i){class(i)[1]})
     names(classes) <- names(x)
   }
 
   for(v in names(x)){
     if(!v %in% names(classes)){
-      col_message("Could not restore class of variable '", v, "'.", success = FALSE)
+      if(verbose) col_message("Could not restore class of variable '", v, "'.", success = FALSE)
       next
     }
     if(!inherits(x[[v]], classes[v])){
@@ -444,14 +444,14 @@ check_metadata <- function(x, codebook, value_labels){
                            ordered(x[[v]], levels = unlist(value_labels[[v]][-1]))
                            },
                                   error = function(e){
-                                    col_message("Could not restore class of variable '", v, "'.", success = FALSE)
+                                    if(verbose) col_message("Could not restore class of variable '", v, "'.", success = FALSE)
                                     x[[v]]
                                   })
                        },
                        {
                          tryCatch({do.call(paste0("as.", classes[v]), list(x[[v]]))},
                                   error = function(e){
-                                    message("Could not restore class of variable '", v, "'.")
+                                    if(verbose) message("Could not restore class of variable '", v, "'.")
                                     x[[v]]
                                   })
                        }
