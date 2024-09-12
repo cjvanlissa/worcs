@@ -1,3 +1,7 @@
+# worcs 0.1.15
+
+* Add integration with the `targets` package
+
 # worcs 0.1.14
 
 * Fix checksum when it is calculated indirectly (e.g., in Rmarkdown code chunk)
