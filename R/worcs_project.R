@@ -29,6 +29,8 @@ recommend_data <- c('library("worcs")',
 #' <https://creativecommons.org/licenses/>.
 #' @param use_renv Logical, indicating whether or not to use 'renv' to make the
 #' project reproducible. Default: TRUE. See \code{\link[renv]{init}}.
+#' @param use_targets Logical, indicating whether or not to use 'targets' to
+#' create a Make-like pipeline. Default: FALSE See \code{\link[targets]{targets-package}}.
 #' @param remote_repo Character, address of the remote repository for
 #' this project. This link should have the form
 #' \code{https://github.com[username][repo].git} (preferred) or
@@ -61,11 +63,13 @@ recommend_data <- c('library("worcs")',
 #' @importFrom prereg vantveer_prereg
 #' @importFrom methods formalArgs
 # @importFrom renv init
-worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "cos_prereg", add_license = "CC_BY_4.0", use_renv = TRUE, remote_repo = "https", verbose = TRUE, ...) {
+worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "cos_prereg", add_license = "CC_BY_4.0", use_renv = TRUE, use_targets = FALSE, remote_repo = "https", verbose = TRUE, ...) {
   cl <- match.call(expand.dots = FALSE)
 
   # collect inputs
   manuscript <- tolower(manuscript)
+  # Write code for use_targets such that it works with target_markdown and normal targets
+  if(manuscript == "target_markdown") use_targets <- TRUE
   preregistration <- tolower(preregistration)
   add_license <- tolower(add_license)
   dots <- list(...)
@@ -109,19 +113,25 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   # write files
 
   # Begin manuscript
-  if(!manuscript == "none"){
-    cl[[1L]] <- quote(worcs::add_manuscript)
-    names(cl)[which(names(cl) == "path")] <- "worcs_directory"
-    eval(cl, parent.frame())
-    add_recipe(worcs_directory = path)
-  } else {
-    write_as_utf(recommend_data, file.path(path, "run_me.R"))
-    write_worcsfile(filename = file.path(path, ".worcs"),
-                    entry_point = "run_me.R",
-                    modify = TRUE)
-    add_recipe(worcs_directory = path,
-               recipe = "source('run_me.R')")
-  }
+  switch(manuscript,
+         "none" = {
+           write_as_utf(recommend_data, file.path(path, "run_me.R"))
+           write_worcsfile(filename = file.path(path, ".worcs"),
+                           entry_point = "run_me.R",
+                           modify = TRUE)
+           add_recipe(worcs_directory = path,
+                      recipe = "source('run_me.R')")
+         },
+         # "target_markdown" = {
+         #
+         # },
+         {
+           cl[[1L]] <- quote(worcs::add_manuscript)
+           names(cl)[which(names(cl) == "path")] <- "worcs_directory"
+           eval(cl, parent.frame())
+           add_recipe(worcs_directory = path)
+         })
+
   # End manuscript
 
 
@@ -148,6 +158,21 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     })
   }
   # End license
+
+
+# Use targets -------------------------------------------------------------
+  if(use_targets){
+    # tryCatch({
+    if(requireNamespace("targets", quietly = TRUE) & requireNamespace("tarchetypes", quietly = TRUE)){
+      worcs::add_targets(worcs_directory = path, verbose = verbose)
+      # names(cl)[which(names(cl) == "path")] <- "worcs_directory"
+      # eval(cl, parent.frame())
+      col_message("Initializing 'targets' for a Make-like pipeline.", verbose = verbose)
+    }
+    # }, error = function(e){
+    #   col_message("Could not initialize 'targets'.", success = FALSE)
+    # })
+  }
 
 # Use renv ----------------------------------------------------------------
   if(use_renv){
@@ -244,6 +269,46 @@ describe_file <- function(file, desc, usage, tab, path){
   }
 }
 
+create_man_targets <- function(remote_repo, worcs_directory){
+  if(requireNamespace("targets", quietly = TRUE)) {
+    run_in_worcsdir(targets::use_targets_rmd(open = FALSE), worcs_directory = worcs_directory)
+    # run_in_worcsdir(rmarkdown::render(man_fn_rel), worcs_directory = worcs_directory)
+    return()
+  }
+  #   manuscript_text <- readLines(man_fn_abs, encoding = "UTF-8")
+  #   # Add bibliography
+  #   bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
+  #   manuscript_text[bib_line] <- append_yaml(manuscript_text[bib_line], "bibliography", "references.bib")
+  #   # Add citation function
+  #   add_lines <- c(
+  #     "knit              : worcs::cite_all"
+  #   )
+  #   manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
+  #   # Add call to library("worcs")
+  #   manuscript_text <- append(manuscript_text, recommend_data, after = grep('^library\\("papaja"\\)$', manuscript_text))
+  #
+  #   # Add introductory sentence
+  #   add_lines <- c(
+  #     "",
+  #     paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [WORCS version ",
+  #            gsub("^(\\d{1,}(\\.\\d{1,}){2}).+$", "\\1", as.character(packageVersion("worcs"))),
+  #            ", @vanlissaWORCSWorkflowOpen2021] to ensure reproducibility and transparency. All code <!--and data--> are available at ",
+  #            ifelse(is.null(remote_repo), "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
+  #     "",
+  #     "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2021]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
+  #     "",
+  #     "<!--The function below inserts a notification if the manuscript is knit using synthetic data. Make sure to insert it after load_data().-->",
+  #     "`r notify_synthetic()`"
+  #   )
+  #   manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
+  #
+  #   # Write
+  #   write_as_utf(manuscript_text, man_fn_abs)
+  # } else {
+  #   col_message('Could not generate an APA6 manuscript file, because the \'papaja\' package is not installed. Run this code to see instructions on how to install this package from GitHub:\n  vignette("setup", package = "worcs")', success = FALSE)
+  # }
+}
+
 
 create_man_papaja <- function(man_fn_abs, remote_repo){
   if(requireNamespace("papaja", quietly = TRUE)) {
@@ -257,7 +322,9 @@ create_man_papaja <- function(man_fn_abs, remote_repo){
     manuscript_text <- readLines(man_fn_abs, encoding = "UTF-8")
     # Add bibliography
     bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
-    manuscript_text[bib_line] <- paste0(substr(manuscript_text[bib_line], start = 1, stop = nchar(manuscript_text[bib_line])-1), ', "references.bib"]')
+
+    manuscript_text[bib_line] <- append_yaml(yaml_text = manuscript_text[bib_line], yaml_command = "bibliography", add_this = "references.bib")
+
     # Add citation function
     add_lines <- c(
       "knit              : worcs::cite_all"
@@ -500,20 +567,16 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
       if(manuscript == "apa6"){
         create_man_papaja(man_fn_abs, remote_repo = remote_repo)
       }
+      if(manuscript == "target_markdown"){
+        unlink(man_dir_abs, recursive = TRUE)
+        man_dir_abs <- worcs_directory
+        man_dir_rel <- "."
+        create_man_targets(remote_repo = remote_repo, worcs_directory = worcs_directory)
+      }
       # all_rticles <- ls(asNamespace("rticles"))
       # all_rticles <- all_rticles[endsWith(all_rticles, "_article")]
       # dput(all_rticles, "clipboard")
-      if(manuscript %in% c("acm_article", "acs_article", "aea_article", "agu_article",
-                           "ajs_article", "amq_article", "ams_article", "arxiv_article",
-                           "asa_article", "bioinformatics_article", "biometrics_article",
-                           "copernicus_article", "ctex_article", "elsevier_article", "frontiers_article",
-                           "glossa_article", "ieee_article", "ims_article", "informs_article",
-                           "iop_article", "isba_article", "jasa_article", "jedm_article",
-                           "joss_article", "jss_article", "lipics_article", "mdpi_article",
-                           "mnras_article", "oup_article", "peerj_article", "pihph_article",
-                           "plos_article", "pnas_article", "rjournal_article", "rsos_article",
-                           "rss_article", "sage_article", "sim_article", "springer_article",
-                           "tf_article", "trb_article", "wellcomeor_article")){
+      if(endsWith(manuscript, "_article")){
         manuscript <- gsub("_article", "", manuscript, fixed = TRUE)
         create_man_rticles(man_fn_abs, manuscript, remote_repo = remote_repo)
       }
@@ -638,4 +701,11 @@ add_preregistration <- function(worcs_directory = ".",
     col_message("Creating preregistration files.", success = FALSE)
   })
   # End preregistration
+}
+
+append_yaml <- function(yaml_text, yaml_command, add_this){
+  this_line <- grep(paste0("^\\s{0,}", yaml_command, "\\s{0,}:"), yaml_text)[1]
+  gsub(':.*$', paste0(': [', paste0(
+    dQuote(c(add_this,
+             trimws(gsub('"', "", strsplit(gsub("^.+?:", "", yaml_text[this_line]), ",")[[1]])))), collapse = ", "), ']'), yaml_text[this_line])
 }

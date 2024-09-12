@@ -10,6 +10,7 @@ worcs_project(
   preregistration = "cos_prereg",
   add_license = "CC_BY_4.0",
   use_renv = TRUE,
+  use_targets = FALSE,
   remote_repo = "https",
   verbose = TRUE,
   ...
@@ -40,6 +41,9 @@ Default: 'CC_BY_4.0'. Available options include:
 
 \item{use_renv}{Logical, indicating whether or not to use 'renv' to make the
 project reproducible. Default: TRUE. See \code{\link[renv]{init}}.}
+
+\item{use_targets}{Logical, indicating whether or not to use 'targets' to
+create a Make-like pipeline. Default: FALSE See \code{\link[targets]{targets-package}}.}
 
 \item{remote_repo}{Character, address of the remote repository for
 this project. This link should have the form

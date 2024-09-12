@@ -42,11 +42,18 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
     worcs_file <- yaml::read_yaml(fn_worcs)
     # Add targets
     tryCatch({
-      Args <- list(...)
-      Args[["open"]] <- FALSE
-      do.call(targets::use_targets, Args)
+      if(!file.exists(file.path(worcs_directory, "_targets.rmd"))){
+        # If this already exists, it will write _targets.R when first compiled
+        run_in_worcsdir(code = targets::use_targets(open = FALSE, ...), worcs_directory = worcs_directory)
+      }
       col_message("Added targets to project.")
     }, error = function(e){col_message("Could not add targets to project.", success = FALSE)})
+
+    # Add empty _targets dir
+    if(!dir.exists(file.path(worcs_directory, "_targets"))){
+      # If this already exists, it will write _targets.R when first compiled
+      dir.create(file.path(worcs_directory, "_targets"))
+    }
 
     to_worcs <- list(filename = fn_worcs, modify = TRUE)
     # Change entry point
@@ -79,12 +86,13 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
         # Then, add demo to manuscript
         lnz <- readLines(path_abs_worcs("manuscript/manuscript.rmd", worcs_directory = worcs_directory))
 
-        if(any(lnz == "```{r setup, include=FALSE}")){
+        if(any(startsWith(lnz, "```{r setup"))){
           col_message("Adding targets to rmarkdown manuscript.", verbose = verbose)
-          strt <- which(lnz == "```{r setup, include=FALSE}")
+          strt <- which(startsWith(lnz, "```{r setup"))
           endd <- which(lnz == "```")
           endd <- endd[endd > strt][1]
-          addthis <- c("# Setup for targets:","", "library(targets)", "tar_config_set(store = \"../_targets\")",
+          addthis <- c("# Setup for targets:","", "library(targets)",
+                       "tar_config_set(store = \"../_targets\")",
                        "tar_load(model)", "# You can interact with tar objects as usual, e.g.:",
                        "# print(model)")
           lnz <- c(lnz[1:(endd-1)], addthis, lnz[endd:length(lnz)])
@@ -101,4 +109,15 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
 
   }
   return(invisible(TRUE))
+}
+
+
+run_in_worcsdir <- function(code, worcs_directory){
+  code <- substitute(code)
+  dir <- getwd()
+  on.exit({
+    eval(parse(text = "setwd(dir)"))
+  })
+  setwd(worcs_directory)
+  eval(code, envir = parent.frame())
 }
