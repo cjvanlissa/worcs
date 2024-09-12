@@ -4,9 +4,6 @@
     <loc>https://cjvanlissa.github.io/worcs/404.html</loc>
   </url>
   <url>
-    <loc>https://cjvanlissa.github.io/worcs/LICENSE.html</loc>
-  </url>
-  <url>
     <loc>https://cjvanlissa.github.io/worcs/articles/citation.html</loc>
   </url>
   <url>
@@ -38,6 +35,9 @@
   </url>
   <url>
     <loc>https://cjvanlissa.github.io/worcs/index.html</loc>
+  </url>
+  <url>
+    <loc>https://cjvanlissa.github.io/worcs/LICENSE.html</loc>
   </url>
   <url>
     <loc>https://cjvanlissa.github.io/worcs/news/index.html</loc>
@@ -73,16 +73,16 @@
     <loc>https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.html</loc>
   </url>
   <url>
-    <loc>https://cjvanlissa.github.io/worcs/reference/cite_all.html</loc>
-  </url>
-  <url>
-    <loc>https://cjvanlissa.github.io/worcs/reference/cite_essential.html</loc>
-  </url>
-  <url>
     <loc>https://cjvanlissa.github.io/worcs/reference/citeall.html</loc>
   </url>
   <url>
     <loc>https://cjvanlissa.github.io/worcs/reference/citeessential6dfc21a823d7.html</loc>
+  </url>
+  <url>
+    <loc>https://cjvanlissa.github.io/worcs/reference/cite_all.html</loc>
+  </url>
+  <url>
+    <loc>https://cjvanlissa.github.io/worcs/reference/cite_essential.html</loc>
   </url>
   <url>
     <loc>https://cjvanlissa.github.io/worcs/reference/closed_data.html</loc>
@@ -106,6 +106,12 @@
     <loc>https://cjvanlissa.github.io/worcs/reference/export_project.html</loc>
   </url>
   <url>
+    <loc>https://cjvanlissa.github.io/worcs/reference/github_action_check_endpoints.html</loc>
+  </url>
+  <url>
+    <loc>https://cjvanlissa.github.io/worcs/reference/github_action_reproduce.html</loc>
+  </url>
+  <url>
     <loc>https://cjvanlissa.github.io/worcs/reference/git_ignore.html</loc>
   </url>
   <url>
@@ -113,12 +119,6 @@
   </url>
   <url>
     <loc>https://cjvanlissa.github.io/worcs/reference/git_user.html</loc>
-  </url>
-  <url>
-    <loc>https://cjvanlissa.github.io/worcs/reference/github_action_check_endpoints.html</loc>
-  </url>
-  <url>
-    <loc>https://cjvanlissa.github.io/worcs/reference/github_action_reproduce.html</loc>
   </url>
   <url>
     <loc>https://cjvanlissa.github.io/worcs/reference/has_git_user.html</loc>
