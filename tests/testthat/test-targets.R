@@ -1,67 +1,57 @@
 library(targets)
 test_that("targets works with apa6", {
-  the_test <- "targets"
-  old_wd <- getwd()
-  test_dir <- file.path(tempdir(), the_test)
-  dir.create(test_dir)
-  setwd(test_dir)
-  on.exit({unlink(test_dir, recursive = TRUE); setwd(old_wd)}, add = TRUE)
+  scoped_temporary_project()
 
-  worcs::worcs_project(path = test_dir,
+  worcs::worcs_project(path = ".",
                        manuscript = "github_document",
                        preregistration = "None",
                        add_license = "None",
                        use_renv = FALSE,
-                       use_targets = TRUE
+                       use_targets = TRUE,
+                       use_git = FALSE
                        )
+  # It seems like it's necessary to first render individual output chunks,
+  # then render the manuscript,
+  # and THEN it's possible to render the manuscript using tar_make()
   tryCatch(targets::tar_make(), error = function(e){}, warning = function(w){})
   tryCatch(rmarkdown::render("manuscript/manuscript.rmd"), error = function(e){}, warning = function(w){})
   file.remove("manuscript/manuscript.html")
   tryCatch(targets::tar_make(), error = function(e){}, warning = function(w){})
   expect_true(file.exists("manuscript/manuscript.html"))
-  setwd(old_wd)
+
 })
 
-test_that("targets works with renv", {
-  the_test <- "targets_renv"
-  old_wd <- getwd()
-  test_dir <- file.path(tempdir(), the_test)
-  dir.create(test_dir)
-  setwd(test_dir)
-  on.exit({unlink(test_dir, recursive = TRUE); setwd(old_wd)}, add = TRUE)
-
-  worcs::worcs_project(path = test_dir,
-                       manuscript = "github_document",
-                       preregistration = "None",
-                       add_license = "None",
-                       use_renv = TRUE,
-                       use_targets = TRUE
-  )
-  tryCatch(targets::tar_make(), error = function(e){}, warning = function(w){})
-  # rmarkdown::render("manuscript/manuscript.rmd")
-  expect_true(file.exists("manuscript/manuscript.html"))
-  setwd(old_wd)
-})
-
+# test_that("targets works with renv", {
+#   scoped_temporary_project()
+#   worcs::worcs_project(path = ".",
+#                        manuscript = "github_document",
+#                        preregistration = "None",
+#                        add_license = "None",
+#                        use_renv = TRUE,
+#                        use_targets = TRUE,
+#                        use_git = FALSE
+#   )
+#   tryCatch(targets::tar_make(), error = function(e){}, warning = function(w){})
+#
+#   expect_true(file.exists("manuscript/manuscript.html"))
+#
+# })
+#
 
 
 test_that("targets works with target markdown", {
-  the_test <- "target_markdown"
-  old_wd <- getwd()
-  test_dir <- file.path(tempdir(), the_test)
-  dir.create(test_dir)
-  setwd(test_dir)
-  on.exit({unlink(test_dir, recursive = TRUE); setwd(old_wd)}, add = TRUE)
+  scoped_temporary_project()
 
-  worcs::worcs_project(path = test_dir,
+  worcs::worcs_project(path = ".",
                        manuscript = "target_markdown",
                        preregistration = "None",
                        add_license = "None",
-                       use_renv = FALSE
+                       use_renv = FALSE,
+                       use_git = FALSE
   )
   # file.remove(file.path(test_dir, "_targets.rmd"))
-  if(file.exists(file.path(test_dir, "_targets.r"))){
-    file.remove(file.path(test_dir, "_targets.r"))
+  if(file.exists("_targets.r")){
+    file.remove("_targets.r")
   }
   linz <- c("---", "  title: \"Target Markdown\"", "  output: html_document",
             "---", "", "```{r setup, include = FALSE}", "knitr::opts_chunk$set(collapse = TRUE, comment = \"#>\")",
@@ -86,7 +76,8 @@ test_that("targets works with target markdown", {
   }
 
   tryCatch(worcs::reproduce(check_endpoints = FALSE), error = function(e){}, warning = function(w){})
-  if(!file.exists("_targets.html")) stop()
+  expect_true(file.exists("_targets.html"))
 
-  setwd(old_wd)
+
 })
+

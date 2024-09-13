@@ -77,7 +77,11 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
   path <- normalizePath(path)
   # Check if valid Git signature exists
-  use_git <- has_git()
+  if("use_git" %in% names(dots)){
+    use_git <- dots[["use_git"]]
+  } else {
+    use_git <- has_git()
+  }
   if(!use_git){
     col_message("Could not find a working installation of 'Git', which is required to safeguard the transparency and reproducibility of your project. Please connect 'Git' by following the steps described in this vignette:\n  vignette('setup', package = 'worcs')", success = FALSE)
   } else {

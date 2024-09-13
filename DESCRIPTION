@@ -62,6 +62,9 @@ Suggests:
     remotes,
     knitr,
     missRanger,
+    curl,
+    fs,
+    withr,
     testthat (>= 2.1.0)
 SystemRequirements: pandoc (>= 1.14) - https://pandoc.org 
 VignetteBuilder: knitr
