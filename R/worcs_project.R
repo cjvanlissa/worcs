@@ -707,5 +707,5 @@ append_yaml <- function(yaml_text, yaml_command, add_this){
   this_line <- grep(paste0("^\\s{0,}", yaml_command, "\\s{0,}:"), yaml_text)[1]
   gsub(':.*$', paste0(': [', paste0(
     dQuote(c(add_this,
-             trimws(gsub('"', "", strsplit(gsub("^.+?:", "", yaml_text[this_line]), ",")[[1]])))), collapse = ", "), ']'), yaml_text[this_line])
+             trimws(gsub('"', "", strsplit(gsub("^.+?:", "", yaml_text[this_line]), ",")[[1]]))), q = FALSE), collapse = ", "), ']'), yaml_text[this_line])
 }
