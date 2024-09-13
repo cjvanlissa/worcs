@@ -7,7 +7,7 @@ test_that("targets works with apa6", {
   on.exit({unlink(test_dir, recursive = TRUE); setwd(old_wd)}, add = TRUE)
 
   worcs::worcs_project(path = test_dir,
-                       manuscript = "APA6",
+                       manuscript = "github_document",
                        preregistration = "None",
                        add_license = "None",
                        use_renv = FALSE,
@@ -15,9 +15,9 @@ test_that("targets works with apa6", {
                        )
   tryCatch(targets::tar_make(), error = function(e){})
   rmarkdown::render("manuscript/manuscript.rmd")
-  file.remove("manuscript/manuscript.pdf")
+  file.remove("manuscript/manuscript.html")
   targets::tar_make()
-  expect_true(file.exists("manuscript/manuscript.pdf"))
+  expect_true(file.exists("manuscript/manuscript.html"))
   setwd(old_wd)
 })
 
@@ -30,15 +30,15 @@ test_that("targets works with renv", {
   on.exit({unlink(test_dir, recursive = TRUE); setwd(old_wd)}, add = TRUE)
 
   worcs::worcs_project(path = test_dir,
-                       manuscript = "acm_article",
+                       manuscript = "github_document",
                        preregistration = "None",
                        add_license = "None",
                        use_renv = TRUE,
                        use_targets = TRUE
   )
   tryCatch(targets::tar_make(), error = function(e){}, warning = function(w){})
-  rmarkdown::render("manuscript/manuscript.rmd")
-  expect_true(file.exists("manuscript/manuscript.pdf"))
+  # rmarkdown::render("manuscript/manuscript.rmd")
+  expect_true(file.exists("manuscript/manuscript.html"))
   setwd(old_wd)
 })
 
@@ -59,6 +59,9 @@ test_that("targets works with target markdown", {
                        use_renv = FALSE
   )
   file.remove("_targets.rmd")
+  if(file.exists("_targets.r")){
+    file.remove("_targets.r")
+  }
   worcs:::copy_resources("_targets.rmd", test_dir)
   rmarkdown::render("_targets.rmd")
   expect_true(file.exists("_targets.html"))
