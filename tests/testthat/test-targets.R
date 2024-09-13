@@ -58,10 +58,12 @@ test_that("targets works with target markdown", {
                        add_license = "None",
                        use_renv = FALSE
   )
+  file.remove("_targets.rmd")
+  worcs:::copy_resources("_targets.rmd", test_dir)
   rmarkdown::render("_targets.rmd")
   expect_true(file.exists("_targets.html"))
   file.remove("_targets.html")
-  worcs::reproduce()
+  worcs::reproduce(check_endpoints = FALSE)
   expect_true(file.exists("_targets.html"))
 
   setwd(old_wd)
