@@ -28,7 +28,7 @@ for all citations.
     + You can export a `.bib` file from most reference manager
     programs; the free, open-source reference manager
     [Zotero](https://www.zotero.org/download/) is excellent and user-friendly,
-    and highly interoperable with other commercial reference managers. [Here](https://christopherjunk.netlify.com/blog/2019/02/25/zotero-RMarkdown/) is a tutorial for using Zotero with RMarkdown.
+    and highly interoperable with other commercial reference managers. Seaching for "How to Integrate Zotero Citations with R Markdown" will yield tutorials for using Zotero with RMarkdown.
     + Alternatively, it is possible to make this file by hand, copy and pasting
     each new reference below
     the previous one; e.g., Figure \@ref(fig:scholarbib) shows how to obtain a

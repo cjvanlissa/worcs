@@ -62,7 +62,7 @@ test_that("targets works with target markdown", {
   expect_true(file.exists("_targets.html"))
   file.remove("_targets.html")
   worcs::reproduce()
-  expect_true(file.exists("_targets.html"))
+  if(!file.exists("_targets.html")) stop()
 
   setwd(old_wd)
 })
