@@ -11,7 +11,7 @@ rd:
 	Rscript -e 'roxygen2::roxygenise(".")'
 
 readme:
-	Rscript -e 'rmarkdown::render("README.rmd", "md_document")'
+	Rscript -e 'rmarkdown::render("README.Rmd", "md_document")'
 
 build:
 	cd ..;\
@@ -26,7 +26,7 @@ check: build
 	cd ..;\
 	R CMD check --as-cran $(PKGNAME)_$(PKGVERS).tar.gz
 
-paper/Manuscript.pdf: paper/Manuscript.Rmd 
+paper/Manuscript.pdf: paper/Manuscript.Rmd
 	cd paper;\
 	Rscript -e 'rmarkdown::render("Manuscript.Rmd")'
 	cd ..;\

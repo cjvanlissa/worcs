@@ -42,7 +42,7 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
     worcs_file <- yaml::read_yaml(fn_worcs)
     # Add targets
     tryCatch({
-      if(!file.exists(file.path(worcs_directory, "_targets.rmd"))){
+      if(!file.exists(file.path(worcs_directory, "_targets.Rmd"))){
         # If this already exists, it will write _targets.R when first compiled
         run_in_worcsdir(code = targets::use_targets(open = FALSE, ...), worcs_directory = worcs_directory)
       }
@@ -63,9 +63,9 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
       to_worcs$recipe <- list(recipe = "source('run.r')", terminal = FALSE)
       col_message("Setting recipe to source('run.r').", verbose = verbose)
     } else {
-      if(file.exists(file.path(worcs_directory, "_targets.rmd"))){
+      if(file.exists(file.path(worcs_directory, "_targets.Rmd"))){
         # If this already exists, it will write _targets.R when first compiled
-        to_worcs$recipe <- list(recipe = "rmarkdown::render('_targets.rmd')", terminal = FALSE)
+        to_worcs$recipe <- list(recipe = "rmarkdown::render('_targets.Rmd')", terminal = FALSE)
       } else {
         to_worcs$recipe <- list(recipe = "targets::tar_make()", terminal = FALSE)
       }
@@ -75,13 +75,13 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
     do.call(write_worcsfile, to_worcs)
 
     # Add manuscript to pipeline
-    if(file.exists(path_abs_worcs("manuscript/manuscript.rmd", worcs_directory = worcs_directory)) & file.exists(path_abs_worcs("_targets.R", worcs_directory = worcs_directory))){
+    if(file.exists(path_abs_worcs("manuscript/manuscript.Rmd", worcs_directory = worcs_directory)) & file.exists(path_abs_worcs("_targets.R", worcs_directory = worcs_directory))){
       # First, add manuscript to pipeline
       lnz <- readLines(path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
       if(all(tail(lnz, 2) == c("  )", ")"))){
         col_message("Adding rmarkdown manuscript to targets pipeline.", verbose = verbose)
         lnz <- c(lnz[1:(length(lnz)-2)],
-                 c("  ),", "  tarchetypes::tar_render(manuscript, \"manuscript/manuscript.rmd\")",
+                 c("  ),", "  tarchetypes::tar_render(manuscript, \"manuscript/manuscript.Rmd\")",
                    ")"))
         writeLines(text = lnz, con = path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
       } else {
@@ -89,7 +89,7 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
       }
 
         # Then, add demo to manuscript
-        lnz <- readLines(path_abs_worcs("manuscript/manuscript.rmd", worcs_directory = worcs_directory))
+        lnz <- readLines(path_abs_worcs("manuscript/manuscript.Rmd", worcs_directory = worcs_directory))
 
         if(any(startsWith(lnz, "```{r setup"))){
           col_message("Adding targets to rmarkdown manuscript.", verbose = verbose)
@@ -101,7 +101,7 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
                        "tar_load(model)", "# You can interact with tar objects as usual, e.g.:",
                        "# print(model)")
           lnz <- c(lnz[1:(endd-1)], addthis, lnz[endd:length(lnz)])
-          writeLines(lnz, path_abs_worcs("manuscript/manuscript.rmd", worcs_directory = worcs_directory))
+          writeLines(lnz, path_abs_worcs("manuscript/manuscript.Rmd", worcs_directory = worcs_directory))
         } else {
           col_message("Could not add targets to rmarkdown manuscript.", verbose = verbose, success = FALSE)
         }

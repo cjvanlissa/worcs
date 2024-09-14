@@ -215,9 +215,9 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     tab <- rbind(tab, c(rproj_name, "Project file", "Loads project"))
     tab <- describe_file("LICENSE", "User permissions", "Read only", tab, path)
     tab <- describe_file(".worcs", "WORCS metadata YAML", "Read only", tab, path)
-    tab <- describe_file("preregistration.rmd", "Preregistered hypotheses", "Human editable", tab, path)
+    tab <- describe_file("preregistration.Rmd", "Preregistered hypotheses", "Human editable", tab, path)
     tab <- describe_file("prepare_data.R", "Script to process raw data", "Human editable", tab, path)
-    tab <- describe_file("manuscript/manuscript.rmd", "Source code for paper", "Human editable", tab, path)
+    tab <- describe_file("manuscript/manuscript.Rmd", "Source code for paper", "Human editable", tab, path)
     tab <- describe_file("manuscript/references.bib", "BibTex references for manuscript", "Human editable", tab, path)
     tab <- describe_file("renv.lock", "Reproducible R environment", "Read only", tab, path)
 

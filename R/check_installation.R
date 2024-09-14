@@ -306,7 +306,7 @@ check_rmarkdown <- function() {
   pass <- list()
   errors <- list()
   pass[["rmarkdown_html"]] <- !inherits(try({
-    tmpinp <- tempfile(fileext = ".rmd")
+    tmpinp <- tempfile(fileext = ".Rmd")
     tmpout <- tempfile(fileext = ".html")
     writeLines(
       c(
@@ -331,7 +331,7 @@ check_rmarkdown <- function() {
     "Rmarkdown could not render a HTML file."
 
   pass[["rmarkdown_pdf"]] <- !inherits(try({
-    tmpinp <- tempfile(fileext = ".rmd")
+    tmpinp <- tempfile(fileext = ".Rmd")
     tmpout <- tempfile(fileext = ".pdf")
     writeLines(
       c(

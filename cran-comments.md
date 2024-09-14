@@ -1,10 +1,12 @@
 # worcs 0.1.15
 
 * Add integration with the `targets` package
+* Stricter enforcement of ".Rmd" case in filenames to avoid Linux errors
 
 ## Test environments
 
-* local Windows 11 install, R 4.3.0
+* local Windows 11, R 4.3.2
+* local Ubuntu 22 x86_64-pc-linux-gnu, R 4.4.1
 * win-builder: release
 * win-builder: development
 * win-builder: oldversion

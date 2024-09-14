@@ -124,7 +124,7 @@ check_worcs <- function(path = ".", verbose = TRUE){
     checks$pass[checks$name == "readme"] <- any(endsWith(f_lc, "readme.md"))
     checks$pass[checks$name == "license"] <- any(endsWith(f_lc, "license")|endsWith(f_lc, "license.md"))
     checks$pass[checks$name == "citation"] <- {
-      rmarkdown_files <- f[endsWith(f_lc, ".rmd")]
+      rmarkdown_files <- f[endsWith(tolower(f_lc), ".rmd")]
       any(sapply(rmarkdown_files, function(thisfile){
         txt <- paste0(readLines(thisfile, encoding = "UTF-8"), collapse = "")
         grepl("@", txt, fixed = TRUE) & grepl("\\.bib", txt)
@@ -159,7 +159,7 @@ check_worcs <- function(path = ".", verbose = TRUE){
     # If project has R-code
     checks$pass[checks$name == "code"] <- any(endsWith(f_lc, ".r"))
     # If project has preregistration
-    checks$pass[checks$name == "preregistration"] <- any(endsWith(f_lc, "preregistration.rmd"))
+    checks$pass[checks$name == "preregistration"] <- any(endsWith(tolower(f_lc), "preregistration.rmd"))
   }
   if(verbose){
     tmp <- apply(checks[worcs_checklist$check, ], 1, function(thisrow){
