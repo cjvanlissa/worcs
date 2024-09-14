@@ -1,6 +1,7 @@
 # worcs 0.1.15
 
 * Add integration with the `targets` package
+* Stricter enforcement of ".Rmd" case in filenames to avoid Linux errors
 
 # worcs 0.1.14
 

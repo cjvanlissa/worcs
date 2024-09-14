@@ -7,12 +7,12 @@
 
 * local Windows 11, R 4.3.2
 * local Ubuntu 22 x86_64-pc-linux-gnu, R 4.4.1
-* win-builder: release
-* win-builder: development
-* win-builder: oldversion
-* rhub check: Windows Server 2008 R2 SP1, R-devel, 32/64 bit
-* rhub check: Ubuntu Linux 16.04 LTS, R-release, GCC
-* rhub check: Fedora Linux, R-devel, clang, gfortran
+* win-builder: R Under development (unstable) (2024-09-13 r87147 ucrt)
+* win-builder: R version 4.4.1 (2024-06-14 ucrt)
+* win-builder: R version 4.3.3 (2024-02-29 ucrt)
+* Rhub  [VM] windows        R-* (any version)                     windows-latest on GitHub
+* Rhub  [CT] atlas          R-devel (2024-09-13 r87147)           Fedora Linux 38 (Container Image)
+* Rhub  [CT] c23            R-devel (2024-09-12 r87143)           Ubuntu 22.04.4 LTS
 * GitHub Actions, os: macos-latest,   r: 'release'
 * GitHub Actions, os: windows-latest, r: 'release'
 * GitHub Actions, os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'
