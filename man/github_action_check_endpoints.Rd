@@ -2,16 +2,25 @@
 % Please edit documentation in R/endpoint.R
 \name{github_action_check_endpoints}
 \alias{github_action_check_endpoints}
+\alias{github_action_reproduce}
 \title{Set up GitHub Actions to Check Endpoints}
 \usage{
-github_action_check_endpoints()
+github_action_check_endpoints(worcs_directory = ".")
+
+github_action_reproduce(worcs_directory = ".")
+}
+\arguments{
+\item{worcs_directory}{Character, indicating the WORCS project directory
+to which to save data. The default value "." points to the current directory.
+Default: '.'}
 }
 \value{
 No return value. This function is called for its side effects.
 }
 \description{
 Sets up a GitHub Action to perform continuous integration (CI)
-for a WORCS project. CI automatically evaluates \code{check_endpoints()}
+for a WORCS project. CI automatically evaluates \code{check_endpoints()} or
+\code{reproduce(check_endpoints = TRUE)}.
 at each push or pull request.
 }
 \seealso{

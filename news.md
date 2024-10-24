@@ -1,3 +1,10 @@
+# worcs 0.1.16
+
+* Make usethis 3.0.0 required because use_github_action() did not have argument
+  'badge' in earlier versions
+* github_actions functions now check if 'badge' argument exists
+* github_actions functions try to modify readme.md
+
 # worcs 0.1.15
 
 * Add integration with the `targets` package

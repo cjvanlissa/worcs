@@ -1,7 +1,7 @@
 Package: worcs
 Type: Package
 Title: Workflow for Open Reproducible Code in Science
-Version: 0.1.15
+Version: 0.1.16
 Authors@R: c(
     person(
       given = c("Caspar", "J."),
@@ -50,7 +50,7 @@ Imports:
     rticles (>= 0.27),
     tinytex,
     credentials,
-    usethis,
+    usethis (>= 3.0.0),
     gh,
     xfun
 Suggests:
