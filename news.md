@@ -4,6 +4,11 @@
   'badge' in earlier versions
 * github_actions functions now check if 'badge' argument exists
 * github_actions functions try to modify readme.md
+* Added checks to see if original data are available to reproduce() and
+  github_actions_reproduce(), because it is likely that analyses should fail to
+  reproduce if original data are not available
+* Set default priority to 1 and tarchetypes::tar_render() priority to 0 so that
+  all analyses are completed before the manuscript is rendered
 
 # worcs 0.1.15
 

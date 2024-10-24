@@ -78,10 +78,31 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
     if(file.exists(path_abs_worcs("manuscript/manuscript.Rmd", worcs_directory = worcs_directory)) & file.exists(path_abs_worcs("_targets.R", worcs_directory = worcs_directory))){
       # First, add manuscript to pipeline
       lnz <- readLines(path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
+      # tar_option_set(priority = 1)
+      # # Replace the target list below with your own:
+      # list(
+      #   tar_target(
+      #     name = df,
+      #     command = worcs::load_data(to_envir = FALSE)$df
+      #     # format = "qs" # Efficient storage for general data objects.
+      #   ),
+      #   tar_target(
+      #     name = model,
+      #     command = run_regression(df)
+      #   ),
+      #   tar_target(
+      #     name = tab_coef,
+      #     command = table_coefficients(model)
+      #   ),
+      #   tarchetypes::tar_render(manuscript, "manuscript/manuscript.rmd", priority = 0)
       if(all(tail(lnz, 2) == c("  )", ")"))){
+        if(any(lnz == "# Replace the target list below with your own:")){
+          thisln <- which(lnz == "# Replace the target list below with your own:")[1]
+          lnz <- c(lnz[1:(thisln-1L)], c("# Set default priority to 1 to ensure all results are completed before manuscript.", "tar_option_set(priority = 1)"), lnz[thisln:length(lnz)])
+        }
         col_message("Adding rmarkdown manuscript to targets pipeline.", verbose = verbose)
         lnz <- c(lnz[1:(length(lnz)-2)],
-                 c("  ),", "  tarchetypes::tar_render(manuscript, \"manuscript/manuscript.Rmd\")",
+                 c("  ),", "  tarchetypes::tar_render(manuscript, \"manuscript/manuscript.Rmd\", priority = 0) # Set priority to 0 to ensure the manuscript is rendered after other results are available",
                    ")"))
         writeLines(text = lnz, con = path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
       } else {

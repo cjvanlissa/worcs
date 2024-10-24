@@ -101,7 +101,7 @@ reproduce <- function(worcs_directory = ".", verbose = TRUE, check_endpoints = T
                          return(list(data_original = TRUE))
                        })
   if(any(!has_data$data_original)){
-    col_message(paste0("Your analysis might not reproduce because the following original data sources are not available:\n", paste0(has_data$data_files[!has_data$data_original], collapse = ", ")), success = FALSE)
+    col_message(paste0("Your analysis might not reproduce because the following original data sources are not available:\n", paste0(names(has_data$data_files)[!has_data$data_original], collapse = ", ")), success = FALSE)
   }
 
   if(is.null(worcs_file[["recipe"]])){
