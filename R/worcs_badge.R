@@ -46,17 +46,16 @@ worcs_badge <- function(path = ".",
     }
   }
   if(!is.null(update_readme)){
-    tryCatch({
-      if(!is_abs(update_readme)){ # is relative
-        update_readme <- file.path(ndir, update_readme)
-      }
-      switch(level,
-             perfect = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-perfect-blue"),
-             limited = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-limited-orange"),
-             open = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-open%20science-brightgreen"),
-             use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-fail-red")
-      )
-    }, error = function(e){col_message("Could not update README.md", success = FALSE)})
+    if(!is_abs(update_readme)){ # is relative
+      update_readme <- file.path(ndir, update_readme)
+    }
+
+    switch(level,
+           perfect = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-perfect-blue"),
+           limited = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-limited-orange"),
+           open = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-open%20science-brightgreen"),
+           use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-fail-red")
+    )
   }
   if(!is.null(update_csv)){
     if(!is_abs(update_csv)){ # is relative
