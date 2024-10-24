@@ -210,6 +210,14 @@ github_action_check_endpoints <- function(worcs_directory = "."){
 #' @export
 #' @importFrom usethis use_github_action
 github_action_reproduce <- function(worcs_directory = "."){
+  # Check if all data sources will be available on GitHub
+  has_data <- check_data_resources(dn_worcs = worcs_directory,
+                                   worcsfile = NULL,
+                                   verbose = TRUE)
+  gitig <- readLines(file.path(worcs_directory, ".gitignore"))
+  if(any(has_data$data_files %in% gitig)){
+    col_message(paste0("The following original data sources are not available on GitHub, which could prevent the GitHub action from reproducing your analysis:\n", paste0(has_data$data_files[which(has_data$data_files %in% gitig)], collapse = ", ")), success = FALSE)
+  }
   github_action_generic(worcs_directory = worcs_directory, url = "https://github.com/cjvanlissa/actions/blob/main/worcs_reproduce.yaml")
 }
 

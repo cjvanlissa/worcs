@@ -267,6 +267,53 @@ save_data <- function(data,
   invisible(NULL)
 }
 
+check_data_resources <- function(dn_worcs = ".", worcsfile = NULL, verbose = TRUE){
+  if(is.null(worcsfile)){
+    # Filenames housekeeping
+    dn_worcs <- dirname(check_recursive(file.path(normalizePath(dn_worcs), ".worcs")))
+    checkworcs(dn_worcs, iserror = TRUE)
+    fn_worcs <- file.path(dn_worcs, ".worcs")
+    # End filenames
+    worcsfile <- read_yaml(fn_worcs)
+  }
+  if(is.null(worcsfile[["data"]])){
+    stop("No data found in '.worcs'.")
+  }
+  data <- worcsfile$data
+  data_files <- names(data)
+  names(data_files) <- data_files
+  fn_data_files <- file.path(dn_worcs, data_files)
+  data_original <- sapply(fn_data_files, function(i){file.exists(i)})
+  data_files_synth <- rep(NA, length(data_files))
+  if(any(!data_original)){
+    for(i in data_files[!data_original]){
+      if(is.null(worcsfile$data[[i]][["synthetic"]])){
+        col_message("Cannot find the original data ", i, ", and there is no synthetic version on record.", success = FALSE, verbose = verbose)
+      } else {
+        data_files_synth <- worcsfile$data[[i]][["synthetic"]]
+      }
+    }
+
+    data_files[!data_original] <- data_files_synth
+    fn_data_files[!data_original] <- file.path(dn_worcs, data_files_synth)
+  }
+  if(anyNA(data_files)){
+    col_message("No valid resource found for these files:", paste0("\n  * ", names(data_files)[is.na(data_files)]), success = FALSE, verbose = verbose)
+  }
+  data_files <- data_files[!(is.null(data_files)|is.na(data_files))]
+
+  data_original <- data_original[!(is.null(data_files)|is.na(data_files))]
+  if(length(data_files) == 0) stop("No valid data files found.")
+  return(
+    list(data_files = data_files,
+         fn_data_files = fn_data_files,
+         data_original = data_original,
+         data_files_synth = data_files_synth
+    )
+  )
+}
+
+
 #' @title Load WORCS project data
 #' @description Scans the WORCS project file for data that have been saved using
 #' \code{\link{open_data}} or \code{\link{closed_data}}, and loads these data
@@ -334,34 +381,9 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
   # End filenames
 
   worcsfile <- read_yaml(fn_worcs)
-  if(is.null(worcsfile[["data"]])){
-    stop("No data found in '.worcs'.")
-  }
-  data <- worcsfile$data
-  data_files <- names(data)
-  names(data_files) <- data_files
-  fn_data_files <- file.path(dn_worcs, data_files)
-  data_original <- sapply(fn_data_files, function(i){file.exists(i)})
-  data_files_synth <- rep(NA, length(data_files))
-  if(any(!data_original)){
-     for(i in data_files[!data_original]){
-       if(is.null(worcsfile$data[[i]][["synthetic"]])){
-         col_message("Cannot find the original data ", i, ", and there is no synthetic version on record.", success = FALSE, verbose = verbose)
-       } else {
-         data_files_synth <- worcsfile$data[[i]][["synthetic"]]
-       }
-      }
 
-     data_files[!data_original] <- data_files_synth
-     fn_data_files[!data_original] <- file.path(dn_worcs, data_files_synth)
-  }
-  if(anyNA(data_files)){
-    col_message("No valid resource found for these files:", paste0("\n  * ", names(data_files)[is.na(data_files)]), success = FALSE, verbose = verbose)
-  }
-  data_files <- data_files[!(is.null(data_files)|is.na(data_files))]
+  attach(check_data_resources(dn_worcs = dn_worcs, worcsfile = worcsfile, verbose = verbose))
 
-  data_original <- data_original[!(is.null(data_files)|is.na(data_files))]
-  if(length(data_files) == 0) stop("No valid data files found.")
   outlist <- vector(mode = "list")
   for(file_num in seq_along(data_files)){
     fn_this_file <- fn_data_files[file_num]

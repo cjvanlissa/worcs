@@ -94,6 +94,16 @@ reproduce <- function(worcs_directory = ".", verbose = TRUE, check_endpoints = T
   }
   worcs_file <- read_yaml(fn_worcs)
 
+  has_data <- tryCatch({check_data_resources(dn_worcs = worcs_directory,
+                       worcsfile = worcs_file,
+                       verbose = verbose)}, error = function(e){
+                         usethis::ui_info("Your analysis might not reproduce because worcs could not identify associated data sources.")
+                         return(list(data_original = TRUE))
+                       })
+  if(any(!has_data$data_original)){
+    col_message(paste0("Your analysis might not reproduce because the following original data sources are not available:\n", paste0(has_data$data_files[!has_data$data_original], collapse = ", ")), success = FALSE)
+  }
+
   if(is.null(worcs_file[["recipe"]])){
     # Check if it's an old worcs version that does have an entry point
     if(!is.null(worcs_file[["entry_point"]])){
