@@ -50,25 +50,13 @@ worcs_badge <- function(path = ".",
       if(!is_abs(update_readme)){ # is relative
         update_readme <- file.path(ndir, update_readme)
       }
-      text <- readLines(update_readme, encoding = "UTF-8")
-      loc <- startsWith(text, "[![WORCS](https://img.shields.io/badge/WORC")
-      if(any(loc)){
-        loc <- which(loc)[1]
-        text <- text[-loc]
-        loc <- loc-1
-      } else {
-        loc <- which(startsWith(text, "#"))[1]+1
-      }
-      text <- append(x = text,
-             values = switch(level,
-                             perfect = c("", "[![WORCS](https://img.shields.io/badge/WORCS-perfect-blue)](https://osf.io/zcvbs/)", ""),
-                             limited = c("", "[![WORCS](https://img.shields.io/badge/WORCS-limited-orange)](https://osf.io/zcvbs/)", ""),
-                             open = c("", "[![WORCS](https://img.shields.io/badge/WORCS-open%20science-brightgreen)](https://osf.io/zcvbs/)", ""),
-                             c("", "[![WORCS](https://img.shields.io/badge/WORCS-fail-red)](https://osf.io/zcvbs/)", "")),
-             after = loc
+      switch(level,
+             perfect = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-perfect-blue"),
+             limited = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-limited-orange"),
+             open = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-open%20science-brightgreen"),
+             use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-fail-red")
       )
-      write_as_utf(text, update_readme)
-    }, error = function(e){warning("Could not update README.md")})
+    }, error = function(e){col_message("Could not update README.md", success = FALSE)})
   }
   if(!is.null(update_csv)){
     if(!is_abs(update_csv)){ # is relative

@@ -1,5 +1,11 @@
 # Readme <a href='https://osf.io/zcvbs/'><img src='worcs_icon.png' align="right" height="139" /></a>
 
+<!-- Below, project badges will be added. -->
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
 <!-- Please add a brief introduction to explain what the project is about    -->
 
 ## Where do I start?
