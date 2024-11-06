@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worcs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.15</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.16</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
     <a class="dropdown-item" href="../articles/setup.html">Setting up your computer for WORCS</a>
     <a class="dropdown-item" href="../articles/synthetic_data.html">Using Custom Synthetic Data</a>
     <a class="dropdown-item" href="../articles/targets.html">Using targets to Reduce Redundant Computations</a>
-    <a class="dropdown-item" href="../articles/workflow.html">The WORCS workflow, version 0.1.6</a>
+    <a class="dropdown-item" href="../articles/workflow.html">The WORCS workflow, version 0.1.16</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -59,6 +59,14 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.16" id="worcs-0116">worcs 0.1.16<a class="anchor" aria-label="anchor" href="#worcs-0116"></a></h2>
+<ul><li>Make usethis 3.0.0 required because use_github_action() did not have argument ‘badge’ in earlier versions</li>
+<li>github_actions functions now check if ‘badge’ argument exists</li>
+<li>github_actions functions try to modify readme.md</li>
+<li>Added checks to see if original data are available to reproduce() and github_actions_reproduce(), because it is likely that analyses should fail to reproduce if original data are not available</li>
+<li>Set default priority to 1 and tarchetypes::tar_render() priority to 0 so that all analyses are completed before the manuscript is rendered</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.15" id="worcs-0115">worcs 0.1.15<a class="anchor" aria-label="anchor" href="#worcs-0115"></a></h2><p class="text-muted">CRAN release: 2024-09-14</p>
 <ul><li>Add integration with the <code>targets</code> package</li>
 <li>Stricter enforcement of “.Rmd” case in filenames to avoid Linux errors</li>
@@ -83,7 +91,7 @@
 <code><a href="../reference/check_worcs_installation.html">check_worcs_installation()</a></code> no longer throws error for rticles and prereg</li>
 <li>Add more defensive programming to <code>save_data()</code> and <code><a href="../reference/load_data.html">load_data()</a></code> to prevent errors.</li>
 <li>Further improvement to how checksums are computed; instead of checking how Git treats the line endings (which breaks when a project is no longer version controlled, e.g., when downloading a ZIP from GitHub), we check if files are binary.</li>
-<li>Add github action to reproduce a repo via github actions: <code><a href="../reference/github_action_reproduce.html">github_action_reproduce()</a></code>
+<li>Add github action to reproduce a repo via github actions: <code><a href="../reference/github_action_check_endpoints.html">github_action_reproduce()</a></code>
 </li>
 <li>Update <code>vignette("Reproduce")</code>; the advice to download a ZIP from GitHub is bad practice, because this ZIP is no longer version controlled with Git.</li>
 </ul></div>

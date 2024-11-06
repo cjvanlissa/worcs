@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worcs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.15</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.16</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@
     <a class="dropdown-item" href="../articles/setup.html">Setting up your computer for WORCS</a>
     <a class="dropdown-item" href="../articles/synthetic_data.html">Using Custom Synthetic Data</a>
     <a class="dropdown-item" href="../articles/targets.html">Using targets to Reduce Redundant Computations</a>
-    <a class="dropdown-item" href="../articles/workflow.html">The WORCS workflow, version 0.1.6</a>
+    <a class="dropdown-item" href="../articles/workflow.html">The WORCS workflow, version 0.1.16</a>
   </div>
 </li>
 <li class="nav-item">
@@ -237,6 +237,9 @@ results - with it:</p>
 <span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu">lavaan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/sem.html" class="external-link">sem</a></span><span class="op">(</span><span class="va">model</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span><span class="fu">tidySEM</span><span class="fu">::</span><span class="fu"><a href="https://cjvanlissa.github.io/tidySEM/reference/table_results.html" class="external-link">table_results</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="co">#&gt; The following objects are masked from check_data_resources(dn_worcs = dn_worcs, worcsfile = worcsfile, verbose = verbose) (pos = 3):</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     data_files, data_files_synth, data_original, fn_data_files</span></span>
 <span><span class="co">#&gt;              label est_sig   se pval      confint</span></span>
 <span><span class="co">#&gt; 1      ind60.BY.x1    1.00 0.00 &lt;NA&gt; [1.00, 1.00]</span></span>
 <span><span class="co">#&gt; 2      ind60.BY.x2 2.15*** 0.05 0.00 [2.05, 2.25]</span></span>
