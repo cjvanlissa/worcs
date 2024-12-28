@@ -304,7 +304,6 @@ check_github_has_SHA <- utils::getFromNamespace("check_github_has_SHA", "usethis
 #' @importFrom cli cli_process_start cli_process_done cli_process_failed
 #' @importFrom gh gh gh_whoami
 #' @importFrom usethis with_project
-#'
 git_publish_release <- function(repo = ".", tag_name = NULL, release_name = NULL){
   tryCatch({
     cli::cli_process_start("Posting release to GitHub")
@@ -342,6 +341,23 @@ git_publish_release <- function(repo = ".", tag_name = NULL, release_name = NULL
 
     release <- gh("POST /repos/{owner}/{repo}/releases", name = release_name,
                   tag_name = tag_name, target_commitish = SHA, draft = FALSE)
+    cli::cli_process_done() },
+    error = function(err) {
+      cli::cli_process_failed()
+    }
+  )
+  invisible()
+}
+
+git_remote_delete <- function(repo){
+  tryCatch({
+    cli::cli_process_start("Deleting remote repository")
+    ownr <- gh::gh_whoami()$login
+    test_repo <- gert::git_remote_ls(remote = paste0("https://github.com/", ownr, "/", repo))
+    if(!inherits(test_repo, "data.frame")) stop()
+    paste0("DELETE /repos/{owner}/{repo}")
+    gh("DELETE /repos/{owner}/{repo}", owner = ownr,
+       repo = repo)
     cli::cli_process_done() },
     error = function(err) {
       cli::cli_process_failed()
