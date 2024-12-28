@@ -382,7 +382,11 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
 
   worcsfile <- read_yaml(fn_worcs)
 
-  attach(check_data_resources(dn_worcs = dn_worcs, worcsfile = worcsfile, verbose = verbose))
+  data_resources_list <- check_data_resources(dn_worcs = dn_worcs, worcsfile = worcsfile, verbose = verbose)
+  data_files <- data_resources_list$data_files
+  fn_data_files  <- data_resources_list$fn_data_files
+  data_original <- data_resources_list$data_original
+  data_files_synth <- data_resources_list$data_files_synth
 
   outlist <- vector(mode = "list")
   for(file_num in seq_along(data_files)){

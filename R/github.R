@@ -241,3 +241,111 @@ parse_repo <- function(remote_repo, verbose = TRUE){
   repo_url <- gsub("\\.git$", "", repo_url)
   gsub("^(https://)?", "https://", repo_url)
 }
+
+#' @title Create a new 'GitHub' repository
+#' @description Given that a 'GitHub' user is configured, with the appropriate
+#' permissions, this function creates a new repository on your account.
+#' @param name Name of the repository to be created.
+#' @param private Whether or not the repository should be private, defaults to
+#' `FALSE`.
+#' @return No return value. This function is called for its side effects.
+#' @examples
+#' git_remote_create()
+#' @rdname git_remote_create
+#' @export
+#' @importFrom cli cli_process_start cli_process_done cli_process_failed
+#' @importFrom gh gh gh_whoami
+git_remote_create <- function(name, private = TRUE){
+  git_usrnm <- tryCatch(gh::gh_whoami()$login, error = function(e){"username"})
+  tryCatch({
+    cli::cli_process_start("Creating GitHub repository '{git_usrnm}/{name}'")
+    if(git_usrnm == "username") stop()
+    invisible(gh::gh("POST /user/repos", name = name, private = c("false", "true")[as.integer(private)+1]))
+    cli::cli_process_done() },
+    error = function(err) {
+      cli::cli_process_failed()
+    }
+  )
+  invisible()
+}
+
+# These are all used in git_publish_release below:
+#' @importFrom utils getFromNamespace
+target_repo <- utils::getFromNamespace("target_repo", "usethis")
+check_can_push <- utils::getFromNamespace("check_can_push", "usethis")
+get_release_data <- utils::getFromNamespace("get_release_data", "usethis")
+gh_tr <- utils::getFromNamespace("gh_tr", "usethis")
+check_github_has_SHA <- utils::getFromNamespace("check_github_has_SHA", "usethis")
+# To here
+
+#' @title Publish a Release on 'GitHub'
+#' @description Given that a 'GitHub' user is configured, with the appropriate
+#' permissions, this function pushes the current branch (if safe),
+#' then publishes a 'GitHub' Release of the repository indicated by
+#' `repo` to that user's account.
+#' @param repo The path to the 'Git' repository.
+#' @param tag_name Optional character string to specify the tag name. By
+#' default, this is set to `NULL` and `git_publish_release()` uses version
+#' numbers starting with `0.1.0` for both the `tag_name` and `release_name`
+#' arguments. Override this behavior, for example, to increment the major
+#' version number by specifying `0.2.0`.
+#' @param release_name Optional character string to specify the tag name. By
+#' default, this is set to `NULL` and `git_publish_release()` uses version
+#' numbers starting with `0.1.0` for both the `tag_name` and `release_name`
+#' arguments. Override this behavior, for example, to increment the major
+#' version number by specifying `0.2.0`.
+#' @return No return value. This function is called for its side effects.
+#' @examples
+#' \dontrun{
+#' git_publish_release()
+#' }
+#' @rdname git_remote_create
+#' @export
+#' @importFrom cli cli_process_start cli_process_done cli_process_failed
+#' @importFrom gh gh gh_whoami
+#' @importFrom usethis with_project
+#'
+git_publish_release <- function(repo = ".", tag_name = NULL, release_name = NULL){
+  tryCatch({
+    cli::cli_process_start("Posting release to GitHub")
+    usethis::with_project(repo, code = {
+      tr <- target_repo(github_get = TRUE, ok_configs = c("ours",
+                                                          "fork"))
+    }, quiet = TRUE)
+    usethis::with_project(repo, code = {
+      check_can_push(tr = tr, "to create a release")
+    }, quiet = TRUE)
+    usethis::with_project("c:/git_repositories/worcs", code = {
+      dat <- get_release_data(tr)
+    }, quiet = TRUE)
+
+    # Get current commit hash
+    SHA = gert::git_info(repo = repo)$commit
+    gh <- gh_tr(tr)
+    # Determine version
+    if(is.null(tag_name)){
+      releases <- gh("GET /repos/{owner}/{repo}/releases")
+      tag_last_release <- try(releases[[1]][["tag_name"]], silent = TRUE)
+      if(inherits(tag_last_release, what = "try-error")){
+        tag_name <- "0.1.0"
+      } else {
+        tag_integer <- unclass(package_version(tag_last_release))[[1]]
+        tag_integer[3] <- tag_integer[3]+1
+        tag_name <- paste(tag_integer, collapse = ".")
+      }
+    }
+    if(is.null(release_name)) release_name <- tag_name
+
+    gert::git_push(verbose = FALSE)
+
+    check_github_has_SHA(SHA = SHA, tr = tr)
+
+    release <- gh("POST /repos/{owner}/{repo}/releases", name = release_name,
+                  tag_name = tag_name, target_commitish = SHA, draft = FALSE)
+    cli::cli_process_done() },
+    error = function(err) {
+      cli::cli_process_failed()
+    }
+  )
+  invisible()
+}

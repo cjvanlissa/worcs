@@ -50,9 +50,10 @@ Imports:
     rticles (>= 0.27),
     tinytex,
     credentials,
-    usethis (>= 3.0.0),
+    usethis (>= 3.1.0),
     gh,
-    xfun
+    xfun,
+    cli
 Suggests:
     papaja (>= 0.1.1),
     targets,
@@ -65,6 +66,8 @@ Suggests:
     curl,
     fs,
     withr,
+    desc,
+    purrr,
     testthat (>= 2.1.0)
 SystemRequirements: pandoc (>= 1.14) - https://pandoc.org 
 VignetteBuilder: knitr

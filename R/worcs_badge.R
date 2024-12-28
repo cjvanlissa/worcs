@@ -22,6 +22,7 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c("worcs_checklist"))
 #' worcs_badge(path = example_dir,
 #' update_readme = NULL)
 #' @rdname worcs_badge
+#' @importFrom usethis use_badge
 #' @export
 worcs_badge <- function(path = ".",
                         update_readme = "README.md",
@@ -51,10 +52,10 @@ worcs_badge <- function(path = ".",
     }
 
     switch(level,
-           perfect = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-perfect-blue"),
-           limited = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-limited-orange"),
-           open = use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-open%20science-brightgreen"),
-           use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-fail-red")
+           perfect = usethis::use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-perfect-blue"),
+           limited = usethis::use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-limited-orange"),
+           open = usethis::use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-open%20science-brightgreen"),
+           usethis::use_badge("WORCS", "https:doi.org/10.3233/DS-210031", src = "https://img.shields.io/badge/WORCS-fail-red")
     )
   }
   if(!is.null(update_csv)){
