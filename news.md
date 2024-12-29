@@ -11,6 +11,8 @@
   reproduce if original data are not available
 * Set default priority to 1 and tarchetypes::tar_render() priority to 0 so that
   all analyses are completed before the manuscript is rendered
+* Small bugfix in git_update() allows it to push another repository than the
+  active one
 
 # worcs 0.1.15
 

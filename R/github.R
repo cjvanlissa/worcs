@@ -176,58 +176,59 @@ git_update <- function(message = paste0("update ", Sys.time()),
                        mirror,
                        force,
                        verbose = TRUE){
+
+
+  cl <- match.call()
+
   tryCatch({
+    if (!is_quiet())
+      cli::cli_process_start("Identify local 'Git' repository at {.val {repo}}")
     git_ls(repo = repo)
-    col_message("Identified local 'Git' repository.", verbose = verbose)
-  }, error = function(e){
-    col_message("Not a 'Git' repository.", success = FALSE)
-    col_message("Could not add files to staging area of 'Git' repository.", success = FALSE)
-    col_message("Could not commit staged files to 'Git' repository.", success = FALSE)
-    col_message("Could not push local commits to remote repository.", success = FALSE)
-    return()
+    cli::cli_process_done()
+  }, error = function(err) {
+    cli::cli_process_failed()
+  })
+
+  cl_add <- cl[c(1L, which(names(cl) %in% c("files", "repo")))]
+  cl_add[[1L]] <- str2lang("gert::git_add")
+  cl_commit <- cl[c(1L, which(names(cl) %in% c("message", "author", "committer", "repo")))]
+  cl_commit[[1L]] <- str2lang("gert::git_commit")
+  cl_push <- cl[c(1L, which(names(cl) %in% c("remote", "refspec", "password", "ssh_key", "mirror", "force", "verbose", "repo")))]
+  cl_push[[1L]] <- str2lang("gert::git_push")
+
+  invisible(
+    tryCatch({
+      if (!is_quiet())
+        cli::cli_process_start("Adding files to staging area of 'Git' repository.")
+      eval.parent(cl_add)
+      cli::cli_process_done()
+    }, error = function(err) {
+      cli::cli_process_failed()
     })
+  )
 
-  cl <- as.list(match.call()[-1])
-  for(this_arg in c("message", "files", "repo")){
-    if(is.null(cl[[this_arg]])){
-      cl[[this_arg]] <- formals()[[this_arg]]
-    }
-  }
-  #if(length(cl) > 0){
-  #  Args[sapply(names(cl), function(i) which(i == names(Args)))] <- cl
-  #}
+  invisible(
+    tryCatch({
+      if (!is_quiet())
+        cli::cli_process_start("Committed staged files to 'Git' repository.")
+      eval.parent(cl_commit)
+      cli::cli_process_done()
+    }, error = function(err) {
+      cli::cli_process_failed()
+    })
+  )
 
-  Args_add <- cl[names(cl) %in% c("files", "repo")]
-  Args_commit <- cl[names(cl) %in% c("message", "author", "committer", "repo")]
-  Args_push <- cl[names(cl) %in% c("remote", "refspec", "password", "ssh_key", "mirror", "force", "verbose", "repo")]
-  invisible(
-    tryCatch({
-      do.call(git_add, Args_add)
-      col_message("Added files to staging area of 'Git' repository.", verbose = verbose)
-    }, error = function(e){
-      col_message("Could not add files to staging area of 'Git' repository.", success = FALSE)
-      message(e)
-      })
-  )
-  invisible(
-    tryCatch({
-      do.call(git_commit, Args_commit)
-      col_message("Committed staged files to 'Git' repository.", verbose = verbose)
-    }, error = function(e){
-      col_message("Could not commit staged files to 'Git' repository.", success = FALSE)
-      message(e)
-      })
-  )
-  invisible(
-    tryCatch({
-      do.call(git_push, Args_push)
-      col_message("Pushed local commits to remote repository.", verbose = verbose)
-    }, error = function(e){
-      col_message("Could not push local commits to remote repository.", success = FALSE)
-      message(e)
-      })
-  )
+  tryCatch({
+    if (!is_quiet())
+      cli::cli_process_start("Push local commits to remote repository.")
+    eval.parent(cl_push)
+    cli::cli_process_done()
+  }, error = function(err) {
+    cli::cli_process_failed()
+  })
+  invisible()
 }
+
 
 
 parse_repo <- function(remote_repo, verbose = TRUE){
