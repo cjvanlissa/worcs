@@ -260,7 +260,12 @@ git_remote_create <- function(name, private = TRUE){
   tryCatch({
     cli::cli_process_start("Creating GitHub repository '{git_usrnm}/{name}'")
     if(git_usrnm == "username") stop()
-    invisible(gh::gh("POST /user/repos", name = name, private = c("false", "true")[as.integer(private)+1]))
+    if(private){
+      invisible(gh::gh("POST /user/repos", name = name, private = "true"))
+    } else {
+      invisible(gh::gh("POST /user/repos", name = name))
+    }
+
     cli::cli_process_done() },
     error = function(err) {
       cli::cli_process_failed()

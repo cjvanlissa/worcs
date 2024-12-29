@@ -97,38 +97,45 @@ add_synthetic <- function(data,
 
 
   # Synthetic data
-  col_message("Storing synthetic data in '", fn_write_synth_rel, "' and updating the checksum in '.worcs'.", verbose = verbose)
+  tryCatch({
+    if(verbose) cli::cli_process_start("Storing synthetic data in {.val fn_write_synth_rel} and updating the checksum in {.val .worcs}.")
 
-
-  # Obtain save_expression from the worcs_file
-  save_expression <- worcs_file$data[[original_name]][["save_expression"]]
-  # If there is no save_expression, this is a legacy worcs_file.
-  # Use the default save expression of previous worcs versions.
-  if(is.null(save_expression)){
-    save_expression <- "write.csv(data, filename, row.names = FALSE)"
-  }
-  # Create an environment in which to evaluate the save_expression, in which
-  # filename is an object with value equal to fn_write_synth
-  save_env <- new.env()
-  assign(x = "filename", value = fn_write_synth_abs, envir = save_env)
-  out <- eval(parse(text = save_expression), envir = save_env)
-  # Add info to worcs_file
-  to_worcs$data[[original_name]]$synthetic <- fn_write_synth_rel
-  store_checksum(fn_write_synth_abs, entry_name = fn_write_synth_rel, worcsfile = fn_worcs)
-  write_gitig(fn_gitig, paste0("!", basename(fn_synthetic)))
-  col_message("Updating '.gitignore'.", verbose = verbose)
-  fn_readme <- path_abs_worcs("README.md", dn_worcs)
-  if(file.exists(fn_readme)){
-    lnz <- readLines(fn_readme)
-    if(!any(grepl("Synthetic data with similar", lnz, fixed = TRUE))){
-      update_textfile(filename = fn_readme,
-                      txt = "Synthetic data with similar characteristics to the original data have been provided. Using the function load_data() will load these synthetic data when the original data are unavailable. Note that these synthetic data cannot be used to reproduce the original results. However, it does allow users to run the code and, optionally, generate valid code that can be evaluated using the original data by the project authors.",
-                      next_to = "Some of the data used in this project are not publically available.",
-                      verbose = verbose)
+    # Obtain save_expression from the worcs_file
+    save_expression <- worcs_file$data[[original_name]][["save_expression"]]
+    # If there is no save_expression, this is a legacy worcs_file.
+    # Use the default save expression of previous worcs versions.
+    if(is.null(save_expression)){
+      save_expression <- "write.csv(data, filename, row.names = FALSE)"
     }
-  }
+    # Create an environment in which to evaluate the save_expression, in which
+    # filename is an object with value equal to fn_write_synth
+    save_env <- new.env()
+    assign(x = "filename", value = fn_write_synth_abs, envir = save_env)
+    out <- eval(parse(text = save_expression), envir = save_env)
+    # Add info to worcs_file
+    to_worcs$data[[original_name]]$synthetic <- fn_write_synth_rel
+    store_checksum(fn_write_synth_abs, entry_name = fn_write_synth_rel, worcsfile = fn_worcs)
+    write_gitig(fn_gitig, paste0("!", basename(fn_synthetic)))
+    col_message("Updating '.gitignore'.", verbose = verbose)
+    fn_readme <- path_abs_worcs("README.md", dn_worcs)
+    if(file.exists(fn_readme)){
+      lnz <- readLines(fn_readme)
+      if(!any(grepl("Synthetic data with similar", lnz, fixed = TRUE))){
+        update_textfile(filename = fn_readme,
+                        txt = "Synthetic data with similar characteristics to the original data have been provided. Using the function load_data() will load these synthetic data when the original data are unavailable. Note that these synthetic data cannot be used to reproduce the original results. However, it does allow users to run the code and, optionally, generate valid code that can be evaluated using the original data by the project authors.",
+                        next_to = "Some of the data used in this project are not publically available.",
+                        verbose = verbose)
+      }
+    }
 
-  do.call(write_worcsfile, to_worcs)
+    do.call(write_worcsfile, to_worcs)
+
+    cli::cli_process_done() },
+    error = function(err) {
+      cli::cli_process_failed()
+    }
+  )
+
   invisible(NULL)
 }
 

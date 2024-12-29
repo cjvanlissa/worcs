@@ -119,7 +119,7 @@ knitr::include_graphics("workflow.png")
     + To retain essential citations only, change the front matter of the 'manuscript.Rmd' file:  
     Change `knit: worcs::cite_all` to `knit: worcs::cite_essential`
 19. <!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/article/177-upload-a-preprint)-->Optional: [Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project](https://help.osf.io/article/177-upload-a-preprint)
-    + Check [Sherpa Romeo](http://sherpa.ac.uk/romeo/index.php) to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.
+    + Check [Sherpa Romeo](https://sherpa.ac.uk/romeo/index.php) to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.
 20. <!--S: Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) of the submitted paper as a release, as in Step 4.-->Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository), as in Step 4.
 
 ### Notes for cautious researchers

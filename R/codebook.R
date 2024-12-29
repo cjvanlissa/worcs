@@ -70,7 +70,7 @@ make_codebook <-
             category = NA,
             description = NA)
     if (file.exists(filename)) {
-      col_message(paste0("Removing previous version of '", filename, "'."), verbose = verbose)
+      col_message(paste0("Removing previous version of {.val filename}."), verbose = verbose)
       invisible(file.remove(filename))
     }
     draft(
