@@ -385,7 +385,7 @@ git_connect_or_create <- function(path, remote_repo){
     if (repo_exists) {
       with_cli_try("Connecting to existing remote repository {.val {repo_url}}", {
         if (nrow(test_repo) > 0) {
-          cli_msg("i" = "Remote repository already exists and has previous commits. You are now working with a local repository only.")
+          cli_msg("i" = "Remote repository already exists and has previous commits. Connect manually to avoid merge conflicts.")
           stop()
         } else {
           Args_gert <- list(name = "origin",
@@ -404,5 +404,19 @@ git_connect_or_create <- function(path, remote_repo){
       })
     }
   }
+  # Tests
+  test_repo <- try(gert::git_remote_list(repo = path), silent = TRUE)
+  repo_exists <- isTRUE(grepl("^https", test_repo$url[1]))
+  if(repo_exists){
+    prior_commits <- try(gert::git_remote_ls(remote = test_repo$url[1]), silent = TRUE)
+    prior_commits <- isFALSE(nrow(prior_commits) == 0)
+  } else {
+    prior_commits <- FALSE
+  }
+  invisible(return(
+    repo_url = repo_url,
+    repo_exists = repo_exists,
+    prior_commits = prior_commits
+  ))
 }
 
