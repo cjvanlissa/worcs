@@ -27,7 +27,7 @@ add_license_file <- function(repo = ".", license = "ccby", ...){
   cl[[1L]] <- str2lang(paste0("usethis::use_", license, "_license"))
   cl[["repo"]] <- NULL
   cl[["license"]] <- NULL
-  tryCatch({
+  return_value <- tryCatch({
     cli::cli_process_start("Writing license file")
     usethis::ui_silence({
       usethis::with_project(tmpdr, code = {
@@ -39,10 +39,13 @@ add_license_file <- function(repo = ".", license = "ccby", ...){
     if(!length(flz) == 1) stop()
     out <- file.copy(file.path(tmpdr, flz), to = file.path(repo, flz))
     if(!out) stop()
-    cli::cli_process_done() },
+    cli::cli_process_done()
+    return(TRUE)
+    },
     error = function(err) {
       cli::cli_process_failed()
+      return(FALSE)
     }
   )
-  invisible()
+  return(invisible(return_value))
 }

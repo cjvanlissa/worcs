@@ -149,17 +149,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
 
   # Begin license
   if(!add_license == "none"){
-    tryCatch({
-      dir.create(path, recursive = TRUE, showWarnings = FALSE)
-
-      # copy 'resources' folder to path
-      license_dir = system.file('rstudio', 'templates', 'project', 'licenses', package = 'worcs', mustWork = TRUE)
-      license_file <- file.path(license_dir, paste0(add_license, ".txt"))
-      file.copy(license_file, file.path(path, "LICENSE"), copy.mode = FALSE)
-      col_message("Writing license file.", verbose = verbose)
-    }, error = function(e){
-      col_message("Writing license file.", success = FALSE)
-    })
+    add_license_file(repo = path, license = add_license)
   }
   # End license
 
