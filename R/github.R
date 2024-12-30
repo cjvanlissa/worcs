@@ -177,8 +177,7 @@ git_update <- function(message = paste0("update ", Sys.time()),
                        force,
                        verbose = TRUE){
 
-
-  cl <- match.call()
+  cl <- match.call.defaults()
 
   tryCatch({
     if (!is_quiet())
@@ -275,7 +274,7 @@ git_remote_create <- function(name, private = TRUE){
   invisible()
 }
 
-# These are all used in git_publish_release below:
+# These are all used in git_release_publish below:
 #' @importFrom utils getFromNamespace
 target_repo <- utils::getFromNamespace("target_repo", "usethis")
 check_can_push <- utils::getFromNamespace("check_can_push", "usethis")
@@ -291,26 +290,26 @@ check_github_has_SHA <- utils::getFromNamespace("check_github_has_SHA", "usethis
 #' `repo` to that user's account.
 #' @param repo The path to the 'Git' repository.
 #' @param tag_name Optional character string to specify the tag name. By
-#' default, this is set to `NULL` and `git_publish_release()` uses version
+#' default, this is set to `NULL` and `git_release_publish()` uses version
 #' numbers starting with `0.1.0` for both the `tag_name` and `release_name`
 #' arguments. Override this behavior, for example, to increment the major
 #' version number by specifying `0.2.0`.
 #' @param release_name Optional character string to specify the tag name. By
-#' default, this is set to `NULL` and `git_publish_release()` uses version
+#' default, this is set to `NULL` and `git_release_publish()` uses version
 #' numbers starting with `0.1.0` for both the `tag_name` and `release_name`
 #' arguments. Override this behavior, for example, to increment the major
 #' version number by specifying `0.2.0`.
 #' @return No return value. This function is called for its side effects.
 #' @examples
 #' \dontrun{
-#' git_publish_release()
+#' git_release_publish()
 #' }
 #' @rdname git_remote_create
 #' @export
 #' @importFrom cli cli_process_start cli_process_done cli_process_failed
 #' @importFrom gh gh gh_whoami
 #' @importFrom usethis with_project
-git_publish_release <- function(repo = ".", tag_name = NULL, release_name = NULL){
+git_release_publish <- function(repo = ".", tag_name = NULL, release_name = NULL){
   tryCatch({
     cli::cli_process_start("Posting release to GitHub")
     usethis::with_project(repo, code = {
@@ -371,3 +370,39 @@ git_remote_delete <- function(repo){
   )
   invisible()
 }
+
+
+git_connect_or_create <- function(path, remote_repo){
+  # Connect to remote repo if possible
+  if (is.null(remote_repo)) {
+    cli_msg("i" = "Argument {.val remote_repo} is {.val NULL}; you are working with a local repository only.")
+  } else {
+    ownr <- gh::gh_whoami()$login
+    repo_name <- paste0(ownr, "/", remote_repo)
+    repo_url <- paste0("https://github.com/", repo_name)
+    test_repo <- try(gert::git_remote_ls(remote = repo_url), silent = TRUE)
+    repo_exists <- isFALSE(inherits(test_repo, "try-error"))
+    if (repo_exists) {
+      with_cli_try("Connecting to existing remote repository {.val {repo_url}}", {
+        if (nrow(test_repo) > 0) {
+          cli_msg("i" = "Remote repository already exists and has previous commits. You are now working with a local repository only.")
+          stop()
+        } else {
+          Args_gert <- list(name = "origin",
+                            url = repo_url,
+                            repo = path)
+          do.call(gert::git_remote_add, Args_gert)
+        }
+      })
+    } else {
+      with_cli_try("Create new remote repository at {.val {repo_url}}", {
+        worcs::git_remote_create(remote_repo, private = FALSE)
+        Args_gert <- list(name = "origin",
+                          url = repo_url,
+                          repo = path)
+        do.call(gert::git_remote_add, Args_gert)
+      })
+    }
+  }
+}
+

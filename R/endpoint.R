@@ -53,17 +53,16 @@ add_endpoint <- function(filename = NULL, worcs_directory = ".", verbose = TRUE,
   endpoints <- append(endpoints, filename)
   endpoints <- unique(endpoints)
   # Append worcsfile
-  out <- try({
+  tryCatch({
+    if(!is_quiet()) cli::cli_process_start("Adding endpoint {.val {filename}} to '.worcs'.")
     write_worcsfile(filename = fn_worcs, endpoints = endpoints, modify = TRUE)
     store_checksum(fn_endpoint, entry_name = filename, worcsfile = fn_worcs)
-    })
-  if(inherits(out, "try-error")){
-    col_message("Could not add endpoint '", filename, "' to '.worcs'.",
-                        verbose = verbose, success = FALSE)
-  } else {
-    col_message("Adding endpoint '", filename, "' to '.worcs'.",
-                        verbose = verbose)
-  }
+    cli::cli_process_done() },
+    error = function(err) {
+      cli::cli_process_failed()
+    }
+  )
+  invisible()
 }
 
 #' @title Snapshot endpoints in WORCS project
@@ -103,17 +102,15 @@ snapshot_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   }
   endpoints <- worcsfile[["endpoints"]]
   for(ep in endpoints){
-    out <- try({
+    tryCatch({
+      if(!is_quiet()) cli::cli_process_start("Update snapshot of endpoint {.val {ep}}.")
       fn_endpoint <- path_abs_worcs(ep, dn_worcs)
       store_checksum(fn_endpoint, entry_name = ep, worcsfile = fn_worcs)
-    })
-    if(inherits(out, "try-error")){
-      col_message("Could not snapshot endpoint '", ep, "'.",
-                          verbose = verbose, success = FALSE)
-    } else {
-      col_message("Update snapshot of endpoint '", ep, "'.",
-                          verbose = verbose)
-    }
+      cli::cli_process_done() },
+      error = function(err) {
+        cli::cli_process_failed()
+      }
+    )
   }
 }
 

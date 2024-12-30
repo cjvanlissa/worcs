@@ -2,12 +2,12 @@
 % Please edit documentation in R/github.R
 \name{git_remote_create}
 \alias{git_remote_create}
-\alias{git_publish_release}
+\alias{git_release_publish}
 \title{Create a new 'GitHub' repository}
 \usage{
 git_remote_create(name, private = TRUE)
 
-git_publish_release(repo = ".", tag_name = NULL, release_name = NULL)
+git_release_publish(repo = ".", tag_name = NULL, release_name = NULL)
 }
 \arguments{
 \item{name}{Name of the repository to be created.}
@@ -18,13 +18,13 @@ git_publish_release(repo = ".", tag_name = NULL, release_name = NULL)
 \item{repo}{The path to the 'Git' repository.}
 
 \item{tag_name}{Optional character string to specify the tag name. By
-default, this is set to \code{NULL} and \code{git_publish_release()} uses version
+default, this is set to \code{NULL} and \code{git_release_publish()} uses version
 numbers starting with \verb{0.1.0} for both the \code{tag_name} and \code{release_name}
 arguments. Override this behavior, for example, to increment the major
 version number by specifying \verb{0.2.0}.}
 
 \item{release_name}{Optional character string to specify the tag name. By
-default, this is set to \code{NULL} and \code{git_publish_release()} uses version
+default, this is set to \code{NULL} and \code{git_release_publish()} uses version
 numbers starting with \verb{0.1.0} for both the \code{tag_name} and \code{release_name}
 arguments. Override this behavior, for example, to increment the major
 version number by specifying \verb{0.2.0}.}
@@ -46,6 +46,6 @@ then publishes a 'GitHub' Release of the repository indicated by
 \examples{
 git_remote_create()
 \dontrun{
-git_publish_release()
+git_release_publish()
 }
 }

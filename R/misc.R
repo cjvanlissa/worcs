@@ -87,3 +87,15 @@ all_args <- function(orig_values = FALSE, ...) {
   }
   return(args)
 }
+
+
+match.call.defaults <- function(...) {
+  call <- evalq(match.call(expand.dots = FALSE), parent.frame(1))
+  formals <- evalq(formals(), parent.frame(1))
+
+  for(i in setdiff(names(formals), names(call)))
+    call[i] <- list( formals[[i]] )
+
+
+  match.call(sys.function(sys.parent()), call)
+}

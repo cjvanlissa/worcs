@@ -70,8 +70,14 @@ make_codebook <-
             category = NA,
             description = NA)
     if (file.exists(filename)) {
-      col_message(paste0("Removing previous version of {.val filename}."), verbose = verbose)
-      invisible(file.remove(filename))
+      tryCatch({
+        if(!is_quiet()) cli::cli_process_start("Removing previous version of {.val filename}.")
+        invisible(file.remove(filename))
+        cli::cli_process_done() },
+        error = function(err) {
+          cli::cli_process_failed()
+        }
+      )
     }
     draft(
       filename,
@@ -100,8 +106,14 @@ make_codebook <-
       #                codebook = list(rmd_file = filename, checksum = checksum))
     } else {
       if (file.exists(csv_file)) {
-        col_message(paste0("Removing previous version of '", csv_file, "'."), verbose = verbose)
-        invisible(file.remove(csv_file))
+        tryCatch({
+          if(!is_quiet()) cli::cli_process_start("Removing previous version of {.val csv_file}.")
+          invisible(file.remove(csv_file))
+          cli::cli_process_done() },
+          error = function(err) {
+            cli::cli_process_failed()
+          }
+        )
       }
       write.csv(x = summaries, file = csv_file, row.names = FALSE)
       sum_tab <- c(paste0('summaries <- read.csv("', basename(csv_file), '", stringsAsFactors = FALSE)'),

@@ -1,6 +1,6 @@
 # worcs 0.1.16
 
-* Add git_remote_create(), git_publish_release()
+* Add git_remote_create(), git_release_publish()
 * Add add_license_file()
 * Make usethis 3.0.0 required because use_github_action() did not have argument
   'badge' in earlier versions
