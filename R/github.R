@@ -413,10 +413,10 @@ git_connect_or_create <- function(path, remote_repo){
   } else {
     prior_commits <- FALSE
   }
-  invisible(return(
+  invisible(return(list(
     repo_url = repo_url,
     repo_exists = repo_exists,
     prior_commits = prior_commits
-  ))
+  )))
 }
 
