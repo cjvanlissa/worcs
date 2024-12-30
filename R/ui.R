@@ -3,8 +3,10 @@ with_cli_try <- function(msg, code, ...){
     if(!is_quiet()) cli::cli_process_start(msg, ..., .envir = parent.frame(1))
     eval(code, envir = parent.frame())
     cli::cli_process_done()
+    return(invisible(TRUE))
   }, error = function(err) {
     cli::cli_process_failed()
+    return(invisible(FALSE))
   })
 }
 
