@@ -5,8 +5,8 @@ Icon: worcs.png
 
 Parameter: remote_repo
 Widget: TextInput
-Label: Git remote repository address
-Default: git@[...].git
+Label: GitHub remote URL or name
+Default: https://... .git
 
 Parameter: use_renv
 Widget: CheckboxInput
@@ -33,4 +33,4 @@ Fields: None, PSS, Secondary, aspredicted_prereg, brandt_prereg, cos_prereg, fmr
 Parameter: add_license
 Widget: SelectInput
 Label: Use license
-Fields: CC_BY_4.0, CC_BY-SA_4.0, CC_BY-NC_4.0, CC_BY-NC-SA_4.0, CC_BY-ND_4.0, CC_BY-NC-ND_4.0, None
+Fields: cc0, ccby, gpl, gpl3, agpl, agpl3, apache, apl2, lgpl, mit, proprietary, None

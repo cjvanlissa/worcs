@@ -23,21 +23,26 @@ recommend_data <- c('library("worcs")',
 #' \code{\link[prereg:prereg]{prereg}} package. For more information, see
 #' \code{\link{add_preregistration}}.
 #' @param add_license Character, indicating what license to include.
-#' Default: 'CC_BY_4.0'. Available options include:
-#' \code{"CC_BY_4.0", "CC_BY-SA_4.0", "CC_BY-NC_4.0", "CC_BY-NC-SA_4.0",
-#' "CC_BY-ND_4.0", "CC_BY-NC-ND_4.0", "None"}. For more information, see
-#' <https://creativecommons.org/licenses/>.
+#' Default: 'ccby'. Available options include:
+#' \code{c("cc0", "ccby", "gpl", "gpl3", "agpl", "agpl3", "apache", "apl2",
+#' "lgpl", "mit", "proprietary", "None"}. For more information, see
+#' \code{\link[usethis]{use_cc0_license}}.
 #' @param use_renv Logical, indicating whether or not to use 'renv' to make the
 #' project reproducible. Default: TRUE. See \code{\link[renv]{init}}.
 #' @param use_targets Logical, indicating whether or not to use 'targets' to
-#' create a Make-like pipeline. Default: FALSE See \code{\link[targets]{targets-package}}.
-#' @param remote_repo Character, address of the remote repository for
-#' this project. This link should have the form
+#' create a Make-like pipeline.
+#' Default: FALSE See \code{\link[targets]{targets-package}}.
+#' @param remote_repo Character, URL of, or name for, the remote repository for
+#' this project. If a URL of an existing repository is specified, it should have
+#' the form
 #' \code{https://github.com[username][repo].git} (preferred) or
 #' \code{git@[...].git} (if using SSH).
-#' If a valid remote repository link is provided, a commit will
+#' Alternatively, a name for a new repository can be provided. If a 'GitHub'
+#' user is authenticated on your device, this repository will be created on your
+#' account.
+#' Finally, a commit will
 #' be made containing the 'README.md' file, and will be pushed to the remote
-#' repository. Default: 'https'.
+#' repository. Default: 'https', which results in no repository being created.
 #' @param verbose Logical. Whether or not to print messages to the console
 #' during project creation. Default: TRUE
 #' @param ... Additional arguments passed to and from functions.
@@ -228,29 +233,15 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   }
 
   # Connect to remote repo if possible
-  repo_url <- parse_repo(remote_repo = remote_repo, verbose = verbose)
-  valid_repo <- !is.null(repo_url)
+  valid_repo <- isFALSE(remote_repo == "https")
+  #
+  # repo_url <- parse_repo(remote_repo = remote_repo, verbose = verbose)
+  # valid_repo <- !is.null(repo_url)
   if(use_git & valid_repo){
-    tryCatch({
-      # For compatibility with old and new gert, check which formals it has
-      Args_gert <- list(
-        "origin",
-        url = remote_repo,
-        repo = path
-      )
-      if("remote" %in% formalArgs(git_remote_add)){
-        names(Args_gert)[1] <- "remote"
-      } else {
-        names(Args_gert)[1] <- "name"
-      }
-      do.call(git_remote_add, Args_gert)
-      git_push(remote = "origin", repo = path)
-      col_message(paste0("Connected to remote repository at ", remote_repo), verbose = verbose)
-    }, error = function(e){
-      col_message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", success = FALSE, verbose = verbose)
-      })
-  } else {
-    col_message("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.", success = FALSE)
+    out_git <- git_connect_or_create(repo = path, remote_repo = remote_repo)
+    out_push <- try(git_push(remote = "origin", repo = path, verbose = FALSE))
+    # out_test <- git_remote_test(repo = path)
+    # col_message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", success = FALSE, verbose = verbose)
   }
   if("GCtorture" %in% ls()) rm("GCtorture")
 }

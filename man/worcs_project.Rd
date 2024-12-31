@@ -34,24 +34,29 @@ preregistration. Default: 'cos_prereg'. Available choices include:
 \code{\link{add_preregistration}}.}
 
 \item{add_license}{Character, indicating what license to include.
-Default: 'CC_BY_4.0'. Available options include:
-\code{"CC_BY_4.0", "CC_BY-SA_4.0", "CC_BY-NC_4.0", "CC_BY-NC-SA_4.0",
-"CC_BY-ND_4.0", "CC_BY-NC-ND_4.0", "None"}. For more information, see
-\url{https://creativecommons.org/licenses/}.}
+Default: 'ccby'. Available options include:
+\code{c("cc0", "ccby", "gpl", "gpl3", "agpl", "agpl3", "apache", "apl2",
+"lgpl", "mit", "proprietary", "None"}. For more information, see
+\code{\link[usethis]{use_cc0_license}}.}
 
 \item{use_renv}{Logical, indicating whether or not to use 'renv' to make the
 project reproducible. Default: TRUE. See \code{\link[renv]{init}}.}
 
 \item{use_targets}{Logical, indicating whether or not to use 'targets' to
-create a Make-like pipeline. Default: FALSE See \code{\link[targets]{targets-package}}.}
+create a Make-like pipeline.
+Default: FALSE See \code{\link[targets]{targets-package}}.}
 
-\item{remote_repo}{Character, address of the remote repository for
-this project. This link should have the form
+\item{remote_repo}{Character, URL of, or name for, the remote repository for
+this project. If a URL of an existing repository is specified, it should have
+the form
 \code{https://github.com[username][repo].git} (preferred) or
 \code{git@[...].git} (if using SSH).
-If a valid remote repository link is provided, a commit will
+Alternatively, a name for a new repository can be provided. If a 'GitHub'
+user is authenticated on your device, this repository will be created on your
+account.
+Finally, a commit will
 be made containing the 'README.md' file, and will be pushed to the remote
-repository. Default: 'https'.}
+repository. Default: 'https', which results in no repository being created.}
 
 \item{verbose}{Logical. Whether or not to print messages to the console
 during project creation. Default: TRUE}

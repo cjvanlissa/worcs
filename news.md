@@ -13,6 +13,7 @@
   all analyses are completed before the manuscript is rendered
 * Small bugfix in git_update() allows it to push another repository than the
   active one
+* User interface now makes use of the cli package
 
 # worcs 0.1.15
 
