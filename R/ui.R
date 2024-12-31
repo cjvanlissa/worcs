@@ -11,7 +11,7 @@ with_cli_try <- function(msg, code, ...){
 }
 
 cli_msg <- function(...){
-  if(!is_quiet()) do.call(cli::cli_bullets, list(text = as.vector(list(...))), envir = parent.frame(n = 2))
+  if(!is_quiet()) do.call(cli::cli_bullets, list(text = as.vector(list(...))), envir = parent.frame(n = 1))
 }
 
 is_quiet <- function() {

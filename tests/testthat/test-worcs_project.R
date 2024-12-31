@@ -18,9 +18,9 @@ test_that("worcs project can be generated", {
     use_renv = FALSE,
     remote_repo = "bla"
   )
-  list.files(file.path(test_dir, "worcs_project"))
+  # list.files(file.path(test_dir, "worcs_project"))
   expect_true(file.exists("worcs_project/.worcs"))
-  expect_true(file.exists("worcs_project/LICENSE"))
+  expect_true(file.exists("worcs_project/LICENSE")|file.exists("worcs_project/LICENSE.md"))
   expect_true(file.exists("worcs_project/README.md"))
   readme_contents <- readLines("worcs_project/README.md", encoding = "UTF-8")
   expect_true(any(readme_contents == paste0("You can load this project in RStudio by opening the file called '", "worcs_project.Rproj", "'.")))

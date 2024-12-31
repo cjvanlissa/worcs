@@ -3,7 +3,7 @@
 \name{git_remote_create}
 \alias{git_remote_create}
 \alias{git_release_publish}
-\title{Create a new 'GitHub' repository}
+\title{Create a New 'GitHub' Repository}
 \usage{
 git_remote_create(name, private = TRUE)
 
@@ -30,7 +30,8 @@ arguments. Override this behavior, for example, to increment the major
 version number by specifying \verb{0.2.0}.}
 }
 \value{
-No return value. This function is called for its side effects.
+Invisibly returns a logical value,
+indicating whether the function was successful or not.
 
 No return value. This function is called for its side effects.
 }

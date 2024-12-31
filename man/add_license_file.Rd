@@ -4,10 +4,10 @@
 \alias{add_license_file}
 \title{Add License File to Project}
 \usage{
-add_license_file(repo = ".", license = "ccby", ...)
+add_license_file(path = ".", license = "ccby", ...)
 }
 \arguments{
-\item{repo}{Character, indicating the directory in which to create the
+\item{path}{Character, indicating the directory in which to create the
 license file. Default: '.'.}
 
 \item{license}{Character, indicating which license function to call.
@@ -28,7 +28,7 @@ cases (e.g., WORCS projects, FAIR theory).
 \examples{
 tmpdr <- file.path(tempdir(), "license")
 dir.create(tmpdr)
-add_license_file(repo = tmpdr,
+add_license_file(path = tmpdr,
                  license = "proprietary",
                  copyright_holder = "test")
 unlink(tmpdr, recursive = TRUE)

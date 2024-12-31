@@ -149,7 +149,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
 
   # Begin license
   if(!add_license == "none"){
-    add_license_file(repo = path, license = add_license)
+    add_license_file(path = path, license = add_license)
   }
   # End license
 
