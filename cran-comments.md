@@ -18,18 +18,18 @@
 ## Test environments
 
 * local Windows 11, R 4.3.2
-* local Ubuntu 22 x86_64-pc-linux-gnu, R 4.4.1
-* win-builder: R Under development (unstable) (2024-09-13 r87147 ucrt)
-* win-builder: R version 4.4.1 (2024-06-14 ucrt)
+* win-builder: R version 4.4.2 (2024-10-31 ucrt)
+* win-builder: R Under development (unstable) (2024-12-30 r87496 ucrt)
 * win-builder: R version 4.3.3 (2024-02-29 ucrt)
-* Rhub  [VM] windows        R-* (any version)                     windows-latest on GitHub
-* Rhub  [CT] atlas          R-devel (2024-09-13 r87147)           Fedora Linux 38 (Container Image)
-* Rhub  [CT] c23            R-devel (2024-09-12 r87143)           Ubuntu 22.04.4 LTS
-* GitHub Actions, os: macos-latest,   r: 'release'
-* GitHub Actions, os: windows-latest, r: 'release'
-* GitHub Actions, os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'
-* GitHub Actions, os: ubuntu-latest,   r: 'release'
-* GitHub Actions, os: ubuntu-latest,   r: 'oldrel-1'
+* Rhub: linux (R-devel)
+* Rhub: macos (R-devel)
+* Rhub: macos-arm64 (R-devel)
+* Rhub: windows (R-devel)
+* GitHub Actions: macos-latest (release)
+* GitHub Actions: windows-latest (release)
+* GitHub Actions: ubuntu-latest (devel)
+* GitHub Actions: ubuntu-latest (release)
+* GitHub Actions: ubuntu-latest (oldrel-1)
 
 ## R CMD check results
 

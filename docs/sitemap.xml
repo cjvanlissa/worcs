@@ -52,6 +52,9 @@
     <loc>https://cjvanlissa.github.io/worcs/reference/add_endpoint.html</loc>
   </url>
   <url>
+    <loc>https://cjvanlissa.github.io/worcs/reference/add_license_file.html</loc>
+  </url>
+  <url>
     <loc>https://cjvanlissa.github.io/worcs/reference/add_manuscript.html</loc>
   </url>
   <url>
@@ -116,6 +119,12 @@
   </url>
   <url>
     <loc>https://cjvanlissa.github.io/worcs/reference/git_ignore.html</loc>
+  </url>
+  <url>
+    <loc>https://cjvanlissa.github.io/worcs/reference/git_remote_connect.html</loc>
+  </url>
+  <url>
+    <loc>https://cjvanlissa.github.io/worcs/reference/git_remote_create.html</loc>
   </url>
   <url>
     <loc>https://cjvanlissa.github.io/worcs/reference/git_update.html</loc>

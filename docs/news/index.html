@@ -60,11 +60,15 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.16" id="worcs-0116">worcs 0.1.16<a class="anchor" aria-label="anchor" href="#worcs-0116"></a></h2>
-<ul><li>Make usethis 3.0.0 required because use_github_action() did not have argument ‘badge’ in earlier versions</li>
+<ul><li>Add git_remote_create(), git_release_publish()</li>
+<li>Add add_license_file()</li>
+<li>Make usethis 3.0.0 required because use_github_action() did not have argument ‘badge’ in earlier versions</li>
 <li>github_actions functions now check if ‘badge’ argument exists</li>
 <li>github_actions functions try to modify readme.md</li>
 <li>Added checks to see if original data are available to reproduce() and github_actions_reproduce(), because it is likely that analyses should fail to reproduce if original data are not available</li>
 <li>Set default priority to 1 and tarchetypes::tar_render() priority to 0 so that all analyses are completed before the manuscript is rendered</li>
+<li>Small bugfix in git_update() allows it to push another repository than the active one</li>
+<li>User interface now makes use of the cli package</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.15" id="worcs-0115">worcs 0.1.15<a class="anchor" aria-label="anchor" href="#worcs-0115"></a></h2><p class="text-muted">CRAN release: 2024-09-14</p>

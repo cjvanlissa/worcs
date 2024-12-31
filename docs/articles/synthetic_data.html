@@ -227,19 +227,17 @@ R-object called <code>dat</code>, which we saved to a file called
 <code>dat.csv</code> using the function <code><a href="../reference/closed_data.html">closed_data()</a></code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/add_synthetic.html">add_synthetic</a></span><span class="op">(</span><span class="va">dat_synthetic</span>, original_name <span class="op">=</span> <span class="st">"dat.csv"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Storing synthetic data in <span style="color: #0000BB;">"fn_write_synth_rel"</span> and updating the checksum in <span style="color: #0000BB;">"</span>…<span style="color: #00BB00;">✔</span> Storing synthetic data in <span style="color: #0000BB;">"fn_write_synth_rel"</span> and updating the checksum in <span style="color: #0000BB;">"</span>…</span></span></code></pre>
 <p>If we now remove the original data, and call <code><a href="../reference/load_data.html">load_data()</a></code>
 again, we can verify that the synthetic dataset is loaded, and we can
 see that it’s possible to reproduce the analysis - if not the exact
 results - with it:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="st">"dat.csv"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/load_data.html">load_data</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu">lavaan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/sem.html" class="external-link">sem</a></span><span class="op">(</span><span class="va">model</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span><span class="fu">tidySEM</span><span class="fu">::</span><span class="fu"><a href="https://cjvanlissa.github.io/tidySEM/reference/table_results.html" class="external-link">table_results</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] TRUE</span></span>
-<span><span class="co">#&gt; The following objects are masked from check_data_resources(dn_worcs = dn_worcs, worcsfile = worcsfile, verbose = verbose) (pos = 3):</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     data_files, data_files_synth, data_original, fn_data_files</span></span>
 <span><span class="co">#&gt;              label est_sig   se pval      confint</span></span>
 <span><span class="co">#&gt; 1      ind60.BY.x1    1.00 0.00 &lt;NA&gt; [1.00, 1.00]</span></span>
 <span><span class="co">#&gt; 2      ind60.BY.x2 2.15*** 0.05 0.00 [2.05, 2.25]</span></span>

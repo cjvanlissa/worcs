@@ -110,10 +110,10 @@ preregistration. Default: 'cos_prereg'. Available choices include:
 
 <dt>add_license</dt>
 <dd><p>Character, indicating what license to include.
-Default: 'CC_BY_4.0'. Available options include:
-<code>"CC_BY_4.0", "CC_BY-SA_4.0", "CC_BY-NC_4.0", "CC_BY-NC-SA_4.0",
-"CC_BY-ND_4.0", "CC_BY-NC-ND_4.0", "None"</code>. For more information, see
-<a href="https://creativecommons.org/licenses/" class="external-link">https://creativecommons.org/licenses/</a>.</p></dd>
+Default: 'ccby'. Available options include:
+<code>c("cc0", "ccby", "gpl", "gpl3", "agpl", "agpl3", "apache", "apl2",
+"lgpl", "mit", "proprietary", "None"</code>. For more information, see
+<code><a href="https://usethis.r-lib.org/reference/licenses.html" class="external-link">use_cc0_license</a></code>.</p></dd>
 
 
 <dt>use_renv</dt>
@@ -123,17 +123,22 @@ project reproducible. Default: TRUE. See <code><a href="https://rstudio.github.i
 
 <dt>use_targets</dt>
 <dd><p>Logical, indicating whether or not to use 'targets' to
-create a Make-like pipeline. Default: FALSE See <code><a href="https://docs.ropensci.org/targets/reference/targets-package.html" class="external-link">targets-package</a></code>.</p></dd>
+create a Make-like pipeline.
+Default: FALSE See <code><a href="https://docs.ropensci.org/targets/reference/targets-package.html" class="external-link">targets-package</a></code>.</p></dd>
 
 
 <dt>remote_repo</dt>
-<dd><p>Character, address of the remote repository for
-this project. This link should have the form
+<dd><p>Character, URL of, or name for, the remote repository for
+this project. If a URL of an existing repository is specified, it should have
+the form
 <code>https://github.com[username][repo].git</code> (preferred) or
 <code>git@[...].git</code> (if using SSH).
-If a valid remote repository link is provided, a commit will
+Alternatively, a name for a new repository can be provided. If a 'GitHub'
+user is authenticated on your device, this repository will be created on your
+account.
+Finally, a commit will
 be made containing the 'README.md' file, and will be pushed to the remote
-repository. Default: 'https'.</p></dd>
+repository. Default: 'https', which results in no repository being created.</p></dd>
 
 
 <dt>verbose</dt>
@@ -171,8 +176,38 @@ during project creation. Default: TRUE</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Creating manuscript files.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Adding recipe to '.worcs'.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Creating first commit (committing README.md).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Called from: worcs_project(file.path(tempdir(), the_test, "worcs_project"), </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     manuscript = "github_document", preregistration = "None", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     add_license = "None", use_renv = FALSE, remote_repo = "https")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug at C:/git_repositories/worcs/R/worcs_project.R#233: repo_url &lt;- parse_repo(remote_repo = remote_repo, verbose = verbose)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Not a valid 'Git' remote repository address: https</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> No valid 'GitHub' address provided. You are working with a local 'Git' repository only.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug at C:/git_repositories/worcs/R/worcs_project.R#234: valid_repo &lt;- !is.null(repo_url)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug at C:/git_repositories/worcs/R/worcs_project.R#235: if (use_git &amp; valid_repo) {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     tryCatch({</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Args_gert &lt;- list("origin", url = remote_repo, repo = path)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         if ("remote" %in% formalArgs(git_remote_add)) {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             names(Args_gert)[1] &lt;- "remote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         }</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         else {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             names(Args_gert)[1] &lt;- "name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         }</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         do.call(git_remote_add, Args_gert)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         git_push(remote = "origin", repo = path)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         col_message(paste0("Connected to remote repository at ", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             remote_repo), verbose = verbose)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     }, error = function(e) {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         col_message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             success = FALSE, verbose = verbose)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     })</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> } else {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     col_message("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         success = FALSE)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug at C:/git_repositories/worcs/R/worcs_project.R#255: col_message("No valid 'GitHub' address provided. You are working with a local 'Git' repository only.", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     success = FALSE)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> No valid 'GitHub' address provided. You are working with a local 'Git'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   repository only.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug at C:/git_repositories/worcs/R/worcs_project.R#257: if ("GCtorture" %in% ls()) rm("GCtorture")</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">the_test</span><span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
