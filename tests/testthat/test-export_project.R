@@ -22,11 +22,12 @@ run_test <- tryCatch({
 }, error = function(e){FALSE})
 
 if(run_test){
-  do.call(git_user, worcs:::get_user())
+  #do.call(git_user, worcs:::get_user())
 
   testdir <- file.path(tempdir(), "export")
   testzip <- tempfile(fileext = ".zip")
   dir.create(testdir)
+  on.exit(unlink(testdir, recursive = TRUE, force = TRUE))
   suppressWarnings(
     worcs_project(
       testdir,

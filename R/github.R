@@ -44,16 +44,16 @@ git_ignore <- function(..., ignore = TRUE, repo = ".") {
   eval(cl, parent.frame())
 }
 
-#' @importFrom gert libgit2_config git_config_global
-has_git <- function() {
-  tryCatch({
-    config <- libgit2_config()
-    return(has_git_user() &
-             (any(unlist(config[c("ssh", "https")]))))
-  }, error = function(e) {
-    return(FALSE)
-  })
-}
+# @importFrom gert libgit2_config git_config_global
+# has_git <- function(repo) {
+#   tryCatch({
+#     config <- libgit2_config()
+#     return(has_git_user() &
+#              (any(unlist(config[c("ssh", "https")]))))
+#   }, error = function(e) {
+#     return(FALSE)
+#   })
+# }
 
 #' @title Set global 'Git' credentials
 #' @description This function is a wrapper for
@@ -76,26 +76,27 @@ has_git <- function() {
 #' @examples
 #' do.call(git_user, worcs:::get_user())
 #' @export
-#' @importFrom gert git_config_global_set
+#' @importFrom gert git_config_global_set git_config_set
 git_user <- function(name,
                      email,
                      overwrite = !has_git_user(),
                      verbose = TRUE) {
   if (overwrite) {
-    invisible(tryCatch({
-      do.call(git_config_global_set,
-              list(name = "user.name", value = name))
-      do.call(git_config_global_set,
-              list(name = "user.email", value = email))
-      col_message("'Git' username set to '",
-                  name,
-                  "' and email set to '",
-                  email,
-                  "'.",
-                  verbose = verbose)
-    }, error = function(e) {
-      col_message("Could not set 'Git' credentials.", success = FALSE)
-    }))
+    with_cli_try("set 'Git' credentials.", {
+      res_user <- try(do.call(git_config_global_set,
+                     list(name = "user.name", value = name)))
+      res_email <- try(do.call(git_config_global_set,
+                               list(name = "user.email", value = email)))
+      if(inherits(res_user, "try-error")){
+        res_user <- try(do.call(gert::git_config_set,
+                                list(name = "user.name", value = name)))
+      }
+      if(inherits(res_email, "try-error")){
+        res_email <- try(do.call(gert::git_config_set,
+                                 list(name = "user.email", value = email)))
+      }
+      if(inherits(res_user, "try-error") | inherits(res_email, "try-error")) stop()
+    })
   } else {
     message(
       "To set the 'Git' username and email, call 'git_user()' with the argument 'overwrite = TRUE'."
@@ -116,29 +117,29 @@ get_user <- function() {
 
 #' @title Check whether global 'Git' credentials exist
 #' @description Check whether the values \code{user.name} and \code{user.email}
-#' exist exist in the 'Git' global configuration settings.
-#' Uses \code{\link[gert:git_config]{git_config_global}}.
+#' exist exist for the current repository.
+#' Uses \code{\link[gert:git_signature]{git_signature_default}}.
 #' @return Logical, indicating whether 'Git' global configuration settings could
 #' be retrieved, and contained the values
 #' \code{user.name} and \code{user.email}.
+#' @param repo The path to the git repository.
 #' @rdname has_git_user
 #' @examples
-#' has_git_user()
+#' testdir <- file.path(tempdir(), "test_git_user")
+#' dir.create(testdir)
+#' gert::git_init(testdir)
+#' has_git_user(testdir)
+#' unlink(testdir, recursive = TRUE)
 #' @export
 #' @importFrom gert git_config_global
-has_git_user <- function() {
-  tryCatch({
-    cf <- git_config_global()
-    if (!("user.name" %in% cf$name) & ("user.email" %in% cf$name)) {
+has_git_user <- function(repo = ".") {
+  with_cli_try("Checking 'Git' credentials.", {
+    if(!gert::user_is_configured()) stop()
+    res <- try(gert::git_signature_default(repo = repo))
+    if(inherits(res, what = "try-error")){
+      cli_msg("i" = "Set 'Git' username and email by calling {.code git_user({.val your_name}, {.val your_email}, overwrite = TRUE)}")
       stop()
-    } else {
-      return(TRUE)
     }
-  }, error = function(e) {
-    message(
-      "No 'Git' credentials found, returning name = 'yourname' and email = 'yourname@email.com'."
-    )
-    return(FALSE)
   })
 }
 
@@ -232,6 +233,9 @@ git_update <- function(message = paste0("update ", Sys.time()),
     eval.parent(cl_commit)
     cli::cli_process_done()
   }, error = function(err) {
+    if(grepl("git_signature_default", err)){
+      cli_msg("i" = "Run worcs::git_user({.val your_name}, {.val your_email}, overwrite = TRUE)")
+    }
     cli::cli_process_failed()
   }))
 

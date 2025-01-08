@@ -69,11 +69,9 @@ export_project <- function(zipfile = NULL, worcs_directory = ".", open_data = TR
     }
     zip_these <- unique(c(zip_these, data_original, data_synthetic))
   }
-  oldwd <- getwd()
-  setwd(worcs_directory)
-  on.exit(setwd(oldwd))
-  outcome <- zip(zipfile = zipfile, files = zip_these, flags="-rq")
-  setwd(oldwd)
+  usethis::with_project(path = worcs_directory, code = {
+    outcome <- zip(zipfile = zipfile, files = zip_these, flags="-rq")
+  })
   if(!outcome == 0){
     return(invisible(FALSE))
   } else {

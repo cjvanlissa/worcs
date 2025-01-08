@@ -99,7 +99,7 @@ for the package and paper.
 | vignettes/    | R-package vignettes             | human editable  |
 
 <!-- ## Adoption of WORCS by users -->
-<!-- As of 2024-12-31, these are indicators of the adoption of `worcs` by users: -->
+<!-- As of 2025-01-08, these are indicators of the adoption of `worcs` by users: -->
 <!-- 1. The preprint has been downloaded 1372 times, since being published on 31-05-2020 -->
 <!-- 1. The paper in [Data Science](https://content.iospress.com/articles/data-science/ds210031) has been cited 13 times -->
 <!-- 1. The `worcs` R-package has been downloaded r dl times from CRAN, since being published on 18-05-2020 -->

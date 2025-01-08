@@ -61,7 +61,7 @@ scoped_temporary_thing <- function(dir = fs::file_temp(pattern = pattern),
   )
 
   withr::defer(usethis::proj_set(old_project, force = TRUE), envir = env)
-  proj_set(dir)
+  usethis::proj_set(dir)
 
   withr::defer(
     {
@@ -69,9 +69,9 @@ scoped_temporary_thing <- function(dir = fs::file_temp(pattern = pattern),
     },
     envir = env
   )
-  setwd(proj_get())
+  setwd(usethis::proj_get())
 
-  invisible(proj_get())
+  invisible(usethis::proj_get())
 }
 
 test_mode <- function() {

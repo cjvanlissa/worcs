@@ -85,37 +85,30 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   if("use_git" %in% names(dots)){
     use_git <- dots[["use_git"]]
   } else {
-    use_git <- has_git()
+    use_git <- usethis::ui_silence(check_git())
   }
   if(!use_git){
-    col_message("Could not find a working installation of 'Git', which is required to safeguard the transparency and reproducibility of your project. Please connect 'Git' by following the steps described in this vignette:\n  vignette('setup', package = 'worcs')", success = FALSE)
+    cli_msg("i" = "Using 'Git' for version control is recommended to ensure the transparency and reproducibility of your project. Please run {.code worcs::check_git()} to verify that it is installed correctly. You can later add 'Git' by running {.code gert::git_init()} and {.code worcs::git_remote_connect()}.")
   } else {
-    col_message("Initializing 'Git' repository.", verbose = verbose)
-    git_init(path = path)
+    with_cli_try("Initializing 'Git' repository.", git_init(path = path))
   }
 
   # Create .worcs file
-  tryCatch({
+  with_cli_try("Writing {.val .worcs} file.", {
     write_worcsfile(filename = file.path(path, ".worcs"),
                     worcs_version = as.character(packageVersion("worcs")),
                     creator = Sys.info()["effective_user"]
     )
-    col_message("Writing '.worcs' file.", verbose = verbose)
-  }, error = function(e){
-    col_message("Writing '.worcs' file.", success = FALSE)
-  })
+    })
 
 
   # copy 'resources' folder to path
-  tryCatch({
+  with_cli_try("Copying standard files.", {
     copy_resources(which_files = c(
       "README.md",
       "prepare_data.R",
       "worcs_icon.png"
     ), path = path)
-    col_message("Copying standard files.", verbose = verbose)
-  }, error = function(e){
-    col_message("Copying standard files.", success = FALSE)
   })
 
 

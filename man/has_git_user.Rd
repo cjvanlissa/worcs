@@ -4,7 +4,10 @@
 \alias{has_git_user}
 \title{Check whether global 'Git' credentials exist}
 \usage{
-has_git_user()
+has_git_user(repo = ".")
+}
+\arguments{
+\item{repo}{The path to the git repository.}
 }
 \value{
 Logical, indicating whether 'Git' global configuration settings could
@@ -13,9 +16,13 @@ be retrieved, and contained the values
 }
 \description{
 Check whether the values \code{user.name} and \code{user.email}
-exist exist in the 'Git' global configuration settings.
-Uses \code{\link[gert:git_config]{git_config_global}}.
+exist exist for the current repository.
+Uses \code{\link[gert:git_signature]{git_signature_default}}.
 }
 \examples{
-has_git_user()
+testdir <- file.path(tempdir(), "test_git_user")
+dir.create(testdir)
+gert::git_init(testdir)
+has_git_user(testdir)
+unlink(testdir, recursive = TRUE)
 }

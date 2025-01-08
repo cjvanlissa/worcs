@@ -2,23 +2,17 @@ if(worcs:::gert_works()){
 library(gert)
 test_that("worcs project can be generated", {
 
-  the_test <- "project"
-  old_wd <- getwd()
-  test_dir <- file.path(tempdir(), the_test)
-  dir.create(test_dir)
-  setwd(test_dir)
-
-  on.exit(unlink(test_dir, recursive = TRUE), add = TRUE)
+  scoped_temporary_project()
 
   worcs_project(
     path = "worcs_project",
     manuscript = "github_document",
     preregistration = "cos_prereg",
-    add_license = "CC_BY_4.0",
+    add_license = "ccby",
     use_renv = FALSE,
-    remote_repo = "bla"
+    remote_repo = NULL
   )
-  # list.files(file.path(test_dir, "worcs_project"))
+  # list.files()
   expect_true(file.exists("worcs_project/.worcs"))
   expect_true(file.exists("worcs_project/LICENSE")|file.exists("worcs_project/LICENSE.md"))
   expect_true(file.exists("worcs_project/README.md"))
@@ -28,6 +22,5 @@ test_that("worcs project can be generated", {
   expect_true(file.exists("worcs_project/manuscript/manuscript.Rmd"))
   expect_error(git_status(repo = "worcs_project"), NA)
 
-  setwd(old_wd)
 })
 }

@@ -1,3 +1,8 @@
+# worcs 0.1.17
+
+* Update package startup message
+* Rework Git tests
+
 # worcs 0.1.16
 
 * Add git_remote_create(), git_release_publish()

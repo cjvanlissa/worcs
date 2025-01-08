@@ -32,19 +32,10 @@ check_worcs_installation <- function(what = "all") {
     }
   }
   out <- lapply(checkfuns, function(thisfun){
-    out <- try(eval(str2lang(paste0("worcs::", thisfun, "()"))))
-    if(inherits(out, "try-error")){
-      out <- structure(list(pass = list(name = FALSE), errors = list()), class = c("worcs_check",
-                                                                          "list"))
-      names(out[["pass"]]) <- thisfun
-    }
-    out
+    eval(str2lang(paste0("worcs::", thisfun, "()")))
     })
 
-  worcs_checkres <- list(pass = do.call(c, lapply(out, `[[`, "pass")),
-                         errors = do.call(c, lapply(out, `[[`, "errors")))
-  class(worcs_checkres) <- c("worcs_check", class(worcs_checkres))
-  return(invisible(isTRUE(all(pass))))
+  return(invisible(isTRUE(all(unlist(out)))))
 }
 
 #' @rdname check_worcs_installation
@@ -52,6 +43,7 @@ check_worcs_installation <- function(what = "all") {
 #' the dependencies.
 #' @export
 check_dependencies <- function(package = "worcs") {
+  with_cli_try("Checking R package dependencies.", {
   available <- data.frame(installed.packages()) #[, c("Package", "Version")])
   thesedeps <- {
     pks <- packageDescription(package)
@@ -94,18 +86,11 @@ check_dependencies <- function(package = "worcs") {
     out <- list(pass = list(dependencies = TRUE), errors = list(dependencies = ""))
   } else {
     errors <- thesedeps[which(!(is_avlb & correct_vers))]
-    out <- list(
-      pass = list(dependencies = FALSE),
-      errors = list(
-        dependencies = paste0(
-          "The following packages are not installed (or their correct versions are not installed), run install.packages() for: ",
-          paste0(errors, collapse = ", ")
-        )
-      )
-    )
+    errors <- paste0("lapply(c(", paste0("'", errors, "'", collapse = ", "), "), install.packages)")
+    cli_msg("i" = "The following packages are not installed (or their correct versions are not installed), run {.code {errors}}.")
+    stop()
   }
-  class(out) <- c("worcs_check", class(out))
-  return(out)
+  })
 }
 
 #' @rdname check_worcs_installation
@@ -114,30 +99,24 @@ check_git <- function() {
   pass <- list()
   errors <- list()
   # Check command line git
-  pass[["git_cmd"]] <-
+  pass[["git_cmd"]] <- with_cli_try("Check if Git is available on the command line.", {
     system2("git",
             "--version",
             stdout = tempfile(),
             stderr = tempfile()) == 0L
-  if (!pass[["git_cmd"]])
-    errors[["git_cmd"]] <-
-    "Could not execute Git on the command line; please reinstall from https://git-scm.com/"
+  })
+  if (!pass[["git_cmd"]]) cli_msg("i" = "Please reinstall Git from {.url https://git-scm.com/}.")
 
-  # Check user
-  pass[["git_user"]] <- gert::user_is_configured()
-  if (!pass[["git_user"]])
-    errors[["git_user"]] <-
-    "No user configured; please run worcs::git_user(yourname, youremail, overwrite = TRUE)"
 
   # Check libgit for SSH
-  libgit <- gert::libgit2_config()
-  pass[["libgit2"]] <- !is.null(libgit[["version"]])
-  if (pass[["libgit2"]]) {
-    pass[["libgit2"]] <- libgit$ssh
-  }
+
+  pass[["libgit2"]] <- with_cli_try("Checking if libgit2 is properly installed, required for connecting to Git remote repositories from R.", {
+    libgit <- gert::libgit2_config()
+    if(is.null(libgit[["version"]]) | !libgit$ssh) stop()
+  })
+
   if (!pass[["libgit2"]]) {
-    errors[["libgit2"]] <-
-      "libgit2 is not properly installed and you may not be able to use the SSH protocol to connect to Git remote repositories."
+    cli_msg("i" = "libgit2 is not properly installed and you may not be able to use the SSH protocol to connect to Git remote repositories.")
   }
 
   # Check that one can create a repo
@@ -146,42 +125,34 @@ check_git <- function() {
   if (dir.exists(dir_name))
     unlink(dir_name, recursive = TRUE, force = TRUE)
   dir.create(dir_name)
-  pass[["git_init"]] <-
-    !inherits(try({
-      gert::git_init(dir_name)
-    }, silent = TRUE)
-    , "try-error")
-  if (!pass[["git_init"]]) {
-    errors[["git_init"]] <-
-      "Package gert could not initialize a Git repository."
-  } else {
+  on.exit(unlink(dir_name, recursive = TRUE, force = TRUE))
+  pass[["git_init"]] <- with_cli_try("Initiating Git repository.", {
+    gert::git_init(dir_name)
+  })
+
+  # Check user
+  pass[["git_user"]] <- with_cli_try("Git user is configured.", { gert::user_is_configured() })
+  if (!pass[["git_user"]])
+    cli_msg("i" = "No user configured; please run {.code worcs::git_user({.val your_name}, {.val your_email}, overwrite = TRUE)}.")
+
+  if (pass[["git_init"]]) {
     # More tests
     writeLines("test git", con = file.path(dir_name, "tmp.txt"))
-    tmp <- gert::git_add(".", repo = dir_name)
-    pass[["git_add"]] <- isTRUE(tmp$staged)
-    if (!pass[["git_add"]]) {
-      errors[["git_add"]] <-
-        "Package gert could not add files to Git repository."
-    } else {
+
+    pass[["git_add"]] <- with_cli_try("Adding files with {.code gert::git_add()}.", {
+      tmp <- gert::git_add(".", repo = dir_name)
+      isTRUE(tmp$staged)
+      })
+    if (pass[["git_add"]]) {
       # More tests
-      pass[["git_commit"]] <-
-        !inherits(try(gert::git_commit("First commit", repo = dir_name),
-                      silent = TRUE)
-                  , "try-error")
-      if (!pass[["git_commit"]]) {
-        errors[["git_commit"]] <-
-          "Package gert could not commit to Git repository."
-      }
+      pass[["git_commit"]] <- with_cli_try("Committing with {.code gert::git_commit()}.", {
+        gert::git_commit("First commit", repo = dir_name, author = gert::git_signature("test", "test@test.com"))
+      })
     }
   }
-  if(isTRUE(all(unlist(pass)))){
-    pass <- list(git = TRUE)
-    errors <- list()
-  }
-  unlink(dir_name, recursive = TRUE, force = TRUE)
-  out <- list(pass = pass, errors = errors)
-  class(out) <- c("worcs_check", class(out))
-  return(out)
+  return_status <- tryCatch(all(unlist(pass)), error = function(e){FALSE})
+  return(invisible(return_status))
+
 }
 
 #' @rdname check_worcs_installation
@@ -194,89 +165,74 @@ check_git <- function() {
 #' @export
 check_github <- function(pat = TRUE, ssh = FALSE) {
   pass <- list()
-  errors <- list()
+
   # Check if currently in a git repo with remote
   repo <- try({gert::git_remote_list()}, silent = TRUE)
   if(!inherits(repo, "try-error")){
-    if(isTRUE(grepl("^https://", repo$url))) pass[["current git repo has a remote that requires PAT authentication"]] <- TRUE
-    if(isTRUE(grepl("^git@", repo$url))) pass[["current git repo has a remote that requires SSH authentication"]] <- TRUE
+    if(isTRUE(grepl("^https://", repo$url))) cli_msg("i" = "Active project has a remote repository that requires PAT authentication.")
+    if(isTRUE(grepl("^git@", repo$url))) cli_msg("i" = "Active project has a remote that requires SSH authentication.")
   }
   if(pat){
-    pass[["github_pat"]] <- isFALSE(gh::gh_token() == "")
-    if (!pass[["github_pat"]])
-      errors[["github_pat"]] <-
-        "You have not set a Personal Access Token (PAT) for GitHub; to fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked. If you still experience problems try usethis::gh_token_help() for help."
-
-    # github pat grants access
-    if(pass[["github_pat"]]){
+    pass[["github_pat"]] <- with_cli_try("Check for PAT.", {
+      if(gh::gh_token() == "") stop()
+      # github pat grants access
       result <- tryCatch(gh::gh("/user"), error = function(e)e)
-      pass[["github_pat_response"]] <- isTRUE(inherits(result, "gh_response"))
-      if (!pass[["github_pat_response"]]){
-        errors[["github_pat_response"]] <- "The Personal Access Token (PAT) in your Git credential store does not grant access to GitHub. To fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked. If you still experience problems try usethis::gh_token_help() for help."
-        if(inherits(result, "http_error_401")){
-          errors[["github_pat_response"]] <- "The Personal Access Token (PAT) in your Git credential store does not grant access to GitHub. It may have expired. To fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked. If you still experience problems try usethis::gh_token_help() for help."
-        }
-        if(inherits(result, "rlib_error") && grepl("one of these forms", result$message)){
-          errors[["github_pat_response"]] <- "The Personal Access Token (PAT) in your Git credential store has the wrong format. To fix this, run usethis::create_github_token(), create a PAT and copy it, then run gitcreds::gitcreds_set() and paste the PAT when asked. If you still experience problems try usethis::gh_token_help() for help."
-        }
+      if(inherits(result, "http_error_401")){
+        cli_msg("i" = "The Personal Access Token (PAT) may have expired.")
       }
-    }
+      if(inherits(result, "rlib_error") && grepl("one of these forms", result$message)){
+        cli_msg("i" = "The Personal Access Token (PAT) has the wrong format.")
+      }
+      if(!isTRUE(inherits(result, "gh_response"))) stop()
+    })
+    if (!pass[["github_pat"]]) cli_msg("i" = "You have not set a Personal Access Token (PAT) for GitHub; to fix this, run {.code usethis::create_github_token()}, create a PAT and copy it, then run {.code gitcreds::gitcreds_set()} and paste the PAT when asked. If you still experience problems try {.code usethis::gh_token_help()} for help.")
+
+
+
   }
   if(ssh){
     # Check SSH
-    sshres <- check_ssh()
-    pass <- c(pass, sshres$pass)
-    errors <- c(errors, sshres$errors)
+
+
     # GitHub SSH
-    temp <- tempfile()
-    system2("ssh",
-            "-T git@github.com",
-            stdout = temp,
-            stderr = temp)
-    output <- readLines(temp)
-    pass[["github_ssh"]] <-
-      isTRUE(any(grepl("success", output, fixed = TRUE)))
-    # Maybe check if *any* type of authentication is possible
-    if (!pass[["github_ssh"]])
-      errors[["github_ssh"]] <-
-      "Could not authenticate GitHub via SSH, but that's OK. We recommend using a Personal Access Token (PAT). If you intend to use SSH with GitHub, consult https://happygitwithr.com/rstudio-git-github.html"
+    pass[["github_ssh"]] <- with_cli_try("Connecting to GitHub using SSH", {
+      if(!check_ssh()) stop()
+      temp <- tempfile()
+      system2("ssh",
+              "-T git@github.com",
+              stdout = temp,
+              stderr = temp)
+      output <- readLines(temp)
+      if(!isTRUE(any(grepl("success", output, fixed = TRUE)))){
+        cli_msg("i" = "Could not authenticate GitHub via SSH, but that's OK. We recommend using a Personal Access Token (PAT). If you intend to use SSH with GitHub, consult https://happygitwithr.com/rstudio-git-github.html")
+        stop()
+      }
+    })
+
   }
 
-  if(isTRUE(all(unlist(pass)))){
-    pass <- list(github = TRUE)
-    errors <- list()
-  }
-  out <- list(pass = pass, errors = errors)
-  class(out) <- c("worcs_check", class(out))
-  return(out)
+  return(invisible(isTRUE(all(unlist(pass)))))
 }
 
 #' @rdname check_worcs_installation
 #' @export
 check_ssh <- function() {
-  pass <- list()
-  errors <- list()
-  pass[["ssh"]] <-
-    isTRUE(!inherits(try(credentials::ssh_key_info(host = NULL, auto_keygen = FALSE)$key,
+  with_cli_try("Checking for valid SSH key.", {
+    if(!isTRUE(!inherits(try(credentials::ssh_key_info(host = NULL, auto_keygen = FALSE)$key,
                          silent = TRUE)
                      , "try-error") &
              !inherits(try(credentials::ssh_read_key(), silent = TRUE)
-                       , "try-error"))
-
-  if (!pass[["ssh"]])
-    errors[["ssh"]] <-
-    "Could not find a valid SSH key, but that's OK. We recommend using a Personal Access Token (PAT). If you do wish to set up SSH, please consult https://happygitwithr.com/ssh-keys.html"
-  out <- list(pass = pass, errors = errors)
-  class(out) <- c("worcs_check", class(out))
-  return(out)
+                       , "try-error"))){
+      cli_msg("i" = "Could not find a valid SSH key, but that's OK. We recommend using a Personal Access Token (PAT). If you do wish to set up SSH, please consult https://happygitwithr.com/ssh-keys.html")
+      stop()
+    }
+    })
 }
 
 #' @rdname check_worcs_installation
 #' @export
 check_tinytext <- function() {
-  pass <- list()
-  errors <- list()
-  pass[["tinytex"]] <- !inherits(try({
+  with_cli_try("Rendering document to PDF with tinytex.", {
     tmpfl <- tempfile(fileext = ".tex")
     writeLines(
       c(
@@ -288,24 +244,18 @@ check_tinytext <- function() {
       tmpfl
     )
     tmp <- tinytex::pdflatex(tmpfl)
-    isTRUE(endsWith(tmp, ".pdf"))
-  }, silent = TRUE)
-  , "try-error")
-
-  if (!pass[["tinytex"]])
-    errors[["tinytex"]] <-
-    "tinytex could not render a pdf document and may need to be reinstalled; please turn to https://yihui.org/tinytex/"
-  out <- list(pass = pass, errors = errors)
-  class(out) <- c("worcs_check", class(out))
-  return(out)
+    if(!isTRUE(endsWith(tmp, ".pdf"))){
+      cli_msg("i" = "tinytex may need to be reinstalled; please turn to {.url https://yihui.org/tinytex/}")
+      stop()
+    }
+  })
 }
 
 #' @rdname check_worcs_installation
 #' @export
 check_rmarkdown <- function() {
-  pass <- list()
-  errors <- list()
-  pass[["rmarkdown_html"]] <- !inherits(try({
+
+  pass <- with_cli_try("Checking that rmarkdown can render a HTML file.", {
     tmpinp <- tempfile(fileext = ".Rmd")
     tmpout <- tempfile(fileext = ".html")
     writeLines(
@@ -322,15 +272,11 @@ check_rmarkdown <- function() {
       rmarkdown::render(input = tmpinp,
                         output_file = tmpout,
                         quiet = TRUE)
-    isTRUE(endsWith(tmp, ".html"))
-  }, silent = TRUE)
-  , "try-error")
-
-  if (!pass[["rmarkdown_html"]])
-    errors[["rmarkdown_html"]] <-
-    "Rmarkdown could not render a HTML file."
-
-  pass[["rmarkdown_pdf"]] <- !inherits(try({
+    if(!isTRUE(endsWith(tmp, ".html"))){
+      stop()
+    }
+  })
+  pass <- c(pass, with_cli_try("Checking that rmarkdown can render a PDF file.", {
     tmpinp <- tempfile(fileext = ".Rmd")
     tmpout <- tempfile(fileext = ".pdf")
     writeLines(
@@ -347,61 +293,40 @@ check_rmarkdown <- function() {
       rmarkdown::render(input = tmpinp,
                         output_file = tmpout,
                         quiet = TRUE)
-    isTRUE(endsWith(tmp, ".pdf"))
-  }, silent = TRUE)
-  , "try-error")
+    if(!isTRUE(endsWith(tmp, ".pdf"))) stop()
+  }))
 
-  if (!pass[["rmarkdown_pdf"]])
-    errors[["rmarkdown_pdf"]] <-
-    "Rmarkdown could not render a PDF file."
-  if(isTRUE(all(unlist(pass)))){
-    pass <- list(rmarkdown = TRUE)
-    errors <- list()
-  }
-  out <- list(pass = pass, errors = errors)
-  class(out) <- c("worcs_check", class(out))
-  return(out)
+  return(invisible(isTRUE(all(pass))))
 }
 
 
 #' @rdname check_worcs_installation
 #' @export
 check_renv <- function() {
-  pass <- list()
-  errors <- list()
-  pass[["renv_consent"]] <- !inherits(try({
-    {
-      sink(tempfile())
-      tmp <- invisible(renv::consent())
-      sink()
-
-    }
-    if (!isTRUE(tmp))
+  with_cli_try("Checking that renv works.", {
+    sink(tempfile())
+    tmp <- invisible(renv::consent())
+    sink()
+    if (!isTRUE(tmp)){
+      cli_msg("i" = "renv does not have consent yet; run {.code renv::consent(provided = TRUE)}")
       stop()
-  }, silent = TRUE)
-  , "try-error")
-
-  if (!pass[["renv_consent"]])
-    errors[["renv_consent"]] <-
-    "renv does not have consent yet; run renv::consent(provided = TRUE)"
-  out <- list(pass = pass, errors = errors)
-  class(out) <- c("worcs_check", class(out))
-  return(out)
+    }
+  })
 }
 
 # Show results ------------------------------------------------------------
-#' @method print worcs_check
-#' @export
-print.worcs_check <- function(x, ...){
-  pass <- unlist(x$pass)
-  for (n in names(pass)) {
-    if (pass[n]) {
-      col_message(n, success = TRUE)
-    } else {
-      col_message(paste0(n, ": ", x$errors[[n]]), success = FALSE)
-    }
-  }
-}
+# @method print worcs_check
+# @export
+# print.worcs_check <- function(x, ...){
+#   pass <- unlist(x$pass)
+#   for (n in names(pass)) {
+#     if (pass[n]) {
+#       col_message(n, success = TRUE)
+#     } else {
+#       col_message(paste0(n, ": ", x$errors[[n]]), success = FALSE)
+#     }
+#   }
+# }
 
 get_deps <- function(package = "worcs") {
   pks <- packageDescription(package)
