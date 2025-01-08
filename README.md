@@ -10,13 +10,10 @@ status](https://www.r-pkg.org/badges/version/worcs)](https://cran.r-project.org/
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/worcs?color=blue)](https://r-pkg.org/pkg/worcs)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![R-CMD-check](https://github.com/cjvanlissa/worcs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cjvanlissa/worcs/actions/workflows/R-CMD-check.yaml)
-[![Codecov test
-coverage](https://app.codecov.io/gh/cjvanlissa/worcs/branch/master/graph/badge.svg)](https://app.codecov.io/gh/cjvanlissa/worcs?branch=master)
 [![Contributor
 Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 [![CII Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/3969/badge)](https://bestpractices.coreinfrastructure.org/projects/3969)
-<!--[![DOI](http://joss.theoj.org/papers/10.21105/joss.00978/status.svg)](https://doi.org/10.21105/joss.00978)-->
 <!-- badges: end --->
 
 The Workflow for Open Reproducible Code in Science (WORCS) is an easy to
