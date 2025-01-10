@@ -3,10 +3,12 @@
 on:
   push:
     branches: [main, master]
+    paths:
+      - .github/workflows/R-check-readonly.yaml
   pull_request:
     branches: [main, master]
 
-name: R-CMD-check
+name: R Testthat Readonly
 
 jobs:
   R-CMD-check:
@@ -35,14 +37,14 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - name: Make user library read-only
-        run: |
-          Rscript -e 'Sys.chmod(.libPaths()[1], mode = "0555")'
-
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
           needs: check
+
+      - name: Make user library read-only
+        run: |
+          Rscript -e 'Sys.chmod(.libPaths()[1], mode = "0555")'
 
       - uses: r-lib/actions/check-r-package@v2
         with:
