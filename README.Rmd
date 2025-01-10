@@ -24,7 +24,7 @@ which introduces the WORCS workflow, explains the underlying tools, and illustra
 
 The workflow is illustrated below; the [workflow vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html) describes each step in detail.
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.alt="A diagram of the WORCS workflow."}
 knitr::include_graphics("https://github.com/cjvanlissa/worcs/raw/master/paper/workflow_graph/workflow.png")
 ```
 

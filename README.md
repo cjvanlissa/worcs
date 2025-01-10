@@ -37,7 +37,7 @@ The workflow is illustrated below; the [workflow
 vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html)
 describes each step in detail.
 
-![](https://github.com/cjvanlissa/worcs/raw/master/paper/workflow_graph/workflow.png)<!-- -->
+<img src="https://github.com/cjvanlissa/worcs/raw/master/paper/workflow_graph/workflow.png" alt="A diagram of the WORCS workflow."  />
 
 ## Installing the package
 
