@@ -5,6 +5,12 @@
 * Make tests that require pandoc conditional
 * Update package startup message
 
+## R CMD check results
+
+0 errors | 0 warnings | 1 note
+
+* Days since last update: 3
+
 ## Test environments
 
 * local Windows 11, R 4.3.2
@@ -21,6 +27,3 @@
 * GitHub Actions: ubuntu-latest (release)
 * GitHub Actions: ubuntu-latest (oldrel-1)
 
-## R CMD check results
-
-0 errors | 0 warnings | 0 notes
