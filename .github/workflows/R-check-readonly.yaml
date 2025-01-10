@@ -3,6 +3,7 @@
 on:
   push:
     branches: [main, master]
+  push:
     paths:
       - .github/workflows/R-check-readonly.yaml
   pull_request:
