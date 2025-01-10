@@ -6,6 +6,7 @@ on:
   push:
     paths:
       - .github/workflows/R-check-readonly.yaml
+  workflow_dispatch:  # Allow manual triggers
   pull_request:
     branches: [main, master]
 
