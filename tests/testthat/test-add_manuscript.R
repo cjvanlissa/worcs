@@ -11,7 +11,7 @@ test_that("manuscript can be generated", {
   add_manuscript(
     worcs_directory = ".",
     manuscript = "github_document",
-    remote_repo = "bla"
+    remote_repo = "https"
   )
   expect_true(dir.exists("manuscript"))
   expect_true(file.exists(".worcs"))
@@ -34,7 +34,7 @@ test_that("rticles manuscript can be generated", {
   add_manuscript(
     worcs_directory = ".",
     manuscript = "plos_article",
-    remote_repo = "bla"
+    remote_repo = "https"
   )
   expect_true(dir.exists("manuscript"))
   expect_true(file.exists(".worcs"))
@@ -58,7 +58,7 @@ test_that("papaja manuscript can be generated", {
   add_manuscript(
     worcs_directory = ".",
     manuscript = "APA6",
-    remote_repo = "bla"
+    remote_repo = "https"
   )
   expect_true(dir.exists("manuscript"))
   expect_true(file.exists(".worcs"))

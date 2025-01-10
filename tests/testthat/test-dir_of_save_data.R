@@ -10,7 +10,7 @@ test_that("data stored in correct dir", {
   add_manuscript(
     worcs_directory = ".",
     manuscript = "github_document",
-    remote_repo = "bla"
+    remote_repo = "https"
   )
   data("iris")
   df1 <- iris[1:5, 1:4]

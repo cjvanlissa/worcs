@@ -1,7 +1,9 @@
 # worcs 0.1.17
 
+* Addresses issues raised by Prof. Brian Ripley:
+    + https://www.stats.ox.ac.uk/pub/bdr/noSuggests/worcs.out
+* Make tests that require pandoc conditional
 * Update package startup message
-* Rework Git tests
 
 # worcs 0.1.16
 

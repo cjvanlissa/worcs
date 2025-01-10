@@ -8,14 +8,13 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+has_packages <- require(lavaan) & require(worcs) & require(tidySEM)
 knitr::opts_chunk$set(
   collapse = TRUE,
+  eval = has_packages,
   comment = "#>"
 )
 thedir <- getwd()
-
-library(worcs)
-library(lavaan)
 file.create(file.path(thedir, ".worcs"))
 ```
 
@@ -50,7 +49,7 @@ set.seed(4)
 dat <- PoliticalDemocracy
 closed_data(dat)
 ```
-```{r echo = FALSE, eval = TRUE, error=FALSE, warning=FALSE, message=FALSE, results = "hide"}
+```{r echo = FALSE, eval = has_packages, error=FALSE, warning=FALSE, message=FALSE, results = "hide"}
 library(lavaan)
 library(tidySEM)
 dat <- PoliticalDemocracy
@@ -82,7 +81,7 @@ y6 ~~ y8'
 fit <- lavaan::sem(model, data = dat)
 tidySEM::table_results(fit)
 ```
-```{r echo = FALSE, eval = TRUE, error=FALSE, warning=FALSE}
+```{r echo = FALSE, eval = has_packages, error=FALSE, warning=FALSE}
 load_data(worcs_directory = thedir)
 model <- '
 ind60 =~ x1 + x2 + x3
@@ -114,7 +113,7 @@ we can load the synthetic dataset and try to run our model:
 dat2 <- read.csv("synthetic_dat.csv", stringsAsFactors = FALSE)
 fit2 <- lavaan::sem(model, data = dat2)
 ```
-```{r echo = FALSE, eval = TRUE, error=FALSE, warning=TRUE}
+```{r echo = FALSE, eval = has_packages, error=FALSE, warning=TRUE}
 dat2 <- read.csv("synthetic_dat.csv", stringsAsFactors = FALSE)
 fit2 <- lavaan::sem(model, data = dat2)
 ```
@@ -128,7 +127,7 @@ because the structure in the data is not adequately reproduced by the default al
 A dataset generated *from the model* will be much better able to reproduce that model.
 So, let's use this SEM model to generate a synthetic dataset:
 
-```{r eval = TRUE, echo = TRUE}
+```{r eval = has_packages, echo = TRUE}
 set.seed(33)
 dat_synthetic <- lavaan::simulateData(model = lavaan::partable(fit))
 ```
@@ -143,7 +142,7 @@ We started with an R-object called `dat`, which we saved to a file called `dat.c
 ```{r echo = TRUE, eval = FALSE}
 add_synthetic(dat_synthetic, original_name = "dat.csv")
 ```
-```{r echo = FALSE, eval = TRUE, error=FALSE, warning=FALSE}
+```{r echo = FALSE, eval = has_packages, error=FALSE, warning=FALSE}
 add_synthetic(dat_synthetic, original_name = "dat.csv", worcs_directory = thedir)
 ```
 
@@ -155,7 +154,7 @@ load_data()
 fit2 <- lavaan::sem(model, data = dat)
 tidySEM::table_results(fit2)
 ```
-```{r echo = FALSE, eval = TRUE, error=FALSE, warning=FALSE}
+```{r echo = FALSE, eval = has_packages, error=FALSE, warning=FALSE}
 file.remove(file.path(thedir, "dat.csv"))
 load_data(worcs_directory = thedir)
 fit2 <- lavaan::sem(model, data = dat)

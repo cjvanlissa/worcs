@@ -1,7 +1,7 @@
 library(rmarkdown)
 
 test_that("documents with spaces in names can be rendered", {
-
+  skip_if_not_pandoc("2.0")
   the_test <- "citeall"
   dir_name <- file.path(tempdir(), the_test)
   if(dir.exists(dir_name)) unlink(dir_name, recursive = TRUE)

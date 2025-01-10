@@ -1,3 +1,14 @@
+skip_if_not_pandoc <- function(ver = NULL) {
+  if (!pandoc_available(ver)) {
+    msg <- if (is.null(ver)) {
+      "Pandoc is not available"
+    } else {
+      sprintf("Version of Pandoc is lower than %s.", ver)
+    }
+    skip(msg)
+  }
+}
+
 # copied from usethis:
 # https://github.com/r-lib/usethis/blob/b2e894eb6d1d7f3312a783db3bb03a7cc309ba61/tests/testthat/helper.R
 library(usethis)

@@ -226,15 +226,12 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   }
 
   # Connect to remote repo if possible
-  valid_repo <- isFALSE(remote_repo == "https")
-  #
-  # repo_url <- parse_repo(remote_repo = remote_repo, verbose = verbose)
-  # valid_repo <- !is.null(repo_url)
+  valid_repo <- isFALSE(is.null(remote_repo) | remote_repo == "https")
+
   if(use_git & valid_repo){
     out_git <- git_connect_or_create(repo = path, remote_repo = remote_repo)
     out_push <- try(git_push(remote = "origin", repo = path, verbose = FALSE))
-    # out_test <- git_remote_test(repo = path)
-    # col_message("Could not connect to a remote 'GitHub' repository. You are working with a local 'Git' repository only.", success = FALSE, verbose = verbose)
+
   }
   if("GCtorture" %in% ls()) rm("GCtorture")
 }

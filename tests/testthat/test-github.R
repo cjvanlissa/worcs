@@ -2,6 +2,7 @@ if(FALSE){
 library(targets)
 test_that("targets works with apa6", {
   scoped_temporary_project()
+  skip_if_not_pandoc("2.0")
   # browser()
   unlink("R", recursive = TRUE)
   worcs::worcs_project(path = ".",
@@ -52,6 +53,7 @@ test_that("targets works with apa6", {
 
 
 test_that("targets works with target markdown", {
+  skip_if_not_pandoc("2.0")
   scoped_temporary_project()
   unlink("R", recursive = TRUE)
   worcs::worcs_project(path = ".",
