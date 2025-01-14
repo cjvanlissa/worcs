@@ -7,6 +7,7 @@
 \alias{check_github}
 \alias{check_ssh}
 \alias{check_tinytext}
+\alias{check_tinytex}
 \alias{check_rmarkdown}
 \alias{check_renv}
 \title{Check worcs dependencies}
@@ -22,6 +23,8 @@ check_github(pat = TRUE, ssh = FALSE)
 check_ssh()
 
 check_tinytext()
+
+check_tinytex()
 
 check_rmarkdown()
 
@@ -53,3 +56,4 @@ installed, and suggests how to remedy any missing dependencies.
 \examples{
 check_worcs_installation("none")
 }
+\keyword{internal}

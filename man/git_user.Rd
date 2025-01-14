@@ -32,5 +32,5 @@ argument, and \code{name = "user.email"} is set to the value of the
 \code{email} argument.
 }
 \examples{
-do.call(git_user, worcs:::get_user())
+git_user("name", "email", overwrite = FALSE)
 }

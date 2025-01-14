@@ -23,35 +23,37 @@ run_test <- tryCatch({
 
 if(run_test){
   #do.call(git_user, worcs:::get_user())
+  test_that("worcs_project can be exported via ZIP", {
+    scoped_temporary_project()
+    testdir <- file.path(tempdir(), "zip")
+    dir.create(testdir)
+    oldwd <- getwd()
+    setwd(testdir)
 
-  testdir <- file.path(tempdir(), "export")
-  testzip <- tempfile(fileext = ".zip")
-  dir.create(testdir)
-  on.exit(unlink(testdir, recursive = TRUE, force = TRUE))
+    testdir <- file.path(".")
+    testzip <- "test.zip"
+
   suppressWarnings(
     worcs_project(
-      testdir,
+      ".",
       manuscript = "None",
       preregistration = "None",
       add_license = "None",
       use_renv = FALSE,
-      remote_repo = "https"
+      remote_repo = NULL
     )
   )
 
-  test_that("worcs_project created successfully", {
-    expect_true(file.exists(file.path(testdir, ".worcs")))
-  })
 
-  result <- export_project(zipfile = testzip, worcs_directory = testdir, open_data = FALSE)
+    expect_true(file.exists(".worcs"))
 
-  test_that("export returned true", {
+    result <- export_project(zipfile = testzip, worcs_directory = ".", open_data = FALSE)
+
+
     expect_true(result)
-  })
 
-  test_that("exported worcs_project exists", {
     expect_true(file.exists(testzip))
-  })
+})
 
   # setwd(old_wd)
   #unlink(c(testzip, testdir), recursive = TRUE)

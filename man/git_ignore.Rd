@@ -28,8 +28,11 @@ When \code{ignore = FALSE}, the arguments are prepended with \code{!},
 This works as a "double negation", and will cause 'Git' to track the files.
 }
 \examples{
+if(requireNamespace("withr", quietly = TRUE)){
+withr::with_tempdir({
 dir.create(".git")
 git_ignore("ignorethis.file")
-unlink(".git", recursive = TRUE)
-file.remove(".gitignore")
+})
+}
+
 }

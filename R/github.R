@@ -14,10 +14,13 @@
 #' @return No return value. This function is called for its side effects.
 #' @rdname git_ignore
 #' @examples
+#' if(requireNamespace("withr", quietly = TRUE)){
+#' withr::with_tempdir({
 #' dir.create(".git")
 #' git_ignore("ignorethis.file")
-#' unlink(".git", recursive = TRUE)
-#' file.remove(".gitignore")
+#' })
+#' }
+#'
 #' @export
 git_ignore <- function(..., ignore = TRUE, repo = ".") {
   ab_path <- normalizePath(repo)
@@ -74,7 +77,7 @@ git_ignore <- function(..., ignore = TRUE, repo = ".") {
 #' @return No return value. This function is called for its side effects.
 #' @rdname git_user
 #' @examples
-#' do.call(git_user, worcs:::get_user())
+#' git_user("name", "email", overwrite = FALSE)
 #' @export
 #' @importFrom gert git_config_global_set git_config_set
 git_user <- function(name,
@@ -98,8 +101,7 @@ git_user <- function(name,
       if(inherits(res_user, "try-error") | inherits(res_email, "try-error")) stop()
     })
   } else {
-    message(
-      "To set the 'Git' username and email, call 'git_user()' with the argument 'overwrite = TRUE'."
+    cli_msg("i" = "To set the 'Git' username and email, call {.code git_user({.val name}, {.val email}, overwrite = TRUE)}."
     )
   }
 }
@@ -108,7 +110,7 @@ git_user <- function(name,
 get_user <- function() {
   Args <- list(name = "yourname", email = "yourname@email.com")
   if (has_git_user()) {
-    cf <- git_config_global()
+    cf <- gert::git_config_global()
     Args$name <- cf$value[cf$name == "user.name"]
     Args$email <- cf$value[cf$name == "user.email"]
   }

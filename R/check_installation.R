@@ -20,7 +20,7 @@ check_worcs_installation <- function(what = "all") {
     return(invisible(TRUE))
   pass <- list()
   errors <- list()
-  checkfuns <- c("check_dependencies", "check_git", "check_github", "check_renv", "check_rmarkdown", "check_tinytext")
+  checkfuns <- c("check_dependencies", "check_git", "check_github", "check_renv", "check_rmarkdown", "check_tinytex")
 
   # checkfuns <- ls(asNamespace("worcs"))
   # checkfuns <- checkfuns[startsWith(checkfuns, "check_")]
@@ -230,8 +230,15 @@ check_ssh <- function() {
 }
 
 #' @rdname check_worcs_installation
+#' @keywords internal
 #' @export
-check_tinytext <- function() {
+check_tinytext <- function(){
+  .Deprecated("check_tinytex")
+}
+
+#' @rdname check_worcs_installation
+#' @export
+check_tinytex <- function() {
   with_cli_try("Rendering document to PDF with tinytex.", {
     tmpfl <- tempfile(fileext = ".tex")
     writeLines(

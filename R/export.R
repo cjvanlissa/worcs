@@ -23,14 +23,12 @@ export_project <- function(zipfile = NULL, worcs_directory = ".", open_data = TR
 {
   # get properties about the project and paths
   #worcs_directory <- normalizePath(worcs_directory)
-  worcsfile <- tryCatch(read_yaml(file.path(worcs_directory, ".worcs")), error = function(e){
-    col_message("No '.worcs' file found; not a WORCS project, or the working directory has been changed.", success = FALSE)
-    FALSE
-  })
-  if(isFALSE(worcsfile)) return(invisible(FALSE))
+  if(isFALSE(suppressWarnings(with_cli_try("Reading '.worcs' file.", {
+    worcsfile <- yaml::read_yaml(file.path(worcs_directory, ".worcs"))
+  })))) return(invisible(FALSE))
 
   zip_these <- tryCatch({
-    git_ls(repo = worcs_directory)$path
+    gert::git_ls(repo = worcs_directory)$path
   }, error = function(e){
     col_message("Could not find 'Git' repository.", success = FALSE)
     FALSE
