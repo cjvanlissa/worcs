@@ -15,7 +15,7 @@ cli_msg <- function(...){
 }
 
 is_quiet <- function() {
-  isTRUE(getOption("usethis.quiet", default = FALSE))
+  isTRUE(getOption("usethis.quiet", default = interactive()))
 }
 
 #' @importFrom usethis ui_oops ui_done
