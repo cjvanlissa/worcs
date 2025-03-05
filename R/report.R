@@ -10,7 +10,9 @@
 #' @keywords internal
 #' @export
 #' @examples
+#' if(interactive()){
 #' report(.0234)
+#' }
 report <- function(x, digits = 2, equals = TRUE){
   equal_sign <- "= "
   if(x%%1==0){

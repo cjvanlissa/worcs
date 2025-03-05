@@ -37,7 +37,7 @@ file, to dynamically generate a notification message when a third party
 df <- iris
 class(df) <- c("worcs_data", class(df))
 attr(df, "type") <- "synthetic"
-notify_synthetic(df, msg = "synthetic")
+result <- capture.output(notify_synthetic(df, msg = "synthetic"))
 }
 \seealso{
 closed_data synthetic add_synthetic

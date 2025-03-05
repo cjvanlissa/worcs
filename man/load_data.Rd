@@ -54,19 +54,17 @@ removing the file extension, and, when applicable, the prefix
 \code{"synthetic_data.csv"} will be loaded into an object called \code{data}.
 }
 \examples{
-test_dir <- file.path(tempdir(), "loaddata")
-old_wd <- getwd()
-dir.create(test_dir)
-setwd(test_dir)
-worcs:::write_worcsfile(".worcs")
-df <- iris[1:5, ]
-suppressWarnings(closed_data(df, codebook = NULL))
-load_data()
-data
-rm("data")
-file.remove("data.csv")
-load_data()
-data
-setwd(old_wd)
-unlink(test_dir, recursive = TRUE)
+if(requireNamespace("withr", quietly = TRUE)){
+  withr::with_tempdir({
+    file.create(".worcs")
+    df <- iris[1:5, ]
+    df$Species <- droplevels(df$Species)
+    closed_data(df, codebook = NULL)
+    temp_env <- new.env()
+    load_data(envir = temp_env)
+    rm("df", envir = temp_env)
+    file.remove("df.csv")
+    load_data(envir = temp_env)
+  })
+}
 }

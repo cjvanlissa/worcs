@@ -26,10 +26,11 @@ designed for R-packages. This function makes them applicable to other use
 cases (e.g., WORCS projects, FAIR theory).
 }
 \examples{
-tmpdr <- file.path(tempdir(), "license")
-dir.create(tmpdr)
-add_license_file(path = tmpdr,
+if(requireNamespace("withr", quietly = TRUE)){
+withr::with_tempdir({
+add_license_file(path = ".",
                  license = "proprietary",
                  copyright_holder = "test")
-unlink(tmpdr, recursive = TRUE)
+})
+}
 }

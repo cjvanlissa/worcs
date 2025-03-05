@@ -13,16 +13,13 @@
 #' @return No return value. This function is called for its side effects.
 #' @examples
 #' # Create directory to run the example
-#' old_wd <- getwd()
-#' test_dir <- file.path(tempdir(), "add_recipe")
-#' dir.create(test_dir)
-#' setwd(test_dir)
+#' if(requireNamespace("withr", quietly = TRUE)){
+#' withr::with_tempdir({
 #' file.create(".worcs")
 #' writeLines("test", "test.txt")
 #' add_recipe()
-#' # Cleaning example directory
-#' setwd(old_wd)
-#' unlink(test_dir, recursive = TRUE)
+#' })
+#' }
 #' @rdname add_recipe
 #' @seealso
 #'  \code{\link[worcs]{add_endpoint}}
@@ -71,15 +68,12 @@ add_recipe <- function(worcs_directory = ".", recipe = "rmarkdown::render('manus
 #' @return No return value. This function is called for its side effects.
 #' @examples
 #' # Create directory to run the example
-#' old_wd <- getwd()
-#' test_dir <- file.path(tempdir(), "reproduce")
-#' dir.create(test_dir)
-#' setwd(test_dir)
+#' if(requireNamespace("withr", quietly = TRUE)){
+#' withr::with_tempdir({
 #' file.create(".worcs")
 #' worcs:::add_recipe(recipe = 'writeLines("test", "test.txt")')
-#' # Cleaning example directory
-#' setwd(old_wd)
-#' unlink(test_dir, recursive = TRUE)
+#' })
+#' }
 #' @rdname reproduce
 #' @seealso
 #'  \code{\link[worcs]{add_endpoint}}

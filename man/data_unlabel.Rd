@@ -21,7 +21,7 @@ Coerces \code{factor} and \code{ordered} variables to class \code{integer}.
 \dontrun{
 if(interactive()){
  df <- data.frame(x = factor(c("a", "b")))
- data_unlabel(df)
+ df <- data_unlabel(df)
  }
 }
 }

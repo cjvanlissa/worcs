@@ -11,12 +11,13 @@
 #' @param ... Additional arguments passed to `usethis` function.
 #' @return No return value. This function is called for its side effects.
 #' @examples
-#' tmpdr <- file.path(tempdir(), "license")
-#' dir.create(tmpdr)
-#' add_license_file(path = tmpdr,
+#' if(requireNamespace("withr", quietly = TRUE)){
+#' withr::with_tempdir({
+#' add_license_file(path = ".",
 #'                  license = "proprietary",
 #'                  copyright_holder = "test")
-#' unlink(tmpdr, recursive = TRUE)
+#' })
+#' }
 #' @rdname add_license_file
 #' @export
 add_license_file <- function(path = ".", license = "ccby", ...){

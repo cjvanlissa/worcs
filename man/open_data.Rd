@@ -63,15 +63,13 @@ This function saves a data.frame as a \code{.csv} file (using
 and amends the \code{.gitignore} file to exclude \code{filename}.
 }
 \examples{
-test_dir <- file.path(tempdir(), "data")
-old_wd <- getwd()
-dir.create(test_dir)
-setwd(test_dir)
-worcs:::write_worcsfile(".worcs")
-df <- iris[1:5, ]
-open_data(df, codebook = NULL)
-setwd(old_wd)
-unlink(test_dir, recursive = TRUE)
+if(requireNamespace("withr", quietly = TRUE)){
+  withr::with_tempdir({
+    file.create(".worcs")
+    df <- iris[1:5, ]
+    open_data(df, codebook = NULL)
+  })
+}
 }
 \seealso{
 open_data closed_data save_data

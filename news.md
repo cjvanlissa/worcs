@@ -1,3 +1,7 @@
+# worcs 0.1.18
+
+* Clean up examples in function documentation
+
 # worcs 0.1.17
 
 * Addresses issues raised by Prof. Brian Ripley:

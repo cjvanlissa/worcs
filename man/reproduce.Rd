@@ -28,15 +28,12 @@ endpoints.
 }
 \examples{
 # Create directory to run the example
-old_wd <- getwd()
-test_dir <- file.path(tempdir(), "reproduce")
-dir.create(test_dir)
-setwd(test_dir)
+if(requireNamespace("withr", quietly = TRUE)){
+withr::with_tempdir({
 file.create(".worcs")
 worcs:::add_recipe(recipe = 'writeLines("test", "test.txt")')
-# Cleaning example directory
-setwd(old_wd)
-unlink(test_dir, recursive = TRUE)
+})
+}
 }
 \seealso{
 \code{\link[worcs]{add_endpoint}}

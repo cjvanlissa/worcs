@@ -32,7 +32,7 @@ value labels.
 if(interactive()){
  labs <- list(x = list(class = "factor", `1` = "a", `2` = "b"))
  df <- data.frame(x = 1:2)
- data_label(df, value_labels = labs)
+ df <- data_label(df, value_labels = labs)
  }
 }
 }

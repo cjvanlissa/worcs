@@ -36,16 +36,13 @@ Add a recipe to a WORCS project file to generate its endpoints.
 }
 \examples{
 # Create directory to run the example
-old_wd <- getwd()
-test_dir <- file.path(tempdir(), "add_recipe")
-dir.create(test_dir)
-setwd(test_dir)
+if(requireNamespace("withr", quietly = TRUE)){
+withr::with_tempdir({
 file.create(".worcs")
 writeLines("test", "test.txt")
 add_recipe()
-# Cleaning example directory
-setwd(old_wd)
-unlink(test_dir, recursive = TRUE)
+})
+}
 }
 \seealso{
 \code{\link[worcs]{add_endpoint}}

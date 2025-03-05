@@ -70,15 +70,14 @@ synthetic copy of \code{data} for public use. To generate these synthetic
 data, the function \code{\link{synthetic}} is used.
 }
 \examples{
-old_wd <- getwd()
-test_dir <- file.path(tempdir(), "data")
-dir.create(test_dir)
-setwd(test_dir)
-worcs:::write_worcsfile(".worcs")
-df <- iris[1:3, ]
-closed_data(df, codebook = NULL)
-setwd(old_wd)
-unlink(test_dir, recursive = TRUE)
+if(requireNamespace("withr", quietly = TRUE)){
+  withr::with_tempdir({
+    file.create(".worcs")
+    df <- iris[1:3, ]
+    df$Species <- droplevels(df$Species)
+    closed_data(df, codebook = NULL)
+  })
+}
 }
 \seealso{
 open_data closed_data save_data

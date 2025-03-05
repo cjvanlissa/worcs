@@ -78,16 +78,16 @@
 #' # note that, within the model_expression, a new data.frame is created because
 #' # lm() requires a separate data argument:
 #' dat <- iris[, 1:4]
-#' synthetic(dat,
+#' result <- synthetic(dat,
 #'           model_expression = lm(.outcome ~ .,
 #'                                 data = data.frame(.outcome = y,
 #'                                 xsynth)),
-#'           predict_expression = predict(model, newdata = xsynth))
+#'           predict_expression = predict(model, newdata = xsynth), verbose = FALSE)
 #' }
 #' # Example using bootstrapping:
-#' synthetic(iris,
+#' result <- synthetic(iris,
 #'           model_expression = NULL,
-#'           predict_expression = sample(y, size = length(y), replace = TRUE))
+#'           predict_expression = sample(y, size = length(y), replace = TRUE), verbose = FALSE)
 #' \dontrun{
 #' # Example with missing data, no imputation
 #' iris_missings <- iris

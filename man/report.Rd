@@ -21,7 +21,9 @@ Report a number, rounded to a specific number of decimals (defaults to two),
 using \code{\link{formatC}}. Intended for 'R Markdown' reports.
 }
 \examples{
+if(interactive()){
 report(.0234)
+}
 }
 \author{
 Caspar J. van Lissa

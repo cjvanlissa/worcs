@@ -25,7 +25,7 @@ make_labels <- function(data, variables = names(data)[sapply(data, inherits, wha
 #' \dontrun{
 #' if(interactive()){
 #'  df <- data.frame(x = factor(c("a", "b")))
-#'  data_unlabel(df)
+#'  df <- data_unlabel(df)
 #'  }
 #' }
 #' @rdname data_unlabel
@@ -52,7 +52,7 @@ data_unlabel <- function(x, variables = names(x)[sapply(x, inherits, what = "fac
 #' if(interactive()){
 #'  labs <- list(x = list(class = "factor", `1` = "a", `2` = "b"))
 #'  df <- data.frame(x = 1:2)
-#'  data_label(df, value_labels = labs)
+#'  df <- data_label(df, value_labels = labs)
 #'  }
 #' }
 #' @rdname data_label
@@ -63,7 +63,7 @@ data_label <- function(x, variables = names(x), value_labels = read_yaml(paste0(
     if(!nam %in% names(value_labels)){
       next
     }
-    if(inherits(x[[nam]], what = value_labels[[nam]][1])){
+    if(inherits(x[[nam]], what = value_labels[[nam]][[1]])){
       next
     }
     switch(value_labels[[nam]][["class"]],
