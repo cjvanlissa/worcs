@@ -1,0 +1,17 @@
+pandoc: 3.1.11
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  citation: citation.html
+  endpoints: endpoints.html
+  git_cloud: git_cloud.html
+  reproduce: reproduce.html
+  setup-docker: setup-docker.html
+  setup: setup.html
+  synthetic_data: synthetic_data.html
+  targets: targets.html
+  workflow: workflow.html
+last_built: 2025-03-05T11:19Z
+urls:
+  reference: https://cjvanlissa.github.io/worcs/reference
+  article: https://cjvanlissa.github.io/worcs/articles
