@@ -42,54 +42,59 @@ check_worcs_installation <- function(what = "all") {
 #' @param package Atomic character vector, indicating for which package to check
 #' the dependencies.
 #' @export
-check_dependencies <- function(package = "worcs") {
+check_dependencies <- function (package = "worcs")
+{
   with_cli_try("Checking R package dependencies.", {
-  available <- data.frame(installed.packages()) #[, c("Package", "Version")])
-  thesedeps <- {
-    pks <- packageDescription(package)
-    if (isTRUE(is.na(pks))) pks <- vector("character")
-    pks <- gsub("\n", "", pks$Imports, fixed = TRUE)
-    pks <- gsub("\\s", "", pks)
-    pks <- strsplit(pks, ",")[[1]]
-    setdiff(
-      pks,
-      c(
-        "R",
-        "stats",
-        "graphics",
-        "grDevices",
-        "utils",
-        "datasets",
-        "methods",
-        "base",
-        "tools"
-      )
-    )
-  }
-  has_version <- grepl("(", thesedeps, fixed = TRUE)
-  correct_vers <- rep(TRUE, length(thesedeps))
+    available <- data.frame(installed.packages())
+    thesedeps <- unique(unlist(lapply(package, function(this_package){
 
-  if(any(has_version)){
-    vers <- data.frame(do.call(rbind, strsplit(thesedeps[has_version], "(", fixed = TRUE)))
-    vers[,2] <- gsub(")", "", vers[,2], fixed = TRUE)
-    vers$op <- gsub("[0-9\\.]", "", vers[,2])
-    vers[,2] <- gsub("[^0-9.-]", "", vers[,2])
-    thesedeps[has_version] <- vers[,1]
-    correct_vers[has_version] <- sapply(vers$X1, function(n){
-      tryCatch({
-        do.call(vers$op[vers[[1]] == n], list(x = packageVersion(n), y = vers[1,2]))
-        }, error = function(e){ FALSE })
-    })
-  }
-  is_avlb <- thesedeps %in% available$Package
-  if (all(is_avlb & correct_vers)) {
-    out <- list(pass = list(dependencies = TRUE), errors = list(dependencies = ""))
-  } else {
-    errors <- thesedeps[which(!(is_avlb & correct_vers))]
-    errors <- paste0("lapply(c(", paste0("'", errors, "'", collapse = ", "), "), install.packages)")
-    cli_msg("i" = "The following packages are not installed (or their correct versions are not installed), run {.code {errors}}.")
-    stop()
-  }
+      pks <- packageDescription(this_package)
+      if (isTRUE(is.na(pks))){
+        return(vector("character"))
+      } else {
+        pks <- pks[c("Depends", "Imports", "Suggests")]
+        pks <- lapply(pks, function(p){
+          p <- gsub("\n", "", p, fixed = TRUE)
+          p <- gsub("\\s", "", p)
+          strsplit(p, ",")[[1]]
+        })
+        return(do.call(c, pks))
+      }
+    })))
+    if(any(grepl("^R\\b", thesedeps))) thesedeps <- thesedeps[!grepl("^R\\b", thesedeps)]
+    # setdiff(pks, c("R", "stats", "graphics", "grDevices",
+    #                "utils", "datasets", "methods", "base", "tools"))
+    has_version <- grepl("(", thesedeps, fixed = TRUE)
+    correct_vers <- rep(TRUE, length(thesedeps))
+    if (any(has_version)) {
+      vers <- data.frame(do.call(rbind, strsplit(thesedeps[has_version],
+                                                 "(", fixed = TRUE)))
+      vers[, 2] <- gsub(")", "", vers[, 2], fixed = TRUE)
+      vers$op <- gsub("[0-9\\.]", "", vers[, 2])
+      vers[, 2] <- gsub("[^0-9.-]", "", vers[, 2])
+      thesedeps[has_version] <- vers[, 1]
+      correct_vers[has_version] <- sapply(seq_along(vers$X1), function(i) {
+        tryCatch({
+          n = vers$X1[i]
+          if(n == "R") return(TRUE)
+          do.call(vers$op[i], list(x = packageVersion(n),
+                                   y = vers[i, 2]))
+        }, error = function(e) {
+          FALSE
+        })
+      })
+    }
+    is_avlb <- thesedeps %in% available$Package
+    if (all(is_avlb & correct_vers)) {
+      out <- list(pass = list(dependencies = TRUE), errors = list(dependencies = ""))
+    }
+    else {
+      errors <- thesedeps[which(!(is_avlb & correct_vers))]
+      errors <- paste0("lapply(c(", paste0("'", errors,
+                                           "'", collapse = ", "), "), install.packages)")
+      cli_msg(i = "The following packages are not installed (or their correct versions are not installed), run {.code {errors}}.")
+      stop()
+    }
   })
 }
 

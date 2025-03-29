@@ -2,6 +2,7 @@
 
 * Clean up examples in function documentation
 * By default, mute status messages in non-interactive contexts
+* Bugfix check_dependencies()
 
 # worcs 0.1.17
 
