@@ -482,10 +482,7 @@ check_metadata <- function(x, codebook, value_labels, verbose = FALSE){
   x
 }
 
-cs_fun <- function(filename, worcsfile = ".worcs"){
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcsfile))))
-  # fn_rel <- path_rel_worcs(filename, dn_worcs)
-  # fn_abs <- path_abs_worcs(fn_rel, dn_worcs = dn_worcs)
+cs_fun <- function(filename){
   tryCatch({
     if(is_binary(filename)){
       digest::digest(filename, file = TRUE)
@@ -504,7 +501,7 @@ store_checksum <- function(filename, entry_name = filename, worcsfile = ".worcs"
   #cs <- digest(object = filename, file = TRUE)
   #cs <- tools::md5sum(files = filename)
   checkworcs(dirname(worcsfile), iserror = FALSE)
-  cs <- cs_fun(filename, worcsfile = worcsfile)
+  cs <- cs_fun(filename)
   checksums <- list(cs)
   names(checksums) <- entry_name
   do.call(write_worcsfile,
@@ -536,7 +533,7 @@ load_checksum <- function(filename){
 
 #' @importFrom digest digest
 check_sum <- function(filename, old_cs = NULL, worcsfile = ".worcs", error = FALSE){
-  cs <- cs_fun(filename, worcsfile = worcsfile)
+  cs <- cs_fun(filename)
   if(is.null(old_cs)){
     old_cs <- load_checksum(filename = filename)
   }

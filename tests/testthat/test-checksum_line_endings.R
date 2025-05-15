@@ -17,9 +17,9 @@ test_that("checksum handles different line endings", {
 
   cs_correct <- "fabfeae70e2b9b605e5edd1e232d4b3a"
 
-  cs_n <- worcs:::cs_fun("slashn.txt", file.path(test_dir, ".worcs"))
-  cs_r <- worcs:::cs_fun("slashr.txt", file.path(test_dir, ".worcs"))
-  cs_rn <- worcs:::cs_fun("slashrn.txt", file.path(test_dir, ".worcs"))
+  cs_n <- worcs:::cs_fun("slashn.txt")
+  cs_r <- worcs:::cs_fun("slashr.txt")
+  cs_rn <- worcs:::cs_fun("slashrn.txt")
 
   expect_true(cs_n == cs_correct)
 
@@ -38,9 +38,9 @@ test_that("checksum handles different line endings", {
   gert::git_add(".", repo = test_dir)
   gert::git_commit("first commit", repo = test_dir)
 
-  cs_n <- worcs:::cs_fun("slashn.txt", file.path(test_dir, ".worcs"))
-  cs_r <- worcs:::cs_fun("slashr.txt", file.path(test_dir, ".worcs"))
-  cs_rn <- worcs:::cs_fun("slashrn.txt", file.path(test_dir, ".worcs"))
+  cs_n <- worcs:::cs_fun("slashn.txt")
+  cs_r <- worcs:::cs_fun("slashr.txt")
+  cs_rn <- worcs:::cs_fun("slashrn.txt")
 
   expect_true(cs_n == cs_correct)
 

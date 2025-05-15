@@ -1,5 +1,6 @@
 # worcs 0.1.18
 
+* Bugfix checksum function
 * Clean up examples in function documentation
 * By default, mute status messages in non-interactive contexts
 * Bugfix check_dependencies()

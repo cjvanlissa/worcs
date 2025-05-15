@@ -8,7 +8,7 @@ test_that("checksum works from within Rmarkdown", {
   open_data(dat)
   cs_correct <- read_yaml(".worcs")$checksums[["dat.csv"]]
 
-  expect_true(worcs:::cs_fun(filename = file.path(test_dir, "dat.csv"), worcsfile = file.path(test_dir, ".worcs")) == cs_correct)
+  expect_true(worcs:::cs_fun(filename = file.path(test_dir, "dat.csv")) == cs_correct)
 
   dir.create(file.path(test_dir, "manuscript"))
   setwd(file.path(test_dir, "manuscript"))
@@ -16,7 +16,7 @@ test_that("checksum works from within Rmarkdown", {
   # expect_true(worcs:::cs_fun(filename = file.path(test_dir, "dat.csv"), worcsfile = file.path(test_dir, ".worcs")) == cs_correct)
   #
   man_txt <- c("---", "title: \"Untitled\"", "output: github_document", "---",
-               "", "```{r setup}", "library(\"worcs\")", "load_data()", "```", "", "`r worcs:::cs_fun(file.path(dirname(worcs:::check_recursive(file.path(normalizePath('.')))), 'dat.csv'), file.path(dirname(worcs:::check_recursive(file.path(normalizePath('.')))), '.worcs'))`")
+               "", "```{r setup}", "library(\"worcs\")", "load_data()", "```", "", "`r worcs:::cs_fun(file.path(dirname(worcs:::check_recursive(file.path(normalizePath('.')))), 'dat.csv'))`")
   writeLines(man_txt, "manuscript.Rmd")
   rmarkdown::render("manuscript.Rmd")
   md_checksum <- tail(readLines("manuscript.md"), 1)
