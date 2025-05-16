@@ -40,10 +40,12 @@
 <url><loc>https://cjvanlissa.github.io/worcs/reference/github_action_check_endpoints.html</loc></url>
 <url><loc>https://cjvanlissa.github.io/worcs/reference/has_git_user.html</loc></url>
 <url><loc>https://cjvanlissa.github.io/worcs/reference/index.html</loc></url>
+<url><loc>https://cjvanlissa.github.io/worcs/reference/list_endpoints.html</loc></url>
 <url><loc>https://cjvanlissa.github.io/worcs/reference/load_data.html</loc></url>
 <url><loc>https://cjvanlissa.github.io/worcs/reference/load_entrypoint.html</loc></url>
 <url><loc>https://cjvanlissa.github.io/worcs/reference/notify_synthetic.html</loc></url>
 <url><loc>https://cjvanlissa.github.io/worcs/reference/open_data.html</loc></url>
+<url><loc>https://cjvanlissa.github.io/worcs/reference/remove_endpoint.html</loc></url>
 <url><loc>https://cjvanlissa.github.io/worcs/reference/report.html</loc></url>
 <url><loc>https://cjvanlissa.github.io/worcs/reference/reproduce.html</loc></url>
 <url><loc>https://cjvanlissa.github.io/worcs/reference/skew_kurtosis.html</loc></url>
