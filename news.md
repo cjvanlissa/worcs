@@ -1,5 +1,6 @@
 # worcs 0.1.18
 
+* Add list_endpoints() and remove_endpoint()
 * Bugfix checksum function
 * Clean up examples in function documentation
 * By default, mute status messages in non-interactive contexts

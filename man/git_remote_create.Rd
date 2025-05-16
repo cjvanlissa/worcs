@@ -45,7 +45,9 @@ then publishes a 'GitHub' Release of the repository indicated by
 \code{repo} to that user's account.
 }
 \examples{
+\dontrun{
 git_remote_create()
+}
 \dontrun{
 git_release_publish()
 }
