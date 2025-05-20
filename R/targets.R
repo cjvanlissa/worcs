@@ -98,11 +98,11 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
       if(all(tail(lnz, 2) == c("  )", ")"))){
         if(any(lnz == "# Replace the target list below with your own:")){
           thisln <- which(lnz == "# Replace the target list below with your own:")[1]
-          lnz <- c(lnz[1:(thisln-1L)], c("# Set default priority to 1 to ensure all results are completed before manuscript.", "tar_option_set(priority = 1)"), lnz[thisln:length(lnz)])
+          lnz <- c(lnz[1:(thisln-1L)], c(""), lnz[thisln:length(lnz)])
         }
         col_message("Adding rmarkdown manuscript to targets pipeline.", verbose = verbose)
         lnz <- c(lnz[1:(length(lnz)-2)],
-                 c("  ),", "  tarchetypes::tar_render(manuscript, \"manuscript/manuscript.Rmd\", priority = 0) # Set priority to 0 to ensure the manuscript is rendered after other results are available",
+                 c("  ),", "  tarchetypes::tar_render(manuscript, \"manuscript/manuscript.Rmd\")",
                    ")"))
         writeLines(text = lnz, con = path_abs_worcs("_targets.R", worcs_directory = worcs_directory))
       } else {
