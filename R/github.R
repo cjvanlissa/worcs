@@ -334,7 +334,7 @@ check_github_has_SHA <- utils::getFromNamespace("check_github_has_SHA", "usethis
 #' \dontrun{
 #' git_release_publish()
 #' }
-#' @rdname git_remote_create
+#' @rdname git_release_publish
 #' @export
 #' @importFrom cli cli_process_start cli_process_done cli_process_failed
 #' @importFrom gh gh gh_whoami

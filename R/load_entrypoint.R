@@ -19,6 +19,7 @@
 #'     load_entrypoint()
 #'   })
 #' }
+#' }
 #' @rdname load_entrypoint
 #' @importFrom utils file.edit
 #' @export

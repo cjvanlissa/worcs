@@ -23,3 +23,16 @@ No return value. This function is called for its side effects.
 Loads the designated project entry point into the default
 editor, using \code{\link[utils]{file.edit}}.
 }
+\examples{
+\dontrun{
+if(requireNamespace("withr", quietly = TRUE)){
+  withr::with_tempdir({
+    # Prepare worcs file and dummy entry point
+    worcs:::write_worcsfile(".worcs", entry_point = "test.txt")
+    writeLines("Hello world", con = file("test.txt", "w"))
+    # Demonstrate load_entrypoint()
+    load_entrypoint()
+  })
+}
+}
+}
