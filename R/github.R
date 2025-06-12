@@ -351,11 +351,12 @@ git_release_publish <- function(repo = ".",
     usethis::with_project(repo, code = {
       check_can_push(tr = tr, "to create a release")
     }, quiet = TRUE)
-    usethis::with_project("c:/git_repositories/worcs",
-                          code = {
-                            dat <- get_release_data(tr)
-                          },
-                          quiet = TRUE)
+    # This seems to only work for R-packages, don't do this:
+    # usethis::with_project("c:/git_repositories/worcs",
+    #                       code = {
+    #                         dat <- get_release_data(tr)
+    #                       },
+    #                       quiet = TRUE)
 
     # Get current commit hash
     SHA = gert::git_info(repo = repo)$commit
