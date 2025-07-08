@@ -363,7 +363,7 @@ git_release_publish <- function(repo = ".",
     gh <- gh_tr(tr)
     # Determine version
     if (is.null(tag_name)) {
-      releases <- gh("GET /repos/{owner}/{repo}/releases")
+      releases <- gh("GET /repos/{owner}/{repo}/releases", owner = tr$repo_owner, repo = tr$repo_name)
       tag_last_release <- try(releases[[1]][["tag_name"]], silent = TRUE)
       if (inherits(tag_last_release, what = "try-error")) {
         tag_name <- "0.1.0"
@@ -376,7 +376,7 @@ git_release_publish <- function(repo = ".",
     if (is.null(release_name))
       release_name <- tag_name
 
-    gert::git_push(verbose = FALSE)
+    gert::git_push(repo = repo, verbose = FALSE)
 
     check_github_has_SHA(SHA = SHA, tr = tr)
 

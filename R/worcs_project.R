@@ -226,7 +226,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   }
 
   # Connect to remote repo if possible
-  valid_repo <- isFALSE(is.null(remote_repo) | remote_repo == "https")
+  valid_repo <- isFALSE(is.null(remote_repo) | remote_repo == "https" | remote_repo == "https://... .git")
 
   if(use_git & valid_repo){
     out_git <- git_connect_or_create(repo = path, remote_repo = remote_repo)

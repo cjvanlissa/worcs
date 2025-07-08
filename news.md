@@ -1,3 +1,7 @@
+# worcs 0.1.19
+
+* Minor bug fixes
+
 # worcs 0.1.18
 
 * Clean up examples in function documentation

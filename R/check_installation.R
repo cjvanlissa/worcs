@@ -105,12 +105,12 @@ check_git <- function() {
   errors <- list()
   # Check command line git
   pass[["git_cmd"]] <- with_cli_try("Check if Git is available on the command line.", {
-    system2("git",
+    suppressWarnings(system2("git",
             "--version",
             stdout = tempfile(),
-            stderr = tempfile()) == 0L
+            stderr = tempfile())) == 0L
   })
-  if (!pass[["git_cmd"]]) cli_msg("i" = "Please reinstall Git from {.url https://git-scm.com/}.")
+  if (!pass[["git_cmd"]]) cli_msg("i" = "Please install the Git client from {.url https://git-scm.com/}.")
 
 
   # Check libgit for SSH
@@ -206,7 +206,8 @@ check_github <- function(pat = TRUE, ssh = FALSE) {
       system2("ssh",
               "-T git@github.com",
               stdout = temp,
-              stderr = temp)
+              stderr = temp,
+              timeout = 10)
       output <- readLines(temp)
       if(!isTRUE(any(grepl("success", output, fixed = TRUE)))){
         cli_msg("i" = "Could not authenticate GitHub via SSH, but that's OK. We recommend using a Personal Access Token (PAT). If you intend to use SSH with GitHub, consult https://happygitwithr.com/rstudio-git-github.html")
