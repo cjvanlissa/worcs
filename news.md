@@ -1,9 +1,15 @@
 # worcs 0.1.19
 
 * Minor bug fixes
+* Handle breaking changes in targets 1.11.1:
+    + Suggest targets version 1.11.1 or higher
+    + tar_target(priority) argument is no longer respected; remove it from
+      default files in `worcs`.
 
 # worcs 0.1.18
 
+* Add list_endpoints() and remove_endpoint()
+* Bugfix checksum function
 * Clean up examples in function documentation
 * By default, mute status messages in non-interactive contexts
 * Bugfix check_dependencies()

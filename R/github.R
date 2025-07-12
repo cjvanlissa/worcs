@@ -281,7 +281,9 @@ parse_repo <- function(remote_repo, verbose = TRUE) {
 #' @return Invisibly returns a logical value,
 #' indicating whether the function was successful or not.
 #' @examples
+#' \dontrun{
 #' git_remote_create()
+#' }
 #' @rdname git_remote_create
 #' @export
 #' @importFrom cli cli_process_start cli_process_done cli_process_failed

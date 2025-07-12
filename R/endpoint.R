@@ -183,3 +183,91 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   return(invisible(all(replicates)))
 }
 
+
+#' @title List endpoints in WORCS project
+#' @description List the endpoints in a WORCS project.
+#' @param worcs_directory Character, indicating the WORCS project directory
+#' to which to save data. The default value "." points to the current directory.
+#' Default: '.'
+#' @param verbose Logical. Whether or not to print status messages to the
+#' console. Default: TRUE
+#' @param ... Additional arguments.
+#' @return None, prints to the console.
+#' @examples
+#' if(requireNamespace("withr", quietly = TRUE)){
+#'   withr::with_tempdir({
+#'     file.create(".worcs")
+#'     write.csv(iris, "iris.csv")
+#'     add_endpoint("iris.csv")
+#'     list_endpoints()
+#'   })
+#' }
+#' @seealso
+#'  \code{\link[worcs]{add_endpoint}}
+#'  \code{\link[worcs]{snapshot_endpoints}}
+#' @export
+list_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
+  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
+                                                ".worcs")))
+  fn_worcs <- file.path(dn_worcs, ".worcs")
+  worcsfile <- yaml::read_yaml(fn_worcs)
+  if(is.null(worcsfile[["endpoints"]])){
+    cli_msg("x" = "No endpoints found in WORCS project.")
+  } else {
+    endpoints <- worcsfile[["endpoints"]]
+    names(endpoints) <- rep("*", length(endpoints))
+    do.call(cli_msg, as.list(endpoints))
+  }
+}
+
+#' @title Remove endpoint from WORCS project
+#' @description Remove an endpoint from a WORCS project.
+#' @param worcs_directory Character, indicating the WORCS project directory
+#' to which to save data. The default value "." points to the current directory.
+#' Default: '.'
+#' @param filename Character, indicating the file to be removed from the
+#' endpoints.
+#' Default: NULL.
+#' @param verbose Logical. Whether or not to print status messages to the
+#' console. Default: TRUE
+#' @param ... Additional arguments.
+#' @return None, prints to the console.
+#' @examples
+#' if(requireNamespace("withr", quietly = TRUE)){
+#'  withr::with_tempdir({
+#'    file.create(".worcs")
+#'    write.csv(iris, "iris.csv")
+#'    add_endpoint("iris.csv")
+#'    list_endpoints()
+#'    remove_endpoint("iris.csv")
+#'    list_endpoints()
+#'  })
+#' }
+#' @seealso
+#'  \code{\link[worcs]{add_endpoint}}
+#'  \code{\link[worcs]{snapshot_endpoints}}
+#' @export
+remove_endpoint <- function(filename = NULL, worcs_directory = ".", verbose = TRUE, ...){
+  if(is.null(filename)){
+    return(invisible(NULL))
+  }
+  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
+                                                ".worcs")))
+  fn_worcs <- file.path(dn_worcs, ".worcs")
+  worcsfile <- yaml::read_yaml(fn_worcs)
+  if(is.null(worcsfile[["endpoints"]])){
+    cli_msg("x" = "No endpoints found in WORCS project.")
+  } else {
+    endpoints <- worcsfile[["endpoints"]]
+    with_cli_try("Removing endpoint {.val {filename}} from WORCS project.", {
+      if(filename %in% endpoints){
+        endpoints <- endpoints[-which(endpoints == filename)]
+        # Append worcsfile
+        write_worcsfile(filename = fn_worcs, endpoints = endpoints, modify = TRUE)
+      } else {
+        stop()
+      }
+    })
+  }
+  invisible()
+}

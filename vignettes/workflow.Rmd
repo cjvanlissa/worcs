@@ -57,7 +57,7 @@ knitr::include_graphics("workflow.png")
 5. <!--S: Optional: Upload the preregistration to a dedicated preregistration server-->Optional: Render the preregistration to PDF, and upload it as an attachment to a dedicated preregistration server like AsPredicted.org or OSF.io
     + In 'RStudio', with the file 'preregistration.Rmd' open, click the "Knit" button above the top left panel
     + When the PDF is generated, go to one of the recognized preregistration services' websites, create a new preregistration, and upload it as an attachment.
-    + Optional: Generate a DOI for the preregistration through [the OSF](https://help.osf.io/article/218-sharing-data) or a service like [Zenodo](https://docs.github.com/repositories/archiving-a-github-repository/referencing-and-citing-content)
+    + Optional: Generate a DOI for the preregistration through [the OSF](https://help.osf.io/article/392-data-management) or a service like [Zenodo](https://docs.github.com/repositories/archiving-a-github-repository/referencing-and-citing-content)
 6. <!--S: Optional: Add study materials to the repository-->Optional: Add study materials to the repository.
     + Only do this for study materials to which you own the rights, or when the materials' license allows it
     + You can solicit feedback and outside contributions on a 'Git' remote repository by opening an "Issue" or by accepting "Pull requests"
@@ -104,7 +104,7 @@ knitr::include_graphics("workflow.png")
 [Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/article/220-create-dois)
     + A DOI is a persistent identifier that can be used to link to your project page.
     + You may have already created a project page under Step 5 if you preregistered on the OSF
-    + Optionally, you can [generate additional DOIs for specific resources like datasets](https://help.osf.io/article/218-sharing-data).
+    + Optionally, you can [generate additional DOIs for specific resources like datasets](https://help.osf.io/article/392-data-management).
     + Alternatively, you can [connect your 'Git' remote repository to Zenodo](https://docs.github.com/repositories/archiving-a-github-repository/referencing-and-citing-content), instead of the OSF, to create DOIs for the project and specific resources.
 17. <!--S: Add an open science statement to the Abstract or Author notes, which links to the 'OSF' project page and/or the 'Git' remote repository-->Add an open science statement to the Abstract or Author notes, which links to the 'OSF' project page and/or the 'Git' remote repository. 
     + Placing this statement in the Abstract or Author note means that readers can find your project even if the paper is published behind a paywall.

@@ -21,5 +21,13 @@ Given that a 'GitHub' user is configured, with the appropriate
 permissions, this function creates a new repository on your account.
 }
 \examples{
+\dontrun{
 git_remote_create()
+<<<<<<< HEAD
+=======
+}
+\dontrun{
+git_release_publish()
+}
+>>>>>>> 53d938d259b9c8945e8ebfe9017587466301c5f6
 }

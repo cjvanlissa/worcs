@@ -1,15 +1,14 @@
-# worcs 0.1.17
+# worcs 0.1.18
 
-* Addresses issues raised by Prof. Brian Ripley:
-    + https://www.stats.ox.ac.uk/pub/bdr/noSuggests/worcs.out
-* Make tests that require pandoc conditional
-* Update package startup message
+* Add list_endpoints() and remove_endpoint()
+* Bugfix checksum function
+* Clean up examples in function documentation
+* By default, mute status messages in non-interactive contexts
+* Bugfix check_dependencies()
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
-
-* Days since last update: 3
+0 errors | 0 warnings | 0 notes
 
 ## Test environments
 
