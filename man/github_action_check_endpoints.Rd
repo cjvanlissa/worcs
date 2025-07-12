@@ -3,11 +3,14 @@
 \name{github_action_check_endpoints}
 \alias{github_action_check_endpoints}
 \alias{github_action_reproduce}
+\alias{github_action_testthat}
 \title{Set up GitHub Actions to Check Endpoints}
 \usage{
 github_action_check_endpoints(worcs_directory = ".")
 
 github_action_reproduce(worcs_directory = ".")
+
+github_action_testthat(worcs_directory = ".")
 }
 \arguments{
 \item{worcs_directory}{Character, indicating the WORCS project directory

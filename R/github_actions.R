@@ -51,6 +51,14 @@ github_action_reproduce <- function(worcs_directory = "."){
   github_action_generic(worcs_directory = worcs_directory, url = "https://github.com/cjvanlissa/actions/blob/main/worcs_reproduce.yaml")
 }
 
+
+#' @rdname github_action_check_endpoints
+#' @export
+#' @importFrom usethis use_github_action
+github_action_testthat <- function(worcs_directory = "."){
+  github_action_generic(worcs_directory = worcs_directory, url = "https://github.com/cjvanlissa/actions/blob/main/worcs_testthat.yaml")
+}
+
 github_action_generic <- function(worcs_directory = ".", url = NULL){
   Args <- list(
     url = url
@@ -70,3 +78,11 @@ github_action_generic <- function(worcs_directory = ".", url = NULL){
   do.call(usethis::use_github_action, Args)
 }
 
+github_action_check_endpoints <- function(worcs_directory = "."){
+  github_action_generic(worcs_directory = worcs_directory, url = "https://github.com/cjvanlissa/actions/blob/main/worcs_endpoints.yaml")
+}
+
+
+github_action_render <- function(worcs_directory = "."){
+  github_action_generic(worcs_directory = worcs_directory, url = "https://github.com/cjvanlissa/actions/blob/main/worcs_endpoints.yaml")
+}
