@@ -18,13 +18,13 @@
 add_testthat <- function(worcs_directory = ".", ...){
   usethis::with_project(path = worcs_directory, code = {
     usethis::use_testthat(...)
-    worcs:::with_cli_try("Updating {.file tests/testthat.R}", {
+    with_cli_try("Updating {.file tests/testthat.R}", {
       txt <- readLines("tests/testthat.R")
       txt <- txt[1:grep("library(testthat)", txt, fixed = TRUE)]
-      txt <- c(txt, 'testthat::test_dir("testthat")')
+      txt <- c(txt, 'testthat::test_dir("tests/testthat")')
       writeLines(txt, "tests/testthat.R")
     })
-    worcs:::cli_msg("i" = "Run {.fn worcs::github_action_testthat} to add a GitHub action that evaluates the integration tests.")
+    cli_msg("i" = "Run {.fn worcs::github_action_testthat} to add a GitHub action that evaluates the integration tests.")
   })
 }
 
@@ -51,9 +51,9 @@ add_testthat <- function(worcs_directory = ".", ...){
 #' @export
 #' @importFrom usethis with_project use_testthat
 test_worcs <- function(worcs_directory = ".", ...){
-  worcs:::checkworcs(worcs_directory = worcs_directory, iserror = TRUE)
+  checkworcs(worcs_directory = worcs_directory, iserror = TRUE)
   usethis::with_project(path = worcs_directory, code = {
-    worcs:::with_cli_try("Loading {.file tests/testthat.R}", {
+    with_cli_try("Loading {.file tests/testthat.R}", {
       test_path <- file.path("tests", "testthat.R")
       if(!file.exists(test_path)) stop()
     })
