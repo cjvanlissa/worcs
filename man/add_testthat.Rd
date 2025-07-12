@@ -2,21 +2,29 @@
 % Please edit documentation in R/testthat.R
 \name{add_testthat}
 \alias{add_testthat}
+\alias{test_worcs}
 \title{Add testthat to WORCS Project}
 \usage{
 add_testthat(worcs_directory = ".", ...)
+
+test_worcs(worcs_directory = ".", ...)
 }
 \arguments{
 \item{worcs_directory}{PARAM_DESCRIPTION, Default: '.'}
 
-\item{...}{Additional arguments passed to \link[usethis]{use_testthat}}
+\item{...}{Additional arguments passed to other functions.}
 }
 \value{
+No return value. This function is called for its side effects.
+
 No return value. This function is called for its side effects.
 }
 \description{
 Wraps \link[usethis]{use_testthat} to add integration testing to
 a WORCS Project.
+
+As \code{testthat} is primarily geared towards integration tests for
+'R' packages, this function conducts \code{testthat} test for WORCS projects.
 }
 \examples{
 if(requireNamespace("withr", quietly = TRUE) &
@@ -25,5 +33,17 @@ withr::with_tempdir({
   usethis::create_project(path = ".", rstudio = FALSE, open = FALSE)
   add_testthat()
 })
+}
+if(requireNamespace("withr", quietly = TRUE) &
+  requireNamespace("testthat", quietly = TRUE)){
+  tmpdr <- file.path(tempdir(), "testworcs")
+  usethis::create_project(path = tmpdr, rstudio = FALSE, open = FALSE)
+  usethis::with_project(tmpdr, {
+  writeLines("", ".worcs")
+  add_testthat()
+  usethis::use_test(name = "testme", open = FALSE)
+  test_worcs()
+  })
+
 }
 }

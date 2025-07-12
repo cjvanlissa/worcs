@@ -69,6 +69,7 @@ Suggests:
     withr,
     desc,
     purrr,
-    testthat (>= 2.1.0)
+    testthat (>= 3.0.0)
 SystemRequirements: pandoc (>= 1.14) - https://pandoc.org 
 VignetteBuilder: knitr
+Config/testthat/edition: 3
