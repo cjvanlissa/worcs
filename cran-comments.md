@@ -1,21 +1,18 @@
-# worcs 0.1.18
-
-* Add list_endpoints() and remove_endpoint()
-* Bugfix checksum function
-* Clean up examples in function documentation
-* By default, mute status messages in non-interactive contexts
-* Bugfix check_dependencies()
-
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
+
+- NOTE:
+  Author field differs from that derived from Authors@R
+  Author:    'Caspar J. Van Lissa [aut, cre] (ORCID: <https://orcid.org/0000-0002-0808-5024>), Aaron Peikert [aut] (ORCID: <https://orcid.org/0000-0001-7813-818X>), Andreas M. Brandmaier [aut] (ORCID: <https://orcid.org/0000-0001-8765-6982>)'
+  Authors@R: 'Caspar J. Van Lissa [aut, cre] (<https://orcid.org/0000-0002-0808-5024>), Aaron Peikert [aut] (<https://orcid.org/0000-0001-7813-818X>), Andreas M. Brandmaier [aut] (<https://orcid.org/0000-0001-8765-6982>)'
 
 ## Test environments
 
-* local Windows 11, R 4.3.2
-* win-builder: R version 4.4.2 (2024-10-31 ucrt)
-* win-builder: R Under development (unstable) (2024-12-30 r87496 ucrt)
-* win-builder: R version 4.3.3 (2024-02-29 ucrt)
+* local Windows 11, R 4.5.0
+* win-builder: R Under development (unstable) (2025-07-11 r88405 ucrt)
+* win-builder: R version 4.5.1 (2025-06-13 ucrt)
+* win-builder: R version 4.4.3 (2025-02-28 ucrt)
 * Rhub: linux (R-devel)
 * Rhub: macos (R-devel)
 * Rhub: macos-arm64 (R-devel)

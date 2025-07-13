@@ -1,5 +1,6 @@
 # worcs 0.1.19
 
+* Add support for integration testing with `testthat`
 * Minor bug fixes
 * Handle breaking changes in targets 1.11.1:
     + Suggest targets version 1.11.1 or higher
