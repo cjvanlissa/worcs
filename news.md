@@ -1,6 +1,7 @@
 # worcs 0.1.20
 
 * Fix check_dependencies()
+* Allow both Git remote URLs and names
 
 # worcs 0.1.19
 

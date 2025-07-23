@@ -421,9 +421,19 @@ git_connect_or_create <- function(repo, remote_repo) {
     cli_msg("i" = "Argument {.val remote_repo} is {.val NULL}; you are working with a local repository only.")
     stop()
   } else {
-    ownr <- gh::gh_whoami()$login
-    repo_name <- paste0(ownr, "/", remote_repo)
-    repo_url <- paste0("https://github.com/", repo_name)
+    # Check if remote_repo is a name or a URL
+    if(grepl("^http.+?/.+/.{0,}", remote_repo)){
+      own_repo <- gsub("^.+/(.+?/.+?)(\\.git)?$", "\\1", remote_repo)
+      if(length(gregexpr("/", own_repo)[[1]]) > 1) stop("Could not parse Git remote URL.")
+      ownr <- strsplit(own_repo, "/", fixed = TRUE)[[1]]
+      repo_name <- ownr[2]
+      ownr <- ownr[1]
+      repo_url <- remote_repo
+    } else {
+      ownr <- gh::gh_whoami()$login
+      repo_name <- paste0(ownr, "/", remote_repo)
+      repo_url <- paste0("https://github.com/", repo_name)
+    }
     test_repo <- try(gert::git_remote_ls(remote = repo_url), silent = TRUE)
     repo_exists <- isFALSE(inherits(test_repo, "try-error"))
     if (!repo_exists) {
