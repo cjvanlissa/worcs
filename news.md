@@ -1,3 +1,7 @@
+# worcs 0.1.20
+
+* Fix check_dependencies()
+
 # worcs 0.1.19
 
 * Add support for integration testing with `testthat`

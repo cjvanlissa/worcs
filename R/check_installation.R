@@ -54,6 +54,7 @@ check_dependencies <- function (package = "worcs")
       } else {
         pks <- pks[c("Depends", "Imports", "Suggests")]
         pks <- lapply(pks, function(p){
+          if(is.null(p)) return(NULL)
           p <- gsub("\n", "", p, fixed = TRUE)
           p <- gsub("\\s", "", p)
           strsplit(p, ",")[[1]]
@@ -233,13 +234,6 @@ check_ssh <- function() {
       stop()
     }
     })
-}
-
-#' @rdname check_worcs_installation
-#' @keywords internal
-#' @export
-check_tinytext <- function(){
-  .Deprecated("check_tinytex")
 }
 
 #' @rdname check_worcs_installation
