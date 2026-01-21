@@ -1,4 +1,4 @@
-# Readme <a href='https://osf.io/zcvbs/'><img src='worcs_icon.png' align="right" height="139" /></a>
+# Readme <a href='https://doi.org/10.3233/DS-210031'><img src='worcs_icon.png' align="right" height="139" /></a>
 
 <!-- Below, project badges will be added. -->
 
@@ -29,7 +29,7 @@ ensure transparency and reproducibility. The workflow is designed to meet the
 principles of Open Science throughout a research project. 
 
 To learn how WORCS helps researchers meet the TOP-guidelines and FAIR principles,
-read the preprint at https://osf.io/zcvbs/
+read the paper at https://doi.org/10.3233/DS-210031
 
 ## WORCS: Advice for authors
 
@@ -38,7 +38,7 @@ read the preprint at https://osf.io/zcvbs/
 
 ## WORCS: Advice for readers
 
-Please refer to the vignette on [reproducing a WORCS project]() for step by step advice.
+Please refer to the vignette on [reproducing a WORCS project](https://cjvanlissa.github.io/worcs/articles/reproduce.html) for step by step advice.
 <!-- If your project deviates from the steps outlined in the vignette on     -->
 <!-- reproducing a WORCS project, please provide your own advice for         -->
 <!-- readers here.                                                           -->

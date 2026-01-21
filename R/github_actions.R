@@ -60,6 +60,7 @@ github_action_testthat <- function(worcs_directory = "."){
 }
 
 github_action_generic <- function(worcs_directory = ".", url = NULL){
+  check_renv_synchronized(worcs_directory = worcs_directory)
   Args <- list(
     url = url
   )

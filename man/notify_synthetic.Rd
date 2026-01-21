@@ -4,15 +4,18 @@
 \alias{notify_synthetic}
 \title{Notify the user when synthetic data are being used}
 \usage{
-notify_synthetic(..., msg = NULL)
+notify_synthetic(..., msg = NULL, worcs_directory = ".")
 }
 \arguments{
 \item{...}{Objects of class \code{worcs_data}. The function will check if
 these are original or synthetic data.}
 
 \item{msg}{Expression containing the message to print in case not all
-\code{worcs_data} are original. This message may refer to \code{is_synth},
-a logical vector indicating which \code{worcs_data} objects are synthetic.}
+\code{worcs_data} are original.}
+
+\item{worcs_directory}{Character, indicating the WORCS project directory to
+which to save data. The default value \code{"."} points to the current
+directory.}
 }
 \value{
 No return value. This function is called for its side effect of
@@ -34,10 +37,21 @@ file, to dynamically generate a notification message when a third party
 'Knits' such a document without having access to all original data.
 }
 \examples{
-df <- iris
-class(df) <- c("worcs_data", class(df))
-attr(df, "type") <- "synthetic"
-result <- capture.output(notify_synthetic(df, msg = "synthetic"))
+if(requireNamespace("withr", quietly = TRUE)){
+  withr::with_tempdir({
+    file.create(".worcs")
+    df <- iris
+    class(df) <- c("worcs_data", class(df))
+    attr(df, "type") <- "synthetic"
+    result <- capture.output(notify_synthetic(df, msg = "it is synthetic"))
+    df <- df[1:10, ]
+    closed_data(df, codebook = NULL)
+    file.remove("df.csv")
+    result <- capture.output(notify_synthetic(msg = "synthetic"))
+    add_manuscript(manuscript = "github_document")
+    print(readLines("manuscript/manuscript.Rmd"))
+  })
+}
 }
 \seealso{
 closed_data synthetic add_synthetic

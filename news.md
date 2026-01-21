@@ -1,3 +1,14 @@
+# worcs 0.1.21
+
+* Add functions worcs_root() and worcs_file() for file paths relative to the
+  worcs project root
+* Add check_renv_synchronized() to check if the project has renv, and if so,
+  that renv has been snapshot.
+* git_update() and github_action_*() functions invoke
+  check_renv_synchronized(), so that the version on GitHub has the correct
+  package dependencies.
+* Update links in default README.md
+
 # worcs 0.1.20
 
 * Fix check_dependencies()

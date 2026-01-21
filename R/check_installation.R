@@ -93,7 +93,7 @@ check_dependencies <- function (package = "worcs")
       errors <- thesedeps[which(!(is_avlb & correct_vers))]
       errors <- paste0("lapply(c(", paste0("'", errors,
                                            "'", collapse = ", "), "), install.packages)")
-      cli_msg(i = "The following packages are not installed (or their correct versions are not installed), run {.code {errors}}.")
+      cli_msg(i = "The following packages are not installed (or their correct versions are not installed), run {.run {errors}}.")
       stop()
     }
   })
@@ -145,13 +145,13 @@ check_git <- function() {
     # More tests
     writeLines("test git", con = file.path(dir_name, "tmp.txt"))
 
-    pass[["git_add"]] <- with_cli_try("Adding files with {.code gert::git_add()}.", {
+    pass[["git_add"]] <- with_cli_try("Adding files with {.run gert::git_add()}.", {
       tmp <- gert::git_add(".", repo = dir_name)
       isTRUE(tmp$staged)
       })
     if (pass[["git_add"]]) {
       # More tests
-      pass[["git_commit"]] <- with_cli_try("Committing with {.code gert::git_commit()}.", {
+      pass[["git_commit"]] <- with_cli_try("Committing with {.run gert::git_commit()}.", {
         gert::git_commit("First commit", repo = dir_name, author = gert::git_signature("test", "test@test.com"))
       })
     }
@@ -191,7 +191,7 @@ check_github <- function(pat = TRUE, ssh = FALSE) {
       }
       if(!isTRUE(inherits(result, "gh_response"))) stop()
     })
-    if (!pass[["github_pat"]]) cli_msg("i" = "You have not set a Personal Access Token (PAT) for GitHub; to fix this, run {.code usethis::create_github_token()}, create a PAT and copy it, then run {.code gitcreds::gitcreds_set()} and paste the PAT when asked. If you still experience problems try {.code usethis::gh_token_help()} for help.")
+    if (!pass[["github_pat"]]) cli_msg("i" = "You have not set a Personal Access Token (PAT) for GitHub; to fix this, run {.run usethis::create_github_token()}, create a PAT and copy it, then run {.run gitcreds::gitcreds_set()} and paste the PAT when asked. If you still experience problems try {.run usethis::gh_token_help()} for help.")
 
 
 
@@ -315,10 +315,27 @@ check_renv <- function() {
     tmp <- invisible(renv::consent())
     sink()
     if (!isTRUE(tmp)){
-      cli_msg("i" = "renv does not have consent yet; run {.code renv::consent(provided = TRUE)}")
+      cli_msg("i" = "renv does not have consent yet; run {.run renv::consent(provided = TRUE)}")
       stop()
     }
   })
+}
+
+#' @rdname check_worcs_installation
+#' @param worcs_directory Character, indicating the WORCS project directory to
+#' which to save data. The default value \code{"."} points to the current
+#' directory.
+#' @param ... Additional parameters passed to and from functions.
+#' @export
+check_renv_synchronized <- function(worcs_directory = ".", ...){
+  renvoutput <- capture.output({renvstatus <- try(renv::status(project = worcs_directory, ...))})
+  if(isTRUE(grepl("does not appear", renvoutput)) | !isFALSE(length(renvstatus[["library"]][["Packages"]]) == 0)){
+    return(invisible(TRUE))
+  }
+  if(!isTRUE(renvstatus[["synchronized"]])){
+    cli_msg("!" = "Your project uses {.code renv}, but the lock file is not synchronized. Consider running {.run renv::snapshot()}.")
+  }
+  invisible()
 }
 
 # Show results ------------------------------------------------------------

@@ -189,8 +189,8 @@ git_update <- function(message = paste0("update ", Sys.time()),
                        mirror,
                        force,
                        verbose = TRUE) {
+  check_renv_synchronized(worcs_directory = repo)
   cl <- match.call.defaults()
-
   tryCatch({
     if (!is_quiet())
       cli::cli_process_start("Identify local 'Git' repository at {.val {repo}}")

@@ -32,7 +32,10 @@ check_recursive <- function(path){
 #' @export
 #' @importFrom rprojroot find_root
 worcs_root <- function(path = "."){
-  rprojroot::find_root(".worcs", path = path)
+  tryCatch(rprojroot::find_root(".worcs", path = path), error = function(e){
+    worcs:::cli_msg("!" = "Could not find a `worcs` project in {.file {path}} or its parent directories.")
+    return(normalizePath(path))
+  })
 }
 
 #' @title Specify File Path Relative to WORCS Project Directory

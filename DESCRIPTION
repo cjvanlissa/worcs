@@ -32,7 +32,7 @@ Description: Create reproducible and transparent research projects in 'R'.
     reproducible and transparent. WORCS is explained in the tutorial paper
     by Van Lissa, Brandmaier, Brinkman, Lamprecht, Struiksma, & Vreede (2021).
     <doi:10.3233/DS-210031>.
-License: GPL (>= 3)
+License: CC0
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/cjvanlissa/worcs, https://cjvanlissa.github.io/worcs/

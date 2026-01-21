@@ -88,9 +88,12 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
     use_git <- usethis::ui_silence(check_git())
   }
   if(!use_git){
-    cli_msg("i" = "Using 'Git' for version control is recommended to ensure the transparency and reproducibility of your project. Please run {.code worcs::check_git()} to verify that it is installed correctly. You can later add 'Git' by running {.code gert::git_init()} and {.code worcs::git_remote_connect()}.")
+    cli_msg("i" = "Using 'Git' for version control is recommended to ensure the transparency and reproducibility of your project. Please run {.run worcs::check_git()} to verify that it is installed correctly. You can later add 'Git' by running {.run gert::git_init()} and {.run worcs::git_remote_connect()}.")
   } else {
-    with_cli_try("Initializing 'Git' repository.", git_init(path = path))
+    with_cli_try("Initializing 'Git' repository.", {
+      gert::git_init(path = path)
+      #gert::git_config_set("init.defaultBranch", "main") Does not work
+      })
   }
 
   # Create .worcs file
@@ -360,7 +363,7 @@ create_man_github <- function(man_fn_abs, remote_repo){
       "",
       "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2021]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
       "",
-      "<!--The function below inserts a notification if the manuscript is knit using synthetic data. Make sure to insert it after load_data().-->",
+      "<!--The function below inserts a notification if the manuscript is knit using synthetic data.-->",
       "`r notify_synthetic()`"
     )
     manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
@@ -527,7 +530,7 @@ add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_re
   manuscript <- tolower(manuscript)
   dots <- list(...)
   # ensure path exists
-  worcs_directory <- normalizePath(worcs_directory)
+  worcs_directory <- dn_worcs
   # Check if valid Git signature exists
   #remote_repo <- parse_repo(remote_repo = remote_repo, verbose = verbose)
 

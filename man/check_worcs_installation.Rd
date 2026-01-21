@@ -9,6 +9,7 @@
 \alias{check_tinytex}
 \alias{check_rmarkdown}
 \alias{check_renv}
+\alias{check_renv_synchronized}
 \title{Check worcs dependencies}
 \usage{
 check_worcs_installation(what = "all")
@@ -26,6 +27,8 @@ check_tinytex()
 check_rmarkdown()
 
 check_renv()
+
+check_renv_synchronized(worcs_directory = ".", ...)
 }
 \arguments{
 \item{what}{Character vector indicating which dependencies to check. Default:
@@ -42,6 +45,12 @@ authentication, so defaults to TRUE.}
 \item{ssh}{Logical, whether to run tests for the existence and functioning of
 an SSH key. This method of authentication is not recommended, so defaults to
 FALSE.}
+
+\item{worcs_directory}{Character, indicating the WORCS project directory to
+which to save data. The default value \code{"."} points to the current
+directory.}
+
+\item{...}{Additional parameters passed to and from functions.}
 }
 \value{
 Logical, indicating whether all checks passed or not.
