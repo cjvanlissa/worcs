@@ -1,0 +1,118 @@
+# Connecting to 'Git' remote repositories
+
+The WORCS paper describes a workflow centered around ‘GitHub’, but there
+are several other cloud hosting services that offer similar
+functionality. This vignette describes the process of connecting a
+`worcs` project to these other cloud hosting services. If you are
+missing your preferred cloud hosting service, please submit a pull
+request with a step-by-step tutorial for that service
+[here](https://github.com/cjvanlissa/worcs/pulls).
+
+## GitLab
+
+### Setup steps (do this only once)
+
+The ‘GitLab’ website looks and feels almost identical to ‘GitHub’. Steps
+4 and 5 of the `setup` vignette can be applied nearly without
+alterations. To connect `worcs` to ‘GitLab’, I proceeded as follows:
+
+4.  Register on GitLab
+    - Go to [gitlab.com](https://about.gitlab.com/) and click *Register
+      now*. Choose an “Individual”, “Free” plan.
+    - Request a [free academic
+      upgrade](https://about.gitlab.com/solutions/education/).
+5.  Connect ‘RStudio’ to Git and GitLab (for more support, see [Happy
+    Git with R](https://happygitwithr.com/)
+    1.  Open ‘RStudio’, open the Tools menu, click *Global Options*, and
+        click *Git/SVN*
+    2.  Verify that *Enable version control interface for RStudio
+        projects* is selected
+    3.  Verify that *Git executable:* shows the location of git.exe. If
+        it is missing, manually fix the location of the file.
+    4.  Click *Create RSA Key*. Do not enter a passphrase. Press
+        *Create*. A window with some information will open, which you
+        can close.
+    5.  Click *View public key*, and copy the entire text to the
+        clipboard.
+    6.  Close ‘RStudio’ (it might offer to restart by itself; this is
+        fine)
+    7.  Go to [gitlab.com](https://about.gitlab.com/)
+    8.  Click your user icon in the top right of the screen, click
+        *Settings*
+    9.  On the settings page, click *SSH Keys* in the left sidebar
+    10. Copy-paste the public key from your clipboard into the box
+        labeled *Key*.
+    11. Click *Add key*.
+    12. Open ‘RStudio’ again (unless it restarted by itself)
+
+### Connect new `worcs` project to ‘GitLab’
+
+To create a new project on ‘GitLab’, go to your account page, and click
+the *Create a project* tile in the middle of the screen.
+
+- Fill in a *Project name*; do not change anything else. Click the green
+  *Create project* button.
+- You will see a page titled *“The repository for this project is
+  empty”*. Under the header *“Create a new repository”*, you can see a
+  web address starting with https, like so:  
+  `git clone https://gitlab.com/yourname/yourrepo.git`
+- Copy only this address, from `https://` to `.git`.
+- Paste this address into the New project dialog window.
+
+## Bitbucket
+
+### Setup steps (do this only once)
+
+The ‘Bitbucket’ website has cosmetic differences from ‘GitHub’, but
+works similarly. Steps 4 and 5 of the `setup` vignette can be applied
+nearly without alterations. To connect `worcs` to ‘Bitbucket’, I
+proceeded as follows:
+
+4.  Register on Bitbucket
+    - Go to the Bitbucket website and click *Get started for free*.
+      Follow the steps to create your account. Sign in.
+    - Bitbucket has largely automated the process of awarding free
+      academic upgrades. If your email address is not recognized as
+      belonging to an academic institution, you can fill out a form to
+      request this upgrade manually.
+5.  Connect ‘RStudio’ to Git and Bitbucket (for more support, see [Happy
+    Git with R](https://happygitwithr.com/)
+    1.  Open ‘RStudio’, open the Tools menu, click *Global Options*, and
+        click *Git/SVN*
+    2.  Verify that *Enable version control interface for RStudio
+        projects* is selected
+    3.  Verify that *Git executable:* shows the location of git.exe. If
+        it is missing, manually fix the location of the file.
+    4.  Click *Create RSA Key*. Do not enter a passphrase. Press
+        *Create*. A window with some information will open, which you
+        can close.
+    5.  Click *View public key*, and copy the entire text to the
+        clipboard.
+    6.  Close ‘RStudio’ (it might offer to restart by itself; this is
+        fine)
+    7.  Go to the Bitbucket website
+    8.  In the bottom left of the screen, click the circular icon with
+        your initials. Select *Personal settings*
+    9.  On the settings page, click *SSH Keys* in the left sidebar
+    10. Click *Add key*
+    11. Copy-paste the public key from your clipboard into the box
+        labeled *Key*, and give it a label. Click the *Add key* button.
+    12. Open ‘RStudio’ again (unless it restarted by itself)
+
+### Connect new `worcs` project to ‘Bitbucket’
+
+To create a new project on ‘Bitbucket’, go to your account page, and
+click *Create repository* in the middle of the page. These steps differ
+somewhat from the procedure for ‘GitHub’:
+
+- Enter a *Project name* and a *Repository name*. The latter will be
+  used to connect your `worcs` project.
+- **Important:** Change the setting *Include a README?* to *No*.
+- Click “Create repository”
+- When the project page opens, you will see the tagline “Let’s put some
+  bits in your bucket”. Change the dropdown menu Just below this tagline
+  from *SSH* to *https*. It will show a web address starting with https,
+  like this:  
+  `git clone https://yourname@bitbucket.org/yourrepo.git`
+- Copy only this address, from `https://` to `.git`.
+- Paste this address into the New project dialog window.

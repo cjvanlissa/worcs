@@ -1,0 +1,145 @@
+# Using Endpoints to Check Reproducibility
+
+``` r
+library(worcs)
+#> Welcome to WORCS: Workflow for Open Reproducible Code in Science. Run
+#> `check_worcs_installation()` to make sure all dependencies are installed. For
+#> more information, see the package vignettes
+#> (<https://cjvanlissa.github.io/worcs/articles>) and accompanying
+#> paper: Van Lissa and colleagues (2020)
+#> (<https://doi.org/10.3233/DS-210031>)
+```
+
+This vignette describe the `worcs` package’s functionality for
+automating reproducibility. The basic idea is that the entry point,
+endpoint (or endpoints), and recipe by which to get to the endpoint from
+the entry point are all well-defined.
+
+In a typical `worcs` project, the entry point will be a dynamic document
+(e.g., `manuscript.Rmd`), and the endpoint will be the rendered
+manuscript (e.g., `manuscript.pdf`). The recipe by which to get from the
+entry point to the endpoint is often a simple call to
+`rmarkdown::render("manuscript.Rmd")`.
+
+By default, the entry point and recipe are documented in the `.worcs`
+project file when the project is created, if an R-script or Rmarkdown
+file is selected as the manuscript. Endpoints are not created by
+default, as it only makes sense to define them when the analyses are
+complete.
+
+Custom recipes can be added to a project using
+[`add_recipe()`](https://cjvanlissa.github.io/worcs/reference/add_recipe.md).
+
+## Adding endpoints
+
+Users can add endpoints using the function `add_endpoint("filename")`.
+When running this function, `filename` is added to the `.worcs` project
+file, and its checksum is computed so that any changes to the contents
+of the file can be detected.
+
+It is also possible to specify multiple endpoints. For example, maybe
+the user has finalized the analyses, and wants to track reproducibility
+for the analysis results - but still wants to make changes to the text
+of the manuscript without breaking reproducibility checks. In this case,
+it is useful to track files that contain analysis results instead of the
+rendered manuscript. Imagine these are intermediary files with analysis
+results:
+
+- `descriptives.csv`: A file with the descriptive statistics of study
+  variables
+- `model_fit.csv`: A table with model fit indices for several models
+- `finalmodel.RData`: An RData file with the results of the final model
+
+These three files could be tracked as endpoints by calling
+`add_endpoint("descriptives.csv"); add_endpoint("model_fit.csv"); add_endpoint("finalmodel.RData")`.
+
+## Reproducing a Project
+
+A WORCS project can be reproduced by evaluating the function
+[`reproduce()`](https://cjvanlissa.github.io/worcs/reference/reproduce.md).
+This function evaluates the recipe defined in the `.worcs` project file.
+If no recipe is specified (e.g., when a project was created with an
+older version of the package), but an entry point is defined,
+[`reproduce()`](https://cjvanlissa.github.io/worcs/reference/reproduce.md)
+will try to evaluate the entry point if it is an Rmarkdown or R source
+file.
+
+## Checking reproducibility
+
+Users can verify that the endpoint remains unchanged after reproducing
+the project by calling the function
+[`check_endpoints()`](https://cjvanlissa.github.io/worcs/reference/check_endpoints.md).
+If any endpoint has changed relative to the version stored in the
+`.worcs` project file, this will result in a warning message.
+
+## Updating endpoints
+
+To update the endpoints in the `.worcs` file, call
+[`snapshot_endpoints()`](https://cjvanlissa.github.io/worcs/reference/snapshot_endpoints.md).
+Always call this function to log changes to the code that should result
+in a different end result.
+
+## Automating Reproducibility
+
+If a project is connected to a remote repository on GitHub, it is
+possible to use GitHub actions to automatically check a project’s
+reproducibility and signal the result of this reproducibility check by
+displaying a badge on the project’s readme page (which is the welcome
+page visitors of the GitHub repository first see).
+
+To do so, follow these steps:
+
+1.  Add endpoint using add_endpoint(); for example, if the endpoint of
+    your analyses is a file called `'manuscript/manuscript.md'`, then
+    you would call `add_endpoint('manuscript/manuscript.md')`
+2.  Run
+    [`github_action_reproduce()`](https://cjvanlissa.github.io/worcs/reference/github_action_check_endpoints.md)
+3.  You should see a message asking you to copy-paste code for a status
+    badge to your `readme.md`. If you do not see this message, add the
+    following code to your readme.md manually:
+    - `[![worcs_endpoints](https://github.com/YOUR_ACCOUNT/PROJECT_REPOSITORY/actions/workflows/worcs_reproduce.yaml/badge.svg)](https://github.com/YOUR_ACCOUNT/PROJECT_REPOSITORY/actions/worcs_reproduce.yaml/worcs_endpoints.yaml)`
+4.  Commit these changes to GitHub using
+    [`git_update()`](https://cjvanlissa.github.io/worcs/reference/git_update.md)
+
+Visit your project page on GitHub and select the `Actions` tab to see
+that your reproducibility check is running; visit the main project page
+to see the new badge in your readme.md file.
+
+## Automating Endpoint Checks
+
+Sometimes, you may wish to verify that the endpoints of a project remain
+the same but without reproducing all analyses on GitHub’s servers. This
+may be the case when the project has closed data that are not available
+on GitHub, or if the analyses take a long time to compute and you want
+to prevent using unnecessary compute power (e.g., for environmental
+reasons).
+
+In these cases, you can still use GitHub actions to automatically check
+whether the endpoints have remained unchanged. If your local changes to
+the project introduce deviations from the endpoint snapshots, these
+tests will fail.
+
+If you make intentional changes to the endpoints, you should of course
+run
+[`snapshot_endpoints()`](https://cjvanlissa.github.io/worcs/reference/snapshot_endpoints.md).
+
+You can display a badge on the project’s readme page to signal that the
+endpoints remain unchanged.
+
+To do so, follow these steps:
+
+1.  Add endpoint using add_endpoint(); for example, if the endpoint of
+    your analyses is a file called `'manuscript/manuscript.md'`, then
+    you would call `add_endpoint('manuscript/manuscript.md')`
+2.  Run
+    [`github_action_check_endpoints()`](https://cjvanlissa.github.io/worcs/reference/github_action_check_endpoints.md)
+3.  You should see a message asking you to copy-paste code for a status
+    badge to your `readme.md`. If you do not see this message, add the
+    following code to your readme.md manually:
+    - `[![worcs_endpoints](https://github.com/YOUR_ACCOUNT/PROJECT_REPOSITORY/actions/workflows/worcs_endpoints.yaml/badge.svg)](https://github.com/YOUR_ACCOUNT/PROJECT_REPOSITORY/actions/workflows/worcs_endpoints.yaml)`
+4.  Commit these changes to GitHub using
+    [`git_update()`](https://cjvanlissa.github.io/worcs/reference/git_update.md)
+
+Visit your project page on GitHub and select the `Actions` tab to see
+that your reproducibility check is running; visit the main project page
+to see the new badge in your readme.md file.

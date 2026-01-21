@@ -1,0 +1,230 @@
+# WORCS
+
+The Workflow for Open Reproducible Code in Science (WORCS) is an easy to
+adopt approach to ensuring a research project meets the requirements of
+Open Science from the start. It is based on a “good enough” philosophy,
+prioritizing user-friendliness over exhaustiveness. It can be used
+either in absence of, or in parallel to, existing requirements for Open
+workflows. It can also be enhanced with more elaborate solutions for
+specific issues.
+
+## Where do I start?
+
+For most users, the recommended starting point is to [read the paper,
+published in Data
+Science](https://content.iospress.com/articles/data-science/ds210031),
+which introduces the WORCS workflow, explains the underlying tools, and
+illustrates how the `worcs` package can be used to create a new project
+that follows the workflow.
+
+The workflow is illustrated below; the [workflow
+vignette](https://cjvanlissa.github.io/worcs/articles/workflow.html)
+describes each step in detail.
+
+![A diagram of the WORCS
+workflow.](https://github.com/cjvanlissa/worcs/raw/master/paper/workflow_graph/workflow.png)
+
+## Installing the package
+
+Before installing the package, please read [this
+vignette](https://cjvanlissa.github.io/worcs/articles/setup.html), which
+explains how to set up your computer for `worcs` (using the CRAN
+version).
+
+If you know what you’re doing and you wish to install the development
+version of the `worcs` package from GitHub instead, you can use:
+
+``` r
+if(!requireNamespace("remotes")) install.packages("remotes")
+remotes::install_github("cjvanlissa/worcs", dependencies = TRUE, update = "never")
+```
+
+## Citing WORCS
+
+You can cite WORCS using the following citation (please use the same
+citation for either the package, or the paper):
+
+> Van Lissa, C. J., Brandmaier, A. M., Brinkman, L., Lamprecht, A.,
+> Peikert, A., , Struiksma, M. E., & Vreede, B. (2021). WORCS: A
+> Workflow for Open Reproducible Code in Science. Data Science. Data
+> Science, vol. 4, no. 1, pp. 29-49. DOI: 10.3233/DS-210031.
+
+## About this repository
+
+This repository contains the following:
+
+1.  An R-package called `worcs`, with convenience functions to
+    facilitate the WORCS workflow.
+2.  In the subfolder `./paper`, the source files for the paper
+    describing the WORCS workflow.
+
+The repository serves two functions: To allow users to install the
+`worcs` package, and to allow collaborators access to the source code
+for the package and paper.
+
+## Repository structure
+
+| File          | Description                     | Usage           |
+|:--------------|:--------------------------------|:----------------|
+| \_pkgdown.yml | YAML for package website        | do not edit     |
+| DESCRIPTION   | R-package DESCRIPTION           | do not edit     |
+| LICENSE.md    | Project license                 | do not edit     |
+| NAMESPACE     | R-package namespace             | machine-written |
+| README.md     | Read this file to get started!  | do not edit     |
+| README.Rmd    | R-markdown source for readme.md | human editable  |
+| worcs.Rproj   | RStudio project file            | do not edit     |
+| docs/         | Package website                 | machine-written |
+| inst/         | RStudio project template files  | human editable  |
+| man/          | R-package documentation         | do not edit     |
+| paper/        | WORCS paper source files        | human editable  |
+| R/            | R-package source code           | human editable  |
+| vignettes/    | R-package vignettes             | human editable  |
+
+## Contributing and Contact Information
+
+We are always eager to receive user feedback and contributions to help
+us improve both the workflow and the software. Major contributions
+warrant coauthorship to the package. Please contact the lead author at
+<c.j.vanlissa@uu.nl>, or:
+
+- [File a GitHub issue](https://github.com/cjvanlissa/worcs) for
+  feedback, bug reports or feature requests
+- [Make a pull request](https://github.com/cjvanlissa/worcs/pulls) to
+  contribute your code or prose
+
+By participating in this project, you agree to abide by the [Contributor
+Code of Conduct v2.0](https://www.contributor-covenant.org/).
+Contributions to the package must adhere to the [tidyverse style
+guide](https://style.tidyverse.org/). When contributing code, please add
+tests for that contribution to the `tests/testthat` folder, and ensure
+that these tests pass in the [GitHub Actions
+panel](https://github.com/cjvanlissa/worcs/actions/workflows/R-CMD-check).
+
+## Acknowledgements
+
+The worcs logo is inspired by the Open Science Badges by the Center for
+Open Science (CC-BY-4.0), and makes use of the gear, services, gears,
+preferences, settings icon, made by MD Badsha Meah from www.freeicons.io
+(CC-BY-3.0).
+
+# Package index
+
+## All functions
+
+- [`add_endpoint()`](https://cjvanlissa.github.io/worcs/reference/add_endpoint.md)
+  : Add endpoint to WORCS project
+- [`add_license_file()`](https://cjvanlissa.github.io/worcs/reference/add_license_file.md)
+  : Add License File to Project
+- [`add_manuscript()`](https://cjvanlissa.github.io/worcs/reference/add_manuscript.md)
+  : Add Rmarkdown manuscript
+- [`add_preregistration()`](https://cjvanlissa.github.io/worcs/reference/add_preregistration.md)
+  : Add Rmarkdown preregistration
+- [`add_recipe()`](https://cjvanlissa.github.io/worcs/reference/add_recipe.md)
+  : Add Recipe to Generate Endpoints
+- [`add_synthetic()`](https://cjvanlissa.github.io/worcs/reference/add_synthetic.md)
+  : Add synthetic data to WORCS project
+- [`add_targets()`](https://cjvanlissa.github.io/worcs/reference/add_targets.md)
+  : Add targets to WORCS Project
+- [`add_testthat()`](https://cjvanlissa.github.io/worcs/reference/add_testthat.md)
+  [`test_worcs()`](https://cjvanlissa.github.io/worcs/reference/add_testthat.md)
+  : Add testthat to WORCS Project
+- [`check_endpoints()`](https://cjvanlissa.github.io/worcs/reference/check_endpoints.md)
+  : Check endpoints in WORCS project
+- [`check_worcs()`](https://cjvanlissa.github.io/worcs/reference/check_worcs.md)
+  : Evaluate project with respect to WORCS checklist
+- [`check_worcs_installation()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
+  [`check_dependencies()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
+  [`check_git()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
+  [`check_github()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
+  [`check_ssh()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
+  [`check_tinytex()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
+  [`check_rmarkdown()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
+  [`check_renv()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
+  : Check worcs dependencies
+- [`cite_all()`](https://cjvanlissa.github.io/worcs/reference/cite_all.md)
+  : Comprehensive citation Knit function for 'RStudio'
+- [`cite_essential()`](https://cjvanlissa.github.io/worcs/reference/cite_essential.md)
+  : Essential citations Knit function for 'RStudio'
+- [`closed_data()`](https://cjvanlissa.github.io/worcs/reference/closed_data.md)
+  : Use closed data in WORCS project
+- [`make_codebook()`](https://cjvanlissa.github.io/worcs/reference/codebook.md)
+  : Create codebook for a dataset
+- [`data_label()`](https://cjvanlissa.github.io/worcs/reference/data_label.md)
+  : Label factor variables using metadata
+- [`data_unlabel()`](https://cjvanlissa.github.io/worcs/reference/data_unlabel.md)
+  : Drop value labels
+- [`descriptives()`](https://cjvanlissa.github.io/worcs/reference/descriptives.md)
+  : Describe a dataset
+- [`export_project()`](https://cjvanlissa.github.io/worcs/reference/export_project.md)
+  : Export project to .zip file
+- [`git_ignore()`](https://cjvanlissa.github.io/worcs/reference/git_ignore.md)
+  : Modify .gitignore file
+- [`git_release_publish()`](https://cjvanlissa.github.io/worcs/reference/git_release_publish.md)
+  : Publish a Release on 'GitHub'
+- [`git_remote_connect()`](https://cjvanlissa.github.io/worcs/reference/git_remote_connect.md)
+  : Connect to Existing 'GitHub' Repository
+- [`git_remote_create()`](https://cjvanlissa.github.io/worcs/reference/git_remote_create.md)
+  : Create a New 'GitHub' Repository
+- [`git_update()`](https://cjvanlissa.github.io/worcs/reference/git_update.md)
+  : Add, commit, and push changes.
+- [`git_user()`](https://cjvanlissa.github.io/worcs/reference/git_user.md)
+  : Set global 'Git' credentials
+- [`github_action_check_endpoints()`](https://cjvanlissa.github.io/worcs/reference/github_action_check_endpoints.md)
+  [`github_action_reproduce()`](https://cjvanlissa.github.io/worcs/reference/github_action_check_endpoints.md)
+  [`github_action_testthat()`](https://cjvanlissa.github.io/worcs/reference/github_action_check_endpoints.md)
+  : Set up GitHub Actions to Check Endpoints
+- [`has_git_user()`](https://cjvanlissa.github.io/worcs/reference/has_git_user.md)
+  : Check whether global 'Git' credentials exist
+- [`list_endpoints()`](https://cjvanlissa.github.io/worcs/reference/list_endpoints.md)
+  : List endpoints in WORCS project
+- [`load_data()`](https://cjvanlissa.github.io/worcs/reference/load_data.md)
+  : Load WORCS project data
+- [`load_entrypoint()`](https://cjvanlissa.github.io/worcs/reference/load_entrypoint.md)
+  : Load project entry points
+- [`notify_synthetic()`](https://cjvanlissa.github.io/worcs/reference/notify_synthetic.md)
+  : Notify the user when synthetic data are being used
+- [`open_data()`](https://cjvanlissa.github.io/worcs/reference/open_data.md)
+  : Use open data in WORCS project
+- [`remove_endpoint()`](https://cjvanlissa.github.io/worcs/reference/remove_endpoint.md)
+  : Remove endpoint from WORCS project
+- [`reproduce()`](https://cjvanlissa.github.io/worcs/reference/reproduce.md)
+  : Reproduce WORCS Project
+- [`skew_kurtosis()`](https://cjvanlissa.github.io/worcs/reference/skew_kurtosis.md)
+  : Calculate skew and kurtosis
+- [`snapshot_endpoints()`](https://cjvanlissa.github.io/worcs/reference/snapshot_endpoints.md)
+  : Snapshot endpoints in WORCS project
+- [`synthetic()`](https://cjvanlissa.github.io/worcs/reference/synthetic.md)
+  : Generate synthetic data
+- [`worcs_badge()`](https://cjvanlissa.github.io/worcs/reference/worcs_badge.md)
+  : Add WORCS badge to README.md
+- [`worcs_checklist`](https://cjvanlissa.github.io/worcs/reference/worcs_checklist.md)
+  : WORCS checklist
+- [`worcs_path()`](https://cjvanlissa.github.io/worcs/reference/worcs_path.md)
+  : Specify File Path Relative to WORCS Project Directory
+- [`worcs_project()`](https://cjvanlissa.github.io/worcs/reference/worcs_project.md)
+  : Create new WORCS project
+- [`worcs_root()`](https://cjvanlissa.github.io/worcs/reference/worcs_root.md)
+  : Return Absolute File Path of WORCS Project Directory
+
+# Articles
+
+### All vignettes
+
+- [Citing references in
+  worcs](https://cjvanlissa.github.io/worcs/articles/citation.md):
+- [Using Endpoints to Check
+  Reproducibility](https://cjvanlissa.github.io/worcs/articles/endpoints.md):
+- [Connecting to 'Git' remote
+  repositories](https://cjvanlissa.github.io/worcs/articles/git_cloud.md):
+- [Reproducing a WORCS
+  project](https://cjvanlissa.github.io/worcs/articles/reproduce.md):
+- [Setting up your computer for WORCS -
+  Docker-edition](https://cjvanlissa.github.io/worcs/articles/setup-docker.md):
+- [Setting up your computer for
+  WORCS](https://cjvanlissa.github.io/worcs/articles/setup.md):
+- [Using Custom Synthetic
+  Data](https://cjvanlissa.github.io/worcs/articles/synthetic_data.md):
+- [Using targets to Reduce Redundant
+  Computations](https://cjvanlissa.github.io/worcs/articles/targets.md):
+- [The WORCS workflow, version
+  0.1.16](https://cjvanlissa.github.io/worcs/articles/workflow.md):

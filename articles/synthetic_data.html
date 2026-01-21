@@ -222,41 +222,41 @@ results - with it:</p>
 <span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu">lavaan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/sem.html" class="external-link">sem</a></span><span class="op">(</span><span class="va">model</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span><span class="fu">tidySEM</span><span class="fu">::</span><span class="fu"><a href="https://cjvanlissa.github.io/tidySEM/reference/table_results.html" class="external-link">table_results</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] TRUE</span></span>
-<span><span class="co">#&gt;              label est_sig   se pval       confint</span></span>
-<span><span class="co">#&gt; 1      ind60.BY.x1    1.00 0.00 &lt;NA&gt;  [1.00, 1.00]</span></span>
-<span><span class="co">#&gt; 2      ind60.BY.x2 2.18*** 0.05 0.00  [2.08, 2.28]</span></span>
-<span><span class="co">#&gt; 3      ind60.BY.x3 1.76*** 0.06 0.00  [1.65, 1.87]</span></span>
-<span><span class="co">#&gt; 4      dem60.BY.y1    1.00 0.00 &lt;NA&gt;  [1.00, 1.00]</span></span>
-<span><span class="co">#&gt; 5      dem60.BY.y2 1.24*** 0.05 0.00  [1.14, 1.34]</span></span>
-<span><span class="co">#&gt; 6      dem60.BY.y3 1.15*** 0.05 0.00  [1.06, 1.24]</span></span>
-<span><span class="co">#&gt; 7      dem60.BY.y4 1.20*** 0.04 0.00  [1.12, 1.29]</span></span>
-<span><span class="co">#&gt; 8      dem65.BY.y5    1.00 0.00 &lt;NA&gt;  [1.00, 1.00]</span></span>
-<span><span class="co">#&gt; 9      dem65.BY.y6 1.24*** 0.05 0.00  [1.14, 1.34]</span></span>
-<span><span class="co">#&gt; 10     dem65.BY.y7 1.15*** 0.05 0.00  [1.06, 1.24]</span></span>
-<span><span class="co">#&gt; 11     dem65.BY.y8 1.20*** 0.04 0.00  [1.12, 1.29]</span></span>
-<span><span class="co">#&gt; 12  dem60.ON.ind60 1.57*** 0.15 0.00  [1.27, 1.87]</span></span>
-<span><span class="co">#&gt; 13  dem65.ON.ind60 0.62*** 0.09 0.00  [0.44, 0.79]</span></span>
-<span><span class="co">#&gt; 14  dem65.ON.dem60 0.84*** 0.03 0.00  [0.78, 0.89]</span></span>
-<span><span class="co">#&gt; 15      y1.WITH.y5 0.70*** 0.13 0.00  [0.44, 0.96]</span></span>
-<span><span class="co">#&gt; 16      y2.WITH.y4 1.60*** 0.27 0.00  [1.08, 2.12]</span></span>
-<span><span class="co">#&gt; 17      y2.WITH.y6 1.68*** 0.25 0.00  [1.20, 2.17]</span></span>
-<span><span class="co">#&gt; 18      y3.WITH.y7 0.94*** 0.24 0.00  [0.47, 1.41]</span></span>
-<span><span class="co">#&gt; 19      y4.WITH.y8    0.20 0.15 0.19 [-0.10, 0.50]</span></span>
-<span><span class="co">#&gt; 20      y6.WITH.y8 1.39*** 0.22 0.00  [0.96, 1.82]</span></span>
-<span><span class="co">#&gt; 21    Variances.x1 0.07*** 0.01 0.00  [0.06, 0.09]</span></span>
-<span><span class="co">#&gt; 22    Variances.x2 0.13*** 0.03 0.00  [0.08, 0.18]</span></span>
-<span><span class="co">#&gt; 23    Variances.x3 0.43*** 0.03 0.00  [0.36, 0.49]</span></span>
-<span><span class="co">#&gt; 24    Variances.y1 1.66*** 0.16 0.00  [1.34, 1.97]</span></span>
-<span><span class="co">#&gt; 25    Variances.y2 6.89*** 0.50 0.00  [5.91, 7.86]</span></span>
-<span><span class="co">#&gt; 26    Variances.y3 5.69*** 0.41 0.00  [4.88, 6.50]</span></span>
-<span><span class="co">#&gt; 27    Variances.y4 3.05*** 0.27 0.00  [2.52, 3.57]</span></span>
-<span><span class="co">#&gt; 28    Variances.y5 2.19*** 0.18 0.00  [1.83, 2.54]</span></span>
-<span><span class="co">#&gt; 29    Variances.y6 4.37*** 0.33 0.00  [3.72, 5.01]</span></span>
-<span><span class="co">#&gt; 30    Variances.y7 3.27*** 0.26 0.00  [2.76, 3.77]</span></span>
-<span><span class="co">#&gt; 31    Variances.y8 3.17*** 0.26 0.00  [2.65, 3.68]</span></span>
-<span><span class="co">#&gt; 32 Variances.ind60 0.45*** 0.03 0.00  [0.39, 0.52]</span></span>
-<span><span class="co">#&gt; 33 Variances.dem60 3.90*** 0.33 0.00  [3.25, 4.55]</span></span>
-<span><span class="co">#&gt; 34 Variances.dem65 0.35*** 0.09 0.00  [0.17, 0.53]</span></span></code></pre>
+<span><span class="co">#&gt;              label est_sig   se pval      confint</span></span>
+<span><span class="co">#&gt; 1      ind60.BY.x1    1.00 0.00 &lt;NA&gt; [1.00, 1.00]</span></span>
+<span><span class="co">#&gt; 2      ind60.BY.x2 2.20*** 0.05 0.00 [2.10, 2.31]</span></span>
+<span><span class="co">#&gt; 3      ind60.BY.x3 1.86*** 0.06 0.00 [1.74, 1.98]</span></span>
+<span><span class="co">#&gt; 4      dem60.BY.y1    1.00 0.00 &lt;NA&gt; [1.00, 1.00]</span></span>
+<span><span class="co">#&gt; 5      dem60.BY.y2 1.23*** 0.05 0.00 [1.13, 1.32]</span></span>
+<span><span class="co">#&gt; 6      dem60.BY.y3 1.14*** 0.05 0.00 [1.05, 1.23]</span></span>
+<span><span class="co">#&gt; 7      dem60.BY.y4 1.17*** 0.04 0.00 [1.09, 1.26]</span></span>
+<span><span class="co">#&gt; 8      dem65.BY.y5    1.00 0.00 &lt;NA&gt; [1.00, 1.00]</span></span>
+<span><span class="co">#&gt; 9      dem65.BY.y6 1.23*** 0.05 0.00 [1.13, 1.32]</span></span>
+<span><span class="co">#&gt; 10     dem65.BY.y7 1.14*** 0.05 0.00 [1.05, 1.23]</span></span>
+<span><span class="co">#&gt; 11     dem65.BY.y8 1.17*** 0.04 0.00 [1.09, 1.26]</span></span>
+<span><span class="co">#&gt; 12  dem60.ON.ind60 1.64*** 0.16 0.00 [1.32, 1.96]</span></span>
+<span><span class="co">#&gt; 13  dem65.ON.ind60 0.77*** 0.09 0.00 [0.59, 0.96]</span></span>
+<span><span class="co">#&gt; 14  dem65.ON.dem60 0.83*** 0.03 0.00 [0.77, 0.89]</span></span>
+<span><span class="co">#&gt; 15      y1.WITH.y5 0.63*** 0.14 0.00 [0.36, 0.89]</span></span>
+<span><span class="co">#&gt; 16      y2.WITH.y4 1.74*** 0.27 0.00 [1.20, 2.27]</span></span>
+<span><span class="co">#&gt; 17      y2.WITH.y6 1.66*** 0.24 0.00 [1.18, 2.14]</span></span>
+<span><span class="co">#&gt; 18      y3.WITH.y7 1.01*** 0.25 0.00 [0.53, 1.49]</span></span>
+<span><span class="co">#&gt; 19      y4.WITH.y8   0.33* 0.16 0.04 [0.02, 0.65]</span></span>
+<span><span class="co">#&gt; 20      y6.WITH.y8 1.45*** 0.22 0.00 [1.02, 1.88]</span></span>
+<span><span class="co">#&gt; 21    Variances.x1 0.07*** 0.01 0.00 [0.06, 0.09]</span></span>
+<span><span class="co">#&gt; 22    Variances.x2 0.12*** 0.03 0.00 [0.07, 0.17]</span></span>
+<span><span class="co">#&gt; 23    Variances.x3 0.46*** 0.03 0.00 [0.39, 0.53]</span></span>
+<span><span class="co">#&gt; 24    Variances.y1 1.74*** 0.17 0.00 [1.41, 2.07]</span></span>
+<span><span class="co">#&gt; 25    Variances.y2 6.91*** 0.50 0.00 [5.94, 7.88]</span></span>
+<span><span class="co">#&gt; 26    Variances.y3 5.29*** 0.39 0.00 [4.53, 6.06]</span></span>
+<span><span class="co">#&gt; 27    Variances.y4 3.44*** 0.29 0.00 [2.88, 4.00]</span></span>
+<span><span class="co">#&gt; 28    Variances.y5 2.10*** 0.18 0.00 [1.75, 2.44]</span></span>
+<span><span class="co">#&gt; 29    Variances.y6 4.22*** 0.32 0.00 [3.60, 4.84]</span></span>
+<span><span class="co">#&gt; 30    Variances.y7 3.63*** 0.28 0.00 [3.08, 4.17]</span></span>
+<span><span class="co">#&gt; 31    Variances.y8 3.34*** 0.27 0.00 [2.82, 3.87]</span></span>
+<span><span class="co">#&gt; 32 Variances.ind60 0.41*** 0.03 0.00 [0.35, 0.47]</span></span>
+<span><span class="co">#&gt; 33 Variances.dem60 4.01*** 0.34 0.00 [3.34, 4.68]</span></span>
+<span><span class="co">#&gt; 34 Variances.dem65   0.22* 0.09 0.01 [0.05, 0.39]</span></span></code></pre>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -270,7 +270,7 @@ results - with it:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
