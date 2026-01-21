@@ -146,7 +146,7 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   replicates <- TRUE
   with_cli_try("Checking endpoints.", {
     if(is.null(worcsfile[["endpoints"]])){
-      cli_msg("!", "No endpoints found in WORCS project.")
+      cli_msg("!" = "No endpoints found in WORCS project.")
     } else {
       endpoints <- worcsfile[["endpoints"]]
       replicates <- rep(x = TRUE, times = length(endpoints))

@@ -1,4 +1,4 @@
-if(require(targets) & require(tarchetypes)){
+if(requireNamespace("targets", quietly = TRUE) & requireNamespace("tarchetypes", quietly = TRUE)){
   test_that("targets works with apa6", {
     skip_if_not_pandoc("2.0")
 
