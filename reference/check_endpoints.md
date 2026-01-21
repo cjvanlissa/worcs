@@ -48,7 +48,6 @@ file.create(".worcs")
 writeLines("test", "test.txt")
 add_endpoint("test.txt")
 check_endpoints()
-#> ✔ Endpoint 'test.txt' replicates.
 # Cleaning example directory
 setwd(old_wd)
 unlink(test_dir, recursive = TRUE)

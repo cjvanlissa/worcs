@@ -41,19 +41,22 @@ withr::with_tempdir({
   add_testthat()
 })
 }
-#> ✔ Setting active project to "/tmp/RtmpxWH2ul/file20d553e4fe66".
+#> ✔ Setting active project to "/tmp/RtmpzQ2yMl/file20e4717e6608".
 #> ✔ Creating R/.
 #> ✔ Writing a sentinel file .here.
 #> ☐ Build robust paths within your project via `here::here()`.
 #> ℹ Learn more at <https://here.r-lib.org>.
 #> ✔ Setting active project to "<no active project>".
-#> ✔ Setting active project to "/tmp/RtmpxWH2ul/file20d553e4fe66".
+#> ✔ Setting active project to "/tmp/RtmpzQ2yMl/file20e4717e6608".
 #> ✔ Creating tests/testthat/.
 #> ✔ Writing tests/testthat.R.
 #> ☐ Call `usethis::use_test()` to initialize a basic test file and open it for
 #>   editing.
 #> ℹ Updating tests/testthat.R
 #> ✔ Updating tests/testthat.R ... done
+#> 
+#> ℹ Updating .worcs file
+#> ✖ Updating .worcs file ... failed
 #> 
 #> ℹ Run `worcs::github_action_testthat()` to add a GitHub action that evaluates
 #>   the integration tests.
@@ -70,14 +73,14 @@ if(requireNamespace("withr", quietly = TRUE) &
   })
 
 }
-#> ✔ Creating /tmp/RtmpxWH2ul/testworcs/.
-#> ✔ Setting active project to "/tmp/RtmpxWH2ul/testworcs".
+#> ✔ Creating /tmp/RtmpzQ2yMl/testworcs/.
+#> ✔ Setting active project to "/tmp/RtmpzQ2yMl/testworcs".
 #> ✔ Creating R/.
 #> ✔ Writing a sentinel file .here.
 #> ☐ Build robust paths within your project via `here::here()`.
 #> ℹ Learn more at <https://here.r-lib.org>.
 #> ✔ Setting active project to "<no active project>".
-#> ✔ Setting active project to "/tmp/RtmpxWH2ul/testworcs".
+#> ✔ Setting active project to "/tmp/RtmpzQ2yMl/testworcs".
 #> ✔ Creating tests/testthat/.
 #> ✔ Writing tests/testthat.R.
 #> ☐ Call `usethis::use_test()` to initialize a basic test file and open it for
@@ -85,9 +88,12 @@ if(requireNamespace("withr", quietly = TRUE) &
 #> ℹ Updating tests/testthat.R
 #> ✔ Updating tests/testthat.R ... done
 #> 
+#> ℹ Updating .worcs file
+#> ✔ Updating .worcs file ... done
+#> 
 #> ℹ Run `worcs::github_action_testthat()` to add a GitHub action that evaluates
 #>   the integration tests.
-#> ✔ Setting active project to "/tmp/RtmpxWH2ul/testworcs".
+#> ✔ Setting active project to "/tmp/RtmpzQ2yMl/testworcs".
 #> ✔ Writing tests/testthat/test-testme.R.
 #> ☐ Edit tests/testthat/test-testme.R.
 #> ℹ Loading tests/testthat.R
@@ -100,6 +106,6 @@ if(requireNamespace("withr", quietly = TRUE) &
 #> 
 #> ══ Results ═════════════════════════════════════════════════════════════════════
 #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-#> ✔ Setting active project to "/tmp/RtmpxWH2ul/testworcs".
+#> ✔ Setting active project to "/tmp/RtmpzQ2yMl/testworcs".
 #> ✔ Setting active project to "<no active project>".
 ```
