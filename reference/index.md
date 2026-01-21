@@ -31,6 +31,7 @@
   [`check_tinytex()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
   [`check_rmarkdown()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
   [`check_renv()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
+  [`check_renv_synchronized()`](https://cjvanlissa.github.io/worcs/reference/check_worcs_installation.md)
   : Check worcs dependencies
 - [`cite_all()`](https://cjvanlissa.github.io/worcs/reference/cite_all.md)
   : Comprehensive citation Knit function for 'RStudio'

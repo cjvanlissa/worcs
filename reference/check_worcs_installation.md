@@ -21,6 +21,8 @@ check_tinytex()
 check_rmarkdown()
 
 check_renv()
+
+check_renv_synchronized(worcs_directory = ".", ...)
 ```
 
 ## Arguments
@@ -47,6 +49,15 @@ check_renv()
   Logical, whether to run tests for the existence and functioning of an
   SSH key. This method of authentication is not recommended, so defaults
   to FALSE.
+
+- worcs_directory:
+
+  Character, indicating the WORCS project directory to which to save
+  data. The default value `"."` points to the current directory.
+
+- ...:
+
+  Additional parameters passed to and from functions.
 
 ## Value
 

@@ -32,5 +32,5 @@ writeLines("", ".worcs")
 worcs_root()
 })
 }
-#> [1] "/tmp/Rtmpj0K1ti/file2298284a9e8a"
+#> [1] "/tmp/RtmpzAKLkH/file20db69a1544d"
 ```
