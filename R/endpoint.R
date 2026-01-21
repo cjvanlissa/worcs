@@ -143,6 +143,7 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   dn_worcs <- worcs_root(path = worcs_directory)
   fn_worcs <- file.path(dn_worcs, ".worcs")
   worcsfile <- yaml::read_yaml(fn_worcs)
+  replicates <- TRUE
   with_cli_try("Checking endpoints.", {
     if(is.null(worcsfile[["endpoints"]])){
       cli_msg("!", "No endpoints found in WORCS project.")
