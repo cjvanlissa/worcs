@@ -143,41 +143,47 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
   dn_worcs <- worcs_root(path = worcs_directory)
   fn_worcs <- file.path(dn_worcs, ".worcs")
   worcsfile <- yaml::read_yaml(fn_worcs)
-  if(is.null(worcsfile[["endpoints"]])){
-    if(interactive()){
-      col_message("No endpoints found in WORCS project.", verbose = verbose, success = FALSE)
+  with_cli_try("Checking endpoints.", {
+    if(is.null(worcsfile[["endpoints"]])){
+      cli_msg("!", "No endpoints found in WORCS project.")
     } else {
-      stop("No endpoints found in WORCS project.")
+      endpoints <- worcsfile[["endpoints"]]
+      replicates <- rep(x = TRUE, times = length(endpoints))
+      for(i in seq_along(endpoints)){
+        ep <- endpoints[i]
+        out <- try({
+          # Use absolute file path here
+          check_sum(file.path(dn_worcs, ep), old_cs = worcsfile[["checksums"]][[ep]], worcsfile = fn_worcs, error = TRUE)
+        }, silent = TRUE)
+        if(inherits(out, "try-error")){
+          cli_msg("x" = paste0("Endpoint '", ep, "' did not replicate."))
+          replicates[i] <- FALSE
+        } else {
+          cli_msg("v" = paste0("Endpoint '", ep, "' replicates."))
+        }
+      }
     }
+  })
+  testthat_passes <- TRUE
+  if(isTRUE(worcsfile[["testthat"]])){
+    testthat_passes <- with_cli_try("Running `testthat` tests.", {
+      test_worcs(worcs_directory = dn_worcs)
+    })
+  }
 
-  }
-  endpoints <- worcsfile[["endpoints"]]
-  replicates <- rep(x = TRUE, times = length(endpoints))
-  for(i in seq_along(endpoints)){
-    ep <- endpoints[i]
-    out <- try({
-      #fn_endpoint <- path_abs_worcs(ep, dn_worcs)
-      # Use absolute file path here
-      check_sum(file.path(dn_worcs, ep), old_cs = worcsfile[["checksums"]][[ep]], worcsfile = fn_worcs, error = TRUE)
-    }, silent = TRUE)
-    if(inherits(out, "try-error")){
-      col_message("Endpoint '", ep, "' did not replicate.",
-                          verbose = verbose, success = FALSE)
-      replicates[i] <- FALSE
+  msg <- paste0(
+    ifelse(any(!replicates), paste0("Endpoints ", paste0(endpoints[which(!replicates)], collapse = ", "), " did not replicate. "), ""),
+    ifelse(!testthat_passes, "The `testthat` tests did not pass. ", ""),
+    "Have you run {.run snapshot_endpoints()}? Have you run {.run renv::snapshot()}? ",
+    ifelse(!testthat_passes, "Have you checked that your tests are correct?", ""))
+  if(any(!replicates) | isFALSE(testthat_passes)){
+    if(!interactive()){
+      stop(gsub("(\\{\\.run |\\})", "", msg))
     } else {
-      col_message("Endpoint '", ep, "' replicates.",
-                          verbose = verbose)
+      cli_msg("!" = msg)
     }
   }
-  if(!interactive()){
-    if(any(!replicates)){
-      # git_record <- system2("git", paste0('-C "', dirname(fn_worcs), '" ls-files --eol'), stdout = TRUE)
-      # git_record <- git_record[grepl(endpoints[1], git_record, fixed = TRUE)]
-      # stop("Endpoints ", paste0(endpoints[which(!replicates)], collapse = ", "), " did not replicate. Checksum of record: ", worcsfile[["checksums"]][[endpoints[1]]], ", local checksum: ", cs_fun(ep, fn_worcs), ", git ls: ", git_record)
-      stop("Endpoints ", paste0(endpoints[which(!replicates)], collapse = ", "), " did not replicate. Make sure that the endpoint snapshot and renv are up to date, and verify that differences are not due to Git changing the line endings of text files.")
-    }
-  }
-  return(invisible(all(replicates)))
+  return(invisible(all(replicates) & testthat_passes))
 }
 
 

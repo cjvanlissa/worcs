@@ -1,8 +1,8 @@
 scoped_tempdir <- function (code){
 
-  tmp <- tempfile(pattern = "file", tmpdir = tempdir(), fileext = "")
-  dir.create(tmp)
-  on.exit(unlink(tmp, recursive = TRUE), add = TRUE)
+  new <- tempfile(pattern = "file", tmpdir = tempdir(), fileext = "")
+  dir.create(new)
+  on.exit(unlink(new, recursive = TRUE), add = TRUE)
   old <- setwd(dir = new)
   on.exit(setwd(old))
   force(code)

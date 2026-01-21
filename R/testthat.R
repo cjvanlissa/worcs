@@ -24,6 +24,11 @@ add_testthat <- function(worcs_directory = ".", ...){
       txt <- c(txt, 'testthat::test_dir("tests/testthat")')
       writeLines(txt, "tests/testthat.R")
     })
+    with_cli_try("Updating {.file .worcs} file", {
+      flnm <- worcs_path(".worcs", worcs_directory = worcs_directory)
+      worcsfile <- yaml::read_yaml(flnm)
+      write_worcsfile(filename = flnm, testthat = TRUE, modify = TRUE)
+    })
     cli_msg("i" = "Run {.fn worcs::github_action_testthat} to add a GitHub action that evaluates the integration tests.")
   })
 }
