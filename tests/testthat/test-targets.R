@@ -2,7 +2,7 @@ if(require(targets) & require(tarchetypes)){
   test_that("targets works with apa6", {
     skip_if_not_pandoc("2.0")
 
-    withr::with_tempdir({
+    worcs:::scoped_tempdir({
       # unlink("R", recursive = TRUE)
       worcs::worcs_project(path = ".",
                            manuscript = "github_document",
@@ -56,7 +56,7 @@ if(require(targets) & require(tarchetypes)){
 
   test_that("targets works with target markdown", {
     skip_if_not_pandoc("2.0")
-    withr::with_tempdir({
+    worcs:::scoped_tempdir({
       worcs::worcs_project(path = ".",
                            manuscript = "target_markdown",
                            preregistration = "None",

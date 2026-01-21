@@ -1,5 +1,5 @@
 test_that("boilerplate text is inserted", {
-  withr::with_tempdir({
+  worcs:::scoped_tempdir({
     add_manuscript(manuscript = "apa6")
     lnz <- readLines("manuscript/manuscript.Rmd")
     expect_true(any(grepl("Workflow for Open Reproducible Code in Science", lnz, fixed = TRUE)))
