@@ -44,12 +44,19 @@ if(requireNamespace("withr", quietly = TRUE)){
     class(df) <- c("worcs_data", class(df))
     attr(df, "type") <- "synthetic"
     result <- capture.output(notify_synthetic(df, msg = "it is synthetic"))
+    if(!grepl("synthetic", result)) stop()
     df <- df[1:10, ]
     closed_data(df, codebook = NULL)
     file.remove("df.csv")
     result <- capture.output(notify_synthetic(msg = "synthetic"))
+    if(!grepl("synthetic", result)) stop()
+    if(requireNamespace("rmarkdown", quietly = TRUE)){
     add_manuscript(manuscript = "github_document")
     print(readLines("manuscript/manuscript.Rmd"))
+    rmarkdown::render("manuscript/manuscript.Rmd")
+    if(!any(grepl("reproduced using synthetic",
+    readLines("manuscript/manuscript.html")))) stop()
+    }
   })
 }
 }

@@ -1,0 +1,107 @@
+---
+title: "Target Markdown"
+output: html_document
+date: '`r format(Sys.time(), "%d %B, %Y")`'
+bibliography: references.bib
+knit: worcs::cite_all
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library("worcs")
+# We recommend that you prepare your raw data for analysis in 'prepare_data.R',
+# and end that file with either open_data(yourdata), or closed_data(yourdata).
+```
+
+{boilerplate}
+
+# Target Markdown
+
+Target Markdown is a powerful R Markdown interface for reproducible analysis pipelines, and the chapter at https://books.ropensci.org/targets/markdown.html walks through it in detail. This R Markdown report the example from the chapter. Try it out in both interactive and non-interactive modes, either by running the code chunks in different ways or setting the `tar_interactive` chunk option.
+
+# Packages
+
+The example requires `targets` version 0.5.0.9000 or above. 
+
+# Setup
+
+Near the top of the document, you may wish to remove the `_targets_r` directory previously written by non-interactive runs of the report. Otherwise, your pipeline may contain superfluous targets.
+
+```{r}
+library(targets)
+tar_unscript()
+```
+
+# Globals
+
+We first define some global options/functions common to all targets.
+
+```{targets example-globals, tar_globals = TRUE}
+options(tidyverse.quiet = TRUE)
+tar_option_set(packages = c("worcs"))
+```
+
+# Targets
+
+Our first target borrows the `airquality` dataset built into base R.
+
+```{targets raw-data}
+tar_target(raw_data, airquality)
+```
+
+Alternatively, you can use a `worcs` dataset, which you have saved in the
+`prepare_data.R` script by running running the following code, with either
+`closed_data()` or `open_data()`:
+
+```{r}
+open_data(airquality)
+```
+
+You may then load it like so:
+
+```{targets worcs-data}
+tar_target(worcs_data, load_data(to_envir = FALSE)$airquality)
+```
+
+Our next targets preprocess the data, make a histogram, and fit a model.
+
+```{targets downstream-targets}
+list(
+  tar_target(data, worcs_data[complete.cases(worcs_data), ]),
+  tar_target(dens_data, density(data[["Ozone"]]))
+)
+```
+
+Set the `tar_simple` chunk option to `TRUE` to define a single target with the command in the code chunk. The chunk below only contains `lm(Ozone ~ Wind + Temp, data)` in the source, but because `tar_simple` is `TRUE`, it is shorthand for `tar_target(name = fit, command = lm(Ozone ~ Wind + Temp, data))`. All other arguments to `tar_target()` are set to their default values (configurable with `tar_option_set()`).
+
+```{targets fit, tar_simple = TRUE}
+lm(Ozone ~ Wind + Temp, data)
+```
+
+# Pipeline
+
+If you ran all the `{targets}` chunks in non-interactive mode, then your R scripts are set up to run the pipeline.
+
+```{r}
+tar_make()
+```
+
+# Output
+
+You can retrieve results from the `_targets/` data store using `tar_read()` or `tar_load()`.
+
+```{r, message = FALSE}
+tar_read(fit)
+```
+
+```{r}
+plot(tar_read(dens_data))
+```
+
+The `targets` dependency graph helps your readers understand the steps of your pipeline at a high level.
+
+```{r eval = FALSE}
+tar_visnetwork()
+```
+
+At this point, you can go back and run `{targets}` chunks in interactive mode without interfering with the code or data of the non-interactive pipeline.

@@ -1,9 +1,42 @@
-recommend_data <- c('library("worcs")',
-                    "# We recommend that you prepare your raw data for analysis in 'prepare_data.R',",
-                    "# and end that file with either open_data(yourdata), or closed_data(yourdata).",
-                    "# Then, uncomment the line below to load the original or synthetic data",
-                    "# (whichever is available), to allow anyone to reproduce your code:",
-                    "# load_data()")
+worcs_boilerplate <- function(remote_repo = NULL){
+  if(is.null(remote_repo)){
+    repotext <- ""
+  } else {
+    repo_url <- parse_repo(remote_repo = remote_repo, verbose = FALSE)
+    if(is.null(repo_url)){
+      repotext <- ""
+    } else {
+        repotext <- paste0("To access the analysis code <!--and data-->, see ", paste0("<", remote_repo, ">"), ".")
+    }
+  }
+
+  boilerplate <- c(
+    "",
+    paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [WORCS version ",
+           gsub("^(\\d{1,}(\\.\\d{1,}){2}).+$", "\\1", as.character(packageVersion("worcs"))),
+           ", @vanlissaWORCSWorkflowOpen2021] to ensure reproducibility and transparency."),
+    repotext,
+    "",
+    "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2021]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
+    "",
+    "<!--The function below inserts a notification if the manuscript is knit using synthetic data.-->",
+    "`r notify_synthetic()`"
+  )
+
+  recommend_data <- c('library("worcs")',
+                      "# We recommend that you prepare your raw data for analysis in 'prepare_data.R',",
+                      "# and end that file with either open_data(yourdata), or closed_data(yourdata).",
+                      "# Then, uncomment the line below to load the original or synthetic data",
+                      "# (whichever is available), to allow anyone to reproduce your code:",
+                      "# load_data()")
+  return(
+    list(
+      boilerplate = boilerplate,
+      recommend_data = recommend_data
+    )
+  )
+}
+
 
 #' @title Create new WORCS project
 #' @description Creates a new 'worcs' project. This function is invoked by
@@ -120,7 +153,7 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
   # Begin manuscript
   switch(manuscript,
          "none" = {
-           write_as_utf(recommend_data, file.path(path, "run_me.R"))
+           write_as_utf(worcs_boilerplate()$recommend_data, file.path(path, "run_me.R"))
            write_worcsfile(filename = file.path(path, ".worcs"),
                            entry_point = "run_me.R",
                            modify = TRUE)
@@ -249,44 +282,18 @@ describe_file <- function(file, desc, usage, tab, path){
 
 create_man_targets <- function(remote_repo, worcs_directory){
   if(requireNamespace("targets", quietly = TRUE)) {
-    run_in_worcsdir(targets::use_targets_rmd(open = FALSE), worcs_directory = worcs_directory)
-    # run_in_worcsdir(rmarkdown::render(man_fn_rel), worcs_directory = worcs_directory)
-    return()
+    with_cli_try("Copying standard files.", {
+      copy_resources(which_files = "_targets.Rmd", path = worcs_directory)
+      boilerplate <- worcs_boilerplate(remote_repo = remote_repo)
+      manuscript_text <- readLines(file.path(worcs_directory, "_targets.Rmd"), encoding = "UTF-8")
+      manuscript_text <- append(manuscript_text, boilerplate$boilerplate, after = grep("{boilerplate}", manuscript_text, fixed = TRUE))
+      manuscript_text <- manuscript_text[-grep("{boilerplate}", manuscript_text, fixed = TRUE)]
+      write_as_utf(manuscript_text, file.path(worcs_directory, "_targets.Rmd"))
+    })
   }
-  #   manuscript_text <- readLines(man_fn_abs, encoding = "UTF-8")
-  #   # Add bibliography
-  #   bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
-  #   manuscript_text[bib_line] <- append_yaml(manuscript_text[bib_line], "bibliography", "references.bib")
-  #   # Add citation function
-  #   add_lines <- c(
-  #     "knit              : worcs::cite_all"
-  #   )
-  #   manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
-  #   # Add call to library("worcs")
-  #   manuscript_text <- append(manuscript_text, recommend_data, after = grep('^library\\("papaja"\\)$', manuscript_text))
-  #
-  #   # Add introductory sentence
-  #   add_lines <- c(
-  #     "",
-  #     paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [WORCS version ",
-  #            gsub("^(\\d{1,}(\\.\\d{1,}){2}).+$", "\\1", as.character(packageVersion("worcs"))),
-  #            ", @vanlissaWORCSWorkflowOpen2021] to ensure reproducibility and transparency. All code <!--and data--> are available at ",
-  #            ifelse(is.null(remote_repo), "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
-  #     "",
-  #     "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2021]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
-  #     "",
-  #     "<!--The function below inserts a notification if the manuscript is knit using synthetic data. Make sure to insert it after load_data().-->",
-  #     "`r notify_synthetic()`"
-  #   )
-  #   manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
-  #
-  #   # Write
-  #   write_as_utf(manuscript_text, man_fn_abs)
-  # } else {
-  #   col_message('Could not generate an APA6 manuscript file, because the \'papaja\' package is not installed. Run this code to see instructions on how to install this package from GitHub:\n  vignette("setup", package = "worcs")', success = FALSE)
-  # }
+  return()
 }
-
+t
 
 create_man_papaja <- function(man_fn_abs, remote_repo){
   if(requireNamespace("papaja", quietly = TRUE)) {
@@ -297,6 +304,7 @@ create_man_papaja <- function(man_fn_abs, remote_repo){
       create_dir = FALSE,
       edit = FALSE
     )
+    boilerplate <- worcs_boilerplate(remote_repo = remote_repo)
     manuscript_text <- readLines(man_fn_abs, encoding = "UTF-8")
     # Add bibliography
     bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
@@ -309,22 +317,11 @@ create_man_papaja <- function(man_fn_abs, remote_repo){
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
     # Add call to library("worcs")
-    manuscript_text <- append(manuscript_text, recommend_data, after = grep('^library\\("papaja"\\)$', manuscript_text))
+    manuscript_text <- append(manuscript_text, boilerplate$recommend_data, after = grep('^library\\("papaja"\\)$', manuscript_text))
 
     # Add introductory sentence
-    add_lines <- c(
-      "",
-      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [WORCS version ",
-             gsub("^(\\d{1,}(\\.\\d{1,}){2}).+$", "\\1", as.character(packageVersion("worcs"))),
-             ", @vanlissaWORCSWorkflowOpen2021] to ensure reproducibility and transparency. All code <!--and data--> are available at ",
-             ifelse(is.null(remote_repo), "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
-      "",
-      "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2021]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
-      "",
-      "<!--The function below inserts a notification if the manuscript is knit using synthetic data. Make sure to insert it after load_data().-->",
-      "`r notify_synthetic()`"
-    )
-    manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
+
+    manuscript_text <- append(manuscript_text, boilerplate$boilerplate, after = grep('^```', manuscript_text)[2])
 
     # Write
     write_as_utf(manuscript_text, man_fn_abs)
@@ -333,7 +330,7 @@ create_man_papaja <- function(man_fn_abs, remote_repo){
   }
 }
 
-create_man_github <- function(man_fn_abs, remote_repo){
+create_man_github <- function(man_fn_abs, remote_repo = NULL){
     draft(
       file = man_fn_abs,
       template = "github_document",
@@ -341,8 +338,7 @@ create_man_github <- function(man_fn_abs, remote_repo){
       create_dir = FALSE,
       edit = FALSE
     )
-
-    repo_address <- remote_repo
+    boilerplate <- worcs_boilerplate(remote_repo = remote_repo)
     manuscript_text <- readLines(man_fn_abs, encoding = "UTF-8")
     # Add bibliography and citation function
     add_lines <- c(
@@ -352,21 +348,10 @@ create_man_github <- function(man_fn_abs, remote_repo){
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
     # Add call to library("worcs")
-    manuscript_text <- append(manuscript_text, recommend_data, after = grep('^```', manuscript_text)[1])
+    manuscript_text <- append(manuscript_text, boilerplate$recommend_data, after = grep('^```', manuscript_text)[1])
     # Add introductory sentence
-    repo_url <- parse_repo(remote_repo = remote_repo, verbose = FALSE)
-    valid_repo <- !is.null(repo_url)
-    add_lines <- c(
-      "",
-      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2021] to ensure reproducibility and transparency. All code <!--and data--> are available at ",
-             ifelse(is.null(remote_repo), "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
-      "",
-      "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2021]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
-      "",
-      "<!--The function below inserts a notification if the manuscript is knit using synthetic data.-->",
-      "`r notify_synthetic()`"
-    )
-    manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
+
+    manuscript_text <- append(manuscript_text, boilerplate$boilerplate, after = grep('^```', manuscript_text)[2])
     # Write
     write_as_utf(manuscript_text, man_fn_abs)
 }
@@ -381,6 +366,7 @@ create_man_rticles <- function(man_fn_abs, template, remote_repo){
       create_dir = FALSE,
       edit = FALSE
     )
+    boilerplate <- worcs_boilerplate(remote_repo = remote_repo)
     manuscript_text <- readLines(man_fn_abs, encoding = "UTF-8")
     # Add bibliography
     bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
@@ -394,16 +380,10 @@ create_man_rticles <- function(man_fn_abs, template, remote_repo){
     # Add call to library("worcs")
     add_lines <- c(
       '```{r, echo = FALSE, eval = TRUE, message = FALSE}',
-      recommend_data,
+      boilerplate$recommend_data,
       '```',
       "",
-      paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [@vanlissaWORCSWorkflowOpen2021] to ensure reproducibility and transparency. All code <!--and data--> are available at ",
-             ifelse(is.null(remote_repo), "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
-      "",
-      "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2021]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
-      "",
-      "<!--The function below inserts a notification if the manuscript is knit using synthetic data. Make sure to insert it after load_data().-->",
-      "`r notify_synthetic()`"
+      boilerplate$boilerplate
     )
     manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]))
     write_as_utf(manuscript_text, man_fn_abs)
@@ -687,3 +667,6 @@ append_yaml <- function(yaml_text, yaml_command, add_this){
     dQuote(c(add_this,
              trimws(gsub('"', "", strsplit(gsub("^.+?:", "", yaml_text[this_line]), ",")[[1]]))), q = FALSE), collapse = ", "), ']'), yaml_text[this_line])
 }
+
+
+

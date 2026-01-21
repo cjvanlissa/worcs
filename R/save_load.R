@@ -621,15 +621,18 @@ write_gitig <- function(filename, ..., modify = TRUE){
 #'     class(df) <- c("worcs_data", class(df))
 #'     attr(df, "type") <- "synthetic"
 #'     result <- capture.output(notify_synthetic(df, msg = "it is synthetic"))
+#'     if(!grepl("synthetic", result)) stop()
 #'     df <- df[1:10, ]
 #'     closed_data(df, codebook = NULL)
 #'     file.remove("df.csv")
 #'     result <- capture.output(notify_synthetic(msg = "synthetic"))
+#'     if(!grepl("synthetic", result)) stop()
 #'     if(requireNamespace("rmarkdown", quietly = TRUE)){
 #'     add_manuscript(manuscript = "github_document")
 #'     print(readLines("manuscript/manuscript.Rmd"))
 #'     rmarkdown::render("manuscript/manuscript.Rmd")
-#'     #if(!any(grepl("this document is reproduced using synthetic data", readLines("manuscript/manuscript.html")))) stop()
+#'     if(!any(grepl("reproduced using synthetic",
+#'     readLines("manuscript/manuscript.html")))) stop()
 #'     }
 #'   })
 #' }
@@ -642,10 +645,10 @@ notify_synthetic <- function(...,
   dots <- list(...)
   if(isFALSE(length(dots) > 0)){
     dn_worcs <- worcs_root(worcs_directory)
-    has_data <- check_data_resources(dn_worcs = dn_worcs,
+    is_synth <- tryCatch({!check_data_resources(dn_worcs = dn_worcs,
                                                worcsfile = yaml::read_yaml(file.path(dn_worcs, ".worcs")),
-                                               verbose = FALSE)
-    is_synth <- !has_data$data_original
+                                               verbose = FALSE)$data_original}, error = function(e){FALSE})
+
   } else {
     if(!all(sapply(dots, inherits, what = "worcs_data"))){
       stop("Some arguments provided to 'notify_synthetic()' are not objects of class 'worcs_data'.", call. = FALSE)
