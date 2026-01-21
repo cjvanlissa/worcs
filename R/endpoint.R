@@ -31,8 +31,7 @@
 #' @export
 #' @importFrom yaml read_yaml
 add_endpoint <- function(filename = NULL, worcs_directory = ".", verbose = TRUE, ...){
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
-                                                        ".worcs")))
+  dn_worcs <- worcs_root(path = worcs_directory)
   fn_worcs <- file.path(dn_worcs, ".worcs")
   worcsfile <- yaml::read_yaml(fn_worcs)
   endpoints <- worcsfile[["endpoints"]]
@@ -93,8 +92,7 @@ add_endpoint <- function(filename = NULL, worcs_directory = ".", verbose = TRUE,
 #'  \code{\link[worcs]{check_endpoints}}
 #' @export
 snapshot_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
-                                                        ".worcs")))
+  dn_worcs <- worcs_root(path = worcs_directory)
   fn_worcs <- file.path(dn_worcs, ".worcs")
   worcsfile <- yaml::read_yaml(fn_worcs)
   if(is.null(worcsfile[["endpoints"]])){
@@ -142,8 +140,7 @@ snapshot_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
 #'  \code{\link[worcs]{snapshot_endpoints}}
 #' @export
 check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
-                                                        ".worcs")))
+  dn_worcs <- worcs_root(path = worcs_directory)
   fn_worcs <- file.path(dn_worcs, ".worcs")
   worcsfile <- yaml::read_yaml(fn_worcs)
   if(is.null(worcsfile[["endpoints"]])){
@@ -207,8 +204,7 @@ check_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
 #'  \code{\link[worcs]{snapshot_endpoints}}
 #' @export
 list_endpoints <- function(worcs_directory = ".", verbose = TRUE, ...){
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
-                                                ".worcs")))
+  dn_worcs <- worcs_root(path = worcs_directory)
   fn_worcs <- file.path(dn_worcs, ".worcs")
   worcsfile <- yaml::read_yaml(fn_worcs)
   if(is.null(worcsfile[["endpoints"]])){
@@ -251,8 +247,7 @@ remove_endpoint <- function(filename = NULL, worcs_directory = ".", verbose = TR
   if(is.null(filename)){
     return(invisible(NULL))
   }
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
-                                                ".worcs")))
+  dn_worcs <- worcs_root(path = worcs_directory)
   fn_worcs <- file.path(dn_worcs, ".worcs")
   worcsfile <- yaml::read_yaml(fn_worcs)
   if(is.null(worcsfile[["endpoints"]])){

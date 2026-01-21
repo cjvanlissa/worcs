@@ -98,7 +98,7 @@ closed_data <- function(data,
   Args$save_expression <- substitute(save_expression)
   Args$load_expression <- substitute(load_expression)
   Args[[1L]] <- str2lang("worcs:::save_data")
-  Args[["worcs_directory"]] <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
+  Args[["worcs_directory"]] <- worcs_root(path = worcs_directory)
   eval(Args, parent.frame())
 }
 
@@ -122,7 +122,7 @@ save_data <- function(data,
     names(data) <- make.unique(namz)
   }
   # Find .worcs file
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
+  dn_worcs <- worcs_root(path = worcs_directory)
 
   if(grepl("[", filename, fixed = TRUE) | grepl("$", filename, fixed = TRUE)){
     stop("This filename is not allowed: ", filename, ". Please specify a legal filename.", call. = FALSE)
@@ -267,7 +267,7 @@ save_data <- function(data,
 check_data_resources <- function(dn_worcs = ".", worcsfile = NULL, verbose = TRUE){
   if(is.null(worcsfile)){
     # Filenames housekeeping
-    dn_worcs <- dirname(check_recursive(file.path(normalizePath(dn_worcs), ".worcs")))
+    dn_worcs <- worcs_root(path = dn_worcs)
     checkworcs(dn_worcs, iserror = TRUE)
     fn_worcs <- file.path(dn_worcs, ".worcs")
     # End filenames
@@ -369,7 +369,7 @@ load_data <- function(worcs_directory = ".", to_envir = TRUE, envir = parent.fra
   # directory if necessary.
 
   # Filenames housekeeping
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
+  dn_worcs <- worcs_root(path = worcs_directory)
   checkworcs(dn_worcs, iserror = TRUE)
 
   fn_worcs <- file.path(dn_worcs, ".worcs")
@@ -579,21 +579,6 @@ checkworcs <- function(worcs_directory, iserror = FALSE){
   return(TRUE)
 }
 
-check_recursive <- function(path){
-  tryCatch({ normalizePath(path) },
-           warning = function(e){
-             filename <- basename(path)
-             cur_dir <- dirname(path)
-             parent_dir <- dirname(dirname(path))
-             doesnt_exist <- !dir.exists(cur_dir)
-             if(cur_dir == parent_dir){
-               stop("No '.worcs' file found in this directory or any of its parent directories; either this is not a worcs project, or the working directory is not set to the project directory.", call. = FALSE)
-             } else if(doesnt_exist) {
-               stop("No '.worcs' file found, because the directory '", dirname(path), "' doesn't exists.", call. = FALSE)
-             }
-             check_recursive(file.path(parent_dir, filename))
-           })
-}
 
 write_gitig <- function(filename, ..., modify = TRUE){
   new_contents <- unlist(list(...))
@@ -662,8 +647,7 @@ path_abs_worcs <- function(fn, dn_worcs = NULL, worcs_directory = "."){
     return(fn)
   }
   if (is.null(dn_worcs)) {
-    dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory),
-                                                          ".worcs")))
+    dn_worcs <- worcs_root(path = worcs_directory)
   }
   invisible(checkworcs(dn_worcs, iserror = TRUE))
   dirn <- normalizePath(dn_worcs)
@@ -672,10 +656,7 @@ path_abs_worcs <- function(fn, dn_worcs = NULL, worcs_directory = "."){
 
 path_rel_worcs <- function(fn, dn_worcs = NULL, worcs_directory = "."){
   if (is.null(dn_worcs)) {
-    dn_worcs <-
-      dirname(check_recursive(file.path(
-        normalizePath(worcs_directory), ".worcs"
-      )))
+    dn_worcs <- worcs_root(path = worcs_directory)
   }
   invisible(checkworcs(dn_worcs, iserror = TRUE))
   # Normalize both

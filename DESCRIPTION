@@ -36,7 +36,7 @@ License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/cjvanlissa/worcs, https://cjvanlissa.github.io/worcs/
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Imports:
     methods,
@@ -54,7 +54,8 @@ Imports:
     gh,
     xfun,
     cli,
-    rlang
+    rlang,
+    rprojroot
 Suggests:
     papaja (>= 0.1.1),
     targets (>= 1.11.1),

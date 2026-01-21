@@ -47,8 +47,8 @@ add_synthetic <- function(data,
                           ...){
   cl <- as.list(match.call()[-1])
   # Filenames housekeeping
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
-  fn_worcs <- path_abs_worcs(".worcs", dn_worcs)
+  dn_worcs <- worcs_root(path = worcs_directory)
+  fn_worcs <- file.path(dn_worcs, ".worcs")
   if(!file.exists(fn_worcs)){
     stop(".worcs file not found.")
   }

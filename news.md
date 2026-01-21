@@ -2,6 +2,7 @@
 
 * Fix check_dependencies()
 * Allow both Git remote URLs and names
+* Fix default license in worcs_project() arguments and 'RStudio' template
 
 # worcs 0.1.19
 

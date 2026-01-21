@@ -68,7 +68,7 @@ recommend_data <- c('library("worcs")',
 #' @importFrom prereg vantveer_prereg
 #' @importFrom methods formalArgs
 # @importFrom renv init
-worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "cos_prereg", add_license = "CC_BY_4.0", use_renv = TRUE, use_targets = FALSE, remote_repo = "https", verbose = TRUE, ...) {
+worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregistration = "cos_prereg", add_license = "ccby", use_renv = TRUE, use_targets = FALSE, remote_repo = "https", verbose = TRUE, ...) {
   cl <- match.call(expand.dots = FALSE)
 
   # collect inputs
@@ -521,7 +521,7 @@ nice_tab <- function(tab){
 # @importFrom renv init
 add_manuscript <- function(worcs_directory = ".", manuscript = "APA6", remote_repo = NULL, verbose = TRUE, ...) {
   # collect inputs
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
+  dn_worcs <- worcs_root(path = worcs_directory)
   fn_worcs <- file.path(dn_worcs, ".worcs")
 
   manuscript <- tolower(manuscript)
@@ -641,9 +641,9 @@ add_preregistration <- function(worcs_directory = ".",
                                 verbose = TRUE,
                                 ...) {
   # collect inputs
-  dn_worcs <- dirname(check_recursive(file.path(normalizePath(worcs_directory), ".worcs")))
+  dn_worcs <- worcs_root(path = worcs_directory)
   #fn_worcs <- file.path(dn_worcs, ".worcs")
-  worcs_directory <- normalizePath(dn_worcs)
+  worcs_directory <- dn_worcs
   preregistration <- tolower(preregistration)
   #dots <- list(...)
 

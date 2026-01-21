@@ -33,4 +33,4 @@ Fields: None, PSS, Secondary, aspredicted_prereg, brandt_prereg, cos_prereg, fmr
 Parameter: add_license
 Widget: SelectInput
 Label: Use license
-Fields: cc0, ccby, gpl, gpl3, agpl, agpl3, apache, apl2, lgpl, mit, proprietary, None
+Fields: ccby, cc0, gpl, gpl3, agpl, agpl3, apache, apl2, lgpl, mit, proprietary, None

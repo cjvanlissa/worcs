@@ -1,0 +1,6 @@
+data:
+  dat.csv:
+    save_expression: write.csv(x = data, file = filename, row.names = FALSE)
+    load_expression: read.csv(file = filename, stringsAsFactors = TRUE)
+checksums:
+  dat.csv: 0fa0db488ac0b9880fc5be91c038fb1a

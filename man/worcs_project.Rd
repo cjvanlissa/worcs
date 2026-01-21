@@ -8,7 +8,7 @@ worcs_project(
   path = "worcs_project",
   manuscript = "APA6",
   preregistration = "cos_prereg",
-  add_license = "CC_BY_4.0",
+  add_license = "ccby",
   use_renv = TRUE,
   use_targets = FALSE,
   remote_repo = "https",
