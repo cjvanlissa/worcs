@@ -25,7 +25,7 @@ test_that("save_expression and load_expression", {
   df <- load_data(to_envir = FALSE)$dat
 
   # test_that("loaded data same as original", {
-  expect_equivalent(iris[1:5, ], df)
+  expect_equal(iris[1:5, ], df, ignore_attr = TRUE)
 
   df <- rbind(df, df[40,])
   write.table(df, file = "dat.dat", row.names = FALSE)
@@ -46,12 +46,12 @@ test_that("save_expression and load_expression", {
   tmp <- read.table(file = "synthetic_dat.dat", header = TRUE, sep = " ", stringsAsFactors = TRUE)
 
   # test_that("synthetic data similar", {
-  expect_equivalent(dim(tmp), dim(dat))
-  expect_equivalent(sapply(dat, class), sapply(tmp, class)) # read.table is read as character
+  expect_equal(dim(tmp), dim(dat), ignore_attr = TRUE)
+  expect_equal(sapply(dat, class), sapply(tmp, class), ignore_attr = TRUE) # read.table is read as character
 
   # test_that(".worcs contains checksum for synthetic_data.csv", {
   expect_true(!is.null(checksums$checksums[["synthetic_dat.dat"]]))
-  expect_equivalent(checksums$checksums$synthetic_dat.dat, worcs:::cs_fun("synthetic_dat.dat"))
+  expect_equal(checksums$checksums$synthetic_dat.dat, worcs:::cs_fun("synthetic_dat.dat"), ignore_attr = TRUE)
 
   # test_that("loading open data works", {
   rm(dat)
@@ -62,7 +62,7 @@ test_that("save_expression and load_expression", {
   df <- load_data(to_envir = FALSE)$dat
 
   # test_that("loaded synthetic data same as original", {
-  expect_equivalent(tmp, df)
+  expect_equal(tmp, df, ignore_attr = TRUE)
 
   setwd(old_wd)
 })

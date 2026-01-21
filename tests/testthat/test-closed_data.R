@@ -12,7 +12,7 @@ test_that("save and load", {
   open_data(iris[1:5, ], filename = "iris.csv", codebook = "codebook_iris.Rmd", value_labels = 'value_labels_iris.yml')
   checksums <- read_yaml(".worcs")
 
-  expect_equivalent(checksums$checksums$iris.csv, worcs:::cs_fun("iris.csv"))
+  expect_equal(checksums$checksums$iris.csv, worcs:::cs_fun("iris.csv"), ignore_attr = TRUE)
 
   # test_that("loading open data works", {
   expect_error({load_data()}, NA)
@@ -22,7 +22,7 @@ test_that("save and load", {
   df <- load_data(to_envir = FALSE)$iris
 
   # test_that("loaded data same as original", {
-  expect_equivalent(iris[1:5, ], df)
+  expect_equal(iris[1:5, ], df, ignore_attr = TRUE)
 
   df <- rbind(df, df[40,])
   write.csv(df, "iris.csv", row.names = FALSE)
@@ -38,12 +38,12 @@ test_that("save and load", {
   tmp <- read.csv("synthetic_iris.csv", stringsAsFactors = TRUE)
 
   # test_that("synthetic data similar", {
-  expect_equivalent(dim(tmp), dim(iris))
-  expect_equivalent(sapply(iris, class), sapply(tmp, class))
+  expect_equal(dim(tmp), dim(iris), ignore_attr = TRUE)
+  expect_equal(sapply(iris, class), sapply(tmp, class), ignore_attr = TRUE)
 
   # test_that(".worcs contains checksum for synthetic_data.csv", {
   expect_true(!is.null(checksums$checksums[["synthetic_iris.csv"]]))
-  expect_equivalent(checksums$checksums$synthetic_iris.csv, worcs:::cs_fun("synthetic_iris.csv"))
+  expect_equal(checksums$checksums$synthetic_iris.csv, worcs:::cs_fun("synthetic_iris.csv"), ignore_attr = TRUE)
 
   # test_that("loading open data works", {
   expect_error({suppressWarnings(load_data())}, NA)
@@ -53,7 +53,7 @@ test_that("save and load", {
   df <- load_data(to_envir = FALSE)$iris
 
   # test_that("loaded synthetic data same as original", {
-  expect_equivalent(tmp, df)
+  expect_equal(tmp, df, ignore_attr = TRUE)
 
   file.remove("synthetic_iris.csv")
   closed_data(iris, codebook = NULL, synthetic = FALSE)
