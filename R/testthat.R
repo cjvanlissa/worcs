@@ -24,12 +24,7 @@ add_testthat <- function(worcs_directory = ".", ...){
       txt <- c(txt, 'testthat::test_dir("tests/testthat")')
       writeLines(txt, "tests/testthat.R")
     })
-    with_cli_try("Updating {.file .worcs} file", {
-      flnm <- worcs_path(".worcs", worcs_directory = worcs_directory)
-      worcsfile <- yaml::read_yaml(flnm)
-      write_worcsfile(filename = flnm, testthat = TRUE, modify = TRUE)
-    })
-    cli_msg("i" = "Run {.fn worcs::github_action_testthat} to add a GitHub action that evaluates the integration tests.")
+    cli_msg("i" = "You can run {.run add_endpoint('testthat')} to add the test suite as an endpoint, and {.run github_action_testthat()} to add a GitHub action that evaluates the integration tests, or {.run github_action_reproduce()} to reproduce the project and then run the tests.")
   })
 }
 

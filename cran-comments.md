@@ -9,10 +9,10 @@
 
 ## Test environments
 
-* local Windows 11, R 4.5.0
-* win-builder: R Under development (unstable) (2025-07-11 r88405 ucrt)
-* win-builder: R version 4.5.1 (2025-06-13 ucrt)
+* local Linux 6.14.0-37-generic 11, R 4.5.2
+* win-builder: R Under development (unstable) (2026-01-21 r89314 ucrt)
 * win-builder: R version 4.4.3 (2025-02-28 ucrt)
+* win-builder: R version 4.5.2 (2025-10-31 ucrt)
 * Rhub: linux (R-devel)
 * Rhub: macos (R-devel)
 * Rhub: macos-arm64 (R-devel)

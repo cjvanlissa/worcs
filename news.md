@@ -1,5 +1,8 @@
 # worcs 0.1.21
 
+* add_endpoints() accepts argument "testthat" to add integration tests as
+  endpoint
+* check_endpoints() now also checks testthat tests, if they exist
 * Add functions worcs_root() and worcs_file() for file paths relative to the
   worcs project root
 * Add check_renv_synchronized() to check if the project has renv, and if so,
