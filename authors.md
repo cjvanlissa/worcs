@@ -16,13 +16,13 @@ Source:
 [`DESCRIPTION`](https://github.com/cjvanlissa/worcs/blob/master/DESCRIPTION)
 
 Van Lissa CJ, Peikert A, Brandmaier AM (2026). *worcs: Workflow for Open
-Reproducible Code in Science*. R package version 0.1.20.1,
+Reproducible Code in Science*. R package version 0.1.20,
 <https://github.com/cjvanlissa/worcs>.
 
     @Manual{,
       title = {worcs: Workflow for Open Reproducible Code in Science},
       author = {Caspar J. {Van Lissa} and Aaron Peikert and Andreas M. Brandmaier},
       year = {2026},
-      note = {R package version 0.1.20.1},
+      note = {R package version 0.1.20},
       url = {https://github.com/cjvanlissa/worcs},
     }

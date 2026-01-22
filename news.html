@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">worcs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.20.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.20</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,9 @@
 
 <div id="worcs-0121" class="section level1">
 
-<ul><li>Add functions worcs_root() and worcs_file() for file paths relative to the worcs project root</li>
+<ul><li>add_endpoints() accepts argument “testthat” to add integration tests as endpoint</li>
+<li>check_endpoints() now also checks testthat tests, if they exist</li>
+<li>Add functions worcs_root() and worcs_file() for file paths relative to the worcs project root</li>
 <li>Add check_renv_synchronized() to check if the project has renv, and if so, that renv has been snapshot.</li>
 <li>git_update() and github_action_*() functions invoke check_renv_synchronized(), so that the version on GitHub has the correct package dependencies.</li>
 <li>Update links in default README.md</li>

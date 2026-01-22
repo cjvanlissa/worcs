@@ -15,7 +15,7 @@ Follow these steps in order:
 1.  Install [R (free)](https://CRAN.R-project.org)
 2.  Install [‘RStudio’ Desktop
     (Free)](https://posit.co/download/rstudio-desktop/)
-3.  Install Git from [git-scm.com](https://git-scm.com/downloads). Use
+3.  Install Git from [git-scm.com](https://git-scm.com/downloads/). Use
     the default, recommended settings. It is especially important to
     leave these settings selected:
     - Git from the command line and also from third party software  

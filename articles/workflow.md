@@ -76,9 +76,8 @@ optional steps displayed in blue nodes:
       preregistration services’ websites, create a new preregistration,
       and upload it as an attachment.
     - Optional: Generate a DOI for the preregistration through [the
-      OSF](https://help.osf.io/article/392-data-management) or a service
-      like
-      [Zenodo](https://docs.github.com/repositories/archiving-a-github-repository/referencing-and-citing-content)
+      OSF](https://osf.io/) or a service like
+      [Zenodo](https://zenodo.org/)
 6.  Optional: Add study materials to the repository.
     - Only do this for study materials to which you own the rights, or
       when the materials’ license allows it
@@ -170,19 +169,15 @@ optional steps displayed in blue nodes:
       This helps clearly communicate the terms of reusability of your
       project. Make sure to use the same License you selected during
       project creation in Step 3.
-16. [Generate a Digital Object Identifier (DOI) for the OSF
-    project](https://help.osf.io/article/220-create-dois)
+16. Generate a Digital Object Identifier (DOI) for the project on
+    [OSF](https://osf.io/)
     - A DOI is a persistent identifier that can be used to link to your
       project page.
     - You may have already created a project page under Step 5 if you
       preregistered on the OSF
-    - Optionally, you can [generate additional DOIs for specific
-      resources like
-      datasets](https://help.osf.io/article/392-data-management).
-    - Alternatively, you can [connect your ‘Git’ remote repository to
-      Zenodo](https://docs.github.com/repositories/archiving-a-github-repository/referencing-and-citing-content),
-      instead of the OSF, to create DOIs for the project and specific
-      resources.
+    - Alternatively, you can connect your ‘Git’ remote repository to
+      [Zenodo](https://zenodo.org/), instead of the OSF, to create DOIs
+      for the project and specific resources.
 17. Add an open science statement to the Abstract or Author notes, which
     links to the ‘OSF’ project page and/or the ‘Git’ remote repository.
     - Placing this statement in the Abstract or Author note means that

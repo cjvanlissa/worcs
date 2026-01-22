@@ -1,9 +1,7 @@
 # Add endpoint to WORCS project
 
-Add a specific endpoint to the WORCS project file. Endpoints are files
-that are expected to be exactly reproducible (e.g., a manuscript,
-figure, table, et cetera). Reproducibility is checked by ensuring the
-endpoint's checksum is unchanged.
+Add a specific endpoint to the WORCS project file (a filename, or
+`"testthat"` integration tests), see Details.
 
 ## Usage
 
@@ -15,8 +13,9 @@ add_endpoint(filename = NULL, worcs_directory = ".", verbose = TRUE, ...)
 
 - filename:
 
-  Character, indicating the file to be tracked as endpoint. Default:
-  NULL.
+  Character, indicating a file to be tracked as endpoint, or
+  `"testthat"` to add a folder of integration tests as endpoints.
+  Default: NULL.
 
 - worcs_directory:
 
@@ -36,6 +35,27 @@ add_endpoint(filename = NULL, worcs_directory = ".", verbose = TRUE, ...)
 ## Value
 
 No return value. This function is called for its side effects.
+
+## Details
+
+Endpoints are either:
+
+1.  Files that are expected to be exactly reproducible (e.g.,
+    `"manuscript.html"`, `"myfigure.png"`, `"results_table.csv"`, et
+    cetera). For individual files, reproducibility is checked by
+    ensuring that the endpoint's checksum is unchanged, see
+    [digest](https://eddelbuettel.github.io/digest/man/digest.html). Be
+    mindful that the checksum also changes if two files are practically,
+    but not literally, identical. This can occur when using random
+    numbers anywhere in your analysis (e.g., Monte Carlo estimation, or
+    even jittering points in a plot), or when numbers are rounded
+    differently in the 15th decimal on different computers.
+
+2.  A folder of integration tests, created using the `testthat` package
+    (see
+    [add_testthat](https://cjvanlissa.github.io/worcs/reference/add_testthat.md)).
+    Note that `testthat` allows you, for example, to test whether
+    numbers are equal within rounding tolerance.
 
 ## See also
 

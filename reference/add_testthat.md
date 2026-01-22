@@ -41,13 +41,13 @@ withr::with_tempdir({
   add_testthat()
 })
 }
-#> ✔ Setting active project to "/tmp/RtmpBe3avx/file20cd6eda278e".
+#> ✔ Setting active project to "/tmp/RtmpOe4q5o/file20e356c71772".
 #> ✔ Creating R/.
 #> ✔ Writing a sentinel file .here.
 #> ☐ Build robust paths within your project via `here::here()`.
 #> ℹ Learn more at <https://here.r-lib.org>.
 #> ✔ Setting active project to "<no active project>".
-#> ✔ Setting active project to "/tmp/RtmpBe3avx/file20cd6eda278e".
+#> ✔ Setting active project to "/tmp/RtmpOe4q5o/file20e356c71772".
 #> ✔ Creating tests/testthat/.
 #> ✔ Writing tests/testthat.R.
 #> ☐ Call `usethis::use_test()` to initialize a basic test file and open it for
@@ -55,11 +55,10 @@ withr::with_tempdir({
 #> ℹ Updating tests/testthat.R
 #> ✔ Updating tests/testthat.R ... done
 #> 
-#> ℹ Updating .worcs file
-#> ✖ Updating .worcs file ... failed
-#> 
-#> ℹ Run `worcs::github_action_testthat()` to add a GitHub action that evaluates
-#>   the integration tests.
+#> ℹ You can run `add_endpoint('testthat')` to add the test suite as an endpoint,
+#>   and `github_action_testthat()` to add a GitHub action that evaluates the
+#>   integration tests, or `github_action_reproduce()` to reproduce the project
+#>   and then run the tests.
 #> ✔ Setting active project to "<no active project>".
 if(requireNamespace("withr", quietly = TRUE) &
   requireNamespace("testthat", quietly = TRUE)){
@@ -73,14 +72,14 @@ if(requireNamespace("withr", quietly = TRUE) &
   })
 
 }
-#> ✔ Creating /tmp/RtmpBe3avx/testworcs/.
-#> ✔ Setting active project to "/tmp/RtmpBe3avx/testworcs".
+#> ✔ Creating /tmp/RtmpOe4q5o/testworcs/.
+#> ✔ Setting active project to "/tmp/RtmpOe4q5o/testworcs".
 #> ✔ Creating R/.
 #> ✔ Writing a sentinel file .here.
 #> ☐ Build robust paths within your project via `here::here()`.
 #> ℹ Learn more at <https://here.r-lib.org>.
 #> ✔ Setting active project to "<no active project>".
-#> ✔ Setting active project to "/tmp/RtmpBe3avx/testworcs".
+#> ✔ Setting active project to "/tmp/RtmpOe4q5o/testworcs".
 #> ✔ Creating tests/testthat/.
 #> ✔ Writing tests/testthat.R.
 #> ☐ Call `usethis::use_test()` to initialize a basic test file and open it for
@@ -88,12 +87,11 @@ if(requireNamespace("withr", quietly = TRUE) &
 #> ℹ Updating tests/testthat.R
 #> ✔ Updating tests/testthat.R ... done
 #> 
-#> ℹ Updating .worcs file
-#> ✔ Updating .worcs file ... done
-#> 
-#> ℹ Run `worcs::github_action_testthat()` to add a GitHub action that evaluates
-#>   the integration tests.
-#> ✔ Setting active project to "/tmp/RtmpBe3avx/testworcs".
+#> ℹ You can run `add_endpoint('testthat')` to add the test suite as an endpoint,
+#>   and `github_action_testthat()` to add a GitHub action that evaluates the
+#>   integration tests, or `github_action_reproduce()` to reproduce the project
+#>   and then run the tests.
+#> ✔ Setting active project to "/tmp/RtmpOe4q5o/testworcs".
 #> ✔ Writing tests/testthat/test-testme.R.
 #> ☐ Edit tests/testthat/test-testme.R.
 #> ℹ Loading tests/testthat.R
@@ -106,6 +104,6 @@ if(requireNamespace("withr", quietly = TRUE) &
 #> 
 #> ══ Results ═════════════════════════════════════════════════════════════════════
 #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-#> ✔ Setting active project to "/tmp/RtmpBe3avx/testworcs".
+#> ✔ Setting active project to "/tmp/RtmpOe4q5o/testworcs".
 #> ✔ Setting active project to "<no active project>".
 ```

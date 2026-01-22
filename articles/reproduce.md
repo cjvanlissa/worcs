@@ -35,6 +35,17 @@ of ‘RStudio’ and ‘R’.**
     tinytex::install_tinytex()
     renv::consent(provided = TRUE)
 
+## Verifying WORCS Installation
+
+You can check whether `worcs` is installed correctly by running:
+
+``` r
+check_worcs_installation()
+```
+
+This function gives tips on how to overcome any remaining issues with
+the installation.
+
 ## Obtaining the project repository
 
 WORCS projects are typically hosted on ‘GitHub’, or another ‘Git’ remote
@@ -93,13 +104,15 @@ in ‘RStudio’:
 
 ## Reproduce the analyses
 
-From `worcs` version 0.1.12, projects can be reproduced using the
-function
-[`reproduce()`](https://cjvanlissa.github.io/worcs/reference/reproduce.md).
+From `worcs` version 0.1.12, projects can be reproduced by running:
+
+    reproduce()
+
 This function will evaluate the reproducibility recipe stored in the
-`.worcs` project file, and checks whether the resulting endpoints have
-the correct checksums (i.e., are unchanged relative to the authors’
-original work).
+`.worcs` project file, and checks whether the resulting endpoints are
+correct. That is to say: whether endpoint checksums are unchanged
+relative to the authors’ original work, and optionally, whether
+author-specified integration tests pass muster.
 
 ## No access to original data
 

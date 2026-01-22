@@ -35,13 +35,19 @@ Custom recipes can be added to a project using
 Users can add endpoints using the function `add_endpoint("filename")`.
 When running this function, `filename` is added to the `.worcs` project
 file, and its checksum is computed so that any changes to the contents
-of the file can be detected.
+of the file can be detected. Note that checksums change in response to
+*any* change to a file, no matter how trivial it may seem to us. Thus,
+if there is any randomness in your analysis (ranging from Monte Carlo
+estimation, bootstrapping, or even just jittering dots in a plot), or
+any rounding error down to the 15th decimal, the checksum will change.
+Be mindful of this, and only add endpoints that you are quite sure will
+not vary due to randomness.
 
-It is also possible to specify multiple endpoints. For example, maybe
-the user has finalized the analyses, and wants to track reproducibility
-for the analysis results - but still wants to make changes to the text
-of the manuscript without breaking reproducibility checks. In this case,
-it is useful to track files that contain analysis results instead of the
+It is possible to specify multiple endpoints. For example, maybe the
+user has finalized the analyses, and wants to track reproducibility for
+the analysis results - but still wants to make changes to the text of
+the manuscript without breaking reproducibility checks. In this case, it
+is useful to track files that contain analysis results instead of the
 rendered manuscript. Imagine these are intermediary files with analysis
 results:
 
@@ -52,6 +58,87 @@ results:
 
 These three files could be tracked as endpoints by calling
 `add_endpoint("descriptives.csv"); add_endpoint("model_fit.csv"); add_endpoint("finalmodel.RData")`.
+
+## Integration Tests as Endpoints
+
+The R-package `testthat` allows users to specify “integration tests” -
+checks that verify that a given operation yields the expected result.
+Integration tests are commonplace in software development, but they are
+evidently also useful in research.
+
+For example, if you write your own function to conduct an analysis, you
+may want to test it on some synthetic data to make sure that it behaves
+as expected.
+
+Integration tests are also useful to check reproducibility: while
+checksums change in response to any trivial change to a file, tests can
+explicitly allow for rounding error.
+
+For example, imagine that you conduct the following analysis:
+
+``` r
+# Run analysis
+res <- lm(Sepal.Length ~ Sepal.Width + Petal.Length, iris)
+# Extract regression coefficients
+tab_coef <- summary(res)$coefficients
+# Write to file
+write.csv(tab_coef, "tab_coef.csv")
+# Get checksum for file
+digest::digest("tab_coef.csv")
+#> [1] "124f039ae361721bb8a6d137f50a7b73"
+```
+
+Now, if we just round these results to the 15th decimal, the checksum
+will be different:
+
+``` r
+# Write to file
+write.csv(round(tab_coef, digits = 15), "tab_coef2.csv")
+# Get checksum for file
+digest::digest("tab_coef2.csv")
+#> [1] "02989acb201b1208f822a0e05a9be96a"
+```
+
+This is not a trivial example: different computer hardware rounds
+numbers differently in the high decimals. Therefore, using
+`tab_coef.csv` as an endpoint could result in failure to reproduce, even
+if it is essentially the same.
+
+An integration test, by contrast, can allow for rounding error, and
+would allow the same comparison to pass. Here, I use a three-decimal
+tolerance:
+
+``` r
+testthat::expect_equal(tab_coef, round(tab_coef, digits = 15), tolerance = 1e-3)
+```
+
+### Adding Integration Tests
+
+To set up a test suite for your project, run:
+
+``` r
+worcs::add_testthat()
+```
+
+Next, you will have to write each of the tests you want to conduct to
+its own file. Call this functions to set up your first test file:
+
+``` r
+usethis::use_test("my_first_test.R")
+```
+
+By default, the tests are not added as endpoints - but you can run them
+interactively with the function
+[`worcs::test_worcs()`](https://cjvanlissa.github.io/worcs/reference/add_testthat.md).
+If you want to add them as endpoints, simply pass the argument
+`"testthat"` to the endpoints function:
+
+``` r
+worcs::add_endpoint("testthat")
+```
+
+After doing so, reproducing the project (see next section) will also run
+the integration test suite.
 
 ## Reproducing a Project
 

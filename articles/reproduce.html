@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">worcs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.20.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.20</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,6 +122,16 @@ sources the package which needs compilation?</em>, click
 <span><span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv/reference/consent.html" class="external-link">consent</a></span><span class="op">(</span>provided <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
+<h2 id="verifying-worcs-installation">Verifying WORCS Installation<a class="anchor" aria-label="anchor" href="#verifying-worcs-installation"></a>
+</h2>
+<p>You can check whether <code>worcs</code> is installed correctly by
+running:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/check_worcs_installation.html">check_worcs_installation</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>This function gives tips on how to overcome any remaining issues with
+the installation.</p>
+</div>
+<div class="section level2">
 <h2 id="obtaining-the-project-repository">Obtaining the project repository<a class="anchor" aria-label="anchor" href="#obtaining-the-project-repository"></a>
 </h2>
 <!-- To do so, open RStudio and, in the console,  -->
@@ -177,12 +187,14 @@ file in ‘RStudio’:</p>
 <div class="section level2">
 <h2 id="reproduce-the-analyses">Reproduce the analyses<a class="anchor" aria-label="anchor" href="#reproduce-the-analyses"></a>
 </h2>
-<p>From <code>worcs</code> version 0.1.12, projects can be reproduced
-using the function <code><a href="../reference/reproduce.html">reproduce()</a></code>. This function will evaluate
-the reproducibility recipe stored in the <code>.worcs</code> project
-file, and checks whether the resulting endpoints have the correct
-checksums (i.e., are unchanged relative to the authors’ original
-work).</p>
+<p>From <code>worcs</code> version 0.1.12, projects can be reproduced by
+running:</p>
+<pre><code><span><span class="fu"><a href="../reference/reproduce.html">reproduce</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<p>This function will evaluate the reproducibility recipe stored in the
+<code>.worcs</code> project file, and checks whether the resulting
+endpoints are correct. That is to say: whether endpoint checksums are
+unchanged relative to the authors’ original work, and optionally,
+whether author-specified integration tests pass muster.</p>
 </div>
 <div class="section level2">
 <h2 id="no-access-to-original-data">No access to original data<a class="anchor" aria-label="anchor" href="#no-access-to-original-data"></a>

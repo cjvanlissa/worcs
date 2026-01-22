@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">worcs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.20.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.20</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,12 +108,18 @@ analyses are complete.</p>
 <code>add_endpoint("filename")</code>. When running this function,
 <code>filename</code> is added to the <code>.worcs</code> project file,
 and its checksum is computed so that any changes to the contents of the
-file can be detected.</p>
-<p>It is also possible to specify multiple endpoints. For example, maybe
-the user has finalized the analyses, and wants to track reproducibility
-for the analysis results - but still wants to make changes to the text
-of the manuscript without breaking reproducibility checks. In this case,
-it is useful to track files that contain analysis results instead of the
+file can be detected. Note that checksums change in response to
+<em>any</em> change to a file, no matter how trivial it may seem to us.
+Thus, if there is any randomness in your analysis (ranging from Monte
+Carlo estimation, bootstrapping, or even just jittering dots in a plot),
+or any rounding error down to the 15th decimal, the checksum will
+change. Be mindful of this, and only add endpoints that you are quite
+sure will not vary due to randomness.</p>
+<p>It is possible to specify multiple endpoints. For example, maybe the
+user has finalized the analyses, and wants to track reproducibility for
+the analysis results - but still wants to make changes to the text of
+the manuscript without breaking reproducibility checks. In this case, it
+is useful to track files that contain analysis results instead of the
 rendered manuscript. Imagine these are intermediary files with analysis
 results:</p>
 <ul>
@@ -129,6 +135,67 @@ final model</li>
 </ul>
 <p>These three files could be tracked as endpoints by calling
 <code>add_endpoint("descriptives.csv"); add_endpoint("model_fit.csv"); add_endpoint("finalmodel.RData")</code>.</p>
+</div>
+<div class="section level2">
+<h2 id="integration-tests-as-endpoints">Integration Tests as Endpoints<a class="anchor" aria-label="anchor" href="#integration-tests-as-endpoints"></a>
+</h2>
+<p>The R-package <code>testthat</code> allows users to specify
+“integration tests” - checks that verify that a given operation yields
+the expected result. Integration tests are commonplace in software
+development, but they are evidently also useful in research.</p>
+<p>For example, if you write your own function to conduct an analysis,
+you may want to test it on some synthetic data to make sure that it
+behaves as expected.</p>
+<p>Integration tests are also useful to check reproducibility: while
+checksums change in response to any trivial change to a file, tests can
+explicitly allow for rounding error.</p>
+<p>For example, imagine that you conduct the following analysis:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Run analysis</span></span>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Sepal.Length</span> <span class="op">~</span> <span class="va">Sepal.Width</span> <span class="op">+</span> <span class="va">Petal.Length</span>, <span class="va">iris</span><span class="op">)</span></span>
+<span><span class="co"># Extract regression coefficients</span></span>
+<span><span class="va">tab_coef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span></span>
+<span><span class="co"># Write to file</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="va">tab_coef</span>, <span class="st">"tab_coef.csv"</span><span class="op">)</span></span>
+<span><span class="co"># Get checksum for file</span></span>
+<span><span class="fu">digest</span><span class="fu">::</span><span class="fu"><a href="https://eddelbuettel.github.io/digest/man/digest.html" class="external-link">digest</a></span><span class="op">(</span><span class="st">"tab_coef.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "124f039ae361721bb8a6d137f50a7b73"</span></span></code></pre></div>
+<p>Now, if we just round these results to the 15th decimal, the checksum
+will be different:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Write to file</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">tab_coef</span>, digits <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>, <span class="st">"tab_coef2.csv"</span><span class="op">)</span></span>
+<span><span class="co"># Get checksum for file</span></span>
+<span><span class="fu">digest</span><span class="fu">::</span><span class="fu"><a href="https://eddelbuettel.github.io/digest/man/digest.html" class="external-link">digest</a></span><span class="op">(</span><span class="st">"tab_coef2.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "02989acb201b1208f822a0e05a9be96a"</span></span></code></pre></div>
+<p>This is not a trivial example: different computer hardware rounds
+numbers differently in the high decimals. Therefore, using
+<code>tab_coef.csv</code> as an endpoint could result in failure to
+reproduce, even if it is essentially the same.</p>
+<p>An integration test, by contrast, can allow for rounding error, and
+would allow the same comparison to pass. Here, I use a three-decimal
+tolerance:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html" class="external-link">expect_equal</a></span><span class="op">(</span><span class="va">tab_coef</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">tab_coef</span>, digits <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>, tolerance <span class="op">=</span> <span class="fl">1e-3</span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="adding-integration-tests">Adding Integration Tests<a class="anchor" aria-label="anchor" href="#adding-integration-tests"></a>
+</h3>
+<p>To set up a test suite for your project, run:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="../reference/add_testthat.html">add_testthat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Next, you will have to write each of the tests you want to conduct to
+its own file. Call this functions to set up your first test file:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_r.html" class="external-link">use_test</a></span><span class="op">(</span><span class="st">"my_first_test.R"</span><span class="op">)</span></span></code></pre></div>
+<p>By default, the tests are not added as endpoints - but you can run
+them interactively with the function <code><a href="../reference/add_testthat.html">worcs::test_worcs()</a></code>.
+If you want to add them as endpoints, simply pass the argument
+<code>"testthat"</code> to the endpoints function:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">worcs</span><span class="fu">::</span><span class="fu"><a href="../reference/add_endpoint.html">add_endpoint</a></span><span class="op">(</span><span class="st">"testthat"</span><span class="op">)</span></span></code></pre></div>
+<p>After doing so, reproducing the project (see next section) will also
+run the integration test suite.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="reproducing-a-project">Reproducing a Project<a class="anchor" aria-label="anchor" href="#reproducing-a-project"></a>
