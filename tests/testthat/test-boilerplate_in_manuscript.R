@@ -1,11 +1,13 @@
 test_that("boilerplate text is inserted", {
-  withr::with_tempdir({
-    add_manuscript(manuscript = "apa6")
-    lnz <- readLines("manuscript/manuscript.Rmd")
-    expect_true(any(grepl("Workflow for Open Reproducible Code in Science", lnz, fixed = TRUE)))
-    expect_true(any(grepl("load_data()", lnz, fixed = TRUE)))
-    file.remove("manuscript/manuscript.Rmd")
-    unlink("manuscript", recursive = TRUE)
+  worcs:::scoped_tempdir({
+    if(requireNamespace("papaja", quietly = TRUE)){
+      add_manuscript(manuscript = "apa6")
+      lnz <- readLines("manuscript/manuscript.Rmd")
+      expect_true(any(grepl("Workflow for Open Reproducible Code in Science", lnz, fixed = TRUE)))
+      expect_true(any(grepl("load_data()", lnz, fixed = TRUE)))
+      file.remove("manuscript/manuscript.Rmd")
+      unlink("manuscript", recursive = TRUE)
+    }
     add_manuscript(manuscript = "github_document")
     lnz <- readLines("manuscript/manuscript.Rmd")
     expect_true(any(grepl("Workflow for Open Reproducible Code in Science", lnz, fixed = TRUE)))
@@ -28,7 +30,7 @@ test_that("boilerplate text is inserted", {
 
 
 test_that("boilerplate text is inserted", {
-  withr::with_tempdir({
+  worcs:::scoped_tempdir({
     add_manuscript(manuscript = "target_markdown")
     print(list.files())
     # lnz <- readLines("manuscript.Rmd")
