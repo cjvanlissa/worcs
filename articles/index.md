@@ -20,3 +20,5 @@
   Computations](https://cjvanlissa.github.io/worcs/articles/targets.md):
 - [The WORCS workflow, version
   0.1.16](https://cjvanlissa.github.io/worcs/articles/workflow.md):
+- [Archiving a WORCS Project on
+  'Zenodo'](https://cjvanlissa.github.io/worcs/articles/zenodo.md):
