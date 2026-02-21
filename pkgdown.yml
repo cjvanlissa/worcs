@@ -12,7 +12,7 @@ articles:
   targets: targets.html
   workflow: workflow.html
   zenodo: zenodo.html
-last_built: 2026-02-21T17:11Z
+last_built: 2026-02-21T18:56Z
 urls:
   reference: https://cjvanlissa.github.io/worcs/reference
   article: https://cjvanlissa.github.io/worcs/articles
