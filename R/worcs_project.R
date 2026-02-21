@@ -196,6 +196,11 @@ worcs_project <- function(path = "worcs_project", manuscript = "APA6", preregist
       # names(cl)[which(names(cl) == "path")] <- "worcs_directory"
       # eval(cl, parent.frame())
       col_message("Initializing 'targets' for a Make-like pipeline.", verbose = verbose)
+    } else {
+      cli_msg("!" = paste0("Could not add targets; please run {.run ",
+
+                           paste0(c(c("install.packages('targets')", "")[requireNamespace("targets", quietly = TRUE)+1L], c("install.packages('tarchetypes')", "")[requireNamespace("tarchetypes", quietly = TRUE)+1L]), collapse = "; "),
+                           "} then try again."))
     }
     # }, error = function(e){
     #   col_message("Could not initialize 'targets'.", success = FALSE)
@@ -281,46 +286,19 @@ describe_file <- function(file, desc, usage, tab, path){
 }
 
 create_man_targets <- function(remote_repo, worcs_directory){
-  if(requireNamespace("targets", quietly = TRUE)) {
-    ff(targets::use_targets_rmd(open = FALSE), worcs_directory = worcs_directory)
-    # run_in_worcsdir(rmarkdown::render(man_fn_rel), worcs_directory = worcs_directory)
+  if (requireNamespace("targets", quietly = TRUE)) {
+    with_cli_try("Copying standard files.", {
+      copy_resources(which_files = "_targets.Rmd", path = worcs_directory)
+      boilerplate <- worcs_boilerplate(remote_repo = remote_repo)
+      manuscript_text <- readLines(file.path(worcs_directory, "_targets.Rmd"), encoding = "UTF-8")
+      manuscript_text <- append(manuscript_text, boilerplate$boilerplate, after = grep("{boilerplate}", manuscript_text, fixed = TRUE))
+      manuscript_text <- manuscript_text[-grep("{boilerplate}", manuscript_text, fixed = TRUE)]
+      write_as_utf(manuscript_text, file.path(worcs_directory, "_targets.Rmd"))
+    })
     return()
-  } else {
-    worcs:::cli_msg("!" = "Package {.code targets} not installed; please run {.run install.packages('targets'); install.packages('tarchetypes')}.")
+  }  else {
+    cli_msg("!" = "Package {.code targets} not installed; please run {.run install.packages('targets'); install.packages('tarchetypes')}.")
   }
-
-  #   manuscript_text <- readLines(man_fn_abs, encoding = "UTF-8")
-  #   # Add bibliography
-  #   bib_line <- which(startsWith(manuscript_text, "bibliography"))[1]
-  #   manuscript_text[bib_line] <- append_yaml(manuscript_text[bib_line], "bibliography", "references.bib")
-  #   # Add citation function
-  #   add_lines <- c(
-  #     "knit              : worcs::cite_all"
-  #   )
-  #   manuscript_text <- append(manuscript_text, add_lines, after = (grep("^---$", manuscript_text)[2]-1))
-  #   # Add call to library("worcs")
-  #   manuscript_text <- append(manuscript_text, recommend_data, after = grep('^library\\("papaja"\\)$', manuscript_text))
-  #
-  #   # Add introductory sentence
-  #   add_lines <- c(
-  #     "",
-  #     paste0("This manuscript uses the Workflow for Open Reproducible Code in Science [WORCS version ",
-  #            gsub("^(\\d{1,}(\\.\\d{1,}){2}).+$", "\\1", as.character(packageVersion("worcs"))),
-  #            ", @vanlissaWORCSWorkflowOpen2021] to ensure reproducibility and transparency. All code <!--and data--> are available at ",
-  #            ifelse(is.null(remote_repo), "<!--insert repository URL-->", paste0("<", remote_repo, ">")), "."),
-  #     "",
-  #     "This is an example of a non-essential citation [@@vanlissaWORCSWorkflowOpen2021]. If you change the rendering function to `worcs::cite_essential`, it will be removed.",
-  #     "",
-  #     "<!--The function below inserts a notification if the manuscript is knit using synthetic data. Make sure to insert it after load_data().-->",
-  #     "`r notify_synthetic()`"
-  #   )
-  #   manuscript_text <- append(manuscript_text, add_lines, after = grep('^```', manuscript_text)[2])
-  #
-  #   # Write
-  #   write_as_utf(manuscript_text, man_fn_abs)
-  # } else {
-  #   col_message('Could not generate an APA6 manuscript file, because the \'papaja\' package is not installed. Run this code to see instructions on how to install this package from GitHub:\n  vignette("setup", package = "worcs")', success = FALSE)
-  # }
 }
 
 

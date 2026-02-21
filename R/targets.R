@@ -29,13 +29,10 @@ add_targets <- function (worcs_directory = ".", verbose = TRUE, ...){
     stop(".worcs file not found.")
   }
   if(!(requireNamespace("targets", quietly = TRUE) & requireNamespace("tarchetypes", quietly = TRUE))) {
-    c(requireNamespace("targets", quietly = TRUE) & requireNamespace("tarchetypes", quietly = TRUE))
-    col_message("Could not find required packages; please run ",
+    cli_msg("!" = paste0("Could not find required packages; please run {.run ",
 
                         paste0(c(c("install.packages('targets')", "")[requireNamespace("targets", quietly = TRUE)+1L], c("install.packages('tarchetypes')", "")[requireNamespace("tarchetypes", quietly = TRUE)+1L]), collapse = "; "),
-                        " then try again."
-                        , success = FALSE
-    )
+                        "} then try again."))
     return(invisible(FALSE))
   } else {
 
