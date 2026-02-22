@@ -20,11 +20,13 @@ test_that("boilerplate text is inserted", {
     expect_true(any(grepl("load_data()", lnz, fixed = TRUE)))
     file.remove("manuscript/manuscript.Rmd")
     unlink("manuscript", recursive = TRUE)
+    if(requireNamespace("targets", quietly = TRUE)){
     add_manuscript(manuscript = "target_markdown")
     lnz <- readLines("_targets.Rmd")
     expect_true(any(grepl("Workflow for Open Reproducible Code in Science", lnz, fixed = TRUE)))
     expect_true(any(grepl("load_data(", lnz, fixed = TRUE)))
     file.remove("_targets.Rmd")
+    }
   })
 })
 

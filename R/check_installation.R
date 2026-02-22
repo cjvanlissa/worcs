@@ -335,7 +335,7 @@ check_renv_synchronized <- function(worcs_directory = ".", ...){
   if(!isTRUE(renvstatus[["synchronized"]])){
     cli_msg("!" = "Your project uses {.code renv}, but the lock file is not synchronized. Consider running {.run renv::snapshot()}.")
   }
-  invisible()
+  invisible(FALSE)
 }
 
 # Show results ------------------------------------------------------------
@@ -356,7 +356,7 @@ get_deps <- function(package = "worcs") {
   pks <- packageDescription(package)
   if (isTRUE(is.na(pks)))
     return(vector("character"))
-  pks <- gsub("\n", "", pks$Imports, fixed = TRUE)
+  pks <- gsub("\n", "", paste0(pks$Imports, ",", pks$Suggests), fixed = TRUE)
   pks <- gsub("\\s", "", pks)
   pks <- strsplit(pks, ",")[[1]]
   setdiff(

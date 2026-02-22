@@ -1,4 +1,4 @@
-# worcs 0.1.21
+# worcs 0.1.20
 
 * add_endpoints() accepts argument "testthat" to add integration tests as
   endpoint
@@ -11,9 +11,6 @@
   check_renv_synchronized(), so that the version on GitHub has the correct
   package dependencies.
 * Update links in default README.md
-
-# worcs 0.1.20
-
 * Fix check_dependencies()
 * Allow both Git remote URLs and names
 * Fix default license in worcs_project() arguments and 'RStudio' template

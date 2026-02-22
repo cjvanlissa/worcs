@@ -23,7 +23,7 @@ but rather, as one proposal for a FAIR-compliant way to archive code repositorie
 
 ### Steps Involved
 
-- [ ] You have an existing `worcs` project folder. If not, follow [the `worcs` workflow](http://cjvanlissa.github.io/worcs/articles/workflow.html) to create one.
+- [ ] You have an existing `worcs` project folder. If not, follow [the `worcs` workflow](https://cjvanlissa.github.io/worcs/articles/workflow.html) to create one.
 - [ ] Make sure that this folder is version controlled with 'Git'
 - [ ] Make sure that the local repository is connected to a remote ('GitHub') repository
 - [ ] Snapshot `renv` dependencies
