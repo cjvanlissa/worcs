@@ -10,7 +10,7 @@ available at the time of writing.
 ### Steps Involved
 
 You have an existing `worcs` project folder. If not, follow [the `worcs`
-workflow](http://cjvanlissa.github.io/worcs/articles/workflow.md) to
+workflow](https://cjvanlissa.github.io/worcs/articles/workflow.html) to
 create one.
 
 Make sure that this folder is version controlled with ‘Git’
