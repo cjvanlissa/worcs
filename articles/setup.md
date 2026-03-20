@@ -16,8 +16,8 @@ Follow these steps in order:
 2.  Install [‘RStudio’ Desktop
     (Free)](https://posit.co/download/rstudio-desktop/)
 3.  Install Git from [git-scm.com](https://git-scm.com/downloads/). Use
-    the default, recommended settings. It is especially important to
-    leave these settings selected:
+    the default, recommended settings. The following settings have been
+    tested to work:
     - Git from the command line and also from third party software  
     - Use the ‘OpenSSL’ library  
     - Checkout Windows-style, commit Unix-style line endings  
@@ -95,8 +95,6 @@ Follow these steps in order:
 If you intend to write documents in APA style, you should additionally
 install the `papaja` package. Because `papaja` has many dependencies, it
 is recommended to skip this step if you intend to write documents in a
-different style than APA. Unfortunately, this package is not yet
-available on the central R repository CRAN, but you can install it from
-‘GitHub’ using the following code:
+different style than APA.
 
     install.packages("papaja", dependencies = TRUE, update = "never")
