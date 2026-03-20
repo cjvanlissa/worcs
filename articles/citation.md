@@ -29,7 +29,7 @@ citation:
     like so: `@yourcitekey2020`. For a parenthesized reference, use
     `[@citekeyone2020; @citekeytwo2020]`. For more options, see the
     [RMarkdown
-    cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html).
+    cookbook](https://yihui.org/rmarkdown-cookbook/bibliography.html).
 3.  To indicate a *non-essential* citation, mark it with a double
     at-symbol: `@@nonessential2020`.
 4.  When Knitting the document, adapt the `knit` command in the YAML

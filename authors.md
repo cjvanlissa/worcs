@@ -13,7 +13,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/cjvanlissa/worcs/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/cjvanlissa/worcs/blob/v0.1.20/DESCRIPTION)
 
 Van Lissa CJ, Peikert A, Brandmaier AM (2026). *worcs: Workflow for Open
 Reproducible Code in Science*. R package version 0.1.20,

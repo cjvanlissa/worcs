@@ -97,4 +97,5 @@ No return value. This function is called for its side effects.
 
 ``` r
 git_update()
+#> No remote set for this branch, using default remote 'origin'
 ```
