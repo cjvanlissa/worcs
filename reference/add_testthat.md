@@ -41,13 +41,13 @@ withr::with_tempdir({
   add_testthat()
 })
 }
-#> ✔ Setting active project to "/tmp/RtmpmNlsWd/file234244e662d".
+#> ✔ Setting active project to "/tmp/RtmpD8RrQb/file22e5145a6919".
 #> ✔ Creating R/.
 #> ✔ Writing a sentinel file .here.
 #> ☐ Build robust paths within your project via `here::here()`.
 #> ℹ Learn more at <https://here.r-lib.org>.
 #> ✔ Setting active project to "<no active project>".
-#> ✔ Setting active project to "/tmp/RtmpmNlsWd/file234244e662d".
+#> ✔ Setting active project to "/tmp/RtmpD8RrQb/file22e5145a6919".
 #> ✔ Creating tests/testthat/.
 #> ✔ Writing tests/testthat.R.
 #> ☐ Call `usethis::use_test()` to initialize a basic test file and open it for
@@ -72,14 +72,14 @@ if(requireNamespace("withr", quietly = TRUE) &
   })
 
 }
-#> ✔ Creating /tmp/RtmpmNlsWd/testworcs/.
-#> ✔ Setting active project to "/tmp/RtmpmNlsWd/testworcs".
+#> ✔ Creating /tmp/RtmpD8RrQb/testworcs/.
+#> ✔ Setting active project to "/tmp/RtmpD8RrQb/testworcs".
 #> ✔ Creating R/.
 #> ✔ Writing a sentinel file .here.
 #> ☐ Build robust paths within your project via `here::here()`.
 #> ℹ Learn more at <https://here.r-lib.org>.
 #> ✔ Setting active project to "<no active project>".
-#> ✔ Setting active project to "/tmp/RtmpmNlsWd/testworcs".
+#> ✔ Setting active project to "/tmp/RtmpD8RrQb/testworcs".
 #> ✔ Creating tests/testthat/.
 #> ✔ Writing tests/testthat.R.
 #> ☐ Call `usethis::use_test()` to initialize a basic test file and open it for
@@ -91,7 +91,7 @@ if(requireNamespace("withr", quietly = TRUE) &
 #>   and `github_action_testthat()` to add a GitHub action that evaluates the
 #>   integration tests, or `github_action_reproduce()` to reproduce the project
 #>   and then run the tests.
-#> ✔ Setting active project to "/tmp/RtmpmNlsWd/testworcs".
+#> ✔ Setting active project to "/tmp/RtmpD8RrQb/testworcs".
 #> ✔ Writing tests/testthat/test-testme.R.
 #> ☐ Edit tests/testthat/test-testme.R.
 #> ℹ Loading tests/testthat.R
@@ -106,6 +106,6 @@ if(requireNamespace("withr", quietly = TRUE) &
 #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 #> 
 #> Way to go!
-#> ✔ Setting active project to "/tmp/RtmpmNlsWd/testworcs".
+#> ✔ Setting active project to "/tmp/RtmpD8RrQb/testworcs".
 #> ✔ Setting active project to "<no active project>".
 ```

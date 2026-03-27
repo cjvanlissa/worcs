@@ -3,6 +3,7 @@ pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   citation: citation.html
+  create_project: create_project.html
   endpoints: endpoints.html
   git_cloud: git_cloud.html
   reproduce: reproduce.html
@@ -12,7 +13,7 @@ articles:
   targets: targets.html
   workflow: workflow.html
   zenodo: zenodo.html
-last_built: 2026-03-20T10:03Z
+last_built: 2026-03-27T12:36Z
 urls:
   reference: https://cjvanlissa.github.io/worcs/reference
   article: https://cjvanlissa.github.io/worcs/articles

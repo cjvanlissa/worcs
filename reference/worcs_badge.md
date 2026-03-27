@@ -44,7 +44,7 @@ No return value. This function is called for its side effects.
 ``` r
 example_dir <- file.path(tempdir(), "badge")
 dir.create(example_dir)
-#> Warning: '/tmp/RtmpmNlsWd/badge' already exists
+#> Warning: '/tmp/RtmpD8RrQb/badge' already exists
 write("a", file.path(example_dir, ".worcs"))
 worcs_badge(path = example_dir,
 update_readme = NULL)

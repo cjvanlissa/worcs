@@ -4,6 +4,8 @@
 
 - [Citing references in
   worcs](https://cjvanlissa.github.io/worcs/articles/citation.md):
+- [Creating a New worcs
+  Project](https://cjvanlissa.github.io/worcs/articles/create_project.md):
 - [Using Endpoints to Check
   Reproducibility](https://cjvanlissa.github.io/worcs/articles/endpoints.md):
 - [Connecting to 'Git' remote
