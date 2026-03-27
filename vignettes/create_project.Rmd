@@ -1,0 +1,158 @@
+---
+title: "Creating a New worcs Project"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Creating a New worcs Project}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This tutorial walks you through the steps of creating a reproducible project with the `worcs` package. The learning goals are:
+
+- [ ] Installing WORCS using the [setup tutorial](https://cjvanlissa.github.io/worcs/articles/setup.html) (to be completed before starting the tutorial);
+- [ ] Checking the installation;
+- [ ] Creating a new WORCS project;
+- [ ] Preparing a dataset in `prepare_data.R`;
+- [ ] Adding the dataset to the repository with `open_data()`;
+- [ ] Adding some basic analyses
+- [ ] Registering endpoints for a reproducibility check;
+- [ ] Reproducing the project
+
+# Checking the Installation
+
+Open RStudio. Load the `worcs` package, and run the installation check:
+
+```{r eval = FALSE}
+library(worcs)
+check_worcs_installation()
+```
+
+You should see all green checkmarks, optionally some "information" messages.
+If you see any failed tests - instructions should be printed on how to remedy the issue.
+Please follow these instructions.
+If you are in a "worcshop" with a live instructor, ask for help after you've tried to remedy the issues.
+
+# Creating a New `worcs` Project
+
+In Rstudio, click `File > New Project > New directory > WORCS Project Template`
+
+Type an appropriate name for the remote Repository in its textbox.
+This name will be used to create a new GitHub repository on your account.
+For example, you could name it "demo_worcs_project".
+
+Keep the checkbox for `renv` checked if you want to use dependency management (recommended).
+
+For this tutorial - select "none" in the preregistration template dropdown menu. You can always add a preregistration later using `add_preregistration()`.
+
+For this tutorial, select the manuscript template "github_document", which has few dependencies. Optionally, you can choose a different template.
+
+Select a license for your project (we recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited).
+
+When you click "Create Project", the new project should open in RStudio (either in a new, or in the current session.
+
+Verify that you see a `README.md` file, which is the welcoming page for users of your repository.
+Edit this template to explain how users should interact with the project.
+
+
+# Prepare a dataset using `prepare_data.R`
+
+The data preparation script should turn your source data into an analysis-ready `data.frame` (or other data object, but you will need to specify custom functions for reading and loading the data in that case).
+
+Two important steps usually occur before data is added to a repository:
+
+* Removing **any and all potentially identifying information** in the case of sensitive data
+* Minimal data cleaning required to store the data to a file. The remainder of the data cleaning will be done reproducibly.
+
+You can use your own data. If you don't have your own data, you can use some demo data:
+
+* Allison Horst's Penguin data, available in different file types at <https://cjvanlissa.github.io/worcshop/>
+* [Data on the effect of different methods of drying the hands on hang time in rock climbing](https://github.com/cjvanlissa/demo_metarep/blob/1366250e87b9b3efd164e1f6d2a1d5e6158c0602/df.csv).
+
+Below is a minimal `prepare_data.R` script. Adapt it for your own data (which will require you to copy the file to your `worcs` project directory, and load them into memory).
+
+```{r eval = FALSE}
+# Inside prepare_data.R:
+library(worcs)
+
+# Example methods of loading a data file
+# df <- readxl::read_xlsx("penguins.xlsx", 1)
+# df <- foreign::read.spss("penguins.sav", to.data.frame = TRUE)
+# df <- read.csv("penguins.csv", stringsAsFactors = FALSE)
+
+# Example data
+df <- iris
+# Remove a colum containing "potentially identifying information"
+df[["Species"]] <- NULL
+
+# Inspect the prepared data
+descriptives(df)
+```
+
+
+# Add the Dataset to the Repository
+
+End the file `prepare_data.R` with the following command to save the prepared dataset and publish it on GitHub.
+If you do not want to publish your data on GitHub, use `closed_data()` instead.
+This tutorial assumes you use `open_data()`.
+
+```{r eval = FALSE}
+open_data(df)
+```
+
+To confirm that the project now knows how to load the dataset, remove `df` from the environment, then run `load_data()` in the console:
+
+```{r eval = FALSE}
+rm(df)
+load_data()
+```
+
+
+# Add some demo analyses
+
+Open your `manuscript.Rmd` file. There, edit an existing code chunk, or remove them and create a new code chunk.
+First, load `worcs` and the data we just created:
+
+```{r eval = FALSE}
+# Inside manuscript.Rmd:
+library(worcs)
+load_data()
+```
+
+Now, add some mock analyses.
+
+You can insert your own analysis code, or play around with the following functions:
+
+```{r eval = FALSE}
+# Descriptive statistics
+res_desc <- descriptives(df)
+write.csv(res_desc, "res_desc.csv", row.names = FALSE)
+
+# Simple model
+mod <- lm(Sepal.Length ~ Sepal.Width, data = df)
+res_mod <- summary(mod)
+write.csv(res_mod$coefficients, "res_coef.csv", row.names = FALSE)
+```
+
+Note that, in this code, we write the results to spreadsheet files.
+You can also print them in the document, for example using:
+
+```{r eval = FALSE}
+knitr::kable(res_mod, caption = "My regression model coefficients, for a model with $R^2 `r report(res_mod[['r.squared']])`$.")
+```
+
+# Reproduce the Project
+
+Run the following code in the terminal:
+
+```{r eval = FALSE}
+reproduce()
+```
+
+This should render the manuscript that you've prepared.

@@ -1,3 +1,7 @@
+# worcs 0.1.21
+
+* Add vignette `create_project.Rmd`
+
 # worcs 0.1.20
 
 * add_endpoints() accepts argument "testthat" to add integration tests as
