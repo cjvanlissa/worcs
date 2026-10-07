@@ -1,7 +1,7 @@
 Package: worcs
 Type: Package
 Title: Workflow for Open Reproducible Code in Science
-Version: 0.1.21.1
+Version: 0.1.21.2
 Authors@R: c(
     person(
       given = c("Caspar", "J."),
@@ -36,7 +36,6 @@ License: CC0
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/cjvanlissa/worcs, https://cjvanlissa.github.io/worcs/
-RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Imports:
     methods,
@@ -75,3 +74,4 @@ Suggests:
 SystemRequirements: pandoc (>= 1.14) - https://pandoc.org 
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0

@@ -161,7 +161,6 @@ has_git_user <- function(repo = ".") {
 #' \code{.gitignore}.
 #' @param remote name of a remote listed in git_remote_list()
 #' @param refspec string with mapping between remote and local refs
-#' @param password a string or a callback function to get passwords for authentication or password protected ssh keys. Defaults to askpass which checks getOption('askpass').
 #' @param ssh_key	path or object containing your ssh private key. By default we look for keys in ssh-agent and credentials::ssh_key_info.
 #' @param verbose display some progress info while downloading
 #' @param repo a path to an existing repository, or a git_repository object as returned by git_open, git_init or git_clone.
@@ -171,6 +170,7 @@ has_git_user <- function(repo = ".") {
 #' @param message a commit message
 #' @param author A git_signature value, default is git_signature_default.
 #' @param committer A git_signature value, default is same as author
+#' @param ... Additional arguments passed to \code{\link[gert:git_push]{git_push}}
 #' @return No return value. This function is called for its side effects.
 #' @examples
 #' git_update()
@@ -180,76 +180,35 @@ has_git_user <- function(repo = ".") {
 git_update <- function(message = paste0("update ", Sys.time()),
                        files = ".",
                        repo = ".",
-                       author,
-                       committer,
-                       remote,
-                       refspec,
-                       password,
-                       ssh_key,
+                       author = NULL,
+                       committer = NULL,
+                       remote = NULL,
+                       refspec = NULL,
+                       ssh_key = NULL,
                        mirror,
-                       force,
-                       verbose = TRUE) {
+                       force = FALSE,
+                       verbose = TRUE,
+                       ...) {
+  dots <- list(...)
   check_renv_synchronized(worcs_directory = repo)
   cl <- match.call.defaults()
-  tryCatch({
-    if (!is_quiet())
-      cli::cli_process_start("Identify local 'Git' repository at {.val {repo}}")
-    git_ls(repo = repo)
-    cli::cli_process_done()
-  }, error = function(err) {
-    cli::cli_process_failed()
-  })
-
-  cl_add <- cl[c(1L, which(names(cl) %in% c("files", "repo")))]
-  cl_add[[1L]] <- str2lang("gert::git_add")
-  cl_commit <- cl[c(1L, which(names(cl) %in% c(
-    "message", "author", "committer", "repo"
-  )))]
-  cl_commit[[1L]] <- str2lang("gert::git_commit")
-  cl_push <- cl[c(1L, which(
-    names(cl) %in% c(
-      "remote",
-      "refspec",
-      "password",
-      "ssh_key",
-      "mirror",
-      "force",
-      "verbose",
-      "repo"
-    )
-  ))]
-  cl_push[[1L]] <- str2lang("gert::git_push")
-
-  invisible(tryCatch({
-    if (!is_quiet())
-      cli::cli_process_start("Adding files to staging area of 'Git' repository.")
-    eval.parent(cl_add)
-    cli::cli_process_done()
-  }, error = function(err) {
-    cli::cli_process_failed()
-  }))
-
-  invisible(tryCatch({
-    if (!is_quiet())
-      cli::cli_process_start("Committed staged files to 'Git' repository.")
-    eval.parent(cl_commit)
-    cli::cli_process_done()
-  }, error = function(err) {
-    if(grepl("git_signature_default", err)){
+  with_cli_try("Identify local 'Git' repository at {.val {repo}}", gert::git_ls(repo = repo))
+  with_cli_try("Adding files to staging area of 'Git' repository.", gert::git_add(files = files, force = force, repo = repo))
+  # cl_commit <- cl[c(1L, which(names(cl) %in% c(
+  #   "message", "author", "committer", "repo"
+  # )))]
+  # cl_commit[[1L]] <- str2lang("gert::git_commit")
+  tmp <- try(with_cli_try("Committing staged files to 'Git' repository.", gert::git_commit(message = message, author = author, committer = committer, repo = repo)))
+  if(grepl("git_signature_default", tmp)){
       cli_msg("i" = "Run worcs::git_user({.val your_name}, {.val your_email}, overwrite = TRUE)")
-    }
-    cli::cli_process_failed()
-  }))
-
-  tryCatch({
-    if (!is_quiet())
-      cli::cli_process_start("Push local commits to remote repository.")
-    eval.parent(cl_push)
-    cli::cli_process_done()
-  }, error = function(err) {
-    cli::cli_process_failed()
-  })
-  invisible()
+  }
+  Args <- list(
+    remote = remote, refspec = refspec, ssh_key = ssh_key, repo = repo, verbose = verbose
+  )
+  if("password" %in% names(dots)) Args$password <- dots[["password"]]
+  if("prune" %in% names(dots)) Args$prune <- dots[["prune"]]
+  with_cli_try("Push local commits to remote repository.", do.call(gert::git_push, Args))
+  return(invisible())
 }
 
 

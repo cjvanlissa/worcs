@@ -8,15 +8,15 @@ git_update(
   message = paste0("update ", Sys.time()),
   files = ".",
   repo = ".",
-  author,
-  committer,
-  remote,
-  refspec,
-  password,
-  ssh_key,
+  author = NULL,
+  committer = NULL,
+  remote = NULL,
+  refspec = NULL,
+  ssh_key = NULL,
   mirror,
-  force,
-  verbose = TRUE
+  force = FALSE,
+  verbose = TRUE,
+  ...
 )
 }
 \arguments{
@@ -34,8 +34,6 @@ git_update(
 
 \item{refspec}{string with mapping between remote and local refs}
 
-\item{password}{a string or a callback function to get passwords for authentication or password protected ssh keys. Defaults to askpass which checks getOption('askpass').}
-
 \item{ssh_key}{path or object containing your ssh private key. By default we look for keys in ssh-agent and credentials::ssh_key_info.}
 
 \item{mirror}{use the --mirror flag}
@@ -43,6 +41,8 @@ git_update(
 \item{force}{use the --force flag}
 
 \item{verbose}{display some progress info while downloading}
+
+\item{...}{Additional arguments passed to \code{\link[gert:git_push]{git_push}}}
 }
 \value{
 No return value. This function is called for its side effects.
