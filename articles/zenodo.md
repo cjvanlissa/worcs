@@ -41,6 +41,7 @@ now](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). You
 can verify that ‘Git’ is installed and working by running:
 
 ``` r
+
 worcs::check_git()
 ```
 
@@ -48,6 +49,7 @@ If ‘Git’ is indeed installed, you can check whether your current project
 is using ‘Git’ for version control. Run:
 
 ``` r
+
 gert::git_status()
 ```
 
@@ -55,6 +57,7 @@ This should return a `tibble` with all files being tracked by ‘Git’.
 Next, run:
 
 ``` r
+
 worcs::check_github()
 ```
 
@@ -81,6 +84,7 @@ for help.
 To check that you are ready to proceed, run:
 
 ``` r
+
 worcs::check_github()
 ```
 
@@ -88,6 +92,7 @@ If you see a green checkmark, you can create a new repository on
 ‘GitHub’ directly from ‘R’:
 
 ``` r
+
 worcs::git_remote_create("repository_name", private = FALSE)
 ```
 
@@ -100,6 +105,7 @@ Alternatively, you may have already created a remote repository on the
 name you want to use, and connect your local repository like so:
 
 ``` r
+
 worcs::git_remote_connect(project_path, remote_repo = "repository_name")
 ```
 
@@ -111,6 +117,7 @@ you should make sure that these dependencies are up to date. Do this by
 running:
 
 ``` r
+
 renv::snapshot()
 ```
 
@@ -128,6 +135,7 @@ combines these three actions, acting like a kind of “quick-save”
 function:
 
 ``` r
+
 worcs::git_update("Preparing to archive my project")
 ```
 
@@ -214,6 +222,7 @@ To archive a repository on ‘Zenodo’, you must create a new release. You
 can do this using the following code:
 
 ``` r
+
 worcs::git_release_publish()
 ```
 
@@ -226,6 +235,7 @@ major change to your project, you may want to manually increment the
 middle digit like so:
 
 ``` r
+
 worcs::git_release_publish(repo = ".",
                            tag_name = "0.2.0",
                            release_name = "0.2.0")

@@ -16,13 +16,13 @@ A data frame with 15 rows and 5 variables.
 
 ## Details
 
-|                 |           |                                                                                                                                 |
-|-----------------|-----------|---------------------------------------------------------------------------------------------------------------------------------|
-| **category**    | `factor`  | Category of the checklist element.                                                                                              |
-| **name**        | `factor`  | Name of the checklist element.                                                                                                  |
-| **description** | `factor`  | What are the requirements to claim that this checklist element is met?                                                          |
-| **importance**  | `factor`  | Whether the checklist element is essential to obtain a green 'open science' badge, or optional.                                 |
-| **check**       | `logical` | Whether the criterion is checked automatically by [`worcs_badge`](https://cjvanlissa.github.io/worcs/reference/worcs_badge.md). |
+|  |  |  |
+|----|----|----|
+| **category** | `factor` | Category of the checklist element. |
+| **name** | `factor` | Name of the checklist element. |
+| **description** | `factor` | What are the requirements to claim that this checklist element is met? |
+| **importance** | `factor` | Whether the checklist element is essential to obtain a green 'open science' badge, or optional. |
+| **check** | `logical` | Whether the criterion is checked automatically by [`worcs_badge`](https://cjvanlissa.github.io/worcs/reference/worcs_badge.md). |
 
 ## References
 

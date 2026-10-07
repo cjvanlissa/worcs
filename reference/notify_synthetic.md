@@ -147,8 +147,8 @@ if(requireNamespace("withr", quietly = TRUE)){
 #> 6/7 [pressure]
 #> 7/7           
 #> output file: manuscript.knit.md
-#> /opt/hostedtoolcache/pandoc/3.1.11/x64/pandoc +RTS -K512m -RTS manuscript.knit.md --to gfm+tex_math_dollars-yaml_metadata_block --from markdown+autolink_bare_uris+tex_math_single_backslash --output manuscript.md --template /home/runner/work/_temp/Library/rmarkdown/rmarkdown/templates/github_document/resources/default.md --citeproc 
-#> /opt/hostedtoolcache/pandoc/3.1.11/x64/pandoc +RTS -K512m -RTS manuscript.md --to html4 --from gfm+tex_math_dollars --output manuscript.html --embed-resources --standalone --highlight-style pygments --template /home/runner/work/_temp/Library/rmarkdown/rmarkdown/templates/github_document/resources/preview.html --variable 'github-markdown-css:/home/runner/work/_temp/Library/rmarkdown/rmarkdown/templates/github_document/resources/github.css' --metadata pagetitle=PREVIEW --mathjax 
+#> /opt/hostedtoolcache/pandoc/3.8.3/x64/pandoc +RTS -K512m -RTS manuscript.knit.md --to gfm-tex_math_gfm-yaml_metadata_block --from markdown+autolink_bare_uris+tex_math_single_backslash --output manuscript.md --template /home/runner/work/_temp/Library/rmarkdown/rmarkdown/templates/github_document/resources/default.md --citeproc 
+#> /opt/hostedtoolcache/pandoc/3.8.3/x64/pandoc +RTS -K512m -RTS manuscript.md --to html4 --from gfm-tex_math_gfm --output manuscript.html --embed-resources --standalone --syntax-highlighting pygments --template /home/runner/work/_temp/Library/rmarkdown/rmarkdown/templates/github_document/resources/preview.html --variable 'github-markdown-css:/home/runner/work/_temp/Library/rmarkdown/rmarkdown/templates/github_document/resources/github.css' --metadata pagetitle=PREVIEW --mathjax 
 #> 
 #> Preview created: manuscript.html
 #> 

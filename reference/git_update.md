@@ -22,15 +22,15 @@ git_update(
   message = paste0("update ", Sys.time()),
   files = ".",
   repo = ".",
-  author,
-  committer,
-  remote,
-  refspec,
-  password,
-  ssh_key,
+  author = NULL,
+  committer = NULL,
+  remote = NULL,
+  refspec = NULL,
+  ssh_key = NULL,
   mirror,
-  force,
-  verbose = TRUE
+  force = FALSE,
+  verbose = TRUE,
+  ...
 )
 ```
 
@@ -66,12 +66,6 @@ git_update(
 
   string with mapping between remote and local refs
 
-- password:
-
-  a string or a callback function to get passwords for authentication or
-  password protected ssh keys. Defaults to askpass which checks
-  getOption('askpass').
-
 - ssh_key:
 
   path or object containing your ssh private key. By default we look for
@@ -88,6 +82,11 @@ git_update(
 - verbose:
 
   display some progress info while downloading
+
+- ...:
+
+  Additional arguments passed to
+  [`git_push`](https://docs.ropensci.org/gert/reference/git_fetch.html)
 
 ## Value
 

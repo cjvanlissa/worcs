@@ -1,6 +1,7 @@
 # Using Custom Synthetic Data
 
 ``` r
+
 library(worcs)
 library(lavaan)
 ```
@@ -34,6 +35,7 @@ not allowed to share them. In an existing `worcs` project, we could then
 store them using the command:
 
 ``` r
+
 library(lavaan)
 library(tidySEM)
 set.seed(4)
@@ -45,6 +47,7 @@ Now, we estimate our SEM-model, based on the example in the `lavaan`
 documentation:
 
 ``` r
+
 load_data()
 model <- '
 ind60 =~ x1 + x2 + x3
@@ -108,6 +111,7 @@ synthetic dataset. To simulate their experience reproducing the
 analysis, we can load the synthetic dataset and try to run our model:
 
 ``` r
+
 dat2 <- read.csv("synthetic_dat.csv", stringsAsFactors = FALSE)
 fit2 <- lavaan::sem(model, data = dat2)
 ```
@@ -132,6 +136,7 @@ reproduce that model. So, let’s use this SEM model to generate a
 synthetic dataset:
 
 ``` r
+
 set.seed(33)
 dat_synthetic <- lavaan::simulateData(model = lavaan::partable(fit))
 ```
@@ -150,6 +155,7 @@ which we saved to a file called `dat.csv` using the function
 [`closed_data()`](https://cjvanlissa.github.io/worcs/reference/closed_data.md).
 
 ``` r
+
 add_synthetic(dat_synthetic, original_name = "dat.csv")
 ```
 
@@ -164,6 +170,7 @@ see that it’s possible to reproduce the analysis - if not the exact
 results - with it:
 
 ``` r
+
 file.remove("dat.csv")
 load_data()
 fit2 <- lavaan::sem(model, data = dat)

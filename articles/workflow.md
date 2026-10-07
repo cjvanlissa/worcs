@@ -235,12 +235,10 @@ updated.
 
 **References**
 
-Aalbersberg, IJsbrand Jan, Tom Appleyard, Sarah Brookhart, Todd
-Carpenter, Michael Clarke, Stephen Curry, Josh Dahl, et al. 2018.
-“Making Science Transparent By Default; Introducing the TOP Statement,”
-February. <https://doi.org/10.31219/osf.io/sm78t>.
+Aalbersberg, IJsbrand Jan, Tom Appleyard, Sarah Brookhart, et al. 2018.
+*Making Science Transparent By Default; Introducing the TOP Statement*.
+February 15. <https://doi.org/10.31219/osf.io/sm78t>.
 
-Van Lissa, Caspar J., Andreas M. Brandmaier, Loek Brinkman, Anna-Lena
-Lamprecht, Aaron Peikert, Marijn E. Struiksma, and Barbara M. I. Vreede.
-2021. “WORCS: A Workflow for Open Reproducible Code in Science.” *Data
+Van Lissa, Caspar J., Andreas M. Brandmaier, Loek Brinkman, et al. 2021.
+“WORCS: A Workflow for Open Reproducible Code in Science.” *Data
 Science* 4 (1): 29–49. <https://doi.org/10.3233/DS-210031>.

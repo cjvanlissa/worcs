@@ -1,6 +1,7 @@
 # worcs 0.1.21
 
 - Add vignette `create_project.Rmd`
+- Refactored git_update()
 
 # worcs 0.1.20
 

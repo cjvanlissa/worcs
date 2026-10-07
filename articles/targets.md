@@ -56,8 +56,8 @@ while writing an Rmarkdown file with programmatic execution of a
 pipeline using `tar_make()` is likely to be more prone to bugs than
 **only** programmatically executing code.
 
-Gupta, Udit, Young Geun Kim, Sylvia Lee, Jordan Tse, Hsien-Hsin S. Lee,
-Gu-Yeon Wei, David Brooks, and Carole-Jean Wu. 2021. “Chasing Carbon:
-The Elusive Environmental Footprint of Computing.” In *2021 IEEE
+Gupta, Udit, Young Geun Kim, Sylvia Lee, et al. 2021. “Chasing Carbon:
+The Elusive Environmental Footprint of Computing.” *2021 IEEE
 International Symposium on High-Performance Computer Architecture
-(HPCA)*, 854–67. <https://doi.org/10.1109/HPCA51647.2021.00076>.
+(HPCA)*, February, 854–67.
+<https://doi.org/10.1109/HPCA51647.2021.00076>.

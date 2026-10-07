@@ -35,6 +35,7 @@ If you know what you’re doing and you wish to install the development
 version of the `worcs` package from GitHub instead, you can use:
 
 ``` r
+
 if(!requireNamespace("remotes")) install.packages("remotes")
 remotes::install_github("cjvanlissa/worcs", dependencies = TRUE, update = "never")
 ```

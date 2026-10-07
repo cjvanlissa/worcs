@@ -19,6 +19,7 @@ docker run -e PASSWORD=secret -p 8787:8787 -it cjvanlissa/worcs:latest
 Then setup the container.
 
 ``` r
+
 renv::consent(provided = TRUE)
 worcs::git_user("your_name", "your_email")
 ```

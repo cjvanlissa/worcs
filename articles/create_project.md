@@ -27,6 +27,7 @@ Reproducing the project
 Open RStudio. Load the `worcs` package, and run the installation check:
 
 ``` r
+
 library(worcs)
 check_worcs_installation()
 ```
@@ -95,6 +96,7 @@ Below is a minimal `prepare_data.R` script. Adapt it for your own data
 directory, and load them into memory).
 
 ``` r
+
 # Inside prepare_data.R:
 library(worcs)
 
@@ -122,6 +124,7 @@ instead. This tutorial assumes you use
 [`open_data()`](https://cjvanlissa.github.io/worcs/reference/open_data.md).
 
 ``` r
+
 open_data(df)
 ```
 
@@ -131,6 +134,7 @@ To confirm that the project now knows how to load the dataset, remove
 in the console:
 
 ``` r
+
 rm(df)
 load_data()
 ```
@@ -142,6 +146,7 @@ remove them and create a new code chunk. First, load `worcs` and the
 data we just created:
 
 ``` r
+
 # Inside manuscript.Rmd:
 library(worcs)
 load_data()
@@ -153,6 +158,7 @@ You can insert your own analysis code, or play around with the following
 functions:
 
 ``` r
+
 # Descriptive statistics
 res_desc <- descriptives(df)
 write.csv(res_desc, "res_desc.csv", row.names = FALSE)
@@ -167,6 +173,7 @@ Note that, in this code, we write the results to spreadsheet files. You
 can also print them in the document, for example using:
 
 ``` r
+
 knitr::kable(res_mod, caption = "My regression model coefficients, for a model with $R^2 `r report(res_mod[['r.squared']])`$.")
 ```
 
@@ -175,6 +182,7 @@ knitr::kable(res_mod, caption = "My regression model coefficients, for a model w
 Run the following code in the terminal:
 
 ``` r
+
 reproduce()
 ```
 

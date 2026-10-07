@@ -40,6 +40,7 @@ of ‘RStudio’ and ‘R’.**
 You can check whether `worcs` is installed correctly by running:
 
 ``` r
+
 check_worcs_installation()
 ```
 
